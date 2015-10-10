@@ -1,0 +1,1 @@
+Image of Price, Interest Rate and Standard Deviation spin button controls

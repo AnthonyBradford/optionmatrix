@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=OptionMatrix Console
+Version=1.0
+Comment=Console Financial Derivatives Calculator
+Exec=optionmatrix_console
+Icon=optionmatrix_console
+Terminal=true
+Type=Application
+Categories=Office;Finance;

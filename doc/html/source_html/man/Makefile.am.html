@@ -1,0 +1,22 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#009900">man_MANS =</font> optionmatrix_console.1 optionmatrix.1
+
+<font color="#009900">EXTRA_DIST =</font> <font color="#009900">$(man_MANS)</font>
+
+<font color="#009900">MAINTAINERCLEANFILES =</font> <font color="#009900">$(man_MANS)</font>
+
+<i><font color="#9A1900"># The man pages depend on the --help strings and the version number.</font></i>
+<font color="#009900">common_mandeps =</font> <font color="#009900">$(top_srcdir)</font>/configure.ac
+
+<i><font color="#9A1900"># Depend on the source, not the binary; we don't need to regenerate the</font></i>
+<i><font color="#9A1900"># binary when any source file changes, only the main one.</font></i>
+<i><font color="#9A1900"># Use -o so that the `missing' program can infer the output file.</font></i>
+<font color="#990000">optionmatrix_console.1:</font> <font color="#009900">$(top_srcdir)</font>/src/common/args.cpp <font color="#009900">$(common_mandeps)</font>
+	<font color="#009900">$(HELP2MAN)</font> --name<font color="#990000">=</font><font color="#FF0000">"Curses Financial Derivatives Calculator"</font> <font color="#990000">..</font>/src/curses/optionmatrix_console -o <font color="#009900">$@</font>
+
+<font color="#990000">optionmatrix.1:</font> <font color="#009900">$(top_srcdir)</font>/src/common/args.cpp <font color="#009900">$(common_mandeps)</font>
+	<font color="#009900">$(HELP2MAN)</font> --name<font color="#990000">=</font><font color="#FF0000">"GTK+ Financial Derivatives Calculator"</font> <font color="#990000">..</font>/src/gtk/optionmatrix -o <font color="#009900">$@</font>
+</tt></pre>

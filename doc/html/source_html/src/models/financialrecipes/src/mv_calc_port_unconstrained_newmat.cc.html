@@ -1,0 +1,35 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">"config.h"</font>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_NEWMAT_NEWMAT_H
+<b><font color="#000080"> #include</font></b> <font color="#FF0000">&lt;newmat/newmat.h&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_NEWMAT_NEWMAT_H
+
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> NEWMAT<font color="#990000">;</font>
+
+<font color="#008080">ReturnMatrix</font> <b><font color="#000000">mv_calculate_portfolio_given_mean_unconstrained</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> Matrix<font color="#990000">&amp;</font> e<font color="#990000">,</font> 
+							     <b><font color="#0000FF">const</font></b> Matrix<font color="#990000">&amp;</font> V<font color="#990000">,</font> 
+							     <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">)</font><font color="#FF0000">{</font>
+    <font color="#009900">int</font> no_assets<font color="#990000">=</font>e<font color="#990000">.</font><b><font color="#000000">Nrows</font></b><font color="#990000">();</font>
+    <font color="#008080">Matrix</font> ones <font color="#990000">=</font> <b><font color="#000000">Matrix</font></b><font color="#990000">(</font>no_assets<font color="#990000">,</font><font color="#993399">1</font><font color="#990000">);</font> <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#009900">int</font> i<font color="#990000">=</font><font color="#993399">0</font><font color="#990000">;</font>i<font color="#990000">&lt;</font>no_assets<font color="#990000">;++</font>i<font color="#990000">)</font><font color="#FF0000">{</font> ones<font color="#990000">.</font><b><font color="#000000">element</font></b><font color="#990000">(</font>i<font color="#990000">,</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+    <font color="#008080">Matrix</font> Vinv <font color="#990000">=</font> V<font color="#990000">.</font><b><font color="#000000">i</font></b><font color="#990000">();</font>  <i><font color="#9A1900">// inverse of V</font></i>
+    <font color="#008080">Matrix</font> A <font color="#990000">=</font> <font color="#990000">(</font>ones<font color="#990000">.</font><b><font color="#000000">t</font></b><font color="#990000">()*</font>Vinv<font color="#990000">*</font>e<font color="#990000">);</font>  <font color="#009900">double</font> a <font color="#990000">=</font> A<font color="#990000">.</font><b><font color="#000000">element</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">0</font><font color="#990000">);</font>
+    <font color="#008080">Matrix</font> B <font color="#990000">=</font> e<font color="#990000">.</font><b><font color="#000000">t</font></b><font color="#990000">()*</font>Vinv<font color="#990000">*</font>e<font color="#990000">;</font>       <font color="#009900">double</font> b <font color="#990000">=</font> B<font color="#990000">.</font><b><font color="#000000">element</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">0</font><font color="#990000">);</font>
+    <font color="#008080">Matrix</font> C <font color="#990000">=</font> ones<font color="#990000">.</font><b><font color="#000000">t</font></b><font color="#990000">()*</font>Vinv<font color="#990000">*</font>ones<font color="#990000">;</font> <font color="#009900">double</font> c <font color="#990000">=</font> C<font color="#990000">.</font><b><font color="#000000">element</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">0</font><font color="#990000">);</font>
+    <font color="#009900">double</font> d <font color="#990000">=</font> b<font color="#990000">*</font>c <font color="#990000">-</font> a<font color="#990000">*</font>a<font color="#990000">;</font>
+    <font color="#008080">Matrix</font> Vinv1<font color="#990000">=</font>Vinv<font color="#990000">*</font>ones<font color="#990000">;</font> 
+    <font color="#008080">Matrix</font> Vinve<font color="#990000">=</font>Vinv<font color="#990000">*</font>e<font color="#990000">;</font>
+    <font color="#008080">Matrix</font> g <font color="#990000">=</font> <font color="#990000">(</font>Vinv1<font color="#990000">*</font>b <font color="#990000">-</font> Vinve<font color="#990000">*</font>a<font color="#990000">)*(</font><font color="#993399">1.0</font><font color="#990000">/</font>d<font color="#990000">);</font>
+    <font color="#008080">Matrix</font> h <font color="#990000">=</font> <font color="#990000">(</font>Vinve<font color="#990000">*</font>c <font color="#990000">-</font> Vinv1<font color="#990000">*</font>a<font color="#990000">)*(</font><font color="#993399">1.0</font><font color="#990000">/</font>d<font color="#990000">);</font>
+    <font color="#008080">Matrix</font> w <font color="#990000">=</font> g <font color="#990000">+</font> h<font color="#990000">*</font>r<font color="#990000">;</font>
+    w<font color="#990000">.</font><b><font color="#000000">Release</font></b><font color="#990000">();</font>
+    <b><font color="#0000FF">return</font></b> w<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#000080">#endif</font></b>
+</tt></pre>

@@ -1,0 +1,858 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/* optionmatrix:                                                            */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Options &amp; Futures Matrix Modeler                                         */</font></i>
+<i><font color="#9A1900">/* View and Control Theoretical Option Chains                               */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* File: defs.h of optionmatrix                                             */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Copyright (c) Anthony Bradford. 2012.                                    */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">http://anthonybradford.com</font></u><i><font color="#9A1900">                                               */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">info@anthonybradford.com</font></u><i><font color="#9A1900">                                                 */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* optionmatrix may be freely redistributed.                                */</font></i>
+<i><font color="#9A1900">/* See file COPYING included with this distribution for license information */</font></i>
+
+<i><font color="#9A1900">/* </font></i>
+<i><font color="#9A1900">   optionmatrix is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">   it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">   the Free Software Foundation; either version 3 of the License, or</font></i>
+<i><font color="#9A1900">   (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">   optionmatrix program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">   but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">   GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">   You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">   along with this program.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"config.h"</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdio.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;ctype.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;time.h&gt;</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;map&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;string&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;vector&gt;</font>
+
+<b><font color="#000080">#ifndef</font></b> HAVE_LIBPTHREAD
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> missing pthread library which is needed by <b><font color="#0000FF">this</font></b> code
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_PTHREAD_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;pthread.h&gt;</font>
+<b><font color="#000080">#else</font></b>
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> <b><font color="#0000FF">this</font></b> <font color="#008080">code</font> requires <font color="#990000">&lt;</font>pthread<font color="#990000">.</font>h<font color="#990000">&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_LOCALE_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;locale.h&gt;</font>
+<b><font color="#000080">#else</font></b>
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> <b><font color="#0000FF">this</font></b> <font color="#008080">code</font> requires <font color="#990000">&lt;</font>locale<font color="#990000">.</font>h<font color="#990000">&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_STDLIB_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;stdlib.h&gt;</font>
+<b><font color="#000080">#else</font></b>
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> <b><font color="#0000FF">this</font></b> <font color="#008080">code</font> requires <font color="#990000">&lt;</font>stdlib<font color="#990000">.</font>h<font color="#990000">&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifndef</font></b> HAVE_LIBM
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> <b><font color="#0000FF">this</font></b> code <font color="#008080">requires</font> the <font color="#FF0000">'m'</font> <b><font color="#000000">library</font></b> <font color="#990000">(-</font>lm<font color="#990000">)</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_MATH_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;math.h&gt;</font>
+<b><font color="#000080">#else</font></b>
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> <b><font color="#0000FF">this</font></b> <font color="#008080">code</font> requires <font color="#990000">&lt;</font>math<font color="#990000">.</font>h<font color="#990000">&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_FLOAT_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;float.h&gt;</font>
+<b><font color="#000080">#else</font></b>
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> <b><font color="#0000FF">this</font></b> <font color="#008080">code</font> requires <font color="#990000">&lt;</font><font color="#009900">float</font><font color="#990000">.</font>h<font color="#990000">&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_STDDEF_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;stddef.h&gt;</font>
+<b><font color="#000080">#else</font></b>
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> <b><font color="#0000FF">this</font></b> <font color="#008080">code</font> requires <font color="#990000">&lt;</font>stddef<font color="#990000">.</font>h<font color="#990000">&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_UNISTD_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;unistd.h&gt;</font>
+<b><font color="#000080">#else</font></b>
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> <b><font color="#0000FF">this</font></b> <font color="#008080">code</font> requires <font color="#990000">&lt;</font>unistd<font color="#990000">.</font>h<font color="#990000">&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_STRING_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;string.h&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_STRINGS_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;strings.h&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#if</font></b> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_GSL_GSL_ERRNO_H<font color="#990000">)</font> <font color="#990000">&amp;&amp;</font> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_LIBGSL<font color="#990000">)</font>
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;gsl/gsl_errno.h&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifndef</font></b> HAVE_MEMSET
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> missing memset which is needed by <b><font color="#0000FF">this</font></b> code
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifndef</font></b> HAVE_MODF
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> missing modf which is needed by <b><font color="#0000FF">this</font></b> code
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifndef</font></b> HAVE_POW
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> missing pow which is needed by <b><font color="#0000FF">this</font></b> code
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifndef</font></b> HAVE_SQRT
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> missing sqrt which is needed by <b><font color="#0000FF">this</font></b> code
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifndef</font></b> HAVE_LOCALECONV
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> missing localeconv which is needed by <b><font color="#0000FF">this</font></b> code
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#if</font></b> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_LIBGTK_3<font color="#990000">)</font> <font color="#990000">||</font> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_LIBGTK_X11_2_0<font color="#990000">)</font>
+<b><font color="#000080"># include</font></b> <font color="#FF0000">"../gtk/gtk_include.h"</font>
+<b><font color="#000080">#endif</font></b>
+
+<i><font color="#9A1900">/* models to use. comment out to exclude */</font></i>
+<b><font color="#000080">#define</font></b> ABRADFORD
+<b><font color="#000080">#define</font></b> SPINSKY
+<b><font color="#000080">#define</font></b> METAOPTIONS
+<b><font color="#000080">#define</font></b> FINRECIPES
+<i><font color="#9A1900">//#define DUMMYTESTMODELS     // For testing</font></i>
+
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+
+<b><font color="#0000FF">enum</font></b> <font color="#FF0000">{</font> OPTION_CLASS <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">,</font> FUTURES_CLASS<font color="#990000">,</font> BOND_CLASS<font color="#990000">,</font> TERMSTRUCTURE_CLASS <font color="#FF0000">}</font><font color="#990000">;</font>
+
+<i><font color="#9A1900">// date securities via decimal/date entry dating or date to calendar engine ( e.g. 3rd friday + 1 )..</font></i>
+<b><font color="#0000FF">enum</font></b> <font color="#FF0000">{</font> DECIMALS<font color="#990000">,</font> CALENDAR <font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">enum</font></b> <font color="#FF0000">{</font> LEG1<font color="#990000">,</font> LEG2 <font color="#FF0000">}</font><font color="#990000">;</font>
+
+<i><font color="#9A1900">// screen style formats</font></i>
+<b><font color="#0000FF">enum</font></b> <font color="#FF0000">{</font> 
+       <i><font color="#9A1900">// begin screens for options</font></i>
+       DECIMAL_GREEKS <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">,</font> DECIMAL_OPTIONS<font color="#990000">,</font> 
+       CALENDAR_OPTIONS1<font color="#990000">,</font>  CALENDAR_OPTIONS2<font color="#990000">,</font>
+       CALENDAR_OPTIONS3<font color="#990000">,</font>  CALENDAR_OPTIONS4<font color="#990000">,</font>
+       CALENDAR_OPTIONS5<font color="#990000">,</font>  CALENDAR_OPTIONS6<font color="#990000">,</font>
+       CALENDAR_CUSTOM<font color="#990000">,</font>
+       OPTIONS_FORMAT_END<font color="#990000">,</font>
+
+       <i><font color="#9A1900">// begin screens for futures</font></i>
+       DECIMAL_FUTURE<font color="#990000">,</font> CALENDAR_FUTURE<font color="#990000">,</font>
+       FUTURES_FORMAT_END<font color="#990000">,</font>
+
+       <i><font color="#9A1900">// next are properties, keep separate from formats</font></i>
+       <i><font color="#9A1900">// by FUTURES_FORMAT_END </font></i>
+
+       DEMO_OPTIONS<font color="#990000">,</font> DEMO_FUTURES<font color="#990000">,</font> 
+       OPTIONS_CALENDAR<font color="#990000">,</font> FUTURES_CALENDAR<font color="#990000">,</font>
+       PROPERTIES<font color="#990000">,</font>
+
+       <i><font color="#9A1900">// always keep QUIT as last enum</font></i>
+       QUIT<font color="#990000">,</font>
+
+     <font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">enum</font></b> <font color="#FF0000">{</font> NORMAL_DISTRIBUTION <font color="#990000">=</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">enum</font></b> <font color="#FF0000">{</font> POLYNOMIAL_APPROX6<font color="#990000">,</font> POLYNOMIAL_APPROX4<font color="#990000">,</font> RATIONAL_APPROX7<font color="#990000">,</font> RATIONAL_APPROX4<font color="#990000">,</font> HART<font color="#990000">,</font>
+       ROMBERGS_METHOD<font color="#990000">,</font> SIMPSONS_RULE<font color="#990000">,</font> TRAPEZOID_RULE<font color="#990000">,</font> ERF <font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">struct</font></b> <font color="#008080">_data</font> <font color="#FF0000">{</font>
+
+  <i><font color="#9A1900">// input data</font></i>
+  <font color="#009900">int</font> modeltype<font color="#990000">;</font>
+  <font color="#009900">int</font> term_model<font color="#990000">;</font>
+
+  <font color="#009900">double</font> price<font color="#990000">;</font>
+  <font color="#009900">double</font> strike<font color="#990000">;</font>
+  <font color="#009900">double</font> rate<font color="#990000">;</font>
+  <font color="#009900">double</font> volatility<font color="#990000">;</font>
+  <font color="#009900">double</font> t<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">];</font>
+  <font color="#009900">double</font> dividend<font color="#990000">;</font>
+
+  <font color="#008080">pthread_mutex_t</font> mutexCashflow<font color="#990000">;</font>
+
+  <font color="#008080">vector&lt;double&gt;</font> amounts<font color="#990000">;</font>
+  <font color="#008080">vector&lt;double&gt;</font> times<font color="#990000">;</font>
+  <font color="#008080">vector&lt;double&gt;</font> times_adjusted<font color="#990000">;</font>
+
+  <font color="#008080">vector&lt;double&gt;</font> coupon<font color="#990000">;</font>
+  <font color="#008080">vector&lt;double&gt;</font> coupon_times<font color="#990000">;</font>
+  <font color="#008080">vector&lt;double&gt;</font> coupon_times_adjusted<font color="#990000">;</font>
+
+  <font color="#008080">vector&lt;double&gt;</font> principal<font color="#990000">;</font>
+  <font color="#008080">vector&lt;double&gt;</font> principal_times<font color="#990000">;</font>
+  <font color="#008080">vector&lt;double&gt;</font> principal_times_adjusted<font color="#990000">;</font>
+
+  <font color="#008080">vector&lt;double&gt;</font> <font color="#990000">*</font>generic_amounts<font color="#990000">;</font>
+  <font color="#008080">vector&lt;double&gt;</font> <font color="#990000">*</font>generic_times<font color="#990000">;</font>
+  <font color="#008080">vector&lt;double&gt;</font> <font color="#990000">*</font>generic_times_adjusted<font color="#990000">;</font>
+
+<b><font color="#000080">#ifdef</font></b> FINRECIPES
+  <b><font color="#0000FF">class</font></b> <font color="#008080">term_structure_class</font> <font color="#990000">*</font>term<font color="#990000">;</font>
+<b><font color="#000080">#endif</font></b>
+
+  <font color="#009900">double</font> UseZ<font color="#990000">;</font>
+  <font color="#009900">double</font> UseB<font color="#990000">;</font>
+  <font color="#009900">double</font> UseJ<font color="#990000">;</font>
+  <font color="#009900">double</font> UseP<font color="#990000">;</font>
+  <font color="#009900">double</font> UseQ<font color="#990000">;</font>
+  <font color="#009900">double</font> UseR<font color="#990000">;</font>
+  <font color="#009900">double</font> UseS<font color="#990000">;</font>
+  <font color="#009900">double</font> UseT<font color="#990000">;</font>
+  <font color="#009900">int</font> UsePound<font color="#990000">;</font>  <i><font color="#9A1900">// '#'</font></i>
+
+  <font color="#009900">int</font> steps<font color="#990000">;</font>
+
+  <i><font color="#9A1900">// computed data</font></i>
+
+  <font color="#009900">double</font> te<font color="#990000">;</font>  <i><font color="#9A1900">// time elapsed in decimal since user input to minus from t</font></i>
+  <font color="#009900">double</font> te2<font color="#990000">;</font> <i><font color="#9A1900">// time elapsed in decimal since user input to minus from t2</font></i>
+  <font color="#009900">double</font> te3<font color="#990000">;</font> <i><font color="#9A1900">// time elapsed in decimal since user input to minus from t3</font></i>
+  <font color="#009900">double</font> te4<font color="#990000">;</font>
+
+  <font color="#009900">double</font> call<font color="#990000">;</font>
+  <font color="#009900">double</font> put<font color="#990000">;</font>
+
+  <font color="#009900">double</font> future<font color="#990000">;</font>
+
+  <font color="#009900">double</font> calldelta<font color="#990000">;</font>
+  <font color="#009900">double</font> putdelta<font color="#990000">;</font>
+
+  <font color="#009900">double</font> gamma<font color="#990000">;</font>
+  <font color="#009900">double</font> vega<font color="#990000">;</font>
+
+  <font color="#009900">double</font> calltheta<font color="#990000">;</font>
+  <font color="#009900">double</font> puttheta<font color="#990000">;</font>
+
+  <font color="#009900">double</font> callrho<font color="#990000">;</font>
+  <font color="#009900">double</font> putrho<font color="#990000">;</font>
+
+  <i><font color="#9A1900">// Term Stuctures</font></i>
+  <font color="#009900">double</font> discount_t1<font color="#990000">;</font>
+  <font color="#009900">double</font> discount_t2<font color="#990000">;</font>
+  <font color="#009900">double</font> spot_t1<font color="#990000">;</font>
+  <font color="#009900">double</font> spot_t2<font color="#990000">;</font>
+  <font color="#009900">double</font> forward<font color="#990000">;</font>
+
+  <i><font color="#9A1900">// Bonds</font></i>
+  <font color="#009900">double</font> bond_price<font color="#990000">;</font>
+  <font color="#009900">double</font> pv_discrete<font color="#990000">;</font>
+  <font color="#009900">double</font> pv_continous<font color="#990000">;</font>
+  <font color="#009900">double</font> irr<font color="#990000">;</font>
+  <font color="#009900">double</font> irr_discrete<font color="#990000">;</font>
+  <font color="#009900">bool</font>   uirr<font color="#990000">;</font>
+  <font color="#009900">double</font> YTMDiscrete<font color="#990000">;</font>
+  <font color="#009900">double</font> YTMContinous<font color="#990000">;</font>
+  <font color="#009900">double</font> durationContinous<font color="#990000">;</font>
+  <font color="#009900">double</font> durationDiscrete<font color="#990000">;</font>
+
+  <font color="#009900">double</font> durationMacaulayDiscrete<font color="#990000">;</font>
+  <font color="#009900">double</font> durationModifiedDiscrete<font color="#990000">;</font>
+
+  <font color="#009900">double</font> convexityContinous<font color="#990000">;</font>
+  <font color="#009900">double</font> convexityDiscrete<font color="#990000">;</font>
+
+  <font color="#009900">bool</font> debug<font color="#990000">;</font>
+  <font color="#009900">bool</font> isnan<font color="#990000">;</font>
+
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">typedef</font></b> std<font color="#990000">::</font><font color="#008080">map&lt;std::string, int&gt;</font> treeToIndex<font color="#990000">;</font>
+
+<b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#FF0000">{</font>
+   
+    <b><font color="#0000FF">struct</font></b> <font color="#008080">_data</font> data<font color="#990000">;</font>
+
+    <font color="#009900">int</font> decimalorcalendar<font color="#990000">;</font>
+
+    <font color="#009900">int</font> modeltype<font color="#990000">;</font>
+    <font color="#009900">int</font> occurence_day<font color="#990000">;</font>
+    <font color="#009900">int</font> occurence_in_month<font color="#990000">;</font>
+    <font color="#009900">int</font> occurence_plus_offset<font color="#990000">;</font>
+    <font color="#009900">int</font> expiration_hour<font color="#990000">,</font>expiration_minute<font color="#990000">,</font>expiration_second<font color="#990000">;</font>
+    <font color="#009900">unsigned</font> <font color="#009900">int</font> expiration_time<font color="#990000">;</font>
+    <font color="#009900">double</font> adjusttime<font color="#990000">;</font>
+  
+    <i><font color="#9A1900">// Leg 1 or single option or future</font></i>
+    <font color="#009900">int</font> <font color="#990000">*</font>time_to_expiration<font color="#990000">,*</font>days_to_expiration<font color="#990000">,*</font>expiration_month<font color="#990000">,*</font>expiration_year<font color="#990000">,*</font>start_time_to_expiration<font color="#990000">,*</font>start_days_to_expiration<font color="#990000">,*</font>start_expiration_month<font color="#990000">,*</font>start_expiration_year<font color="#990000">;</font>
+
+    <i><font color="#9A1900">// Leg 2</font></i>
+    <font color="#009900">int</font> <font color="#990000">*</font>time_to_expiration2<font color="#990000">,*</font>days_to_expiration2<font color="#990000">,*</font>expiration_month2<font color="#990000">,*</font>expiration_year2<font color="#990000">,*</font>start_time_to_expiration2<font color="#990000">,*</font>start_days_to_expiration2<font color="#990000">,*</font>start_expiration_month2<font color="#990000">,*</font>start_expiration_year2<font color="#990000">;</font>
+
+    <i><font color="#9A1900">// All Months 0, Jan cycle 1, Feb cycle 2, Mar cycle 3</font></i>
+    <font color="#009900">int</font> optionscycle<font color="#990000">;</font>
+    <font color="#009900">int</font> skipmonth<font color="#990000">;</font>   <i><font color="#9A1900">// Leg 1</font></i>
+    <font color="#009900">int</font> skipmonth2<font color="#990000">;</font>  <i><font color="#9A1900">// Leg 2</font></i>
+    <font color="#009900">int</font> day_offset_counter<font color="#990000">;</font>
+    <font color="#009900">double</font> day_offset<font color="#990000">;</font>
+
+    <font color="#008080">time_t</font> starttime<font color="#990000">;</font>
+    <font color="#008080">time_t</font> starttime2<font color="#990000">;</font>
+    <font color="#008080">time_t</font> starttime3<font color="#990000">;</font>
+    <font color="#008080">time_t</font> starttime4<font color="#990000">;</font>
+
+    <font color="#008080">time_t</font> updatetime<font color="#990000">;</font>
+
+    <font color="#009900">int</font> calendarSelected<font color="#990000">;</font>
+
+    <font color="#009900">bool</font> realTimeBleeding<font color="#990000">;</font>
+    <font color="#009900">int</font> updatedelayseconds<font color="#990000">;</font>
+    <font color="#009900">bool</font> highlightInTheMoney<font color="#990000">;</font>
+    <font color="#009900">bool</font> spreads<font color="#990000">;</font>
+    <font color="#009900">bool</font> filterNegativePrices<font color="#990000">;</font>
+
+    <font color="#009900">int</font> precision<font color="#990000">;</font>
+    <font color="#009900">int</font> strikestoogle<font color="#990000">;</font>
+    <font color="#009900">double</font> customstrike<font color="#990000">;</font>
+    <font color="#009900">double</font> strike_offset<font color="#990000">;</font>
+    <font color="#009900">double</font> strike_offset2<font color="#990000">;</font>
+    <font color="#009900">double</font> discard<font color="#990000">;</font>
+    <font color="#009900">bool</font> verticalSpread<font color="#990000">;</font>
+
+    <b><font color="#0000FF">struct</font></b> <font color="#008080">_int_to_name_nonconst</font> <font color="#990000">*</font>termstructure_name_list<font color="#990000">;</font> 
+
+    <font color="#009900">int</font> format<font color="#990000">;</font>
+
+    <font color="#009900">int</font> distribution_type<font color="#990000">;</font>
+    <font color="#009900">double</font> distribution_mean<font color="#990000">;</font>
+    <font color="#009900">double</font> distribution_variance<font color="#990000">;</font>
+    <font color="#009900">int</font> integration_type<font color="#990000">;</font>
+
+    <font color="#009900">bool</font> textExport<font color="#990000">;</font>
+    <b><font color="#0000FF">struct</font></b> <font color="#008080">lconv</font> <font color="#990000">*</font> lc<font color="#990000">;</font>
+
+    <font color="#009900">char</font> source_directory_prefix<font color="#990000">[</font><font color="#993399">1024</font><font color="#990000">];</font>
+
+    <i><font color="#9A1900">// curses specific</font></i>
+    <font color="#009900">int</font> start<font color="#990000">;</font>
+    <font color="#009900">int</font> mode<font color="#990000">;</font>               <i><font color="#9A1900">// incrementor/decrementor 1 = small, 2 = medium, 3 = large</font></i>
+    <font color="#009900">int</font> demotype<font color="#990000">;</font>
+
+    <i><font color="#9A1900">// GTK+ specific</font></i>
+<b><font color="#000080">#if</font></b> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_LIBGTK_3<font color="#990000">)</font> <font color="#990000">||</font> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_LIBGTK_X11_2_0<font color="#990000">)</font>
+    <b><font color="#0000FF">struct</font></b> <font color="#008080">gtkinfo</font> GtkInfo<font color="#990000">;</font>
+<b><font color="#000080">#endif</font></b>
+
+    <i><font color="#9A1900">// GTK+ specific</font></i>
+    <b><font color="#0000FF">struct</font></b> <font color="#008080">elementListWithGroup</font> <font color="#990000">*</font>listModelsForGroups<font color="#990000">;</font>
+    <font color="#008080">treeToIndex</font> TreeToIndex<font color="#990000">;</font>
+
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">struct</font></b> <font color="#008080">integratable_distributions</font> <font color="#FF0000">{</font>
+
+  <font color="#009900">double</font> <font color="#990000">(*</font>constantvalue<font color="#990000">)</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">);</font>
+  <font color="#009900">double</font> <font color="#990000">(*</font>integrationpart<font color="#990000">)</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">,</font><font color="#009900">double</font><font color="#990000">,</font><font color="#009900">double</font><font color="#990000">);</font>
+  <font color="#009900">char</font>   des<font color="#990000">[</font><font color="#993399">30</font><font color="#990000">];</font>
+
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<i><font color="#9A1900">// list of numerical integration methods</font></i>
+<b><font color="#0000FF">struct</font></b> <font color="#008080">numerical_integration_method</font> <font color="#FF0000">{</font>
+
+  <font color="#009900">double</font> <font color="#990000">(*</font>method<font color="#990000">)</font> <font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font> a<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> b<font color="#990000">,</font> <font color="#009900">int</font> n<font color="#990000">,</font> <font color="#009900">double</font> <font color="#990000">(*</font>fun<font color="#990000">)</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">,</font><font color="#009900">double</font><font color="#990000">,</font><font color="#009900">double</font><font color="#990000">),</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font> parm2<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> parm3<font color="#990000">);</font>
+
+  <font color="#009900">char</font>           des<font color="#990000">[</font><font color="#993399">30</font><font color="#990000">];</font>
+  <b><font color="#0000FF">mutable</font></b> <font color="#009900">int</font>    resolution<font color="#990000">;</font>
+  <font color="#009900">bool</font>           allowOnlyEven<font color="#990000">;</font>
+  <font color="#009900">int</font>            UpperLimit<font color="#990000">;</font>
+
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<i><font color="#9A1900">/* list of all financial models */</font></i>
+<b><font color="#0000FF">enum</font></b> <font color="#FF0000">{</font> 
+
+<b><font color="#000080">#ifdef</font></b> ABRADFORD
+
+       BLACKSCHOLES<font color="#990000">,</font>           <i><font color="#9A1900">// by Anthony Bradford 1</font></i>
+       MERTON73<font color="#990000">,</font>               <i><font color="#9A1900">// by Anthony Bradford 2</font></i>
+       BLACK76<font color="#990000">,</font>                <i><font color="#9A1900">// by Anthony Bradford 3</font></i>
+
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> SPINSKY
+
+       AMERICAN_CRR<font color="#990000">,</font>           <i><font color="#9A1900">// by Seth Pinsky 4</font></i>
+       AMERICAN_EQUIPROB<font color="#990000">,</font>      <i><font color="#9A1900">// by Seth Pinsky 5</font></i>
+       EURO_CRR<font color="#990000">,</font>               <i><font color="#9A1900">// by Seth Pinsky 6</font></i>
+       EURO_EQUIPROB<font color="#990000">,</font>          <i><font color="#9A1900">// by Seth Pinsky 7</font></i>
+
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> METAOPTIONS
+  
+       BLACKSCHOLES2<font color="#990000">,</font>              <i><font color="#9A1900">// by metaoptions 8</font></i>
+       GBS<font color="#990000">,</font>                        <i><font color="#9A1900">// by metaoptions 9</font></i>
+       MERTON73B<font color="#990000">,</font>                  <i><font color="#9A1900">// by metaoptions 10</font></i>
+       GFRENCH<font color="#990000">,</font>                    <i><font color="#9A1900">// by metaoptions 11</font></i>
+       GCARRY<font color="#990000">,</font>                     <i><font color="#9A1900">// by metaoptions 12</font></i>
+       BAWAMERICAN<font color="#990000">,</font>                <i><font color="#9A1900">// by metaoptions 13</font></i>
+       BSAMERICAN<font color="#990000">,</font>                 <i><font color="#9A1900">// by metaoptions 14</font></i>
+       BLACK76B<font color="#990000">,</font>                   <i><font color="#9A1900">// by metaoptions 15</font></i>
+       ASSETORNOTHING<font color="#990000">,</font>             <i><font color="#9A1900">// by metaoptions 16</font></i>
+       EXECUTIVE<font color="#990000">,</font>                  <i><font color="#9A1900">// by metaoptions 17</font></i>
+       GARMANKOHLHAGEN<font color="#990000">,</font>            <i><font color="#9A1900">// by metaoptions 18</font></i>
+       CASHORNOTHING<font color="#990000">,</font>              <i><font color="#9A1900">// by metaoptions 19</font></i>
+       GAPOPTION<font color="#990000">,</font>                  <i><font color="#9A1900">// by metaoptions 20</font></i>
+       SUPERSHARE<font color="#990000">,</font>                 <i><font color="#9A1900">// by metaoptions 21</font></i>
+       SUPERSHARE2<font color="#990000">,</font>                <i><font color="#9A1900">// by metaoptions 22</font></i>
+       VASICEKBONDPRICE<font color="#990000">,</font>           <i><font color="#9A1900">// by metaoptions 23</font></i>
+       VASICEKBONDOPTION<font color="#990000">,</font>          <i><font color="#9A1900">// by metaoptions 24</font></i>
+       TIMESWITCHOPTION<font color="#990000">,</font>           <i><font color="#9A1900">// by metaoptions 25</font></i>
+       FOREQUOPTINDOMCUR<font color="#990000">,</font>          <i><font color="#9A1900">// by metaoptions 26</font></i>
+       QUANTO<font color="#990000">,</font>                     <i><font color="#9A1900">// by metaoptions 27</font></i>
+       EQUITYLINKEDFXO<font color="#990000">,</font>            <i><font color="#9A1900">// by metaoptions 28</font></i>
+       SPREADAPPROXIMATION<font color="#990000">,</font>        <i><font color="#9A1900">// by metaoptions 29</font></i>
+       JUMPDIFFUSION<font color="#990000">,</font>              <i><font color="#9A1900">// by metaoptions 30</font></i>
+       BISECTION<font color="#990000">,</font>                  <i><font color="#9A1900">// by metaoptions - computes volatility 31</font></i>
+       NEWTONRAPHSON<font color="#990000">,</font>              <i><font color="#9A1900">// by metaoptions - computes volatility 32</font></i>
+       BAWBISECTION<font color="#990000">,</font>               <i><font color="#9A1900">// by metaoptions - computes volatility 33</font></i>
+       BSBISECTION<font color="#990000">,</font>                <i><font color="#9A1900">// by metaoptions - computes volatility 34</font></i>
+       AMERICANEXCHANGEOPTION<font color="#990000">,</font>     <i><font color="#9A1900">// by metaoptions 35</font></i>
+       EUROPEANEXCHANGEOPTION<font color="#990000">,</font>     <i><font color="#9A1900">// by metaoptions 36</font></i>
+       MILTERSENSWARTZ<font color="#990000">,</font>            <i><font color="#9A1900">// by metaoptions 37</font></i>
+       PARTIALTIMETWOASSETBARRIER<font color="#990000">,</font> <i><font color="#9A1900">// by metaoptions 38</font></i>
+       TAKEOVERFXOPTION<font color="#990000">,</font>           <i><font color="#9A1900">// by metaoptions 39</font></i>
+       TWOASSETBARRIER<font color="#990000">,</font>            <i><font color="#9A1900">// by metaoptions 40</font></i>
+       TWOASSETCASHORNOTHING<font color="#990000">,</font>      <i><font color="#9A1900">// by metaoptions 41</font></i>
+       TWOASSETCORRELATION<font color="#990000">,</font>        <i><font color="#9A1900">// by metaoptions 42</font></i>
+       FLOATINGSTRIKELOOKBACK<font color="#990000">,</font>     <i><font color="#9A1900">// by metaoptions 43</font></i>
+       FLOATINGSTRIKELOOKBACK2<font color="#990000">,</font>    <i><font color="#9A1900">// by metaoptions 44</font></i>
+       FIXEDSTRIKELOOKBACK<font color="#990000">,</font>        <i><font color="#9A1900">// by metaoptions 45</font></i>
+       OPTIONSONTHEMAXMIN<font color="#990000">,</font>         <i><font color="#9A1900">// by metaoptions 46</font></i>
+       STANDARDBARRIER<font color="#990000">,</font>            <i><font color="#9A1900">// by metaoptions 47</font></i>
+       DOUBLEBARRIER<font color="#990000">,</font>              <i><font color="#9A1900">// by metaoptions 48</font></i>
+       SOFTBARRIER<font color="#990000">,</font>                <i><font color="#9A1900">// by metaoptions 49</font></i>
+       BINARYBARRIER<font color="#990000">,</font>              <i><font color="#9A1900">// by metaoptions has 28 int states 50</font></i>
+       DISCRETEADJUSTEDBARRIER<font color="#990000">,</font>    <i><font color="#9A1900">// by metaoptions 51</font></i>
+
+       <i><font color="#9A1900">// Crashes - Segmentation fault</font></i>
+       <i><font color="#9A1900">//BARRIERBINOMINAL,           // BarrierBinominal.c</font></i>
+
+       CONVERTIBLEBOND<font color="#990000">,</font>            <i><font color="#9A1900">// ConvertibleBond.c 52</font></i>
+       CRRBINOMINAL<font color="#990000">,</font>               <i><font color="#9A1900">// CRRBinominal.c 53</font></i>
+
+       <i><font color="#9A1900">// Missing Transpose() function...</font></i>
+       <i><font color="#9A1900">//IMPLIEDTRINOMINALTREE,      // ImpliedTrinominalTree.c  - computes volatility</font></i>
+
+       THREEDIMENSIONALBINOMINAL<font color="#990000">,</font>  <i><font color="#9A1900">// ThreeDimensionalBinominal.c 54</font></i>
+       TRINOMINALTREE<font color="#990000">,</font>             <i><font color="#9A1900">// TrinominalTree.c 55</font></i>
+       LOOKBARRIER<font color="#990000">,</font>                <i><font color="#9A1900">// by metaoptions 56</font></i>
+       PARTIALTIMEBARRIER<font color="#990000">,</font>         <i><font color="#9A1900">// has multiple text states, some call abort()? 57</font></i>
+       ROLLGESKEWHALEY<font color="#990000">,</font>            <i><font color="#9A1900">// by metaoptions 58</font></i>
+       EXTREMESPREADOPTION<font color="#990000">,</font>        <i><font color="#9A1900">// by metaoptions 59</font></i>
+       EXTREMESPREADOPTION2<font color="#990000">,</font>       <i><font color="#9A1900">// by metaoptions 60</font></i>
+       PARTIALFIXEDLB<font color="#990000">,</font>             <i><font color="#9A1900">// by metaoptions 61</font></i>
+       PARTIALFLOATLB<font color="#990000">,</font>             <i><font color="#9A1900">// by metaoptions 62</font></i>
+       PARTIALFLOATLB2<font color="#990000">,</font>            <i><font color="#9A1900">// by metaoptions 63</font></i>
+       EXTENDIBLEWRITER<font color="#990000">,</font>           <i><font color="#9A1900">// by metaoptions 64</font></i>
+       CALLSONOPTIONS<font color="#990000">,</font>             <i><font color="#9A1900">// by metaoptions OptionsOnOptions.c 65</font></i>
+       PUTSONOPTIONS<font color="#990000">,</font>              <i><font color="#9A1900">// by metaoptions OptionsOnOptions.c 66</font></i>
+       LEVYASIAN<font color="#990000">,</font>                  <i><font color="#9A1900">// by metaoptions 67</font></i>
+       GEOMETRICAVERAGERATEOPTION<font color="#990000">,</font> <i><font color="#9A1900">// by metaoptions 68</font></i>
+       FORWARDSTARTOPTION<font color="#990000">,</font>         <i><font color="#9A1900">// by metaoptions 69</font></i>
+       SWAPOPTION<font color="#990000">,</font>                 <i><font color="#9A1900">// by metaoptions 70</font></i>
+       TURNBULLWAKEMANASIAN<font color="#990000">,</font>       <i><font color="#9A1900">// by metaoptions 71</font></i>
+
+       <i><font color="#9A1900">// Crashes with positive dividend. Dividend disabled</font></i>
+       EXCHANGEEXCHANGEOPTION<font color="#990000">,</font>     <i><font color="#9A1900">// by metaoptions 72</font></i>
+       SIMPLECHOOSER<font color="#990000">,</font>              <i><font color="#9A1900">// by metaoptions 73</font></i>
+       COMPLEXCHOOSER<font color="#990000">,</font>             <i><font color="#9A1900">// by metaoptions uses 3 bleeding time vars 74</font></i>
+
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> FINRECIPES
+
+       BLACKSCHOLES3<font color="#990000">,</font>          <i><font color="#9A1900">// option_price_call_black_scholes() 75</font></i>
+       PERPETUAL<font color="#990000">,</font>              <i><font color="#9A1900">// option_price_american_perpetual_call() 76</font></i>
+       FUTOPTEURBLACK<font color="#990000">,</font>         <i><font color="#9A1900">// futures_option_price_call_european_black() 77</font></i>
+       FUTOPTAMBINOMIAL<font color="#990000">,</font>       <i><font color="#9A1900">// futures_option_price_call_american_binomial() 78</font></i>
+
+       <i><font color="#9A1900">// prototyped in fin_recipes.h but not defined in the library</font></i>
+       <i><font color="#9A1900">//AMERBJERKSUNDSTENSLAND, // option_price_american_call_approximated_bjerksund_stensland()</font></i>
+
+       AMERBINOMIAL<font color="#990000">,</font>           <i><font color="#9A1900">// option_price_call_american_binomial() signature 1 without dividend 79</font></i>
+       AMERBINOMIALDIV<font color="#990000">,</font>        <i><font color="#9A1900">// option_price_call_american_binomial() signature 2 with dividend 80</font></i>
+       AMERICANTRINOMIAL<font color="#990000">,</font>      <i><font color="#9A1900">// option_price_call_american_trinomial() 81</font></i>
+       AMERBAW<font color="#990000">,</font>                <i><font color="#9A1900">// option_price_american_call_approximated_baw() 82</font></i>
+       AMERPUTAPPROXJOHNSON<font color="#990000">,</font>   <i><font color="#9A1900">// option_price_american_put_approximated_johnson() 83</font></i>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_LIBGSL
+
+       AMERPUTAPPROXGESKEJOHNSON<font color="#990000">,</font> <i><font color="#9A1900">// option_price_american_put_approximated_geske_johnson() 84</font></i>
+       HESTON<font color="#990000">,</font>                    <i><font color="#9A1900">// heston_call_option_price() 85</font></i>
+
+<b><font color="#000080">#endif</font></b>
+
+       BONDZEROBLACK<font color="#990000">,</font>          <i><font color="#9A1900">// bond_option_price_call_zero_black_scholes() 86</font></i>
+       BONDAMERBINOMIAL<font color="#990000">,</font>       <i><font color="#9A1900">// bond_option_price_call_american_binomial() 87</font></i>
+       BOND_ZERO_AM_RENDLEMAN_BARTTER<font color="#990000">,</font> <i><font color="#9A1900">// bond_option_price_call_zero_american_rendleman_bartter() 88</font></i>
+       BSPAYOUT<font color="#990000">,</font>               <i><font color="#9A1900">// option_price_european_call_payout() 89</font></i>
+       EUROBIONMIAL<font color="#990000">,</font>           <i><font color="#9A1900">// option_price_call_european_binomial() 90</font></i>
+       ASIANGEOMETRICAVG<font color="#990000">,</font>      <i><font color="#9A1900">// option_price_asian_geometric_average_price_call() 91</font></i>
+       EUROLOOKBACK<font color="#990000">,</font>           <i><font color="#9A1900">// option_price_european_lookback_call() 92</font></i>
+       EUROLOOKBACK2<font color="#990000">,</font>          <i><font color="#9A1900">// option_price_european_lookback_call() 93</font></i>
+       MERTONJUMPDIFF<font color="#990000">,</font>         <i><font color="#9A1900">// option_price_call_merton_jump_diffusion() 94</font></i>
+       CURRAMBINOMIAL<font color="#990000">,</font>         <i><font color="#9A1900">// currency_option_price_call_american_binomial() 95</font></i>
+       CURREURO<font color="#990000">,</font>               <i><font color="#9A1900">// currency_option_price_call_european() 96</font></i>
+       ROLLGESKEWHALEY2<font color="#990000">,</font>       <i><font color="#9A1900">// option_price_american_call_one_dividend() 97</font></i>
+       EUROBINOMIAL1P<font color="#990000">,</font>         <i><font color="#9A1900">// option_price_call_european_binomial_single_period() 98</font></i>
+       EUROBINOMIALMP<font color="#990000">,</font>         <i><font color="#9A1900">// option_price_call_european_binomial_multi_period_given_ud() 99</font></i>
+       AMBINOMIAL<font color="#990000">,</font>             <i><font color="#9A1900">// option_price_generic_binomial() 100</font></i>
+       EUROSIM<font color="#990000">,</font>                <i><font color="#9A1900">// option_price_call_european_simulated() 101</font></i>
+       SIMEUROGENERIC<font color="#990000">,</font>         <i><font color="#9A1900">// derivative_price_simulate_european_option_generic() 102</font></i>
+       SIMEUROGENERICCV<font color="#990000">,</font>       <i><font color="#9A1900">// derivative_price_simulate_european_option_generic_with_control_variate() 103</font></i>
+       SIMEUROGENERICAV<font color="#990000">,</font>       <i><font color="#9A1900">// derivative_price_simulate_european_option_generic_with_antithetic_variate() 104</font></i>
+       SIMPRICEPATH<font color="#990000">,</font>           <i><font color="#9A1900">// derivative_price_simulate_european_option_generic() 105</font></i>
+       SIMPRICEPATHCONTROLVARIATE<font color="#990000">,</font>  <i><font color="#9A1900">// derivative_price_simulate_european_option_generic_with_control_variate() 106</font></i>
+       DISTLOGRAND<font color="#990000">,</font>             <i><font color="#9A1900">// simulate_lognormal_random_variable() 107</font></i>
+       AMFINITEDIFFEXP<font color="#990000">,</font>        <i><font color="#9A1900">// option_price_call_american_finite_diff_explicit() 108</font></i>
+       EUROFINITEDIFFEXP<font color="#990000">,</font>      <i><font color="#9A1900">// option_price_call_european_finite_diff_explicit() 109</font></i>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_NEWMAT_NEWMAT_H
+
+       AMFINDIFFIMP<font color="#990000">,</font>           <i><font color="#9A1900">// findiff_imp_am_call_newmat.cc findiff_imp_am_put_newmat.cc 110</font></i>
+       EURFINDDIFFIMP<font color="#990000">,</font>         <i><font color="#9A1900">// findiff_imp_eur_call_newmat.cc findiff_imp_eur_put_newmat.cc 111</font></i>
+
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_ITPP_ITBASE_H
+
+       AMFINDIFFIMPPUT<font color="#990000">,</font>        <i><font color="#9A1900">// option_price_put_american_finite_diff_implicit_itpp() 112</font></i>
+
+<b><font color="#000080">#endif</font></b>
+
+       <i><font color="#9A1900">// puts prototyped in fin_recipes.h but not defined in the library</font></i>
+       IMPLIEDNEWTON<font color="#990000">,</font>          <i><font color="#9A1900">// option_price_implied_volatility_call_black_scholes_newton() 113</font></i>
+
+       <i><font color="#9A1900">// puts prototyped in fin_recipes.h but not defined in the library</font></i>
+       IMPLIEDBISECTIONS<font color="#990000">,</font>      <i><font color="#9A1900">//option_price_implied_volatility_call_black_scholes_bisections() 114</font></i>
+
+       BONDZEROVASICEK<font color="#990000">,</font>        <i><font color="#9A1900">// bond_option_price_call_zero_vasicek() 115</font></i>
+       EURODIVIDENDS<font color="#990000">,</font>          <i><font color="#9A1900">// option_price_european_call_dividends() 116</font></i>
+
+       <i><font color="#9A1900">// Throws std::bad_alloc and freezes...</font></i>
+       <i><font color="#9A1900">//AMDISDIVSBINOMIAL,      // option_price_call_american_discrete_dividends_binomial()</font></i>
+
+       AMPROPORTDIVSBINOMIAL<font color="#990000">,</font>  <i><font color="#9A1900">// option_price_call_american_proportional_dividends_binomial() 117</font></i>
+       BERMUDIANBINOMIAL<font color="#990000">,</font>      <i><font color="#9A1900">// option_price_call_bermudan_binomial() 118</font></i>
+       BSCOUPONBOND<font color="#990000">,</font>           <i><font color="#9A1900">// bond_option_price_call_coupon_bond_black_scholes() 119</font></i>
+       WARRANT_NO_DIV<font color="#990000">,</font>         <i><font color="#9A1900">// warrant_price_adjusted_black_scholes() 120</font></i>
+       WARRANT_DIV<font color="#990000">,</font>            <i><font color="#9A1900">// warrant_price_adjusted_black_scholes() 121</font></i>
+
+       <i><font color="#9A1900">// Segmentation fault, To implement un-comment EURBOND_HO_LEE reference in defaults.c</font></i>
+       <i><font color="#9A1900">//EURBOND_HO_LEE,</font></i>
+
+       TERMFLAT<font color="#990000">,</font>                <i><font color="#9A1900">// term_structure_class_flat.cc 122</font></i>
+       TERMCIR<font color="#990000">,</font>                 <i><font color="#9A1900">// termstru_discfact_cir.cc 123</font></i>
+       TERMVASICEK<font color="#990000">,</font>             <i><font color="#9A1900">// termstru_discfact_vasicek.cc 124</font></i>
+       TERMNELSONSIEGEL<font color="#990000">,</font>        <i><font color="#9A1900">// termstru_yield_nelson_siegel.cc 125</font></i>
+       TERMSVENSSON<font color="#990000">,</font>            <i><font color="#9A1900">// termstru_yield_svensson.cc 126</font></i>
+       TERMCUBICSPLINE<font color="#990000">,</font>         <i><font color="#9A1900">// termstru_discfact_cubic_spline.cc 127</font></i>
+       TERMINTERPOLATED<font color="#990000">,</font>        <i><font color="#9A1900">// termstru_yield_interpolated.cc 128</font></i>
+
+       <i><font color="#9A1900">// prototyped in fin_recipes_extra.h but not defined in the library</font></i>
+       <i><font color="#9A1900">//TERMDISESTCIR,          // term_structure_discount_factor_estimated_cir()</font></i>
+
+       <i><font color="#9A1900">// prototyped in fin_recipes_extra.h but not defined in the library</font></i>
+       <i><font color="#9A1900">//TERMYIELDBLISS          // term_structure_yield_bliss()</font></i>
+
+       <i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">         Not implemented...</font></i>
+
+<i><font color="#9A1900">         termstru_transforms.cc</font></i>
+<i><font color="#9A1900">         </font></i>
+<i><font color="#9A1900">         simulate_european_options_generic_routine_price_sequence.cc:</font></i>
+<i><font color="#9A1900">                            vector&lt;double&gt;prices = </font></i>
+<i><font color="#9A1900">                            simulate_lognormally_distributed_sequence(</font></i>
+<i><font color="#9A1900">                                    S,r,sigma,time,no_steps);</font></i>
+
+<i><font color="#9A1900">         vector&lt; vector&lt;double&gt; &gt; interest_rate_trees_gbm_build(</font></i>
+<i><font color="#9A1900">                            const double&amp; r0,</font></i>
+<i><font color="#9A1900">                            const double&amp; u,</font></i>
+<i><font color="#9A1900">                            const double&amp; d,</font></i>
+<i><font color="#9A1900">                            const int&amp; n);</font></i>
+
+<i><font color="#9A1900">         double interest_rate_trees_gbm_value_of_cashflows(</font></i>
+<i><font color="#9A1900">                            const vector&lt;double&gt;&amp; cflow,</font></i>
+<i><font color="#9A1900">                            const vector&lt; vector&lt;double&gt; &gt;&amp; r_tree,</font></i>
+<i><font color="#9A1900">                            const double&amp; q);</font></i>
+
+<i><font color="#9A1900">         double interest_rate_trees_gbm_value_of_callable_bond(</font></i>
+<i><font color="#9A1900">                            const vector&lt;double&gt;&amp; cflows,</font></i>
+<i><font color="#9A1900">                            const vector&lt; vector&lt;double&gt; &gt;&amp; r_tree,</font></i>
+<i><font color="#9A1900">                            const double&amp; q,</font></i>
+<i><font color="#9A1900">                            const int&amp; first_call_time,</font></i>
+<i><font color="#9A1900">                            const double&amp; call_price);</font></i>
+
+<i><font color="#9A1900">         vector&lt; vector&lt;term_structure_class_ho_lee&gt; &gt; </font></i>
+<i><font color="#9A1900">                            term_structure_ho_lee_build_term_structure_tree(</font></i>
+<i><font color="#9A1900">                            term_structure_class* initial,</font></i>
+<i><font color="#9A1900">                            const int&amp; no_steps,</font></i>
+<i><font color="#9A1900">                            const double&amp; delta,</font></i>
+<i><font color="#9A1900">                            const double&amp; pi);</font></i>
+<i><font color="#9A1900">        */</font></i>
+
+
+       FUTURES<font color="#990000">,</font>                <i><font color="#9A1900">// futures_price() 129</font></i>
+
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> ABRADFORD
+
+       FUTURES2<font color="#990000">,</font>               <i><font color="#9A1900">// 130</font></i>
+       BACHELIER<font color="#990000">,</font>              <i><font color="#9A1900">// 131</font></i>
+       BACHELIERMODIFIED<font color="#990000">,</font>      <i><font color="#9A1900">// 132</font></i>
+       SPRENKLE<font color="#990000">,</font>               <i><font color="#9A1900">// 133</font></i>
+       BONESS<font color="#990000">,</font>                 <i><font color="#9A1900">// 134</font></i>
+       SAMUELSON<font color="#990000">,</font>              <i><font color="#9A1900">// 135</font></i>
+
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> FINRECIPES
+
+       BONDS<font color="#990000">,</font>                  <i><font color="#9A1900">// 136</font></i>
+       BONDSTERM<font color="#990000">,</font>              <i><font color="#9A1900">// 137</font></i>
+       BONDSPRINCIPAL<font color="#990000">,</font>         <i><font color="#9A1900">// 138</font></i>
+       IRR<font color="#990000">,</font>                    <i><font color="#9A1900">// 139</font></i>
+
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> DUMMYTESTMODELS
+
+       TESTOPTION1<font color="#990000">,</font>
+       TESTOPTION2<font color="#990000">,</font>
+       TESTOPTION3<font color="#990000">,</font>
+       TESTOPTION4<font color="#990000">,</font>
+       TESTOPTIONONEDIVIDEND1<font color="#990000">,</font>
+       TESTOPTIONONEDIVIDEND2<font color="#990000">,</font>
+       TESTFUTURES1<font color="#990000">,</font>
+       TESTFUTURES2<font color="#990000">,</font>
+
+<b><font color="#000080">#endif</font></b>
+
+     <font color="#FF0000">}</font><font color="#990000">;</font>
+
+<i><font color="#9A1900">/* _FUTURES is used for internal calendar control. Don't remove */</font></i>
+<b><font color="#0000FF">enum</font></b> <font color="#FF0000">{</font> _FUTURES <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">struct</font></b> <font color="#008080">_int_to_name</font>          <font color="#FF0000">{</font> <b><font color="#0000FF">const</font></b> <font color="#009900">char</font> string<font color="#990000">[</font><font color="#993399">30</font><font color="#990000">];</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><font color="#0000FF">struct</font></b> <font color="#008080">_int_to_name_nonconst</font> <font color="#FF0000">{</font> <font color="#009900">char</font> string<font color="#990000">[</font><font color="#993399">30</font><font color="#990000">];</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><font color="#0000FF">struct</font></b> <font color="#008080">_int_to_function</font> <font color="#FF0000">{</font> <font color="#009900">double</font> <font color="#990000">(*</font>fun<font color="#990000">)</font> <font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;);</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">struct</font></b> <font color="#008080">option_algorithm</font> <font color="#FF0000">{</font>
+
+  <font color="#009900">int</font> modeltype<font color="#990000">;</font>
+  <font color="#009900">char</font> des<font color="#990000">[</font><font color="#993399">40</font><font color="#990000">];</font>
+  <font color="#009900">char</font> source<font color="#990000">[</font><font color="#993399">80</font><font color="#990000">];</font>
+  <font color="#009900">char</font> curses_des<font color="#990000">[</font><font color="#993399">240</font><font color="#990000">];</font> <i><font color="#9A1900">// 240 = 3 lines of text</font></i>
+
+  <i><font color="#9A1900">// source path should have a separator ';' to include multiple files in 1 reference...</font></i>
+  <i><font color="#9A1900">// there are instances where more than 2 source files need to be displayed...</font></i>
+  <font color="#009900">char</font> sourceCode<font color="#990000">[</font><font color="#993399">200</font><font color="#990000">];</font>
+  <font color="#009900">char</font> sourceCode2<font color="#990000">[</font><font color="#993399">200</font><font color="#990000">];</font>
+  <font color="#009900">char</font> category<font color="#990000">[</font><font color="#993399">200</font><font color="#990000">];</font>
+
+  <font color="#009900">int</font> ReservedNotUsed1<font color="#990000">;</font>
+  <font color="#009900">bool</font> supportCND<font color="#990000">;</font>
+  <font color="#009900">bool</font> supportSteps<font color="#990000">;</font>
+  <b><font color="#0000FF">mutable</font></b> <font color="#009900">int</font> steps<font color="#990000">;</font>
+  <font color="#009900">int</font> assetClass<font color="#990000">;</font>
+  <font color="#009900">bool</font> perpetual<font color="#990000">;</font>
+
+  <font color="#009900">bool</font> supportPrice<font color="#990000">;</font>
+  <font color="#009900">bool</font> supportRate<font color="#990000">;</font>
+  <font color="#009900">bool</font> supportVolatility<font color="#990000">;</font>
+  <font color="#009900">bool</font> supportStrikes<font color="#990000">;</font>
+  <font color="#009900">bool</font> ReservedNotUsed2<font color="#990000">;</font>
+  <font color="#009900">bool</font> supportCalls<font color="#990000">;</font>
+  <font color="#009900">bool</font> supportPuts<font color="#990000">;</font>
+  <font color="#009900">bool</font> produceCallDelta<font color="#990000">;</font> 
+  <font color="#009900">bool</font> producePutDelta<font color="#990000">;</font> 
+  <font color="#009900">bool</font> produceGamma<font color="#990000">;</font>
+  <font color="#009900">bool</font> produceVega<font color="#990000">;</font>
+  <font color="#009900">bool</font> produceCallTheta<font color="#990000">;</font>
+  <font color="#009900">bool</font> producePutTheta<font color="#990000">;</font>
+  <font color="#009900">bool</font> produceCallRho<font color="#990000">;</font>
+  <font color="#009900">bool</font> producePutRho<font color="#990000">;</font>
+  <font color="#009900">bool</font> failsOnMeanVarianceChanges<font color="#990000">;</font>
+
+  <i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    supportDividend:</font></i>
+<i><font color="#9A1900">        0 - no dividend support</font></i>
+<i><font color="#9A1900">        1 - dividend supported</font></i>
+<i><font color="#9A1900">        2 - force initial default value of dividend</font></i>
+<i><font color="#9A1900">        3 - vector&lt;double&gt;&amp; times, vector&lt;double&gt;&amp; amounts</font></i>
+<i><font color="#9A1900">        4 - vector&lt;double&gt;&amp; potential_exercise_times</font></i>
+<i><font color="#9A1900">        5 - vector&lt;double&gt;&amp; coupon_times, vector&lt;double&gt;&amp; coupon_amounts</font></i>
+<i><font color="#9A1900">        6 - vector&lt;double&gt;&amp; coupon_times, vector&lt;double&gt;&amp; coupon_amounts, </font></i>
+<i><font color="#9A1900">            vector&lt;double&gt;&amp; principal_times, vector&lt;double&gt;&amp; principal_amounts</font></i>
+<i><font color="#9A1900">  */</font></i>
+  <font color="#009900">int</font> supportDividend<font color="#990000">;</font>
+  <font color="#009900">double</font> defaultDividend<font color="#990000">;</font>
+  <font color="#009900">char</font> supportTime1des<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <i><font color="#9A1900">/* </font></i>
+<i><font color="#9A1900">     supportTime2</font></i>
+<i><font color="#9A1900">        0 - t2 not used</font></i>
+<i><font color="#9A1900">        1 - t2 used, model supports decimal/date entry dating and not calendar dating</font></i>
+<i><font color="#9A1900">        2 - t2 used, model supports decimal/date entry and calendar dating...</font></i>
+<i><font color="#9A1900">  */</font></i>
+  <font color="#009900">int</font> supportTime2<font color="#990000">;</font>
+  <font color="#009900">char</font> supportTime2des<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+
+  <font color="#009900">int</font> supportTime3<font color="#990000">;</font>
+  <font color="#009900">char</font> supportTime3des<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+
+  <font color="#009900">char</font> price<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">char</font> dividend<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">char</font> call<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">char</font> put<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">char</font> strike<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">char</font> volatility<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+
+  <i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    0 = not used</font></i>
+<i><font color="#9A1900">    1 = used as double</font></i>
+<i><font color="#9A1900">    2 = used as int</font></i>
+<i><font color="#9A1900">  */</font></i>
+  <font color="#009900">int</font> iUseZ<font color="#990000">;</font>
+  <font color="#009900">bool</font> bZallow0Negative<font color="#990000">;</font>
+  <font color="#009900">char</font> UseZdes<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">double</font> Zdefault<font color="#990000">;</font>
+  <font color="#009900">double</font> Zmax<font color="#990000">;</font>
+
+  <i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    0 = not used</font></i>
+<i><font color="#9A1900">    1 = used as double</font></i>
+<i><font color="#9A1900">    2 = used as int</font></i>
+<i><font color="#9A1900">  */</font></i>
+  <font color="#009900">int</font> iUseB<font color="#990000">;</font>
+  <font color="#009900">bool</font> bBallow0Negative<font color="#990000">;</font>
+  <font color="#009900">char</font> UseBdes<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">double</font> Bdefault<font color="#990000">;</font>
+  <font color="#009900">double</font> Bmax<font color="#990000">;</font>
+
+  <i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    0 = not used</font></i>
+<i><font color="#9A1900">    1 = used as double</font></i>
+<i><font color="#9A1900">    2 = used as int</font></i>
+<i><font color="#9A1900">  */</font></i>
+  <font color="#009900">int</font> iUseJ<font color="#990000">;</font>
+  <font color="#009900">bool</font> bJallow0Negative<font color="#990000">;</font>
+  <font color="#009900">char</font> UseJdes<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">double</font> Jdefault<font color="#990000">;</font>
+  <font color="#009900">double</font> Jmax<font color="#990000">;</font>
+
+  <i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    0 = not used</font></i>
+<i><font color="#9A1900">    1 = used as double</font></i>
+<i><font color="#9A1900">    2 = used as int</font></i>
+<i><font color="#9A1900">  */</font></i>
+  <font color="#009900">int</font> iUseP<font color="#990000">;</font>
+  <font color="#009900">bool</font> bPallow0Negative<font color="#990000">;</font>
+  <font color="#009900">char</font> UsePdes<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">double</font> Pdefault<font color="#990000">;</font>
+  <font color="#009900">double</font> Pmax<font color="#990000">;</font>  
+
+  <i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    0 = not used</font></i>
+<i><font color="#9A1900">    1 = used as double</font></i>
+<i><font color="#9A1900">    2 = used as int</font></i>
+<i><font color="#9A1900">  */</font></i>
+  <font color="#009900">int</font> iUseQ<font color="#990000">;</font>
+  <font color="#009900">bool</font> bQallow0Negative<font color="#990000">;</font>
+  <font color="#009900">char</font> UseQdes<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">double</font> Qdefault<font color="#990000">;</font>
+  <font color="#009900">double</font> Qmax<font color="#990000">;</font>  
+
+  <i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    0 = not used</font></i>
+<i><font color="#9A1900">    1 = used as double</font></i>
+<i><font color="#9A1900">    2 = used as int</font></i>
+<i><font color="#9A1900">  */</font></i>
+  <font color="#009900">int</font> iUseR<font color="#990000">;</font>
+  <font color="#009900">bool</font> bRallow0Negative<font color="#990000">;</font>
+  <font color="#009900">char</font> UseRdes<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">double</font> Rdefault<font color="#990000">;</font>
+  <font color="#009900">double</font> Rmax<font color="#990000">;</font>  
+
+  <i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    0 = not used</font></i>
+<i><font color="#9A1900">    1 = used as double</font></i>
+<i><font color="#9A1900">    2 = used as int</font></i>
+<i><font color="#9A1900">  */</font></i>
+  <font color="#009900">int</font> iUseS<font color="#990000">;</font>
+  <font color="#009900">bool</font> bSallow0Negative<font color="#990000">;</font>
+  <font color="#009900">char</font> UseSdes<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">double</font> Sdefault<font color="#990000">;</font>
+  <font color="#009900">double</font> Smax<font color="#990000">;</font>  
+
+  <i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    0 = not used</font></i>
+<i><font color="#9A1900">    1 = used as double</font></i>
+<i><font color="#9A1900">    2 = used as int</font></i>
+<i><font color="#9A1900">  */</font></i>
+  <font color="#009900">int</font> iUseT<font color="#990000">;</font>
+  <font color="#009900">bool</font> bTallow0Negative<font color="#990000">;</font>
+  <font color="#009900">char</font> UseTdes<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">double</font> Tdefault<font color="#990000">;</font>
+  <font color="#009900">double</font> Tmax<font color="#990000">;</font>  
+
+  <i><font color="#9A1900">/* bUsePound '#' is for option states */</font></i>
+  <font color="#009900">int</font> bUsePound<font color="#990000">;</font>
+  <font color="#009900">bool</font> bPoundallow0Negative<font color="#990000">;</font>
+  <font color="#009900">char</font> UsePounddes<font color="#990000">[</font><font color="#993399">50</font><font color="#990000">];</font>
+  <font color="#009900">int</font> Pounddefault<font color="#990000">;</font>
+  <font color="#009900">int</font> Poundmax<font color="#990000">;</font>
+
+  <font color="#009900">bool</font> bUseStateNames<font color="#990000">;</font>
+  <b><font color="#0000FF">mutable</font></b> <b><font color="#0000FF">const</font></b> <b><font color="#0000FF">struct</font></b> <font color="#008080">_int_to_name</font> <font color="#990000">*</font>StateNames<font color="#990000">;</font>
+
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">struct</font></b> <font color="#008080">_strike_control</font> <font color="#FF0000">{</font>
+
+  <font color="#009900">double</font> xcontrol<font color="#990000">;</font>
+  <font color="#009900">double</font> incrementor<font color="#990000">;</font>
+  <font color="#009900">int</font> strikes5or1<font color="#990000">;</font>
+  <font color="#009900">double</font> retdiscard<font color="#990000">;</font>
+  <font color="#009900">char</font> des<font color="#990000">[</font><font color="#993399">5</font><font color="#990000">];</font>
+  <font color="#009900">int</font> precision<font color="#990000">;</font>
+  <font color="#009900">double</font> sliderScale<font color="#990000">;</font>
+
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">struct</font></b> <font color="#008080">term_structure</font> <font color="#FF0000">{</font>
+  <font color="#009900">int</font> modeltype<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">struct</font></b> <font color="#008080">elementList</font>
+<font color="#FF0000">{</font>
+  <font color="#009900">char</font> elementName<font color="#990000">[</font><font color="#993399">200</font><font color="#990000">];</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#0000FF">struct</font></b> <font color="#008080">elementListWithGroup</font>
+<font color="#FF0000">{</font>
+  <font color="#009900">char</font> groupName<font color="#990000">[</font><font color="#993399">200</font><font color="#990000">];</font>
+  <font color="#009900">char</font> elementName<font color="#990000">[</font><font color="#993399">200</font><font color="#990000">];</font>
+  <font color="#009900">int</font> index<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

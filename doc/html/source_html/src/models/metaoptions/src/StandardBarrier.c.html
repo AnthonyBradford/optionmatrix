@@ -1,0 +1,259 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    libmetaoptions - A collection of option-related functions. </font></i>
+<i><font color="#9A1900">    Copyright (C) 2000-2004 B. Augestad, </font></i><u><font color="#0000FF">bjorn.augestad@gmail.com</font></u><i><font color="#9A1900"> </font></i>
+
+<i><font color="#9A1900">    This program is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">    it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">    the Free Software Foundation; either version 2 of the License, or</font></i>
+<i><font color="#9A1900">    (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">    This program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">    but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">    GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">    You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">    along with this program; if not, write to the Free Software</font></i>
+<i><font color="#9A1900">    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<i><font color="#9A1900">/* Optimization notes: We start off with 257.000 calls/s, that's the baseline. NOTE that we run</font></i>
+<i><font color="#9A1900"> * a couple of CPU intensive apps at the same time, so the performance varies quite a bit.</font></i>
+<i><font color="#9A1900"> * Calls/s		Change done</font></i>
+<i><font color="#9A1900"> * 257.000		Changing TypeFlag from const char* to integer</font></i>
+<i><font color="#9A1900"> * 252.000		Adding sT variable which replaces all calls to sqrt(T) (11 calls).</font></i>
+<i><font color="#9A1900"> * 252.000		Adding vsT variable which replaces the expression (v * sT) (18 calls)</font></i>
+<i><font color="#9A1900"> * 257.000		Adding the erT variable which replaces exp(-r * T)</font></i>
+<i><font color="#9A1900"> * 259.000		Adding the ebrT variable which replaces exp((b - r) * T). Perf drops, but readability increases...</font></i>
+<i><font color="#9A1900"> * 252.000		Dropping sT variable since it was only used once, when computing vsT.</font></i>
+<i><font color="#9A1900"> * 257.000		Adding the variable pse, which replaces phi * S * ebrT.  This is for readability only!</font></i>
+<i><font color="#9A1900"> * 254.000		Removing ebrT since it was used only once.</font></i>
+<i><font color="#9A1900"> * 252.000		Added the px and pp variables to reduse the # of calls to pow()</font></i>
+<i><font color="#9A1900"> * 257.000		Added HS, which replaces H/S</font></i>
+<i><font color="#9A1900"> * 259.000		Computing f6 on demand only.</font></i>
+<i><font color="#9A1900"> * 297.000		Well, that made a difference! :-) The code is awful, though. Creating a F5 and F6 macro </font></i>
+<i><font color="#9A1900"> * 309.000		Adding F1-F4 macros as well.</font></i>
+<i><font color="#9A1900"> * 378.000		Added  pp and px macros</font></i>
+<i><font color="#9A1900"> * 411.000		Replaced if/elseif to set eta/phi with a switch() statement.</font></i>
+<i><font color="#9A1900"> * 405.000		Replaced all if/elseif with switch() statements. Added more return points.</font></i>
+<i><font color="#9A1900"> * 417.000		</font></i>
+<i><font color="#9A1900"> */</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;math.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdlib.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;string.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdio.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;assert.h&gt;</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"metaoptions.h"</font>
+
+
+<i><font color="#9A1900">/* Standard barrier options */</font></i>
+<font color="#009900">double</font> <b><font color="#000000">StandardBarrier</font></b><font color="#990000">(</font>
+	<font color="#009900">int</font> typeflag<font color="#990000">,</font>
+	<font color="#009900">double</font> S<font color="#990000">,</font>
+	<font color="#009900">double</font> X<font color="#990000">,</font>
+	<font color="#009900">double</font> H<font color="#990000">,</font>
+	<font color="#009900">double</font> K<font color="#990000">,</font>
+	<font color="#009900">double</font> T<font color="#990000">,</font>
+	<font color="#009900">double</font> r<font color="#990000">,</font>
+	<font color="#009900">double</font> b<font color="#990000">,</font>
+	<font color="#009900">double</font> v<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<font color="#009900">double</font> HS<font color="#990000">,</font> vsT<font color="#990000">,</font> erT<font color="#990000">,</font> mu<font color="#990000">,</font> lambda<font color="#990000">,</font> X1<font color="#990000">,</font> X2<font color="#990000">,</font> _y1<font color="#990000">,</font> y2<font color="#990000">,</font> Z<font color="#990000">,</font> pse<font color="#990000">;</font>
+    <font color="#009900">int</font> eta<font color="#990000">,</font> phi<font color="#990000">;</font>
+
+	<b><font color="#000000">assert_valid_price</font></b><font color="#990000">(</font>S<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_strike</font></b><font color="#990000">(</font>X<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_time</font></b><font color="#990000">(</font>T<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_interest_rate</font></b><font color="#990000">(</font>r<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_cost_of_carry</font></b><font color="#990000">(</font>b<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_volatility</font></b><font color="#990000">(</font>v<font color="#990000">);</font>
+
+	HS <font color="#990000">=</font> H<font color="#990000">/</font>S<font color="#990000">;</font>
+	vsT <font color="#990000">=</font> v <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>T<font color="#990000">);;</font>
+	erT <font color="#990000">=</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>r <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">;</font>
+    
+    mu <font color="#990000">=</font> <font color="#990000">(</font>b <font color="#990000">-</font> <b><font color="#000000">pow2</font></b><font color="#990000">(</font>v<font color="#990000">)</font> <font color="#990000">/</font> <font color="#993399">2.0</font><font color="#990000">)</font> <font color="#990000">/</font> <b><font color="#000000">pow2</font></b><font color="#990000">(</font>v<font color="#990000">);</font>
+    lambda <font color="#990000">=</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font><b><font color="#000000">pow2</font></b><font color="#990000">(</font>mu<font color="#990000">)</font> <font color="#990000">+</font> <font color="#993399">2.0</font> <font color="#990000">*</font> r <font color="#990000">/</font> <b><font color="#000000">pow2</font></b><font color="#990000">(</font>v<font color="#990000">));</font>
+    X1 <font color="#990000">=</font> <b><font color="#000000">log</font></b><font color="#990000">(</font>S <font color="#990000">/</font> X<font color="#990000">)</font> <font color="#990000">/</font> vsT <font color="#990000">+</font> <font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">+</font> mu<font color="#990000">)</font> <font color="#990000">*</font> vsT<font color="#990000">;</font>
+    X2 <font color="#990000">=</font> <b><font color="#000000">log</font></b><font color="#990000">(</font>S <font color="#990000">/</font> H<font color="#990000">)</font> <font color="#990000">/</font> vsT <font color="#990000">+</font> <font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">+</font> mu<font color="#990000">)</font> <font color="#990000">*</font> vsT<font color="#990000">;</font>
+    _y1 <font color="#990000">=</font> <b><font color="#000000">log</font></b><font color="#990000">(</font><b><font color="#000000">pow2</font></b><font color="#990000">(</font>H<font color="#990000">)</font> <font color="#990000">/</font> <font color="#990000">(</font>S <font color="#990000">*</font> X<font color="#990000">))</font> <font color="#990000">/</font> vsT <font color="#990000">+</font> <font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">+</font> mu<font color="#990000">)</font> <font color="#990000">*</font> vsT<font color="#990000">;</font>
+    y2 <font color="#990000">=</font> <b><font color="#000000">log</font></b><font color="#990000">(</font>HS<font color="#990000">)</font> <font color="#990000">/</font> vsT <font color="#990000">+</font> <font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">+</font> mu<font color="#990000">)</font> <font color="#990000">*</font> vsT<font color="#990000">;</font>
+    Z <font color="#990000">=</font>  <b><font color="#000000">log</font></b><font color="#990000">(</font>HS<font color="#990000">)</font> <font color="#990000">/</font> vsT <font color="#990000">+</font> lambda <font color="#990000">*</font> vsT<font color="#990000">;</font>
+    
+	<i><font color="#9A1900">/* Binary variables which is either 1 or -1 */</font></i>
+	<b><font color="#0000FF">switch</font></b><font color="#990000">(</font>typeflag<font color="#990000">)</font> <font color="#FF0000">{</font>
+		<b><font color="#0000FF">case</font></b> SB_CALL_DOWN_IN<font color="#990000">:</font>
+		<b><font color="#0000FF">case</font></b> SB_CALL_DOWN_OUT<font color="#990000">:</font>
+			eta <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+			phi <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+			<b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+    
+		<b><font color="#0000FF">case</font></b> SB_CALL_UP_IN<font color="#990000">:</font>
+		<b><font color="#0000FF">case</font></b> SB_CALL_UP_OUT<font color="#990000">:</font>
+			eta <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">;</font>
+			phi <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+			<b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+    
+		<b><font color="#0000FF">case</font></b> SB_PUT_DOWN_IN<font color="#990000">:</font>
+		<b><font color="#0000FF">case</font></b> SB_PUT_DOWN_OUT<font color="#990000">:</font>
+			eta <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+			phi <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">;</font>
+			<b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+		<b><font color="#0000FF">case</font></b> SB_PUT_UP_IN<font color="#990000">:</font>
+		<b><font color="#0000FF">case</font></b> SB_PUT_UP_OUT<font color="#990000">:</font>
+			eta <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">;</font>
+			phi <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">;</font>
+			<b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+<b><font color="#008080">		default:</font></b>
+			<b><font color="#000000">abort</font></b><font color="#990000">();</font>
+	<font color="#FF0000">}</font>
+
+	pse <font color="#990000">=</font> phi <font color="#990000">*</font> S <font color="#990000">*</font> <b><font color="#000000">exp</font></b><font color="#990000">((</font>b <font color="#990000">-</font> r<font color="#990000">)</font> <font color="#990000">*</font> T<font color="#990000">);</font>
+
+<i><font color="#9A1900">/* Inline macros to avoid calling cnd() as well as to avoid duplicating formulas. We could of course create</font></i>
+<i><font color="#9A1900"> * inline functions instead, but then we need to pass a lot of params...</font></i>
+<i><font color="#9A1900"> */</font></i>
+<b><font color="#000080">#define</font></b> <b><font color="#000000">PX</font></b> <font color="#990000">(</font>phi <font color="#990000">*</font> X <font color="#990000">*</font> erT <font color="#990000">*</font> <b><font color="#000000">pow</font></b><font color="#990000">(</font>HS<font color="#990000">,</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> mu<font color="#990000">)))</font>
+<b><font color="#000080">#define</font></b> <b><font color="#000000">PP</font></b> <font color="#990000">(</font>pse <font color="#990000">*</font> <b><font color="#000000">pow</font></b><font color="#990000">(</font>HS<font color="#990000">,</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> <font color="#990000">(</font>mu <font color="#990000">+</font> <font color="#993399">1.0</font><font color="#990000">))))</font>
+
+<b><font color="#000080">#define</font></b> <b><font color="#000000">F1</font></b> <font color="#990000">(</font>pse <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>phi <font color="#990000">*</font> X1<font color="#990000">)</font> <font color="#990000">-</font> phi <font color="#990000">*</font> X <font color="#990000">*</font> erT <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>phi <font color="#990000">*</font> X1 <font color="#990000">-</font> phi <font color="#990000">*</font> vsT<font color="#990000">))</font>
+<b><font color="#000080">#define</font></b> <b><font color="#000000">F2</font></b> <font color="#990000">(</font>pse <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>phi <font color="#990000">*</font> X2<font color="#990000">)</font> <font color="#990000">-</font> phi <font color="#990000">*</font> X <font color="#990000">*</font> erT <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>phi <font color="#990000">*</font> X2 <font color="#990000">-</font> phi <font color="#990000">*</font> vsT<font color="#990000">))</font>
+<b><font color="#000080">#define</font></b> <b><font color="#000000">F3</font></b> <font color="#990000">(</font>PP <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> _y1<font color="#990000">)</font> <font color="#990000">-</font> PX <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> _y1 <font color="#990000">-</font> eta <font color="#990000">*</font> vsT<font color="#990000">))</font>
+<b><font color="#000080">#define</font></b> <b><font color="#000000">F4</font></b> <font color="#990000">(</font>PP <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> y2<font color="#990000">)</font> <font color="#990000">-</font> PX <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> y2 <font color="#990000">-</font> eta <font color="#990000">*</font> vsT<font color="#990000">))</font>
+<b><font color="#000080">#define</font></b> <b><font color="#000000">F5</font></b> <font color="#990000">(</font>K <font color="#990000">*</font> erT <font color="#990000">*</font> <font color="#990000">(</font><b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> X2 <font color="#990000">-</font> eta <font color="#990000">*</font> vsT<font color="#990000">)</font> <font color="#990000">-</font> <b><font color="#000000">pow</font></b><font color="#990000">(</font>HS<font color="#990000">,</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> mu<font color="#990000">))</font> <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> y2 <font color="#990000">-</font> eta <font color="#990000">*</font> vsT<font color="#990000">)))</font>
+<b><font color="#000080">#define</font></b> <b><font color="#000000">F6</font></b> <font color="#990000">(</font>K <font color="#990000">*</font> <font color="#990000">(</font><b><font color="#000000">pow</font></b><font color="#990000">(</font>HS<font color="#990000">,</font> <font color="#990000">(</font>mu <font color="#990000">+</font> lambda<font color="#990000">))</font> <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> Z<font color="#990000">)</font> <font color="#990000">+</font> <b><font color="#000000">pow</font></b><font color="#990000">(</font>HS<font color="#990000">,</font> <font color="#990000">(</font>mu <font color="#990000">-</font> lambda<font color="#990000">))</font> <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> Z <font color="#990000">-</font> <font color="#993399">2.0</font> <font color="#990000">*</font> eta <font color="#990000">*</font> lambda <font color="#990000">*</font> vsT<font color="#990000">)))</font>
+    
+    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>X <font color="#990000">&gt;</font> H<font color="#990000">)</font> <font color="#FF0000">{</font>
+		<b><font color="#0000FF">switch</font></b><font color="#990000">(</font>typeflag<font color="#990000">)</font> <font color="#FF0000">{</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_DOWN_IN<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F3 <font color="#990000">+</font> F5<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_UP_IN<font color="#990000">:</font>		<b><font color="#0000FF">return</font></b> F1 <font color="#990000">+</font> F5<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_PUT_DOWN_IN<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F2 <font color="#990000">-</font> F3 <font color="#990000">+</font> F4 <font color="#990000">+</font> F5<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_PUT_UP_IN<font color="#990000">:</font>		<b><font color="#0000FF">return</font></b> F1 <font color="#990000">-</font> F2 <font color="#990000">+</font> F4 <font color="#990000">+</font> F5<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_DOWN_OUT<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F1 <font color="#990000">-</font> F3 <font color="#990000">+</font> F6<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_UP_OUT<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F6<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_PUT_DOWN_OUT<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F1 <font color="#990000">-</font> F2 <font color="#990000">+</font> F3 <font color="#990000">-</font> F4 <font color="#990000">+</font> F6<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_PUT_UP_OUT<font color="#990000">:</font>		<b><font color="#0000FF">return</font></b> F2 <font color="#990000">-</font> F4 <font color="#990000">+</font> F6<font color="#990000">;</font>
+			<b><font color="#0000FF">default</font></b><font color="#990000">:</font>				<b><font color="#000000">abort</font></b><font color="#990000">();</font>
+		<font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+	<b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> X <font color="#990000">&lt;</font> H<font color="#990000">)</font> <font color="#FF0000">{</font>
+		<b><font color="#0000FF">switch</font></b><font color="#990000">(</font>typeflag<font color="#990000">)</font> <font color="#FF0000">{</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_DOWN_IN<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F1 <font color="#990000">-</font> F2 <font color="#990000">+</font> F4 <font color="#990000">+</font> F5<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_UP_IN<font color="#990000">:</font>		<b><font color="#0000FF">return</font></b> F2 <font color="#990000">-</font> F3 <font color="#990000">+</font> F4 <font color="#990000">+</font> F5<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_PUT_DOWN_IN<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F1 <font color="#990000">+</font> F5<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_PUT_UP_IN<font color="#990000">:</font>		<b><font color="#0000FF">return</font></b> F3 <font color="#990000">+</font> F5<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_DOWN_OUT<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F2 <font color="#990000">+</font> F6 <font color="#990000">-</font> F4<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_UP_OUT<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F1 <font color="#990000">-</font> F2 <font color="#990000">+</font> F3 <font color="#990000">-</font> F4 <font color="#990000">+</font> F6<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_PUT_DOWN_OUT<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F6<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_PUT_UP_OUT<font color="#990000">:</font>		<b><font color="#0000FF">return</font></b> F1 <font color="#990000">-</font> F3 <font color="#990000">+</font> F6<font color="#990000">;</font>
+			<b><font color="#0000FF">default</font></b><font color="#990000">:</font>				<b><font color="#000000">abort</font></b><font color="#990000">();</font>
+		<font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+	<b><font color="#0000FF">else</font></b> <font color="#FF0000">{</font>
+		<b><font color="#0000FF">switch</font></b><font color="#990000">(</font>typeflag<font color="#990000">)</font> <font color="#FF0000">{</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_DOWN_IN<font color="#990000">:</font>	<i><font color="#9A1900">/* fall through */</font></i>
+			<b><font color="#0000FF">case</font></b> SB_PUT_DOWN_IN<font color="#990000">:</font>	<b><font color="#0000FF">return</font></b> F1<font color="#990000">;</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_UP_IN<font color="#990000">:</font>		<i><font color="#9A1900">/* fall through */</font></i>
+			<b><font color="#0000FF">case</font></b> SB_PUT_UP_IN<font color="#990000">:</font>		
+			<b><font color="#0000FF">case</font></b> SB_CALL_DOWN_OUT<font color="#990000">:</font>
+			<b><font color="#0000FF">case</font></b> SB_CALL_UP_OUT<font color="#990000">:</font>
+			<b><font color="#0000FF">case</font></b> SB_PUT_DOWN_OUT<font color="#990000">:</font>
+			<b><font color="#0000FF">case</font></b> SB_PUT_UP_OUT<font color="#990000">:</font>		<b><font color="#0000FF">return</font></b> F6<font color="#990000">;</font>
+			<b><font color="#0000FF">default</font></b><font color="#990000">:</font>				<b><font color="#000000">abort</font></b><font color="#990000">();</font>
+		<font color="#FF0000">}</font>
+	<font color="#FF0000">}</font>
+<font color="#FF0000">}</font>
+
+<b><font color="#000080">#ifdef</font></b> STANDARDBARRIER_CHECK
+<i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900"> * There are many different types of Standard Barrier Options,</font></i>
+<i><font color="#9A1900"> * we compine put|call, down|up and in|out, giving us 8 types.</font></i>
+<i><font color="#9A1900"> * The test data, from table 2-9 on page 72, varies on X, H, v</font></i>
+<i><font color="#9A1900"> * for these option types, giving us a big array of test data.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<b><font color="#0000FF">static</font></b> <font color="#009900">void</font> <b><font color="#000000">check_StandardBarrier</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<b><font color="#0000FF">struct</font></b> <font color="#FF0000">{</font>
+		<font color="#009900">int</font> typeflag<font color="#990000">;</font>
+		<font color="#009900">double</font> X<font color="#990000">,</font> H<font color="#990000">,</font> v025<font color="#990000">,</font> v030<font color="#990000">;</font>
+	<font color="#FF0000">}</font> values<font color="#990000">[]</font> <font color="#990000">=</font> <font color="#FF0000">{</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_OUT<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">9.0246</font><font color="#990000">,</font>  <font color="#993399">8.8334</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_OUT<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">6.7924</font><font color="#990000">,</font>  <font color="#993399">7.0285</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_OUT<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">4.8759</font><font color="#990000">,</font>  <font color="#993399">5.4137</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_OUT<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">3.0000</font><font color="#990000">,</font>  <font color="#993399">3.0000</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_OUT<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">3.0000</font><font color="#990000">,</font>  <font color="#993399">3.0000</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_OUT<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">3.0000</font><font color="#990000">,</font>  <font color="#993399">3.0000</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_UP_OUT<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">2.6789</font><font color="#990000">,</font>  <font color="#993399">2.6341</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_UP_OUT<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">2.3580</font><font color="#990000">,</font>  <font color="#993399">2.4389</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_UP_OUT<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">2.3453</font><font color="#990000">,</font>  <font color="#993399">2.4315</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+
+		<font color="#FF0000">{</font> SB_CALL_DOWN_IN<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">7.7627</font><font color="#990000">,</font>  <font color="#993399">9.0093</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_IN<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">4.0109</font><font color="#990000">,</font>  <font color="#993399">5.1370</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_IN<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">2.0576</font><font color="#990000">,</font>  <font color="#993399">2.8517</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_IN<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font> <font color="#993399">13.8333</font><font color="#990000">,</font> <font color="#993399">14.8816</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_IN<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">7.8494</font><font color="#990000">,</font>  <font color="#993399">9.2045</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_DOWN_IN<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">3.9795</font><font color="#990000">,</font>  <font color="#993399">5.3043</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_UP_IN<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font> <font color="#993399">14.1112</font><font color="#990000">,</font> <font color="#993399">15.2098</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_UP_IN<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">8.4482</font><font color="#990000">,</font>  <font color="#993399">9.7278</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_CALL_UP_IN<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">4.5910</font><font color="#990000">,</font>  <font color="#993399">5.8350</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+
+		<font color="#FF0000">{</font> SB_PUT_DOWN_OUT<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">2.2798</font><font color="#990000">,</font>  <font color="#993399">2.4170</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_DOWN_OUT<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">2.2947</font><font color="#990000">,</font>  <font color="#993399">2.4258</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_DOWN_OUT<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">2.6252</font><font color="#990000">,</font>  <font color="#993399">2.6246</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_DOWN_OUT<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">3.0000</font><font color="#990000">,</font>  <font color="#993399">3.0000</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_DOWN_OUT<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">3.0000</font><font color="#990000">,</font>  <font color="#993399">3.0000</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_DOWN_OUT<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">3.0000</font><font color="#990000">,</font>  <font color="#993399">3.0000</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_UP_OUT<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">3.7760</font><font color="#990000">,</font>  <font color="#993399">4.2293</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_UP_OUT<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">5.4932</font><font color="#990000">,</font>  <font color="#993399">5.8032</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_UP_OUT<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">7.5187</font><font color="#990000">,</font>  <font color="#993399">7.5649</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+
+		<font color="#FF0000">{</font> SB_PUT_DOWN_IN<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">2.9586</font><font color="#990000">,</font>  <font color="#993399">3.8769</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_DOWN_IN<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font>  <font color="#993399">6.5677</font><font color="#990000">,</font>  <font color="#993399">7.7989</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_DOWN_IN<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font>  <font color="#993399">95.0</font><font color="#990000">,</font> <font color="#993399">11.9752</font><font color="#990000">,</font> <font color="#993399">13.3078</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_DOWN_IN<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">2.2845</font><font color="#990000">,</font>  <font color="#993399">3.3328</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_DOWN_IN<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font>  <font color="#993399">5.9085</font><font color="#990000">,</font>  <font color="#993399">7.2636</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_DOWN_IN<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font> <font color="#993399">11.6465</font><font color="#990000">,</font> <font color="#993399">12.9713</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_UP_IN<font color="#990000">,</font>  <font color="#993399">90.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">1.4653</font><font color="#990000">,</font>  <font color="#993399">2.0658</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_UP_IN<font color="#990000">,</font> <font color="#993399">100.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">3.3721</font><font color="#990000">,</font>  <font color="#993399">4.4226</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> SB_PUT_UP_IN<font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font> <font color="#993399">105.0</font><font color="#990000">,</font>  <font color="#993399">7.0846</font><font color="#990000">,</font>  <font color="#993399">8.3686</font> <font color="#FF0000">}</font>
+	<font color="#FF0000">}</font><font color="#990000">;</font>
+
+	<font color="#009900">double</font> S <font color="#990000">=</font> <font color="#993399">100.0</font><font color="#990000">,</font> K <font color="#990000">=</font> <font color="#993399">3.0</font><font color="#990000">,</font> T <font color="#990000">=</font> <font color="#993399">0.5</font><font color="#990000">,</font> r <font color="#990000">=</font> <font color="#993399">0.08</font><font color="#990000">,</font> b <font color="#990000">=</font> <font color="#993399">0.04</font><font color="#990000">;</font>
+	<font color="#008080">size_t</font> i<font color="#990000">,</font> nelem <font color="#990000">=</font> <b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>values<font color="#990000">)/</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>values<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]);</font>
+
+	<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Testing StandardBarrier()...</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font><b><font color="#000000">fflush</font></b><font color="#990000">(</font>stdout<font color="#990000">);</font>
+	<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"   NOTE: I had to modify StandardBarrier() to make it work since the</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+	<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"   original function did not work. Contact Espen Haug for a clarification..."</font><font color="#990000">);</font>
+	<b><font color="#0000FF">for</font></b><font color="#990000">(</font>i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> nelem<font color="#990000">;</font> i<font color="#990000">++)</font> <font color="#FF0000">{</font>
+		<font color="#009900">double</font> c025<font color="#990000">,</font> c030<font color="#990000">;</font>
+		
+		c025 <font color="#990000">=</font> <b><font color="#000000">StandardBarrier</font></b><font color="#990000">(</font>values<font color="#990000">[</font>i<font color="#990000">].</font>typeflag<font color="#990000">,</font> S<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>X<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>H<font color="#990000">,</font> K<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> <font color="#993399">0.25</font><font color="#990000">);</font>
+		c030 <font color="#990000">=</font> <b><font color="#000000">StandardBarrier</font></b><font color="#990000">(</font>values<font color="#990000">[</font>i<font color="#990000">].</font>typeflag<font color="#990000">,</font> S<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>X<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>H<font color="#990000">,</font> K<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> <font color="#993399">0.30</font><font color="#990000">);</font>
+<b><font color="#000080">		#if</font></b> <font color="#993399">0</font>
+		<b><font color="#000000">fprintf</font></b><font color="#990000">(</font>stderr<font color="#990000">,</font> <font color="#FF0000">"c025: %f fasit: %f . c030:%f  fasit:%f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>
+			c025<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>v025<font color="#990000">,</font> c030<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>v030<font color="#990000">);</font>
+<b><font color="#000080">		#endif</font></b>
+		<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>c025<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>v025<font color="#990000">);</font>
+		<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>c030<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>v030<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+
+	<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"OK</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+
+<font color="#009900">int</font> <b><font color="#000000">main</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<b><font color="#000000">check_StandardBarrier</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+<b><font color="#000080">#endif</font></b>
+
+</tt></pre>

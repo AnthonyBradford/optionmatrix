@@ -1,0 +1,208 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    libmetaoptions - A collection of option-related functions. </font></i>
+<i><font color="#9A1900">    Copyright (C) 2000-2004 B. Augestad, </font></i><u><font color="#0000FF">bjorn.augestad@gmail.com</font></u><i><font color="#9A1900"> </font></i>
+
+<i><font color="#9A1900">    This program is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">    it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">    the Free Software Foundation; either version 2 of the License, or</font></i>
+<i><font color="#9A1900">    (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">    This program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">    but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">    GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">    You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">    along with this program; if not, write to the Free Software</font></i>
+<i><font color="#9A1900">    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;math.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdlib.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;string.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdio.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;assert.h&gt;</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"metaoptions.h"</font>
+
+<i><font color="#9A1900">/* Look-barrier options */</font></i>
+<i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900"> * Performance notes: We start of slower than most other functions, only 1900 calls/sec...</font></i>
+<i><font color="#9A1900"> * calls/sec	Action</font></i>
+<i><font color="#9A1900"> *    1.900		Adding vst1</font></i>
+<i><font color="#9A1900"> */</font></i>
+<i><font color="#9A1900">/* </font></i><b>TODO:</b><i><font color="#9A1900"> </font></i>
+<i><font color="#9A1900"> *	The variable named trho can easily be replaced with -Rho the 2 places trho is used </font></i>
+<i><font color="#9A1900"> *	We do "a lot of" 2.0 * b, Maybe we should replace the expression with a variable</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">double</font> <b><font color="#000000">LookBarrier</font></b><font color="#990000">(</font><font color="#009900">int</font> type<font color="#990000">,</font> <font color="#009900">double</font> S<font color="#990000">,</font> <font color="#009900">double</font> X<font color="#990000">,</font> <font color="#009900">double</font> H<font color="#990000">,</font> <font color="#009900">double</font> t1<font color="#990000">,</font> <font color="#009900">double</font> T2<font color="#990000">,</font> <font color="#009900">double</font> r<font color="#990000">,</font> <font color="#009900">double</font> b<font color="#990000">,</font> <font color="#009900">double</font> v<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<font color="#009900">double</font> vst1<font color="#990000">,</font> vv<font color="#990000">,</font> erT2<font color="#990000">,</font> vsT2<font color="#990000">,</font> hh<font color="#990000">,</font> K<font color="#990000">,</font> mu1<font color="#990000">,</font> mu2<font color="#990000">,</font> Rho<font color="#990000">,</font> eta<font color="#990000">,</font> m<font color="#990000">;</font>
+	<font color="#009900">double</font> emu2hv<font color="#990000">,</font> emu1hv<font color="#990000">,</font> g1<font color="#990000">,</font> g2<font color="#990000">,</font> ta<font color="#990000">,</font> tb<font color="#990000">,</font> trho<font color="#990000">,</font> tp1<font color="#990000">,</font> tp2<font color="#990000">,</font> part1<font color="#990000">,</font> part2<font color="#990000">,</font> part3<font color="#990000">,</font> part4<font color="#990000">;</font> 
+	<font color="#009900">double</font> OutValue<font color="#990000">,</font> result<font color="#990000">;</font>
+
+	<b><font color="#000000">assert_valid_price</font></b><font color="#990000">(</font>S<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_strike</font></b><font color="#990000">(</font>X<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_interest_rate</font></b><font color="#990000">(</font>r<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_cost_of_carry</font></b><font color="#990000">(</font>b<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_volatility</font></b><font color="#990000">(</font>v<font color="#990000">);</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>t1<font color="#990000">));</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>T2<font color="#990000">));</font>
+
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font>type <font color="#990000">==</font> SB_CALL_UP_OUT <font color="#990000">||</font> type <font color="#990000">==</font> SB_PUT_DOWN_OUT <font color="#990000">||</font> type <font color="#990000">==</font> SB_CALL_UP_IN  <font color="#990000">||</font> type <font color="#990000">==</font> SB_PUT_DOWN_IN<font color="#990000">);</font>
+
+	vst1 <font color="#990000">=</font> v <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>t1<font color="#990000">);</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>vst1<font color="#990000">));</font>
+
+	vv <font color="#990000">=</font> v<font color="#990000">*</font>v<font color="#990000">;</font>
+	erT2 <font color="#990000">=</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>r <font color="#990000">*</font> T2<font color="#990000">);</font>
+	vsT2 <font color="#990000">=</font> v <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>T2<font color="#990000">);</font>
+
+    hh <font color="#990000">=</font> <b><font color="#000000">log</font></b><font color="#990000">(</font>H <font color="#990000">/</font> S<font color="#990000">);</font>
+    K <font color="#990000">=</font> <b><font color="#000000">log</font></b><font color="#990000">(</font>X <font color="#990000">/</font> S<font color="#990000">);</font>
+    mu1 <font color="#990000">=</font> b <font color="#990000">-</font> vv <font color="#990000">/</font> <font color="#993399">2.0</font><font color="#990000">;</font>
+    mu2 <font color="#990000">=</font> b <font color="#990000">+</font> vv <font color="#990000">/</font> <font color="#993399">2.0</font><font color="#990000">;</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>mu2<font color="#990000">));</font>
+
+    Rho <font color="#990000">=</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>t1 <font color="#990000">/</font> T2<font color="#990000">);</font>
+
+	<b><font color="#0000FF">if</font></b><font color="#990000">(</font>type <font color="#990000">==</font> SB_CALL_UP_OUT <font color="#990000">||</font> type <font color="#990000">==</font> SB_CALL_UP_IN<font color="#990000">)</font> <font color="#FF0000">{</font>
+        eta <font color="#990000">=</font> <font color="#993399">1.0</font><font color="#990000">;</font>
+        m <font color="#990000">=</font> <b><font color="#000000">fmin</font></b><font color="#990000">(</font>hh<font color="#990000">,</font>  K<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+	<b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font>type <font color="#990000">==</font> SB_PUT_DOWN_OUT <font color="#990000">||</font> type <font color="#990000">==</font> SB_PUT_DOWN_IN<font color="#990000">)</font> <font color="#FF0000">{</font>
+        eta <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1.0</font><font color="#990000">;</font>
+        m <font color="#990000">=</font> <b><font color="#000000">fmax</font></b><font color="#990000">(</font>hh<font color="#990000">,</font> K<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+	<b><font color="#0000FF">else</font></b>
+		<b><font color="#000000">abort</font></b><font color="#990000">();</font>
+
+	<i><font color="#9A1900">/* Some more intermediate values */</font></i>
+	emu2hv <font color="#990000">=</font> <b><font color="#000000">exp</font></b><font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> mu2 <font color="#990000">*</font> hh <font color="#990000">/</font> vv<font color="#990000">);</font>
+	emu1hv <font color="#990000">=</font> <b><font color="#000000">exp</font></b><font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> mu1 <font color="#990000">*</font> hh <font color="#990000">/</font> vv<font color="#990000">);</font>
+    
+    g1	<font color="#990000">=</font> <font color="#990000">(</font><b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>hh <font color="#990000">-</font> mu2 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">)</font> <font color="#990000">-</font> emu2hv <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(-</font>hh <font color="#990000">-</font> mu2 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">))</font> 
+        <font color="#990000">-</font> <font color="#990000">(</font><b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font> m <font color="#990000">-</font> mu2 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">)</font> <font color="#990000">-</font> emu2hv <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">-</font> <font color="#993399">2.0</font> <font color="#990000">*</font> hh <font color="#990000">-</font> mu2 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">));</font>
+
+    g2	<font color="#990000">=</font> <font color="#990000">(</font><b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>hh <font color="#990000">-</font> mu1 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">)</font> <font color="#990000">-</font> emu1hv <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(-</font>hh <font color="#990000">-</font> mu1 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">))</font> 
+        <font color="#990000">-</font> <font color="#990000">(</font><b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font> m <font color="#990000">-</font> mu1 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">)</font> <font color="#990000">-</font> emu1hv <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">-</font> <font color="#993399">2.0</font> <font color="#990000">*</font> hh <font color="#990000">-</font> mu1 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">));</font>
+
+	ta <font color="#990000">=</font> eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">-</font> mu2 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">;</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>ta<font color="#990000">));</font>
+
+	tb <font color="#990000">=</font> eta <font color="#990000">*</font> <font color="#990000">(-</font>K <font color="#990000">+</font> mu2 <font color="#990000">*</font> T2<font color="#990000">)</font> <font color="#990000">/</font> vsT2<font color="#990000">;</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>tb<font color="#990000">));</font>
+
+	trho <font color="#990000">=</font> <font color="#990000">-</font>Rho<font color="#990000">;</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>trho<font color="#990000">));</font>
+
+	tp1 <font color="#990000">=</font> <b><font color="#000000">cbnd</font></b><font color="#990000">(</font>ta<font color="#990000">,</font> tb<font color="#990000">,</font> trho<font color="#990000">);</font>
+
+	ta <font color="#990000">=</font> eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">-</font> <font color="#993399">2.0</font> <font color="#990000">*</font> hh <font color="#990000">-</font> mu2 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">;</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>ta<font color="#990000">));</font>
+
+	tb <font color="#990000">=</font> eta <font color="#990000">*</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> hh <font color="#990000">-</font> K <font color="#990000">+</font> mu2 <font color="#990000">*</font> T2<font color="#990000">)</font> <font color="#990000">/</font> vsT2<font color="#990000">;</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>tb<font color="#990000">));</font>
+
+	tp2 <font color="#990000">=</font> <b><font color="#000000">cbnd</font></b><font color="#990000">(</font>ta<font color="#990000">,</font> tb<font color="#990000">,</font> trho<font color="#990000">);</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>tp2<font color="#990000">));</font>
+
+    part1 
+		<font color="#990000">=</font> S <font color="#990000">*</font> <b><font color="#000000">exp</font></b><font color="#990000">((</font>b <font color="#990000">-</font> r<font color="#990000">)</font> <font color="#990000">*</font> T2<font color="#990000">)</font> <font color="#990000">*</font> <font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">+</font> vv <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">))</font> 
+		<font color="#990000">*</font> <font color="#990000">(</font> tp1 <font color="#990000">-</font> emu2hv <font color="#990000">*</font> tp2<font color="#990000">);</font>
+
+    part2 
+		<font color="#990000">=</font> <font color="#990000">-</font>erT2 <font color="#990000">*</font> X 
+		<font color="#990000">*</font> <font color="#990000">(</font>
+			           <b><font color="#000000">cbnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">-</font> mu1 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">,</font> eta <font color="#990000">*</font> <font color="#990000">(-</font>K <font color="#990000">+</font> mu1 <font color="#990000">*</font> T2<font color="#990000">)</font> <font color="#990000">/</font> vsT2<font color="#990000">,</font> <font color="#990000">-</font>Rho<font color="#990000">)</font> 
+			<font color="#990000">-</font> emu1hv <font color="#990000">*</font> <b><font color="#000000">cbnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">-</font> <font color="#993399">2.0</font> <font color="#990000">*</font> hh <font color="#990000">-</font> mu1 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">,</font> eta <font color="#990000">*</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> hh <font color="#990000">-</font> K <font color="#990000">+</font> mu1 <font color="#990000">*</font> T2<font color="#990000">)</font> <font color="#990000">/</font> vsT2<font color="#990000">,</font> <font color="#990000">-</font>Rho<font color="#990000">)</font>
+		<font color="#990000">);</font>
+
+    part3 
+		<font color="#990000">=</font> <font color="#990000">-</font>erT2 <font color="#990000">*</font> vv <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">)</font> 
+		<font color="#990000">*</font> <font color="#990000">(</font>
+			S <font color="#990000">*</font> <b><font color="#000000">pow</font></b><font color="#990000">(</font>S <font color="#990000">/</font> X<font color="#990000">,</font> <font color="#990000">-</font><font color="#993399">2.0</font> <font color="#990000">*</font> b <font color="#990000">/</font> vv<font color="#990000">)</font> <font color="#990000">*</font> <b><font color="#000000">cbnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">+</font> mu1 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">,</font> eta <font color="#990000">*</font> <font color="#990000">(-</font>K <font color="#990000">-</font> mu1 <font color="#990000">*</font> T2<font color="#990000">)</font> <font color="#990000">/</font> vsT2<font color="#990000">,</font> <font color="#990000">-</font>Rho<font color="#990000">)</font> 
+          <font color="#990000">-</font> H <font color="#990000">*</font> <b><font color="#000000">pow</font></b><font color="#990000">(</font>H <font color="#990000">/</font> X<font color="#990000">,</font> <font color="#990000">-</font><font color="#993399">2.0</font> <font color="#990000">*</font> b <font color="#990000">/</font> vv<font color="#990000">)</font> <font color="#990000">*</font> <b><font color="#000000">cbnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">-</font> <font color="#993399">2.0</font> <font color="#990000">*</font> hh <font color="#990000">+</font> mu1 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">,</font> eta <font color="#990000">*</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> hh <font color="#990000">-</font> K <font color="#990000">-</font> mu1 <font color="#990000">*</font> T2<font color="#990000">)</font> <font color="#990000">/</font> vsT2<font color="#990000">,</font> <font color="#990000">-</font>Rho<font color="#990000">)</font>
+		<font color="#990000">);</font>
+
+    part4 
+		<font color="#990000">=</font> S <font color="#990000">*</font> <b><font color="#000000">exp</font></b><font color="#990000">((</font>b <font color="#990000">-</font> r<font color="#990000">)</font> <font color="#990000">*</font> T2<font color="#990000">)</font> 
+		<font color="#990000">*</font> <font color="#990000">(</font>
+			<font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">+</font> vv <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">))</font> <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> mu2 <font color="#990000">*</font> <font color="#990000">(</font>T2 <font color="#990000">-</font> t1<font color="#990000">)</font> <font color="#990000">/</font> <font color="#990000">(</font>v <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>T2 <font color="#990000">-</font> t1<font color="#990000">)))</font>
+			<font color="#990000">+</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>b <font color="#990000">*</font> <font color="#990000">(</font>T2 <font color="#990000">-</font> t1<font color="#990000">))</font> <font color="#990000">*</font> <font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">-</font> vv <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">))</font> <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(-</font>mu1 <font color="#990000">*</font> <font color="#990000">(</font>T2 <font color="#990000">-</font> t1<font color="#990000">))</font> <font color="#990000">/</font> <font color="#990000">(</font>v <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>T2 <font color="#990000">-</font> t1<font color="#990000">)))</font>
+		<font color="#990000">)</font>
+		<font color="#990000">*</font> g1 <font color="#990000">-</font> erT2 <font color="#990000">*</font> X <font color="#990000">*</font> g2<font color="#990000">;</font>
+
+
+    OutValue <font color="#990000">=</font> eta <font color="#990000">*</font> <font color="#990000">(</font>part1 <font color="#990000">+</font> part2 <font color="#990000">+</font> part3 <font color="#990000">+</font> part4<font color="#990000">);</font>
+	<b><font color="#0000FF">if</font></b><font color="#990000">(</font>type <font color="#990000">==</font> SB_CALL_UP_OUT <font color="#990000">||</font> type <font color="#990000">==</font> SB_PUT_DOWN_OUT<font color="#990000">)</font>
+        result <font color="#990000">=</font> OutValue<font color="#990000">;</font>
+	<b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font>type <font color="#990000">==</font> SB_CALL_UP_IN<font color="#990000">)</font>
+        result <font color="#990000">=</font> <b><font color="#000000">PartialFixedLB</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> t1<font color="#990000">,</font> T2<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> v<font color="#990000">)</font> <font color="#990000">-</font> OutValue<font color="#990000">;</font>
+	<b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font>type <font color="#990000">==</font> SB_PUT_DOWN_IN<font color="#990000">)</font>
+        result <font color="#990000">=</font> <b><font color="#000000">PartialFixedLB</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> t1<font color="#990000">,</font> T2<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> v<font color="#990000">)</font> <font color="#990000">-</font> OutValue<font color="#990000">;</font>
+	<b><font color="#0000FF">else</font></b>
+		<b><font color="#000000">abort</font></b><font color="#990000">();</font>
+
+	<b><font color="#0000FF">return</font></b> result<font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<b><font color="#000080">#ifdef</font></b> LOOKBARRIER_CHECK
+
+<i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900"> * NOTE: </font></i>
+<i><font color="#9A1900"> * Again a formula bombs out because of invalid test data. This time</font></i>
+<i><font color="#9A1900"> * it is LookBarrier() which in the book is "tested" with t1=0.0.</font></i>
+<i><font color="#9A1900"> * There's no way that can work because the formula divides "lots of stuff"</font></i>
+<i><font color="#9A1900"> * with sqrt(t1). When t1 == 0, the division fails.</font></i>
+<i><font color="#9A1900"> * 20070310 boa</font></i>
+<i><font color="#9A1900"> */</font></i>
+
+<font color="#009900">void</font> <b><font color="#000000">check_LookBarrier</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<font color="#009900">double</font> S <font color="#990000">=</font> <font color="#993399">100.0</font><font color="#990000">,</font> X <font color="#990000">=</font> <font color="#993399">100.0</font><font color="#990000">,</font> T2 <font color="#990000">=</font> <font color="#993399">1.0</font><font color="#990000">,</font> r <font color="#990000">=</font> <font color="#993399">0.10</font><font color="#990000">,</font> b <font color="#990000">=</font> <font color="#993399">0.10</font><font color="#990000">;</font>
+	<font color="#009900">double</font> result<font color="#990000">;</font>
+
+	<i><font color="#9A1900">/* Test data for up&amp;out LookBarrier calls </font></i>
+<i><font color="#9A1900">	 * We combine data for H, t1 and v.</font></i>
+<i><font color="#9A1900">	 */</font></i>
+	<b><font color="#0000FF">struct</font></b> <font color="#FF0000">{</font>
+		<font color="#009900">double</font> v<font color="#990000">;</font>
+		<font color="#009900">double</font> H<font color="#990000">;</font>
+		<font color="#009900">double</font> fasit<font color="#990000">[</font><font color="#993399">5</font><font color="#990000">];</font>
+	<font color="#FF0000">}</font> values<font color="#990000">[</font><font color="#993399">6</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font>
+		<font color="#FF0000">{</font><font color="#993399">0.15</font><font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">17.5212</font><font color="#990000">,</font>  <font color="#993399">9.6529</font><font color="#990000">,</font>  <font color="#993399">4.2419</font><font color="#990000">,</font>  <font color="#993399">1.7112</font><font color="#990000">,</font> <font color="#993399">0.2388</font><font color="#FF0000">}}</font><font color="#990000">,</font> 
+		<font color="#FF0000">{</font><font color="#993399">0.15</font><font color="#990000">,</font> <font color="#993399">120.0</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">17.5212</font><font color="#990000">,</font> <font color="#993399">16.0504</font><font color="#990000">,</font> <font color="#993399">11.0593</font><font color="#990000">,</font>  <font color="#993399">6.4404</font><font color="#990000">,</font> <font color="#993399">2.1866</font><font color="#FF0000">}}</font><font color="#990000">,</font> 
+		<font color="#FF0000">{</font><font color="#993399">0.15</font><font color="#990000">,</font> <font color="#993399">130.0</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">17.5212</font><font color="#990000">,</font> <font color="#993399">17.0597</font><font color="#990000">,</font> <font color="#993399">14.9975</font><font color="#990000">,</font> <font color="#993399">11.1547</font><font color="#990000">,</font> <font color="#993399">5.5255</font><font color="#FF0000">}}</font><font color="#990000">,</font> 
+		<font color="#FF0000">{</font><font color="#993399">0.30</font><font color="#990000">,</font> <font color="#993399">110.0</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">30.1874</font><font color="#990000">,</font>  <font color="#993399">7.4146</font><font color="#990000">,</font>  <font color="#993399">2.7025</font><font color="#990000">,</font>  <font color="#993399">0.8896</font><font color="#990000">,</font> <font color="#993399">0.0357</font><font color="#FF0000">}}</font><font color="#990000">,</font> 
+		<font color="#FF0000">{</font><font color="#993399">0.30</font><font color="#990000">,</font> <font color="#993399">120.0</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">30.1874</font><font color="#990000">,</font> <font color="#993399">16.4987</font><font color="#990000">,</font>  <font color="#993399">7.5509</font><font color="#990000">,</font>  <font color="#993399">3.1682</font><font color="#990000">,</font> <font color="#993399">0.4259</font><font color="#FF0000">}}</font><font color="#990000">,</font> 
+		<font color="#FF0000">{</font><font color="#993399">0.30</font><font color="#990000">,</font> <font color="#993399">130.0</font><font color="#990000">,</font> <font color="#FF0000">{</font><font color="#993399">30.1874</font><font color="#990000">,</font> <font color="#993399">23.1605</font><font color="#990000">,</font> <font color="#993399">13.1118</font><font color="#990000">,</font>  <font color="#993399">6.6034</font><font color="#990000">,</font> <font color="#993399">1.5180</font><font color="#FF0000">}}</font>
+	<font color="#FF0000">}</font><font color="#990000">;</font>
+
+	<font color="#009900">int</font> i<font color="#990000">,</font> nelem <font color="#990000">=</font> <font color="#993399">6</font><font color="#990000">;</font>
+
+	<b><font color="#0000FF">for</font></b><font color="#990000">(</font>i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> nelem<font color="#990000">;</font> i<font color="#990000">++)</font> <font color="#FF0000">{</font>
+		<font color="#009900">double</font> t1 <font color="#990000">=</font> <font color="#993399">0.0</font><font color="#990000">;</font>
+		<font color="#009900">int</font> j<font color="#990000">;</font>
+
+		<b><font color="#0000FF">for</font></b><font color="#990000">(</font>t1 <font color="#990000">=</font> <font color="#993399">0.25</font><font color="#990000">,</font> j <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font> j <font color="#990000">&lt;</font> <font color="#993399">5</font><font color="#990000">;</font> j<font color="#990000">++,</font> t1 <font color="#990000">+=</font> <font color="#993399">0.25</font><font color="#990000">)</font> <font color="#FF0000">{</font>
+			<b><font color="#000000">fprintf</font></b><font color="#990000">(</font>stderr<font color="#990000">,</font> <font color="#FF0000">"i/j == %d/%d</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> i<font color="#990000">,</font> j<font color="#990000">);</font>
+			result <font color="#990000">=</font> <b><font color="#000000">LookBarrier</font></b><font color="#990000">(</font>SB_CALL_UP_OUT<font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>H<font color="#990000">,</font> t1<font color="#990000">,</font> T2<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>v<font color="#990000">);</font>
+			<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>result<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>fasit<font color="#990000">[</font>j<font color="#990000">]);</font>
+		<font color="#FF0000">}</font>
+	<font color="#FF0000">}</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">int</font> <b><font color="#000000">main</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<b><font color="#000000">check_LookBarrier</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<b><font color="#000080">#endif</font></b>
+
+</tt></pre>

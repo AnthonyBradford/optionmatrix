@@ -1,0 +1,6 @@
+The directories src/ and examples/ are based on the
+Financial Numerical Recipes in C++ Library by:
+
+Bernt Arne Oedegaard
+
+The library has been modified to be a part of this project.

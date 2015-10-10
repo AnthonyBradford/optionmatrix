@@ -1,0 +1,28 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;cmath&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"fin_recipes.h"</font>
+
+<font color="#009900">double</font> <b><font color="#000000">option_price_american_put_approximated_johnson</font></b><font color="#990000">(</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> S<font color="#990000">,</font>
+						       <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> X<font color="#990000">,</font> 
+						       <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">,</font>
+						       <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> sigma<font color="#990000">,</font>
+						       <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> time <font color="#990000">)</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> sigma_sqr<font color="#990000">=</font><b><font color="#000000">pow</font></b><font color="#990000">(</font>sigma<font color="#990000">,</font><font color="#993399">2</font><font color="#990000">);</font>
+    <font color="#009900">double</font> a0<font color="#990000">=</font> <font color="#993399">3.9649</font> <font color="#990000">;</font>
+    <font color="#009900">double</font> a1 <font color="#990000">=</font> <font color="#993399">0.032325</font><font color="#990000">;</font>
+    <font color="#009900">double</font> b0 <font color="#990000">=</font> <font color="#993399">1.040803</font><font color="#990000">;</font>
+    <font color="#009900">double</font> b1 <font color="#990000">=</font> <font color="#993399">0.00963</font><font color="#990000">;</font>
+    <font color="#009900">double</font> gamma <font color="#990000">=</font> <font color="#993399">2</font><font color="#990000">*</font>r<font color="#990000">/</font>sigma_sqr<font color="#990000">;</font>
+    <font color="#009900">double</font> m <font color="#990000">=</font> <font color="#990000">(</font>sigma_sqr<font color="#990000">*</font>time<font color="#990000">)/(</font>b0<font color="#990000">*</font>sigma_sqr<font color="#990000">*</font>time<font color="#990000">+</font>b1<font color="#990000">);</font>
+    <font color="#009900">double</font> Sc <font color="#990000">=</font> X <font color="#990000">*</font> <b><font color="#000000">pow</font></b> <font color="#990000">(((</font>gamma<font color="#990000">)/(</font><font color="#993399">1</font><font color="#990000">+</font>gamma<font color="#990000">)),</font>m<font color="#990000">);</font>
+    <font color="#009900">double</font> l <font color="#990000">=</font> <font color="#990000">(</font><b><font color="#000000">log</font></b><font color="#990000">(</font>S<font color="#990000">/</font>Sc<font color="#990000">))/(</font><b><font color="#000000">log</font></b><font color="#990000">(</font>X<font color="#990000">/</font>Sc<font color="#990000">)</font> <font color="#990000">);</font>
+    <font color="#009900">double</font> alpha <font color="#990000">=</font> <b><font color="#000000">pow</font></b><font color="#990000">(</font> <font color="#990000">(</font> <font color="#990000">(</font>r<font color="#990000">*</font>time<font color="#990000">)/(</font>a0<font color="#990000">*</font>r<font color="#990000">*</font>time<font color="#990000">+</font>a1<font color="#990000">)</font> <font color="#990000">),</font> l <font color="#990000">);</font>
+    <font color="#009900">double</font> P <font color="#990000">=</font> alpha<font color="#990000">*</font><b><font color="#000000">option_price_put_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>X<font color="#990000">*</font><b><font color="#000000">exp</font></b><font color="#990000">(</font>r<font color="#990000">*</font>time<font color="#990000">),</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">)</font> 
+	<font color="#990000">+</font> <font color="#990000">(</font><font color="#993399">1</font><font color="#990000">-</font>alpha<font color="#990000">)*</font><b><font color="#000000">option_price_put_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>X<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">);</font>
+    <font color="#009900">double</font> p<font color="#990000">=</font><b><font color="#000000">option_price_put_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>X<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">);</font>  <i><font color="#9A1900">// for safety use the Black Scholes as lower bound</font></i>
+    <b><font color="#0000FF">return</font></b> <b><font color="#000000">max</font></b><font color="#990000">(</font>p<font color="#990000">,</font>P<font color="#990000">);</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

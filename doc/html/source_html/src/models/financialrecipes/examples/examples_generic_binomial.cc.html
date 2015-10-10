@@ -1,0 +1,44 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;iostream&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"fin_recipes.h"</font>
+
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">example_binomial_generic_standard_put_and_calls</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+
+     <font color="#009900">double</font> S <font color="#990000">=</font> <font color="#993399">100.0</font><font color="#990000">;</font>
+     <font color="#009900">double</font> K <font color="#990000">=</font> <font color="#993399">100.0</font><font color="#990000">;</font>
+     <font color="#009900">double</font> r <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font>
+     <font color="#009900">double</font> sigma <font color="#990000">=</font> <font color="#993399">0.25</font><font color="#990000">;</font>
+     <font color="#009900">double</font> time_to_maturity<font color="#990000">=</font><font color="#993399">1.0</font><font color="#990000">;</font>
+     <font color="#009900">int</font> steps <font color="#990000">=</font> <font color="#993399">100</font><font color="#990000">;</font>
+     cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" american call price = "</font>
+          <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_generic_binomial</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>payoff_call<font color="#990000">,</font> r<font color="#990000">,</font> sigma<font color="#990000">,</font> time_to_maturity<font color="#990000">,</font> steps<font color="#990000">)</font>
+          <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+     cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" american put price = "</font>
+          <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_generic_binomial</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>payoff_put<font color="#990000">,</font> r<font color="#990000">,</font> sigma<font color="#990000">,</font> time_to_maturity<font color="#990000">,</font> steps<font color="#990000">)</font>
+          <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+<font color="#009900">void</font> <b><font color="#000000">example_binomial_generic_binary</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+     <font color="#009900">double</font> S <font color="#990000">=</font> <font color="#993399">100.0</font><font color="#990000">;</font>
+     <font color="#009900">double</font> K <font color="#990000">=</font> <font color="#993399">120.0</font><font color="#990000">;</font>
+     <font color="#009900">double</font> r <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font>
+     <font color="#009900">double</font> sigma <font color="#990000">=</font> <font color="#993399">0.25</font><font color="#990000">;</font>
+     <font color="#009900">double</font> time_to_maturity<font color="#990000">=</font><font color="#993399">1.0</font><font color="#990000">;</font>
+     <font color="#009900">int</font> steps <font color="#990000">=</font> <font color="#993399">100</font><font color="#990000">;</font>
+     cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" binary option price = "</font>
+          <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_generic_binomial</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>payoff_binary_call<font color="#990000">,</font> r<font color="#990000">,</font> sigma<font color="#990000">,</font> time_to_maturity<font color="#990000">,</font> steps<font color="#990000">)</font>
+          <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">examples_generic_binomial</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"----------------------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Generic binomial pricing                "</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"----------------------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    <b><font color="#000000">example_binomial_generic_standard_put_and_calls</font></b><font color="#990000">();</font>
+    <b><font color="#000000">example_binomial_generic_binary</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

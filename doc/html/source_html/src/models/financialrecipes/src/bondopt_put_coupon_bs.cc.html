@@ -1,0 +1,26 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;cmath&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;vector&gt;</font>
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"normdist.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"fin_recipes.h"</font> 
+
+<font color="#009900">double</font> <b><font color="#000000">bond_option_price_put_coupon_bond_black_scholes</font></b><font color="#990000">(</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> B<font color="#990000">,</font>
+							<b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> X<font color="#990000">,</font>
+							<b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">,</font>
+							<b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> sigma<font color="#990000">,</font>
+							<b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> time<font color="#990000">,</font> 
+							<b><font color="#0000FF">const</font></b> <font color="#008080">vector&lt;double&gt;</font> coupon_times<font color="#990000">,</font> 
+							<b><font color="#0000FF">const</font></b> <font color="#008080">vector&lt;double&gt;</font> coupon_amounts<font color="#990000">)</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> adjusted_B<font color="#990000">=</font>B<font color="#990000">;</font>
+    <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#009900">unsigned</font> <font color="#009900">int</font> i<font color="#990000">=</font><font color="#993399">0</font><font color="#990000">;</font>i<font color="#990000">&lt;</font>coupon_times<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">();</font>i<font color="#990000">++)</font> <font color="#FF0000">{</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>coupon_times<font color="#990000">[</font>i<font color="#990000">]&lt;=</font>time<font color="#990000">)</font> <font color="#FF0000">{</font>
+	    adjusted_B <font color="#990000">-=</font> coupon_amounts<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">*</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>r<font color="#990000">*</font>coupon_times<font color="#990000">[</font>i<font color="#990000">]);</font>
+	<font color="#FF0000">}</font><font color="#990000">;</font>
+    <font color="#FF0000">}</font><font color="#990000">;</font>
+    <b><font color="#0000FF">return</font></b> <b><font color="#000000">bond_option_price_put_zero_black_scholes</font></b><font color="#990000">(</font>adjusted_B<font color="#990000">,</font>X<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">);</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

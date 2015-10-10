@@ -1,0 +1,4 @@
+2012-06-14  Anthony Bradford  <info@opensourcefinancialmodels.com>
+	* BSbisection.c - counter forces break in for(;;) loop
+	* OptionsOnOptions.c - counter forces break in for(;;) loop
+	* cbnd.c - cbnd() second argument normalizes inf

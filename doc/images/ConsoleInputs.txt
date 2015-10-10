@@ -1,0 +1,10 @@
+Begin Console Inputs Example:
+
+Enter Price                              : 100
+Enter Strike                             : 110
+Enter interest rate          (.05 = 5%)  : 3.00%
+Time to Expiration	 (.25=1/4 year)  : 1.00000000 365.00 days Sep 04 2013
+Enter Standard Deviation                 : .25
+
+End Console Inputs Example
+

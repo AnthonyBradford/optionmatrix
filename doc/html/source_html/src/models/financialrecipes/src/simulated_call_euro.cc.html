@@ -1,0 +1,25 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;cmath&gt;</font>     <i><font color="#9A1900">// standard mathematical functions</font></i>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;algorithm&gt;</font>     <i><font color="#9A1900">// define the max() function</font></i>
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"normdist.h"</font>   <i><font color="#9A1900">// definition of random number generator</font></i>
+
+<font color="#009900">double</font> <b><font color="#000000">option_price_call_european_simulated</font></b><font color="#990000">(</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> S<font color="#990000">,</font>
+					     <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> K<font color="#990000">,</font> 
+					     <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">,</font> 
+					     <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> sigma<font color="#990000">,</font>  
+					     <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> time<font color="#990000">,</font> 
+					     <b><font color="#0000FF">const</font></b> <font color="#009900">int</font><font color="#990000">&amp;</font> no_sims<font color="#990000">)</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> R <font color="#990000">=</font> <font color="#990000">(</font>r <font color="#990000">-</font> <font color="#993399">0.5</font> <font color="#990000">*</font> <b><font color="#000000">pow</font></b><font color="#990000">(</font>sigma<font color="#990000">,</font><font color="#993399">2</font><font color="#990000">))*</font>time<font color="#990000">;</font>
+    <font color="#009900">double</font> SD <font color="#990000">=</font> sigma <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>time<font color="#990000">);</font>
+    <font color="#009900">double</font> sum_payoffs <font color="#990000">=</font> <font color="#993399">0.0</font><font color="#990000">;</font>
+    <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#009900">int</font> n<font color="#990000">=</font><font color="#993399">1</font><font color="#990000">;</font> n<font color="#990000">&lt;=</font>no_sims<font color="#990000">;</font> n<font color="#990000">++)</font> <font color="#FF0000">{</font>
+	<font color="#009900">double</font> S_T <font color="#990000">=</font> S<font color="#990000">*</font> <b><font color="#000000">exp</font></b><font color="#990000">(</font>R <font color="#990000">+</font> SD <font color="#990000">*</font> <b><font color="#000000">random_normal</font></b><font color="#990000">());</font>
+	sum_payoffs <font color="#990000">+=</font> <b><font color="#000000">max</font></b><font color="#990000">(</font><font color="#993399">0.0</font><font color="#990000">,</font> S_T<font color="#990000">-</font>K<font color="#990000">);</font>
+    <font color="#FF0000">}</font><font color="#990000">;</font>
+    <b><font color="#0000FF">return</font></b> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>r<font color="#990000">*</font>time<font color="#990000">)</font> <font color="#990000">*</font> <font color="#990000">(</font>sum_payoffs<font color="#990000">/</font><font color="#009900">double</font><font color="#990000">(</font>no_sims<font color="#990000">));</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

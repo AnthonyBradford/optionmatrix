@@ -1,0 +1,171 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">#!/bin/sh</font></i>
+
+<i><font color="#9A1900"># OptionMatrix website Publishing.</font></i>
+<i><font color="#9A1900"># Copyright (C) 2012 Anthony Bradford.</font></i>
+echo
+echo <font color="#FF0000">"Copyright (C) 2012 Anthony Bradford."</font>
+
+rm -f ftp<font color="#990000">.</font>error
+
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$#"</font> <font color="#990000">!=</font> <font color="#993399">4</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    echo
+    echo
+    echo <font color="#FF0000">"From the distribution top level directory run:"</font>
+    echo
+    echo <font color="#FF0000">"./configure ; make website"</font>
+    echo
+    echo
+    <b><font color="#0000FF">exit</font></b> <font color="#993399">1</font>
+<b><font color="#0000FF">fi</font></b>
+echo
+echo
+echo Push doc/html to website
+echo Push doc/html/optionmatrix<font color="#990000">.</font>zip to website
+echo Push <font color="#009900">$2</font> to website
+echo Push doc<font color="#990000">/</font><font color="#009900">$3</font> to website
+echo Push doc<font color="#990000">/</font><font color="#009900">$4</font> to website
+echo
+echo
+
+<b><font color="#0000FF">read</font></b> -p <font color="#FF0000">"FTP website  : "</font> HOST
+<b><font color="#0000FF">read</font></b> -p <font color="#FF0000">"FTP login    : "</font> USER
+<b><font color="#0000FF">read</font></b> -p <font color="#FF0000">"FTP password : "</font> PASSWD
+echo
+
+<font color="#009900">PUBLISH_TAR_GZ</font><font color="#990000">=</font><font color="#993399">0</font>
+<font color="#009900">PUBLISH_HTML</font><font color="#990000">=</font><font color="#993399">0</font>
+<font color="#009900">PUBLISH_PDF</font><font color="#990000">=</font><font color="#993399">0</font>
+
+echo OptionMatrix will be published to <font color="#009900">$HOST</font>/om
+echo
+
+<b><font color="#0000FF">while</font></b> <b><font color="#0000FF">true</font></b><font color="#990000">;</font> <b><font color="#0000FF">do</font></b> 
+    <b><font color="#0000FF">read</font></b> -p <font color="#FF0000">"Publish OptionMatrix HTML documentation to the web (y/n)? "</font> yn 
+    <b><font color="#0000FF">case</font></b> <font color="#009900">$yn</font> <b><font color="#0000FF">in</font></b> 
+        <font color="#990000">[</font>Yy<font color="#990000">]*</font> <font color="#990000">)</font> <font color="#009900">PUBLISH_HTML</font><font color="#990000">=</font><font color="#993399">1</font> <b><font color="#0000FF">break</font></b><font color="#990000">;;</font> 
+        <font color="#990000">[</font>Nn<font color="#990000">]*</font> <font color="#990000">)</font> <b><font color="#0000FF">break</font></b><font color="#990000">;;</font> 
+        <font color="#990000">*</font> <font color="#990000">)</font> echo <font color="#FF0000">"Please answer yes or no."</font><font color="#990000">;;</font> 
+    <b><font color="#0000FF">esac</font></b> 
+<b><font color="#0000FF">done</font></b> 
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$PUBLISH_HTML"</font> <font color="#990000">=</font> <font color="#FF0000">"1"</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    make html
+
+echo
+echo
+echo This might take some time<font color="#990000">.</font> 
+echo Directory creation errors are normal after initial run<font color="#990000">.</font>
+echo
+echo
+
+ftp -nv <font color="#009900">$HOST</font> <font color="#990000">&lt;&lt;</font>END_SCRIPT <font color="#993399">2</font><font color="#990000">&gt;&gt;</font> ftp<font color="#990000">.</font>error
+quote USER <font color="#009900">$USER</font>
+quote PASS <font color="#009900">$PASSWD</font>
+binary
+cd public_html
+mkdir om
+cd om
+lcd doc/html
+prompt
+mput <font color="#990000">*.</font>html
+mkdir doc
+cd doc
+mput <font color="#990000">*.</font>zip
+cd <font color="#990000">..</font>
+mkdir images
+cd images
+lcd images
+mput <font color="#990000">*.</font>png
+quit
+END_SCRIPT
+
+<b><font color="#0000FF">fi</font></b>
+
+<b><font color="#0000FF">while</font></b> <b><font color="#0000FF">true</font></b><font color="#990000">;</font> <b><font color="#0000FF">do</font></b> 
+    echo
+    <b><font color="#0000FF">read</font></b> -p <font color="#FF0000">"Publish optionmatrix.tar.gz to the web (y/n)? "</font> yn
+    <b><font color="#0000FF">case</font></b> <font color="#009900">$yn</font> <b><font color="#0000FF">in</font></b> 
+        <font color="#990000">[</font>Yy<font color="#990000">]*</font> <font color="#990000">)</font> <font color="#009900">PUBLISH_TAR_GZ</font><font color="#990000">=</font><font color="#993399">1</font> <b><font color="#0000FF">break</font></b><font color="#990000">;;</font> 
+        <font color="#990000">[</font>Nn<font color="#990000">]*</font> <font color="#990000">)</font> <b><font color="#0000FF">break</font></b><font color="#990000">;;</font> 
+        <font color="#990000">*</font> <font color="#990000">)</font> echo <font color="#FF0000">"Please answer yes or no."</font><font color="#990000">;;</font> 
+    <b><font color="#0000FF">esac</font></b> 
+<b><font color="#0000FF">done</font></b>
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$PUBLISH_TAR_GZ</font> <font color="#990000">=</font> <font color="#FF0000">"1"</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    make clean
+    make dist
+
+echo
+echo
+echo This might take some time<font color="#990000">.</font>
+echo Directory creation errors are normal after initial run<font color="#990000">.</font>
+echo
+echo
+
+ftp -nv <font color="#009900">$HOST</font> <font color="#990000">&lt;&lt;</font>END_SCRIPT <font color="#993399">2</font><font color="#990000">&gt;&gt;</font> ftp<font color="#990000">.</font>error
+quote USER <font color="#009900">$USER</font>
+quote PASS <font color="#009900">$PASSWD</font>
+binary
+cd public_html
+mkdir om
+cd om
+mkdir downloads
+cd downloads
+put <font color="#009900">$2</font>
+mkdir rpm
+mkdir debian
+cd debian
+mkdir amd64
+mkdir i386
+quit
+END_SCRIPT
+
+<b><font color="#0000FF">fi</font></b>
+
+<b><font color="#0000FF">while</font></b> <b><font color="#0000FF">true</font></b><font color="#990000">;</font> <b><font color="#0000FF">do</font></b> 
+    echo
+    <b><font color="#0000FF">read</font></b> -p <font color="#FF0000">"Publish optionmatrix.pdf / optionmatrix.epub the web (y/n)? "</font> yn
+    <b><font color="#0000FF">case</font></b> <font color="#009900">$yn</font> <b><font color="#0000FF">in</font></b> 
+        <font color="#990000">[</font>Yy<font color="#990000">]*</font> <font color="#990000">)</font> <font color="#009900">PUBLISH_PDF</font><font color="#990000">=</font><font color="#993399">1</font> <b><font color="#0000FF">break</font></b><font color="#990000">;;</font> 
+        <font color="#990000">[</font>Nn<font color="#990000">]*</font> <font color="#990000">)</font> <b><font color="#0000FF">break</font></b><font color="#990000">;;</font> 
+        <font color="#990000">*</font> <font color="#990000">)</font> echo <font color="#FF0000">"Please answer yes or no."</font><font color="#990000">;;</font> 
+    <b><font color="#0000FF">esac</font></b> 
+<b><font color="#0000FF">done</font></b> 
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$PUBLISH_PDF"</font> <font color="#990000">=</font> <font color="#FF0000">"1"</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    make pdf
+    cd doc <font color="#990000">;</font> make epub
+
+echo
+echo
+echo This might take some time<font color="#990000">.</font>
+echo Directory creation errors are normal after initial run<font color="#990000">.</font>
+echo
+echo
+
+ftp -nv <font color="#009900">$HOST</font> <font color="#990000">&lt;&lt;</font>END_SCRIPT <font color="#993399">2</font><font color="#990000">&gt;&gt;</font> ftp<font color="#990000">.</font>error
+quote USER <font color="#009900">$USER</font>
+quote PASS <font color="#009900">$PASSWD</font>
+binary
+cd public_html
+mkdir om
+cd om
+mkdir doc
+cd doc
+put <font color="#009900">$3</font>
+put <font color="#009900">$4</font>
+quit
+END_SCRIPT
+
+<b><font color="#0000FF">fi</font></b>
+
+echo
+echo OptionMatrix published to <font color="#009900">$HOST</font>/om
+echo <b><font color="#0000FF">done</font></b>
+
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -e ftp<font color="#990000">.</font>error <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    cat ftp<font color="#990000">.</font>error
+    rm -r ftp<font color="#990000">.</font>error
+<b><font color="#0000FF">fi</font></b>
+</tt></pre>

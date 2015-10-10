@@ -1,0 +1,24 @@
+The general program was authored by:
+Anthony Bradford, info@anthonybradford.com
+http://anthonybradford.com
+
+Romberg's Method in cumulative_norm.c was taken
+from http://code.google.com/p/romberg-integration and
+is under the GPL2 License
+
+The following library was authored by: 
+Bjorn Augestad, Meta Systems AS
+
+libmetaoptions.a
+Version metaoptions-0.0.4
+http://www.metasystems.no/downloads/metaoptions-0.0.4.tar.gz
+
+The following library was authored by:
+Bernt Arne Oedegaard
+
+librecipes.a
+Financial Numerical Recipes in C++
+http://finance.bi.no/~bernt/gcc_prog/recipes/finrecipes.tar.gz
+
+The following files are based on files by Seth Pinsky:
+binomial.c binomial.h

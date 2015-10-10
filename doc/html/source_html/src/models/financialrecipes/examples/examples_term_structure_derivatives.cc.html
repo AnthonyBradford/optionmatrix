@@ -1,0 +1,22 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;iostream&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"fin_recipes.h"</font>
+
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">test_vasicek_option_pricing</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> a <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font>  <font color="#009900">double</font> b <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font> <font color="#009900">double</font> sigma <font color="#990000">=</font> <font color="#993399">0.02</font><font color="#990000">;</font> <font color="#009900">double</font> r <font color="#990000">=</font> <font color="#993399">0.05</font><font color="#990000">;</font> <font color="#009900">double</font> X<font color="#990000">=</font><font color="#993399">0.9</font><font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" Vasicek call option price "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">bond_option_price_call_zero_vasicek</font></b><font color="#990000">(</font>X<font color="#990000">,</font>r<font color="#990000">,</font><font color="#993399">1</font><font color="#990000">,</font><font color="#993399">5</font><font color="#990000">,</font>a<font color="#990000">,</font>b<font color="#990000">,</font>sigma<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">term_structure_derivatives_examples</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"--------------------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" term structure derivatives examples  "</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"--------------------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    <b><font color="#000000">test_vasicek_option_pricing</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+</tt></pre>

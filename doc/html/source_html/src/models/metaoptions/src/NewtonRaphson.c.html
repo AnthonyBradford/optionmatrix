@@ -1,0 +1,164 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    libmetaoptions - A collection of option-related functions. </font></i>
+<i><font color="#9A1900">    Copyright (C) 2000-2004 B. Augestad, </font></i><u><font color="#0000FF">bjorn.augestad@gmail.com</font></u><i><font color="#9A1900"> </font></i>
+
+<i><font color="#9A1900">    This program is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">    it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">    the Free Software Foundation; either version 2 of the License, or</font></i>
+<i><font color="#9A1900">    (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">    This program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">    but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">    GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">    You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">    along with this program; if not, write to the Free Software</font></i>
+<i><font color="#9A1900">    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"metaoptions.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;math.h&gt;</font>
+<i><font color="#9A1900">/* Optimizations:</font></i>
+<i><font color="#9A1900"> * Calls/sec	Action</font></i>
+<i><font color="#9A1900"> * 171.000		Using gvega_inlined() instead of vega()</font></i>
+<i><font color="#9A1900"> * 177.000		Removed call to blackscholes() in test program </font></i>
+<i><font color="#9A1900"> * 196.000		Calling NewtonRaphson_call() and _put().</font></i>
+<i><font color="#9A1900"> * 377.000		Quite impressive, can it be correct? Making the _put/call() versions inline.</font></i>
+<i><font color="#9A1900"> * 395.000      A slight improvement, but is it worth it? Nope, we rollback the changes.</font></i>
+<i><font color="#9A1900"> * 377.000		Making epsilon a static const common to all functions in this file.</font></i>
+<i><font color="#9A1900"> * 385.000		Removing the algo from NewtonRaphson(), we don't need three versions of it...</font></i>
+<i><font color="#9A1900"> */</font></i>
+
+<b><font color="#0000FF">static</font></b> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> epsilon <font color="#990000">=</font> <font color="#993399">0.00000000001</font><font color="#990000">;</font>
+<font color="#009900">int</font> <b><font color="#000000">NewtonRaphson</font></b><font color="#990000">(</font><font color="#009900">int</font> fCall<font color="#990000">,</font> <font color="#009900">double</font> S<font color="#990000">,</font> <font color="#009900">double</font> X<font color="#990000">,</font> <font color="#009900">double</font> T<font color="#990000">,</font> <font color="#009900">double</font> r<font color="#990000">,</font> <font color="#009900">double</font> cm<font color="#990000">,</font> <font color="#009900">double</font> <font color="#990000">*</font>piv<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<b><font color="#000000">assert_valid_price</font></b><font color="#990000">(</font>S<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_strike</font></b><font color="#990000">(</font>X<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_time</font></b><font color="#990000">(</font>T<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_interest_rate</font></b><font color="#990000">(</font>r<font color="#990000">);</font>
+
+	<b><font color="#0000FF">if</font></b><font color="#990000">(</font>fCall<font color="#990000">)</font>
+		<b><font color="#0000FF">return</font></b> <b><font color="#000000">NewtonRaphson_call</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> cm<font color="#990000">,</font> piv<font color="#990000">);</font>
+	<b><font color="#0000FF">else</font></b>
+		<b><font color="#0000FF">return</font></b> <b><font color="#000000">NewtonRaphson_put</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> cm<font color="#990000">,</font> piv<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900"> * </font></i><b>TODO</b><i><font color="#9A1900">(20070506 boa):</font></i>
+<i><font color="#9A1900"> * This function (and its _put buddy) is broken by design. If cm(aka price)</font></i>
+<i><font color="#9A1900"> * is outside sane limits, vi (Vol Implied) goes &lt; 0.0. </font></i>
+<i><font color="#9A1900"> * The functions gbs() and vega() * don't appreciate such input.</font></i>
+<i><font color="#9A1900"> * We must figure out a way to handle this, avoiding an eternal loop.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">int</font> <b><font color="#000000">NewtonRaphson_call</font></b><font color="#990000">(</font><font color="#009900">double</font> S<font color="#990000">,</font> <font color="#009900">double</font> X<font color="#990000">,</font> <font color="#009900">double</font> T<font color="#990000">,</font> <font color="#009900">double</font> r<font color="#990000">,</font> <font color="#009900">double</font> cm<font color="#990000">,</font> <font color="#009900">double</font> <font color="#990000">*</font>piv<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<font color="#009900">double</font> vi<font color="#990000">,</font> ci<font color="#990000">,</font> vegai<font color="#990000">;</font>
+
+	<b><font color="#000000">assert_valid_price</font></b><font color="#990000">(</font>S<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_strike</font></b><font color="#990000">(</font>X<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_time</font></b><font color="#990000">(</font>T<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_interest_rate</font></b><font color="#990000">(</font>r<font color="#990000">);</font>
+
+	<i><font color="#9A1900">/* Compute the Manaster and Koehler seed value (vi) */</font></i>
+	vi <font color="#990000">=</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font><b><font color="#000000">fabs</font></b><font color="#990000">(</font><b><font color="#000000">log</font></b><font color="#990000">(</font>S<font color="#990000">/</font>X<font color="#990000">)</font> <font color="#990000">+</font> r <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">*</font> <font color="#993399">2.0</font><font color="#990000">/</font>T<font color="#990000">);</font>
+	ci <font color="#990000">=</font> <b><font color="#000000">gbs_call</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> r<font color="#990000">,</font> vi<font color="#990000">);</font>
+	vegai <font color="#990000">=</font> <b><font color="#000000">vega</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> r<font color="#990000">,</font> vi<font color="#990000">);</font>
+
+	<b><font color="#0000FF">while</font></b><font color="#990000">(</font><b><font color="#000000">fabs</font></b><font color="#990000">(</font>cm <font color="#990000">-</font> ci<font color="#990000">)</font> <font color="#990000">&gt;</font> epsilon<font color="#990000">)</font> <font color="#FF0000">{</font>
+		vi <font color="#990000">-=</font> <font color="#990000">(</font>ci <font color="#990000">-</font> cm<font color="#990000">)/</font>vegai<font color="#990000">;</font>
+		<b><font color="#0000FF">if</font></b><font color="#990000">(</font>vi <font color="#990000">&lt;</font> VOLATILITY_MIN <font color="#990000">||</font> vi <font color="#990000">&gt;</font> VOLATILITY_MAX<font color="#990000">)</font>
+			<b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
+
+		ci <font color="#990000">=</font> <b><font color="#000000">gbs_call</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> r<font color="#990000">,</font> vi<font color="#990000">);</font>
+		vegai <font color="#990000">=</font> <b><font color="#000000">vega</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> r<font color="#990000">,</font> vi<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+
+	<font color="#990000">*</font>piv <font color="#990000">=</font> vi<font color="#990000">;</font>
+	<b><font color="#0000FF">return</font></b> <font color="#993399">1</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">int</font> <b><font color="#000000">NewtonRaphson_put</font></b><font color="#990000">(</font><font color="#009900">double</font> S<font color="#990000">,</font> <font color="#009900">double</font> X<font color="#990000">,</font> <font color="#009900">double</font> T<font color="#990000">,</font> <font color="#009900">double</font> r<font color="#990000">,</font> <font color="#009900">double</font> cm<font color="#990000">,</font> <font color="#009900">double</font> <font color="#990000">*</font>piv<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<font color="#009900">double</font> vi<font color="#990000">,</font> ci<font color="#990000">,</font> vegai<font color="#990000">;</font>
+
+	<b><font color="#000000">assert_valid_price</font></b><font color="#990000">(</font>S<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_strike</font></b><font color="#990000">(</font>X<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_time</font></b><font color="#990000">(</font>T<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_interest_rate</font></b><font color="#990000">(</font>r<font color="#990000">);</font>
+
+	<i><font color="#9A1900">/* Compute the Manaster and Koehler seed value (vi) */</font></i>
+	vi <font color="#990000">=</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font><b><font color="#000000">fabs</font></b><font color="#990000">(</font><b><font color="#000000">log</font></b><font color="#990000">(</font>S<font color="#990000">/</font>X<font color="#990000">)</font> <font color="#990000">+</font> r <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">*</font> <font color="#993399">2.0</font><font color="#990000">/</font>T<font color="#990000">);</font>
+	ci <font color="#990000">=</font> <b><font color="#000000">gbs_put</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> r<font color="#990000">,</font> vi<font color="#990000">);</font>
+	vegai <font color="#990000">=</font> <b><font color="#000000">vega</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> r<font color="#990000">,</font> vi<font color="#990000">);</font>
+
+	<b><font color="#0000FF">while</font></b><font color="#990000">(</font><b><font color="#000000">fabs</font></b><font color="#990000">(</font>cm <font color="#990000">-</font> ci<font color="#990000">)</font> <font color="#990000">&gt;</font> epsilon<font color="#990000">)</font> <font color="#FF0000">{</font>
+		vi <font color="#990000">-=</font> <font color="#990000">(</font>ci <font color="#990000">-</font> cm<font color="#990000">)/</font>vegai<font color="#990000">;</font>
+		<b><font color="#0000FF">if</font></b><font color="#990000">(</font>vi <font color="#990000">&lt;</font> VOLATILITY_MIN <font color="#990000">||</font> vi <font color="#990000">&gt;</font> VOLATILITY_MAX<font color="#990000">)</font>
+			<b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
+
+		ci <font color="#990000">=</font> <b><font color="#000000">gbs_put</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> r<font color="#990000">,</font> vi<font color="#990000">);</font>
+		vegai <font color="#990000">=</font> <b><font color="#000000">vega</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> r<font color="#990000">,</font> vi<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+
+	<font color="#990000">*</font>piv <font color="#990000">=</font> vi<font color="#990000">;</font>
+	<b><font color="#0000FF">return</font></b> <font color="#993399">1</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<b><font color="#000080">#ifdef</font></b> NEWTONRAPHSON_CHECK
+<i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900"> * We use NewtonRaphson() to compute the iv of an european option.</font></i>
+<i><font color="#9A1900"> * How do we test it? We use one of the other functions to compute</font></i>
+<i><font color="#9A1900"> * the value of an option, given a v. Then we feed the price into</font></i>
+<i><font color="#9A1900"> * NewtonRaphson() and see if the returned iv is OK.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">check_NewtonRaphson</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<font color="#009900">int</font> fCall <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">,</font> ok<font color="#990000">;</font>
+	<font color="#009900">double</font> iv<font color="#990000">,</font> S <font color="#990000">=</font> <font color="#993399">100.0</font><font color="#990000">,</font> X <font color="#990000">=</font> <font color="#993399">100.0</font><font color="#990000">,</font> T <font color="#990000">=</font> <font color="#993399">0.5</font><font color="#990000">,</font> r <font color="#990000">=</font> <font color="#993399">0.08</font><font color="#990000">,</font> v <font color="#990000">=</font> <font color="#993399">0.20</font><font color="#990000">;</font>
+
+	<font color="#009900">double</font> cm <font color="#990000">=</font> <b><font color="#000000">blackscholes</font></b><font color="#990000">(</font>fCall<font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> v<font color="#990000">);</font>
+	ok <font color="#990000">=</font> <b><font color="#000000">NewtonRaphson</font></b><font color="#990000">(</font>fCall<font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> cm<font color="#990000">,</font> <font color="#990000">&amp;</font>iv<font color="#990000">);</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font>ok<font color="#990000">);</font>
+	<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>v<font color="#990000">,</font> iv<font color="#990000">);</font>
+
+	fCall <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+	cm <font color="#990000">=</font> <b><font color="#000000">blackscholes</font></b><font color="#990000">(</font>fCall<font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> v<font color="#990000">);</font>
+	ok <font color="#990000">=</font> <b><font color="#000000">NewtonRaphson</font></b><font color="#990000">(</font>fCall<font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> cm<font color="#990000">,</font> <font color="#990000">&amp;</font>iv<font color="#990000">);</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font>ok<font color="#990000">);</font>
+	<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>v<font color="#990000">,</font> iv<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/* WTF??? Two functions? */</font></i>
+
+<i><font color="#9A1900">/* NewtonRhapson for imp. vol of european options */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">check_NewtonRaphson_put</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<font color="#009900">int</font> fCall <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">,</font> ok<font color="#990000">;</font>
+
+	<font color="#009900">double</font> S <font color="#990000">=</font> <font color="#993399">75.0</font><font color="#990000">,</font> X <font color="#990000">=</font> <font color="#993399">70.0</font><font color="#990000">,</font> T <font color="#990000">=</font> <font color="#993399">0.5</font><font color="#990000">,</font> r <font color="#990000">=</font> <font color="#993399">0.10</font><font color="#990000">,</font>  v <font color="#990000">=</font> <font color="#993399">0.35</font><font color="#990000">;</font>
+
+	<font color="#009900">double</font> computed<font color="#990000">,</font> price <font color="#990000">=</font> <b><font color="#000000">gbs</font></b><font color="#990000">(</font>fCall<font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> r<font color="#990000">,</font> v<font color="#990000">);</font>
+	ok <font color="#990000">=</font> <b><font color="#000000">NewtonRaphson</font></b><font color="#990000">(</font>fCall<font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> price<font color="#990000">,</font> <font color="#990000">&amp;</font>computed<font color="#990000">);</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font>ok<font color="#990000">);</font>
+	<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>computed<font color="#990000">,</font> v<font color="#990000">);</font>
+
+	ok <font color="#990000">=</font> <b><font color="#000000">NewtonRaphson_put</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> price<font color="#990000">,</font> <font color="#990000">&amp;</font>computed<font color="#990000">);</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font>ok<font color="#990000">);</font>
+	<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>computed<font color="#990000">,</font> v<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+
+<font color="#009900">int</font> <b><font color="#000000">main</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<b><font color="#000000">check_NewtonRaphson</font></b><font color="#990000">();</font>
+	<b><font color="#000000">check_NewtonRaphson_put</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+<b><font color="#000080">#endif</font></b>
+
+</tt></pre>

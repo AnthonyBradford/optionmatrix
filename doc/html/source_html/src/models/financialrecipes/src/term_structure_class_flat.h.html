@@ -1,0 +1,21 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#ifndef</font></b> _TERM_STRUCTURE_CLASS_FLAT_ 
+<b><font color="#000080">#define</font></b> _TERM_STRUCTURE_CLASS_FLAT_ 
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"term_structure_class.h"</font>
+
+<b><font color="#0000FF">class</font></b> <font color="#008080">term_structure_class_flat</font> <font color="#990000">:</font> <b><font color="#0000FF">public</font></b> term_structure_class <font color="#FF0000">{</font>
+<b><font color="#0000FF">private</font></b><font color="#990000">:</font> 
+    <font color="#009900">double</font> R_<font color="#990000">;</font>                              <i><font color="#9A1900">// interest rate</font></i>
+<b><font color="#0000FF">public</font></b><font color="#990000">:</font>
+    <b><font color="#000000">term_structure_class_flat</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">);</font>
+    <b><font color="#0000FF">virtual</font></b> <font color="#990000">~</font><b><font color="#000000">term_structure_class_flat</font></b><font color="#990000">();</font>
+    <b><font color="#0000FF">virtual</font></b> <font color="#009900">double</font> <b><font color="#000000">r</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> t<font color="#990000">)</font> <b><font color="#0000FF">const</font></b><font color="#990000">;</font>
+    <font color="#009900">void</font> <b><font color="#000000">set_int_rate</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">);</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#000080">#endif</font></b>
+</tt></pre>

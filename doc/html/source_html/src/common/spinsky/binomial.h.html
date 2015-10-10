@@ -1,0 +1,78 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/**********************CONSTANT-DEFINITIONS*******************/</font></i>
+<b><font color="#000080">#define</font></b> ONE <font color="#993399">1</font>
+<b><font color="#000080">#define</font></b> UNITY <font color="#993399">1.0</font>
+<b><font color="#000080">#define</font></b> TWO <font color="#993399">2.0</font>
+<b><font color="#000080">#define</font></b> ITWO <font color="#993399">2</font>
+<b><font color="#000080">#define</font></b> HALF <font color="#993399">0.5</font>
+<b><font color="#000080">#define</font></b> ERROR <font color="#993399">1</font>
+<i><font color="#9A1900">/*************************************************************/</font></i>
+
+
+
+<i><font color="#9A1900">/***********************ARGUMENT MACROS***********************/</font></i>
+<b><font color="#000080">#define</font></b> <b><font color="#000000">BMAX</font></b><font color="#990000">(</font>x<font color="#990000">,</font>y<font color="#990000">)</font> <font color="#990000">((</font>x<font color="#990000">)&gt;(</font>y<font color="#990000">))</font> <font color="#990000">?</font> <font color="#990000">(</font>x<font color="#990000">)</font> <font color="#990000">:</font> <font color="#990000">(</font>y<font color="#990000">)</font>
+<b><font color="#000080">#define</font></b> <b><font color="#000000">SQR</font></b><font color="#990000">(</font>x<font color="#990000">)</font> <font color="#990000">((</font>x<font color="#990000">)*(</font>x<font color="#990000">))</font>
+<i><font color="#9A1900">/*************************************************************/</font></i>
+
+
+
+
+<i><font color="#9A1900">/**********************ENUMERATION CONSTANTS******************/</font></i>
+<b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">enum</font></b> <font color="#FF0000">{</font>
+	CRR<font color="#990000">,</font>            <i><font color="#9A1900">/*use Cox-Ross-Rubinstein formula for probabilities*/</font></i>
+	EQUIPROB<font color="#990000">,</font>       <i><font color="#9A1900">/*use equiprobability formula*/</font></i>
+<font color="#FF0000">}</font> formulas<font color="#990000">;</font>
+
+<b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">enum</font></b> <font color="#FF0000">{</font>
+	EUROCALL<font color="#990000">,</font>       <i><font color="#9A1900">/*European call*/</font></i>
+	EUROPUT<font color="#990000">,</font>        <i><font color="#9A1900">/*European put*/</font></i>
+	AMERCALL<font color="#990000">,</font>       <i><font color="#9A1900">/*American call*/</font></i>
+	AMERPUT<font color="#990000">,</font>        <i><font color="#9A1900">/*American put*/</font></i>
+<font color="#FF0000">}</font> prop<font color="#990000">;</font>
+<i><font color="#9A1900">/**************************************************************/</font></i>
+
+
+
+
+<i><font color="#9A1900">/**************************DATA TYPES**************************/</font></i>
+<i><font color="#9A1900">/*Set precision for floating-point calcuations*/</font></i>
+<b><font color="#0000FF">typedef</font></b> <font color="#009900">float</font> Float<font color="#990000">;</font>
+
+<i><font color="#9A1900">/*Node: data to be stored at each node in the binary tree*/</font></i>
+<b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">struct</font></b><font color="#FF0000">{</font>
+	<font color="#008080">Float</font> spot<font color="#990000">;</font>     <i><font color="#9A1900">/*hypothetical spot price*/</font></i>
+	<font color="#008080">Float</font> prob<font color="#990000">;</font>     <i><font color="#9A1900">/*computed probability*/</font></i>
+	<font color="#008080">Float</font> option<font color="#990000">;</font>   <i><font color="#9A1900">/*computed option value*/</font></i>
+<font color="#FF0000">}</font> Node<font color="#990000">;</font>
+
+<i><font color="#9A1900">/*TreeConst: parameters needed for building binomial tree*/</font></i>
+<b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">struct</font></b><font color="#FF0000">{</font>
+	<font color="#008080">Float</font> up<font color="#990000">;</font>       <i><font color="#9A1900">/*multiplicative upward movement*/</font></i>
+	<font color="#008080">Float</font> down<font color="#990000">;</font>     <i><font color="#9A1900">/*multiplicatiive downward movement*/</font></i>
+	<font color="#008080">Float</font> prob<font color="#990000">;</font>     <i><font color="#9A1900">/*probability of upward movement*/</font></i>
+<font color="#FF0000">}</font> TreeConst<font color="#990000">;</font>
+
+<i><font color="#9A1900">/*Ivar: structure containing five floating-point vars for option</font></i>
+<i><font color="#9A1900"> pricing*/</font></i>
+<b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">struct</font></b><font color="#FF0000">{</font>
+	<font color="#008080">Float</font> S<font color="#990000">;</font>        <i><font color="#9A1900">/*spot price*/</font></i>
+	<font color="#008080">Float</font> X<font color="#990000">;</font>        <i><font color="#9A1900">/*strike price*/</font></i>
+	<font color="#008080">Float</font> T<font color="#990000">;</font>        <i><font color="#9A1900">/*time to expiration*/</font></i>
+	<font color="#008080">Float</font> sigma<font color="#990000">;</font>    <i><font color="#9A1900">/*volatility*/</font></i>
+	<font color="#008080">Float</font> mu<font color="#990000">;</font>       <i><font color="#9A1900">/*risk-free interest rate*/</font></i>
+<font color="#FF0000">}</font> Ivar<font color="#990000">;</font>
+<i><font color="#9A1900">/***************************************************************/</font></i>
+
+<b><font color="#0000FF">extern</font></b> <font color="#009900">float</font> <b><font color="#000000">option_price</font></b><font color="#990000">(</font>
+	<font color="#008080">Ivar</font> vars<font color="#990000">,</font>      <i><font color="#9A1900">/*five floating vars defined in Ivar type*/</font></i>
+	<font color="#009900">long</font> steps<font color="#990000">,</font>     <i><font color="#9A1900">/*number of steps in the binomial tree*/</font></i>
+	<font color="#009900">int</font> type<font color="#990000">,</font>       <i><font color="#9A1900">/*call / put  -- American/European*/</font></i>
+	<font color="#009900">int</font> method      <i><font color="#9A1900">/*Cox-Ross-Rubinstein or Equiprobability*/</font></i> <font color="#990000">);</font>
+
+
+
+</tt></pre>

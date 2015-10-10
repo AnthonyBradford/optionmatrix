@@ -1,0 +1,55 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;iostream&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"fin_recipes.h"</font>
+
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">example_interest_rate_trees_gbm_build_tree</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+     <font color="#008080">vector&lt; vector&lt;double&gt; &gt;</font> tree <font color="#990000">=</font> <b><font color="#000000">interest_rate_trees_gbm_build</font></b><font color="#990000">(</font><font color="#993399">0.1</font><font color="#990000">,</font><font color="#993399">1.02</font><font color="#990000">,</font><font color="#993399">0.99</font><font color="#990000">,</font><font color="#993399">3</font><font color="#990000">);</font>
+     cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" Interest rate tree: "</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+     cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" Time 0: "</font> <font color="#990000">&lt;&lt;</font> tree<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">][</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+     cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" Time 1: "</font> <font color="#990000">&lt;&lt;</font> tree<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">][</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"  "</font> <font color="#990000">&lt;&lt;</font> tree<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">][</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+     cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" Time 2: "</font> <font color="#990000">&lt;&lt;</font> tree<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">][</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"  "</font> <font color="#990000">&lt;&lt;</font> tree<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">][</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"  "</font> <font color="#990000">&lt;&lt;</font> tree<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">][</font><font color="#993399">2</font><font color="#990000">]</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">example_interest_rate_trees_gbm_price_bond</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> r0<font color="#990000">=</font><font color="#993399">0.1</font><font color="#990000">;</font>
+    <font color="#009900">double</font> u<font color="#990000">=</font><font color="#993399">1.02</font><font color="#990000">;</font>  <font color="#009900">double</font> d<font color="#990000">=</font><font color="#993399">0.99</font><font color="#990000">;</font>
+    <font color="#009900">int</font> n<font color="#990000">=</font><font color="#993399">3</font><font color="#990000">;</font>
+    <font color="#009900">double</font> q<font color="#990000">=</font><font color="#993399">0.5</font><font color="#990000">;</font>
+    <font color="#008080">vector&lt; vector&lt;double&gt; &gt;</font> tree <font color="#990000">=</font> <b><font color="#000000">interest_rate_trees_gbm_build</font></b><font color="#990000">(</font>r0<font color="#990000">,</font>u<font color="#990000">,</font>d<font color="#990000">,</font>n<font color="#990000">);</font>
+    <font color="#008080">vector&lt;double&gt;</font> cashflows<font color="#990000">;</font>
+    cashflows<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">);</font> cashflows<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">10</font><font color="#990000">);</font> cashflows<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">10</font><font color="#990000">);</font> cashflows<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">110</font><font color="#990000">);</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Bond price B = "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">interest_rate_trees_gbm_value_of_cashflows</font></b><font color="#990000">(</font>cashflows<font color="#990000">,</font>tree<font color="#990000">,</font>q<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">example_interest_rate_trees_gbm_price_callable_bond</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> r0<font color="#990000">=</font><font color="#993399">0.06</font><font color="#990000">;</font>
+    <font color="#009900">double</font> u<font color="#990000">=</font><font color="#993399">1.2</font><font color="#990000">;</font>  <font color="#009900">double</font> d<font color="#990000">=</font><font color="#993399">0.9</font><font color="#990000">;</font>
+    <font color="#009900">int</font> n<font color="#990000">=</font><font color="#993399">10</font><font color="#990000">;</font>
+    <font color="#009900">double</font> q<font color="#990000">=</font><font color="#993399">0.5</font><font color="#990000">;</font>
+    <font color="#008080">vector&lt; vector&lt;double&gt; &gt;</font> tree <font color="#990000">=</font> <b><font color="#000000">interest_rate_trees_gbm_build</font></b><font color="#990000">(</font>r0<font color="#990000">,</font>u<font color="#990000">,</font>d<font color="#990000">,</font>n<font color="#990000">);</font>
+    <font color="#008080">vector&lt;double&gt;</font> cashflows<font color="#990000">;</font>
+    cashflows<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">);</font>
+    <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#009900">int</font> t<font color="#990000">=</font><font color="#993399">1</font><font color="#990000">;</font>t<font color="#990000">&lt;=</font><font color="#993399">9</font><font color="#990000">;++</font>t<font color="#990000">)</font><font color="#FF0000">{</font> cashflows<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">6</font><font color="#990000">);</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+    cashflows<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">106</font><font color="#990000">);</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Straight bond price  = "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">interest_rate_trees_gbm_value_of_cashflows</font></b><font color="#990000">(</font>cashflows<font color="#990000">,</font>tree<font color="#990000">,</font>q<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    <font color="#009900">int</font> first_call_time <font color="#990000">=</font> <font color="#993399">6</font><font color="#990000">;</font>
+    <font color="#009900">double</font> call_price <font color="#990000">=</font> <font color="#993399">106</font><font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Callable bond price = "</font>
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">interest_rate_trees_gbm_value_of_callable_bond</font></b><font color="#990000">(</font>cashflows<font color="#990000">,</font>tree<font color="#990000">,</font>q<font color="#990000">,</font> first_call_time<font color="#990000">,</font> call_price<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">examples_interest_rate_trees_gbm</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"-----------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Interest rate trees "</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"-----------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    <b><font color="#000000">example_interest_rate_trees_gbm_build_tree</font></b><font color="#990000">();</font>
+    <b><font color="#000000">example_interest_rate_trees_gbm_price_bond</font></b><font color="#990000">();</font>
+    <b><font color="#000000">example_interest_rate_trees_gbm_price_callable_bond</font></b><font color="#990000">();</font>
+
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

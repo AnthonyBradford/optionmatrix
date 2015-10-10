@@ -1,0 +1,29 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;iostream&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"normdist.h"</font>
+
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">test_cumulative_normal</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" N(0) = "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">N</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" N(0,0,0) = "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">N</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">test_random_normal</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" 5 random uniform numbers between 0 and 1: "</font> <font color="#990000">&lt;&lt;</font> endl <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"    "</font><font color="#990000">;</font> 
+    <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#009900">int</font> i<font color="#990000">=</font><font color="#993399">0</font><font color="#990000">;</font>i<font color="#990000">&lt;</font><font color="#993399">5</font><font color="#990000">;++</font>i<font color="#990000">)</font><font color="#FF0000">{</font> cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">random_uniform_0_1</font></b><font color="#990000">();</font> <font color="#FF0000">}</font><font color="#990000">;</font> cout <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" 5 random normal(0,1) numbers: "</font> <font color="#990000">&lt;&lt;</font> endl <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"    "</font><font color="#990000">;</font>
+    <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#009900">int</font> i<font color="#990000">=</font><font color="#993399">0</font><font color="#990000">;</font>i<font color="#990000">&lt;</font><font color="#993399">5</font><font color="#990000">;++</font>i<font color="#990000">)</font><font color="#FF0000">{</font> cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">random_normal</font></b><font color="#990000">()</font> <font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font> cout <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">normal_distribution_examples</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"----------------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" Normal distribution calculations "</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"----------------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    <b><font color="#000000">test_cumulative_normal</font></b><font color="#990000">();</font>
+    <b><font color="#000000">test_random_normal</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

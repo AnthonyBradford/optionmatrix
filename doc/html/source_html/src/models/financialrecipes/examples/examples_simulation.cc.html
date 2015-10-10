@@ -1,0 +1,119 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;iostream&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"fin_recipes.h"</font>
+
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">test_simulation_pricing</font></b><font color="#990000">()</font> <font color="#FF0000">{</font> 
+    <font color="#009900">double</font> S<font color="#990000">=</font><font color="#993399">100.0</font><font color="#990000">;</font>  <font color="#009900">double</font> K<font color="#990000">=</font><font color="#993399">100.0</font><font color="#990000">;</font> <font color="#009900">double</font> r<font color="#990000">=</font><font color="#993399">0.1</font><font color="#990000">;</font> <font color="#009900">double</font> sigma<font color="#990000">=</font><font color="#993399">0.25</font><font color="#990000">;</font>
+    <font color="#009900">double</font> time<font color="#990000">=</font><font color="#993399">1.0</font><font color="#990000">;</font> <font color="#009900">int</font> no_sims<font color="#990000">=</font><font color="#993399">5000</font><font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" call:  black scholes price = "</font>  <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_call_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"        simulated price     = "</font>  
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_call_european_simulated</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>no_sims<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" put:  black scholes price = "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_put_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"       simulated price     = "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_put_european_simulated</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font> no_sims<font color="#990000">)</font>  <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">test_simulation_pricing_delta</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> S<font color="#990000">=</font><font color="#993399">100.0</font><font color="#990000">;</font>  <font color="#009900">double</font> K<font color="#990000">=</font><font color="#993399">100.0</font><font color="#990000">;</font> <font color="#009900">double</font> r<font color="#990000">=</font><font color="#993399">0.1</font><font color="#990000">;</font> <font color="#009900">double</font> sigma<font color="#990000">=</font><font color="#993399">0.25</font><font color="#990000">;</font>
+    <font color="#009900">double</font> time<font color="#990000">=</font><font color="#993399">1.0</font><font color="#990000">;</font> <font color="#009900">int</font> no_sims<font color="#990000">=</font><font color="#993399">5000</font><font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" call: bs delta  = "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_delta_call_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">)</font> 
+	 <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"       sim delta = "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_delta_call_european_simulated</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>no_sims<font color="#990000">)</font> 
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" put: bs delta  = "</font> <font color="#990000">&lt;&lt;</font>  <b><font color="#000000">option_price_delta_put_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">)</font> 
+	 <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"      sim delta = "</font> <font color="#990000">&lt;&lt;</font>  <b><font color="#000000">option_price_delta_put_european_simulated</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>no_sims<font color="#990000">)</font> 
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+ 
+
+<font color="#009900">void</font> <b><font color="#000000">test_simulation_bs_case_using_generic_routine</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> S  <font color="#990000">=</font> <font color="#993399">100</font><font color="#990000">;</font> <font color="#009900">double</font> X <font color="#990000">=</font> <font color="#993399">100</font><font color="#990000">;</font> <font color="#009900">double</font> r <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font>
+    <font color="#009900">double</font> sigma <font color="#990000">=</font> <font color="#993399">0.25</font><font color="#990000">;</font> <font color="#009900">double</font> time  <font color="#990000">=</font> <font color="#993399">1.0</font><font color="#990000">;</font>  <font color="#009900">int</font> no_sims     <font color="#990000">=</font> <font color="#993399">50000</font><font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Black Scholes call option price = "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_call_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>X<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Simulated call option price     = "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic</font></b><font color="#990000">(</font>S<font color="#990000">,</font>X<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>payoff_call<font color="#990000">,</font>no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Black Scholes put option price  = "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_put_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>X<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Simulated put option price      = "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic</font></b><font color="#990000">(</font>S<font color="#990000">,</font>X<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>payoff_put<font color="#990000">,</font>no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+<font color="#009900">void</font> <b><font color="#000000">test_simulation_bs_case_using_generic_routine_improving_efficiency</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> S <font color="#990000">=</font> <font color="#993399">100</font><font color="#990000">;</font> <font color="#009900">double</font> K <font color="#990000">=</font> <font color="#993399">100</font><font color="#990000">;</font> <font color="#009900">double</font> r <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font>
+    <font color="#009900">double</font> sigma    <font color="#990000">=</font> <font color="#993399">0.25</font><font color="#990000">;</font> <font color="#009900">double</font> time <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font> <font color="#009900">int</font> no_sims     <font color="#990000">=</font> <font color="#993399">50000</font><font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Black Scholes call option price = "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_call_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Simulated call option price     = "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font> payoff_call<font color="#990000">,</font>no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Simulated call option price, CV = "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic_with_control_variate</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>
+										   payoff_call<font color="#990000">,</font>no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Simulated call option price, AV = "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic_with_antithetic_variate</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>
+										      payoff_call<font color="#990000">,</font>no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Black Scholes put option price  = "</font> <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_put_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Simulated put option price      = "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>payoff_put<font color="#990000">,</font>no_sims<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Simulated put option price,  CV = "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic_with_control_variate</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>
+										   payoff_put<font color="#990000">,</font>no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Simulated put option price,  AV = "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic_with_antithetic_variate</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>
+										      payoff_put<font color="#990000">,</font>no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">test_simulation_binary_options</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> S<font color="#990000">=</font><font color="#993399">100.0</font><font color="#990000">;</font> <font color="#009900">double</font> K<font color="#990000">=</font><font color="#993399">100.0</font><font color="#990000">;</font> <font color="#009900">double</font> r<font color="#990000">=</font><font color="#993399">0.1</font><font color="#990000">;</font> <font color="#009900">double</font> sigma<font color="#990000">=</font><font color="#993399">0.25</font><font color="#990000">;</font>
+    <font color="#009900">double</font> time<font color="#990000">=</font><font color="#993399">1.0</font><font color="#990000">;</font>  <font color="#009900">int</font> no_sims<font color="#990000">=</font><font color="#993399">5000</font><font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" cash or nothing, Q=1: "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>
+							      payoff_cash_or_nothing_call<font color="#990000">,</font>
+							      no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" control_variate "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic_with_control_variate</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>
+										   payoff_cash_or_nothing_call<font color="#990000">,</font>
+										   no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" antithetic_variate "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic_with_antithetic_variate</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>
+										      payoff_cash_or_nothing_call<font color="#990000">,</font>
+										      no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" asset or nothing: "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>
+							      payoff_asset_or_nothing_call<font color="#990000">,</font>
+							      no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" control_variate "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic_with_control_variate</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>
+										   payoff_asset_or_nothing_call<font color="#990000">,</font>
+										   no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" antithetic_variate "</font> 
+	 <font color="#990000">&lt;&lt;</font> <b><font color="#000000">derivative_price_simulate_european_option_generic_with_antithetic_variate</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>
+										      payoff_asset_or_nothing_call<font color="#990000">,</font>
+										      no_sims<font color="#990000">)</font>
+	 <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">simulation_examples</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"--------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" Simulation examples "</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"--------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    <b><font color="#000000">test_simulation_pricing</font></b><font color="#990000">();</font>
+    <b><font color="#000000">test_simulation_pricing_delta</font></b><font color="#990000">();</font> 
+    <b><font color="#000000">test_simulation_bs_case_using_generic_routine</font></b><font color="#990000">();</font>
+    <b><font color="#000000">test_simulation_bs_case_using_generic_routine_improving_efficiency</font></b><font color="#990000">();</font>
+    <b><font color="#000000">test_simulation_binary_options</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

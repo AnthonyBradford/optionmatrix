@@ -1,0 +1,8 @@
+The following were prototyped in header files but not
+defined in the library:
+
+option_price_american_call_approximated_bjerksund_stensland()
+option_price_implied_volatility_put_black_scholes_newton()
+option_price_implied_volatility_put_black_scholes_bisections()
+term_structure_discount_factor_estimated_cir()
+term_structure_yield_bliss()

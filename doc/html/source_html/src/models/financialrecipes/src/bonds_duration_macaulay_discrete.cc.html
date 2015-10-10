@@ -1,0 +1,13 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">"fin_recipes.h"</font>
+ 
+<font color="#009900">double</font> <b><font color="#000000">bonds_duration_macaulay_discrete</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> vector<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;&amp;</font> times<font color="#990000">,</font>
+					<b><font color="#0000FF">const</font></b> vector<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;&amp;</font> cashflows<font color="#990000">,</font>
+					<b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> bond_price<font color="#990000">)</font> <font color="#FF0000">{</font>
+  <font color="#009900">double</font> y <font color="#990000">=</font> <b><font color="#000000">bonds_yield_to_maturity_discrete</font></b><font color="#990000">(</font>times<font color="#990000">,</font> cashflows<font color="#990000">,</font> bond_price<font color="#990000">);</font>
+  <b><font color="#0000FF">return</font></b> <b><font color="#000000">bonds_duration_discrete</font></b><font color="#990000">(</font>times<font color="#990000">,</font> cashflows<font color="#990000">,</font> y<font color="#990000">);</font> <i><font color="#9A1900">// use YTM in duration calculation</font></i>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

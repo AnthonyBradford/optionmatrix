@@ -1,0 +1,34 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">"config.h"</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;cmath&gt;</font>
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_NEWMAT_NEWMAT_H
+<b><font color="#000080"> #include</font></b> <font color="#FF0000">&lt;newmat/newmat.h&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_NEWMAT_NEWMAT_H
+
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> NEWMAT<font color="#990000">;</font>
+
+<font color="#009900">double</font> <b><font color="#000000">mv_calculate_mean</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> Matrix<font color="#990000">&amp;</font> e<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> Matrix<font color="#990000">&amp;</font> w<font color="#990000">)</font><font color="#FF0000">{</font> 
+    <font color="#008080">Matrix</font> tmp <font color="#990000">=</font> e<font color="#990000">.</font><b><font color="#000000">t</font></b><font color="#990000">()*</font>w<font color="#990000">;</font>
+    <b><font color="#0000FF">return</font></b> <b><font color="#000000">tmp</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">,</font><font color="#993399">1</font><font color="#990000">);</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">double</font> <b><font color="#000000">mv_calculate_variance</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> Matrix<font color="#990000">&amp;</font> V<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> Matrix<font color="#990000">&amp;</font> w<font color="#990000">)</font><font color="#FF0000">{</font> 
+    <font color="#008080">Matrix</font> tmp <font color="#990000">=</font> w<font color="#990000">.</font><b><font color="#000000">t</font></b><font color="#990000">()*</font>V<font color="#990000">*</font>w<font color="#990000">;</font>
+    <b><font color="#0000FF">return</font></b> <b><font color="#000000">tmp</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">,</font><font color="#993399">1</font><font color="#990000">);</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">double</font> <b><font color="#000000">mv_calculate_st_dev</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> Matrix<font color="#990000">&amp;</font> V<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> Matrix<font color="#990000">&amp;</font> w<font color="#990000">)</font><font color="#FF0000">{</font> 
+    <font color="#009900">double</font> var <font color="#990000">=</font> <b><font color="#000000">mv_calculate_variance</font></b><font color="#990000">(</font>V<font color="#990000">,</font>w<font color="#990000">);</font>
+    <b><font color="#0000FF">return</font></b> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>var<font color="#990000">);</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#000080">#endif</font></b>
+</tt></pre>

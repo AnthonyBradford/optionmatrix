@@ -1,0 +1,34 @@
+OptionMatrix 1.4.2 Tested on:
+
+Ubuntu 15.04 64 bit
+Ubuntu 14.10 64 bit
+Fedora 21 64 bit
+openSUSE 13.2 64 bit
+Debian 6.0 32 bit
+Cygwin Version Unknown 32 bit
+MingGW Version Unknown 32 bit
+
+OptionMatrix 1.4.0 Tested on:
+
+Fedora 17 (Beefy Miracle) 32 bit
+Fedora 17 (Beefy Miracle) 64 bit
+Fedora 16 (Verne) 32 bit
+Fedora 16 (Verne) 64 bit
+Ubuntu 12.04 LTS 32 bit
+Ubuntu 12.04 LTS 64 bit
+Ubuntu 10.04 LTS 32 bit
+Mint Lisa 32 bit
+Mint Lisa 64 bit
+openSUSE 12.1 "Asparagus" 32 bit
+openSUSE 12.1 "Asparagus" 64 bit
+Debian GNU/Linux 6.0 32 bit
+Debian GNU/Linux 6.0 64 bit
+PCLinuxOS release 2012 32 bit
+Cygwin Version Unknown 32 bit
+MingGW Version Unknown 32 bit
+
+Please report any problems to:
+
+Anthony Bradford
+info@anthonybradford.com
+http://anthonybradford.com/om/

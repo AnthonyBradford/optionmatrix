@@ -1,0 +1,21 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;cmath&gt;</font>             <i><font color="#9A1900">// standard mathematical library</font></i>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;algorithm&gt;</font>             <i><font color="#9A1900">// defining the max() operator</font></i>
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+
+<font color="#009900">double</font> <b><font color="#000000">option_price_call_european_binomial_single_period</font></b><font color="#990000">(</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> S<font color="#990000">,</font>     <i><font color="#9A1900">// spot price</font></i>
+							  <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> X<font color="#990000">,</font>     <i><font color="#9A1900">// exercice price</font></i>
+							  <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">,</font>     <i><font color="#9A1900">// interest rate (per period)</font></i>
+							  <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> u<font color="#990000">,</font>     <i><font color="#9A1900">// up movement</font></i>
+							  <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> d<font color="#990000">)</font><font color="#FF0000">{</font>   <i><font color="#9A1900">// down movement</font></i>
+   <font color="#009900">double</font> p_up <font color="#990000">=</font> <font color="#990000">(</font><b><font color="#000000">exp</font></b><font color="#990000">(</font>r<font color="#990000">)-</font>d<font color="#990000">)/(</font>u<font color="#990000">-</font>d<font color="#990000">);</font>
+   <font color="#009900">double</font> p_down <font color="#990000">=</font> <font color="#993399">1.0</font><font color="#990000">-</font>p_up<font color="#990000">;</font>
+   <font color="#009900">double</font> c_u <font color="#990000">=</font> <b><font color="#000000">max</font></b><font color="#990000">(</font><font color="#993399">0.0</font><font color="#990000">,(</font>u<font color="#990000">*</font>S<font color="#990000">-</font>X<font color="#990000">));</font>
+   <font color="#009900">double</font> c_d <font color="#990000">=</font> <b><font color="#000000">max</font></b><font color="#990000">(</font><font color="#993399">0.0</font><font color="#990000">,(</font>d<font color="#990000">*</font>S<font color="#990000">-</font>X<font color="#990000">));</font>
+   <font color="#009900">double</font> call_price <font color="#990000">=</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>r<font color="#990000">)*(</font>p_up<font color="#990000">*</font>c_u<font color="#990000">+</font>p_down<font color="#990000">*</font>c_d<font color="#990000">);</font>
+   <b><font color="#0000FF">return</font></b> call_price<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

@@ -1,0 +1,17 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#ifndef</font></b> _TERM_STRUCTURE_CLASS_H_
+<b><font color="#000080">#define</font></b> _TERM_STRUCTURE_CLASS_H_
+
+<b><font color="#0000FF">class</font></b> <font color="#008080">term_structure_class</font> <font color="#FF0000">{</font>
+<b><font color="#0000FF">public</font></b><font color="#990000">:</font>
+    <b><font color="#0000FF">virtual</font></b> <font color="#009900">double</font> <b><font color="#000000">r</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> t<font color="#990000">)</font> <b><font color="#0000FF">const</font></b><font color="#990000">;</font> <i><font color="#9A1900">// yield on zero coupon bond</font></i>
+    <b><font color="#0000FF">virtual</font></b> <font color="#009900">double</font> <b><font color="#000000">d</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> t<font color="#990000">)</font> <b><font color="#0000FF">const</font></b><font color="#990000">;</font> <i><font color="#9A1900">// discount factor/price of zero coupon bond</font></i>
+    <b><font color="#0000FF">virtual</font></b> <font color="#009900">double</font> <b><font color="#000000">f</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> t1<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> t2<font color="#990000">)</font> <b><font color="#0000FF">const</font></b><font color="#990000">;</font> <i><font color="#9A1900">// forward rate</font></i>
+    <b><font color="#0000FF">virtual</font></b> <font color="#990000">~</font><b><font color="#000000">term_structure_class</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#000080">#endif</font></b>
+</tt></pre>

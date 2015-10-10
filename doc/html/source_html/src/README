@@ -1,0 +1,10 @@
+After compilation see 2 application executables
+gtk/optionmatrix
+curses/optionmatrix_console
+
+See testing executables
+common/checks
+models/financialrecipes/run_all_examples
+
+See 66 testing executables in
+models/metaoptions/tests/

@@ -1,0 +1,179 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/* optionmatrix:                                                            */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Options &amp; Futures Matrix Modeler                                         */</font></i>
+<i><font color="#9A1900">/* View and Control Theoretical Option Chains                               */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* File: checks.cpp of optionmatrix                                         */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Copyright (c) Anthony Bradford. 2012.                                    */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">http://anthonybradford.com</font></u><i><font color="#9A1900">                                               */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">info@anthonybradford.com</font></u><i><font color="#9A1900">                                                 */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* optionmatrix may be freely redistributed.                                */</font></i>
+<i><font color="#9A1900">/* See file COPYING included with this distribution for license information */</font></i>
+
+<i><font color="#9A1900">/* </font></i>
+<i><font color="#9A1900">   optionmatrix is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">   it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">   the Free Software Foundation; either version 3 of the License, or</font></i>
+<i><font color="#9A1900">   (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">   optionmatrix program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">   but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">   GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">   You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">   along with this program.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"defs.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"extern.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"main.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"license.h"</font>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_GETOPT_H
+<b><font color="#000080"> #include</font></b> <font color="#FF0000">&lt;getopt.h&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<font color="#009900">int</font> <b><font color="#000000">main</font></b><font color="#990000">(</font><font color="#009900">int</font> argc<font color="#990000">,</font> <font color="#009900">char</font> <font color="#990000">**</font>argv<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+    <b><font color="#000000">setlocale</font></b><font color="#990000">(</font>LC_ALL<font color="#990000">,</font><font color="#FF0000">""</font><font color="#990000">);</font>
+    <b><font color="#000000">programInits</font></b><font color="#990000">(&amp;</font>properties<font color="#990000">);</font>
+    <b><font color="#000000">props_defaults_options</font></b><font color="#990000">(&amp;</font>properties<font color="#990000">,</font><font color="#993399">1</font><font color="#990000">);</font>
+    <font color="#009900">bool</font> quietMode <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_GETOPT_H
+
+    quietMode <font color="#990000">=</font> <b><font color="#000000">process_arguments_checks</font></b><font color="#990000">(</font>argc<font color="#990000">,</font> argv<font color="#990000">,</font> <font color="#990000">&amp;</font>properties<font color="#990000">.</font>data<font color="#990000">.</font>debug<font color="#990000">);</font>
+
+<b><font color="#000080">#endif</font></b>
+
+    <b><font color="#000000">program_source</font></b><font color="#990000">();</font>
+    <b><font color="#000000">program_check_pricing_models</font></b><font color="#990000">(</font>quietMode<font color="#990000">);</font>
+
+    <b><font color="#000000">exit</font></b><font color="#990000">(</font>EXIT_SUCCESS<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_GETOPT_H
+
+<font color="#009900">bool</font> <b><font color="#000000">process_arguments_checks</font></b><font color="#990000">(</font><font color="#009900">int</font> argc<font color="#990000">,</font> <font color="#009900">char</font> <font color="#990000">**</font>argv<font color="#990000">,</font> <font color="#009900">bool</font> <font color="#990000">*</font>debug<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+    <font color="#009900">int</font> c<font color="#990000">;</font>
+    <font color="#009900">int</font> exit_program <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+    <font color="#009900">int</font> exit_status <font color="#990000">=</font> EXIT_FAILURE<font color="#990000">;</font>
+
+    <font color="#990000">*</font>debug <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+
+    <b><font color="#0000FF">static</font></b> <b><font color="#0000FF">struct</font></b> <font color="#008080">option</font> long_options<font color="#990000">[]</font> <font color="#990000">=</font> <font color="#FF0000">{</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"quiet"</font><font color="#990000">,</font>   no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font> <font color="#FF0000">'q'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"version"</font><font color="#990000">,</font> no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font> <font color="#FF0000">'v'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"help"</font><font color="#990000">,</font>    no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font> <font color="#FF0000">'h'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> NULL<font color="#990000">,</font>      no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font>  <font color="#993399">0</font>  <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font><font color="#990000">;</font>
+
+    <font color="#009900">int</font> option_index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+    <b><font color="#0000FF">while</font></b> <font color="#990000">((</font>c <font color="#990000">=</font> <b><font color="#000000">getopt_long</font></b><font color="#990000">(</font>argc<font color="#990000">,</font> argv<font color="#990000">,</font> <font color="#FF0000">"qvh"</font><font color="#990000">,</font> long_options<font color="#990000">,</font> <font color="#990000">&amp;</font>option_index<font color="#990000">))</font> <font color="#990000">!=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <font color="#009900">int</font> this_option_optind <font color="#990000">=</font> optind <font color="#990000">?</font> optind <font color="#990000">:</font> <font color="#993399">1</font><font color="#990000">;</font>
+
+        <b><font color="#0000FF">switch</font></b> <font color="#990000">(</font>c<font color="#990000">)</font> <font color="#FF0000">{</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#993399">0</font><font color="#990000">:</font>
+
+            <i><font color="#9A1900">//printf ("option %s", long_options[option_index].name);</font></i>
+
+            <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>optarg<font color="#990000">)</font>
+            <font color="#FF0000">{</font>
+                <b><font color="#000000">printf</font></b> <font color="#990000">(</font><font color="#FF0000">" with arg %s not understood"</font><font color="#990000">,</font> optarg<font color="#990000">);</font>
+
+                exit_program <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+                exit_status <font color="#990000">=</font> EXIT_FAILURE<font color="#990000">;</font>
+            <font color="#FF0000">}</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'q'</font><font color="#990000">:</font>
+
+	    <b><font color="#0000FF">return</font></b> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'v'</font><font color="#990000">:</font>
+
+            <b><font color="#000000">program_version_checks</font></b><font color="#990000">();</font>
+            <b><font color="#000000">exit</font></b><font color="#990000">(</font>EXIT_SUCCESS<font color="#990000">);</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'h'</font><font color="#990000">:</font>
+
+            <b><font color="#000000">program_usage_checks</font></b><font color="#990000">();</font>
+            <b><font color="#000000">exit</font></b><font color="#990000">(</font>EXIT_SUCCESS<font color="#990000">);</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'?'</font><font color="#990000">:</font>
+
+            exit_program <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+            exit_status <font color="#990000">=</font> EXIT_FAILURE<font color="#990000">;</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+<b><font color="#008080">         default:</font></b>
+
+            <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s: ?? getopt returned character code 0%o ??</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> PACKAGE<font color="#990000">,</font> c<font color="#990000">);</font>
+
+            exit_program <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+            exit_status <font color="#990000">=</font> EXIT_FAILURE<font color="#990000">;</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+        <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+ 
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> optind <font color="#990000">&lt;</font> argc <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">%s: non-option argv-elements not understood: "</font><font color="#990000">,</font> PACKAGE<font color="#990000">);</font>
+
+        <b><font color="#0000FF">while</font></b> <font color="#990000">(</font>optind <font color="#990000">&lt;</font> argc<font color="#990000">)</font>
+            <b><font color="#000000">printf</font></b> <font color="#990000">(</font><font color="#FF0000">"%s "</font><font color="#990000">,</font> argv<font color="#990000">[</font>optind<font color="#990000">++]);</font>
+        <b><font color="#000000">printf</font></b> <font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+        exit_program <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+        exit_status <font color="#990000">=</font> EXIT_FAILURE<font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> exit_program <font color="#990000">)</font>
+      <b><font color="#000000">exit</font></b><font color="#990000">(</font>exit_status<font color="#990000">);</font>
+    
+    <b><font color="#0000FF">return</font></b> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">program_version_checks</font></b><font color="#990000">()</font>
+<font color="#FF0000">{</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"checks for %s %s</font><font color="#CC33CC">\n\n</font><font color="#FF0000">%s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> PACKAGE<font color="#990000">,</font> PACKAGE_VERSION<font color="#990000">,</font> license2<font color="#990000">);</font>
+
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">program_usage_checks</font></b><font color="#990000">()</font>
+<font color="#FF0000">{</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Usage: checks [OPTION] ...</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Confirm optionmatrix access to models source code.</font><font color="#CC33CC">\n</font><font color="#FF0000">Iterate through and compute all optionmatrix models with various strikes and</font><font color="#CC33CC">\n</font><font color="#FF0000">inputs for testing.  Report total number of tests run."</font><font color="#990000">);</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -q, --quiet           do not display output during option computations</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -h, --help            display this help and exit</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -v, --version         output version information</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">Report %s bugs to %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> PACKAGE<font color="#990000">,</font> PACKAGE_BUGREPORT<font color="#990000">);</font>
+
+<font color="#FF0000">}</font>
+
+<b><font color="#000080">#endif</font></b>
+</tt></pre>

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=OptionMatrix
+Version=1.0
+Comment=Gtk+ Financial Derivatives Calculator
+Exec=optionmatrix
+Icon=optionmatrix
+Terminal=false
+Type=Application
+Categories=Office;Finance;

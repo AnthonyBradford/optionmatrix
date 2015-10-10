@@ -1,0 +1,14 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">"fin_recipes.h"</font>
+
+term_structure_class_flat<font color="#990000">::</font><b><font color="#000000">term_structure_class_flat</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">)</font><font color="#FF0000">{</font> R_ <font color="#990000">=</font> r<font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+
+term_structure_class_flat<font color="#990000">::~</font><b><font color="#000000">term_structure_class_flat</font></b><font color="#990000">()</font><font color="#FF0000">{}</font><font color="#990000">;</font>
+
+<font color="#009900">double</font> term_structure_class_flat<font color="#990000">::</font><b><font color="#000000">r</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> T<font color="#990000">)</font> <b><font color="#0000FF">const</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>T<font color="#990000">&gt;=</font><font color="#993399">0</font><font color="#990000">)</font> <b><font color="#0000FF">return</font></b> R_<font color="#990000">;</font> <b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> term_structure_class_flat<font color="#990000">::</font><b><font color="#000000">set_int_rate</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">)</font> <font color="#FF0000">{</font> R_ <font color="#990000">=</font> r<font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

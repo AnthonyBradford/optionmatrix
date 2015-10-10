@@ -1,0 +1,13 @@
+Begin Console Categories Example:
+
+            (decimal/date entry dated)
+            (decimal/date entry dated)
+            (calendar dated)
+            (calendar dated)
+            (calendar dated)
+            (calendar dated)
+            (calendar dated)
+            (calendar dated)
+            (calendar dated)
+
+End Console Categories Example

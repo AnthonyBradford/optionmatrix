@@ -1,0 +1,85 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    libmetaoptions - A collection of option-related functions. </font></i>
+<i><font color="#9A1900">    Copyright (C) 2000-2004 B. Augestad, </font></i><u><font color="#0000FF">bjorn.augestad@gmail.com</font></u><i><font color="#9A1900"> </font></i>
+
+<i><font color="#9A1900">    This program is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">    it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">    the Free Software Foundation; either version 2 of the License, or</font></i>
+<i><font color="#9A1900">    (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">    This program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">    but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">    GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">    You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">    along with this program; if not, write to the Free Software</font></i>
+<i><font color="#9A1900">    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;math.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;assert.h&gt;</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"metaoptions.h"</font>
+
+<i><font color="#9A1900">/* Executive stock options */</font></i>
+<font color="#009900">double</font> <b><font color="#000000">Executive</font></b><font color="#990000">(</font><font color="#009900">int</font> fCall<font color="#990000">,</font> <font color="#009900">double</font> S<font color="#990000">,</font> <font color="#009900">double</font> X<font color="#990000">,</font> <font color="#009900">double</font> T<font color="#990000">,</font> <font color="#009900">double</font> r<font color="#990000">,</font> <font color="#009900">double</font> b<font color="#990000">,</font> <font color="#009900">double</font> v<font color="#990000">,</font> <font color="#009900">double</font> lambda<font color="#990000">)</font> 
+<font color="#FF0000">{</font>
+	<b><font color="#000000">assert_valid_price</font></b><font color="#990000">(</font>S<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_strike</font></b><font color="#990000">(</font>X<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_time</font></b><font color="#990000">(</font>T<font color="#990000">);</font>
+
+    <b><font color="#0000FF">return</font></b> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>lambda <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">*</font> <b><font color="#000000">gbs</font></b><font color="#990000">(</font>fCall<font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> v<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+
+<b><font color="#0000FF">extern</font></b> <font color="#009900">double</font> <b><font color="#000000">Executive_call</font></b><font color="#990000">(</font><font color="#009900">double</font> S<font color="#990000">,</font> <font color="#009900">double</font> X<font color="#990000">,</font> <font color="#009900">double</font> T<font color="#990000">,</font> <font color="#009900">double</font> r<font color="#990000">,</font> <font color="#009900">double</font> b<font color="#990000">,</font> <font color="#009900">double</font> v<font color="#990000">,</font> <font color="#009900">double</font> lambda<font color="#990000">)</font> 
+<font color="#FF0000">{</font>
+	<b><font color="#000000">assert_valid_price</font></b><font color="#990000">(</font>S<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_strike</font></b><font color="#990000">(</font>X<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_time</font></b><font color="#990000">(</font>T<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_interest_rate</font></b><font color="#990000">(</font>r<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_cost_of_carry</font></b><font color="#990000">(</font>b<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_volatility</font></b><font color="#990000">(</font>v<font color="#990000">);</font>
+
+    <b><font color="#0000FF">return</font></b> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>lambda <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">*</font> <b><font color="#000000">gbs_call</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> v<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<b><font color="#0000FF">extern</font></b> <font color="#009900">double</font> <b><font color="#000000">Executive_put</font></b><font color="#990000">(</font><font color="#009900">double</font> S<font color="#990000">,</font> <font color="#009900">double</font> X<font color="#990000">,</font> <font color="#009900">double</font> T<font color="#990000">,</font> <font color="#009900">double</font> r<font color="#990000">,</font> <font color="#009900">double</font> b<font color="#990000">,</font> <font color="#009900">double</font> v<font color="#990000">,</font> <font color="#009900">double</font> lambda<font color="#990000">)</font> 
+<font color="#FF0000">{</font>
+	<b><font color="#000000">assert_valid_price</font></b><font color="#990000">(</font>S<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_strike</font></b><font color="#990000">(</font>X<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_time</font></b><font color="#990000">(</font>T<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_interest_rate</font></b><font color="#990000">(</font>r<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_cost_of_carry</font></b><font color="#990000">(</font>b<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_volatility</font></b><font color="#990000">(</font>v<font color="#990000">);</font>
+
+    <b><font color="#0000FF">return</font></b> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>lambda <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">*</font> <b><font color="#000000">gbs_put</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> v<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+
+<b><font color="#000080">#ifdef</font></b> EXECUTIVE_CHECK
+<font color="#009900">void</font> <b><font color="#000000">check_Executive</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<font color="#009900">double</font> S <font color="#990000">=</font> <font color="#993399">60.0</font><font color="#990000">,</font> X <font color="#990000">=</font> <font color="#993399">64.0</font><font color="#990000">,</font> T <font color="#990000">=</font> <font color="#993399">2</font><font color="#990000">,</font> r <font color="#990000">=</font> <font color="#993399">0.07</font><font color="#990000">,</font> b <font color="#990000">=</font> r <font color="#990000">-</font> <font color="#993399">0.03</font><font color="#990000">,</font> v <font color="#990000">=</font> <font color="#993399">0.38</font><font color="#990000">,</font> lambda <font color="#990000">=</font> <font color="#993399">0.15</font><font color="#990000">;</font>
+	<font color="#009900">double</font> result<font color="#990000">,</font> fasit <font color="#990000">=</font> <font color="#993399">9.1244</font><font color="#990000">;</font>
+
+	result <font color="#990000">=</font> <b><font color="#000000">Executive</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">,</font> S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> v<font color="#990000">,</font> lambda<font color="#990000">);</font>
+	<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>result<font color="#990000">,</font> fasit<font color="#990000">);</font>
+	<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>result<font color="#990000">,</font> <b><font color="#000000">Executive_call</font></b><font color="#990000">(</font>S<font color="#990000">,</font> X<font color="#990000">,</font> T<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> v<font color="#990000">,</font> lambda<font color="#990000">));</font>
+<font color="#FF0000">}</font>
+
+
+<font color="#009900">int</font> <b><font color="#000000">main</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<b><font color="#000000">check_Executive</font></b><font color="#990000">();</font>
+	<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Mangler data for puts</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+	<b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+<b><font color="#000080">#endif</font></b>
+
+</tt></pre>

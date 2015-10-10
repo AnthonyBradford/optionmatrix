@@ -1,0 +1,37 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">"config.h"</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;iostream&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"fin_recipes.h"</font>
+
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_NEWMAT_NEWMAT_H
+
+<font color="#009900">void</font> <b><font color="#000000">test_implicit_finite_differences_using_newmat</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    <font color="#009900">double</font> S <font color="#990000">=</font> <font color="#993399">50.0</font><font color="#990000">;</font>
+    <font color="#009900">double</font> K <font color="#990000">=</font> <font color="#993399">50.0</font><font color="#990000">;</font>
+    <font color="#009900">double</font> r <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font> 
+    <font color="#009900">double</font> sigma <font color="#990000">=</font> <font color="#993399">0.4</font><font color="#990000">;</font>
+    <font color="#009900">double</font> time<font color="#990000">=</font><font color="#993399">0.5</font><font color="#990000">;</font>
+    <font color="#009900">int</font> no_S_steps<font color="#990000">=</font><font color="#993399">200</font><font color="#990000">;</font>
+    <font color="#009900">int</font> no_t_steps<font color="#990000">=</font><font color="#993399">200</font><font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" black scholes put price = "</font>  <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_put_black_scholes</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">)&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" implicit Euro put price = "</font><font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_put_european_finite_diff_implicit</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>no_S_steps<font color="#990000">,</font>no_t_steps<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">" implicit American put price = "</font><font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <b><font color="#000000">option_price_put_american_finite_diff_implicit</font></b><font color="#990000">(</font>S<font color="#990000">,</font>K<font color="#990000">,</font>r<font color="#990000">,</font>sigma<font color="#990000">,</font>time<font color="#990000">,</font>no_S_steps<font color="#990000">,</font>no_t_steps<font color="#990000">)</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">examples_finite_diffs_using_newmat</font></b><font color="#990000">()</font><font color="#FF0000">{</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"----------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"Finite Differences examples using newmat "</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    cout <font color="#990000">&lt;&lt;</font> <font color="#FF0000">"----------------------------"</font> <font color="#990000">&lt;&lt;</font> endl<font color="#990000">;</font>
+    <b><font color="#000000">test_implicit_finite_differences_using_newmat</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+
+<b><font color="#000080">#endif</font></b>
+</tt></pre>

@@ -1,0 +1,29 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;vector&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;cmath&gt;</font>
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+
+<font color="#009900">double</font> <b><font color="#000000">interest_rate_trees_gbm_value_of_callable_bond</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> vector<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;&amp;</font> cflows<font color="#990000">,</font>
+						      <b><font color="#0000FF">const</font></b> vector<font color="#990000">&lt;</font> vector<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;</font> <font color="#990000">&gt;&amp;</font> r_tree<font color="#990000">,</font>
+						      <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> q<font color="#990000">,</font>
+						      <b><font color="#0000FF">const</font></b> <font color="#009900">int</font><font color="#990000">&amp;</font> first_call_time<font color="#990000">,</font>
+						      <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> call_price<font color="#990000">)</font><font color="#FF0000">{</font>
+    <font color="#009900">int</font> n<font color="#990000">=</font>cflows<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">();</font>
+    <font color="#008080">vector&lt; vector&lt;double&gt; &gt;</font> <b><font color="#000000">values</font></b><font color="#990000">(</font>n<font color="#990000">);</font>
+    <font color="#008080">vector&lt;double&gt;</font> <b><font color="#000000">value</font></b><font color="#990000">(</font>n<font color="#990000">);</font>
+    <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#009900">int</font> i<font color="#990000">=</font><font color="#993399">0</font><font color="#990000">;</font>i<font color="#990000">&lt;</font>n<font color="#990000">;</font>i<font color="#990000">++)</font><font color="#FF0000">{</font> value<font color="#990000">[</font>i<font color="#990000">]=</font>cflows<font color="#990000">[</font>n<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">];</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+    values<font color="#990000">[</font>n<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">]=</font>value<font color="#990000">;</font> 
+    <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#009900">int</font> t<font color="#990000">=</font>n<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">;</font>t<font color="#990000">&gt;</font><font color="#993399">0</font><font color="#990000">;--</font>t<font color="#990000">)</font><font color="#FF0000">{</font>
+	<font color="#008080">vector&lt;double&gt;</font> <b><font color="#000000">value</font></b><font color="#990000">(</font>t<font color="#990000">,</font><font color="#993399">0.0</font><font color="#990000">);</font>
+	<b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#009900">int</font> i<font color="#990000">=</font><font color="#993399">0</font><font color="#990000">;</font>i<font color="#990000">&lt;</font>t<font color="#990000">;++</font>i<font color="#990000">)</font><font color="#FF0000">{</font>
+	    value<font color="#990000">[</font>i<font color="#990000">]=</font>cflows<font color="#990000">[</font>t<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">]+</font><b><font color="#000000">exp</font></b><font color="#990000">(-</font>r_tree<font color="#990000">[</font>t<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">][</font>i<font color="#990000">])*(</font>q<font color="#990000">*</font>values<font color="#990000">[</font>t<font color="#990000">][</font>i<font color="#990000">]+(</font><font color="#993399">1</font><font color="#990000">-</font>q<font color="#990000">)*</font>values<font color="#990000">[</font>t<font color="#990000">][</font>i<font color="#990000">+</font><font color="#993399">1</font><font color="#990000">]);</font>
+	    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>t<font color="#990000">&gt;=</font>first_call_time<font color="#990000">)</font><font color="#FF0000">{</font> value<font color="#990000">[</font>i<font color="#990000">]=</font><b><font color="#000000">min</font></b><font color="#990000">(</font>value<font color="#990000">[</font>i<font color="#990000">],</font>call_price<font color="#990000">);</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+	<font color="#FF0000">}</font><font color="#990000">;</font>
+	values<font color="#990000">[</font>t<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">]=</font>value<font color="#990000">;</font>
+    <font color="#FF0000">}</font><font color="#990000">;</font>
+    <b><font color="#0000FF">return</font></b> values<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">][</font><font color="#993399">0</font><font color="#990000">];</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

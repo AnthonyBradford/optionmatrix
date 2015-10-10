@@ -1,0 +1,259 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/* optionmatrix:                                                            */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Options &amp; Futures Matrix Modeler                                         */</font></i>
+<i><font color="#9A1900">/* View and Control Theoretical Option Chains                               */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* File: curses_calendar.cpp of optionmatrix                                */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Copyright (c) Anthony Bradford. 2012.                                    */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">http://anthonybradford.com</font></u><i><font color="#9A1900">                                               */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">info@anthonybradford.com</font></u><i><font color="#9A1900">                                                 */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* optionmatrix may be freely redistributed.                                */</font></i>
+<i><font color="#9A1900">/* See file COPYING included with this distribution for license information */</font></i>
+
+<i><font color="#9A1900">/* </font></i>
+<i><font color="#9A1900">   optionmatrix is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">   it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">   the Free Software Foundation; either version 3 of the License, or</font></i>
+<i><font color="#9A1900">   (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">   optionmatrix program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">   but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">   GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">   You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">   along with this program.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"../common/defs.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"../common/extern.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"curses_include.h"</font>
+
+<font color="#009900">void</font> <b><font color="#000000">calendar</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+    <font color="#009900">int</font> x <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+    <font color="#009900">int</font> y<font color="#990000">,</font>nextmonth<font color="#990000">,</font>friday<font color="#990000">,</font>monthsout<font color="#990000">;</font>
+    <font color="#009900">int</font> counter1<font color="#990000">,</font>n<font color="#990000">,</font>day<font color="#990000">,</font>year<font color="#990000">;</font>
+    <font color="#009900">int</font> ret <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+    <font color="#009900">char</font> inputstring<font color="#990000">[</font><font color="#993399">200</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+    <font color="#009900">char</font> character<font color="#990000">;</font>
+
+    <font color="#008080">time_t</font> mytime<font color="#990000">;</font>
+    <b><font color="#0000FF">struct</font></b> <font color="#008080">tm</font> <font color="#990000">*</font>my_tm<font color="#990000">;</font>
+
+    <b><font color="#000000">time</font></b><font color="#990000">(&amp;</font>mytime<font color="#990000">);</font>
+    my_tm <font color="#990000">=</font> <b><font color="#000000">localtime</font></b><font color="#990000">(&amp;</font>mytime<font color="#990000">);</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> my_tm<font color="#990000">-&gt;</font>tm_wday <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        x <font color="#990000">=</font> <font color="#993399">7</font><font color="#990000">;</font>
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+    <font color="#FF0000">{</font>
+        x <font color="#990000">=</font> my_tm<font color="#990000">-&gt;</font>tm_wday<font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+
+    year <font color="#990000">=</font> my_tm<font color="#990000">-&gt;</font>tm_year<font color="#990000">;</font>
+
+    monthsout <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">;</font>
+    
+    <b><font color="#0000FF">for</font></b><font color="#990000">(;;)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#000000">clear</font></b><font color="#990000">();</font>
+        
+        <b><font color="#000000">move</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">0</font><font color="#990000">);</font>
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"Press lower case 'c' for Options Calendar, capital 'C' for Futures Calendar.</font><font color="#CC33CC">\n\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"Show calendar how many months out  : "</font><font color="#990000">);</font>
+
+        <b><font color="#000000">memset</font></b><font color="#990000">(</font>inputstring<font color="#990000">,(</font><font color="#009900">int</font><font color="#990000">)</font> <font color="#FF0000">' '</font><font color="#990000">,</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>inputstring<font color="#990000">));</font>
+        <b><font color="#000000">scanw</font></b><font color="#990000">(</font><font color="#FF0000">"%10s"</font><font color="#990000">,</font>inputstring<font color="#990000">);</font>
+        ret <font color="#990000">=</font> <b><font color="#000000">sscanf</font></b><font color="#990000">(</font>inputstring<font color="#990000">,</font><font color="#FF0000">"%d"</font><font color="#990000">,&amp;</font>monthsout<font color="#990000">);</font>
+
+        <i><font color="#9A1900">/* don't allow user to enter zero or negative numbers */</font></i>
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> monthsout <font color="#990000">&gt;</font> <font color="#993399">0</font> <font color="#990000">&amp;&amp;</font> ret <font color="#990000">==</font> <font color="#993399">1</font> <font color="#990000">)</font>
+        <font color="#FF0000">{</font>
+            ret <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+            <b><font color="#000000">clear</font></b><font color="#990000">();</font>
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+        <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+
+    <i><font color="#9A1900">/* count back to the first of the month and keep</font></i>
+<i><font color="#9A1900">       day names in sync */</font></i>
+    counter1 <font color="#990000">=</font> my_tm<font color="#990000">-&gt;</font>tm_mday<font color="#990000">;</font>
+    day <font color="#990000">=</font> x<font color="#990000">;</font>
+    <b><font color="#0000FF">while</font></b><font color="#990000">(</font> counter1 <font color="#990000">!=</font> <font color="#993399">1</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        counter1<font color="#990000">--;</font>
+
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> day<font color="#990000">--</font> <font color="#990000">==</font> <font color="#993399">1</font> <font color="#990000">)</font>
+            day <font color="#990000">=</font> <font color="#993399">7</font><font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+
+    <i><font color="#9A1900">/* figure out if it is a leap year and adjust the month feb */</font></i>
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <font color="#990000">((</font>year<font color="#990000">+</font><font color="#993399">1900</font><font color="#990000">)%</font><font color="#993399">4</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">&amp;&amp;</font> <font color="#990000">(</font>year<font color="#990000">+</font><font color="#993399">1900</font><font color="#990000">)%</font><font color="#993399">100</font> <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font> <font color="#990000">||</font> <font color="#990000">(</font>year<font color="#990000">+</font><font color="#993399">1900</font><font color="#990000">)%</font><font color="#993399">400</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+        months<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">29</font><font color="#990000">;</font>
+    <b><font color="#0000FF">else</font></b>
+        months<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">28</font><font color="#990000">;</font>
+
+    <i><font color="#9A1900">/* increment to the end of the month take option expiration</font></i>
+<i><font color="#9A1900">       date only it is greater than current date  */</font></i>
+    friday <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+    
+    <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"%s expirations set to %d%s %s+%d @ %02d:%02d:%02d. "</font><font color="#990000">,</font> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">!=</font>_FUTURES<font color="#990000">)?</font><font color="#FF0000">"Options"</font><font color="#990000">:</font><font color="#FF0000">"Futures"</font><font color="#990000">,</font>properties<font color="#990000">-&gt;</font>occurence_in_month<font color="#990000">,</font>order<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>occurence_in_month<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">],</font>weekdays<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>occurence_day<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">],</font>properties<font color="#990000">-&gt;</font>occurence_plus_offset<font color="#990000">,</font>properties<font color="#990000">-&gt;</font>expiration_hour<font color="#990000">,</font>properties<font color="#990000">-&gt;</font>expiration_minute<font color="#990000">,</font>properties<font color="#990000">-&gt;</font>expiration_second<font color="#990000">);</font>
+
+    <i><font color="#9A1900">//printw("BIsAFuture = %d\n",option_algorithms[properties-&gt;modeltype].bIsAFuture);</font></i>
+    
+    <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"Use AdvProperties to change.</font><font color="#CC33CC">\n</font><font color="#FF0000">Time to expiration is accurate to the second from your current time.</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+   
+    <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n\t\t</font><font color="#FF0000">%s %d</font><font color="#CC33CC">\n\n</font><font color="#FF0000">"</font><font color="#990000">,</font> mon<font color="#990000">[</font>my_tm<font color="#990000">-&gt;</font>tm_mon<font color="#990000">],</font> year <font color="#990000">+</font> <font color="#993399">1900</font><font color="#990000">);</font>
+    <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\t\t</font><font color="#FF0000">Mon</font><font color="#CC33CC">\t</font><font color="#FF0000">Tue</font><font color="#CC33CC">\t</font><font color="#FF0000">Wens</font><font color="#CC33CC">\t</font><font color="#FF0000">Thur</font><font color="#CC33CC">\t</font><font color="#FF0000">Fri</font><font color="#CC33CC">\t</font><font color="#FF0000">Sat</font><font color="#CC33CC">\t</font><font color="#FF0000">Sun</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\t\t</font><font color="#FF0000">---------------------------------------------------</font><font color="#CC33CC">\n\t\t</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+    <b><font color="#0000FF">for</font></b><font color="#990000">(</font> n <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font> n <font color="#990000">&lt;</font> day<font color="#990000">;</font> n<font color="#990000">++</font> <font color="#990000">)</font>
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\t</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+    <font color="#009900">int</font> offset <font color="#990000">=</font> properties<font color="#990000">-&gt;</font>occurence_plus_offset<font color="#990000">;</font>
+    <font color="#009900">int</font> found <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+
+    <b><font color="#0000FF">while</font></b><font color="#990000">(</font> counter1 <font color="#990000">&lt;=</font> months<font color="#990000">[</font>my_tm<font color="#990000">-&gt;</font>tm_mon<font color="#990000">]</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> day <font color="#990000">==</font> properties<font color="#990000">-&gt;</font>occurence_day <font color="#990000">)</font> <i><font color="#9A1900">/* this is a friday or user specified day */</font></i>
+        <font color="#FF0000">{</font>        
+            <i><font color="#9A1900">/* this is the 3rd friday of the month or user specified */</font></i>
+            <b><font color="#0000FF">if</font></b><font color="#990000">(</font> friday<font color="#990000">++</font> <font color="#990000">==</font> properties<font color="#990000">-&gt;</font>occurence_in_month <font color="#990000">)</font> 
+            <font color="#FF0000">{</font>
+                <i><font color="#9A1900">/*printw("x");*/</font></i>
+                found <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+                monthsout<font color="#990000">--;</font>
+            <font color="#FF0000">}</font>
+        <font color="#FF0000">}</font>
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> found <font color="#990000">==</font> <font color="#993399">1</font> <font color="#990000">)</font>
+        <font color="#FF0000">{</font>
+            <b><font color="#0000FF">if</font></b><font color="#990000">(</font> offset<font color="#990000">--</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+            <font color="#FF0000">{</font>
+                <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"EXPR"</font><font color="#990000">);</font>
+            <font color="#FF0000">}</font>
+
+        <font color="#FF0000">}</font>
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"%d</font><font color="#CC33CC">\t</font><font color="#FF0000">"</font><font color="#990000">,</font> counter1<font color="#990000">);</font>
+
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> day<font color="#990000">++</font> <font color="#990000">==</font> <font color="#993399">7</font> <font color="#990000">)</font>
+        <font color="#FF0000">{</font>
+            day <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+            <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n\t\t</font><font color="#FF0000">---------------------------------------------------</font><font color="#CC33CC">\n\t\t</font><font color="#FF0000">"</font><font color="#990000">);</font>
+        <font color="#FF0000">}</font>
+        counter1<font color="#990000">++;</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n\n\t\t\t</font><font color="#FF0000"> "</font><font color="#990000">);</font>
+    <b><font color="#000000">attron</font></b><font color="#990000">(</font>A_STANDOUT<font color="#990000">);</font>
+    <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;&lt; Press any key or Q to quit &gt;&gt;</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    <b><font color="#000000">attroff</font></b><font color="#990000">(</font>A_STANDOUT<font color="#990000">);</font>
+
+    character <font color="#990000">=</font> <b><font color="#000000">getch</font></b><font color="#990000">();</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> character <font color="#990000">==</font> <font color="#FF0000">'q'</font> <font color="#990000">||</font> character <font color="#990000">==</font> <font color="#FF0000">'Q'</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#000000">clear</font></b><font color="#990000">();</font>
+        
+        <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+
+    counter1 <font color="#990000">=</font> my_tm<font color="#990000">-&gt;</font>tm_mday<font color="#990000">;</font>
+    day <font color="#990000">=</font> x<font color="#990000">;</font>
+
+    <i><font color="#9A1900">/* increment to the end of the month */</font></i>
+    <b><font color="#0000FF">while</font></b><font color="#990000">(</font> counter1<font color="#990000">++</font> <font color="#990000">&lt;</font> months<font color="#990000">[</font>my_tm<font color="#990000">-&gt;</font>tm_mon<font color="#990000">]</font> <font color="#990000">)</font> <font color="#FF0000">{</font>
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> day<font color="#990000">++</font> <font color="#990000">==</font> <font color="#993399">7</font> <font color="#990000">)</font>
+            day <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+    nextmonth <font color="#990000">=</font> my_tm<font color="#990000">-&gt;</font>tm_mon<font color="#990000">;</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> day<font color="#990000">++</font> <font color="#990000">==</font> <font color="#993399">7</font> <font color="#990000">)</font>
+        day <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+
+    <b><font color="#0000FF">while</font></b><font color="#990000">(</font> monthsout<font color="#990000">--</font> <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#000000">clear</font></b><font color="#990000">();</font>
+
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> nextmonth<font color="#990000">++</font> <font color="#990000">==</font> <font color="#993399">11</font> <font color="#990000">)</font> <i><font color="#9A1900">/* months 0-11 */</font></i>
+        <font color="#FF0000">{</font>        
+            nextmonth <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>        <i><font color="#9A1900">/* set to Jan */</font></i>
+            year<font color="#990000">++;</font>
+        <font color="#FF0000">}</font>
+
+        <i><font color="#9A1900">/* figure out if it is a leap year and adjust the month feb */</font></i>
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <font color="#990000">((</font>year<font color="#990000">+</font><font color="#993399">1900</font><font color="#990000">)%</font><font color="#993399">4</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">&amp;&amp;</font> <font color="#990000">(</font>year<font color="#990000">+</font><font color="#993399">1900</font><font color="#990000">)%</font><font color="#993399">100</font> <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font> <font color="#990000">||</font> <font color="#990000">(</font>year<font color="#990000">+</font><font color="#993399">1900</font><font color="#990000">)%</font><font color="#993399">400</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+            months<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">29</font><font color="#990000">;</font>
+        <b><font color="#0000FF">else</font></b>
+            months<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">28</font><font color="#990000">;</font>
+
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"%s expirations set to %d%s %s+%d @ %02d:%02d:%02d. "</font><font color="#990000">,</font> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">!=</font>_FUTURES<font color="#990000">)?</font><font color="#FF0000">"Options"</font><font color="#990000">:</font><font color="#FF0000">"Futures"</font><font color="#990000">,</font>properties<font color="#990000">-&gt;</font>occurence_in_month<font color="#990000">,</font>order<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>occurence_in_month<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">],</font>weekdays<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>occurence_day<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">],</font>properties<font color="#990000">-&gt;</font>occurence_plus_offset<font color="#990000">,</font>properties<font color="#990000">-&gt;</font>expiration_hour<font color="#990000">,</font>properties<font color="#990000">-&gt;</font>expiration_minute<font color="#990000">,</font>properties<font color="#990000">-&gt;</font>expiration_second<font color="#990000">);</font>
+
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"Use AdvProperties to change.</font><font color="#CC33CC">\n</font><font color="#FF0000">Time to expiration is accurate to the second from your current time.</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+        <i><font color="#9A1900">/*printw("\n\n\n\n\n\t\t%s %d\n\n",mon[nextmonth],year+1900);*/</font></i>
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n\t\t</font><font color="#FF0000">%s %d</font><font color="#CC33CC">\n\n</font><font color="#FF0000">"</font><font color="#990000">,</font> mon<font color="#990000">[</font>nextmonth<font color="#990000">],</font> year<font color="#990000">+</font><font color="#993399">1900</font><font color="#990000">);</font>
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\t\t</font><font color="#FF0000">Mon</font><font color="#CC33CC">\t</font><font color="#FF0000">Tue</font><font color="#CC33CC">\t</font><font color="#FF0000">Wens</font><font color="#CC33CC">\t</font><font color="#FF0000">Thur</font><font color="#CC33CC">\t</font><font color="#FF0000">Fri</font><font color="#CC33CC">\t</font><font color="#FF0000">Sat</font><font color="#CC33CC">\t</font><font color="#FF0000">Sun</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\t\t</font><font color="#FF0000">---------------------------------------------------</font><font color="#CC33CC">\n\t\t</font><font color="#FF0000">"</font><font color="#990000">);</font>
+        
+        friday <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>        <i><font color="#9A1900">/* reset friday counter */</font></i>
+
+        <b><font color="#0000FF">for</font></b><font color="#990000">(</font> n <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font> n <font color="#990000">&lt;</font> day<font color="#990000">;</font> n<font color="#990000">++</font> <font color="#990000">)</font>
+            <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\t</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+        offset <font color="#990000">=</font> properties<font color="#990000">-&gt;</font>occurence_plus_offset<font color="#990000">;</font>
+        found <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+
+        <b><font color="#0000FF">for</font></b><font color="#990000">(</font> y <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font> y <font color="#990000">&lt;=</font> months<font color="#990000">[</font>nextmonth<font color="#990000">];</font> y<font color="#990000">++</font> <font color="#990000">)</font>
+        <font color="#FF0000">{</font>
+            <b><font color="#0000FF">if</font></b><font color="#990000">(</font> day <font color="#990000">==</font> properties<font color="#990000">-&gt;</font>occurence_day <font color="#990000">)</font>        <i><font color="#9A1900">/* this is a friday or user specified day */</font></i>
+            <font color="#FF0000">{</font>
+                <i><font color="#9A1900">/* this is the 3rd firday of the month or user specified */</font></i>
+                <b><font color="#0000FF">if</font></b><font color="#990000">(</font> friday<font color="#990000">++</font> <font color="#990000">==</font> properties<font color="#990000">-&gt;</font>occurence_in_month <font color="#990000">)</font>
+                <font color="#FF0000">{</font>
+                    found <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+                    <i><font color="#9A1900">/*printw("x");*/</font></i>
+                <font color="#FF0000">}</font>
+            <font color="#FF0000">}</font>
+            <b><font color="#0000FF">if</font></b><font color="#990000">(</font> found <font color="#990000">==</font> <font color="#993399">1</font> <font color="#990000">)</font>
+            <font color="#FF0000">{</font>
+                <b><font color="#0000FF">if</font></b><font color="#990000">(</font> offset<font color="#990000">--</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+                <font color="#FF0000">{</font>
+                    <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"EXPR"</font><font color="#990000">);</font>
+                <font color="#FF0000">}</font>
+
+            <font color="#FF0000">}</font>
+            <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"%d</font><font color="#CC33CC">\t</font><font color="#FF0000">"</font><font color="#990000">,</font>y<font color="#990000">);</font>
+            <b><font color="#0000FF">if</font></b><font color="#990000">(</font> day<font color="#990000">++</font> <font color="#990000">==</font> <font color="#993399">7</font> <font color="#990000">)</font>
+            <font color="#FF0000">{</font>
+                day <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+                <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n\t\t</font><font color="#FF0000">---------------------------------------------------</font><font color="#CC33CC">\n\t\t</font><font color="#FF0000">"</font><font color="#990000">);</font>
+            <font color="#FF0000">}</font>
+        <font color="#FF0000">}</font>
+
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n\n\t\t\t</font><font color="#FF0000"> "</font><font color="#990000">);</font>
+        <b><font color="#000000">attron</font></b><font color="#990000">(</font>A_STANDOUT<font color="#990000">);</font>
+        <b><font color="#000000">printw</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;&lt; Press any key or Q to quit &gt;&gt;</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+        <b><font color="#000000">attroff</font></b><font color="#990000">(</font>A_STANDOUT<font color="#990000">);</font>
+
+        character <font color="#990000">=</font> <b><font color="#000000">getch</font></b><font color="#990000">();</font>
+       
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> character <font color="#990000">==</font> <font color="#FF0000">'q'</font> <font color="#990000">||</font> character <font color="#990000">==</font> <font color="#FF0000">'Q'</font> <font color="#990000">)</font>
+        <font color="#FF0000">{</font>
+          <b><font color="#000000">clear</font></b><font color="#990000">();</font>
+            
+          <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+        <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+    
+    <b><font color="#000000">clear</font></b><font color="#990000">();</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+</tt></pre>

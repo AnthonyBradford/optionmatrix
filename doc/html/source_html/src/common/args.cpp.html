@@ -1,0 +1,711 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/* optionmatrix:                                                            */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Options &amp; Futures Matrix Modeler                                         */</font></i>
+<i><font color="#9A1900">/* View and Control Theoretical Option Chains                               */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* File: args.cpp of optionmatrix                                           */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Copyright (c) Anthony Bradford. 2012.                                    */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">http://anthonybradford.com</font></u><i><font color="#9A1900">                                               */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">info@anthonybradford.com</font></u><i><font color="#9A1900">                                                 */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* optionmatrix may be freely redistributed.                                */</font></i>
+<i><font color="#9A1900">/* See file COPYING included with this distribution for license information */</font></i>
+
+<i><font color="#9A1900">/* </font></i>
+<i><font color="#9A1900">   optionmatrix is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">   it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">   the Free Software Foundation; either version 3 of the License, or</font></i>
+<i><font color="#9A1900">   (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">   optionmatrix program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">   but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">   GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">   You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">   along with this program.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"defs.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"extern.h"</font>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_GETOPT_H
+<b><font color="#000080"> #include</font></b> <font color="#FF0000">&lt;getopt.h&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_SYS_TYPES_H
+<b><font color="#000080"> #include</font></b> <font color="#FF0000">&lt;sys/types.h&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_SYS_TIME_H
+<b><font color="#000080"> #include</font></b> <font color="#FF0000">&lt;sys/time.h&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#if</font></b> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_GETOPT_H<font color="#990000">)</font> <font color="#990000">&amp;&amp;</font> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_GETTIMEOFDAY<font color="#990000">)</font>
+
+<font color="#009900">void</font> <b><font color="#000000">process_arguments</font></b><font color="#990000">(</font><font color="#009900">int</font> argc<font color="#990000">,</font> <font color="#009900">char</font> <font color="#990000">**</font>argv<font color="#990000">,</font> <font color="#009900">bool</font> <font color="#990000">*</font>debug<font color="#990000">,</font> <font color="#009900">char</font> <font color="#990000">*</font>source_directory_prefix<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+    <font color="#009900">int</font> c<font color="#990000">;</font>
+    <font color="#009900">int</font> exit_program <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+    <font color="#009900">int</font> exit_status <font color="#990000">=</font> EXIT_FAILURE<font color="#990000">;</font>
+
+    <font color="#990000">*</font>debug <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+
+    <b><font color="#0000FF">static</font></b> <b><font color="#0000FF">struct</font></b> <font color="#008080">option</font> long_options<font color="#990000">[]</font> <font color="#990000">=</font> <font color="#FF0000">{</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"version"</font><font color="#990000">,</font>    no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font> <font color="#FF0000">'v'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"help"</font><font color="#990000">,</font>       no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font> <font color="#FF0000">'h'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"list"</font><font color="#990000">,</font>       no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font> <font color="#FF0000">'l'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"source"</font><font color="#990000">,</font>     no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font> <font color="#FF0000">'s'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"price"</font><font color="#990000">,</font>      no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font> <font color="#FF0000">'p'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"quiet"</font><font color="#990000">,</font>      no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font> <font color="#FF0000">'q'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"debug"</font><font color="#990000">,</font>      no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font> <font color="#FF0000">'d'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"Directory"</font><font color="#990000">,</font>  required_argument<font color="#990000">,</font> NULL<font color="#990000">,</font> <font color="#FF0000">'D'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"model"</font><font color="#990000">,</font>      required_argument<font color="#990000">,</font> NULL<font color="#990000">,</font> <font color="#FF0000">'m'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> <font color="#FF0000">"iterate"</font><font color="#990000">,</font>    required_argument<font color="#990000">,</font> NULL<font color="#990000">,</font> <font color="#FF0000">'i'</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+        <font color="#FF0000">{</font> NULL<font color="#990000">,</font>         no_argument<font color="#990000">,</font>       NULL<font color="#990000">,</font>  <font color="#993399">0</font>  <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font><font color="#990000">;</font>
+
+    <i><font color="#9A1900">// default number of options to iterate for testing and timing...</font></i>
+    <font color="#009900">int</font> iopt <font color="#990000">=</font> <font color="#993399">200000</font><font color="#990000">;</font>
+
+    <font color="#009900">int</font> option_index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+    <b><font color="#0000FF">while</font></b> <font color="#990000">((</font>c <font color="#990000">=</font> <b><font color="#000000">getopt_long</font></b><font color="#990000">(</font>argc<font color="#990000">,</font> argv<font color="#990000">,</font> <font color="#FF0000">"vhlsqdpD:m:i:"</font><font color="#990000">,</font> long_options<font color="#990000">,</font> <font color="#990000">&amp;</font>option_index<font color="#990000">))</font> <font color="#990000">!=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#0000FF">switch</font></b> <font color="#990000">(</font>c<font color="#990000">)</font> <font color="#FF0000">{</font>
+
+        <b><font color="#0000FF">case</font></b> <font color="#993399">0</font><font color="#990000">:</font>
+
+            <i><font color="#9A1900">//printf ("option %s", long_options[option_index].name);</font></i>
+
+            <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>optarg<font color="#990000">)</font>
+            <font color="#FF0000">{</font>
+                <b><font color="#000000">printf</font></b> <font color="#990000">(</font><font color="#FF0000">" with arg %s not understood"</font><font color="#990000">,</font> optarg<font color="#990000">);</font>
+
+                exit_program <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+                exit_status <font color="#990000">=</font> EXIT_FAILURE<font color="#990000">;</font>
+            <font color="#FF0000">}</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'v'</font><font color="#990000">:</font>
+
+            <b><font color="#000000">program_version</font></b><font color="#990000">();</font>
+            <b><font color="#000000">exit</font></b><font color="#990000">(</font>EXIT_SUCCESS<font color="#990000">);</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'h'</font><font color="#990000">:</font>
+
+            <b><font color="#000000">program_usage</font></b><font color="#990000">(</font><b><font color="#000000">strstr</font></b><font color="#990000">(</font>argv<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">],</font><font color="#FF0000">"console"</font><font color="#990000">));</font>
+            <b><font color="#000000">exit</font></b><font color="#990000">(</font>EXIT_SUCCESS<font color="#990000">);</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'l'</font><font color="#990000">:</font>
+
+            <b><font color="#000000">program_list_models</font></b><font color="#990000">();</font>
+
+            exit_program <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+            exit_status <font color="#990000">=</font> EXIT_SUCCESS<font color="#990000">;</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'s'</font><font color="#990000">:</font>
+
+            <b><font color="#000000">program_source</font></b><font color="#990000">();</font>
+
+            exit_program <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+            exit_status <font color="#990000">=</font> EXIT_SUCCESS<font color="#990000">;</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'d'</font><font color="#990000">:</font>
+
+            <font color="#990000">*</font>debug <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'D'</font><font color="#990000">:</font>
+
+	    <i><font color="#9A1900">//printf("optarg = %s\n", optarg);</font></i>
+	    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>properties<font color="#990000">.</font>source_directory_prefix<font color="#990000">,</font><font color="#FF0000">"%s"</font><font color="#990000">,</font>optarg<font color="#990000">);</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'p'</font><font color="#990000">:</font>
+
+            <b><font color="#000000">program_check_pricing_models</font></b><font color="#990000">(</font><b><font color="#0000FF">false</font></b><font color="#990000">);</font>
+            <b><font color="#000000">exit</font></b><font color="#990000">(</font>EXIT_SUCCESS<font color="#990000">);</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'q'</font><font color="#990000">:</font>
+
+            <b><font color="#000000">program_check_pricing_models</font></b><font color="#990000">(</font><b><font color="#0000FF">true</font></b><font color="#990000">);</font>
+            <b><font color="#000000">exit</font></b><font color="#990000">(</font>EXIT_SUCCESS<font color="#990000">);</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'i'</font><font color="#990000">:</font>
+
+            <i><font color="#9A1900">//printf("option i with value '%d'\n", atoi(optarg));</font></i>
+            iopt <font color="#990000">=</font> <b><font color="#000000">atoi</font></b><font color="#990000">(</font>optarg<font color="#990000">);</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <b><font color="#0000FF">case</font></b> <font color="#FF0000">'m'</font><font color="#990000">:</font>
+
+            <i><font color="#9A1900">//printf("option t with value '%d'\n", atoi(optarg));</font></i>
+            <b><font color="#000000">program_check_pricing_time</font></b><font color="#990000">(</font> <b><font color="#000000">atoi</font></b><font color="#990000">(</font>optarg<font color="#990000">),</font> iopt <font color="#990000">);</font>
+            <b><font color="#000000">exit</font></b><font color="#990000">(</font>EXIT_SUCCESS<font color="#990000">);</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+        <b><font color="#0000FF">case</font></b> <font color="#FF0000">'?'</font><font color="#990000">:</font>
+
+            exit_program <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+            exit_status <font color="#990000">=</font> EXIT_FAILURE<font color="#990000">;</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+<b><font color="#008080">        default:</font></b>
+
+            <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s: ?? getopt returned character code 0%o ??</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> PACKAGE<font color="#990000">,</font> c<font color="#990000">);</font>
+
+            exit_program <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+            exit_status <font color="#990000">=</font> EXIT_FAILURE<font color="#990000">;</font>
+
+            <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+        <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+ 
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> optind <font color="#990000">&lt;</font> argc <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">%s: non-option argv-elements not understood: "</font><font color="#990000">,</font> PACKAGE<font color="#990000">);</font>
+
+        <b><font color="#0000FF">while</font></b> <font color="#990000">(</font>optind <font color="#990000">&lt;</font> argc<font color="#990000">)</font>
+            <b><font color="#000000">printf</font></b> <font color="#990000">(</font><font color="#FF0000">"%s "</font><font color="#990000">,</font> argv<font color="#990000">[</font>optind<font color="#990000">++]);</font>
+        <b><font color="#000000">printf</font></b> <font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+        exit_program <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+        exit_status <font color="#990000">=</font> EXIT_FAILURE<font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(*</font>debug <font color="#990000">==</font> <b><font color="#0000FF">true</font></b><font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <font color="#009900">char</font> logText<font color="#990000">[</font><font color="#993399">512</font><font color="#990000">];</font>
+
+      <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>logText<font color="#990000">,</font><font color="#FF0000">"%s %s"</font><font color="#990000">,</font> PACKAGE_NAME<font color="#990000">,</font> PACKAGE_VERSION<font color="#990000">);</font>
+      <b><font color="#000000">logger</font></b><font color="#990000">(</font>logText<font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">);</font>
+
+      <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>logText<font color="#990000">,</font><font color="#FF0000">"Compiler version: %s"</font> <font color="#990000">,</font> __VERSION__<font color="#990000">);</font>
+      <b><font color="#000000">logger</font></b><font color="#990000">(</font>logText<font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> exit_program <font color="#990000">)</font>
+     <b><font color="#000000">exit</font></b><font color="#990000">(</font>exit_status<font color="#990000">);</font>
+    
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<b><font color="#000080">#endif</font></b>
+
+<font color="#009900">void</font> <b><font color="#000000">program_version</font></b><font color="#990000">()</font>
+<font color="#FF0000">{</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s %s</font><font color="#CC33CC">\n\n</font><font color="#FF0000">%s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> PACKAGE<font color="#990000">,</font> PACKAGE_VERSION<font color="#990000">,</font> license2<font color="#990000">);</font>
+
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">program_usage</font></b><font color="#990000">(</font><font color="#009900">char</font> <font color="#990000">*</font>isConsoleVersion<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> isConsoleVersion <font color="#990000">)</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Usage: %s_console [OPTION] ...</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> PACKAGE<font color="#990000">);</font>
+  <b><font color="#0000FF">else</font></b>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Usage: %s [OPTION] ...</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> PACKAGE<font color="#990000">);</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Financial Derivatives Calculator featuring models from "</font><font color="#990000">);</font>
+
+<b><font color="#000080">#ifdef</font></b> METAOPTIONS
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Bjorn Augestad, "</font><font color="#990000">);</font>
+
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> ABRADFORD
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Anthony Bradford, "</font><font color="#990000">);</font>
+
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> FINRECIPES
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Bernt Arne Oedegaard, "</font><font color="#990000">);</font>
+
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> SPINSKY
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"and Seth Pinsky.  "</font><font color="#990000">);</font>
+
+<b><font color="#000080">#endif</font></b>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Program with no arguments will launch the %s Application.  "</font><font color="#990000">,</font> <font color="#990000">(</font> isConsoleVersion <font color="#990000">?</font> <font color="#FF0000">"Curses"</font> <font color="#990000">:</font> <font color="#FF0000">"Gtk+"</font><font color="#990000">)</font> <font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> isConsoleVersion <font color="#990000">)</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"See optionmatrix for the GTK+ Version.  "</font><font color="#990000">);</font>
+  <b><font color="#0000FF">else</font></b>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"See optionmatrix_console for the Curses Version.  "</font><font color="#990000">);</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Command line arguments can be used to list and test model execution time on the shell level.  "</font><font color="#990000">);</font>
+
+<b><font color="#000080">#if</font></b> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_LIBGSL<font color="#990000">)</font> <font color="#990000">|</font> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_NEWMAT_NEWMAT_H<font color="#990000">)</font> <font color="#990000">|</font> <b><font color="#000000">defined</font></b><font color="#990000">(</font>HAVE_ITPP_ITBASE_H<font color="#990000">)</font> <font color="#990000">|</font> <b><font color="#000000">defined</font></b><font color="#990000">(</font>METAOPTIONS<font color="#990000">)</font> <font color="#990000">|</font> <b><font color="#000000">defined</font></b><font color="#990000">(</font>FINRECIPES<font color="#990000">)</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Compiled with the following libraries: "</font><font color="#990000">);</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> METAOPTIONS
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"MetaOptions"</font><font color="#990000">);</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> FINRECIPES
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">", Financial Numerical Recipes in C++"</font><font color="#990000">);</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_LIBGSL
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">", GSL"</font><font color="#990000">);</font>
+<b><font color="#000080">#endif</font></b>
+  
+<b><font color="#000080">#ifdef</font></b> HAVE_NEWMAT_NEWMAT_H
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">", Newmat"</font><font color="#990000">);</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_ITPP_ITBASE_H
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">", IT++"</font><font color="#990000">);</font>
+<b><font color="#000080">#endif</font></b>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"."</font><font color="#990000">);</font>
+    
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -h, --help            display this help and exit</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -v, --version         output version information</font><font color="#CC33CC">\n\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -l, --list            list models</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -s, --source          print model source code which cannot be accessed</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -d, --debug           create %s.log debug file</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> PACKAGE<font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -p, --price           test all pricing models</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -q, --quiet           test all pricing models in quiet mode</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <font color="#990000">!</font>isConsoleVersion <font color="#990000">)</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -D, --Directory       set model source code directory</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -m, --model NUMBER    time test model number</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"  -i, --iterate NUMBER  time test model number at specified iterations</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">Report %s bugs to %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> PACKAGE<font color="#990000">,</font> PACKAGE_BUGREPORT<font color="#990000">);</font>
+
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">program_list_models</font></b><font color="#990000">()</font>
+<font color="#FF0000">{</font>
+
+  <font color="#009900">int</font> index<font color="#990000">;</font>
+  <b><font color="#0000FF">const</font></b> <font color="#009900">int</font> numberofmodels <font color="#990000">=</font> <font color="#990000">(</font><font color="#009900">signed</font><font color="#990000">)(</font>sizeofoption_algorithms<font color="#990000">/</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font><b><font color="#0000FF">struct</font></b> <font color="#008080">option_algorithm</font><font color="#990000">));</font>
+  
+  <b><font color="#0000FF">for</font></b><font color="#990000">(</font> index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> numberofmodels<font color="#990000">;</font> index<font color="#990000">++</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%d "</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>modeltype<font color="#990000">);</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>des<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">program_source</font></b><font color="#990000">()</font>
+<font color="#FF0000">{</font>
+
+  <font color="#009900">int</font> index<font color="#990000">;</font>
+  <b><font color="#0000FF">const</font></b> <font color="#009900">int</font> numberofmodels <font color="#990000">=</font> <font color="#990000">(</font><font color="#009900">signed</font><font color="#990000">)(</font>sizeofoption_algorithms<font color="#990000">/</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font><b><font color="#0000FF">struct</font></b> <font color="#008080">option_algorithm</font><font color="#990000">));</font>
+  <font color="#009900">char</font> source_levelup<font color="#990000">[</font><font color="#993399">1024</font><font color="#990000">];</font>
+  <font color="#009900">char</font> source_levelup2<font color="#990000">[</font><font color="#993399">1024</font><font color="#990000">];</font>
+  
+  <b><font color="#0000FF">for</font></b><font color="#990000">(</font> index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> numberofmodels<font color="#990000">;</font> index<font color="#990000">++</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>source_levelup<font color="#990000">,</font><font color="#FF0000">"../%s"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>sourceCode<font color="#990000">);</font>
+    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>source_levelup2<font color="#990000">,</font><font color="#FF0000">"../%s"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>sourceCode2<font color="#990000">);</font>
+    <i><font color="#9A1900">//printf("%s %s\n",source_levelup,source_levelup);</font></i>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">strcmp</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>sourceCode<font color="#990000">,</font><font color="#FF0000">""</font><font color="#990000">)</font> <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> source_levelup<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+      <font color="#FF0000">{</font>
+        <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Source code cannot be accessed: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>sourceCode<font color="#990000">);</font>
+      <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">strcmp</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>sourceCode2<font color="#990000">,</font><font color="#FF0000">""</font><font color="#990000">)</font> <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+      <font color="#FF0000">{</font>
+	<b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> source_levelup2<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+         <font color="#FF0000">{</font>
+           <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Source code cannot be accessed: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>sourceCode2<font color="#990000">);</font>
+         <font color="#FF0000">}</font>
+      <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+  <font color="#FF0000">}</font>
+
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">program_check_pricing_models</font></b><font color="#990000">(</font><font color="#009900">bool</font> quietMode<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <font color="#009900">int</font> index<font color="#990000">;</font>
+  <b><font color="#0000FF">const</font></b> <font color="#009900">int</font> numberofmodels <font color="#990000">=</font> <font color="#990000">(</font><font color="#009900">signed</font><font color="#990000">)(</font>sizeofoption_algorithms<font color="#990000">/</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font><b><font color="#0000FF">struct</font></b> <font color="#008080">option_algorithm</font><font color="#990000">));</font>
+  <font color="#009900">char</font> statusMessage<font color="#990000">[</font><font color="#993399">80</font> <font color="#990000">*</font> <font color="#993399">3</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+  <font color="#009900">double</font> strike<font color="#990000">;</font>
+  <font color="#009900">double</font> t<font color="#990000">;</font>
+  <font color="#009900">double</font> totalNumberOfTests <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+
+  <b><font color="#0000FF">struct</font></b> <font color="#008080">_data</font> dat<font color="#990000">;</font>
+
+  dat<font color="#990000">.</font>price <font color="#990000">=</font> <font color="#993399">100</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>rate <font color="#990000">=</font> <font color="#993399">0.03</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>volatility <font color="#990000">=</font> <font color="#993399">0.25</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>dividend <font color="#990000">=</font> <font color="#990000">.</font><font color="#993399">02</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>steps <font color="#990000">=</font> <font color="#993399">25</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>term_model <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>UsePound <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>te  <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>te2 <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>te3 <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>te4 <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  <i><font color="#9A1900">// turn debug log off</font></i>
+  dat<font color="#990000">.</font>debug <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+
+  <font color="#009900">int</font> indexModelsWithPricingIssues <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+
+  <i><font color="#9A1900">// EURODIVIDENDS has a mutex lock problem on Fedora 32 bit but not Ubuntu...</font></i>
+  <b><font color="#0000FF">const</font></b> <font color="#009900">int</font> modelsWithPricingIssues<font color="#990000">[]</font> <font color="#990000">=</font> <font color="#FF0000">{</font> 
+    LOOKBARRIER<font color="#990000">,</font>
+    PARTIALTIMEBARRIER<font color="#990000">,</font>
+    PARTIALFIXEDLB<font color="#990000">,</font>
+    PARTIALFLOATLB<font color="#990000">,</font>
+    PARTIALFLOATLB2<font color="#990000">,</font>
+    EXTENDIBLEWRITER<font color="#990000">,</font>
+    CALLSONOPTIONS<font color="#990000">,</font>
+    PUTSONOPTIONS<font color="#990000">,</font>
+    EXCHANGEEXCHANGEOPTION<font color="#990000">,</font>
+    COMPLEXCHOOSER<font color="#990000">,</font>
+    EURODIVIDENDS<font color="#990000">,</font>
+    AMPROPORTDIVSBINOMIAL<font color="#990000">,</font>
+    BERMUDIANBINOMIAL<font color="#990000">,</font>
+    BSCOUPONBOND
+  <font color="#FF0000">}</font><font color="#990000">;</font>
+
+  <b><font color="#0000FF">const</font></b> <font color="#009900">int</font> numberOfPricingIssues <font color="#990000">=</font>  <b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>modelsWithPricingIssues<font color="#990000">)/</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>modelsWithPricingIssues<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]);</font>
+  <font color="#009900">bool</font> continueToSkip <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+
+  <i><font color="#9A1900">// vector inputs, only a few mondels using this...</font></i>
+  dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">0.25</font><font color="#990000">);</font>
+  dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>defaultDividend<font color="#990000">);</font> 
+
+  dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">0.75</font><font color="#990000">);</font>
+  dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>defaultDividend<font color="#990000">);</font> 
+      
+  dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">1.25</font><font color="#990000">);</font>
+  dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>defaultDividend<font color="#990000">);</font> 
+
+  dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">1.75</font><font color="#990000">);</font>
+  dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>defaultDividend<font color="#990000">);</font> 
+
+  <i><font color="#9A1900">//printf("size = %d\n", sizeof(modelsWithPricingIssues)/sizeof(modelsWithPricingIssues[0]));</font></i>
+
+  <font color="#008080">clock_t</font> c0<font color="#990000">,</font> c1<font color="#990000">;</font>
+  <b><font color="#0000FF">struct</font></b> <font color="#008080">timeval</font> start<font color="#990000">,</font> end<font color="#990000">;</font>
+
+  c0 <font color="#990000">=</font> <b><font color="#000000">clock</font></b><font color="#990000">();</font>
+  <b><font color="#000000">gettimeofday</font></b><font color="#990000">(&amp;</font>start<font color="#990000">,</font> NULL<font color="#990000">);</font>
+
+  <b><font color="#0000FF">for</font></b><font color="#990000">(</font> index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> numberofmodels<font color="#990000">;</font> index<font color="#990000">++</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    continueToSkip <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>assetClass <font color="#990000">==</font> BOND_CLASS <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#0000FF">if</font></b> <font color="#990000">(</font> <font color="#990000">!</font>quietMode <font color="#990000">)</font>
+	<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Bond class check not implemented</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+      <b><font color="#0000FF">continue</font></b><font color="#990000">;</font>
+
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>assetClass <font color="#990000">==</font> TERMSTRUCTURE_CLASS <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#0000FF">if</font></b> <font color="#990000">(</font> <font color="#990000">!</font>quietMode <font color="#990000">)</font>
+	<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Term Structure class check not implemented</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+      <b><font color="#0000FF">continue</font></b><font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">for</font></b><font color="#990000">(</font> indexModelsWithPricingIssues <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> indexModelsWithPricingIssues <font color="#990000">&lt;</font> numberOfPricingIssues<font color="#990000">;</font> indexModelsWithPricingIssues<font color="#990000">++</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>modeltype <font color="#990000">==</font> modelsWithPricingIssues<font color="#990000">[</font>indexModelsWithPricingIssues<font color="#990000">]</font> <font color="#990000">)</font>
+      <font color="#FF0000">{</font>
+        continueToSkip <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+        <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+      <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font>continueToSkip<font color="#990000">)</font>
+      <b><font color="#0000FF">continue</font></b><font color="#990000">;</font>
+
+    dat<font color="#990000">.</font>modeltype <font color="#990000">=</font> index<font color="#990000">;</font>
+
+    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font> <font color="#990000">!</font>quietMode <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%d "</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>modeltype<font color="#990000">);</font>
+      <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s "</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>des<font color="#990000">);</font>
+      <i><font color="#9A1900">//fflush(NULL);</font></i>
+    <font color="#FF0000">}</font>
+
+    dat<font color="#990000">.</font>UseZ <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>Zdefault<font color="#990000">;</font>
+    dat<font color="#990000">.</font>UseB <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>Bdefault<font color="#990000">;</font>
+    dat<font color="#990000">.</font>UseJ <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>Jdefault<font color="#990000">;</font>
+    dat<font color="#990000">.</font>UseP <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>Pdefault<font color="#990000">;</font>
+    dat<font color="#990000">.</font>UseQ <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>Qdefault<font color="#990000">;</font>
+    dat<font color="#990000">.</font>UseR <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>Rdefault<font color="#990000">;</font>
+    dat<font color="#990000">.</font>UseS <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>Sdefault<font color="#990000">;</font>
+    dat<font color="#990000">.</font>UseT <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>Tdefault<font color="#990000">;</font>
+    dat<font color="#990000">.</font>UsePound <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>Pounddefault<font color="#990000">;</font>
+
+    <b><font color="#0000FF">for</font></b><font color="#990000">(</font> t <font color="#990000">=</font> <font color="#993399">0.2</font><font color="#990000">;</font> t <font color="#990000">&lt;</font> <font color="#993399">3</font><font color="#990000">;</font> t <font color="#990000">+=</font> <font color="#993399">0.10</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      dat<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> t<font color="#990000">;</font>
+      dat<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> t <font color="#990000">*</font> <font color="#993399">2</font><font color="#990000">;</font>
+      dat<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]</font> <font color="#990000">=</font> t <font color="#990000">*</font> <font color="#993399">3</font><font color="#990000">;</font>
+
+      <b><font color="#0000FF">for</font></b><font color="#990000">(</font> strike <font color="#990000">=</font> <font color="#993399">5</font><font color="#990000">;</font> strike <font color="#990000">&lt;</font> <font color="#993399">150</font><font color="#990000">;</font> strike <font color="#990000">+=</font> <font color="#993399">5</font> <font color="#990000">)</font>
+      <font color="#FF0000">{</font>
+         <b><font color="#000000">sanity_check</font></b><font color="#990000">(&amp;</font>properties<font color="#990000">,</font> <font color="#990000">&amp;</font>statusMessage<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]);</font>
+
+         <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>assetClass <font color="#990000">==</font> OPTION_CLASS <font color="#990000">)</font>
+         <font color="#FF0000">{</font>
+           dat<font color="#990000">.</font>strike <font color="#990000">=</font> strike<font color="#990000">;</font>
+
+           <b><font color="#0000FF">struct</font></b> <font color="#008080">_data</font> optiondata<font color="#990000">;</font>
+
+           <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>supportCalls <font color="#990000">)</font>
+           <font color="#FF0000">{</font>
+             optiondata <font color="#990000">=</font> <b><font color="#000000">option_call</font></b><font color="#990000">(&amp;</font>dat<font color="#990000">);</font>
+             totalNumberOfTests<font color="#990000">++;</font>
+
+	     <b><font color="#0000FF">if</font></b> <font color="#990000">(</font> <font color="#990000">!</font>quietMode <font color="#990000">)</font>
+	       <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%f "</font><font color="#990000">,</font>optiondata<font color="#990000">.</font>call<font color="#990000">);</font>
+
+           <font color="#FF0000">}</font>
+
+           <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>supportPuts <font color="#990000">)</font>
+           <font color="#FF0000">{</font>
+             optiondata <font color="#990000">=</font> <b><font color="#000000">option_put</font></b><font color="#990000">(&amp;</font>dat<font color="#990000">);</font>
+             totalNumberOfTests<font color="#990000">++;</font>
+
+	     <b><font color="#0000FF">if</font></b> <font color="#990000">(</font> <font color="#990000">!</font>quietMode <font color="#990000">)</font>
+	       <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%f "</font><font color="#990000">,</font>optiondata<font color="#990000">.</font>put<font color="#990000">);</font>
+
+            <font color="#FF0000">}</font>
+
+         <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>assetClass <font color="#990000">==</font> FUTURES_CLASS <font color="#990000">)</font>
+         <font color="#FF0000">{</font>
+
+           <b><font color="#0000FF">struct</font></b> <font color="#008080">_data</font> futuredata<font color="#990000">;</font>
+           futuredata <font color="#990000">=</font> <b><font color="#000000">future</font></b><font color="#990000">(&amp;</font>dat<font color="#990000">);</font>
+           totalNumberOfTests<font color="#990000">++;</font>
+
+	   <b><font color="#0000FF">if</font></b> <font color="#990000">(</font> <font color="#990000">!</font>quietMode <font color="#990000">)</font>
+	     <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%f "</font><font color="#990000">,</font> futuredata<font color="#990000">.</font>price<font color="#990000">);</font>
+
+           <i><font color="#9A1900">// break futures have no strikes to iterate...</font></i>
+           <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+
+         <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+         <font color="#FF0000">{</font>
+           <i><font color="#9A1900">// should not reach...</font></i>
+	   <b><font color="#0000FF">if</font></b> <font color="#990000">(</font> <font color="#990000">!</font>quietMode <font color="#990000">)</font>
+	     <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"program_check_pricing_models(): asset class not understood: %d</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>assetClass<font color="#990000">);</font>
+
+           <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+         <font color="#FF0000">}</font>
+      <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#000000">gettimeofday</font></b><font color="#990000">(&amp;</font>end<font color="#990000">,</font> NULL<font color="#990000">);</font>
+  c1 <font color="#990000">=</font> <b><font color="#000000">clock</font></b><font color="#990000">();</font>
+
+  dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">erase</font></b><font color="#990000">(</font> dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">begin</font></b><font color="#990000">(),</font> dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">end</font></b><font color="#990000">()</font> <font color="#990000">);</font>
+  dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">erase</font></b><font color="#990000">(</font> dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">begin</font></b><font color="#990000">(),</font> dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">end</font></b><font color="#990000">()</font> <font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b> <font color="#990000">(</font> <font color="#990000">!</font>quietMode <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Tests skipped the following models due to open issues:</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+    <b><font color="#0000FF">for</font></b><font color="#990000">(</font> indexModelsWithPricingIssues <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> indexModelsWithPricingIssues <font color="#990000">&lt;</font> numberOfPricingIssues<font color="#990000">;</font> indexModelsWithPricingIssues<font color="#990000">++</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>modelsWithPricingIssues<font color="#990000">[</font>indexModelsWithPricingIssues<font color="#990000">]].</font>des<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Total number of tests run: %.0f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> totalNumberOfTests<font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Time %fs</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> <font color="#990000">(</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <font color="#990000">(</font>end<font color="#990000">.</font>tv_sec <font color="#990000">+</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> end<font color="#990000">.</font>tv_usec <font color="#990000">/</font> <font color="#993399">1000000</font><font color="#990000">)</font>
+	 <font color="#990000">-</font> <font color="#990000">(</font>start<font color="#990000">.</font>tv_sec <font color="#990000">+</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> start<font color="#990000">.</font>tv_usec <font color="#990000">/</font> <font color="#993399">1000000</font><font color="#990000">)));</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"CPU time: %fs</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> <font color="#990000">(</font><font color="#009900">float</font><font color="#990000">)</font> <font color="#990000">(</font>c1 <font color="#990000">-</font> c0<font color="#990000">)</font> <font color="#990000">/</font> CLOCKS_PER_SEC<font color="#990000">);</font>
+
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">program_check_pricing_time</font></b><font color="#990000">(</font><font color="#009900">int</font> modelnumber<font color="#990000">,</font> <font color="#009900">int</font> iterations<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> iterations <font color="#990000">&lt;</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Error: Iterations must be a postive number.</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#0000FF">const</font></b> <font color="#009900">int</font> numberofmodels <font color="#990000">=</font> <font color="#990000">(</font><font color="#009900">signed</font><font color="#990000">)(</font>sizeofoption_algorithms<font color="#990000">/</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font><b><font color="#0000FF">struct</font></b> <font color="#008080">option_algorithm</font><font color="#990000">));</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> modelnumber <font color="#990000">&lt;</font> <font color="#993399">0</font> <font color="#990000">||</font> modelnumber <font color="#990000">&gt;=</font> numberofmodels <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Error: Model range: 0 to %d</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> numberofmodels<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">);</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>assetClass <font color="#990000">==</font> BOND_CLASS <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Bond time check not implemented</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>assetClass <font color="#990000">==</font> TERMSTRUCTURE_CLASS <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+      <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Term Structure time check not implemented</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+      <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+  <font color="#008080">clock_t</font> c0<font color="#990000">,</font> c1<font color="#990000">;</font>
+  <b><font color="#0000FF">struct</font></b> <font color="#008080">timeval</font> start<font color="#990000">,</font> end<font color="#990000">;</font>
+
+  <font color="#009900">char</font> statusMessage<font color="#990000">[</font><font color="#993399">80</font> <font color="#990000">*</font> <font color="#993399">3</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+
+  <b><font color="#0000FF">struct</font></b> <font color="#008080">_data</font> dat<font color="#990000">;</font>
+
+  dat<font color="#990000">.</font>modeltype <font color="#990000">=</font> modelnumber<font color="#990000">;</font>
+  dat<font color="#990000">.</font>price <font color="#990000">=</font> <font color="#993399">100</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>strike <font color="#990000">=</font> <font color="#993399">100</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>rate <font color="#990000">=</font> <font color="#993399">0.03</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>volatility <font color="#990000">=</font> <font color="#993399">0.25</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>dividend <font color="#990000">=</font> <font color="#990000">.</font><font color="#993399">02</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">2</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">3</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>steps <font color="#990000">=</font> <font color="#993399">50</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>term_model <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>UsePound <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>te  <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>te2 <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>te3 <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>te4 <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  dat<font color="#990000">.</font>debug <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Model #: %d "</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>modeltype<font color="#990000">);</font>
+  <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s</font><font color="#CC33CC">\n\n</font><font color="#FF0000">"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>des<font color="#990000">);</font>
+
+  <font color="#009900">int</font> index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+
+  <i><font color="#9A1900">// vector inputs, only a few mondels using this...</font></i>
+  dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">0.25</font><font color="#990000">);</font>
+  dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>defaultDividend<font color="#990000">);</font> 
+
+  dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">0.75</font><font color="#990000">);</font>
+  dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>defaultDividend<font color="#990000">);</font> 
+      
+  dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">1.25</font><font color="#990000">);</font>
+  dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>defaultDividend<font color="#990000">);</font> 
+
+  dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font><font color="#993399">1.75</font><font color="#990000">);</font>
+  dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">push_back</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>defaultDividend<font color="#990000">);</font> 
+
+  dat<font color="#990000">.</font>UseZ <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>Zdefault<font color="#990000">;</font>
+  dat<font color="#990000">.</font>UseB <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>Bdefault<font color="#990000">;</font>
+  dat<font color="#990000">.</font>UseJ <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>Jdefault<font color="#990000">;</font>
+  dat<font color="#990000">.</font>UseP <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>Pdefault<font color="#990000">;</font>
+  dat<font color="#990000">.</font>UseQ <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>Qdefault<font color="#990000">;</font>
+  dat<font color="#990000">.</font>UseR <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>Rdefault<font color="#990000">;</font>
+  dat<font color="#990000">.</font>UseS <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>Sdefault<font color="#990000">;</font>
+  dat<font color="#990000">.</font>UseT <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>Tdefault<font color="#990000">;</font>
+  dat<font color="#990000">.</font>UsePound <font color="#990000">=</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>Pounddefault<font color="#990000">;</font>
+
+  <b><font color="#000000">sanity_check</font></b><font color="#990000">(&amp;</font>properties<font color="#990000">,</font> <font color="#990000">&amp;</font>statusMessage<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]);</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>assetClass <font color="#990000">==</font> OPTION_CLASS <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>supportCalls <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#0000FF">struct</font></b> <font color="#008080">_data</font> optiondata<font color="#990000">;</font>
+
+      c0 <font color="#990000">=</font> <b><font color="#000000">clock</font></b><font color="#990000">();</font>
+      <b><font color="#000000">gettimeofday</font></b><font color="#990000">(&amp;</font>start<font color="#990000">,</font> NULL<font color="#990000">);</font>
+
+      <b><font color="#0000FF">for</font></b><font color="#990000">(</font>index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> iterations<font color="#990000">;</font> index<font color="#990000">++)</font>
+        optiondata <font color="#990000">=</font> <b><font color="#000000">option_call</font></b><font color="#990000">(&amp;</font>dat<font color="#990000">);</font>
+
+      <b><font color="#000000">gettimeofday</font></b><font color="#990000">(&amp;</font>end<font color="#990000">,</font> NULL<font color="#990000">);</font>
+      c1 <font color="#990000">=</font> <b><font color="#000000">clock</font></b><font color="#990000">();</font>
+
+      <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%d Calls calculated @</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> iterations<font color="#990000">);</font>
+      <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Time %fs</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> <font color="#990000">(</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <font color="#990000">(</font>end<font color="#990000">.</font>tv_sec <font color="#990000">+</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> end<font color="#990000">.</font>tv_usec <font color="#990000">/</font> <font color="#993399">1000000</font><font color="#990000">)</font>
+                  <font color="#990000">-</font> <font color="#990000">(</font>start<font color="#990000">.</font>tv_sec <font color="#990000">+</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> start<font color="#990000">.</font>tv_usec <font color="#990000">/</font> <font color="#993399">1000000</font><font color="#990000">)));</font>
+      <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"CPU time: %fs</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> <font color="#990000">(</font><font color="#009900">float</font><font color="#990000">)</font> <font color="#990000">(</font>c1 <font color="#990000">-</font> c0<font color="#990000">)</font> <font color="#990000">/</font> CLOCKS_PER_SEC<font color="#990000">);</font>
+
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>supportPuts <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#0000FF">struct</font></b> <font color="#008080">_data</font> optiondata<font color="#990000">;</font>
+
+      c0 <font color="#990000">=</font> <b><font color="#000000">clock</font></b><font color="#990000">();</font>
+      <b><font color="#000000">gettimeofday</font></b><font color="#990000">(&amp;</font>start<font color="#990000">,</font> NULL<font color="#990000">);</font>
+
+      <b><font color="#0000FF">for</font></b><font color="#990000">(</font>index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> iterations<font color="#990000">;</font> index<font color="#990000">++)</font>
+        optiondata <font color="#990000">=</font> <b><font color="#000000">option_put</font></b><font color="#990000">(&amp;</font>dat<font color="#990000">);</font>
+
+      <b><font color="#000000">gettimeofday</font></b><font color="#990000">(&amp;</font>end<font color="#990000">,</font> NULL<font color="#990000">);</font>
+      c1 <font color="#990000">=</font> <b><font color="#000000">clock</font></b><font color="#990000">();</font>
+
+      <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">%d Puts calculated @</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> iterations<font color="#990000">);</font>
+      <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Time %fs</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> <font color="#990000">(</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <font color="#990000">(</font>end<font color="#990000">.</font>tv_sec <font color="#990000">+</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> end<font color="#990000">.</font>tv_usec <font color="#990000">/</font> <font color="#993399">1000000</font><font color="#990000">)</font>
+                  <font color="#990000">-</font> <font color="#990000">(</font>start<font color="#990000">.</font>tv_sec <font color="#990000">+</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> start<font color="#990000">.</font>tv_usec <font color="#990000">/</font> <font color="#993399">1000000</font><font color="#990000">)));</font>
+      <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"CPU time: %fs</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> <font color="#990000">(</font><font color="#009900">float</font><font color="#990000">)</font> <font color="#990000">(</font>c1 <font color="#990000">-</font> c0<font color="#990000">)</font> <font color="#990000">/</font> CLOCKS_PER_SEC<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>assetClass <font color="#990000">==</font> FUTURES_CLASS <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#0000FF">struct</font></b> <font color="#008080">_data</font> futuredata<font color="#990000">;</font>
+
+    c0 <font color="#990000">=</font> <b><font color="#000000">clock</font></b><font color="#990000">();</font>
+    <b><font color="#000000">gettimeofday</font></b><font color="#990000">(&amp;</font>start<font color="#990000">,</font> NULL<font color="#990000">);</font>
+
+    <b><font color="#0000FF">for</font></b><font color="#990000">(</font>index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> iterations<font color="#990000">;</font> index<font color="#990000">++)</font>
+      futuredata <font color="#990000">=</font> <b><font color="#000000">future</font></b><font color="#990000">(&amp;</font>dat<font color="#990000">);</font>
+
+    <b><font color="#000000">gettimeofday</font></b><font color="#990000">(&amp;</font>end<font color="#990000">,</font> NULL<font color="#990000">);</font>
+    c1 <font color="#990000">=</font> <b><font color="#000000">clock</font></b><font color="#990000">();</font>
+
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%d Futures calculated @</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> iterations<font color="#990000">);</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Time %fs</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> <font color="#990000">(</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <font color="#990000">(</font>end<font color="#990000">.</font>tv_sec <font color="#990000">+</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> end<font color="#990000">.</font>tv_usec <font color="#990000">/</font> <font color="#993399">1000000</font><font color="#990000">)</font>
+                <font color="#990000">-</font> <font color="#990000">(</font>start<font color="#990000">.</font>tv_sec <font color="#990000">+</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> start<font color="#990000">.</font>tv_usec <font color="#990000">/</font> <font color="#993399">1000000</font><font color="#990000">)));</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"CPU time: %fs</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> <font color="#990000">(</font><font color="#009900">float</font><font color="#990000">)</font> <font color="#990000">(</font>c1 <font color="#990000">-</font> c0<font color="#990000">)</font> <font color="#990000">/</font> CLOCKS_PER_SEC<font color="#990000">);</font>
+
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+  <font color="#FF0000">{</font>
+    <i><font color="#9A1900">// should not reach...</font></i>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"program_check_pricing_time(): Error: Asset class not understood: %d</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> option_algorithms<font color="#990000">[</font>modelnumber<font color="#990000">].</font>assetClass<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+
+  dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">erase</font></b><font color="#990000">(</font> dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">begin</font></b><font color="#990000">(),</font> dat<font color="#990000">.</font>amounts<font color="#990000">.</font><b><font color="#000000">end</font></b><font color="#990000">()</font> <font color="#990000">);</font>
+  dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">erase</font></b><font color="#990000">(</font> dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">begin</font></b><font color="#990000">(),</font> dat<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">end</font></b><font color="#990000">()</font> <font color="#990000">);</font>
+
+<font color="#FF0000">}</font>
+</tt></pre>

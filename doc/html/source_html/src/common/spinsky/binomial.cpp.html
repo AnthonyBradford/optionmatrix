@@ -1,0 +1,240 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/* Pricing for American and European options using binomial trees */</font></i>
+<i><font color="#9A1900">/* binomial.c originally named amereuro.c, main() removed         */</font></i>
+<i><font color="#9A1900">/* Copyright (c) Seth Pinsky. 2008                                */</font></i>
+<i><font color="#9A1900">/* </font></i>
+<i><font color="#9A1900">   This program is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">   it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">   the Free Software Foundation; either version 3 of the License, or</font></i>
+<i><font color="#9A1900">   (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">   This program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">   but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">   GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">   You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">   along with this program.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdio.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdlib.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;math.h&gt;</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"binomial.h"</font>
+
+<i><font color="#9A1900">/************************FUNCTION PROTOTYPES********************/</font></i>
+<font color="#008080">Float</font> <b><font color="#000000">option_price</font></b><font color="#990000">(</font>Ivar<font color="#990000">,</font><font color="#009900">long</font><font color="#990000">,</font><font color="#009900">int</font><font color="#990000">,</font><font color="#009900">int</font><font color="#990000">);</font>
+<font color="#008080">TreeConst</font> <b><font color="#000000">GetConst</font></b><font color="#990000">(</font>Ivar<font color="#990000">,</font><font color="#009900">int</font><font color="#990000">,</font><font color="#009900">long</font><font color="#990000">);</font>
+<font color="#008080">Float</font> <b><font color="#000000">Max</font></b><font color="#990000">(</font>Float<font color="#990000">,</font>Float<font color="#990000">);</font>
+<i><font color="#9A1900">/***************************************************************/</font></i>
+
+<i><font color="#9A1900">/*calculate up, down, and probability based on method used*/</font></i>
+<font color="#008080">TreeConst</font> <b><font color="#000000">GetConst</font></b><font color="#990000">(</font><font color="#008080">Ivar</font> option_data<font color="#990000">,</font> <font color="#009900">int</font> method<font color="#990000">,</font> <font color="#009900">long</font> steps<font color="#990000">)</font><font color="#FF0000">{</font>
+	<font color="#008080">TreeConst</font> constants<font color="#990000">;</font>
+	<font color="#008080">Float</font> mu<font color="#990000">,</font> sigma<font color="#990000">,</font> dt<font color="#990000">;</font>
+
+
+	<i><font color="#9A1900">/******DATA FOR DETERMINATION OF UP, DOWN, AND PROB******/</font></i>
+	mu <font color="#990000">=</font> option_data<font color="#990000">.</font>mu<font color="#990000">;</font>
+	sigma <font color="#990000">=</font> option_data<font color="#990000">.</font>sigma<font color="#990000">;</font>
+	dt <font color="#990000">=</font> option_data<font color="#990000">.</font>T <font color="#990000">/</font> <font color="#990000">(</font>steps <font color="#990000">-</font> ONE<font color="#990000">);</font>
+	<i><font color="#9A1900">/********************************************************/</font></i>
+	
+
+	<i><font color="#9A1900">/******COX-ROSS-RUBINSTEIN FORMULAE**********************/</font></i>
+	<b><font color="#0000FF">if</font></b><font color="#990000">(</font>CRR <font color="#990000">==</font> method<font color="#990000">)</font><font color="#FF0000">{</font>
+		constants<font color="#990000">.</font>up <font color="#990000">=</font>   <b><font color="#000000">exp</font></b><font color="#990000">(</font>sigma <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>dt<font color="#990000">));</font>
+		constants<font color="#990000">.</font>down <font color="#990000">=</font> UNITY <font color="#990000">/</font> constants<font color="#990000">.</font>up<font color="#990000">;</font>
+		constants<font color="#990000">.</font>prob <font color="#990000">=</font> <font color="#990000">(</font><b><font color="#000000">exp</font></b><font color="#990000">(</font>mu<font color="#990000">*</font>dt<font color="#990000">)</font> <font color="#990000">-</font> constants<font color="#990000">.</font>down<font color="#990000">)</font> <font color="#990000">/</font> 
+			<font color="#990000">(</font>constants<font color="#990000">.</font>up <font color="#990000">-</font> constants<font color="#990000">.</font>down<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+	<i><font color="#9A1900">/********************************************************/</font></i>
+
+
+	<i><font color="#9A1900">/*****EQUIPROBABIITY FORMULAE****************************/</font></i>
+	<b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font>EQUIPROB <font color="#990000">==</font> method<font color="#990000">)</font><font color="#FF0000">{</font>
+		constants<font color="#990000">.</font>prob <font color="#990000">=</font> HALF<font color="#990000">;</font>
+		<i><font color="#9A1900">/*expressions from Hull book*/</font></i>
+		constants<font color="#990000">.</font>up<font color="#990000">=</font><b><font color="#000000">exp</font></b><font color="#990000">((</font>mu <font color="#990000">-</font> <b><font color="#000000">SQR</font></b><font color="#990000">(</font>sigma<font color="#990000">)/</font>TWO<font color="#990000">)*</font>dt <font color="#990000">+</font> sigma <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>dt<font color="#990000">));</font> 
+		constants<font color="#990000">.</font>down<font color="#990000">=</font><b><font color="#000000">exp</font></b><font color="#990000">((</font>mu <font color="#990000">-</font> <b><font color="#000000">SQR</font></b><font color="#990000">(</font>sigma<font color="#990000">)/</font>TWO<font color="#990000">)*</font>dt <font color="#990000">-</font> sigma <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>dt<font color="#990000">));</font>
+	<font color="#FF0000">}</font>
+	<i><font color="#9A1900">/********************************************************/</font></i>
+
+
+	<i><font color="#9A1900">/**********FAULTY VALUE FOR METHOD***********************/</font></i>
+	<b><font color="#0000FF">else</font></b><font color="#FF0000">{</font>
+		<b><font color="#000000">fprintf</font></b><font color="#990000">(</font>stderr<font color="#990000">,</font> <font color="#FF0000">"ERROR: invalid method specified</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+		<b><font color="#000000">exit</font></b><font color="#990000">(</font>ERROR<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+	<i><font color="#9A1900">/*********************************************************/</font></i>
+
+	<b><font color="#0000FF">return</font></b> constants<font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+
+
+
+<i><font color="#9A1900">/*return option price*/</font></i>
+<font color="#008080">Float</font> <b><font color="#000000">option_price</font></b><font color="#990000">(</font>
+	<font color="#008080">Ivar</font> vars<font color="#990000">,</font>      <i><font color="#9A1900">/*five floating vars defined in Ivar type*/</font></i>
+	<font color="#009900">long</font> steps<font color="#990000">,</font>     <i><font color="#9A1900">/*number of steps in the binomial tree*/</font></i>
+	<font color="#009900">int</font> type<font color="#990000">,</font>       <i><font color="#9A1900">/*call / put  -- American/European*/</font></i>
+	<font color="#009900">int</font> method      <i><font color="#9A1900">/*Cox-Ross-Rubinstein or Equiprobability*/</font></i>
+<font color="#990000">)</font><font color="#FF0000">{</font>
+
+	<font color="#008080">Node</font> <font color="#990000">*</font>tree<font color="#990000">;</font>
+	<font color="#008080">TreeConst</font> constants<font color="#990000">;</font>    <i><font color="#9A1900">/*constants for CRR or EQUIPROB*/</font></i>
+	<font color="#008080">Float</font> up<font color="#990000">,</font> down<font color="#990000">;</font>         <i><font color="#9A1900">/*constants for CRR or EQUIPROB*/</font></i>
+	<font color="#008080">Float</font> up_prob<font color="#990000">;</font>          <i><font color="#9A1900">/*constants for CRR or EQUIPROB*/</font></i>
+	<font color="#008080">Float</font> down_prob<font color="#990000">;</font>        <i><font color="#9A1900">/*constants for CRR or EQUIPROB*/</font></i>
+	<font color="#009900">long</font> StepPtr<font color="#990000">;</font>           <i><font color="#9A1900">/*dummy: step pointer*/</font></i>
+	<font color="#009900">long</font> SpotPtr<font color="#990000">;</font>           <i><font color="#9A1900">/*dummy: price pointer*/</font></i> 
+	<font color="#008080">Float</font> discount<font color="#990000">;</font>         <i><font color="#9A1900">/*discount factor for one time step*/</font></i>
+	<font color="#008080">Float</font> price<font color="#990000">;</font>            <i><font color="#9A1900">/*value to be returned*/</font></i>
+	<font color="#008080">Float</font> dt<font color="#990000">;</font>               <i><font color="#9A1900">/*time step*/</font></i>
+
+
+
+	<i><font color="#9A1900">/******CALCULATE DISCOUNT FACTOR FOR ONE TIME STEP********/</font></i>
+	dt <font color="#990000">=</font> vars<font color="#990000">.</font>T <font color="#990000">/</font> <font color="#990000">(</font>steps <font color="#990000">-</font> ONE<font color="#990000">);</font>
+	discount <font color="#990000">=</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>vars<font color="#990000">.</font>mu <font color="#990000">*</font> dt<font color="#990000">);</font>
+	<i><font color="#9A1900">/*********************************************************/</font></i>
+
+
+	<i><font color="#9A1900">/***CALCULATE APPROPRIATE CONSTANTS FOR SPECIFIED METHOD**/</font></i>
+	constants <font color="#990000">=</font> <b><font color="#000000">GetConst</font></b><font color="#990000">(</font>vars<font color="#990000">,</font> method<font color="#990000">,</font> steps<font color="#990000">);</font>
+	up <font color="#990000">=</font> constants<font color="#990000">.</font>up<font color="#990000">;</font>
+	down <font color="#990000">=</font> constants<font color="#990000">.</font>down<font color="#990000">;</font>
+	up_prob <font color="#990000">=</font> constants<font color="#990000">.</font>prob<font color="#990000">;</font>
+	down_prob <font color="#990000">=</font> UNITY <font color="#990000">-</font> up_prob<font color="#990000">;</font>
+	<i><font color="#9A1900">/*********************************************************/</font></i>
+	
+
+
+	<i><font color="#9A1900">/******ALLOCATE SPACE FOR ONE STEP IN BINOMIAL TREE*******/</font></i>
+	tree <font color="#990000">=</font> <font color="#990000">(</font>Node<font color="#990000">*)</font><b><font color="#000000">malloc</font></b><font color="#990000">((</font>steps <font color="#990000">+</font> ONE<font color="#990000">)*</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>Node<font color="#990000">));</font>
+	<b><font color="#0000FF">if</font></b><font color="#990000">(</font>NULL <font color="#990000">==</font> tree<font color="#990000">)</font><font color="#FF0000">{</font>
+		<b><font color="#000000">fprintf</font></b><font color="#990000">(</font>stderr<font color="#990000">,</font> <font color="#FF0000">"ERROR: failure of malloc()</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+		<b><font color="#000000">exit</font></b><font color="#990000">(</font>ERROR<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+	<i><font color="#9A1900">/********************************************************/</font></i>
+
+
+
+	<i><font color="#9A1900">/*********FIRST INITIALIZE ZEROTH NODE*******************/</font></i>
+	tree<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">].</font>spot <font color="#990000">=</font> vars<font color="#990000">.</font>S<font color="#990000">;</font>
+	tree<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">].</font>prob <font color="#990000">=</font> UNITY<font color="#990000">;</font>
+	<i><font color="#9A1900">/*********************************************************/</font></i>
+
+
+
+	<i><font color="#9A1900">/*********FILL TREE WITH SPOT PRICES**********************/</font></i>
+	<b><font color="#0000FF">for</font></b><font color="#990000">(</font>StepPtr <font color="#990000">=</font> ONE<font color="#990000">;</font> StepPtr <font color="#990000">&lt;</font> steps<font color="#990000">;</font> StepPtr<font color="#990000">++)</font><font color="#FF0000">{</font>
+		tree<font color="#990000">[</font>StepPtr<font color="#990000">].</font>spot <font color="#990000">=</font> tree<font color="#990000">[</font>StepPtr <font color="#990000">-</font> ONE<font color="#990000">].</font>spot <font color="#990000">*</font> up<font color="#990000">;</font>
+		<b><font color="#0000FF">for</font></b><font color="#990000">(</font>SpotPtr <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> SpotPtr <font color="#990000">&lt;</font> StepPtr<font color="#990000">;</font> SpotPtr<font color="#990000">++)</font><font color="#FF0000">{</font>
+			tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>spot <font color="#990000">*=</font> down<font color="#990000">;</font> 
+		<font color="#FF0000">}</font>
+	<font color="#FF0000">}</font>
+	<i><font color="#9A1900">/**********************************************************/</font></i>
+
+
+
+	<i><font color="#9A1900">/********FILL TREE WITH PROBABILITIES**********************/</font></i>
+	<b><font color="#0000FF">for</font></b><font color="#990000">(</font>StepPtr <font color="#990000">=</font> ONE<font color="#990000">;</font> StepPtr <font color="#990000">&lt;</font> steps<font color="#990000">;</font> StepPtr<font color="#990000">++)</font><font color="#FF0000">{</font>
+
+		<i><font color="#9A1900">/*calculate prob for highest spot price*/</font></i>
+		tree<font color="#990000">[</font>StepPtr<font color="#990000">].</font>prob <font color="#990000">=</font>
+			tree<font color="#990000">[</font>StepPtr <font color="#990000">-</font> ONE<font color="#990000">].</font>prob <font color="#990000">*</font> up_prob<font color="#990000">;</font>
+
+		<i><font color="#9A1900">/*calculate prob for spot price in between*/</font></i>
+		<b><font color="#0000FF">for</font></b><font color="#990000">(</font>SpotPtr <font color="#990000">=</font> StepPtr <font color="#990000">-</font> ONE<font color="#990000">;</font> SpotPtr <font color="#990000">&gt;</font> <font color="#993399">0</font><font color="#990000">;</font> SpotPtr<font color="#990000">--)</font><font color="#FF0000">{</font>
+			tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>prob <font color="#990000">=</font> 
+				tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>prob <font color="#990000">*</font> down_prob
+				<font color="#990000">+</font>
+				tree<font color="#990000">[</font>SpotPtr <font color="#990000">-</font> ONE<font color="#990000">].</font>prob <font color="#990000">*</font> up_prob
+			<font color="#990000">;</font>
+		<font color="#FF0000">}</font>
+
+		<i><font color="#9A1900">/*calculate prob for lowest spot price*/</font></i>
+		tree<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">].</font>prob <font color="#990000">*=</font> down_prob<font color="#990000">;</font>
+	<font color="#FF0000">}</font>
+	<i><font color="#9A1900">/**********************************************************/</font></i>
+
+
+
+	<i><font color="#9A1900">/******CALCULATE OPTION VALUES ON EXPIRATION DATE**********/</font></i>
+	<b><font color="#0000FF">if</font></b><font color="#990000">((</font>EUROCALL <font color="#990000">==</font> type<font color="#990000">)||(</font>AMERCALL <font color="#990000">==</font> type<font color="#990000">))</font><font color="#FF0000">{</font>
+		<b><font color="#0000FF">for</font></b><font color="#990000">(</font>SpotPtr <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> SpotPtr <font color="#990000">&lt;</font> steps<font color="#990000">;</font> SpotPtr<font color="#990000">++)</font><font color="#FF0000">{</font>
+			tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>option <font color="#990000">=</font>  
+				<b><font color="#000000">BMAX</font></b><font color="#990000">(</font><font color="#993399">0.0</font><font color="#990000">,</font> tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>spot <font color="#990000">-</font> vars<font color="#990000">.</font>X<font color="#990000">);</font>
+		<font color="#FF0000">}</font>
+	<font color="#FF0000">}</font>
+	<b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">((</font>EUROPUT <font color="#990000">==</font> type<font color="#990000">)||(</font>AMERPUT <font color="#990000">==</font> type<font color="#990000">))</font><font color="#FF0000">{</font>
+		<b><font color="#0000FF">for</font></b><font color="#990000">(</font>SpotPtr <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> SpotPtr <font color="#990000">&lt;</font> steps<font color="#990000">;</font> SpotPtr<font color="#990000">++)</font><font color="#FF0000">{</font>
+			tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>option <font color="#990000">=</font>
+				<b><font color="#000000">BMAX</font></b><font color="#990000">(</font><font color="#993399">0.0</font><font color="#990000">,</font> vars<font color="#990000">.</font>X <font color="#990000">-</font> tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>spot<font color="#990000">);</font>
+		<font color="#FF0000">}</font>
+	<font color="#FF0000">}</font>
+	<b><font color="#0000FF">else</font></b><font color="#FF0000">{</font>
+		<b><font color="#000000">fprintf</font></b><font color="#990000">(</font>stderr<font color="#990000">,</font> <font color="#FF0000">"ERROR: invalid option type</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+		<b><font color="#000000">exit</font></b><font color="#990000">(</font>ERROR<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+	<i><font color="#9A1900">/***********************************************************/</font></i>
+
+
+
+
+	<i><font color="#9A1900">/*WALK BACKWARDS THROUGH BINOMIAL TREE FROM EXPIRATION TO ORIGIN*/</font></i>
+	price<font color="#990000">=</font><font color="#993399">0.0</font><font color="#990000">;</font>
+	<b><font color="#0000FF">for</font></b><font color="#990000">(</font>StepPtr <font color="#990000">=</font> steps <font color="#990000">-</font> ITWO<font color="#990000">;</font> StepPtr <font color="#990000">&gt;=</font><font color="#993399">0</font><font color="#990000">;</font> StepPtr<font color="#990000">--)</font><font color="#FF0000">{</font>
+		<b><font color="#0000FF">for</font></b><font color="#990000">(</font>SpotPtr <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> SpotPtr <font color="#990000">&lt;=</font> StepPtr<font color="#990000">;</font> SpotPtr<font color="#990000">++)</font><font color="#FF0000">{</font>
+			<font color="#008080">Float</font> early <font color="#990000">=</font> <font color="#993399">0.0</font><font color="#990000">;</font>      <i><font color="#9A1900">/*value if exercised early*/</font></i>
+
+			<i><font color="#9A1900">/*calculate weighted average*/</font></i>
+			tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>option <font color="#990000">=</font> 
+				down_prob <font color="#990000">*</font> tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>option 
+				<font color="#990000">+</font>
+				up_prob <font color="#990000">*</font> tree<font color="#990000">[</font>SpotPtr <font color="#990000">+</font> ONE<font color="#990000">].</font>option
+			<font color="#990000">;</font>
+
+			<i><font color="#9A1900">/*calculate spot price*/</font></i>
+			tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>spot <font color="#990000">=</font>
+				tree<font color="#990000">[</font>SpotPtr<font color="#990000">+</font>ONE<font color="#990000">].</font>spot <font color="#990000">/</font> up<font color="#990000">;</font>
+
+			<i><font color="#9A1900">/*apply discount factor*/</font></i>
+			tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>option <font color="#990000">*=</font> discount<font color="#990000">;</font>
+
+
+			<i><font color="#9A1900">/*determine if early exercise is desirable*/</font></i>
+			<b><font color="#0000FF">if</font></b><font color="#990000">(</font>AMERCALL <font color="#990000">==</font> type<font color="#990000">)</font><font color="#FF0000">{</font>
+				early <font color="#990000">=</font> <b><font color="#000000">BMAX</font></b><font color="#990000">(</font><font color="#993399">0.0</font><font color="#990000">,</font> tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>spot <font color="#990000">-</font> vars<font color="#990000">.</font>X<font color="#990000">);</font>
+			<font color="#FF0000">}</font>
+			<b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font>AMERPUT <font color="#990000">==</font> type<font color="#990000">)</font><font color="#FF0000">{</font>
+				early <font color="#990000">=</font> <b><font color="#000000">BMAX</font></b><font color="#990000">(</font><font color="#993399">0.0</font><font color="#990000">,</font> vars<font color="#990000">.</font>X <font color="#990000">-</font> tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>spot<font color="#990000">);</font>
+			<font color="#FF0000">}</font>
+			
+			tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>option <font color="#990000">=</font> <b><font color="#000000">BMAX</font></b><font color="#990000">(</font>
+				tree<font color="#990000">[</font>SpotPtr<font color="#990000">].</font>option<font color="#990000">,</font>
+				early
+			<font color="#990000">);</font>
+
+
+		<font color="#FF0000">}</font>
+	<font color="#FF0000">}</font>
+	<i><font color="#9A1900">/*******************************************************************/</font></i>
+
+	
+
+	<i><font color="#9A1900">/*price is...*/</font></i>
+	price <font color="#990000">=</font>  tree<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">].</font>option<font color="#990000">;</font>
+
+	<i><font color="#9A1900">/*return the binomial tree to the memory pool and return the result*/</font></i>
+	<b><font color="#000000">free</font></b><font color="#990000">(</font>tree<font color="#990000">);</font>
+	
+	<b><font color="#0000FF">return</font></b> price<font color="#990000">;</font>
+<font color="#FF0000">}</font>
+</tt></pre>

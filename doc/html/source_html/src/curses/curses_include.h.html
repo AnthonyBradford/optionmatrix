@@ -1,0 +1,57 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/* optionmatrix:                                                            */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Options &amp; Futures Matrix Modeler                                         */</font></i>
+<i><font color="#9A1900">/* View and Control Theoretical Option Chains                               */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* File: curses_include.h of optionmatrix                                   */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Copyright (c) Anthony Bradford. 2012.                                    */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">http://anthonybradford.com</font></u><i><font color="#9A1900">                                               */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">info@anthonybradford.com</font></u><i><font color="#9A1900">                                                 */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* optionmatrix may be freely redistributed.                                */</font></i>
+<i><font color="#9A1900">/* See file COPYING included with this distribution for license information */</font></i>
+
+<i><font color="#9A1900">/* </font></i>
+<i><font color="#9A1900">   optionmatrix is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">   it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">   the Free Software Foundation; either version 3 of the License, or</font></i>
+<i><font color="#9A1900">   (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">   optionmatrix program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">   but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">   GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">   You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">   along with this program.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#ifdef</font></b> HAVE_CURSES_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;curses.h&gt;</font>
+
+<b><font color="#000080">#elif</font></b> HAVE_NCURSES_NCURSES_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;ncurses/ncurses.h&gt;</font>
+
+<b><font color="#000080">#elif</font></b> HAVE_NCURSES_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;ncurses.h&gt;</font>
+
+<b><font color="#000080">#elif</font></b> HAVE_NCURSES_CURSES_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;ncurses/curses.h&gt;</font>
+
+<b><font color="#000080">#elif</font></b> HAVE_PDCURSES_CURSES_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;pdcurses/pdcurses.h&gt;</font>
+
+<b><font color="#000080">#elif</font></b> HAVE_PDCURSES_H
+<b><font color="#000080"># include</font></b> <font color="#FF0000">&lt;pdcurses.h&gt;</font>
+
+<b><font color="#000080">#else</font></b>
+<i><font color="#9A1900">// You might still be able to build the GTK+ version of the program...</font></i>
+<b><font color="#000080"># error</font></b> Sorry<font color="#990000">,</font> <b><font color="#0000FF">this</font></b> code <font color="#008080">requires</font> curses<font color="#990000">.</font>h <b><font color="#0000FF">for</font></b> the programs curses version
+
+<b><font color="#000080">#endif</font></b>
+</tt></pre>

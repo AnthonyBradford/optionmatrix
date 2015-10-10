@@ -1,0 +1,44 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>
+
+<i><font color="#9A1900">//////// term structure ////////////////////////////////////////////////////</font></i>
+
+<font color="#009900">double</font> <b><font color="#000000">term_structure_discount_factor_estimated_cir</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> t<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">,</font> 
+						    <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> phi1<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> phi2<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> phi3<font color="#990000">);</font>
+
+<font color="#009900">double</font> <b><font color="#000000">term_structure_yield_bliss</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> t<font color="#990000">,</font>
+				  <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> gamma0<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> gamma1<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> gamma2<font color="#990000">,</font>
+				  <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> lambda1<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> lambda2<font color="#990000">);</font>
+
+<i><font color="#9A1900">///////////////////////////////////////////////////////////////////////////</font></i>
+<i><font color="#9A1900">// fixed income derivatives, </font></i>
+<i><font color="#9A1900">// Black Scholes bond option</font></i>
+
+<font color="#009900">double</font> <b><font color="#000000">bond_option_price_call_zero_black_scholes</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> B<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> X<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">,</font> 
+						 <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> sigma<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> time<font color="#990000">);</font>
+
+<font color="#009900">double</font> <b><font color="#000000">bond_option_price_put_zero_black_scholes</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> B<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> X<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">,</font>
+						<b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> sigma<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> time<font color="#990000">);</font>
+
+<font color="#009900">double</font> <b><font color="#000000">bond_option_price_call_coupon_bond_black_scholes</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> B<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> X<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">,</font> 
+							<b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> sigma<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> time<font color="#990000">,</font> 
+							<font color="#008080">vector&lt;double&gt;</font> coupon_times<font color="#990000">,</font> 
+							<font color="#008080">vector&lt;double&gt;</font> coupon_amounts<font color="#990000">);</font>
+
+<font color="#009900">double</font> <b><font color="#000000">bond_option_price_put_coupon_bond_black_scholes</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> B<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> X<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">,</font>
+						       <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> sigma<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> time<font color="#990000">,</font> 
+						       <font color="#008080">vector&lt;double&gt;</font> coupon_times<font color="#990000">,</font>
+						       <font color="#008080">vector&lt;double&gt;</font> coupon_amounts<font color="#990000">);</font>
+
+
+
+<i><font color="#9A1900">/// Vasicek model, explicit call </font></i>
+
+<font color="#009900">double</font> <b><font color="#000000">bond_option_price_call_zero_vasicek</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> X<font color="#990000">,</font> <i><font color="#9A1900">// exercise price</font></i>
+					   <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> r<font color="#990000">,</font> <i><font color="#9A1900">// current interest rate</font></i>
+					   <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">&amp;</font> op<font color="#990000">);</font>
+
+</tt></pre>

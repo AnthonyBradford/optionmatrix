@@ -1,0 +1,1476 @@
+\input texinfo @c -*-texinfo-*-
+@c %**start of header
+@setfilename optionmatrix.info
+@include version.texi
+@set WEBSITE anthonybradford.com
+@settitle OptionMatrix @value{VERSION}
+
+@c Define a new index for options.
+@defcodeindex op
+@c Combine everything into one index (arbitrarily chosen to be the
+@c concept index).
+@syncodeindex op cp
+@c %**end of header
+@ifdocbook
+@center @image{images/3,,,,png}
+@end ifdocbook
+
+@copying
+This manual is for OptionMatrix (version @value{VERSION}, @value{UPDATED}),
+which is a Financial Derivatives Calculator supporting GTK+, Curses and the Command Line.
+
+Copyright @copyright{} 2013 Anthony Bradford.
+
+@quotation
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+``GNU Free Documentation License''.
+@end quotation
+@end copying
+@c If your manual is published on paper by the FSF, it should include
+@c the standard FSF Front-Cover and Back-Cover Texts, as given in
+@c maintain.texi.
+
+@dircategory Financial
+@direntry
+* OptionMatrix: (optionmatrix).               Financial Derivatives Calculator
+@end direntry
+
+@titlepage
+@title OptionMatrix
+@subtitle for version @value{VERSION}, @value{UPDATED}
+@sp 10
+@center @image{images/6,,,,png}
+@author Anthony Bradford (@email{info@@@value{WEBSITE}})
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@ifnothtml
+@contents
+@end ifnothtml
+
+@html
+@ifset PDF
+<a href="doc/optionmatrix.pdf">PDF version of this manual</a>
+<br>
+@end ifset
+@ifset DJVU
+<a href="doc/optionmatrix.djvu">DjVu content of this website</a>
+<br>
+@end ifset
+@ifset SPLIT
+<a href="index.html">Split HTML version of this manual</a>
+<br>
+@end ifset
+@ifset NOSPLIT
+<a href="indexNoSplit.html">Non-Split HTML version of this manual</a>
+<br>
+@end ifset
+@ifset ZIP
+@cindex zipped HTML
+<a href="doc/optionmatrix.zip">HTML zip package of this manual</a>
+<br>
+@end ifset
+@ifset TEXT
+@cindex Text manual
+@cindex Plain text
+<a href="doc/optionmatrix.txt">Text version of this manual</a> 
+<br>
+@end ifset
+@ifset EPUB
+@cindex EPUB
+<a href="doc/optionmatrix.epub">EPUB version of this manual</a>
+<br>
+@end ifset
+@ifset POSTSCRIPT
+@cindex PostScript
+<a href="doc/optionmatrix.ps">PostScript version of this manual</a> 
+<br>
+@end ifset
+@ifset DVI
+@cindex @TeX{} DVI
+@cindex DVI
+<a href="doc/optionmatrix.dvi">@TeX{} DVI version of this manual</a> 
+<br>
+@end ifset
+<br>
+@end html
+
+@ifnottex
+@node Top
+@top OptionMatrix
+
+This manual is for OptionMatrix (version @value{VERSION}, @value{UPDATED}),
+which is a financial derivatives calculator.
+@end ifnottex
+
+@html
+<a href="images/OptionMatrixWin1.png">
+<img height=350 width=509 src="images/OptionMatrixWin1.png" alt="Black-Scholes Calculator OptionMatrix"></a> <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align=top width="144" height="105" border="0"/></a>
+@end html
+
+@html
+<br>
+<br>
+<a href="indexNoSplit.html">OptionMatrix single HTML page manual</a>
+<br>
+<a href="http://@value{WEBSITE}/om/doc/optionmatrix.epub">EPUB version of this manual</a>
+<br>
+<br>
+@end html
+
+@ifnottex
+@menu
+* Overview::		General purpose and information.
+* Invoking the OptionMatrix Programs::
+* Graphical Application optionmatrix::	How to run the @command{optionmatrix} graphical application.
+* Curses optionmatrix::	How to run the @command{optionmatrix_console} curses application.
+* Models supported::	Models supported.
+* Downloading and Installation:: Installation packages.
+* Documentation:: Documentation
+* Reporting bugs::	Sending bug reports and feature suggestions.
+* GNU Free Documentation License:: Copying and sharing this documentation.
+* Concept index::	Index of concepts.
+@end menu
+@end ifnottex
+
+@html
+@contents
+<center><a href="Downloading-and-Installation.html"><img src="images/6.png" alt="Download OptionMatrix" align="top"/></a><br clear=left>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+@node Overview
+@chapter Overview
+@cindex overview
+The OptionMatrix programs are financial derivative calculators
+distributed by @url{http://@value{WEBSITE}}.
+These calculators are real-time multi-model option chain pricers with
+analytics and interactive controls. @command{optionmatrix} is the GTK+ graphical user interface version and @command{optionmatrix_console} is the Curses version (Unix/Linux console, DOS).
+
+Both programs feature: greeks, decimal date to real-date translations, real-date to decimal date translations, real-time time bleeding, configurable option expiration date engines, calendars, strike control systems, tickers and over 135 option models. @command{optionmatrix} also supports: spreads, bonds, term structures, cash flow editing, source code viewing and text exporting.
+
+@cindex authors
+@cindex Anthony Bradford
+@cindex Bj@o{}rn Augestad
+@cindex Metaoptions
+@cindex Bernt Arne @O{}edegaard
+@cindex Financial Numerical Recipes in C++
+@cindex Seth Pinsky
+The OptionMatrix programs use financial model libraries. Model authors include:  Bj@o{}rn Augestad (Metaoptions), @url{http://@value{WEBSITE}, Anthony Bradford}, @url{http://www.google.com/search?q=Bernt+Arne+Oedegaard,Bernt Arne @O{}edegaard} (Financial Numerical Recipes in C++) and Seth Pinsky. The code base can be easily extended to include new models.
+
+@cindex C++
+@cindex Autotools
+@cindex GNU General Public License
+The OptionMatrix programs are implemented in C++@ and use Autotools for packaging. @xref{Downloading and Installation}, for source code and installers. These programs are protected by the GNU General Public License,
+users are free (in perpetuity) to share and change them.
+
+OptionMatrix was written by @email{info@@@value{WEBSITE},Anthony Bradford}.
+
+@html
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/></a><br clear=left>
+@end html
+@html
+<center><a href="Downloading-and-Installation.html"><img src="images/6.png" alt="Download OptionMatrix" align="top"/></a><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+@node Invoking the OptionMatrix Programs
+@chapter Invoking the OptionMatrix Programs
+@cindex invoking
+@ifdocbook
+@center @image{images/2,,,,png}
+@end ifdocbook
+
+
+@section Usage Options
+@cindex usage
+
+The options for running the OptionMatrix programs are:
+
+@example
+optionmatrix @var{option} @dots{}
+@end example
+
+@example
+optionmatrix_console @var{option} @dots{}
+@end example
+
+@cindex curses
+With no options, @command{optionmatrix} launches the GTK+ (GUI) version of OptionMatrix and @command{optionmatrix_console} launches the Curses (console, DOS) version.
+
+@command{optionmatrix} and @command{optionmatrix_console} support the following options:
+
+@table @option
+
+@cindex help
+@item --help
+@itemx -h
+@opindex --help
+@opindex -h
+Print an informative help message on standard output and exit.
+
+@item --version
+@itemx -v
+@opindex --version
+@opindex -v
+Print the version number and licensing information of OptionMatrix on
+standard output and exit.
+
+@item --list
+@itemx -l
+@opindex --list
+@opindex -l
+@cindex Listing models
+@cindex Models listing
+List the names of all financial models to standard output and exit.
+
+@item --source
+@itemx -s
+@opindex --source
+@opindex -s
+@cindex Source code
+List source code file names of models not accessible by the application to standard output and exit. If a model's source code is accessible the @command{optionmatrix} program can display source code from the running application.
+
+@item --debug
+@itemx -d
+@opindex --debug
+@opindex -d
+Force creation of debug log file @file{optionmatrix.log}
+
+@item --price
+@itemx -p
+@opindex --price
+@opindex -p
+Iterate through and test all models to standard output and exit.
+
+@item --quiet
+@itemx -q
+@opindex --quiet
+@opindex -q
+Iterate through and test all models in quiet mode and exit.
+
+@item --Directory
+@itemx -D
+@opindex --Directory
+@opindex -D
+Set model source code directory so GTK+ version of the program can display.
+
+@item --model
+@itemx -m
+@opindex --model number
+@opindex -m number
+Time test a specific model number to standard output and exit. 200000 executions of model are made and timed by default.
+
+@item --iterate number
+@itemx -i number
+@opindex --iterate number
+@opindex -i number
+Set number of executions a model will be time tested for (default 200000)
+
+@end table
+The options @option{--debug} and @option{-d} are the only options used by both @command{optionmatrix} and @command{optionmatrix_console} applications. The option @option{--Directory} is exclusive to @command{optionmatrix}. The remaining command line options do not launch an interactive application and only create standard output and exit.
+@section Examples
+Try typing @samp{optionmatrix --version}
+@example
+optionmatrix @value{VERSION}
+
+Copyright (C) 2013 Anthony Bradford.
+License GPLv3+: GNU GPL version 3 or later 
+<http://gnu.org/licenses/gpl.html>.
+This is free software; see the source for copying conditions.  
+There is NO warranty; not even for MERCHANTABILITY or 
+FITNESS FOR A PARTICULAR PURPOSE.
+
+@cindex Anthony Bradford
+Written by Anthony Bradford.
+@end example
+@*
+@ifdocbook
+
+@end ifdocbook
+@cindex Black-Scholes
+Run and time model zero, Black-Scholes, at the default number of iterations (200000)
+
+@cindex Put time to calculate
+@cindex Call time to calculate
+@cindex Time to calculate put / call
+@samp{optionmatrix --model 0 }
+@example
+Model #: 0 Black-Scholes
+
+200000 Calls calculated @
+Time 1.517541s
+CPU time: 0.600000s
+
+200000 Puts calculated @
+Time 1.416533s
+CPU time: 0.560000s
+@end example
+@*
+@ifdocbook
+
+@end ifdocbook
+Run and time model zero, Black-Scholes, at 1 million iterations
+
+@samp{optionmatrix --iterate 1000000 --model 0}
+@example
+Model #: 0 Black-Scholes
+
+1000000 Calls calculated @
+Time 7.890567s
+CPU time: 2.870000s
+
+1000000 Puts calculated @
+Time 7.357173s
+CPU time: 2.780000s
+@end example
+@*
+@ifdocbook
+
+@end ifdocbook
+Run the Curses version of OptionMatrix
+
+@samp{optionmatrix_console}
+@*
+@ifdocbook
+
+@end ifdocbook
+@*
+@ifdocbook
+
+@end ifdocbook
+Run the GTK+ (GUI) version of OptionMatrix
+
+@samp{optionmatrix}
+@*
+@ifdocbook
+
+@end ifdocbook
+@*
+@ifdocbook
+
+@end ifdocbook
+Run the GTK+ (GUI) version of OptionMatrix and define the model source code location.
+
+@samp{optionmatrix --Directory src/c++/optionmatrix/optionmatrix-1.4.2}
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
+@end html
+@html
+<center><a href="Downloading-and-Installation.html"><img src="images/5.png" alt="Download OptionMatrix" align="top"/></a><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+@node Graphical Application optionmatrix
+@chapter Graphical Application optionmatrix
+@ifdocbook
+@center @image{images/1,,,,png}
+@end ifdocbook
+@section Main Screen
+
+@cindex GTK+
+@cindex optionmatrix.log
+@cindex Option chain
+@cindex Black-Scholes
+@cindex Time bleeding
+Running @command{optionmatrix} with no arguments or just the @option{--debug}, @option{-d} options will invoke the OptionMatrix GTK+ Graphical Application. The @option{--debug} or @option{-d} options will cause @command{optionmatrix} to create the debug log, @file{optionmatrix.log}, in the users home directory or the current working directory of execution. This log file will be populated with diagnostic information while the program is executing.
+
+The initial screen will appear. The default model is Black-Scholes. The option chain on display is being re-calculated every second. Price changes are the result of time bleeding between the current time and the expiration time. 
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/OptionMatrix,380pt,,Financial Derivatives Calculator,png}
+
+@section Input Controls
+
+@subsection Price, Interest Rate and Standard Deviation
+@cindex price
+@cindex Interest rate
+@cindex Standard deviation
+@cindex volatility
+Price, interest rate, and standard deviation can be configured via spin buttons. 
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/PriceInterestStandard,380pt,,Financial Engineering Modelling,png}
+@subsection Time
+@cindex Time to expiration
+@cindex Days to expiration
+@cindex Expiration date
+Time can be entered by the ``Time to Expiration'' or the ``Days to Expiration'' spin buttons.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/Time,380pt,,Financial Option Expiration Time,png}
+@*
+@ifdocbook
+
+@end ifdocbook
+``Time to Expiration'' displays time to expiration in years. ``Days to Expiration'' displays expiration time in days.
+
+@cindex Leap year
+Input to either spin button updates both. An exact expiration date and time is calculated from the input, the option chain in the calculator's grid display will be update to the new expiration date. Date calculations are adjusted for leap day of leap years.
+
+Both spin button's time value decreases every second as the expiration date approaches.
+@cindex real-time
+This real-time updating can be toggled with the checkbox ``RealTime''.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/RealTime,225pt,,Real Time Financial Options Pricer,png}
+@cindex Calendar picker
+@subsection Calendar Picker
+@cindex calendar
+A specific calendar date can be selected with the Calendar Picker.
+
+Calendar date selections will update both the ``Time to Expiration'' and the ``Days to Expirations'' spin buttons. Pressing the ``Calendar'' push button will invoke the Calendar Picker popup.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/CalendarButton,300pt,,Financial Derivative Expiration Calendar,png}
+
+The popup features year, month and day calendar selections. 
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/Calendar,170pt,,Equity Option Puts Calls Expiration Calendar,png}
+
+Select an expiration date and dismiss the popup. The popup does not feature a ``OK'' or ``Cancel'' button. The option chain in the calculator's grid display will be set to the new expiration date.
+
+@subsection Strike Controls
+@cindex Strike increments
+@cindex Custom strike
+A drop down box ``Strikes'' changes the strike increments or allows custom strike mode.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/StrikesDrop,180pt,,Financial Derivatives Strikes,png}
+
+Selections include: 5, 1, .5, .1, .01, .001 and CUST
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/Strikes,140pt,,Equity Puts Call Strikes,png}
+@cindex Strike adjuster
+A scale button ``Strike Adjuster'' allows scrolling of strikes being displayed in the selected strike increments.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/StrikeDropDownAndAdjuster,290pt,,Equity Options Strikes,png}
+
+@cindex Strike custom
+Selection of drop down item ``CUST'' allows entering of any strike in the Strike input box.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/CUSTInput,270pt,,Financial Derivative Strike,png}
+
+@section Date Engine
+@cindex Date engine
+Selecting the checkbox ``Use Date Engine'' will invoke the Date Engine. 
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/DateEngineSelected,100pt,,Equity Puts Calls Expiration,png}
+
+@cindex expiration
+@cindex Exchange traded options
+The Date Engine will map option expirations to a default of 3rd Friday+1 @@11:59AM going into the future. This is the standard expiration for U.S. Exchange Traded Options. The Date Engine is configurable and can make any re-occuring date used by the options industry.
+
+The option chain's pricing will be updated as time decreases between the current time and the expirations.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/OptionMatrixCalendarDated,380pt,,Equity Stock Option Calculator,png}
+
+@subsection Date Engine Properties
+@cindex Date engine properties
+@cindex expiration
+The Date Engine Properties popup is used to configure the Date Engine. It can be invoked by pressing the Date Engine Properties push button. 
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/DateEngineProperties,150pt,,Stock Option Expirations,png}
+
+The default expiration setting of 3rd Friday+1 @@11:59AM can be changed.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/DateEngine,190pt,,Equity Option Expirations,png}
+
+@subsection Month Adjuster
+@cindex Month adjuster
+A scale button named ``Month Adjuster'' can adjust the Date Engine's months forward.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/MonthAdjuster,200pt,,Financial Modelling Month Adjustment,png}
+
+@subsection Option Cycles
+@cindex Option cycles
+@cindex Months in option cycles
+The Date Engine supports option cycles. See drop down with label ``Cycle''.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/CycleClosed,245pt,,Equity Option Cycles,png}
+
+@cindex LEAPS
+The Cycle drop down includes: All, Jan, Feb, Mar and LEAPS.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/CycleDropOpen,245pt,,Equity Option Cycles Jan Feb Mar,png}
+@*
+@ifdocbook
+
+@end ifdocbook
+The default setting is ``All'' which displays all months.
+
+@subsection Display Formats
+@cindex Display formats
+@cindex Option chain
+The Date Engine supports many display formats for the option chain.
+
+In the grouping of radio buttons labeled ``Display Formats'' each radio button changes the option chains display format.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/DisplayFormats,295pt,,Option Chain Display Formats,png}
+
+The display formats are: Month to Strikes, Months to Strike, Months Across and ``3 Call / 3 Put Columns''.
+@unnumberedsubsubsec Month to Strikes
+@cindex Month to strikes
+``Month to Strikes'' features sets of the same expiration month mapped to incrementing strikes.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/MonthToStrikes,380pt,,Option Chain Month Strikes,png}
+@unnumberedsubsubsec Months to Strike
+@cindex Months to strike
+``Months to Strike'' features sets of incrementing expiration months mapped to the same strike.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/MonthsToStrike,380pt,,Option Chain Months Strike,png}
+@unnumberedsubsubsec Months Across
+@cindex Months across
+``Months Across'' features sets of calls, puts, incrementing strikes and incrementing expiration month columns. The calls have the letter 'c' before the price while puts have the letter 'p' before the price.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/MonthsAcross,380pt,,Option Chain Columns,png}
+@unnumberedsubsubsec 3 Call / 3 Put Columns
+@cindex 3 Call / 3 Put Columns
+``3 Call / 3 Put Columns'' features incrementing strikes with 3 Call Columns and 3 Put Columns.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/3Calls3Puts,380pt,,Equity Option Columns,png}
+
+@section Greeks
+@cindex greeks
+@cindex Analytics for options
+@cindex Option analytics
+@cindex delta
+@cindex gamma
+@cindex vega
+@cindex theta
+@cindex rho
+Option analytics of Call Delta, Put Delta, Gamma, Vega, Call Theta, Put Theta, Call Rho, Put Rho are calculated. They can be seen on the row at the top of the option chain.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/Greeks,380pt,,Derivative Greeks Delta Gamma Vega Theta Rho,png}
+
+@section Spreads
+@cindex Spread mode
+Selection of the checkbox ``Spreads'' will invoke the Spread Mode.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/SpreadCheckbox,120pt,,Financial Derivative Spread Trading,png}
+
+Spread Mode allows the individual leg information for a spread to be controlled.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/OptionMatrixSpreads,380pt,,Derivative Spread Leg Controls,png}
+
+@cindex Month adjuster legs
+@cindex leg 1
+@cindex leg 2
+Scale buttons ``Strike Adj Leg1'' and ``Month Adj Leg1'' can be used to adjust strikes and months for Leg 1. Scale buttons ``Strike Adj Leg2'' and ``Month Adj Leg2'' can be used to adjust strikes and months for Leg 2.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/LegControls,350pt,,Put Call Derivative Leg Controls,png}
+
+Spreads are displayed on a per row basis.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/SpreadLegs,380pt,,Derivative Legs,png}
+
+The first set of column references to ``Expr Date, Strike, Call, Put'' is 
+considered Leg 1. Use scale controls ``Strike Adj Leg1'' and ``Month Adj Leg1'' to adjust. 
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/Leg1,245pt,,Spread Option Leg,png}
+
+The second set of column references to ``Expr Date, Strike, Call, Put'' is considered Leg 2. Use scale controls ``Strike Adj Leg2'' and ``Month Adj Leg2'' to adjust.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/Leg1Leg2,370pt,,Spread Option Legs,png}
+
+@cindex spreads
+Four spreads are computed ``Spread C-C'' (Leg 1 Call minus Leg 2 Call), ``Spread P-P'' (Leg 1 Put minus Leg 2 Put), ``Spread C-P'' (Leg 1 Call minus Leg 2 Put) and ``Spread P-C'' (Leg 1 Put minus Leg 2 Call).
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/SpreadsCCPPCPPC,250pt,,Equity Financial Derivatives Spread Legs,png}
+
+@cindex Vertical spread
+@cindex Calendar spread
+Spread views are automatically labeled Vertical Spread, Calendar Spread or Vertical Calendar Spread. 
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/CalendarSpread,180pt,,Financial Calendar Horizontal Spread,png}
+
+Vertical Spread indicates strike differences between Leg 1 and Leg 2 (expiration dates are the same). Calendar Spread indicates expiration date differences between Leg 1 and Leg 2 (Strikes are the same). Vertical Calendar Spread indicates strike and calendar date expiration differences between the legs.
+
+@section Models
+Over 135+ option models are featured in the OptionMatrix Calculator. Model numbers may vary between systems due to library and linker options.
+@subsection Changing Models
+@cindex Model drop down
+The current pricing model can be changed with the ``Model'' drop down. The models are listed as categorized folders in the drop down.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/ModelDropDownOpen,325pt,,Financial Derivatives Options Modelling,png}
+
+@subsection Model Categorization
+@cindex Model categories
+The model drop down box categorization can be controlled via the menu item ``Models''. Options include: 
+@clicksequence{Models @click{} List by Category}, @clicksequence{Models @click{} List by Author} and @clicksequence{Models @click{} List}.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/ModelsList,195pt,,Financial Derivatives Model List,png}
+
+@clicksequence{Models @click{} List by Author}, changes the categorization in the ``Models'' drop down to be based on author of the model.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/ModelByAuthor,330pt,,Financial Derivatives Model Authors,png}
+@*
+@ifdocbook
+
+@end ifdocbook
+@*
+@ifdocbook
+
+@end ifdocbook
+@clicksequence{Models @click{} List,} creates no categorized folders. The ``Models'' drop down box becomes a list of all models.
+@*
+@ifdocbook
+
+@end ifdocbook
+@*
+@ifdocbook
+
+@end ifdocbook
+@clicksequence{Models @click{} List by Category,} is the default.
+
+@section Cash Flow Editor
+@cindex Dividend editor
+@cindex Coupon editor
+@cindex Cash flow editor
+Some models have multiple dividends or coupons. @command{optionmatrix} provides a cash flow editor to add / remove these cash streams. The cash stream is ordered by time. If the ``RealTime'' checkbox is enabled the dividend or coupons time will bleed.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/CouponEditor,210pt,,Financial Cash Flow Editor,png}
+
+@section Re-calculations
+@cindex Sleep delay
+Selection of Menu item @clicksequence{Prefs @click{} Settings} will invoke the ``Settings Popup''.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/PrefsSettings,255pt,,Financial Modelling Preferences,png}
+
+The setting ``Sleep Delay'' controls the time in between option chain re-calculations in seconds. The default setting is 1.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/SleepDelay,140pt,,Financial Modelling Pricer Real Time,png}
+
+@section Cumulative Normal Distribution
+@cindex Cumulative normal distribution
+The method of calculating the cumulative normal distribution is controlled with drop down named ``CND''.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/CNDDrop,190pt,,Cumulative Normal Distribution,png}
+
+@cindex polyapprox
+@cindex rational1.0*E-7
+@cindex rational2.5*E-4
+@cindex Hart equation
+@cindex Romberg's method
+@cindex Simpson's rule
+@cindex Trapezoidal rule
+Methods include: PolyApprox6, PolyApprox4, Rational1.0*E-7, Rational2.5*E-4, Hart Equation, Romberg's Method, @url{http://www.google.com/search?q=Simpson's+Rule,Simpson's Rule} and @url{http://www.google.com/search?q=Trapezoidal+Rule,Trapezoidal Rule}.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/CNDDropDown,290pt,,Cumulative Normal Distribution List,png}
+
+PolyApprox6 is the default.
+
+@section Precision
+@cindex Decimal precision
+@cindex Precision decimal
+Decimal place precision can be adjusted with the spin button ``Precision''.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/Precision,140pt,,Financial Modelling Decimal Precision,png}
+
+Precision is defaulted to eight decimal places to show real-time time bleeding.
+
+@section Exporting
+@cindex export
+@cindex Text export
+@cindex C++
+@cindex Source code
+Two menu export options are available.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/Export,160pt,,Financial Modelling Decimal Precision,png}
+@*
+@ifdocbook
+
+@end ifdocbook
+@*
+@ifdocbook
+
+@end ifdocbook
+@clicksequence{File @click{} Text Export}, exports the current option chain to a text window.
+@*
+@ifdocbook
+
+@end ifdocbook
+@*
+@ifdocbook
+
+@end ifdocbook
+@noindent
+@clicksequence{File @click{} Source View}, exports the current option models C/C++ source code to a text window.
+
+@html
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
+@end html
+@html
+<center><a href="Downloading-and-Installation.html"><img src="images/11.png" alt="Download OptionMatrix" align="top"/></a><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+@node Curses optionmatrix
+@chapter Curses @command{optionmatrix_console}
+@ifdocbook
+@center @image{images/4,,,,png}
+@end ifdocbook
+
+@section Running
+@cindex curses
+@cindex optionmatrix.log
+Running @command{optionmatrix_console} with no arguments or just the @option{--debug}, @option{-d} options will invoke the OptionMatrix Curses Application.  The Curses Application is a text application with no graphical user interface. The @option{--debug} or @option{-d} options will cause @command{optionmatrix_console} to create the debug log, @file{optionmatrix.log}, in the users home directory or the current working directory of execution. This log file will be populated with diagnostic information while the program is executing.
+
+@cindex UNIX
+The Curses Application typically runs from a UNIX like console or DOS prompt, it can be associated with a start menu or desktop icon. The Curses Application responds to keyboard events. @xref{Graphical Application optionmatrix}, for optionmatrix with a graphical user interface.
+
+@section Welcome Screen
+@cindex Welcome screen curses
+A welcome screen will appear with author, version, license, e-mail and website information. Press any key to continue to model selection screen.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+
+@center @image{images/ConsoleWelcome,,,Financial Engineering Linux,png}
+
+@section Model Selection
+@cindex Model selection curses
+Choose a model on the Model Selection screen by typing in its number and pressing @key{RET}.
+
+The arrow down and arrow up keys can be used to scroll and view more models. The listing of models exceeds the screen size. 
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/ConsoleSelect,,,Financial Engineering Linux Models,png}
+
+Once a model is selected the Format Selection screen will appear.
+
+@section Format Selection
+@cindex Format selection curses
+@cindex Display formats curses
+@cindex Option chain format curses
+The Format Selection screen displays the model's name, models source, display formats and miscellaneous selections. Key selection of  @kbd{1} - @kbd{9} will select a display format for the option's chain.
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/ConsoleFormat,,,Financial Engineering Model Format,png}
+@*
+@ifdocbook
+
+@end ifdocbook
+@cindex Decimal date curses
+@cindex Calendar date curses
+Formats are categorized as ``(decimal date/date entry dated)'' or ``(calendar dated)''. See column on the right of the screen. 
+
+@*
+@ifdocbook
+
+@end ifdocbook
+@center @image{images/ConsoleCategories,250pt,,Financial Engineering Model Format Category,png}
+@*
+@ifdocbook
+
+@end ifdocbook
+@cindex Expiration curses
+@cindex Date engine curses
+The ``(decimal date/date entry dated)'' formats allow the user to enter the time to expiration as a decimal date (Example: .5 years away) or enter an explicit date (Example: 1/20/14 - read: Jan 20 2014). The ``(calendar dated)'' formats set option expirations using a date engine which has a default setting of 3rd Friday+1 @@11:59AM going into the future. The Date Engine can be configured to match most industry used option expirations.
+
+Selection of any key @kbd{1} - @kbd{9} to proceed to the Inputs Screen.
+
+@section Inputs
+The Input Screen is customized on a per model basis. The user will be prompted for specific inputs for the selected model.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/ConsoleInputs,380pt,,Black-Scholes Inputs,png}
+@*
+@ifdocbook
+
+@end ifdocbook
+The Pricing Screen will follow.
+
+@section Pricing Screen
+@cindex In the money curses
+@cindex At the money curses
+@cindex Time bleeding curses
+The option model will begin pricing. The updating pricing changes are the result of time bleeding between the current time and the expiration times. Inputs can be adjusted while the model is pricing. Try typing: @kbd{S, s, X, x, R, r, V, v} or the arrow keys.
+@*
+@ifdocbook
+
+@end ifdocbook
+@html
+<br>
+@end html
+@center @image{images/ConsoleChain,,,Black-Scholes Options,png}
+@*
+@ifdocbook
+
+@end ifdocbook
+At the money, in the money options are highlighted by default.
+@*
+@ifdocbook
+
+@end ifdocbook
+@*
+@ifdocbook
+
+@end ifdocbook
+Pressing the @key{TAB} key will switch to another display format screen.
+Type @key{ESC} to go back to the Model Selection Screen.
+Type @kbd{h} or @kbd{?} for help.
+Type @kbd{q} or @kbd{Q} to quit.
+
+@html
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
+@end html
+@html
+<center><a href="Downloading-and-Installation.html"><img src="images/7.png" alt="Download OptionMatrix" align="top"/></a><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+@node Models supported
+@chapter Models supported
+@ifdocbook
+@center @image{images/11,,,,png}
+@end ifdocbook
+
+@cindex Models supported
+The OptionMatrix programs support the following models:
+@section BSM
+@cindex BSM
+@itemize
+@item @url{http://www.google.com/search?q=Black-Scholes,Black-Scholes}
+@item @url{http://www.google.com/search?q=Merton+73+Formula,Merton-73}
+@item Generalized Black-Scholes
+@item @url{http://www.google.com/search?q=French+Black-Scholes,French}
+@item Carry
+@item Warrants Black-Scholes
+@item Warrants Black-Scholes Dividend
+@end itemize
+
+@section American Options
+@cindex American options
+@itemize
+@item American Barone-Adesi Whaley
+@item Black-Scholes American
+@item @url{http://www.google.com/search?q=American+Perpetual+Option,American Perpetual}
+@item American Put Approx Johnson
+@item American Put Approx Geske-Johnson
+@end itemize
+
+@section Single Asset Options
+@cindex Single asset options
+@itemize
+@item Executive
+@item @url{http://www.google.com/search?q=Time+Switch+Option,Time Switch Option}
+@item @url{http://www.google.com/search?q=Extendible+Writer+Option,Extendible Writer}
+@item @url{http://www.google.com/search?q=Forward+Start+Option,Forward Start Option}
+@item @url{http://www.google.com/search?q=Standard+Barrier+Option,Standard Barrier}
+@item @url{http://www.google.com/search?q=Double+Barrier+Option,Double Barrier}
+@item @url{http://www.google.com/search?q=Soft+Barrier+Option,Soft Barrier}
+@item @url{http://www.google.com/search?q=Binary+Barrier+Option,Binary Barrier}
+@item Discrete Adjusted Barrier
+@item @url{http://www.google.com/search?q=Look+Barrier+Option,Look Barrier}
+@item @url{http://www.google.com/search?q=Partial+Time+Barrier+Option,Partial Time Barrier}
+@item @url{http://www.google.com/search?q=Asset+or+Nothing+Option,Asset-or-Nothing}
+@item @url{http://www.google.com/search?q=Cash+or+Nothing+Option,Cash-or-Nothing}
+@item @url{http://www.google.com/search?q=Gap+Option+Derivative,Gap Option}
+@item @url{http://www.google.com/search?q=Super+Share+Option,Super Share}
+@item @url{http://www.google.com/search?q=Simple+Chooser+Option,Simple Chooser}
+@item @url{http://www.google.com/search?q=Complex+Chooser+Option,Complex Chooser}
+@item @url{http://www.google.com/search?q=Floating+Strike+Lookback,Floating Strike Lookback}
+@item @url{http://www.google.com/search?q=Fixed+Strike+Lookback,Fixed Strike Lookback}
+@item @url{http://www.google.com/search?q=Partial+Fixed+Lookback+Option,Partial Fixed Lookback}
+@item @url{http://www.google.com/search?q=Partial+Float+Lookback+Option,Partial Float Lookback}
+@item @url{http://www.google.com/search?q=European+Lookback+Option,European Lookback}
+@item @url{http://www.google.com/search?q=Extreme+Spread+Option,Extreme Spread}
+@item Calls on Options
+@item Puts on Options
+@end itemize
+
+@section Two Asset Options
+@cindex Two asset options
+@itemize
+@item @url{http://www.google.com/search?q=Spread+Approximation+Option,Spread Approximation}
+@item @url{http://www.google.com/search?q=Two Asset+Cash+or+Nothing+Option,Two Asset Cash or Nothing}
+@item Two Asset Correlation
+@item Options on The Max Min
+@item Partial Time Two Asset
+@item @url{http://www.google.com/search?q=Two+Asset+Barrier+Option,Two Asset Barrier}
+@item American Exchange Option
+@item @url{http://www.google.com/search?q=European+Exchange+Option,European Exchange Option}
+@item Exchange Exchange Option
+@end itemize
+
+@section Jump Diffusion
+@cindex Jump diffusion
+@itemize
+@item @url{http://www.google.com/search?q=Merton+Jump+Diffusion+Option,Merton Jump Diffusion}
+@end itemize
+
+@section Trees & Finite Differences
+@cindex Trees & finite differences
+@itemize
+@item @url{http://www.google.com/search?q=Heston+Model,Heston}
+@item @url{http://www.google.com/search?q=Binomial+Option,American Cox Ross Rubinstein}
+@item American Equi
+@item @url{http://www.google.com/search?q=European+CRR+Option,European Cox Ross Rubinstein}
+@item European Equi
+@item @url{http://www.google.com/search?q=Binomial+Option,Cox Ross Rubinstein Binomial}
+@item 3D-Binominal
+@item @url{http://www.google.com/search?q=Binomial+Option,American Binomial}
+@item American Binomial Dividend
+@item European Binomial
+@item European Binomial 1 Period
+@item European Binomial M Period
+@item @url{http://www.google.com/search?q=Binomial+Option,Generic Binomial}
+@item @url{http://www.google.com/search?q=Bermudian+Binomial+Option,Bermudian Binomial}
+@item American Finite Difference Explicit
+@item European Finite Difference Explicit
+@item American Finite Difference Implicit
+@item European Finite Difference Implicit
+@item @url{http://www.google.com/search?q=Trinomial+Tree+Option,Trinomial Tree}
+@item @url{http://www.google.com/search?q=American Trinomial+Option,American Trinomial}
+@end itemize
+
+@section Monte Carlo
+@cindex Monte Carlo
+@itemize
+@item Simulate European Option
+@item Simulate European Generic Option
+@item Simulate European Option Generic with Control Variate
+@item Simulate European Option Generic with Antihetic Variate
+@item Simulate Price Path
+@item Simulate Price Path Control Variate
+@end itemize
+
+@section Discrete Dividend
+@cindex Discrete dividend
+@itemize
+@item @url{http://www.google.com/search?q=Roll-Geske-Whaley,Roll-Geske-Whaley}
+@item Black-Scholes Dividends
+@item American Proport Dividends Binomial
+@item Black-Scholes Coupon Bond
+@end itemize
+
+@section Currency
+@cindex currency
+@itemize
+@item @url{http://www.google.com/search?q=Quanto+Derivative,Quanto}
+@item @url{http://www.google.com/search?q=Garman-KohlHagen,Garman-KohlHagen}
+@item Foreign Equity Option Struck in Domestic Currency
+@item Equity Linked Foreign Exchange Option
+@item Takeover Foreign Exchange Option
+@item Currency American Binomial
+@item Currency European
+@end itemize
+
+@section Futures
+@cindex futures
+@itemize
+@item @url{http://www.google.com/search?q=Black-76,Black-76}
+@item @url{http://www.google.com/search?q=Miltersen+Schwartz,Miltersen Schwartz}
+@item Futures Option American Binomial
+@item Futures
+@item Futures Dividend
+@end itemize
+
+@section Interest Rate Derivatives
+@cindex Interest rate derivatives
+@itemize
+@item Swap Option
+@end itemize
+
+@section Asian
+@cindex Asian
+@itemize
+@item @url{http://www.google.com/search?q=Turnbull+Wakeman+Asian,Turnbull Wakeman Asian}
+@item Levy Asian
+@item Geometric Average Rate
+@item @url{http://www.google.com/search?q=Asian+Geometric+Average+Option,Asian Geometric Average}
+@end itemize
+
+@section Implied Volatility
+@cindex Implied volatility
+@itemize
+@item Bisection
+@item Newton Raphson
+@item Barone-Adesi Whaley Bisection
+@item Black-Scholes Bisection
+@item Implied Volatility Black-Scholes Newton
+@item Implied Bisections
+@end itemize
+
+@section Bonds
+@cindex bond
+@itemize
+@item Vasicek Bond Price
+@item Vasicek Bond Option
+@item Convertible Bond
+@item Bond Zero Black
+@item Bond Zero Vasicek
+@item Bond American Binomial
+@item Bond Call Rendleman Bartter
+@item Bond Flat
+@item Bond with Term Structure
+@item Bond with Principal
+@end itemize
+
+@section Term structures
+@cindex Term structure
+@itemize
+@item @url{http://www.google.com/search?q=Term+Structure+Flat,Term Structure Flat}
+@item Term Structure Cir
+@item Term Structure Vasicek
+@item Term Structure Nelson Siegel
+@item Term Structure Svensson
+@item Term Structure Cubic Spline
+@item Term Structure Interpolated
+@end itemize
+
+@section Misc
+@itemize
+@item PV / IRR
+@item Log Normal Random
+@end itemize
+
+@cindex pre-BSM
+@section pre-BSM
+@itemize
+@item @url{http://www.google.com/search?q=Bachelier-1900,Bachelier-1900}
+@item Bachelier Modified
+@item Sprenkle-64
+@item Boness-64
+@item Samuelson-65
+@end itemize
+
+@html
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
+@end html
+@html
+<center><a href="Downloading-and-Installation.html"><img src="images/10.png" alt="Download OptionMatrix" align="top"/></a><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+@node Downloading and Installation
+@chapter Downloading and Installation
+@ifdocbook
+@center @image{images/10,,,,png}
+@end ifdocbook
+@section Windows Installers
+@cindex Windows installers
+@url{http://@value{WEBSITE}/InstallOptionMatrix-@value{VERSION}-win32.exe,InstallOptionMatrix-@value{VERSION}-win32.exe}
+@*
+@ifdocbook
+
+@end ifdocbook
+@url{http://@value{WEBSITE}/InstallOptionMatrix-1.4.1-win32.exe,InstallOptionMatrix-1.4.1-win32.exe}
+@*
+@ifdocbook
+
+@end ifdocbook
+@*
+@ifdocbook
+
+@end ifdocbook
+The Windows Installer includes full source code and documentation.
+
+@section Unix / Linux Autotools Package
+@cindex UNIX
+@cindex Linux
+@cindex Autotools package
+@cindex .tar.gz
+@cindex Source code
+@url{http://@value{WEBSITE}/om/downloads/optionmatrix-@value{VERSION}.tar.gz,optionmatrix-@value{VERSION}.tar.gz}
+@*
+@ifdocbook
+
+@end ifdocbook
+@*
+@ifdocbook
+
+@end ifdocbook
+Type the following on the console in the directory of the download to install.
+@cindex tar
+@cindex make
+@example
+tar xfz optionmatrix-@value{VERSION}.tar.gz
+cd optionmatrix-@value{VERSION}
+./configure
+make
+sudo make install
+@end example
+@noindent
+Older versions can be found here @url{http://@value{WEBSITE}/om/downloads}
+
+@section Linux Debian Packages (.deb)
+@cindex Debian Packages
+@cindex .deb
+@url{http://@value{WEBSITE}/om/downloads/debian}
+@section Linux RPM Packages (.rpm)
+@cindex .rpm
+@cindex RPM Packages
+@url{http://@value{WEBSITE}/om/downloads/rpm}
+@section GitHub
+@cindex GitHub
+@url{https://github.com/AnthonyBradford/optionmatrix}
+@section Macintosh
+@cindex Macintosh
+No Mac installation package is currently available.
+@section Source Code in HTML
+@url{http://@value{WEBSITE}/om/doc/source_html}
+
+@html
+<br>
+<center><img src="images/6.png" align="top"><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+@node Documentation
+@chapter Documentation
+@ifdocbook
+@center @image{images/5,,,,png}
+@end ifdocbook
+
+@section PDF
+@cindex PDF
+@url{http://@value{WEBSITE}/om/doc/optionmatrix.pdf}
+
+@section EPUB
+@cindex EPUB
+@url{http://@value{WEBSITE}/om/doc/optionmatrix.epub}
+
+@section HTML Zip
+@cindex Zipped HTML
+@cindex HTML zip
+@url{http://@value{WEBSITE}/om/doc/optionmatrix.zip}
+
+@html
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
+@end html
+@html
+<center><a href="Downloading-and-Installation.html"><img src="images/10.png" alt="Download OptionMatrix" align="top"/></a><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+@node Reporting bugs
+@chapter Reporting bugs
+@ifdocbook
+@center @image{images/9,,,,png}
+@end ifdocbook
+
+@cindex Bug reporting
+@cindex problems
+@cindex Reporting bugs
+
+To report bugs, suggest enhancements or otherwise discuss optionmatrix,
+please send electronic mail to @email{info@@@value{WEBSITE}}.
+
+@cindex Checklist for bug reports
+For bug reports, please include enough information for the maintainers
+to reproduce the problem.  Generally speaking, that means:
+
+@itemize @bullet
+@item The version numbers of optionmatrix (which you can find by running
+      @w{@samp{optionmatrix --version}}) and any other program(s) or
+      manual(s) involved.
+@item Hardware and operating system names and versions.
+@item The contents of any input files necessary to reproduce the bug.
+@item The expected behavior and/or output.
+@item A description of the problem and samples of any erroneous output.
+@item Options you gave to @command{configure} other than specifying
+      installation directories.
+@item Anything else that you think would be helpful.
+@end itemize
+
+When in doubt whether something is needed or not, include it.  It's
+better to include too much than to leave out something important.
+
+@cindex Patches, contributing
+Patches are welcome; if possible, please make them with @samp{@w{diff
+-c}}. Please follow the existing coding style.
+
+@html
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br><br clear=left>
+@end html
+@html
+<center><a href="Downloading-and-Installation.html"><img src="images/9.png" alt="Download OptionMatrix" align="top"/></a><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+@node GNU Free Documentation License
+@appendix GNU Free Documentation License
+@ifdocbook
+@center @image{images/6,,,,png}
+@end ifdocbook
+
+@include fdl.texi
+@html
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
+@end html
+@html
+<center><a href="Downloading-and-Installation.html"><img src="images/5.png" alt="Download OptionMatrix" align="top"/></a><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+
+@node Concept index
+@unnumbered Concept index
+@printindex cp
+
+@html
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
+@end html
+@html
+<center><a href="Downloading-and-Installation.html"><img src="images/11.png" alt="Download OptionMatrix" align="top"/></a><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+@ifdocbook
+For the Microsoft HTML Helper (.chm) version of this manual
+see the ``Index'' tab.
+@end ifdocbook
+
+@bye

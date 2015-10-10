@@ -1,0 +1,32 @@
+How to add option models to OptionMatrix
+
+1. Add enum entry in defs.h This enum list is preceded with the comment:
+   /* list of all financial models */
+   The newly added enum will have the same position relative to
+   other models in the user interactive selection screen in the curses
+   version (or combobox drop down in the Gtk+ version in linear list mode)
+   as it has with the other enums.
+   
+2. In main.h create a definition in the:
+   struct option_algorithm options_algorithms[] array initialization
+   for the enum. The struct elements are listed in defs.h Its probably best
+   to make a copy of a similar existing entry placing it in your new enum
+   field then modifying it. This struct initialization entry should have
+   the same sequence listing relative to other struct entries as the enum
+   of all financial models mentioned above. A category field controls
+   categorization in the combobox dropdown. See categories such as "0;BSM".
+   
+3. In options_calls.cpp / options_puts.cpp functions option_call() 
+   and option_put() create case: statements for newly made enum. Call option
+   function then break. If the option has associated greek functions update
+   option_call_delta(), option_put_delta(), option_gamma(),
+   option_gamma(), option_vega(), option_call_theta(),
+   option_put_theta(), option_put_theta(), option_call_rho(),
+   option_put_rho() in greeks.cpp
+
+4. New source code should be added using autotools conventions.
+   See Makefile.am files.
+
+Copyright (C) Anthony Bradford. 2012.
+http://anthonybradford.com
+info@anthonybradford.com

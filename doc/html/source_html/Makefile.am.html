@@ -1,0 +1,107 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#009900">SUBDIRS =</font> src/models/financialrecipes/src src/models/financialrecipes/examples src/models/metaoptions/src src/models/metaoptions/tests src/common src/curses src/gtk man doc doc/html
+
+<font color="#009900">appicondir =</font> <font color="#009900">$(datadir)</font>/pixmaps
+<font color="#009900">appicon_DATA =</font> icons<font color="#990000">/</font>32x32/optionmatrix.xpm<font color="#990000">\</font>
+	icons<font color="#990000">/</font>32x32/optionmatrix_console.xpm
+
+<font color="#009900">desktopdir =</font> <font color="#009900">$(datadir)</font>/applications
+<font color="#009900">desktop_DATA =</font> icons/optionmatrix.desktop<font color="#990000">\</font>
+	icons/optionmatrix_console.desktop
+
+<font color="#009900">icondir =</font> <font color="#009900">$(datadir)</font>/icons/hicolor<font color="#990000">/</font>256x256/apps
+<font color="#009900">icon_DATA =</font> icons<font color="#990000">/</font>256x256/optionmatrix.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>256x256/optionmatrix_console.png
+
+<font color="#009900">icon128dir =</font> <font color="#009900">$(datadir)</font>/icons/hicolor<font color="#990000">/</font>128x128/apps
+<font color="#009900">icon128_DATA =</font> icons<font color="#990000">/</font>128x128/optionmatrix.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>128x128/optionmatrix_console.png
+
+<font color="#009900">icon64dir =</font> <font color="#009900">$(datadir)</font>/icons/hicolor<font color="#990000">/</font>64x64/apps
+<font color="#009900">icon64_DATA =</font> icons<font color="#990000">/</font>64x64/optionmatrix.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>64x64/optionmatrix_console.png
+
+<font color="#009900">icon48dir =</font> <font color="#009900">$(datadir)</font>/icons/hicolor<font color="#990000">/</font>48x48/apps
+<font color="#009900">icon48_DATA =</font> icons<font color="#990000">/</font>48x48/optionmatrix.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>48x48/optionmatrix_console.png
+
+<font color="#009900">icon32dir =</font> <font color="#009900">$(datadir)</font>/icons/hicolor<font color="#990000">/</font>32x32/apps
+<font color="#009900">icon32_DATA =</font> icons<font color="#990000">/</font>32x32/optionmatrix.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>32x32/optionmatrix_console.png
+
+<font color="#009900">EXTRA_DIST =</font> <font color="#990000">\</font>
+	icons<font color="#990000">/</font>32x32/optionmatrix.xpm<font color="#990000">\</font>
+	icons<font color="#990000">/</font>32x32/optionmatrix_console.xpm<font color="#990000">\</font>
+	icons<font color="#990000">/</font>32x32/optionmatrix.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>32x32/optionmatrix_console.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>48x48/optionmatrix.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>48x48/optionmatrix_console.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>64x64/optionmatrix.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>64x64/optionmatrix_console.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>128x128/optionmatrix.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>128x128/optionmatrix_console.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>256x256/optionmatrix.png<font color="#990000">\</font>
+	icons<font color="#990000">/</font>256x256/optionmatrix_console.png<font color="#990000">\</font>
+	icons/optionmatrix.desktop<font color="#990000">\</font>
+	icons/optionmatrix_console.desktop<font color="#990000">\</font>
+	icons/OptionMatrix.png<font color="#990000">\</font>
+	HOWTO<font color="#990000">\</font>
+	WEBSITE<font color="#990000">\</font>
+	utils/tab.sh<font color="#990000">\</font>
+	utils/push_to_web.sh<font color="#990000">\</font>
+	utils/apt-get.sh<font color="#990000">\</font>
+	utils/yum.sh<font color="#990000">\</font>
+	utils/zypper.sh<font color="#990000">\</font>
+	utils/README<font color="#990000">\</font>
+	src/README<font color="#990000">\</font>
+	src/models/metaoptions/tests/TESTSUITE.README<font color="#990000">\</font>
+	src/models/metaoptions/AUTHORS<font color="#990000">\</font>
+	src/models/metaoptions/ChangeLog<font color="#990000">\</font>
+	src/models/financialrecipes/AUTHORS<font color="#990000">\</font>
+	src/models/financialrecipes/ChangeLog<font color="#990000">\</font>
+	src/models/financialrecipes/README
+
+<font color="#990000">install:</font> install-html install-pdf install-data
+	<font color="#009900">$(MKDIR_P)</font> <font color="#009900">$(DESTDIR)$(bindir)</font>
+	install src/curses/optionmatrix_console <font color="#009900">$(DESTDIR)$(bindir)</font>
+	install src/gtk/optionmatrix <font color="#009900">$(DESTDIR)$(bindir)</font>
+
+<font color="#009900">private_images =</font> <font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>10.png<font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>11.png<font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>1.png<font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>2.png<font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>3.png<font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>4.png<font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>5.png<font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>6.png<font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>7.png<font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>8.png<font color="#990000">\</font>
+	src/gtk/images<font color="#990000">/</font>9.png
+
+<font color="#990000">install-icons:</font>
+	<b><font color="#0000FF">for</font></b> icon <b><font color="#0000FF">in</font></b> <font color="#009900">$(private_images)</font><font color="#990000">;</font> <b><font color="#0000FF">do</font></b> <font color="#990000">\</font>
+		<font color="#009900">$(MKDIR_P)</font> <font color="#009900">$(DESTDIR)$(pkgdatadir)</font>/images<font color="#990000">/;</font> <font color="#990000">\</font>
+		<font color="#009900">$(INSTALL_DATA)</font> <font color="#009900">$(srcdir)</font><font color="#990000">/</font><font color="#009900">$$</font>icon <font color="#009900">$(DESTDIR)$(pkgdatadir)</font>/images<font color="#990000">/;</font> <font color="#990000">\</font>
+	<b><font color="#0000FF">done</font></b>
+
+<font color="#990000">install-data-local:</font> install-icons
+
+<i><font color="#9A1900"># After you run 'sudo make uninstall' the command</font></i>
+<i><font color="#9A1900"># find /usr -name "optionmatrix*" -print 2&gt;/dev/null</font></i>
+<i><font color="#9A1900"># should yield nothing. If you find installation files there could be a problem</font></i>
+<i><font color="#9A1900"># with this section.</font></i>
+<font color="#990000">uninstall-local:</font>
+	rm -f <font color="#009900">$(DESTDIR)$(pkgdatadir)</font>/images<font color="#990000">/*</font>.png
+	rm -f <font color="#009900">$(DESTDIR)$(pkgdatadir)</font><font color="#990000">/*</font>.glade
+	<b><font color="#0000FF">if</font></b> <b><font color="#0000FF">test</font></b> -d <font color="#009900">$(DESTDIR)${pkgdatadir}</font>/images<font color="#990000">;</font> <b><font color="#0000FF">then</font></b> rmdir <font color="#009900">$(DESTDIR)${pkgdatadir}</font>/images<font color="#990000">;</font> <b><font color="#0000FF">fi</font></b>
+	<b><font color="#0000FF">if</font></b> <b><font color="#0000FF">test</font></b> -d <font color="#009900">$(DESTDIR)${pkgdatadir}</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b> rmdir <font color="#009900">$(DESTDIR)${pkgdatadir}</font><font color="#990000">;</font> <b><font color="#0000FF">fi</font></b>
+	<b><font color="#0000FF">if</font></b> <b><font color="#0000FF">test</font></b> -d <font color="#009900">$(DESTDIR)$(docdir)</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b> rmdir <font color="#009900">$(DESTDIR)$(docdir)</font><font color="#990000">;</font> <b><font color="#0000FF">fi</font></b>
+
+<i><font color="#9A1900"># Push HTML/PDF/EPUB/*.tar.gz to any website</font></i>
+<font color="#990000">website:</font>
+	sh utils/push_to_web.sh <font color="#009900">$(PACKAGE_URL)</font> <font color="#009900">$(distdir)</font>.tar.gz <font color="#009900">$(PACKAGE)</font>.pdf <font color="#009900">$(PACKAGE)</font>.epub
+</tt></pre>

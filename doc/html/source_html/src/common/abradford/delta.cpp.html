@@ -1,0 +1,110 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">   optionmatrix:</font></i>
+
+<i><font color="#9A1900">   Options &amp; Futures Matrix Modeler</font></i>
+<i><font color="#9A1900">   View and Control Theoretical Option Chains</font></i>
+
+<i><font color="#9A1900">   File: delta.c of optionmatrix</font></i>
+
+<i><font color="#9A1900">   Copyright (c) Anthony Bradford. 2012.</font></i>
+<i><font color="#9A1900">   </font></i><u><font color="#0000FF">http://opensourcefinancialmodels.com</font></u>
+<i><font color="#9A1900">   </font></i><u><font color="#0000FF">info@opensourcefinancialmodels.com</font></u>
+
+<i><font color="#9A1900">   optionmatrix may be freely redistributed.</font></i>
+<i><font color="#9A1900">   See file COPYING included with this distribution for license information</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<i><font color="#9A1900">/* </font></i>
+<i><font color="#9A1900">   optionmatrix program is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">   it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">   the Free Software Foundation; either version 3 of the License, or</font></i>
+<i><font color="#9A1900">   (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">   optionmatrix program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">   but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">   GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">   You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">   along with this program.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"../defs.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"../extern.h"</font> <i><font color="#9A1900">/* cnd() prototype in here */</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"basicmodels.h"</font>
+
+<font color="#009900">double</font> <b><font color="#000000">call_delta</font></b><font color="#990000">(</font><font color="#009900">double</font> stockprice<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> strike<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> rate<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> t<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> d<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> dividend<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+    <font color="#009900">double</font> d1<font color="#990000">,</font>dd1<font color="#990000">;</font>
+
+    <i><font color="#9A1900">/* no time left this thing is worth nothing */</font></i>
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> t <font color="#990000">&lt;=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#0000FF">return</font></b> <font color="#993399">0.0</font><font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+
+    stockprice <font color="#990000">=</font> stockprice <font color="#990000">-</font> stockprice <font color="#990000">*</font> dividend <font color="#990000">*</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>t <font color="#990000">*</font> rate<font color="#990000">);</font>
+
+    d1 <font color="#990000">=</font> <font color="#990000">(</font><b><font color="#000000">log</font></b><font color="#990000">(</font>stockprice<font color="#990000">/</font>strike<font color="#990000">)+((</font>rate<font color="#990000">+((</font>d<font color="#990000">*</font>d<font color="#990000">)/</font><font color="#993399">2</font><font color="#990000">))*</font>t<font color="#990000">))/(</font>d<font color="#990000">*</font><b><font color="#000000">sqrt</font></b><font color="#990000">(</font>t<font color="#990000">));</font>
+
+    <i><font color="#9A1900">/* dd1 is the hedge ratio or the option's delta */</font></i>
+    dd1 <font color="#990000">=</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>d1<font color="#990000">);</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> dd1 <font color="#990000">&lt;</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#0000FF">return</font></b> <font color="#993399">0.0</font><font color="#990000">;</font>
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+    <font color="#FF0000">{</font>
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> dd1 <font color="#990000">&gt;=</font> <font color="#993399">1</font> <font color="#990000">)</font>
+        <font color="#FF0000">{</font>
+          <b><font color="#0000FF">return</font></b> <font color="#993399">1</font><font color="#990000">;</font>
+        <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+        <font color="#FF0000">{</font>
+          <b><font color="#0000FF">return</font></b> dd1<font color="#990000">;</font>
+        <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">return</font></b> dd1<font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">double</font> <b><font color="#000000">put_delta</font></b><font color="#990000">(</font><font color="#009900">double</font> stockprice<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> strike<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> rate<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> t<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> d<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> dividend<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+    <font color="#009900">double</font> d1<font color="#990000">,</font>dd1<font color="#990000">;</font>
+
+    <i><font color="#9A1900">/* no time left this thing is worth nothing */</font></i>
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> t <font color="#990000">&lt;=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#0000FF">return</font></b> <font color="#993399">0.0</font><font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+
+    stockprice <font color="#990000">=</font> stockprice <font color="#990000">-</font> stockprice <font color="#990000">*</font> dividend <font color="#990000">*</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>t <font color="#990000">*</font> rate<font color="#990000">);</font>
+
+    d1 <font color="#990000">=</font> <font color="#990000">(</font><b><font color="#000000">log</font></b><font color="#990000">(</font>stockprice<font color="#990000">/</font>strike<font color="#990000">)+((</font>rate<font color="#990000">+((</font>d<font color="#990000">*</font>d<font color="#990000">)/</font><font color="#993399">2</font><font color="#990000">))*</font>t<font color="#990000">))/(</font>d<font color="#990000">*</font><b><font color="#000000">sqrt</font></b><font color="#990000">(</font>t<font color="#990000">));</font>
+
+    <i><font color="#9A1900">/* dd1 is the hedge ratio or the option's delta */</font></i>
+    dd1 <font color="#990000">=</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>d1<font color="#990000">);</font>
+
+    dd1 <font color="#990000">=</font> dd1 <font color="#990000">-</font> <font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <font color="#993399">1</font><font color="#990000">;</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> dd1 <font color="#990000">&gt;</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+        <b><font color="#0000FF">return</font></b> <font color="#993399">0.0</font><font color="#990000">;</font>
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+    <font color="#FF0000">{</font>
+        <b><font color="#0000FF">if</font></b><font color="#990000">(</font> dd1 <font color="#990000">&lt;=</font> <font color="#990000">-</font><font color="#993399">1</font> <font color="#990000">)</font>
+        <font color="#FF0000">{</font>
+          <b><font color="#0000FF">return</font></b> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">;</font>
+        <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+        <font color="#FF0000">{</font>
+          <b><font color="#0000FF">return</font></b> dd1<font color="#990000">;</font>
+        <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">return</font></b> dd1<font color="#990000">;</font>
+<font color="#FF0000">}</font>
+</tt></pre>

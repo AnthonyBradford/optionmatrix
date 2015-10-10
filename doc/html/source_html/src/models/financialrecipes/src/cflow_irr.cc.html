@@ -1,0 +1,57 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;cmath&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;algorithm&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;vector&gt;</font>
+<b><font color="#0000FF">using</font></b> <b><font color="#0000FF">namespace</font></b> std<font color="#990000">;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"fin_recipes.h"</font>
+
+<b><font color="#0000FF">const</font></b> <font color="#009900">double</font> ERROR<font color="#990000">=-</font><font color="#993399">1e30</font><font color="#990000">;</font>
+
+<font color="#009900">double</font> <b><font color="#000000">cash_flow_irr</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> vector<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;&amp;</font> cflow_times<font color="#990000">,</font> 
+		     <b><font color="#0000FF">const</font></b> vector<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;&amp;</font> cflow_amounts<font color="#990000">)</font> <font color="#FF0000">{</font>
+    <i><font color="#9A1900">// simple minded irr function.  Will find one root (if it exists.)</font></i>
+    <i><font color="#9A1900">// adapted from routine in Numerical Recipes in C.</font></i>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>cflow_times<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">()!=</font>cflow_amounts<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">())</font> <b><font color="#0000FF">return</font></b> ERROR<font color="#990000">;</font>
+    <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> ACCURACY <font color="#990000">=</font> <font color="#993399">1.0e-5</font><font color="#990000">;</font>
+    <b><font color="#0000FF">const</font></b> <font color="#009900">int</font> MAX_ITERATIONS <font color="#990000">=</font> <font color="#993399">50</font><font color="#990000">;</font>
+    <font color="#009900">double</font> x1<font color="#990000">=</font><font color="#993399">0.0</font><font color="#990000">;</font>
+    <font color="#009900">double</font> x2 <font color="#990000">=</font> <font color="#993399">0.2</font><font color="#990000">;</font>
+    
+    <i><font color="#9A1900">// create an initial bracket, with a root somewhere between bot,top</font></i>
+    <font color="#009900">double</font> f1 <font color="#990000">=</font> <b><font color="#000000">cash_flow_pv</font></b><font color="#990000">(</font>cflow_times<font color="#990000">,</font> cflow_amounts<font color="#990000">,</font>  x1<font color="#990000">);</font>
+    <font color="#009900">double</font> f2 <font color="#990000">=</font> <b><font color="#000000">cash_flow_pv</font></b><font color="#990000">(</font>cflow_times<font color="#990000">,</font> cflow_amounts<font color="#990000">,</font>  x2<font color="#990000">);</font>
+    <font color="#009900">int</font> i<font color="#990000">;</font>
+    <b><font color="#0000FF">for</font></b> <font color="#990000">(</font>i<font color="#990000">=</font><font color="#993399">0</font><font color="#990000">;</font>i<font color="#990000">&lt;</font>MAX_ITERATIONS<font color="#990000">;</font>i<font color="#990000">++)</font> <font color="#FF0000">{</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font> <font color="#990000">(</font>f1<font color="#990000">*</font>f2<font color="#990000">)</font> <font color="#990000">&lt;</font> <font color="#993399">0.0</font><font color="#990000">)</font> <font color="#FF0000">{</font> <b><font color="#0000FF">break</font></b><font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font> <i><font color="#9A1900">// </font></i>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font><b><font color="#000000">fabs</font></b><font color="#990000">(</font>f1<font color="#990000">)&lt;</font><b><font color="#000000">fabs</font></b><font color="#990000">(</font>f2<font color="#990000">))</font> <font color="#FF0000">{</font> 
+	    f1 <font color="#990000">=</font> <b><font color="#000000">cash_flow_pv</font></b><font color="#990000">(</font>cflow_times<font color="#990000">,</font>cflow_amounts<font color="#990000">,</font>  x1<font color="#990000">+=</font><font color="#993399">1.6</font><font color="#990000">*(</font>x1<font color="#990000">-</font>x2<font color="#990000">));</font> 
+	<font color="#FF0000">}</font>
+	<b><font color="#0000FF">else</font></b> <font color="#FF0000">{</font>
+	    f2 <font color="#990000">=</font> <b><font color="#000000">cash_flow_pv</font></b><font color="#990000">(</font>cflow_times<font color="#990000">,</font>cflow_amounts<font color="#990000">,</font>  x2<font color="#990000">+=</font><font color="#993399">1.6</font><font color="#990000">*(</font>x2<font color="#990000">-</font>x1<font color="#990000">));</font> 
+	<font color="#FF0000">}</font><font color="#990000">;</font>
+    <font color="#FF0000">}</font><font color="#990000">;</font>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>f2<font color="#990000">*</font>f1<font color="#990000">&gt;</font><font color="#993399">0.0</font><font color="#990000">)</font> <font color="#FF0000">{</font> <b><font color="#0000FF">return</font></b> ERROR<font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+    <font color="#009900">double</font> f <font color="#990000">=</font> <b><font color="#000000">cash_flow_pv</font></b><font color="#990000">(</font>cflow_times<font color="#990000">,</font>cflow_amounts<font color="#990000">,</font> x1<font color="#990000">);</font>
+    <font color="#009900">double</font> rtb<font color="#990000">;</font>
+    <font color="#009900">double</font> dx<font color="#990000">=</font><font color="#993399">0</font><font color="#990000">;</font>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>f<font color="#990000">&lt;</font><font color="#993399">0.0</font><font color="#990000">)</font> <font color="#FF0000">{</font> 
+	rtb <font color="#990000">=</font> x1<font color="#990000">;</font> 
+	dx<font color="#990000">=</font>x2<font color="#990000">-</font>x1<font color="#990000">;</font> 
+    <font color="#FF0000">}</font>
+    <b><font color="#0000FF">else</font></b> <font color="#FF0000">{</font>
+	rtb <font color="#990000">=</font> x2<font color="#990000">;</font>
+	dx <font color="#990000">=</font> x1<font color="#990000">-</font>x2<font color="#990000">;</font>     
+    <font color="#FF0000">}</font><font color="#990000">;</font>
+    <b><font color="#0000FF">for</font></b> <font color="#990000">(</font>i<font color="#990000">=</font><font color="#993399">0</font><font color="#990000">;</font>i<font color="#990000">&lt;</font>MAX_ITERATIONS<font color="#990000">;</font>i<font color="#990000">++)</font><font color="#FF0000">{</font>
+	dx <font color="#990000">*=</font> <font color="#993399">0.5</font><font color="#990000">;</font>
+	<font color="#009900">double</font> x_mid <font color="#990000">=</font> rtb<font color="#990000">+</font>dx<font color="#990000">;</font>
+	<font color="#009900">double</font> f_mid <font color="#990000">=</font> <b><font color="#000000">cash_flow_pv</font></b><font color="#990000">(</font>cflow_times<font color="#990000">,</font>cflow_amounts<font color="#990000">,</font> x_mid<font color="#990000">);</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>f_mid<font color="#990000">&lt;=</font><font color="#993399">0.0</font><font color="#990000">)</font> <font color="#FF0000">{</font> rtb <font color="#990000">=</font> x_mid<font color="#990000">;</font> <font color="#FF0000">}</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font> <font color="#990000">(</font><b><font color="#000000">fabs</font></b><font color="#990000">(</font>f_mid<font color="#990000">)&lt;</font>ACCURACY<font color="#990000">)</font> <font color="#990000">||</font> <font color="#990000">(</font><b><font color="#000000">fabs</font></b><font color="#990000">(</font>dx<font color="#990000">)&lt;</font>ACCURACY<font color="#990000">)</font> <font color="#990000">)</font> <b><font color="#0000FF">return</font></b> x_mid<font color="#990000">;</font>
+    <font color="#FF0000">}</font><font color="#990000">;</font> 
+    <b><font color="#0000FF">return</font></b> ERROR<font color="#990000">;</font>   <i><font color="#9A1900">// error.</font></i>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+</tt></pre>

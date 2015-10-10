@@ -1,0 +1,186 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">    libmetaoptions - A collection of option-related functions. </font></i>
+<i><font color="#9A1900">    Copyright (C) 2000-2004 B. Augestad, </font></i><u><font color="#0000FF">bjorn.augestad@gmail.com</font></u><i><font color="#9A1900"> </font></i>
+
+<i><font color="#9A1900">    This program is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">    it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">    the Free Software Foundation; either version 2 of the License, or</font></i>
+<i><font color="#9A1900">    (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">    This program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">    but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">    GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">    You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">    along with this program; if not, write to the Free Software</font></i>
+<i><font color="#9A1900">    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;math.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;assert.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdlib.h&gt;</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"metaoptions.h"</font>
+
+<i><font color="#9A1900">/* Extreme spread options */</font></i>
+<i><font color="#9A1900">/* </font></i><b>TODO:</b><i><font color="#9A1900"> Replace arguments SMin/SMax with Sminmax and leave it to the caller</font></i>
+<i><font color="#9A1900"> * to provice one correct value. We use smax for calls and reverse puts, and</font></i>
+<i><font color="#9A1900"> * smin for reverse calls and puts. </font></i>
+<i><font color="#9A1900"> *</font></i>
+<i><font color="#9A1900"> * Optimization: We start off with 183.000 calls/sec, which is OK. The function</font></i>
+<i><font color="#9A1900"> * was already optimized a bit, and I won't bother to continue until the </font></i>
+<i><font color="#9A1900"> * interface is OK.(See above).</font></i>
+<i><font color="#9A1900"> */</font></i>
+
+<i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900"> * BIG IMPORTANT NOTE!!!</font></i>
+<i><font color="#9A1900"> * 20070309 boa</font></i>
+<i><font color="#9A1900"> * The function fails if t1 is 0. According to the formula on page 68, the correct expression(see below)</font></i>
+<i><font color="#9A1900"> * is (-m + mu*T2), but for some reason we do (-m + mu*t1). This is obviously an error, but which version</font></i>
+<i><font color="#9A1900"> * is correct? The formula or the Excel implementation we base our code on? </font></i>
+<i><font color="#9A1900"> * Doesn't matter much because the Excel version fails. We go by the book!</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">double</font> <b><font color="#000000">ExtremeSpreadOption</font></b><font color="#990000">(</font>
+	<font color="#009900">int</font> option_type<font color="#990000">,</font>
+	<font color="#009900">double</font> S<font color="#990000">,</font>
+	<font color="#009900">double</font> SMin<font color="#990000">,</font>
+	<font color="#009900">double</font> SMax<font color="#990000">,</font>
+	<font color="#009900">double</font> t1<font color="#990000">,</font>
+	<font color="#009900">double</font> T<font color="#990000">,</font>
+	<font color="#009900">double</font> r<font color="#990000">,</font>
+	<font color="#009900">double</font> b<font color="#990000">,</font>
+	<font color="#009900">double</font> v<font color="#990000">)</font> 
+<font color="#FF0000">{</font>
+	<font color="#009900">int</font> eta<font color="#990000">,</font> kappa<font color="#990000">;</font>
+	<font color="#009900">double</font> Mo<font color="#990000">,</font> p2v<font color="#990000">,</font> mu1<font color="#990000">,</font> mu<font color="#990000">,</font> m<font color="#990000">,</font> e2mu<font color="#990000">,</font> erT<font color="#990000">,</font> erTMo<font color="#990000">,</font> SbrT<font color="#990000">,</font> x<font color="#990000">,</font> vsT<font color="#990000">,</font> result<font color="#990000">;</font>
+
+	<b><font color="#000000">assert_valid_price</font></b><font color="#990000">(</font>S<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_time</font></b><font color="#990000">(</font>T<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_interest_rate</font></b><font color="#990000">(</font>r<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_cost_of_carry</font></b><font color="#990000">(</font>b<font color="#990000">);</font>
+	<b><font color="#000000">assert_valid_volatility</font></b><font color="#990000">(</font>v<font color="#990000">);</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font>T <font color="#990000">&gt;</font> t1 <font color="#990000">&amp;&amp;</font> <font color="#FF0000">"We cannot have negative durations "</font><font color="#990000">);</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font>t1 <font color="#990000">&gt;</font> <font color="#993399">0.0</font> <font color="#990000">&amp;&amp;</font> <font color="#FF0000">"If t1 == 0.0, then v * sqrt(t1) becomes 0.0 and later stuff becomes NaN"</font><font color="#990000">);</font>
+
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>option_type <font color="#990000">==</font> ESO_CALL <font color="#990000">||</font> option_type <font color="#990000">==</font> ESO_REVERSE_CALL<font color="#990000">)</font> 
+		eta <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+	<b><font color="#0000FF">else</font></b>
+		eta <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">;</font>
+	
+	<b><font color="#0000FF">if</font></b><font color="#990000">(</font>option_type <font color="#990000">==</font> ESO_CALL <font color="#990000">||</font> option_type <font color="#990000">==</font> ESO_PUT<font color="#990000">)</font>
+		kappa <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+	<b><font color="#0000FF">else</font></b>
+		kappa <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">;</font>
+		
+	<b><font color="#0000FF">if</font></b><font color="#990000">(</font>kappa <font color="#990000">*</font> eta <font color="#990000">==</font> <font color="#993399">1</font><font color="#990000">)</font>
+		Mo <font color="#990000">=</font> SMax<font color="#990000">;</font>
+	<b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font>kappa <font color="#990000">*</font> eta <font color="#990000">==</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">)</font>
+		Mo <font color="#990000">=</font> SMin<font color="#990000">;</font>
+	<b><font color="#0000FF">else</font></b>
+		<b><font color="#000000">abort</font></b><font color="#990000">();</font>
+	
+	p2v <font color="#990000">=</font> <b><font color="#000000">pow2</font></b><font color="#990000">(</font>v<font color="#990000">);</font>
+	mu1 <font color="#990000">=</font> b <font color="#990000">-</font> p2v <font color="#990000">/</font> <font color="#993399">2.0</font><font color="#990000">;</font>
+	mu <font color="#990000">=</font> mu1 <font color="#990000">+</font> p2v<font color="#990000">;</font>
+	m <font color="#990000">=</font> <b><font color="#000000">log</font></b><font color="#990000">(</font>Mo <font color="#990000">/</font> S<font color="#990000">);</font>
+	e2mu <font color="#990000">=</font> <b><font color="#000000">exp</font></b><font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> mu1 <font color="#990000">*</font> m <font color="#990000">/</font> p2v<font color="#990000">);</font>
+	erT <font color="#990000">=</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>r <font color="#990000">*</font> T<font color="#990000">);</font>
+	erTMo <font color="#990000">=</font> erT <font color="#990000">*</font> Mo<font color="#990000">;</font>
+	SbrT <font color="#990000">=</font> S <font color="#990000">*</font> <b><font color="#000000">exp</font></b><font color="#990000">((</font>b <font color="#990000">-</font> r<font color="#990000">)</font> <font color="#990000">*</font> T<font color="#990000">);</font>
+	x <font color="#990000">=</font> SbrT <font color="#990000">*</font> <font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">+</font> p2v <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">))</font> <font color="#990000">;</font>
+	vsT <font color="#990000">=</font> v <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>T<font color="#990000">);</font>
+
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>kappa <font color="#990000">==</font> <font color="#993399">1</font><font color="#990000">)</font> <font color="#FF0000">{</font> <i><font color="#9A1900">/* Extreme Spread Option */</font></i>
+		<b><font color="#0000FF">const</font></b> <font color="#009900">double</font> vst1 <font color="#990000">=</font> v <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>t1<font color="#990000">);</font>
+		result 
+			<font color="#990000">=</font> eta <font color="#990000">*</font> <font color="#990000">(</font>
+				x <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(-</font>m <font color="#990000">+</font> mu <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">/</font> vsT<font color="#990000">)</font>
+				<font color="#990000">-</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>r <font color="#990000">*</font> <font color="#990000">(</font>T <font color="#990000">-</font> t1<font color="#990000">))</font> <font color="#990000">*</font> SbrT <font color="#990000">*</font> <font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">+</font> p2v <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">))</font> <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(-</font>m <font color="#990000">+</font> mu <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">)</font> 
+				<font color="#990000">+</font> erTMo <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">-</font> mu1 <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">/</font> vsT<font color="#990000">)</font>
+				<font color="#990000">-</font> erTMo <font color="#990000">*</font> p2v <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">)</font> <font color="#990000">*</font> e2mu <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(-</font>m <font color="#990000">-</font> mu1 <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">/</font> vsT<font color="#990000">)</font> 
+				<font color="#990000">-</font> erTMo <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">-</font> mu1 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">)</font>
+				<font color="#990000">+</font> erTMo <font color="#990000">*</font> p2v <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">)</font> <font color="#990000">*</font> e2mu <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(-</font>m <font color="#990000">-</font> mu1 <font color="#990000">*</font> t1<font color="#990000">)</font> <font color="#990000">/</font> vst1<font color="#990000">)</font>
+			<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+	<b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> kappa <font color="#990000">==</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#FF0000">{</font>  <i><font color="#9A1900">/* Reverse Extreme Spread Option */</font></i>
+		<font color="#009900">double</font> vsTt1 <font color="#990000">=</font> v <font color="#990000">*</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font>T <font color="#990000">-</font> t1<font color="#990000">);</font>
+		result 
+			<font color="#990000">=</font> <font color="#990000">-</font>eta <font color="#990000">*</font> <font color="#990000">(</font>
+				x <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">-</font> mu <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">/</font> vsT<font color="#990000">)</font> 
+				<font color="#990000">+</font> erTMo <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(-</font>m <font color="#990000">+</font> mu1 <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">/</font> vsT<font color="#990000">)</font> 
+				<font color="#990000">-</font> erTMo <font color="#990000">*</font> p2v <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">)</font> <font color="#990000">*</font> e2mu <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>m <font color="#990000">+</font> mu1 <font color="#990000">*</font> T<font color="#990000">)</font> <font color="#990000">/</font> vsT<font color="#990000">)</font>
+				<font color="#990000">-</font> SbrT <font color="#990000">*</font> <font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">+</font> p2v <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">))</font> <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(-</font>mu <font color="#990000">*</font> <font color="#990000">(</font>T <font color="#990000">-</font> t1<font color="#990000">))</font> <font color="#990000">/</font> vsTt1<font color="#990000">)</font> 
+				<font color="#990000">-</font> <b><font color="#000000">exp</font></b><font color="#990000">(-</font>r <font color="#990000">*</font> <font color="#990000">(</font>T <font color="#990000">-</font> t1<font color="#990000">))</font> <font color="#990000">*</font> SbrT <font color="#990000">*</font> <font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">-</font> p2v <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> b<font color="#990000">))</font> <font color="#990000">*</font> <b><font color="#000000">cnd</font></b><font color="#990000">(</font>eta <font color="#990000">*</font> <font color="#990000">(</font>mu1 <font color="#990000">*</font> <font color="#990000">(</font>T <font color="#990000">-</font> t1<font color="#990000">))</font> <font color="#990000">/</font> vsTt1<font color="#990000">)</font>
+			<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+	<b><font color="#0000FF">else</font></b>
+		<b><font color="#000000">abort</font></b><font color="#990000">();</font>
+
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font><b><font color="#000000">is_sane</font></b><font color="#990000">(</font>result<font color="#990000">));</font>
+	<b><font color="#0000FF">return</font></b> result<font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<b><font color="#000080">#ifdef</font></b> EXTREMESPREADOPTION_CHECK
+
+<i><font color="#9A1900">/* Page 67-69 */</font></i>
+<b><font color="#0000FF">static</font></b> <font color="#009900">void</font> <b><font color="#000000">check_ExtremeSpreadOption</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<font color="#009900">double</font> S <font color="#990000">=</font> <font color="#993399">100.0</font><font color="#990000">,</font> T2 <font color="#990000">=</font> <font color="#993399">1.0</font><font color="#990000">,</font> r <font color="#990000">=</font> <font color="#993399">0.10</font><font color="#990000">,</font> b <font color="#990000">=</font> <font color="#993399">0.10</font><font color="#990000">;</font>
+	<b><font color="#0000FF">struct</font></b> <font color="#FF0000">{</font>
+		<font color="#009900">int</font> type<font color="#990000">;</font>	<i><font color="#9A1900">/* option type */</font></i>
+		<font color="#009900">double</font> v<font color="#990000">;</font>	<i><font color="#9A1900">/* Volatility */</font></i>
+		<font color="#009900">double</font> SM<font color="#990000">;</font>	<i><font color="#9A1900">/* Smin or Smax depending on type */</font></i>
+		<i><font color="#9A1900">/* We have 4 answers, one for each of 4 time values (t1) */</font></i>
+		<font color="#009900">double</font> fasit<font color="#990000">[</font><font color="#993399">4</font><font color="#990000">];</font>
+	<font color="#FF0000">}</font> values<font color="#990000">[</font><font color="#993399">12</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font>
+		<i><font color="#9A1900">/* Extreme spread */</font></i>
+		<font color="#FF0000">{</font> ESO_CALL<font color="#990000">,</font> <font color="#993399">0.15</font><font color="#990000">,</font> <font color="#993399">100</font><font color="#990000">,</font> <font color="#FF0000">{</font> <font color="#993399">17.5212</font><font color="#990000">,</font> <font color="#993399">10.6618</font><font color="#990000">,</font>  <font color="#993399">6.7967</font><font color="#990000">,</font> <font color="#993399">3.3218</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> ESO_CALL<font color="#990000">,</font> <font color="#993399">0.15</font><font color="#990000">,</font> <font color="#993399">110</font><font color="#990000">,</font> <font color="#FF0000">{</font>  <font color="#993399">9.6924</font><font color="#990000">,</font>  <font color="#993399">8.4878</font><font color="#990000">,</font>  <font color="#993399">5.8519</font><font color="#990000">,</font> <font color="#993399">2.9676</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> ESO_CALL<font color="#990000">,</font> <font color="#993399">0.15</font><font color="#990000">,</font> <font color="#993399">120</font><font color="#990000">,</font> <font color="#FF0000">{</font>  <font color="#993399">4.6135</font><font color="#990000">,</font>  <font color="#993399">4.5235</font><font color="#990000">,</font>  <font color="#993399">3.6613</font><font color="#990000">,</font> <font color="#993399">2.0566</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> ESO_CALL<font color="#990000">,</font> <font color="#993399">0.30</font><font color="#990000">,</font> <font color="#993399">100</font><font color="#990000">,</font> <font color="#FF0000">{</font> <font color="#993399">30.1874</font><font color="#990000">,</font> <font color="#993399">17.4998</font><font color="#990000">,</font> <font color="#993399">10.9444</font><font color="#990000">,</font> <font color="#993399">5.2735</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> ESO_CALL<font color="#990000">,</font> <font color="#993399">0.30</font><font color="#990000">,</font> <font color="#993399">110</font><font color="#990000">,</font> <font color="#FF0000">{</font> <font color="#993399">22.0828</font><font color="#990000">,</font> <font color="#993399">16.3674</font><font color="#990000">,</font> <font color="#993399">10.4668</font><font color="#990000">,</font> <font color="#993399">5.0942</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> ESO_CALL<font color="#990000">,</font> <font color="#993399">0.30</font><font color="#990000">,</font> <font color="#993399">120</font><font color="#990000">,</font> <font color="#FF0000">{</font> <font color="#993399">15.7847</font><font color="#990000">,</font> <font color="#993399">13.5892</font><font color="#990000">,</font>  <font color="#993399">9.2051</font><font color="#990000">,</font> <font color="#993399">4.6071</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+
+		<i><font color="#9A1900">/* Reverse Extreme spread */</font></i>
+		<font color="#FF0000">{</font> ESO_REVERSE_CALL<font color="#990000">,</font> <font color="#993399">0.15</font><font color="#990000">,</font> <font color="#993399">100</font><font color="#990000">,</font> <font color="#FF0000">{</font>  <font color="#993399">0.0000</font><font color="#990000">,</font>  <font color="#993399">2.7046</font><font color="#990000">,</font>  <font color="#993399">5.7250</font><font color="#990000">,</font> <font color="#993399">9.3347</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> ESO_REVERSE_CALL<font color="#990000">,</font> <font color="#993399">0.15</font><font color="#990000">,</font>  <font color="#993399">90</font><font color="#990000">,</font> <font color="#FF0000">{</font>  <font color="#993399">3.6267</font><font color="#990000">,</font>  <font color="#993399">6.3314</font><font color="#990000">,</font>  <font color="#993399">9.3517</font><font color="#990000">,</font> <font color="#993399">12.9615</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> ESO_REVERSE_CALL<font color="#990000">,</font> <font color="#993399">0.15</font><font color="#990000">,</font>  <font color="#993399">80</font><font color="#990000">,</font> <font color="#FF0000">{</font> <font color="#993399">11.3474</font><font color="#990000">,</font> <font color="#993399">14.0521</font><font color="#990000">,</font> <font color="#993399">17.0724</font><font color="#990000">,</font> <font color="#993399">20.6821</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> ESO_REVERSE_CALL<font color="#990000">,</font> <font color="#993399">0.30</font><font color="#990000">,</font> <font color="#993399">100</font><font color="#990000">,</font> <font color="#FF0000">{</font>  <font color="#993399">0.0000</font><font color="#990000">,</font>  <font color="#993399">3.6120</font><font color="#990000">,</font>  <font color="#993399">7.8702</font><font color="#990000">,</font> <font color="#993399">13.3404</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> ESO_REVERSE_CALL<font color="#990000">,</font> <font color="#993399">0.30</font><font color="#990000">,</font>  <font color="#993399">90</font><font color="#990000">,</font> <font color="#FF0000">{</font>  <font color="#993399">1.4769</font><font color="#990000">,</font>  <font color="#993399">5.0890</font><font color="#990000">,</font>  <font color="#993399">9.3471</font><font color="#990000">,</font> <font color="#993399">14.8173</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font> ESO_REVERSE_CALL<font color="#990000">,</font> <font color="#993399">0.30</font><font color="#990000">,</font>  <font color="#993399">80</font><font color="#990000">,</font> <font color="#FF0000">{</font>  <font color="#993399">5.7133</font><font color="#990000">,</font>  <font color="#993399">9.3253</font><font color="#990000">,</font> <font color="#993399">13.5835</font><font color="#990000">,</font> <font color="#993399">19.0537</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font>
+	<font color="#FF0000">}</font><font color="#990000">;</font>
+
+	<font color="#008080">size_t</font> i<font color="#990000">,</font> nelem <font color="#990000">=</font> <b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>values<font color="#990000">)/</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>values<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]);</font>
+	<b><font color="#000000">assert</font></b><font color="#990000">(</font>nelem <font color="#990000">==</font> <font color="#993399">12</font><font color="#990000">);</font>
+
+	nelem <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+	<b><font color="#0000FF">for</font></b><font color="#990000">(</font>i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> nelem<font color="#990000">;</font> i<font color="#990000">++)</font> <font color="#FF0000">{</font>
+<b><font color="#000080">		#if</font></b> <font color="#993399">0</font>
+		<font color="#009900">double</font> c1 <font color="#990000">=</font> <b><font color="#000000">ExtremeSpreadOption</font></b><font color="#990000">(</font>values<font color="#990000">[</font>i<font color="#990000">].</font>type<font color="#990000">,</font> S<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>SM<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>SM<font color="#990000">,</font> <font color="#993399">0.00</font><font color="#990000">,</font> T2<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>v<font color="#990000">);</font>
+<b><font color="#000080">		#endif</font></b>
+		<font color="#009900">double</font> c2 <font color="#990000">=</font> <b><font color="#000000">ExtremeSpreadOption</font></b><font color="#990000">(</font>values<font color="#990000">[</font>i<font color="#990000">].</font>type<font color="#990000">,</font> S<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>SM<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>SM<font color="#990000">,</font> <font color="#993399">0.25</font><font color="#990000">,</font> T2<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>v<font color="#990000">);</font>
+		<font color="#009900">double</font> c3 <font color="#990000">=</font> <b><font color="#000000">ExtremeSpreadOption</font></b><font color="#990000">(</font>values<font color="#990000">[</font>i<font color="#990000">].</font>type<font color="#990000">,</font> S<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>SM<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>SM<font color="#990000">,</font> <font color="#993399">0.50</font><font color="#990000">,</font> T2<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>v<font color="#990000">);</font>
+		<font color="#009900">double</font> c4 <font color="#990000">=</font> <b><font color="#000000">ExtremeSpreadOption</font></b><font color="#990000">(</font>values<font color="#990000">[</font>i<font color="#990000">].</font>type<font color="#990000">,</font> S<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>SM<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>SM<font color="#990000">,</font> <font color="#993399">0.75</font><font color="#990000">,</font> T2<font color="#990000">,</font> r<font color="#990000">,</font> b<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>v<font color="#990000">);</font>
+
+<b><font color="#000080">		#if</font></b> <font color="#993399">0</font>
+		<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>c1<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>fasit<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]);</font>
+<b><font color="#000080">		#endif</font></b>
+		<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>c2<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>fasit<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]);</font>
+		<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>c3<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>fasit<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]);</font>
+		<b><font color="#000000">assert_equal</font></b><font color="#990000">(</font>c4<font color="#990000">,</font> values<font color="#990000">[</font>i<font color="#990000">].</font>fasit<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">]);</font>
+	<font color="#FF0000">}</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">int</font> <b><font color="#000000">main</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>
+	<b><font color="#000000">check_ExtremeSpreadOption</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+<b><font color="#000080">#endif</font></b>
+
+</tt></pre>

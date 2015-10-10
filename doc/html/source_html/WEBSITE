@@ -1,0 +1,8 @@
+./configure; make website
+
+Will push the HTML out to a website of your choice. You will be prompted
+for website, login and password. The script utils/push_to_web.sh assumes
+the website is in public_html/ and will make a sub-directory "om".
+The script will install index.html and associated HTML files.
+
+Copyright (C) 2012 Anthony Bradford.

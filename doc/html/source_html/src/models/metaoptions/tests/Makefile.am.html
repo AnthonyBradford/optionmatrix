@@ -1,0 +1,346 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">#AUTOMAKE_OPTIONS = subdir-objects</font></i>
+<font color="#009900">FM =</font> -ffast-math
+
+<font color="#009900">TESTS =</font> check_options<font color="#990000">\</font>
+	CashOrNothing_check<font color="#990000">\</font>
+	bisection_check<font color="#990000">\</font>
+	NewtonRaphson_check<font color="#990000">\</font>
+	RollGeskeWhaley_check<font color="#990000">\</font>
+	cnd_check<font color="#990000">\</font>
+	cbnd_check<font color="#990000">\</font>
+	ExtremeSpreadOption_check<font color="#990000">\</font>
+	PartialFloatLB_check <font color="#990000">\</font>
+	PartialFixedLB_check <font color="#990000">\</font>
+	FloatingStrikeLookback_check<font color="#990000">\</font>
+	StandardBarrier_check<font color="#990000">\</font>
+	DoubleBarrier_check<font color="#990000">\</font>
+	LevyAsian_check<font color="#990000">\</font>
+	SoftBarrier_check<font color="#990000">\</font>
+	BinaryBarrier_check<font color="#990000">\</font>
+	JumpDiffusion_check<font color="#990000">\</font>
+	EuropeanExchangeOption_check<font color="#990000">\</font>
+	AmericanExchangeOption_check<font color="#990000">\</font>
+	ExchangeExchangeOption_check<font color="#990000">\</font>
+	gbs_check<font color="#990000">\</font>
+	quanto_check<font color="#990000">\</font>
+	gtheta_check<font color="#990000">\</font>
+	gdelta_check<font color="#990000">\</font>
+	ggamma_check<font color="#990000">\</font>
+	gvega_check<font color="#990000">\</font>
+	gcarry_check<font color="#990000">\</font>
+	grho_check<font color="#990000">\</font>
+	blackscholes_check<font color="#990000">\</font>
+	black76_check<font color="#990000">\</font>
+	ExtendibleWriter_check<font color="#990000">\</font>
+	MiltersenSchwartz_check<font color="#990000">\</font>
+	FixedStrikeLookback_check<font color="#990000">\</font>
+	Executive_check<font color="#990000">\</font>
+	SuperShare_check<font color="#990000">\</font>
+	TwoAssetBarrier_check<font color="#990000">\</font>
+	AssetOrNothing_check<font color="#990000">\</font>
+	ComplexChooser_check<font color="#990000">\</font>
+	GapOption_check<font color="#990000">\</font>
+	SimpleChooser_check<font color="#990000">\</font>
+	Swapoption_check<font color="#990000">\</font>
+	BSAmericanApprox_check<font color="#990000">\</font>
+	SpreadApproximation_check<font color="#990000">\</font>
+	EquityLinkedFXO_check<font color="#990000">\</font>
+	ForwardStartOption_check<font color="#990000">\</font>
+	OptionsOnOptions_check<font color="#990000">\</font>
+	BAWbisection_check<font color="#990000">\</font>
+	ForEquOptInDomCur_check<font color="#990000">\</font>
+	GeometricAverageRateOption_check<font color="#990000">\</font>
+	DiscreteAdjustedBarrier_check<font color="#990000">\</font>
+	PartialTimeBarrier_check<font color="#990000">\</font>
+	OptionsOnTheMaxMin_check<font color="#990000">\</font>
+	TakeoverFXoption_check<font color="#990000">\</font>
+	TwoAssetCashOrNothing_check<font color="#990000">\</font>
+	TwoAssetCorrelation_check<font color="#990000">\</font>
+	GarmanKohlhagen_check<font color="#990000">\</font>
+	merton73_check
+
+<i><font color="#9A1900"># These checks are omitted until further investigation...</font></i>
+<i><font color="#9A1900">#	TurnbullWakemanAsian_check\</font></i>
+<i><font color="#9A1900">#	BAWAmericanApprox_check\</font></i>
+<i><font color="#9A1900">#	gfrench_check\</font></i>
+<i><font color="#9A1900">#	TimeSwitchOption_check\</font></i>
+<i><font color="#9A1900">#	BSbisection_check\</font></i>
+<i><font color="#9A1900">#	LookBarrier_check\</font></i>
+<i><font color="#9A1900">#	VasicekBondPrice_check\</font></i>
+<i><font color="#9A1900">#	VasicekBondOption_check\</font></i>
+<i><font color="#9A1900">#	PartialTimeTwoAssetBarrier_check</font></i>
+
+<font color="#009900">check_PROGRAMS=</font> <font color="#009900">$(TESTS)</font>
+
+<font color="#009900">noinst_PROGRAMS =</font> check_options ExtremeSpreadOption_check PartialFloatLB_check PartialFixedLB_check FixedStrikeLookback_check FloatingStrikeLookback_check BAWAmericanApprox_check StandardBarrier_check PartialTimeTwoAssetBarrier_check cbnd_check cnd_check LookBarrier_check DoubleBarrier_check SoftBarrier_check LevyAsian_check BinaryBarrier_check JumpDiffusion_check AmericanExchangeOption_check EuropeanExchangeOption_check MiltersenSchwartz_check ExchangeExchangeOption_check SuperShare_check NewtonRaphson_check bisection_check CashOrNothing_check TwoAssetBarrier_check TurnbullWakemanAsian_check AssetOrNothing_check ComplexChooser_check TimeSwitchOption_check GapOption_check SimpleChooser_check Swapoption_check BSAmericanApprox_check SpreadApproximation_check EquityLinkedFXO_check ForwardStartOption_check OptionsOnOptions_check OptionsOnOptions_check OptionsOnOptions_check GeometricAverageRateOption_check BAWbisection_check BSbisection_check grho_check ForEquOptInDomCur_check DiscreteAdjustedBarrier_check PartialTimeBarrier_check merton73_check OptionsOnTheMaxMin_check TakeoverFXoption_check TwoAssetCorrelation_check TwoAssetCashOrNothing_check VasicekBondPrice_check VasicekBondOption_check gbs_check gtheta_check gdelta_check gcarry_check black76_check blackscholes_check ggamma_check gfrench_check gvega_check quanto_check RollGeskeWhaley_check ExtendibleWriter_check Executive_check GarmanKohlhagen_check
+
+<font color="#009900">check_options_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb
+<font color="#009900">check_options_LDADD=</font>-L<font color="#990000">.</font> -lm
+<font color="#009900">check_options_SOURCES=</font><font color="#990000">..</font>/src/check_options.c 
+
+<font color="#009900">ExtremeSpreadOption_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DEXTREMESPREADOPTION_CHECK
+<font color="#009900">ExtremeSpreadOption_check_LDADD=</font>-lm
+<font color="#009900">ExtremeSpreadOption_check_SOURCES=</font><font color="#990000">..</font>/src/ExtremeSpreadOption.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">PartialFloatLB_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DPARTIALFLOATLB_CHECK
+<font color="#009900">PartialFloatLB_check_LDADD=</font>-lm
+<font color="#009900">PartialFloatLB_check_SOURCES=</font><font color="#990000">..</font>/src/PartialFloatLB.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">PartialFixedLB_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DPARTIALFIXEDLB_CHECK
+<font color="#009900">PartialFixedLB_check_LDADD=</font>-lm
+<font color="#009900">PartialFixedLB_check_SOURCES=</font><font color="#990000">..</font>/src/PartialFixedLB.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">FixedStrikeLookback_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DFIXEDSTRIKELOOKBACK_CHECK
+<font color="#009900">FixedStrikeLookback_check_LDADD=</font>-lm
+<font color="#009900">FixedStrikeLookback_check_SOURCES=</font><font color="#990000">..</font>/src/FixedStrikeLookback.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">FloatingStrikeLookback_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DFLOATINGSTRIKELOOKBACK_CHECK
+<font color="#009900">FloatingStrikeLookback_check_LDADD=</font>-lm
+<font color="#009900">FloatingStrikeLookback_check_SOURCES=</font><font color="#990000">..</font>/src/FloatingStrikeLookback.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">BAWAmericanApprox_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DBAWAMERICANAPPROX_CHECK
+<font color="#009900">BAWAmericanApprox_check_LDADD=</font>-lm
+<font color="#009900">BAWAmericanApprox_check_SOURCES=</font><font color="#990000">..</font>/src/BAWAmericanApprox.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c <font color="#990000">..</font>/src/black76.c
+
+<font color="#009900">StandardBarrier_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DSTANDARDBARRIER_CHECK
+<font color="#009900">StandardBarrier_check_LDADD=</font>-lm
+<font color="#009900">StandardBarrier_check_SOURCES=</font><font color="#990000">..</font>/src/StandardBarrier.c <font color="#990000">..</font>/src/cnd.c 
+
+<font color="#009900">PartialTimeTwoAssetBarrier_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DPARTIALTIMETWOASSETBARRIER_CHECK
+<font color="#009900">PartialTimeTwoAssetBarrier_check_LDADD=</font>-lm
+<font color="#009900">PartialTimeTwoAssetBarrier_check_SOURCES=</font><font color="#990000">..</font>/src/PartialTimeTwoAssetBarrier.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c <font color="#990000">..</font>/src/gbs.c
+
+<font color="#009900">cbnd_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DCBND_CHECK
+<font color="#009900">cbnd_check_LDADD=</font>-lm
+<font color="#009900">cbnd_check_SOURCES=</font><font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c 
+
+<font color="#009900">cnd_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DCND_CHECK
+<font color="#009900">cnd_check_LDADD=</font>-lm
+<font color="#009900">cnd_check_SOURCES=</font><font color="#990000">..</font>/src/cnd.c 
+
+<font color="#009900">LookBarrier_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DLOOKBARRIER_CHECK
+<font color="#009900">LookBarrier_check_LDADD=</font>-lm
+<font color="#009900">LookBarrier_check_SOURCES=</font><font color="#990000">..</font>/src/LookBarrier.c <font color="#990000">..</font>/src/cnd.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/PartialFixedLB.c
+
+<font color="#009900">DoubleBarrier_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DDOUBLEBARRIER_CHECK
+<font color="#009900">DoubleBarrier_check_LDADD=</font>-lm
+<font color="#009900">DoubleBarrier_check_SOURCES=</font><font color="#990000">..</font>/src/DoubleBarrier.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c 
+
+<font color="#009900">SoftBarrier_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DSOFTBARRIER_CHECK
+<font color="#009900">SoftBarrier_check_LDADD=</font>-lm
+<font color="#009900">SoftBarrier_check_SOURCES=</font><font color="#990000">..</font>/src/SoftBarrier.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c 
+
+<font color="#009900">LevyAsian_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DLEVYASIAN_CHECK
+<font color="#009900">LevyAsian_check_LDADD=</font>-lm
+<font color="#009900">LevyAsian_check_SOURCES=</font><font color="#990000">..</font>/src/LevyAsian.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">BinaryBarrier_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DBINARYBARRIER_CHECK
+<font color="#009900">BinaryBarrier_check_LDADD=</font>-lm
+<font color="#009900">BinaryBarrier_check_SOURCES=</font><font color="#990000">..</font>/src/BinaryBarrier.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">JumpDiffusion_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DJUMPDIFFUSION_CHECK
+<font color="#009900">JumpDiffusion_check_LDADD=</font>-lm
+<font color="#009900">JumpDiffusion_check_SOURCES=</font><font color="#990000">..</font>/src/JumpDiffusion.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c
+
+
+<font color="#009900">AmericanExchangeOption_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DAMERICANEXCHANGEOPTION_CHECK
+<font color="#009900">AmericanExchangeOption_check_LDADD=</font>-lm
+<font color="#009900">AmericanExchangeOption_check_SOURCES=</font><font color="#990000">..</font>/src/AmericanExchangeOption.c <font color="#990000">..</font>/src/BSAmericanApprox.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">EuropeanExchangeOption_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DEUROPEANEXCHANGEOPTION_CHECK
+<font color="#009900">EuropeanExchangeOption_check_LDADD=</font>-lm
+<font color="#009900">EuropeanExchangeOption_check_SOURCES=</font><font color="#990000">..</font>/src/EuropeanExchangeOption.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">MiltersenSchwartz_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DMILTERSENSCHWARTZ_CHECK
+<font color="#009900">MiltersenSchwartz_check_LDADD=</font>-lm
+<i><font color="#9A1900"># Slight typo in filename</font></i>
+<font color="#009900">MiltersenSchwartz_check_SOURCES=</font><font color="#990000">..</font>/src/MiltersenSwartz.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">ExchangeExchangeOption_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DEXCHANGEEXCHANGEOPTION_CHECK
+<font color="#009900">ExchangeExchangeOption_check_LDADD=</font>-lm
+<font color="#009900">ExchangeExchangeOption_check_SOURCES=</font><font color="#990000">..</font>/src/ExchangeExchangeOption.c <font color="#990000">..</font>/src/cnd.c <font color="#990000">..</font>/src/cbnd.c
+
+<font color="#009900">SuperShare_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DSUPERSHARE_CHECK
+<font color="#009900">SuperShare_check_LDADD=</font>-lm
+<font color="#009900">SuperShare_check_SOURCES=</font><font color="#990000">..</font>/src/SuperShare.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">NewtonRaphson_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DNEWTONRAPHSON_CHECK
+<font color="#009900">NewtonRaphson_check_LDADD=</font>-lm
+<font color="#009900">NewtonRaphson_check_SOURCES=</font><font color="#990000">..</font>/src/NewtonRaphson.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/gvega.c <font color="#990000">..</font>/src/blackscholes.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">bisection_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DBISECTION_CHECK
+<font color="#009900">bisection_check_LDADD=</font>-lm
+<font color="#009900">bisection_check_SOURCES=</font><font color="#990000">..</font>/src/bisection.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">CashOrNothing_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DCASHORNOTHING_CHECK
+<font color="#009900">CashOrNothing_check_LDADD=</font>-lm
+<font color="#009900">CashOrNothing_check_SOURCES=</font><font color="#990000">..</font>/src/CashOrNothing.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">TwoAssetBarrier_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DTWOASSETBARRIER_CHECK
+<font color="#009900">TwoAssetBarrier_check_LDADD=</font>-lm
+<font color="#009900">TwoAssetBarrier_check_SOURCES=</font><font color="#990000">..</font>/src/TwoAssetBarrier.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">TurnbullWakemanAsian_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DTURNBULLWAKEMANASIAN_CHECK
+<font color="#009900">TurnbullWakemanAsian_check_LDADD=</font>-lm
+<font color="#009900">TurnbullWakemanAsian_check_SOURCES=</font><font color="#990000">..</font>/src/TurnbullWakemanAsian.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">AssetOrNothing_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DASSETORNOTHING_CHECK
+<font color="#009900">AssetOrNothing_check_LDADD=</font>-lm
+<font color="#009900">AssetOrNothing_check_SOURCES=</font><font color="#990000">..</font>/src/AssetOrNothing.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">ComplexChooser_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DCOMPLEXCHOOSER_CHECK
+<font color="#009900">ComplexChooser_check_LDADD=</font>-lm
+<font color="#009900">ComplexChooser_check_SOURCES=</font><font color="#990000">..</font>/src/ComplexChooser.c <font color="#990000">..</font>/src/cnd.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/gdelta.c
+
+<font color="#009900">TimeSwitchOption_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DTIMESWITCHOPTION_CHECK
+<font color="#009900">TimeSwitchOption_check_LDADD=</font>-lm
+<font color="#009900">TimeSwitchOption_check_SOURCES=</font><font color="#990000">..</font>/src/TimeSwitchOption.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">GapOption_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGAPOPTION_CHECK
+<font color="#009900">GapOption_check_LDADD=</font>-lm
+<font color="#009900">GapOption_check_SOURCES=</font><font color="#990000">..</font>/src/GapOption.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">SimpleChooser_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DSIMPLECHOOSER_CHECK
+<font color="#009900">SimpleChooser_check_LDADD=</font>-lm
+<font color="#009900">SimpleChooser_check_SOURCES=</font><font color="#990000">..</font>/src/SimpleChooser.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">Swapoption_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DSWAPOPTION_CHECK
+<font color="#009900">Swapoption_check_LDADD=</font>-lm
+<font color="#009900">Swapoption_check_SOURCES=</font><font color="#990000">..</font>/src/Swapoption.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">BSAmericanApprox_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DBSAMERICANAPPROX_CHECK
+<font color="#009900">BSAmericanApprox_check_LDADD=</font>-lm
+<font color="#009900">BSAmericanApprox_check_SOURCES=</font><font color="#990000">..</font>/src/BSAmericanApprox.c <font color="#990000">..</font>/src/cnd.c <font color="#990000">..</font>/src/gbs.c
+
+<font color="#009900">SpreadApproximation_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DSPREADAPPROXIMATION_CHECK
+<font color="#009900">SpreadApproximation_check_LDADD=</font>-lm
+<font color="#009900">SpreadApproximation_check_SOURCES=</font><font color="#990000">..</font>/src/SpreadApproximation.c <font color="#990000">..</font>/src/cnd.c <font color="#990000">..</font>/src/gbs.c
+
+<font color="#009900">EquityLinkedFXO_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DEQUITYLINKEDFXO_CHECK
+<font color="#009900">EquityLinkedFXO_check_LDADD=</font>-lm
+<font color="#009900">EquityLinkedFXO_check_SOURCES=</font><font color="#990000">..</font>/src/EquityLinkedFXO.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">ForwardStartOption_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DFORWARDSTARTOPTION_CHECK
+<font color="#009900">ForwardStartOption_check_LDADD=</font>-lm
+<font color="#009900">ForwardStartOption_check_SOURCES=</font><font color="#990000">..</font>/src/ForwardStartOption.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">OptionsOnOptions_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DOPTIONSONOPTIONS_CHECK
+<font color="#009900">OptionsOnOptions_check_LDADD=</font>-lm
+<font color="#009900">OptionsOnOptions_check_SOURCES=</font><font color="#990000">..</font>/src/OptionsOnOptions.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/gdelta.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">GeometricAverageRateOption_check_CFLAGS=</font>-Wshadow -ffast-math -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGEOMETRICAVERAGERATEOPTION_CHECK
+<font color="#009900">GeometricAverageRateOption_check_LDADD=</font>-lm
+<font color="#009900">GeometricAverageRateOption_check_SOURCES=</font><font color="#990000">..</font>/src/GeometricAverageRateOption.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">BAWbisection_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DBAWBISECTION_CHECK
+<font color="#009900">BAWbisection_check_LDADD=</font>-lm
+<font color="#009900">BAWbisection_check_SOURCES=</font><font color="#990000">..</font>/src/BAWbisection.c <font color="#990000">..</font>/src/BAWAmericanApprox.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">BSbisection_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DBSBISECTION_CHECK
+<font color="#009900">BSbisection_check_LDADD=</font>-lm
+<font color="#009900">BSbisection_check_SOURCES=</font><font color="#990000">..</font>/src/BSbisection.c <font color="#990000">..</font>/src/BSAmericanApprox.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">grho_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGRHO_CHECK
+<font color="#009900">grho_check_LDADD=</font>-lm
+<font color="#009900">grho_check_SOURCES=</font><font color="#990000">..</font>/src/grho.c <font color="#990000">..</font>/src/cnd.c <font color="#990000">..</font>/src/gbs.c
+
+<font color="#009900">ForEquOptInDomCur_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DFOREQUOPTINDOMCUR_CHECK
+<font color="#009900">ForEquOptInDomCur_check_LDADD=</font>-lm
+<font color="#009900">ForEquOptInDomCur_check_SOURCES=</font><font color="#990000">..</font>/src/ForEquOptInDomCur.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">DiscreteAdjustedBarrier_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DDISCRETEADJUSTEDBARRIER_CHECK
+<font color="#009900">DiscreteAdjustedBarrier_check_LDADD=</font>-lm
+<font color="#009900">DiscreteAdjustedBarrier_check_SOURCES=</font><font color="#990000">..</font>/src/DiscreteAdjustedBarrier.c 
+
+<font color="#009900">PartialTimeBarrier_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DPARTIALTIMEBARRIER_CHECK
+<font color="#009900">PartialTimeBarrier_check_LDADD=</font>-lm
+<font color="#009900">PartialTimeBarrier_check_SOURCES=</font><font color="#990000">..</font>/src/PartialTimeBarrier.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">merton73_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DMERTON73_CHECK
+<font color="#009900">merton73_check_LDADD=</font>-lm
+<font color="#009900">merton73_check_SOURCES=</font><font color="#990000">..</font>/src/merton73.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">OptionsOnTheMaxMin_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DOPTIONSONTHEMAXMIN_CHECK
+<font color="#009900">OptionsOnTheMaxMin_check_LDADD=</font>-lm
+<font color="#009900">OptionsOnTheMaxMin_check_SOURCES=</font><font color="#990000">..</font>/src/OptionsOnTheMaxMin.c <font color="#990000">..</font>/src/EuropeanExchangeOption.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">TakeoverFXoption_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DTAKEOVERFXOPTION_CHECK
+<font color="#009900">TakeoverFXoption_check_LDADD=</font>-lm
+<font color="#009900">TakeoverFXoption_check_SOURCES=</font><font color="#990000">..</font>/src/TakeoverFXoption.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">TwoAssetCorrelation_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DTWOASSETCORRELATION_CHECK
+<font color="#009900">TwoAssetCorrelation_check_LDADD=</font>-lm
+<font color="#009900">TwoAssetCorrelation_check_SOURCES=</font><font color="#990000">..</font>/src/TwoAssetCorrelation.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">TwoAssetCashOrNothing_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DTWOASSETCASHORNOTHING_CHECK
+<font color="#009900">TwoAssetCashOrNothing_check_LDADD=</font>-lm
+<font color="#009900">TwoAssetCashOrNothing_check_SOURCES=</font><font color="#990000">..</font>/src/TwoAssetCashOrNothing.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">VasicekBondPrice_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DVASICEKBONDPRICE_CHECK
+<font color="#009900">VasicekBondPrice_check_LDADD=</font>-lm
+<font color="#009900">VasicekBondPrice_check_SOURCES=</font><font color="#990000">..</font>/src/VasicekBondPrice.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">VasicekBondOption_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DVASICEKBONDOPTION_CHECK
+<font color="#009900">VasicekBondOption_check_LDADD=</font>-lm
+<font color="#009900">VasicekBondOption_check_SOURCES=</font><font color="#990000">..</font>/src/VasicekBondOption.c <font color="#990000">..</font>/src/VasicekBondPrice.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">gbs_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGBS_CHECK
+<font color="#009900">gbs_check_LDADD=</font>-lm
+<font color="#009900">gbs_check_SOURCES=</font><font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">gtheta_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGTHETA_CHECK
+<font color="#009900">gtheta_check_LDADD=</font>-lm
+<font color="#009900">gtheta_check_SOURCES=</font><font color="#990000">..</font>/src/gtheta.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">gdelta_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGDELTA_CHECK
+<font color="#009900">gdelta_check_LDADD=</font>-lm
+<font color="#009900">gdelta_check_SOURCES=</font><font color="#990000">..</font>/src/gdelta.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">gcarry_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGCARRY_CHECK
+<font color="#009900">gcarry_check_LDADD=</font>-lm
+<font color="#009900">gcarry_check_SOURCES=</font><font color="#990000">..</font>/src/gcarry.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">black76_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DBLACK76_CHECK
+<font color="#009900">black76_check_LDADD=</font>-lm
+<font color="#009900">black76_check_SOURCES=</font><font color="#990000">..</font>/src/black76.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">blackscholes_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DBLACKSCHOLES_CHECK
+<font color="#009900">blackscholes_check_LDADD=</font>-lm
+<font color="#009900">blackscholes_check_SOURCES=</font><font color="#990000">..</font>/src/blackscholes.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">ggamma_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGGAMMA_CHECK
+<font color="#009900">ggamma_check_LDADD=</font>-lm
+<font color="#009900">ggamma_check_SOURCES=</font><font color="#990000">..</font>/src/ggamma.c 
+
+<font color="#009900">gfrench_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGFRENCH_CHECK
+<font color="#009900">gfrench_check_LDADD=</font>-lm
+<font color="#009900">gfrench_check_SOURCES=</font><font color="#990000">..</font>/src/gfrench.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">gvega_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGVEGA_CHECK
+<font color="#009900">gvega_check_LDADD=</font>-lm
+<font color="#009900">gvega_check_SOURCES=</font><font color="#990000">..</font>/src/gvega.c 
+
+<font color="#009900">quanto_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DQUANTO_CHECK
+<font color="#009900">quanto_check_LDADD=</font>-lm
+<font color="#009900">quanto_check_SOURCES=</font><font color="#990000">..</font>/src/Quanto.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">RollGeskeWhaley_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DROLLGESKEWHALEY_CHECK
+<font color="#009900">RollGeskeWhaley_check_LDADD=</font>-lm
+<font color="#009900">RollGeskeWhaley_check_SOURCES=</font><font color="#990000">..</font>/src/RollGeskeWhaley.c <font color="#990000">..</font>/src/blackscholes.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">ExtendibleWriter_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DEXTENDIBLEWRITER_CHECK
+<font color="#009900">ExtendibleWriter_check_LDADD=</font>-lm
+<font color="#009900">ExtendibleWriter_check_SOURCES=</font><font color="#990000">..</font>/src/ExtendibleWriter.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cbnd.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">Executive_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DEXECUTIVE_CHECK
+<font color="#009900">Executive_check_LDADD=</font>-lm
+<font color="#009900">Executive_check_SOURCES=</font><font color="#990000">..</font>/src/Executive.c <font color="#990000">..</font>/src/gbs.c <font color="#990000">..</font>/src/cnd.c
+
+<font color="#009900">GarmanKohlhagen_check_CFLAGS=</font>-Wshadow <font color="#009900">$(FM)</font> -O<font color="#993399">0</font> -std<font color="#990000">=</font>c99 -W -Wall -pedantic -ggdb -DGARMANKOHLHAGEN_CHECK
+<font color="#009900">GarmanKohlhagen_check_LDADD=</font>-lm
+<font color="#009900">GarmanKohlhagen_check_SOURCES=</font><font color="#990000">..</font>/src/GarmanKohlhagen.c <font color="#990000">..</font>/src/cnd.c
+</tt></pre>

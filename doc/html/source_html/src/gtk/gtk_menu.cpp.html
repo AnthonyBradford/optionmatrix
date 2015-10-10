@@ -1,0 +1,540 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/* optionmatrix:                                                            */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Options &amp; Futures Matrix Modeler                                         */</font></i>
+<i><font color="#9A1900">/* View and Control Theoretical Option Chains                               */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* File: gtk_menu.cpp of optionmatrix                                       */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Copyright (c) Anthony Bradford. 2012.                                    */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">http://anthonybradford.com</font></u><i><font color="#9A1900">                                               */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">info@anthonybradford.com</font></u><i><font color="#9A1900">                                                 */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* optionmatrix may be freely redistributed.                                */</font></i>
+<i><font color="#9A1900">/* See file COPYING included with this distribution for license information */</font></i>
+
+<i><font color="#9A1900">/* </font></i>
+<i><font color="#9A1900">   optionmatrix is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">   it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">   the Free Software Foundation; either version 3 of the License, or</font></i>
+<i><font color="#9A1900">   (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">   optionmatrix program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">   but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">   GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">   You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">   along with this program.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;gtk/gtk.h&gt;</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"gtk_main.h"</font>
+
+<b><font color="#000080">#ifdef</font></b> WIN32
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdarg.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;windef.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;wingdi.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;winuser.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;Shellapi.h&gt;</font>
+<b><font color="#000080">#endif</font></b>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_quit_activate</font></b><font color="#990000">(</font><font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <i><font color="#9A1900">//g_print ("on_menu_quit_activate():\n");</font></i>
+  <b><font color="#000000">gtk_main_quit</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_website_activate</font></b><font color="#990000">(</font><font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+
+<b><font color="#000080">#ifndef</font></b> WIN32
+  <font color="#008080">GError</font> <font color="#990000">*</font>error <font color="#990000">=</font> NULL<font color="#990000">;</font>
+
+  <b><font color="#000000">gtk_show_uri</font></b><font color="#990000">(</font>NULL<font color="#990000">,</font>PACKAGE_URL<font color="#990000">,</font> GDK_CURRENT_TIME<font color="#990000">,</font> <font color="#990000">&amp;</font>error<font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>error <font color="#990000">!=</font> NULL<font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>error<font color="#990000">-&gt;</font>domain <font color="#990000">==</font> GDK_PIXBUF_ERROR<font color="#990000">)</font>
+      <b><font color="#000000">g_print</font></b> <font color="#990000">(</font><font color="#FF0000">"GdkPixbufError: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> error<font color="#990000">-&gt;</font>message<font color="#990000">);</font>
+    <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>error<font color="#990000">-&gt;</font>domain <font color="#990000">==</font> G_FILE_ERROR<font color="#990000">)</font>
+      <b><font color="#000000">g_print</font></b> <font color="#990000">(</font><font color="#FF0000">"GFileError: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> error<font color="#990000">-&gt;</font>message<font color="#990000">);</font>
+    <b><font color="#0000FF">else</font></b>
+      <b><font color="#000000">g_print</font></b> <font color="#990000">(</font><font color="#FF0000">"An error </font><font color="#CC33CC">\"</font><font color="#FF0000">%s</font><font color="#CC33CC">\"</font><font color="#FF0000"> in the unexpected domain:%d has occurred!</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> error<font color="#990000">-&gt;</font>message<font color="#990000">,</font> error<font color="#990000">-&gt;</font>domain<font color="#990000">);</font>
+
+    <b><font color="#000000">g_error_free</font></b> <font color="#990000">(</font>error<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> WIN32
+  <font color="#009900">int</font> ret<font color="#990000">;</font>
+  ret <font color="#990000">=</font> <font color="#990000">(</font><font color="#009900">int</font><font color="#990000">)</font> <b><font color="#000000">ShellExecute</font></b><font color="#990000">(</font> NULL<font color="#990000">,</font> <font color="#FF0000">"open"</font><font color="#990000">,</font> PACKAGE_URL<font color="#990000">,</font> NULL<font color="#990000">,</font> NULL<font color="#990000">,</font> SW_SHOWNORMAL <font color="#990000">);</font>
+<b><font color="#000080">#endif</font></b>
+
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_feedback_activate</font></b><font color="#990000">(</font><font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"on_menu_feedback_activate():</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+<b><font color="#000080">#ifndef</font></b> WIN32
+  <font color="#008080">GError</font> <font color="#990000">*</font>error <font color="#990000">=</font> NULL<font color="#990000">;</font>
+
+  <b><font color="#000000">gtk_show_uri</font></b><font color="#990000">(</font>NULL<font color="#990000">,</font><font color="#FF0000">"mailto:info@anthonybradford.com"</font><font color="#990000">,</font> GDK_CURRENT_TIME<font color="#990000">,</font> <font color="#990000">&amp;</font>error<font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>error <font color="#990000">!=</font> NULL<font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>error<font color="#990000">-&gt;</font>domain <font color="#990000">==</font> GDK_PIXBUF_ERROR<font color="#990000">)</font>
+      <b><font color="#000000">g_print</font></b> <font color="#990000">(</font><font color="#FF0000">"GdkPixbufError: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> error<font color="#990000">-&gt;</font>message<font color="#990000">);</font>
+    <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>error<font color="#990000">-&gt;</font>domain <font color="#990000">==</font> G_FILE_ERROR<font color="#990000">)</font>
+      <b><font color="#000000">g_print</font></b> <font color="#990000">(</font><font color="#FF0000">"GFileError: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> error<font color="#990000">-&gt;</font>message<font color="#990000">);</font>
+    <b><font color="#0000FF">else</font></b>
+      <b><font color="#000000">g_print</font></b> <font color="#990000">(</font><font color="#FF0000">"An error </font><font color="#CC33CC">\"</font><font color="#FF0000">%s</font><font color="#CC33CC">\"</font><font color="#FF0000"> in the unexpected domain:%d has occurred!</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> error<font color="#990000">-&gt;</font>message<font color="#990000">,</font> error<font color="#990000">-&gt;</font>domain<font color="#990000">);</font>
+
+    <b><font color="#000000">g_error_free</font></b> <font color="#990000">(</font>error<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> WIN32
+  <font color="#009900">int</font> ret<font color="#990000">;</font>
+  ret <font color="#990000">=</font> <font color="#990000">(</font><font color="#009900">int</font><font color="#990000">)</font> <b><font color="#000000">ShellExecute</font></b><font color="#990000">(</font> NULL<font color="#990000">,</font> <font color="#FF0000">"open"</font><font color="#990000">,</font> <font color="#FF0000">"mailto:info@anthonybradford.com"</font><font color="#990000">,</font> NULL<font color="#990000">,</font> NULL<font color="#990000">,</font> SW_SHOWNORMAL <font color="#990000">);</font>
+<b><font color="#000080">#endif</font></b>
+
+<font color="#FF0000">}</font>
+
+<b><font color="#0000FF">static</font></b> <font color="#008080">gboolean</font> <b><font color="#000000">pngTimer</font></b><font color="#990000">(</font><b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"pngTimer():</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <i><font color="#9A1900">// Take random images from ./images or DATADIR/PACKAGE/images</font></i>
+  <i><font color="#9A1900">// If no images can be found gtk_icon.h is used to set</font></i>
+  <i><font color="#9A1900">// gtk_window_set_default_icon() in gtk_main.cpp</font></i>
+
+  <font color="#009900">int</font> index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  <font color="#009900">char</font> imageName<font color="#990000">[</font><font color="#993399">1000</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+  <font color="#009900">char</font> dataDIRlocation<font color="#990000">[</font><font color="#993399">1000</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+  <font color="#009900">bool</font> dataDIR <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+
+  <b><font color="#0000FF">for</font></b><font color="#990000">(</font> index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> <font color="#993399">30</font><font color="#990000">;</font> index<font color="#990000">++</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>imageName<font color="#990000">,</font> <font color="#FF0000">"images/%d.png"</font><font color="#990000">,</font> index <font color="#990000">+</font> <font color="#993399">1</font><font color="#990000">);</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"Checking for name: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> imageName<font color="#990000">);</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> imageName<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#990000">-</font><font color="#993399">1</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+  <font color="#FF0000">}</font>
+
+<b><font color="#000080">#ifdef</font></b> DATADIR
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> index <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"DATADIR = %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> DATADIR<font color="#990000">);</font>
+
+    <b><font color="#0000FF">for</font></b><font color="#990000">(</font> index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> <font color="#993399">30</font><font color="#990000">;</font> index<font color="#990000">++</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>imageName<font color="#990000">,</font> <font color="#FF0000">"%s/%s/images/%d.png"</font><font color="#990000">,</font> DATADIR<font color="#990000">,</font> PACKAGE<font color="#990000">,</font> index <font color="#990000">+</font> <font color="#993399">1</font><font color="#990000">);</font>
+      <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"Checking for name: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> imageName<font color="#990000">);</font>
+
+      <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> imageName<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#990000">-</font><font color="#993399">1</font> <font color="#990000">)</font>
+      <font color="#FF0000">{</font>
+        dataDIR <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+        <b><font color="#0000FF">break</font></b><font color="#990000">;</font>
+      <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font>dataDIR<font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>dataDIRlocation<font color="#990000">,</font><font color="#FF0000">"%s/%s/images"</font><font color="#990000">,</font> DATADIR<font color="#990000">,</font> PACKAGE<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+<b><font color="#000080">#endif</font></b>
+
+  <font color="#008080">GdkPixbuf</font> <font color="#990000">*</font>logo<font color="#990000">;</font>
+  <font color="#008080">GError</font> <font color="#990000">*</font>error <font color="#990000">=</font> NULL<font color="#990000">;</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> index <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> index <font color="#990000">==</font> <font color="#993399">1</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>imageName<font color="#990000">,</font><font color="#FF0000">"%s/1.png"</font><font color="#990000">,</font> dataDIR <font color="#990000">?</font> dataDIRlocation <font color="#990000">:</font> <font color="#FF0000">"images"</font> <font color="#990000">);</font>
+      logo <font color="#990000">=</font> <b><font color="#000000">gdk_pixbuf_new_from_file</font></b><font color="#990000">(</font>imageName<font color="#990000">,</font> <font color="#990000">&amp;</font>error<font color="#990000">);</font>
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>imageName<font color="#990000">,</font><font color="#FF0000">"%s/%d.png"</font><font color="#990000">,</font> dataDIR <font color="#990000">?</font> dataDIRlocation <font color="#990000">:</font> <font color="#FF0000">"images"</font><font color="#990000">,</font> <font color="#993399">1</font> <font color="#990000">+</font> <font color="#990000">(</font><font color="#009900">int</font><font color="#990000">)(</font>index <font color="#990000">*</font> <font color="#990000">(</font><b><font color="#000000">rand</font></b><font color="#990000">()</font> <font color="#990000">/</font> <font color="#990000">(</font>RAND_MAX <font color="#990000">+</font> <font color="#993399">1.0</font><font color="#990000">))));</font>
+      <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"imageName = %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>imageName<font color="#990000">);</font>
+      logo <font color="#990000">=</font> <b><font color="#000000">gdk_pixbuf_new_from_file</font></b> <font color="#990000">(</font>imageName<font color="#990000">,</font> <font color="#990000">&amp;</font>error<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+    <i><font color="#9A1900">/* Set the application logo or handle the error. */</font></i>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>error <font color="#990000">==</font> NULL<font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">gtk_about_dialog_set_logo</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> logo<font color="#990000">);</font>
+
+      <b><font color="#000000">g_object_unref</font></b><font color="#990000">(</font>logo<font color="#990000">);</font>
+
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+    <font color="#FF0000">{</font>
+        <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>error<font color="#990000">-&gt;</font>domain <font color="#990000">==</font> GDK_PIXBUF_ERROR<font color="#990000">)</font>
+          <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"GdkPixbufError: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> error<font color="#990000">-&gt;</font>message<font color="#990000">);</font>
+        <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>error<font color="#990000">-&gt;</font>domain <font color="#990000">==</font> G_FILE_ERROR<font color="#990000">)</font>
+          <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"GFileError: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> error<font color="#990000">-&gt;</font>message<font color="#990000">);</font>
+        <b><font color="#0000FF">else</font></b>
+          <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"An error in the unexpected domain:%d has occurred!</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> error<font color="#990000">-&gt;</font>domain<font color="#990000">);</font>
+
+        <b><font color="#000000">g_error_free</font></b> <font color="#990000">(</font>error<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"No images available</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    <b><font color="#000000">gtk_about_dialog_set_logo</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> NULL<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#0000FF">return</font></b> <b><font color="#000000">GTK_IS_ABOUT_DIALOG</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_about_activate</font></b><font color="#990000">(</font> <font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties <font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <i><font color="#9A1900">//g_print("on_menu_about_activate():\n");</font></i>
+
+  <b><font color="#0000FF">const</font></b> <font color="#008080">gchar</font> <font color="#990000">*</font>authors<font color="#990000">[]</font> <font color="#990000">=</font> <font color="#FF0000">{</font>
+    <font color="#FF0000">"Anthony Bradford"</font><font color="#990000">,</font>
+    PACKAGE_BUGREPORT<font color="#990000">,</font>
+    PACKAGE_URL<font color="#990000">,</font>
+    <font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">with models from:"</font><font color="#990000">,</font>
+
+<b><font color="#000080">#ifdef</font></b> METAOPTIONS
+    <font color="#FF0000">"Bjorn Augestad, Meta Systems AS (Metaoptions-0.0.4)"</font><font color="#990000">,</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> ABRADFORD
+    <font color="#FF0000">"Anthony Bradford"</font><font color="#990000">,</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> FINRECIPES
+    <font color="#FF0000">"Bernt Arne Oedegaard (Financial Numerical Recipes in C++)"</font><font color="#990000">,</font>
+<b><font color="#000080">#endif</font></b>
+
+<b><font color="#000080">#ifdef</font></b> SPINSKY
+    <font color="#FF0000">"Seth Pinsky"</font><font color="#990000">,</font>
+<b><font color="#000080">#endif</font></b>
+
+    NULL
+  <font color="#FF0000">}</font><font color="#990000">;</font>
+
+  <b><font color="#0000FF">const</font></b> <font color="#008080">gchar</font> <font color="#990000">*</font>documenters<font color="#990000">[]</font> <font color="#990000">=</font> <font color="#FF0000">{</font>
+    <font color="#FF0000">"Anthony Bradford"</font><font color="#990000">,</font>
+    <font color="#FF0000">"&lt;info@anthonybradford.com&gt;"</font><font color="#990000">,</font> 
+    PACKAGE_URL<font color="#990000">,</font>
+    NULL
+  <font color="#FF0000">}</font><font color="#990000">;</font>
+
+  properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout <font color="#990000">=</font> <b><font color="#000000">gtk_about_dialog_new</font></b><font color="#990000">();</font>
+
+  <font color="#008080">GdkPixbuf</font> <font color="#990000">*</font>logo<font color="#990000">;</font>
+  <font color="#008080">GError</font> <font color="#990000">*</font>error <font color="#990000">=</font> NULL<font color="#990000">;</font>
+  <font color="#009900">char</font> imageName<font color="#990000">[</font><font color="#993399">1024</font><font color="#990000">];</font>
+
+  <i><font color="#9A1900">// This works for Windows</font></i>
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font><font color="#FF0000">"images/6.png"</font><font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>imageName<font color="#990000">,</font> <font color="#FF0000">"images/6.png"</font><font color="#990000">);</font>
+    logo <font color="#990000">=</font> <b><font color="#000000">gdk_pixbuf_new_from_file</font></b><font color="#990000">(</font>imageName<font color="#990000">,</font> <font color="#990000">&amp;</font>error<font color="#990000">);</font>
+    <b><font color="#000000">gtk_about_dialog_set_logo</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> logo<font color="#990000">);</font>
+    <b><font color="#000000">g_object_unref</font></b><font color="#990000">(</font>logo<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+
+<b><font color="#000080">#ifdef</font></b> DATADIR
+  <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>imageName<font color="#990000">,</font> <font color="#FF0000">"%s/%s/images/6.png"</font><font color="#990000">,</font> DATADIR<font color="#990000">,</font> PACKAGE<font color="#990000">);</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"Checking for name: %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> imageName<font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> imageName<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    logo <font color="#990000">=</font> <b><font color="#000000">gdk_pixbuf_new_from_file</font></b><font color="#990000">(</font>imageName<font color="#990000">,</font> <font color="#990000">&amp;</font>error<font color="#990000">);</font>
+    <b><font color="#000000">gtk_about_dialog_set_logo</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> logo<font color="#990000">);</font>
+    <b><font color="#000000">g_object_unref</font></b><font color="#990000">(</font>logo<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+
+<b><font color="#000080">#endif</font></b>  
+
+  <b><font color="#000000">gtk_about_dialog_set_program_name</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> PACKAGE_NAME<font color="#990000">);</font>
+
+  <b><font color="#000000">gtk_about_dialog_set_version</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> PACKAGE_VERSION<font color="#990000">);</font>
+
+  <b><font color="#000000">gtk_about_dialog_set_comments</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> 
+                                 <font color="#FF0000">"The Ultimate Options Calculator</font><font color="#CC33CC">\n</font><font color="#FF0000">info@anthonybradford.com"</font><font color="#990000">);</font>
+
+  <b><font color="#000000">gtk_about_dialog_set_copyright</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> 
+                                  <font color="#FF0000">"(C) 2012 Anthony Bradford"</font><font color="#990000">);</font>
+
+  <b><font color="#000000">gtk_about_dialog_set_license</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> license<font color="#990000">);</font>
+  <b><font color="#000000">gtk_about_dialog_set_website</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> 
+                                       PACKAGE_URL<font color="#990000">);</font>
+  <b><font color="#000000">gtk_about_dialog_set_website_label</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> 
+                                      <font color="#FF0000">"AnthonyBradford.com"</font><font color="#990000">);</font>
+
+  <b><font color="#000000">gtk_about_dialog_set_authors</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> authors<font color="#990000">);</font>
+  <b><font color="#000000">gtk_about_dialog_set_documenters</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> documenters<font color="#990000">);</font>
+  <b><font color="#000000">gtk_about_dialog_set_translator_credits</font></b><font color="#990000">(</font><b><font color="#000000">GTK_ABOUT_DIALOG</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">),</font> <font color="#FF0000">"Anthony Bradford</font><font color="#CC33CC">\n</font><font color="#FF0000">&lt;info@anthonybradford.com&gt;</font><font color="#CC33CC">\n</font><font color="#FF0000">http://anthonybradford.com          "</font><font color="#990000">);</font>
+
+  <i><font color="#9A1900">// Next line places 1 images in the about dialog</font></i>
+  <i><font color="#9A1900">//pngTimer(properties);</font></i>
+
+  <i><font color="#9A1900">// Next line rotates the images in the about dialog, images are not the same size so the dialog jumps around</font></i>
+  <b><font color="#000000">g_timeout_add</font></b><font color="#990000">(</font><font color="#993399">4000</font><font color="#990000">,</font> <font color="#990000">(</font>GSourceFunc<font color="#990000">)</font> pngTimer<font color="#990000">,</font> <font color="#990000">(</font>gpointer<font color="#990000">)</font> properties<font color="#990000">);</font>
+
+  <b><font color="#000000">gtk_dialog_run</font></b><font color="#990000">(</font><b><font color="#000000">GTK_DIALOG</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">));</font>
+  <b><font color="#000000">gtk_widget_destroy</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogAbout<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_debug_log_activate</font></b><font color="#990000">(</font><font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"on_menu_debug_log_activate()</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>debug <font color="#990000">==</font> <b><font color="#0000FF">true</font></b> <font color="#990000">)</font>
+    properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>debug <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+  <b><font color="#0000FF">else</font></b>
+    properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>debug <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_text_export_activate</font></b><font color="#990000">(</font><font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"on_menu_text_export_activate()</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  properties<font color="#990000">-&gt;</font>textExport <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_source_export_activate</font></b><font color="#990000">(</font><font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"on_menu_source_export_activate()</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <i><font color="#9A1900">// maybe the source should just be pulled from the website</font></i>
+  <i><font color="#9A1900">// with a gtk_show_uri(...) ??</font></i>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">strcmp</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode<font color="#990000">,</font><font color="#FF0000">""</font><font color="#990000">)</font> <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"option_algorithms[properties-&gt;modeltype].sourceCode = %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode <font color="#990000">);</font>
+    <b><font color="#000000">display_source</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode<font color="#990000">,</font> properties<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">strcmp</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode2<font color="#990000">,</font><font color="#FF0000">""</font><font color="#990000">)</font> <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"sourceCode2 exists sourceCode2 = %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode2 <font color="#990000">);</font>
+    <b><font color="#000000">display_source</font></b><font color="#990000">(</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode2<font color="#990000">,</font> properties<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">// display_source() fails on displaying metaoptions-0.0.4/src/bisection.c source file</font></i>
+<i><font color="#9A1900">// (under Linux but not Windows) due to some Norwegian in the comments of the source</font></i>
+<font color="#009900">void</font> <b><font color="#000000">display_source</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">char</font> <font color="#990000">*</font>name<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"properties.source_directory_prefix = %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> properties<font color="#990000">-&gt;</font>source_directory_prefix<font color="#990000">);</font>
+
+  <font color="#008080">GtkWidget</font> <font color="#990000">*</font>window<font color="#990000">,</font> <font color="#990000">*</font>scrolled_win<font color="#990000">,</font> <font color="#990000">*</font>textview<font color="#990000">;</font>
+  <font color="#008080">GtkTextBuffer</font> <font color="#990000">*</font>buffer<font color="#990000">;</font>
+
+  <font color="#009900">char</font> windowTitle<font color="#990000">[</font><font color="#993399">1000</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+  <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>windowTitle<font color="#990000">,</font><font color="#FF0000">"%s Source Export %s"</font><font color="#990000">,</font> PACKAGE_NAME<font color="#990000">,</font> name<font color="#990000">);</font>
+  
+  window <font color="#990000">=</font> <b><font color="#000000">gtk_window_new</font></b> <font color="#990000">(</font>GTK_WINDOW_TOPLEVEL<font color="#990000">);</font>
+  <b><font color="#000000">gtk_window_set_title</font></b> <font color="#990000">(</font><b><font color="#000000">GTK_WINDOW</font></b> <font color="#990000">(</font>window<font color="#990000">),</font> windowTitle<font color="#990000">);</font>
+  <b><font color="#000000">gtk_container_set_border_width</font></b> <font color="#990000">(</font><b><font color="#000000">GTK_CONTAINER</font></b> <font color="#990000">(</font>window<font color="#990000">),</font> <font color="#993399">10</font><font color="#990000">);</font>
+  <b><font color="#000000">gtk_widget_set_size_request</font></b> <font color="#990000">(</font>window<font color="#990000">,</font> <font color="#993399">700</font><font color="#990000">,</font> <font color="#993399">600</font><font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font><font color="#FF0000">"images/2.png"</font><font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <b><font color="#000000">gtk_window_set_icon</font></b><font color="#990000">(</font><b><font color="#000000">GTK_WINDOW</font></b><font color="#990000">(</font>window<font color="#990000">),</font> <b><font color="#000000">create_pixbuf</font></b><font color="#990000">(</font><font color="#FF0000">"images/2.png"</font><font color="#990000">));</font>
+  
+  textview <font color="#990000">=</font> <b><font color="#000000">gtk_text_view_new</font></b><font color="#990000">();</font>
+
+  <font color="#008080">FILE</font> <font color="#990000">*</font>file <font color="#990000">=</font> NULL<font color="#990000">;</font>
+  <font color="#009900">char</font> <font color="#990000">*</font>bufferSource<font color="#990000">;</font>
+  <font color="#009900">unsigned</font> <font color="#009900">long</font> fileLen<font color="#990000">;</font>
+
+  <font color="#009900">char</font> name2<font color="#990000">[</font><font color="#993399">1000</font><font color="#990000">]</font>  <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+  <font color="#009900">char</font> name3<font color="#990000">[</font><font color="#993399">1000</font><font color="#990000">]</font>  <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+  <font color="#009900">char</font> name4<font color="#990000">[</font><font color="#993399">1000</font><font color="#990000">]</font>  <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+
+  <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>name2<font color="#990000">,</font><font color="#FF0000">"src/%s-%s/src/%s"</font><font color="#990000">,</font> PACKAGE_TARNAME<font color="#990000">,</font>VERSION<font color="#990000">,</font>name<font color="#990000">);</font>
+  <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>name3<font color="#990000">,</font><font color="#FF0000">"../../src/%s"</font><font color="#990000">,</font> name<font color="#990000">);</font>
+  <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>name4<font color="#990000">,</font><font color="#FF0000">"%s/src/%s"</font><font color="#990000">,</font> properties<font color="#990000">-&gt;</font>source_directory_prefix<font color="#990000">,</font>name<font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> name<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    file <font color="#990000">=</font> <b><font color="#000000">fopen</font></b><font color="#990000">(</font>name<font color="#990000">,</font> <font color="#FF0000">"rb"</font><font color="#990000">);</font>
+
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> name2<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    file <font color="#990000">=</font> <b><font color="#000000">fopen</font></b><font color="#990000">(</font>name2<font color="#990000">,</font> <font color="#FF0000">"rb"</font><font color="#990000">);</font>
+
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> name3<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    file <font color="#990000">=</font> <b><font color="#000000">fopen</font></b><font color="#990000">(</font>name3<font color="#990000">,</font> <font color="#FF0000">"rb"</font><font color="#990000">);</font>
+
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> name4<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    file <font color="#990000">=</font> <b><font color="#000000">fopen</font></b><font color="#990000">(</font>name4<font color="#990000">,</font> <font color="#FF0000">"rb"</font><font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <font color="#990000">!</font>file <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"display_source(): Unable to open source file %s or %s or %s or %s"</font><font color="#990000">,</font> name<font color="#990000">,</font> name2<font color="#990000">,</font> name3<font color="#990000">,</font> name4<font color="#990000">);</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#000000">fseek</font></b><font color="#990000">(</font>file<font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">,</font> SEEK_END<font color="#990000">);</font>
+  fileLen <font color="#990000">=</font> <b><font color="#000000">ftell</font></b><font color="#990000">(</font>file<font color="#990000">);</font>
+  <b><font color="#000000">fseek</font></b><font color="#990000">(</font>file<font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">,</font> SEEK_SET<font color="#990000">);</font>
+
+  bufferSource <font color="#990000">=</font> <font color="#990000">(</font><font color="#009900">char</font> <font color="#990000">*)</font> <b><font color="#000000">malloc</font></b><font color="#990000">(</font>fileLen<font color="#990000">+</font><font color="#993399">1</font><font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <font color="#990000">!</font>bufferSource <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"display_source(): Memory error</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    <b><font color="#000000">fclose</font></b><font color="#990000">(</font>file<font color="#990000">);</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(!</font><b><font color="#000000">fread</font></b><font color="#990000">(</font>bufferSource<font color="#990000">,</font> fileLen<font color="#990000">,</font> <font color="#993399">1</font><font color="#990000">,</font> file<font color="#990000">))</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"display_source(): fread() returning 0</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#000000">fclose</font></b><font color="#990000">(</font>file<font color="#990000">);</font>
+
+  bufferSource<font color="#990000">[</font>fileLen<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  buffer <font color="#990000">=</font> <b><font color="#000000">gtk_text_view_get_buffer</font></b> <font color="#990000">(</font><b><font color="#000000">GTK_TEXT_VIEW</font></b> <font color="#990000">(</font>textview<font color="#990000">));</font>
+  
+  <b><font color="#000000">gtk_text_buffer_set_text</font></b> <font color="#990000">(</font>buffer<font color="#990000">,</font> <b><font color="#000000">g_locale_to_utf8</font></b> <font color="#990000">(</font>bufferSource<font color="#990000">,</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">,</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">0</font><font color="#990000">),</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">);</font>
+  
+  scrolled_win <font color="#990000">=</font> <b><font color="#000000">gtk_scrolled_window_new</font></b> <font color="#990000">(</font>NULL<font color="#990000">,</font> NULL<font color="#990000">);</font>
+  <b><font color="#000000">gtk_container_add</font></b> <font color="#990000">(</font><b><font color="#000000">GTK_CONTAINER</font></b> <font color="#990000">(</font>scrolled_win<font color="#990000">),</font> textview<font color="#990000">);</font>
+  <b><font color="#000000">gtk_scrolled_window_set_policy</font></b> <font color="#990000">(</font><b><font color="#000000">GTK_SCROLLED_WINDOW</font></b> <font color="#990000">(</font>scrolled_win<font color="#990000">),</font>GTK_POLICY_AUTOMATIC<font color="#990000">,</font> GTK_POLICY_ALWAYS<font color="#990000">);</font>
+  
+  <b><font color="#000000">gtk_container_add</font></b><font color="#990000">(</font><b><font color="#000000">GTK_CONTAINER</font></b> <font color="#990000">(</font>window<font color="#990000">),</font> scrolled_win<font color="#990000">);</font>
+  <b><font color="#000000">gtk_widget_show_all</font></b><font color="#990000">(</font>window<font color="#990000">);</font>
+
+  <b><font color="#000000">free</font></b><font color="#990000">(</font>bufferSource<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">checkForSourceCode</font></b><font color="#990000">(</font><b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <i><font color="#9A1900">// maybe the source should just be pulled from the website</font></i>
+  <i><font color="#9A1900">// with a gtk_show_uri(...) ??</font></i>
+
+  <font color="#009900">char</font> sourceLocation2<font color="#990000">[</font><font color="#993399">1000</font><font color="#990000">]</font>  <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+  <font color="#009900">char</font> sourceLocation3<font color="#990000">[</font><font color="#993399">1000</font><font color="#990000">]</font>  <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+  <font color="#009900">char</font> sourceLocation4<font color="#990000">[</font><font color="#993399">1000</font><font color="#990000">]</font>  <font color="#990000">=</font> <font color="#FF0000">{</font> <font color="#993399">0</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+
+  <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>sourceLocation2<font color="#990000">,</font><font color="#FF0000">"src/%s-%s/src/%s"</font><font color="#990000">,</font>PACKAGE_TARNAME<font color="#990000">,</font>VERSION<font color="#990000">,</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode<font color="#990000">);</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"sourceLocation2 = %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>sourceLocation2<font color="#990000">);</font>
+
+  <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>sourceLocation3<font color="#990000">,</font><font color="#FF0000">"../../src/%s"</font><font color="#990000">,</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode<font color="#990000">);</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"sourceLocation3 = %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>sourceLocation3<font color="#990000">);</font>
+
+  <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>sourceLocation4<font color="#990000">,</font><font color="#FF0000">"%s/src/%s"</font><font color="#990000">,</font> properties<font color="#990000">-&gt;</font>source_directory_prefix<font color="#990000">,</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode<font color="#990000">);</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"sourceLocation4 = %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>sourceLocation4<font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">strcmp</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode<font color="#990000">,</font><font color="#FF0000">""</font><font color="#990000">)</font> <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"sourceCode is %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>menu_source_export<font color="#990000">);</font>
+
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> sourceLocation2<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font>  <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"sourceCode is %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>sourceLocation2<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>menu_source_export<font color="#990000">);</font>
+
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> sourceLocation3<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font>  <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"sourceCode is %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>sourceLocation3<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>menu_source_export<font color="#990000">);</font>
+
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">access</font></b><font color="#990000">(</font> sourceLocation4<font color="#990000">,</font> F_OK <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">0</font>  <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"sourceCode is %s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>sourceLocation4<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>menu_source_export<font color="#990000">);</font>
+
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"Cannot access sourceCode %s or</font><font color="#CC33CC">\n</font><font color="#FF0000">%s</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>sourceCode<font color="#990000">,</font>sourceLocation2<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>menu_source_export<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"sourceCode not defined</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>menu_source_export<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_ListCategory_activate</font></b><font color="#990000">(</font><font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"on_menu_ListCategory_activate():</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#0000FF">const</font></b> <font color="#009900">int</font> num_models <font color="#990000">=</font> <font color="#990000">(</font><font color="#009900">signed</font><font color="#990000">)</font> <font color="#990000">(</font>sizeofoption_algorithms<font color="#990000">/</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font><b><font color="#0000FF">struct</font></b> <font color="#008080">option_algorithm</font><font color="#990000">));</font>
+  properties<font color="#990000">-&gt;</font>listModelsForGroups <font color="#990000">=</font> <b><font color="#0000FF">new</font></b> elementListWithGroup<font color="#990000">[</font>num_models<font color="#990000">];</font>
+
+  <font color="#009900">int</font> index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  <b><font color="#0000FF">for</font></b><font color="#990000">(</font>index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> num_models<font color="#990000">;</font> index<font color="#990000">++)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>listModelsForGroups<font color="#990000">[</font>index<font color="#990000">].</font>elementName<font color="#990000">,</font><font color="#FF0000">"%s"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>des<font color="#990000">);</font>
+    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>listModelsForGroups<font color="#990000">[</font>index<font color="#990000">].</font>groupName<font color="#990000">,</font><font color="#FF0000">"%s"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>category<font color="#990000">);</font>
+    properties<font color="#990000">-&gt;</font>listModelsForGroups<font color="#990000">[</font>index<font color="#990000">].</font>index <font color="#990000">=</font> index<font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#000000">set_up_combobox_with_array_use_groups</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>comboboxModel<font color="#990000">,</font> properties<font color="#990000">-&gt;</font>listModelsForGroups<font color="#990000">,</font> num_models<font color="#990000">,</font> properties<font color="#990000">-&gt;</font>TreeToIndex<font color="#990000">,</font><font color="#993399">1</font><font color="#990000">);</font>
+
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_ListAuthor_activate</font></b><font color="#990000">(</font><font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"on_menu_ListAuthor_activate():</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#0000FF">const</font></b> <font color="#009900">int</font> num_models <font color="#990000">=</font> <font color="#990000">(</font><font color="#009900">signed</font><font color="#990000">)</font> <font color="#990000">(</font>sizeofoption_algorithms<font color="#990000">/</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font><b><font color="#0000FF">struct</font></b> <font color="#008080">option_algorithm</font><font color="#990000">));</font>
+
+  properties<font color="#990000">-&gt;</font>listModelsForGroups <font color="#990000">=</font> <b><font color="#0000FF">new</font></b> elementListWithGroup<font color="#990000">[</font>num_models<font color="#990000">];</font>
+
+  <font color="#009900">int</font> index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  <b><font color="#0000FF">for</font></b><font color="#990000">(</font>index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> num_models<font color="#990000">;</font> index<font color="#990000">++)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>listModelsForGroups<font color="#990000">[</font>index<font color="#990000">].</font>elementName<font color="#990000">,</font><font color="#FF0000">"%s"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>des<font color="#990000">);</font>
+    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>listModelsForGroups<font color="#990000">[</font>index<font color="#990000">].</font>groupName<font color="#990000">,</font><font color="#FF0000">"%s"</font><font color="#990000">,</font>option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>source<font color="#990000">);</font>
+    properties<font color="#990000">-&gt;</font>listModelsForGroups<font color="#990000">[</font>index<font color="#990000">].</font>index <font color="#990000">=</font> index<font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#000000">set_up_combobox_with_array_use_groups</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>comboboxModel<font color="#990000">,</font> properties<font color="#990000">-&gt;</font>listModelsForGroups<font color="#990000">,</font> num_models<font color="#990000">,</font> properties<font color="#990000">-&gt;</font>TreeToIndex<font color="#990000">,</font><font color="#993399">0</font><font color="#990000">);</font>
+
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_List_activate</font></b><font color="#990000">(</font><font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"on_menu_List_activate():</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#0000FF">const</font></b> <font color="#009900">int</font> num_models <font color="#990000">=</font> <font color="#990000">(</font><font color="#009900">signed</font><font color="#990000">)</font> <font color="#990000">(</font>sizeofoption_algorithms<font color="#990000">/</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font><b><font color="#0000FF">struct</font></b> <font color="#008080">option_algorithm</font><font color="#990000">));</font>
+  <b><font color="#0000FF">struct</font></b> <font color="#008080">elementList</font> listModels<font color="#990000">[</font>num_models<font color="#990000">];</font>
+
+  <font color="#009900">int</font> index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  <b><font color="#0000FF">for</font></b><font color="#990000">(</font>index <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> index <font color="#990000">&lt;</font> num_models<font color="#990000">;</font> index<font color="#990000">++)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">sprintf</font></b><font color="#990000">(</font>listModels<font color="#990000">[</font>index<font color="#990000">].</font>elementName<font color="#990000">,</font><font color="#FF0000">"%d - %s"</font><font color="#990000">,</font> index <font color="#990000">+</font> <font color="#993399">1</font><font color="#990000">,</font> option_algorithms<font color="#990000">[</font>index<font color="#990000">].</font>des<font color="#990000">);</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#000000">set_up_combobox_with_array</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>comboboxModel<font color="#990000">,</font> listModels<font color="#990000">,</font> num_models<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_menu_settings_activate</font></b><font color="#990000">(</font><font color="#008080">GtkWidget</font> <font color="#990000">*</font>widget<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"on_menu_settings_activate():</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#000000">gtk_widget_show_all</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>dialogSettings<font color="#990000">);</font>
+
+  <b><font color="#000000">gtk_spin_button_set_value</font></b><font color="#990000">(</font><b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonSleepDelay<font color="#990000">),</font>properties<font color="#990000">-&gt;</font>updatedelayseconds<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+</tt></pre>

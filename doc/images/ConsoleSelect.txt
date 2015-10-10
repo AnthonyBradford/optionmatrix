@@ -1,0 +1,27 @@
+Begin Select Screen Example:
+
+Select financial model or press enter: 1             Arrow Down For More Models
+
+--->1=Black-Scholes        22=SuperShare 2            43=FloatingXLookBack
+    2=Merton-73            23=VasicekBondPrice        44=FloatingXLookBack 2
+    3=Black-76             24=VasicekBondOption       45=FixedXLookback
+    4=AmericanCRR          25=TimeSwitchOption        46=OptionsOnTheMaxMin
+    5=AmericanEqui         26=ForEquOptInDomCur       47=StandardBarrier
+    6=EuropeanCRR          27=Quanto                  48=DoubleBarrier
+    7=EuropeanEqui         28=EquityLinkedFXO         49=SoftBarrier
+    8=Black-Scholes 2	   29=SpreadApproximation     50=BinaryBarrier
+    9=Generalized BS	   30=MertonJumpDiff          51=DiscreteAdjBarrier
+    10=Merton-73b          31=Bisection               52=ConvertibleBond
+    11=French              32=NewtonRaphson           53=CRRBinomial
+    12=Carry               33=BAWbisection            54=3D-Binominal
+    13=AmericanBAW         34=BSbisection             55=TrinomialTree
+    14=BSAmerican          35=AmerExchangeOpt         56=LookBarrier
+    15=Black-76b           36=EurExchangeOpt          57=PartialTimeBarrier
+    16=AssetOrNothing	   37=MiltersenSwartz         58=RollGeskeWhaley 2
+    17=Executive           38=PartialTimeTwoAsset     59=ExtremeSpread
+    18=GarmanKohlHagen     39=TakeOverFXOption        60=ExtremeSpread 2
+    19=CashOrNothing	   40=TwoAssetBarrier         61=PartialFixedLB
+    20=GapOption           41=TwoAssetCashOrNothin    62=PartialFloatLB
+    21=SuperShare          42=TwoAssetCorrelation     63=PartialFloatLB 2
+
+End Select Screen Example

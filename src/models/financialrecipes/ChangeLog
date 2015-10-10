@@ -1,0 +1,7 @@
+2012-06-10  Anthony Bradford  <info@opensourcefinancialmodels.com>
+	* heston_price.cc (double heston_Pj) fixed memory leak by
+		adding gsl_integration_workspace_free(w);
+	* N3.cc (N3) fixed memory leak by adding
+		gsl_integration_workspace_free(w);
+	* Because of file length problems several source file names
+		were made shorter

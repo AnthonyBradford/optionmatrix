@@ -1,0 +1,25 @@
+Begin Console Format Example:
+
+Model = Black-Scholes  Source = Anthony Bradford
+
+Select a screen/date style format:
+1 - Custom stike, greeks, tickers            (decimal/date entry dated)
+2 - Matrix strikes, tickers                  (decimal/date entry dated)
+3 - Strike to months matrix                  (calendar dated)
+4 - Strike to months matrix w/ days to expr  (calendar dated)
+5 - Strikes to month matrix                  (calendar dated)
+6 - Strikes to month matrix w/ days to expr  (calendar dated)
+7 - Months across column style               (calendar dated)
+8 - Custom strike matrix                     (calendar dated)
+9 - Three Column style                       (calendar dated)
+
+Or select:
+a - AdvProperties (use to adjust calendar expirations)   ESC - Back 1 screen
+c - Options calendar (use to confirm expirations)          l - GNU License
+C - Futures calendar (use to confirm expirations)          h - Help
+m - Cycle financial models (or use TAB, arrow keys)        q - Quit
+d - Options Demo                                           f - Futures Demo
+
+Feel free to resize the termial screen larger. Program scales to size.
+
+End Console Format Example

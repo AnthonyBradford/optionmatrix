@@ -1,0 +1,391 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/* optionmatrix:                                                            */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Options &amp; Futures Matrix Modeler                                         */</font></i>
+<i><font color="#9A1900">/* View and Control Theoretical Option Chains                               */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* File: gtk_checkbutton.cpp of optionmatrix                                */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* Copyright (c) Anthony Bradford. 2012.                                    */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">http://anthonybradford.com</font></u><i><font color="#9A1900">                                               */</font></i>
+<i><font color="#9A1900">/* </font></i><u><font color="#0000FF">info@anthonybradford.com</font></u><i><font color="#9A1900">                                                 */</font></i>
+<i><font color="#9A1900">/*                                                                          */</font></i>
+<i><font color="#9A1900">/* optionmatrix may be freely redistributed.                                */</font></i>
+<i><font color="#9A1900">/* See file COPYING included with this distribution for license information */</font></i>
+
+<i><font color="#9A1900">/* </font></i>
+<i><font color="#9A1900">   optionmatrix is free software; you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">   it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">   the Free Software Foundation; either version 3 of the License, or</font></i>
+<i><font color="#9A1900">   (at your option) any later version.</font></i>
+
+<i><font color="#9A1900">   optionmatrix program is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">   but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">   GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">   You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">   along with this program.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;gtk/gtk.h&gt;</font>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"gtk_main.h"</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_checkbuttonFilterNegativePrice_toggled</font></b><font color="#990000">(</font><font color="#008080">GtkButton</font> <font color="#990000">*</font>button<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"on_checkbuttonFilterNegativePrice_toggled:</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b> <font color="#990000">(</font><b><font color="#000000">gtk_toggle_button_get_active</font></b><font color="#990000">(</font><b><font color="#000000">GTK_TOGGLE_BUTTON</font></b> <font color="#990000">(</font>button<font color="#990000">))</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"button set</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    properties<font color="#990000">-&gt;</font>filterNegativePrices <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"button not set</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    properties<font color="#990000">-&gt;</font>filterNegativePrices <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_checkbuttonDateEngine_toggled</font></b><font color="#990000">(</font><font color="#008080">GtkButton</font> <font color="#990000">*</font>button<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <i><font color="#9A1900">//g_print("on_checkbuttonDateEngine_toggled():\n");</font></i>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>checkbuttonDateEngineIgnore <font color="#990000">==</font> <b><font color="#0000FF">true</font></b> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"checkbuttonDateEngineIgnored</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>checkbuttonDateEngineIgnore <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportTime2 <font color="#990000">==</font> <font color="#993399">1</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>perpetual <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>decimalorcalendar <font color="#990000">==</font> DECIMALS <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <i><font color="#9A1900">// switch to calendar dated...</font></i>
+    <i><font color="#9A1900">//g_print("Calendar Dated\n");</font></i>
+    properties<font color="#990000">-&gt;</font>decimalorcalendar <font color="#990000">=</font> CALENDAR<font color="#990000">;</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>assetClass <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      properties<font color="#990000">-&gt;</font>format <font color="#990000">=</font> CALENDAR_FUTURE<font color="#990000">;</font>
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+    <font color="#FF0000">{</font>
+      properties<font color="#990000">-&gt;</font>format <font color="#990000">=</font> CALENDAR_OPTIONS3<font color="#990000">;</font>
+      <b><font color="#000000">gtk_toggle_button_set_active</font></b><font color="#990000">(</font><b><font color="#000000">GTK_TOGGLE_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton1<font color="#990000">),</font><b><font color="#0000FF">true</font></b><font color="#990000">);</font>  <i><font color="#9A1900">// CALENDAR_OPTIONS3</font></i>
+
+      <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportStrikes <font color="#990000">)</font>
+      <font color="#FF0000">{</font>
+        <b><font color="#000000">gtk_toggle_button_set_active</font></b><font color="#990000">(</font><b><font color="#000000">GTK_TOGGLE_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton2<font color="#990000">),</font><b><font color="#0000FF">false</font></b><font color="#990000">);</font>
+        <b><font color="#000000">gtk_toggle_button_set_active</font></b><font color="#990000">(</font><b><font color="#000000">GTK_TOGGLE_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton3<font color="#990000">),</font><b><font color="#0000FF">false</font></b><font color="#990000">);</font>
+      <font color="#FF0000">}</font>
+
+      <b><font color="#000000">gtk_toggle_button_set_active</font></b><font color="#990000">(</font><b><font color="#000000">GTK_TOGGLE_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton4<font color="#990000">),</font><b><font color="#0000FF">false</font></b><font color="#990000">);</font>
+      <b><font color="#000000">gtk_toggle_button_set_active</font></b><font color="#990000">(</font><b><font color="#000000">GTK_TOGGLE_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton5<font color="#990000">),</font><b><font color="#0000FF">false</font></b><font color="#990000">);</font>
+
+      <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonCustomStrike<font color="#990000">);</font>
+
+      <b><font color="#000000">gtk_toggle_button_set_active</font></b><font color="#990000">(</font><b><font color="#000000">GTK_TOGGLE_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>checkbuttonSpreads<font color="#990000">),</font><font color="#993399">0</font><font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>checkbuttonSpreads<font color="#990000">);</font>
+
+      <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportStrikes <font color="#990000">&amp;&amp;</font> strike_control<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>strikestoogle<font color="#990000">].</font>incrementor <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+      <font color="#FF0000">{</font>
+        <b><font color="#000000">gtk_button_set_label</font></b><font color="#990000">(</font><b><font color="#000000">GTK_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">),</font><font color="#FF0000">"Strike Adjuster"</font><font color="#990000">);</font>
+        <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">);</font>
+
+      <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+      <font color="#FF0000">{</font>
+        <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">);</font>
+      <font color="#FF0000">}</font>
+
+      <b><font color="#000000">gtk_button_set_label</font></b><font color="#990000">(</font><b><font color="#000000">GTK_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleMonths<font color="#990000">),</font><font color="#FF0000">"Month Adjuster"</font><font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleMonths<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+    <i><font color="#9A1900">//properties-&gt;format = CALENDAR_OPTIONS4;</font></i>
+    <i><font color="#9A1900">//properties-&gt;format = CALENDAR_OPTIONS5;</font></i>
+    <i><font color="#9A1900">//properties-&gt;format = CALENDAR_OPTIONS6;</font></i>
+    <i><font color="#9A1900">//properties-&gt;format = CALENDAR_CUSTOM;</font></i>
+
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>checkbuttonRealTime<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>buttonCalendar<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonTime<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>label1<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelDaysToExpr<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonDaysToExpr<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelTime1<font color="#990000">);</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <font color="#990000">!</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>assetClass <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelCycle<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>comboboxCycle<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton1<font color="#990000">);</font>
+
+      <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportStrikes <font color="#990000">)</font>
+      <font color="#FF0000">{</font>
+        <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton2<font color="#990000">);</font>
+        <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton3<font color="#990000">);</font>
+      <font color="#FF0000">}</font>
+
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton4<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton5<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelDisplayFormats<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#000000">show_label_expirations</font></b><font color="#990000">(</font>properties<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleMonths<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>buttonProperties<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>checkbuttonSpreads<font color="#990000">);</font>
+
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b> 
+  <font color="#FF0000">{</font>
+    <i><font color="#9A1900">// switch to decimal dated...</font></i>
+    <i><font color="#9A1900">//g_print("Decimal Dated\n");</font></i>
+    properties<font color="#990000">-&gt;</font>decimalorcalendar <font color="#990000">=</font> DECIMALS<font color="#990000">;</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>assetClass <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      properties<font color="#990000">-&gt;</font>format <font color="#990000">=</font> DECIMAL_FUTURE<font color="#990000">;</font>
+    <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+    <font color="#FF0000">{</font>
+      properties<font color="#990000">-&gt;</font>format <font color="#990000">=</font> DECIMAL_GREEKS<font color="#990000">;</font>
+      <b><font color="#0000FF">if</font></b><font color="#990000">(</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportStrikes <font color="#990000">)</font>
+      <font color="#FF0000">{</font>
+        <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>comboboxStrikes<font color="#990000">);</font>
+        <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">);</font>
+
+        <b><font color="#000000">gtk_label_set_text</font></b><font color="#990000">(</font><b><font color="#000000">GTK_LABEL</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">),</font><font color="#FF0000">"Strikes"</font><font color="#990000">);</font>
+        <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">);</font>
+
+      <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+      <font color="#FF0000">{</font>
+        <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>comboboxStrikes<font color="#990000">);</font>
+        <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">);</font>
+        <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">);</font>
+      <font color="#FF0000">}</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>checkbuttonRealTime<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>buttonCalendar<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonTime<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>label1<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelDaysToExpr<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonDaysToExpr<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelTime1<font color="#990000">);</font>
+
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelCycle<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>comboboxCycle<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelExpirations<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleMonths<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>buttonProperties<font color="#990000">);</font>
+
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton1<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton2<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton3<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton4<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>radiobutton5<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelDisplayFormats<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes2<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonCustomStrike<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonCustomStrike2<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>checkbuttonSpreads<font color="#990000">);</font>
+
+    <b><font color="#000000">gtk_toggle_button_set_active</font></b><font color="#990000">(</font><b><font color="#000000">GTK_TOGGLE_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>checkbuttonSpreads<font color="#990000">),</font><font color="#993399">0</font><font color="#990000">);</font>
+
+    properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value</font></b><font color="#990000">(</font><b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonTime<font color="#990000">));</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> strike_control<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>strikestoogle<font color="#990000">].</font>incrementor <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonCustomStrike2<font color="#990000">);</font>
+      <b><font color="#000000">gtk_label_set_text</font></b><font color="#990000">(</font><b><font color="#000000">GTK_LABEL</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes2<font color="#990000">),</font><font color="#FF0000">"Strike"</font><font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes2<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+    <b><font color="#0000FF">else</font></b>
+    <font color="#FF0000">{</font>
+     <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonCustomStrike2<font color="#990000">);</font>
+     <b><font color="#000000">gtk_label_set_text</font></b><font color="#990000">(</font><b><font color="#000000">GTK_LABEL</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes2<font color="#990000">),</font><font color="#FF0000">"StrikeLeg2"</font><font color="#990000">);</font>
+     <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes2<font color="#990000">);</font>
+     <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+  <font color="#FF0000">}</font>
+
+  <b><font color="#000000">setup_tree_view</font></b><font color="#990000">(</font>properties<font color="#990000">);</font>
+  <b><font color="#000000">show_title</font></b><font color="#990000">(</font>properties<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_checkbuttonRealTime_toggled</font></b><font color="#990000">(</font><font color="#008080">GtkButton</font> <font color="#990000">*</font>button<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <i><font color="#9A1900">//gtk_toggle_button_get_active()</font></i>
+  <b><font color="#0000FF">if</font></b> <font color="#990000">(</font><b><font color="#000000">gtk_toggle_button_get_active</font></b><font color="#990000">(</font><b><font color="#000000">GTK_TOGGLE_BUTTON</font></b> <font color="#990000">(</font>button<font color="#990000">))</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <i><font color="#9A1900">//g_print("Realtime set\n");</font></i>
+    properties<font color="#990000">-&gt;</font>realTimeBleeding <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+
+    <b><font color="#000000">time</font></b><font color="#990000">(&amp;</font>properties<font color="#990000">-&gt;</font>starttime<font color="#990000">);</font>
+    <b><font color="#000000">time</font></b><font color="#990000">(&amp;</font>properties<font color="#990000">-&gt;</font>starttime2<font color="#990000">);</font>
+    <b><font color="#000000">time</font></b><font color="#990000">(&amp;</font>properties<font color="#990000">-&gt;</font>starttime3<font color="#990000">);</font>
+
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+  <font color="#FF0000">{</font>
+    <i><font color="#9A1900">//g_print("Leaving realtime\n");</font></i>
+    properties<font color="#990000">-&gt;</font>realTimeBleeding <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+
+    properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">-</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>te<font color="#990000">;</font>
+    properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">-</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>te2<font color="#990000">;</font>
+    properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]</font> <font color="#990000">=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>t<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]</font> <font color="#990000">-</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>te3<font color="#990000">;</font>
+
+    <i><font color="#9A1900">//</font></i>
+    <b><font color="#000000">pthread_mutex_lock</font></b><font color="#990000">(&amp;</font>properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>mutexCashflow<font color="#990000">);</font>
+
+    <b><font color="#0000FF">for</font></b><font color="#990000">(</font> std<font color="#990000">::</font>vector<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;::</font><font color="#008080">iterator</font> it <font color="#990000">=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">begin</font></b><font color="#990000">();</font> it <font color="#990000">!=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>times<font color="#990000">.</font><b><font color="#000000">end</font></b><font color="#990000">();</font> <font color="#990000">++</font>it<font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <font color="#990000">*</font>it <font color="#990000">-=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>te<font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">for</font></b><font color="#990000">(</font> std<font color="#990000">::</font>vector<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;::</font><font color="#008080">iterator</font> it <font color="#990000">=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>coupon_times<font color="#990000">.</font><b><font color="#000000">begin</font></b><font color="#990000">();</font> it <font color="#990000">!=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>coupon_times<font color="#990000">.</font><b><font color="#000000">end</font></b><font color="#990000">();</font> <font color="#990000">++</font>it<font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <font color="#990000">*</font>it <font color="#990000">-=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>te<font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">for</font></b><font color="#990000">(</font> std<font color="#990000">::</font>vector<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;::</font><font color="#008080">iterator</font> it <font color="#990000">=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>principal_times<font color="#990000">.</font><b><font color="#000000">begin</font></b><font color="#990000">();</font> it <font color="#990000">!=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>principal_times<font color="#990000">.</font><b><font color="#000000">end</font></b><font color="#990000">();</font> <font color="#990000">++</font>it<font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <font color="#990000">*</font>it <font color="#990000">-=</font> properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>te<font color="#990000">;</font>
+    <font color="#FF0000">}</font>
+    
+    <b><font color="#000000">pthread_mutex_unlock</font></b><font color="#990000">(&amp;</font>properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>mutexCashflow<font color="#990000">);</font>
+
+    <i><font color="#9A1900">//</font></i>
+
+    properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>te  <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+    properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>te2 <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+    properties<font color="#990000">-&gt;</font>data<font color="#990000">.</font>te3 <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+  <font color="#FF0000">}</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">on_checkbuttonSpreads_toggled</font></b><font color="#990000">(</font><font color="#008080">GtkButton</font> <font color="#990000">*</font>button<font color="#990000">,</font> <b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <b><font color="#000000">gtk_toggle_button_get_active</font></b><font color="#990000">(</font><b><font color="#000000">GTK_TOGGLE_BUTTON</font></b> <font color="#990000">(</font>button<font color="#990000">))</font> <font color="#990000">)</font>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"Use Spreads</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    properties<font color="#990000">-&gt;</font>spreads <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+
+    <b><font color="#000000">calc_strike_scale</font></b><font color="#990000">(</font>properties<font color="#990000">);</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>format <font color="#990000">!=</font> CALENDAR_CUSTOM <font color="#990000">&amp;&amp;</font> <font color="#990000">!</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>assetClass <font color="#990000">&amp;&amp;</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportStrikes <font color="#990000">&amp;&amp;</font> strike_control<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>strikestoogle<font color="#990000">].</font>incrementor <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">gtk_button_set_label</font></b><font color="#990000">(</font><b><font color="#000000">GTK_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">),</font><font color="#FF0000">"Strike Adj Leg1"</font><font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes2<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>format <font color="#990000">==</font> CALENDAR_CUSTOM <font color="#990000">&amp;&amp;</font> <font color="#990000">!</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>assetClass <font color="#990000">&amp;&amp;</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportStrikes <font color="#990000">&amp;&amp;</font> strike_control<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>strikestoogle<font color="#990000">].</font>incrementor <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">gtk_label_set_text</font></b><font color="#990000">(</font><b><font color="#000000">GTK_LABEL</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">),</font><font color="#FF0000">"StrikeLeg1"</font><font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonCustomStrike2<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes2<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> strike_control<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>strikestoogle<font color="#990000">].</font>incrementor <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">&amp;&amp;</font> properties<font color="#990000">-&gt;</font>format <font color="#990000">!=</font> CALENDAR_CUSTOM <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">gtk_label_set_text</font></b><font color="#990000">(</font><b><font color="#000000">GTK_LABEL</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">),</font><font color="#FF0000">"StrikeLeg1"</font><font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">);</font>
+      <b><font color="#000000">gtk_label_set_text</font></b><font color="#990000">(</font><b><font color="#000000">GTK_LABEL</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes2<font color="#990000">),</font><font color="#FF0000">"StrikeLeg2"</font><font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes2<font color="#990000">);</font>
+
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonCustomStrike<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>comboboxStrikes<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonCustomStrike2<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#000000">gtk_button_set_label</font></b><font color="#990000">(</font><b><font color="#000000">GTK_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleMonths<font color="#990000">),</font><font color="#FF0000">"Month Adj Leg1"</font><font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleMonths<font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleMonths2<font color="#990000">);</font>
+
+  <font color="#FF0000">}</font> <b><font color="#0000FF">else</font></b>
+  <font color="#FF0000">{</font>
+    <b><font color="#000000">g_print</font></b><font color="#990000">(</font><font color="#FF0000">"No Spreads</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">);</font>
+    properties<font color="#990000">-&gt;</font>spreads <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+
+    <b><font color="#000000">calc_strike_scale</font></b><font color="#990000">(</font>properties<font color="#990000">);</font>
+
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelSpread<font color="#990000">);</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>format <font color="#990000">!=</font> CALENDAR_CUSTOM <font color="#990000">&amp;&amp;</font> <font color="#990000">!</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>assetClass <font color="#990000">&amp;&amp;</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportStrikes <font color="#990000">&amp;&amp;</font> strike_control<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>strikestoogle<font color="#990000">].</font>incrementor <font color="#990000">!=</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">gtk_button_set_label</font></b><font color="#990000">(</font><b><font color="#000000">GTK_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">),</font><font color="#FF0000">"Strike Adjuster"</font><font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>format <font color="#990000">==</font> CALENDAR_CUSTOM <font color="#990000">&amp;&amp;</font> <font color="#990000">!</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>assetClass <font color="#990000">&amp;&amp;</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportStrikes <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">gtk_label_set_text</font></b><font color="#990000">(</font><b><font color="#000000">GTK_LABEL</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">),</font><font color="#FF0000">"Strike"</font><font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonCustomStrike2<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes2<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+
+    <b><font color="#000000">gtk_button_set_label</font></b><font color="#990000">(</font><b><font color="#000000">GTK_BUTTON</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleMonths<font color="#990000">),</font><font color="#FF0000">"Month Adjuster"</font><font color="#990000">);</font>
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes2<font color="#990000">);</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>decimalorcalendar <font color="#990000">==</font> CALENDAR <font color="#990000">)</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleMonths<font color="#990000">);</font>
+
+    <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleMonths2<font color="#990000">);</font>
+
+    <b><font color="#0000FF">if</font></b><font color="#990000">(</font> strike_control<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>strikestoogle<font color="#990000">].</font>incrementor <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">&amp;&amp;</font> properties<font color="#990000">-&gt;</font>format <font color="#990000">!=</font> CALENDAR_CUSTOM <font color="#990000">)</font>
+    <font color="#FF0000">{</font>
+      <b><font color="#000000">gtk_label_set_text</font></b><font color="#990000">(</font><b><font color="#000000">GTK_LABEL</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">),</font><font color="#FF0000">"Strikes"</font><font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes<font color="#990000">);</font>
+
+      <b><font color="#000000">gtk_label_set_text</font></b><font color="#990000">(</font><b><font color="#000000">GTK_LABEL</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelStrikes2<font color="#990000">),</font><font color="#FF0000">"Strike"</font><font color="#990000">);</font>
+
+      <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>spinbuttonCustomStrike<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>scaleStrikes<font color="#990000">);</font>
+      <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>comboboxStrikes<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+  <font color="#FF0000">}</font>
+
+  <b><font color="#000000">setup_tree_view</font></b><font color="#990000">(</font>properties<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">spreadName</font></b><font color="#990000">(</font><b><font color="#0000FF">struct</font></b> <font color="#008080">_properties</font> <font color="#990000">*</font>properties<font color="#990000">)</font>
+<font color="#FF0000">{</font>
+  <b><font color="#0000FF">static</font></b> <font color="#009900">char</font> spreadName<font color="#990000">[</font><font color="#993399">400</font><font color="#990000">];</font>
+  spreadName<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>spreads <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>format <font color="#990000">==</font> CALENDAR_OPTIONS5 <font color="#990000">||</font>  properties<font color="#990000">-&gt;</font>format <font color="#990000">==</font> CALENDAR_OPTIONS6 <font color="#990000">)</font>
+    <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>verticalSpread <font color="#990000">&amp;&amp;</font> <font color="#990000">!</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>assetClass <font color="#990000">&amp;&amp;</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportStrikes <font color="#990000">)</font>
+    <b><font color="#000000">strcat</font></b><font color="#990000">(</font>spreadName<font color="#990000">,</font><font color="#FF0000">"Vertical "</font><font color="#990000">);</font>
+
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> properties<font color="#990000">-&gt;</font>skipmonth <font color="#990000">!=</font> properties<font color="#990000">-&gt;</font>skipmonth2 <font color="#990000">)</font>
+    <b><font color="#000000">strcat</font></b><font color="#990000">(</font>spreadName<font color="#990000">,</font><font color="#FF0000">"Calendar "</font><font color="#990000">);</font>
+  
+  <b><font color="#0000FF">if</font></b><font color="#990000">(</font> <font color="#990000">(</font>properties<font color="#990000">-&gt;</font>verticalSpread <font color="#990000">&amp;&amp;</font> <font color="#990000">!</font>option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>assetClass <font color="#990000">&amp;&amp;</font> option_algorithms<font color="#990000">[</font>properties<font color="#990000">-&gt;</font>modeltype<font color="#990000">].</font>supportStrikes<font color="#990000">)</font> <font color="#990000">||</font> properties<font color="#990000">-&gt;</font>skipmonth <font color="#990000">!=</font> properties<font color="#990000">-&gt;</font>skipmonth2<font color="#990000">)</font>
+    <b><font color="#000000">strcat</font></b><font color="#990000">(</font>spreadName<font color="#990000">,</font><font color="#FF0000">"Spreads"</font><font color="#990000">);</font>
+
+  <b><font color="#000000">gtk_label_set_text</font></b><font color="#990000">(</font><b><font color="#000000">GTK_LABEL</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelSpread<font color="#990000">),</font>spreadName<font color="#990000">);</font>
+  <b><font color="#000000">gtk_widget_show</font></b><font color="#990000">(</font>properties<font color="#990000">-&gt;</font>GtkInfo<font color="#990000">.</font>labelSpread<font color="#990000">);</font>
+
+  <i><font color="#9A1900">//g_print("properties-&gt;skipmonth = %d properties-&gt;skipmonth2 = %d\n",properties-&gt;skipmonth,properties-&gt;skipmonth2);</font></i>
+  <i><font color="#9A1900">//g_print("spread strike %f, %f\n",properties-&gt;strike_offset,properties-&gt;strike_offset2);;</font></i>
+<font color="#FF0000">}</font>
+</tt></pre>

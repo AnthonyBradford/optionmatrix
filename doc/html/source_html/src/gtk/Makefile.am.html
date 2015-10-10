@@ -1,0 +1,59 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#009900">bin_PROGRAMS =</font> optionmatrix
+
+<font color="#009900">optionmatrix_CXXFLAGS =</font> -DDATADIR<font color="#990000">=</font>\"<font color="#009900">$(datadir)</font>\"
+
+<font color="#009900">optionmatrix_SOURCES =</font> <font color="#990000">\</font>
+gtk_bonds.cpp<font color="#990000">\</font>
+gtk_calendar.cpp<font color="#990000">\</font>
+gtk_cashflow.cpp<font color="#990000">\</font>
+gtk_checkbutton.cpp<font color="#990000">\</font>
+gtk_combobox.cpp<font color="#990000">\</font>
+gtk_dialog.cpp<font color="#990000">\</font>
+gtk_display.cpp<font color="#990000">\</font>
+gtk_extern.h<font color="#990000">\</font>
+gtk_glade_xml.h<font color="#990000">\</font>
+gtk_include.h<font color="#990000">\</font>
+gtk_main.cpp<font color="#990000">\</font>
+gtk_main.h<font color="#990000">\</font>
+gtk_menu.cpp<font color="#990000">\</font>
+gtk_radio.cpp<font color="#990000">\</font>
+gtk_scale.cpp<font color="#990000">\</font>
+gtk_spin.cpp<font color="#990000">\</font>
+gtk_thread.cpp<font color="#990000">\</font>
+gtk_icon.h
+
+<font color="#009900">GLADE_FILE =</font> gtk_glade_xml.glade
+
+<font color="#009900">EXTRA_DIST =</font> <font color="#990000">\</font>
+<font color="#009900">$(GLADE_FILE)</font><font color="#990000">\</font>
+images<font color="#990000">/</font>10.png<font color="#990000">\</font>
+images<font color="#990000">/</font>11.png<font color="#990000">\</font>
+images<font color="#990000">/</font>1.png<font color="#990000">\</font>
+images<font color="#990000">/</font>2.png<font color="#990000">\</font>
+images<font color="#990000">/</font>3.png<font color="#990000">\</font>
+images<font color="#990000">/</font>4.png<font color="#990000">\</font>
+images<font color="#990000">/</font>5.png<font color="#990000">\</font>
+images<font color="#990000">/</font>6.png<font color="#990000">\</font>
+images<font color="#990000">/</font>7.png<font color="#990000">\</font>
+images<font color="#990000">/</font>8.png<font color="#990000">\</font>
+images<font color="#990000">/</font>9.png<font color="#990000">\</font>
+images/installer.ico<font color="#990000">\</font>
+images/optionmatrixdos.ico<font color="#990000">\</font>
+images/optionmatrix.ico
+
+<font color="#009900">optionmatrix_CPPFLAGS =</font> -I<font color="#009900">$(top_srcdir)</font>/src/models/financialrecipes/src -I<font color="#009900">$(top_srcdir)</font>/src/models/metaoptions/src -I<font color="#009900">$(top_srcdir)</font>/src/common
+
+<font color="#009900">optionmatrix_LDADD =</font> <font color="#990000">..</font>/common/liboptionmatrix.a <font color="#990000">..</font>/models/financialrecipes/src/librecipes.a <font color="#990000">..</font>/models/metaoptions/src/libmetaoptions.a
+
+<font color="#990000">install-glade-file:</font>
+	<b><font color="#0000FF">for</font></b> file <b><font color="#0000FF">in</font></b> <font color="#009900">$(GLADE_FILE)</font><font color="#990000">;</font> <b><font color="#0000FF">do</font></b> <font color="#990000">\</font>
+		mkdir -p <font color="#009900">$(DESTDIR)$(pkgdatadir)</font><font color="#990000">/;</font> <font color="#990000">\</font>
+		<font color="#009900">$(INSTALL_DATA)</font> <font color="#009900">$(srcdir)</font><font color="#990000">/</font><font color="#009900">$$</font>file <font color="#009900">$(DESTDIR)$(pkgdatadir)</font><font color="#990000">/;</font> <font color="#990000">\</font>
+	<b><font color="#0000FF">done</font></b>
+
+<font color="#990000">install-data-local:</font> install-glade-file
+</tt></pre>

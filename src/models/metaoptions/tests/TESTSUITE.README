@@ -1,0 +1,93 @@
+Test suite status for the options
+---------------------------------
+x:  indicates that a test exists for the function.
+t:	No test data available, hence no test
+i: The function has issues, either errors in the book or in the code.
+
+Function                Correctness Speed
+----------------------------------------------
+black76                     x        x
+black76_put                 x        x
+black76_call                x        x
+blackscholes                x        x
+blackscholes_put            x        x
+blackscholes_call           x        x
+cbnd                        x        x
+gbs                         x        x
+gbs_put                     x        x
+gbs_call                    t        x
+gcarry                      x        x
+gcarry_put                  x        x
+gcarry_call                 t        x
+gdelta                      x        x
+gdelta_put                  x        x
+gdelta_call                 x        x
+gfrench                     x        x
+ggamma                      x        x
+grho                        x        x
+grho_put                    t        x
+grho_call                   x        x
+gtheta                      x        x
+gtheta_put                  x        x
+gtheta_call                 t        x
+gvega                       x        x
+normdist                    x        x
+bisection                   x        x (Broken, IIRC)
+NewtonRaphson				x        x
+NewtonRaphson_put           x        x
+NewtonRaphson_call          x        x
+
+AmericanExchangeOption      x        x	No data for puts
+AssetOrNothing              x        x	No data for calls
+AssetOrNothing_put          x        x
+AssetOrNothing_call         t        x  No data for calls
+BAWAmericanApprox           x        x
+BSAmericanApprox            x        x
+BSAmericanCallApprox        x        x
+BinaryBarrier               x        x
+CashOrNothing               x        x
+ComplexChooser              x        x
+DiscreteAdjustedBarrier     t 
+DoubleBarrier               x        x
+EquityLinkedFXO             x        x
+EuropeanExchangeOption      x        x
+ExchangeExchangeOption      x        x
+Executive                   x        x
+Executive_put               t        x
+Executive_call              x        x
+ExtendibleWriter            x        x
+ExtremeSpreadOption         x        x
+FixedStrikeLookback         x        x
+FloatingStrikeLookback      x        x
+ForEquOptInDomCur           x        x
+ForwardStartOption          x        x
+GapOption                   x        x
+GeometricAverageRateOption  t        t
+JumpDiffusion               x        x
+LevyAsian                   x        x
+LookBarrier                 i        i # cbnd() bombs out with NaN values
+Merton73                    t        t
+MiltersenSwartz             x        x
+OptionsOnOptions            x        x
+OptionsOnTheMaxMin
+PartialFixedLB              x        x
+PartialFloatLB              x        x
+PartialTimeBarrier
+PartialTimeTwoAssetBarrier  x        x
+Quanto                      x        x
+RollGeskeWhaley             x        x
+SimpleChooser               x        x
+SoftBarrier                 i        x	# Broken if(U == L)
+SpreadApproximation         x        x
+StandardBarrier             x        x
+SuperShare                  x        x
+SuperShare_inlined          x        x
+Swapoption                  x        x
+TakeoverFXoption            t        t
+TimeSwitchOption            x        x
+TurnbullWakemanAsian        x        x
+TwoAssetBarrier             i        x # Testdata are incorrect(table 2-12, page 81). See errata
+TwoAssetCashOrNothing
+TwoAssetCorrelation
+VasicekBondPrice
+VasicekBondOption

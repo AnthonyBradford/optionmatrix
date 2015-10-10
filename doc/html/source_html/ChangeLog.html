@@ -1,0 +1,84 @@
+<!-- Generator: GNU source-highlight 3.1.7
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#0000FF">2014-05-15</font></b>  <font color="#009900">Anthony</font> <font color="#009900">Bradford</font>  <u><font color="#0000FF">&lt;info@anthonybradford.com&gt;</font></u>
+	<font color="#990000">*</font> Prefs-&gt;Settings has new checkbox named
+	  Filter negative prices
+	<font color="#990000">*</font> Removed LIBGTK_3 deprecations.
+	<font color="#990000">*</font> Added 64 and 128 pixel icons for optionmatrix and
+	  optionmatrix_console.
+	<font color="#990000">*</font> Reorganize source into src/common src/curses src/gtk src/models
+	  directories.
+
+<b><font color="#0000FF">2012-11-18</font></b>  <font color="#009900">Anthony</font> <font color="#009900">Bradford</font>  <u><font color="#0000FF">&lt;info@anthonybradford.com&gt;</font></u>
+	<font color="#990000">*</font> Autotools packaging changes to enable DESTDIR support.
+	<font color="#990000">*</font> Added optionmatrix.desktop, optionmatrix_console.desktop
+	  files.
+	<font color="#990000">*</font> Added pixmaps and hicolor icons
+	<font color="#990000">*</font> Renamed gtkoptionmatrix to optionmatrix
+	<font color="#990000">*</font> Renamed optionmatrix to optionmatrix_console
+	<font color="#990000">*</font> gtk_main.cpp increased spin button GTK_ADJUSTMENT upper bound
+	  size of dividend to 99999
+
+<b><font color="#0000FF">2012-06-22</font></b>  <font color="#009900">Anthony</font> <font color="#009900">Bradford</font>  <u><font color="#0000FF">&lt;info@anthonybradford.com&gt;</font></u>
+	<font color="#990000">*</font> Migrated to GTK+ 3.0 (backwardly compatible w/Gtk 2.0)
+	<font color="#990000">*</font> Autotools will automatically detect select Gtk 3.0, Gtk 2.0,
+	  curses, ncurses, pdcurses
+	<font color="#990000">*</font> Many config file changes with autotools packaging
+	<font color="#990000">*</font> Model timing and checks as command line options
+	<font color="#990000">*</font> Texinfo (pdf, html targets) and man / info documentation
+	<font color="#990000">*</font> Removed compiler warnings for gcc 4.6.1
+	<font color="#990000">*</font> Minor fixes
+
+<b><font color="#0000FF">2012-02-20</font></b>  <font color="#009900">Anthony</font> <font color="#009900">Bradford</font>  <u><font color="#0000FF">&lt;info@anthonybradford.com&gt;</font></u>
+	<font color="#990000">*</font> Fixed strcpy issue impacting categorized combobox entries
+	  on higher versions of gcc.
+	<font color="#990000">*</font> Added file "missing" to distribution.
+
+<b><font color="#0000FF">2012-02-07</font></b>  <font color="#009900">Anthony</font> <font color="#009900">Bradford</font>  <u><font color="#0000FF">&lt;info@anthonybradford.com&gt;</font></u>
+	<font color="#990000">*</font> Categorized Model ComboBox Dropdown, 136+ models
+	<font color="#990000">*</font> <b><font color="#000080">Term Structure Models:</font></b>
+	  TermFlat, TermCir, TermVasicek, TermNelsonSiegel
+	  TermSvensson, TermCubicSpline, TermInterpolated
+	<font color="#990000">*</font> <b><font color="#000080">Bond Models:</font></b>
+	  Bond (Flat), Bond w/Terms, Bond Principal
+	<font color="#990000">*</font> <b><font color="#000080">Option Models:</font></b>
+	  Bachelier, Sprenkle, Boness, Samuelson
+	<font color="#990000">*</font> <b><font color="#000080">Calculations:</font></b>
+	  Forward Rates, Spot, Discount Factor, PV, IRR, UIRR,
+	  YTM, Convexity, Duration, Duration Modified, Duration Macaulay
+	  and more.
+	<font color="#990000">*</font> Adjustable sleep between recalculations
+	<font color="#990000">*</font> Minor fixes.
+
+<b><font color="#0000FF">2011-09-04</font></b>  <font color="#009900">Anthony</font> <font color="#009900">Bradford</font>  <u><font color="#0000FF">&lt;info@anthonybradford.com&gt;</font></u>
+	<font color="#990000">*</font> Support for Spreads, controls for both legs
+	<font color="#990000">*</font> Menu File -&gt; Text Export - Export screens to flat file
+	<font color="#990000">*</font> Menu File -&gt; Source View - View model source code
+	<font color="#990000">*</font> <b><font color="#000080">New models:</font></b> bisection, NewtonRaphson, BSbisection, ComplexChooser,
+	  VasicekBondPrice, BondZeroVasicek, VasicekBondOption,
+	  TakeoverFXoption, AmericanExchangeOption, DiscreteAdjustedBarrier,
+	  EuropeanExchangeOption, MiltersenSchwartz, Heston,
+	  AmPutApproxGeskeJohn, PartialTimeTwoAssetBarrier, TwoAssetBarrier,
+	  TwoAssetCashOrNothing, TwoAssetCorrelation, ExchangeExchangeOption
+	  Convertible Bond, CRRBinominal, 3D-Binominal, Trinominal Tree,
+	  Finite Diff Explicit and more.
+
+<b><font color="#0000FF">2011-04-20</font></b>  <font color="#009900">Anthony</font> <font color="#009900">Bradford</font>  <u><font color="#0000FF">&lt;info@anthonybradford.com&gt;</font></u>
+	<font color="#990000">*</font> ExtendibleWriter, OptionsOnOptions, PartialFixedLB, LookBarrier,
+	  PartialTimeBarrier, TurnbullWakemanAsian, PartialFloatLB all
+	  could cash when first time variable was less than the secondary
+	<font color="#990000">*</font> Fixed iterating strike scaling issue for very small strikes
+	<font color="#990000">*</font> Now autodetects and links to gsl library, configure.ac, Makefile.in
+	  re-done.
+	<font color="#990000">*</font> Custom strike display format for the date engine.
+
+<b><font color="#0000FF">2011-02-15</font></b>  <font color="#009900">Anthony</font> <font color="#009900">Bradford</font>  <u><font color="#0000FF">&lt;info@anthonybradford.com&gt;</font></u>
+	<font color="#990000">*</font> Fixed GUI alignment of some spin buttons
+	<font color="#990000">*</font> bug in curses version, time(&amp;properties.starttime2) timer
+	  not being called for t2 models
+	<font color="#990000">*</font> grab-focus out of spin button time / days after user input
+	  for better user work flow
+	<font color="#990000">*</font> General clean up, removed TABs from the source code.
+</tt></pre>
