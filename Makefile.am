@@ -50,6 +50,7 @@ EXTRA_DIST = \
 	utils/push_to_web.sh\
 	utils/apt-get.sh\
 	utils/yum.sh\
+	utils/dnf.sh\
 	utils/zypper.sh\
 	utils/README\
 	src/README\
