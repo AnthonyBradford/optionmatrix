@@ -12,15 +12,19 @@ common/checks
 models/financialrecipes/run_all_examples
 models/metaoptions/tests/
 
-****If packages are missing under a Debian GNU/Linux system run:
+****If packages are missing under GNU/Linux using apt-get run:
 sudo apt-get install g++ clang libncurses5-dev libncurses5 libgtk2.0-dev libgtk-3-dev gsl-bin libgsl0-dev libnewmat10-dev libitpp-dev zip devscripts automake autotools-dev help2man linkchecker aspell diction asciidoc alien texlive texinfo dbtoepub imagemagick
 or run: utils/apt-get.sh
 
-****If packages are missing under a GNU/Linux system running the RPM Package Manager run:
-yum install gcc-c++ clang ncurses-devel gtk2-devel gtk3-devel gsl gsl-devel help2man texinfo
+****If packages are missing under GNU/Linux using rpm run:
+yum install gcc-c++ clang ncurses-devel gtk2-devel gtk3-devel gsl gsl-devel help2man texinfo texlive texinfo-tex
 or run: utils/yum.sh
 
-****If packages are missing under a openSUSE/SUSE Linux Enterprise distribution run:
+****If packages are missing under GNU/Linux using dnf run:
+dnf install gcc-c++ clang ncurses-devel gtk2-devel gtk3-devel gsl gsl-devel help2man texinfo texlive texinfo-tex
+or run: utils/dnf.sh
+
+****If packages are missing under GNU/Linux using zypper run:
 sudo zypper install gcc-c++ llvm-clang ncurses-devel gtk2-devel gtk3-devel gsl gsl-devel help2man texinfo
 or run: utils/zypper.sh
 
@@ -28,12 +32,12 @@ or run: utils/zypper.sh
 GSL, Newmat and IT++ libraries. These libraries are not needed but inclusion
 will cause the application will have a few more models.
 
-****To install under GNU Linux/Unix
+****To install under GNU/Linux
 ./configure ; make ; sudo make install
 You should be able to see the installation with
 find /usr -name "optionmatrix*" -print 2>/dev/null
 
-****To uninstall under GNU Linux/Unix
+****To uninstall under GNU/Linux
 ./configure ; make ; sudo make uninstall
 
 ****To compile with clang++
