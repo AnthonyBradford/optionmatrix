@@ -30,7 +30,7 @@ or run: utils/zypper.sh
 
 ****The configure script checks for the installation of the
 GSL, Newmat and IT++ libraries. These libraries are not needed but inclusion
-will cause the application will have a few more models.
+will adds more models.
 
 ****To install under GNU/Linux
 ./configure ; make ; sudo make install

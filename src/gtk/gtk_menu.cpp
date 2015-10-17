@@ -62,9 +62,9 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
   sprintf(openURL,"open %s", PACKAGE_URL);
   system(openURL);
 
-#elseif defined(__CYGWIN__) || defined(__MINGW32__)
+#elseif __CYGWIN__
   
-  g_print("__CYGWIN__ || __MINGW32__\n");
+  g_print("__CYGWIN__\n");
 
   char openURL[1024];
   sprintf(openURL,"explorer %s", PACKAGE_URL);
@@ -95,27 +95,32 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
 void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *properties)
 {
   g_print("on_menu_feedback_activate():\n");
+  char packageBugreport[1024];
 
 #ifdef WIN32
   
   int ret;
-  ret = (int) ShellExecute( NULL, "open", "mailto:info@anthonybradford.com", NULL, NULL, SW_SHOWNORMAL );
+  sprintf(packageBugreport,"mailto:%s",PACKAGE_BUGREPORT);
+  ret = (int) ShellExecute( NULL, "open", packageBugreport, NULL, NULL, SW_SHOWNORMAL );
   
 #elseif __APPLE__
   
   g_print("__APPLE__ %s\n", PACKAGE_URL);
-  system("open mailto:info@anthonybradford.com");
+  sprintf(packageBugreport,"open mailto:%s",PACKAGE_BUGREPORT);
+  system(packageBugreport);
   
-#elseif defined(__CYGWIN__) || defined(__MINGW32__)
+#elseif __CYGWIN__
   
-  g_print("__CYGWIN__ || __MINGW32__\n");
-  system("explorer mailto:info@anthonybradford.com");
-  
+  g_print("__CYGWIN__\n");
+  sprintf(packageBugreport,"explorer mailto:%s",PACKAGE_BUGREPORT);
+  system(packageBugreport);
+
 #else
   
   GError *error = NULL;
 
-  gtk_show_uri(NULL,"mailto:info@anthonybradford.com", GDK_CURRENT_TIME, &error);
+  sprintf(packageBugreport,"mailto:%s",PACKAGE_BUGREPORT);
+  gtk_show_uri(NULL,packageBugreport, GDK_CURRENT_TIME, &error);
 
   if (error != NULL)
   {
@@ -255,7 +260,7 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 
   const gchar *documenters[] = {
     "Anthony Bradford",
-    "<info@anthonybradford.com>", 
+    PACKAGE_BUGREPORT,
     PACKAGE_URL,
     NULL
   };
@@ -292,8 +297,10 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 
   gtk_about_dialog_set_version(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), PACKAGE_VERSION);
 
+  char aboutDialog[1024];
+  sprintf(aboutDialog,"The Ultimate Options Calculator\n%s", PACKAGE_BUGREPORT);
   gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), 
-                                 "The Ultimate Options Calculator\ninfo@anthonybradford.com");
+                                 aboutDialog);
 
   gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), 
                                   "(C) 2012 Anthony Bradford");
@@ -302,11 +309,12 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
   gtk_about_dialog_set_website(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), 
                                        PACKAGE_URL);
   gtk_about_dialog_set_website_label(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), 
-                                      "AnthonyBradford.com");
+                                      PACKAGE_URL);
 
   gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(properties->GtkInfo.dialogAbout), authors);
   gtk_about_dialog_set_documenters(GTK_ABOUT_DIALOG(properties->GtkInfo.dialogAbout), documenters);
-  gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(properties->GtkInfo.dialogAbout), "Anthony Bradford\n<info@anthonybradford.com>\nhttp://anthonybradford.com          ");
+  sprintf(aboutDialog,"Anthony Bradford\n<%s>\n%s          ", PACKAGE_BUGREPORT, PACKAGE_URL);
+  gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(properties->GtkInfo.dialogAbout), aboutDialog);
 
   // Next line places 1 images in the about dialog
   //pngTimer(properties);

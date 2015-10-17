@@ -1,3 +1,8 @@
+2015-10-15  Anthony Bradford  <info@anthonybradford.com>
+	* gtk_menu.cpp changes to support Mac OS X and
+ 	  Cygwin.
+	* gtk_combobox.cpp now qsorting model names.
+
 2014-05-15  Anthony Bradford  <info@anthonybradford.com>
 	* Prefs->Settings has new checkbox named
 	  Filter negative prices
