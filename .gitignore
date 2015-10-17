@@ -1,6 +1,6 @@
 *.[oa]
 .*~
-~
+*~
 Makefile
 autom4te.cache/*
 config.h
