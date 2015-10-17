@@ -1,8 +1,10 @@
-apt-get.sh - install packages to compile OptionMatrix for Debian systems
+apt-get.sh - install packages to compile OptionMatrix for systems using the apt-get package manager
 
-yum.sh - install packages to compile OptionMatrix for GNU/Linux systems running the RPM Package Manager
+yum.sh - install packages to compile OptionMatrix for systems using the yum package manager
 
-zypper.sh - install packages to compile OptionMatrix for openSUSE/SUSE Linux Enterprise distribution systems
+dnf.sh - install packages to compile OptionMatrix for systems using the dnf package manager
+
+zypper.sh - install packages to compile OptionMatrix for systems using the zypper package manager
 
 tab.sh - search source code for tabs
 
