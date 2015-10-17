@@ -182,6 +182,7 @@ clean:
 	-rm -f optionmatrix.htmlhelp/*.css
 	-rm -f optionmatrix.htmlhelp/*.html
 	-rm -f linkchecker-out.html
+	-rm -rf html/source_html/*
 
 install-info:
 	install-info --info-dir="$(DESTDIR)$(infodir)/optionmatrix" \

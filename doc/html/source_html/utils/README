@@ -1,9 +1,0 @@
-apt-get.sh - install packages to compile OptionMatrix for Debian systems
-
-yum.sh - install packages to compile OptionMatrix for GNU/Linux systems running the RPM Package Manager
-
-zypper.sh - install packages to compile OptionMatrix for openSUSE/SUSE Linux Enterprise distribution systems
-
-tab.sh - search source code for tabs
-
-push_to_web.sh - Create OptionMatrix website. Run one level up with 'make website'
