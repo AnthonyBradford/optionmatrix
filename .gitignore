@@ -1,6 +1,8 @@
 *.[oa]
 .*~
 *~
+*.pdf
+doc/optionmatrix.t2p/*
 Makefile
 autom4te.cache/*
 config.h
