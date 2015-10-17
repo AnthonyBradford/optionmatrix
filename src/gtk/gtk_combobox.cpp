@@ -38,19 +38,13 @@ typedef int (*compfn)(const void*, const void*);
 
 static int cmpstringp(struct elementListWithGroup *pp1, struct elementListWithGroup *pp2)
 {
-  // The C standard says: "If two elements compare as equal, their order in 
-  // the resulting sorted array is unspecified" -- i.e. platforms can differ.
-  // therefore upon strcmp being equal compare pointer addresses...
-
   int ret = strcmp(pp1->groupName,pp2->groupName);
 
-  if( ret )
-    return ret;
+  // if same groupName sort by elementName
+  if( ret == 0 )
+    return strcmp(pp1->elementName,pp2->elementName);
 
-  if( &pp1->groupName > &pp2->groupName )
-    return 1;
-  else 
-    return -1;
+  return ret;
 }
 
 char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, char *text2)

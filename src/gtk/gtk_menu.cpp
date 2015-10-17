@@ -47,8 +47,31 @@ void on_menu_quit_activate(GtkWidget *widget, const struct _properties *properti
 
 void on_menu_website_activate(GtkWidget *widget, const struct _properties *properties)
 {
+  g_print("on_menu_website_activate():\n");
 
-#ifndef WIN32
+#ifdef WIN32
+  
+  int ret;
+  ret = (int) ShellExecute( NULL, "open", PACKAGE_URL, NULL, NULL, SW_SHOWNORMAL );
+  
+#elseif __APPLE__
+  
+  g_print("__APPLE__ %s\n", PACKAGE_URL);
+
+  char openURL[1024];
+  sprintf(openURL,"open %s", PACKAGE_URL);
+  system(openURL);
+
+#elseif defined(__CYGWIN__) || defined(__MINGW32__)
+  
+  g_print("__CYGWIN__ || __MINGW32__\n");
+
+  char openURL[1024];
+  sprintf(openURL,"explorer %s", PACKAGE_URL);
+  system(openURL);
+  
+#else
+  
   GError *error = NULL;
 
   gtk_show_uri(NULL,PACKAGE_URL, GDK_CURRENT_TIME, &error);
@@ -64,21 +87,32 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
 
     g_error_free (error);
   }
-#endif
 
-#ifdef WIN32
-  int ret;
-  ret = (int) ShellExecute( NULL, "open", PACKAGE_URL, NULL, NULL, SW_SHOWNORMAL );
 #endif
 
 }
 
 void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *properties)
 {
-
   g_print("on_menu_feedback_activate():\n");
 
-#ifndef WIN32
+#ifdef WIN32
+  
+  int ret;
+  ret = (int) ShellExecute( NULL, "open", "mailto:info@anthonybradford.com", NULL, NULL, SW_SHOWNORMAL );
+  
+#elseif __APPLE__
+  
+  g_print("__APPLE__ %s\n", PACKAGE_URL);
+  system("open mailto:info@anthonybradford.com");
+  
+#elseif defined(__CYGWIN__) || defined(__MINGW32__)
+  
+  g_print("__CYGWIN__ || __MINGW32__\n");
+  system("explorer mailto:info@anthonybradford.com");
+  
+#else
+  
   GError *error = NULL;
 
   gtk_show_uri(NULL,"mailto:info@anthonybradford.com", GDK_CURRENT_TIME, &error);
@@ -94,11 +128,7 @@ void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *prop
 
     g_error_free (error);
   }
-#endif
 
-#ifdef WIN32
-  int ret;
-  ret = (int) ShellExecute( NULL, "open", "mailto:info@anthonybradford.com", NULL, NULL, SW_SHOWNORMAL );
 #endif
 
 }
