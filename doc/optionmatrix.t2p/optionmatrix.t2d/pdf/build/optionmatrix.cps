@@ -150,6 +150,7 @@
 \entry {Single asset options}{21}
 \entry {Sleep delay}{14}
 \entry {Source code}{2, 16, 26}
+\entry {SourceForge}{26}
 \entry {Spread mode}{10}
 \entry {spreads}{12}
 \entry {Standard deviation}{4}

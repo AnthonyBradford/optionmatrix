@@ -59,12 +59,13 @@
 @numsecentry{Linux Debian Packages (.deb)}{6.3}{}{26}
 @numsecentry{Linux RPM Packages (.rpm)}{6.4}{}{26}
 @numsecentry{GitHub}{6.5}{}{26}
-@numsecentry{Macintosh}{6.6}{}{26}
-@numsecentry{Source Code in HTML}{6.7}{}{26}
+@numsecentry{SourceForge}{6.6}{}{26}
+@numsecentry{Macintosh}{6.7}{}{26}
 @numchapentry{Documentation}{7}{Documentation}{27}
 @numsecentry{PDF}{7.1}{}{27}
 @numsecentry{EPUB}{7.2}{}{27}
-@numsecentry{HTML Zip}{7.3}{}{27}
+@numsecentry{Source Code in HTML}{7.3}{}{27}
+@numsecentry{HTML Zip}{7.4}{}{27}
 @numchapentry{Reporting bugs}{8}{Reporting bugs}{28}
 @appentry{GNU Free Documentation License}{A}{GNU Free Documentation License}{29}
 @unnchapentry{Concept index}{10001}{Concept index}{37}

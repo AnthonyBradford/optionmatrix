@@ -1339,18 +1339,23 @@ Older versions can be found here @url{http://@value{WEBSITE}/om/downloads}
 @cindex Debian Packages
 @cindex .deb
 @url{http://@value{WEBSITE}/om/downloads/debian}
+
 @section Linux RPM Packages (.rpm)
 @cindex .rpm
 @cindex RPM Packages
 @url{http://@value{WEBSITE}/om/downloads/rpm}
+
 @section GitHub
 @cindex GitHub
 @url{https://github.com/AnthonyBradford/optionmatrix}
+
+@section SourceForge
+@cindex SourceForge
+@url{http://sourceforge.net/projects/optionmatrix/?source=directory}
+
 @section Macintosh
 @cindex Macintosh
 No Mac installation package is currently available.
-@section Source Code in HTML
-@url{http://@value{WEBSITE}/om/doc/source_html}
 
 @html
 <br>
@@ -1373,6 +1378,9 @@ No Mac installation package is currently available.
 @section EPUB
 @cindex EPUB
 @url{http://@value{WEBSITE}/om/doc/optionmatrix.epub}
+
+@section Source Code in HTML
+@url{http://@value{WEBSITE}/om/doc/source_html}
 
 @section HTML Zip
 @cindex Zipped HTML

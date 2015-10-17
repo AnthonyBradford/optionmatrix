@@ -156,6 +156,7 @@
 \entry{.rpm}{26}{.rpm}
 \entry{RPM Packages}{26}{RPM Packages}
 \entry{GitHub}{26}{GitHub}
+\entry{SourceForge}{26}{SourceForge}
 \entry{Macintosh}{26}{Macintosh}
 \entry{PDF}{27}{PDF}
 \entry{EPUB}{27}{EPUB}
