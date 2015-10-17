@@ -5,6 +5,8 @@
 doc/optionmatrix.t2p/*
 doc/optionmatrix.dbk
 doc/optionmatrix.epub
+doc/html/source_html.tar.gz
+doc/html/source_html/
 Makefile
 autom4te.cache/*
 config.h
