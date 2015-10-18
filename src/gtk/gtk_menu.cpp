@@ -54,7 +54,7 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
   int ret;
   ret = (int) ShellExecute( NULL, "open", PACKAGE_URL, NULL, NULL, SW_SHOWNORMAL );
   
-#elseif __APPLE__
+#elif __APPLE__
   
   g_print("__APPLE__ %s\n", PACKAGE_URL);
 
@@ -62,7 +62,7 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
   sprintf(openURL,"open %s", PACKAGE_URL);
   system(openURL);
 
-#elseif __CYGWIN__
+#elif __CYGWIN__
   
   g_print("__CYGWIN__\n");
 
@@ -103,13 +103,13 @@ void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *prop
   sprintf(packageBugreport,"mailto:%s",PACKAGE_BUGREPORT);
   ret = (int) ShellExecute( NULL, "open", packageBugreport, NULL, NULL, SW_SHOWNORMAL );
   
-#elseif __APPLE__
+#elif __APPLE__
   
   g_print("__APPLE__ %s\n", PACKAGE_URL);
   sprintf(packageBugreport,"open mailto:%s",PACKAGE_BUGREPORT);
   system(packageBugreport);
   
-#elseif __CYGWIN__
+#elif __CYGWIN__
   
   g_print("__CYGWIN__\n");
   sprintf(packageBugreport,"explorer mailto:%s",PACKAGE_BUGREPORT);
