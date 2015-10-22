@@ -72,8 +72,8 @@ See: doc/optionmatrix.dbk
 cd doc ; make epub
 See: doc/optionmatrix.epub
 dbtoepub must be installed.
-Try "sudo apt-get install dbtoepub" for Debian
-GNU/Linux systems.
+Try "sudo apt-get install dbtoepub" to install on systems
+with the apt-get package manager.
 
 ****To create PS/DVI documentation
 cd doc ; make png2eps ; make ps

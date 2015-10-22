@@ -2,6 +2,7 @@
 .*~
 *~
 *.pdf
+*.tar.gz
 doc/optionmatrix.t2p/*
 doc/optionmatrix.dbk
 doc/optionmatrix.epub

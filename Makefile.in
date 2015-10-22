@@ -363,6 +363,7 @@ icon32_DATA = icons/32x32/optionmatrix.png\
 	icons/32x32/optionmatrix_console.png
 
 EXTRA_DIST = \
+	icons/mac/optionmatrix.icns\
 	icons/32x32/optionmatrix.xpm\
 	icons/32x32/optionmatrix_console.xpm\
 	icons/32x32/optionmatrix.png\

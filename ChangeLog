@@ -1,4 +1,5 @@
 2015-10-15  Anthony Bradford  <info@anthonybradford.com>
+	* Added Mac OS X file icons/mac/optionmatrix.icns
 	* gtk_menu.cpp changes to support Mac OS X and
  	  Cygwin.
 	* gtk_combobox.cpp now qsorting model names.
