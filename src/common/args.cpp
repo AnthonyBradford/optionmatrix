@@ -289,19 +289,19 @@ void program_usage(char *isConsoleVersion)
   printf(".");
     
   printf("\n\n");
-  printf("  -h, --help            display this help and exit\n");
-  printf("  -v, --version         output version information\n\n");
-  printf("  -l, --list            list models\n");
-  printf("  -s, --source          print model source code which cannot be accessed\n");
-  printf("  -d, --debug           create %s.log debug file\n", PACKAGE);
-  printf("  -p, --price           test all pricing models\n");
-  printf("  -q, --quiet           test all pricing models in quiet mode\n");
+  printf("  -h, --help              display this help and exit\n");
+  printf("  -v, --version           output version information\n\n");
+  printf("  -l, --list              list models\n");
+  printf("  -s, --source            print model source code which cannot be accessed\n");
+  printf("  -d, --debug             create %s.log debug file\n", PACKAGE);
+  printf("  -p, --price             test all pricing models\n");
+  printf("  -q, --quiet             test all pricing models in quiet mode\n");
 
   if( !isConsoleVersion )
-    printf("  -D, --Directory       set model source code directory\n");
+    printf("  -D, --Directory STRING  set model source code directory\n");
 
-  printf("  -m, --model NUMBER    time test model number\n");
-  printf("  -i, --iterate NUMBER  time test model number at specified iterations\n");
+  printf("  -m, --model NUMBER      time test model number\n");
+  printf("  -i, --iterate NUMBER    time test model number at specified iterations\n");
 
   printf("\nReport %s bugs to %s\n", PACKAGE, PACKAGE_BUGREPORT);
 
