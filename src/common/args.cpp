@@ -129,7 +129,7 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
          case 'D':
 
 	    //printf("optarg = %s\n", optarg);
-	    sprintf(properties.source_directory_prefix,"%s",optarg);
+	    sprintf(properties.source_directory_prefix,"%s", optarg);
 
             break;
 
@@ -201,6 +201,9 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
       logger(logText, 0);
 
       sprintf(logText,"Compiler version: %s" , __VERSION__);
+      logger(logText, 0);
+
+      sprintf(logText,"properties.source_directory_prefix = %s\n", properties.source_directory_prefix);
       logger(logText, 0);
     }
 
