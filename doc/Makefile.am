@@ -145,7 +145,7 @@ ICO_IMAGES = \
 EXTRA_DIST = $(EQN_IMAGES) $(TEXTFILES) $(ICO_IMAGES) README html/images/README
 
 # Try "sudo apt-get install imagemagick" if missing ImageMagick mogrify
-# under a Debian GNU/Linux system
+# under a GNU/Linux system using apt-get
 .PHONY: png2eps
 png2eps:
 	if test -z '$(MOGRIFY)'; then \
