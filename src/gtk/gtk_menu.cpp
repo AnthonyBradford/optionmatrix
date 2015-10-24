@@ -363,7 +363,7 @@ void on_menu_source_export_activate(GtkWidget *widget, struct _properties *prope
   }
 }
 
-// display_source() fails on displaying metaoptions-0.0.4/src/bisection.c source file
+// display_source() fails on displaying src/models/metaoptions/src/bisection.c source file
 // (under Linux but not Windows) due to some Norwegian in the comments of the source
 void display_source(const char *name, const struct _properties *properties)
 {

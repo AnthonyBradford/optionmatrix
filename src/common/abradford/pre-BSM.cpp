@@ -7,8 +7,8 @@
    File: pre-BSM.c of optionmatrix
 
    Copyright (c) Anthony Bradford. 2012.
-   http://opensourcefinancialmodels.com
-   info@opensourcefinancialmodels.com
+   http://anthonybradford.com
+   info@anthontybradford.com
 
    optionmatrix may be freely redistributed.
    See file COPYING included with this distribution for license information
