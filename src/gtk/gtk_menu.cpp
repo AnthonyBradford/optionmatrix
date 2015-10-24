@@ -473,15 +473,6 @@ void checkForSourceCode(struct _properties *properties)
   sprintf(sourceLocation4,"%s/src/%s", properties->source_directory_prefix,option_algorithms[properties->modeltype].sourceCode);
   g_print("sourceLocation4 = %s\n",sourceLocation4);
 
-#ifdef __APPLE__
-
-  char apple_data_dirs[1000]  = { 0 };
-  sprintf(apple_data_dirs,"Apple OS X XDG_DATA_DIRS working directory is %s\n", getenv("XDG_DATA_DIRS") );
-  logger(apple_data_dirs, 0);
-  sprintf(properties->source_directory_prefix,"%s", getenv("XDG_DATA_DIRS"));
-
-#endif
-
   if( strcmp( option_algorithms[properties->modeltype].sourceCode,"") != 0 )
   {
     if( access( option_algorithms[properties->modeltype].sourceCode, F_OK ) == 0 )
