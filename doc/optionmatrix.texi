@@ -4,6 +4,9 @@
 @include version.texi
 @set WEBSITE anthonybradford.com
 @settitle OptionMatrix @value{VERSION}
+@documentdescription
+Financial Derivatives Calculator. Black-Scholes Calculator.
+@end documentdescription
 
 @c Define a new index for options.
 @defcodeindex op
@@ -1296,6 +1299,11 @@ The OptionMatrix programs support the following models:
 @ifdocbook
 
 @end ifdocbook
+@url{http://@value{WEBSITE}/InstallOptionMatrix-1.4.2-win32.exe,InstallOptionMatrix-1.4.2-win32.exe}
+@*
+@ifdocbook
+
+@end ifdocbook
 @url{http://@value{WEBSITE}/InstallOptionMatrix-1.4.1-win32.exe,InstallOptionMatrix-1.4.1-win32.exe}
 @*
 @ifdocbook
@@ -1306,6 +1314,11 @@ The OptionMatrix programs support the following models:
 
 @end ifdocbook
 The Windows Installer includes full source code and documentation.
+
+@section Mac OS X
+@cindex Macintosh
+@cindex OS X
+@url{http://@value{WEBSITE}/OptionMatrix.app.zip,OptionMatrix.app.zip}
 
 @section Unix / Linux Autotools Package
 @cindex UNIX
@@ -1345,17 +1358,13 @@ Older versions can be found here @url{http://@value{WEBSITE}/om/downloads}
 @cindex RPM Packages
 @url{http://@value{WEBSITE}/om/downloads/rpm}
 
-@section GitHub
-@cindex GitHub
-@url{https://github.com/AnthonyBradford/optionmatrix}
-
 @section SourceForge
 @cindex SourceForge
 @url{http://sourceforge.net/projects/optionmatrix/?source=directory}
 
-@section Macintosh
-@cindex Macintosh
-No Mac installation package is currently available.
+@section GitHub
+@cindex GitHub
+@url{https://github.com/AnthonyBradford/optionmatrix}
 
 @html
 <br>

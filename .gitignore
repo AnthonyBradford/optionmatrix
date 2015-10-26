@@ -15,6 +15,7 @@ autom4te.cache/*
 config.h
 config.log
 config.status
+ftp.error
 doc/Makefile
 doc/html/Makefile
 man/Makefile
