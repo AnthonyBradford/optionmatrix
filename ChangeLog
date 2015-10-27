@@ -2,6 +2,7 @@
 	* Added Mac OS X file icons/mac/optionmatrix.icns
 	* gtk_menu.cpp changes to support Mac OS X and
  	  Cygwin.
+	* args.cpp new command line option --datadir or -x
 	* gtk_combobox.cpp now qsorting model names.
 
 2014-05-15  Anthony Bradford  <info@anthonybradford.com>
