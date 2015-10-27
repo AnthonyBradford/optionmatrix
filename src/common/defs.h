@@ -336,6 +336,7 @@ struct _properties {
     struct lconv * lc;
 
     char source_directory_prefix[1024];
+    char data_dir[1024];
 
     // curses specific
     int start;

@@ -262,12 +262,6 @@ Iterate through and test all models to standard output and exit.
 @opindex -q
 Iterate through and test all models in quiet mode and exit.
 
-@item --Directory
-@itemx -D
-@opindex --Directory
-@opindex -D
-Set model source code directory so GTK+ version of the program can display.
-
 @item --model
 @itemx -m
 @opindex --model number
@@ -280,8 +274,20 @@ Time test a specific model number to standard output and exit. 200000 executions
 @opindex -i number
 Set number of executions a model will be time tested for (default 200000)
 
+@item --Directory
+@itemx -D
+@opindex --Directory
+@opindex -D
+Set model source code directory. The GTK+ version of the application can display source code.
+
+@item --datadir
+@itemx -x
+@opindex --datadir
+@opindex -D
+Override the datadir variable used for the path to icons / images.
+
 @end table
-The options @option{--debug} and @option{-d} are the only options used by both @command{optionmatrix} and @command{optionmatrix_console} applications. The option @option{--Directory} is exclusive to @command{optionmatrix}. The remaining command line options do not launch an interactive application and only create standard output and exit.
+The option @option{--debug} ( @option{-d} ) is the only option used by both @command{optionmatrix} and @command{optionmatrix_console} applications. The options @option{--Directory} ( @option{-D} ) and @option{--datadir} ( @option{-x} ) are exclusive to @command{optionmatrix}. The remaining command line options do not launch an interactive application and only create standard output and exit.
 @section Examples
 Try typing @samp{optionmatrix --version}
 @example

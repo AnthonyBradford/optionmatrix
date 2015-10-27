@@ -169,6 +169,7 @@ void props_defaults_options(struct _properties *properties, const int clearcalen
     srand(time(0));
 
     properties->listModelsForGroups = NULL;
+    properties->data_dir[0] = 0;
 
     return;
 }

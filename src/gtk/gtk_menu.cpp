@@ -145,6 +145,7 @@ static gboolean pngTimer(struct _properties *properties)
   // Take random images from ./images or DATADIR/PACKAGE/images
   // If no images can be found gtk_icon.h is used to set
   // gtk_window_set_default_icon() in gtk_main.cpp
+  // DATADIR can be overridden from the command line with the -x directory option
 
   int index = 0;
   char imageName[1000] = { 0 };
@@ -154,7 +155,7 @@ static gboolean pngTimer(struct _properties *properties)
   for( index = 0; index < 30; index++ )
   {
     sprintf(imageName, "images/%d.png", index + 1);
-    g_print("Checking for name: %s\n", imageName);
+    g_print("1 Checking for name: ./%s\n", imageName);
 
     if( access( imageName, F_OK ) == -1 )
     {
@@ -165,12 +166,13 @@ static gboolean pngTimer(struct _properties *properties)
 #ifdef DATADIR
   if( index == 0 )
   {
-    g_print("DATADIR = %s\n", DATADIR);
+    g_print("DATADIR  = %s\n", DATADIR );
+    g_print("data_dir = %s\n", properties->data_dir);
 
     for( index = 0; index < 30; index++ )
     {
-      sprintf(imageName, "%s/%s/images/%d.png", DATADIR, PACKAGE, index + 1);
-      g_print("Checking for name: %s\n", imageName);
+      sprintf(imageName, "%s/%s/images/%d.png",  (properties->data_dir[0] ? properties->data_dir : DATADIR), PACKAGE, index + 1);
+      g_print("2 Checking for name: %s\n", imageName);
 
       if( access( imageName, F_OK ) == -1 )
       {
@@ -182,7 +184,7 @@ static gboolean pngTimer(struct _properties *properties)
 
   if(dataDIR)
   {
-    sprintf(dataDIRlocation,"%s/%s/images", DATADIR, PACKAGE);
+    sprintf(dataDIRlocation,"%s/%s/images", (properties->data_dir[0] ? properties->data_dir : DATADIR), PACKAGE);
   }
 #endif
 
@@ -281,8 +283,11 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
   }
 
 #ifdef DATADIR
-  sprintf(imageName, "%s/%s/images/6.png", DATADIR, PACKAGE);
-  g_print("Checking for name: %s\n", imageName);
+   g_print("DATADIR  = %s\n", DATADIR );
+   g_print("data_dir = %s\n", properties->data_dir);
+
+  sprintf(imageName, "%s/%s/images/6.png",  (properties->data_dir[0] ? properties->data_dir : DATADIR), PACKAGE);
+  g_print("3 Checking for name: %s\n", imageName);
 
   if( access( imageName, F_OK ) == 0 )
   {

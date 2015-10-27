@@ -61,6 +61,7 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
         { "quiet",      no_argument,       NULL, 'q' },
         { "debug",      no_argument,       NULL, 'd' },
         { "Directory",  required_argument, NULL, 'D' },
+        { "datadir",    required_argument, NULL, 'x' },
         { "model",      required_argument, NULL, 'm' },
         { "iterate",    required_argument, NULL, 'i' },
         { NULL,         no_argument,       NULL,  0  }
@@ -70,7 +71,7 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
     int iopt = 200000;
 
     int option_index = 0;
-    while ((c = getopt_long(argc, argv, "vhlsqdpD:m:i:", long_options, &option_index)) != -1)
+    while ((c = getopt_long(argc, argv, "vhlsqdpD:x:m:i:", long_options, &option_index)) != -1)
     {
         switch (c) {
 
@@ -130,6 +131,13 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
 
 	    //printf("optarg = %s\n", optarg);
 	    sprintf(properties.source_directory_prefix,"%s", optarg);
+
+            break;
+
+	 case 'x':
+
+	    //printf("optarg = %s\n", optarg);
+	    sprintf(properties.data_dir,"%s", optarg);
 
             break;
 
@@ -299,12 +307,14 @@ void program_usage(char *isConsoleVersion)
   printf("  -d, --debug             create %s.log debug file\n", PACKAGE);
   printf("  -p, --price             test all pricing models\n");
   printf("  -q, --quiet             test all pricing models in quiet mode\n");
+  printf("  -m, --model NUMBER      time test model number\n");
+  printf("  -i, --iterate NUMBER    time test model number at specified iterations\n");
 
   if( !isConsoleVersion )
     printf("  -D, --Directory STRING  set model source code directory\n");
 
-  printf("  -m, --model NUMBER      time test model number\n");
-  printf("  -i, --iterate NUMBER    time test model number at specified iterations\n");
+  if( !isConsoleVersion )
+    printf("  -x, --datadir STRING    set datadir directory\n");
 
   printf("\nReport %s bugs to %s\n", PACKAGE, PACKAGE_BUGREPORT);
 
@@ -608,8 +618,8 @@ void program_check_pricing_time(int modelnumber, int iterations)
   dat.te4 = 0;
   dat.debug = false;
 
-  printf("Model #: %d ",option_algorithms[modelnumber].modeltype);
-  printf("%s\n\n",option_algorithms[modelnumber].des);
+  printf("Model #: %d ", option_algorithms[modelnumber].modeltype);
+  printf("%s\n\n", option_algorithms[modelnumber].des);
 
   int index = 0;
 
