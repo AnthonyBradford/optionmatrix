@@ -371,7 +371,7 @@ Run the GTK+ (GUI) version of OptionMatrix
 @end ifdocbook
 Run the GTK+ (GUI) version of OptionMatrix and define the model source code location.
 
-@samp{optionmatrix --Directory src/c++/optionmatrix/optionmatrix-1.4.2}
+@samp{optionmatrix --Directory src/c++/optionmatrix/optionmatrix-@value{VERSION}}
 @*
 @ifdocbook
 
@@ -1300,11 +1300,6 @@ The OptionMatrix programs support the following models:
 @end ifdocbook
 @section Windows Installers
 @cindex Windows installers
-@url{http://@value{WEBSITE}/InstallOptionMatrix-@value{VERSION}-win32.exe,InstallOptionMatrix-@value{VERSION}-win32.exe}
-@*
-@ifdocbook
-
-@end ifdocbook
 @url{http://@value{WEBSITE}/InstallOptionMatrix-1.4.2-win32.exe,InstallOptionMatrix-1.4.2-win32.exe}
 @*
 @ifdocbook
@@ -1324,7 +1319,7 @@ The Windows Installer includes full source code and documentation.
 @section Mac OS X
 @cindex Macintosh
 @cindex OS X
-@url{http://@value{WEBSITE}/OptionMatrix.app.zip,OptionMatrix.app.zip}
+@url{http://@value{WEBSITE}/OptionMatrix-1.4.3.app.zip,OptionMatrix-1.4.3.app.zip}
 
 @section Unix / Linux Autotools Package
 @cindex UNIX
