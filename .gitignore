@@ -3,6 +3,7 @@
 *~
 *.pdf
 *.tar.gz
+*.Po
 doc/optionmatrix.t2p/*
 doc/optionmatrix.txt
 doc/optionmatrix.dbk

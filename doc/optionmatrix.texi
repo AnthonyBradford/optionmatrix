@@ -137,6 +137,7 @@ which is a financial derivatives calculator.
 * Downloading and Installation:: Installation packages.
 * Documentation:: Documentation
 * Reporting bugs::	Sending bug reports and feature suggestions.
+* More projects::       Projects by Anthony Bradford
 * GNU Free Documentation License:: Copying and sharing this documentation.
 * Concept index::	Index of concepts.
 @end menu
@@ -1449,6 +1450,32 @@ Patches are welcome; if possible, please make them with @samp{@w{diff
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/9.png" alt="Download OptionMatrix" align="top"/></a><br>
+<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
+@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+</center>
+@end html
+
+@node More projects
+@chapter More projects
+More projects by @url{AnthonyBradford.com,Anthony Bradford}.
+
+@section Texinfo Web Publisher
+@cindex Texinfo
+A multi-format web publishing system with FTP deployment capabilities based on GNU Texinfo. @url{http://AnthonyBradford.com/TexinfoPublisher/}
+
+@section @LaTeX{} Web Publisher
+@cindex @LaTeX{}
+A multi-format web publishing system with FTP deployment capabilities based on @LaTeX{}. @url{http://anthonybradford.com/LaTeXpublisher/}
+
+@section @LaTeX{} Reference Card Creator
+A build system for creating @LaTeX{} reference cards.
+@url{http://anthonybradford.com/LaTeXreferenceCard/}
+
+@html
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br><br clear=left>
+@end html
+@html
+<center><a href="Downloading-and-Installation.html"><img src="images/6.png" alt="Download OptionMatrix" align="top"/></a><br>
 <a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
 @copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
 </center>
