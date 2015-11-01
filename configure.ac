@@ -84,8 +84,8 @@ AC_CHECK_LIB([gslcblas],[cblas_dgemm], [
 		      financialrecipes_LIBS="-lgslcblas"
                       AC_CHECK_HEADERS([gsl/gsl_cblas.h])
 ])
-#AC_CHECK_LIB([gsl],[gsl_blas_dgemm])
-AC_CHECK_LIB([gsl],[main])
+AC_CHECK_LIB([gsl],[gsl_blas_dgemm])
+#AC_CHECK_LIB([gsl],[main])
 
 AC_CHECK_LIB([newmat],[main], [
                       CPPFLAGS="$CPPFLAGS -I/newmat"
