@@ -18,13 +18,13 @@ Check spelling, diction and style with
 make spelling
 make diction
 make style
-Try 'sudo apt-get install aspell diction' under Debian GNU/Linux
-systems to install proper packages.
+Try 'sudo apt-get install aspell diction' to install packages
+under GNU/Linux using the apt-get package manager.
 
 Do HTML link checking with
 make linkchecker
-Try 'sudo apt-get install linkchecker' under Debian GNU/Linux systems
-to install proper packages.
+Try 'sudo apt-get install linkchecker' to install packages
+under GNU/Linux using the apt-get package manager.
 
 make dvi is disabled in the Makefile.am
 do to the lack of EPS (Encapsulated PostScript) images.
@@ -36,4 +36,5 @@ See files optionmatrix.ps optionmatrix.dvi
 See EPS images in directory ./images
 
 For 'make png2eps' to work ImageMagick mogrify must be installed
-Try 'sudo apt-get install imagemagick' under Debian GNU/Linux systems.
+Try 'sudo apt-get install imagemagick' to install packages
+under GNU/Linux using the apt-get package manager.

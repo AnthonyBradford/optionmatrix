@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([OptionMatrix],[1.4.3],[info@anthonybradford.com],[optionmatrix],[http://AnthonyBradford.com ])
+AC_INIT([OptionMatrix],[1.4.3],[info@anthonybradford.com],[optionmatrix],[http://AnthonyBradford.com])
 AM_INIT_AUTOMAKE([1.9 tar-ustar])
 AC_CONFIG_SRCDIR([src/gtk/gtk_scale.cpp])
 AC_CONFIG_HEADERS([config.h])

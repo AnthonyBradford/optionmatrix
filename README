@@ -82,6 +82,9 @@ ImageMagick mogrify must be installed.
 Try "sudo apt-get install imagemagick" for Debian
 GNU/Linux systems.
 
+****To create source-highlight HTML zip file
+cd doc ; make source_html
+
 ****To build Microsoft HTML Helper File (.chm)
 cd doc ; make htmlhelp
 More instructions will be given.

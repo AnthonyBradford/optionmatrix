@@ -1350,16 +1350,6 @@ sudo make install
 @noindent
 Older versions can be found here @url{http://@value{WEBSITE}/om/downloads}
 
-@section Linux Debian Packages (.deb)
-@cindex Debian Packages
-@cindex .deb
-@url{http://@value{WEBSITE}/om/downloads/debian}
-
-@section Linux RPM Packages (.rpm)
-@cindex .rpm
-@cindex RPM Packages
-@url{http://@value{WEBSITE}/om/downloads/rpm}
-
 @section SourceForge
 @cindex SourceForge
 @url{http://sourceforge.net/projects/optionmatrix/?source=directory}

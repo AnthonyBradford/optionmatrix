@@ -583,7 +583,7 @@ PACKAGE_TARNAME='optionmatrix'
 PACKAGE_VERSION='1.4.3'
 PACKAGE_STRING='OptionMatrix 1.4.3'
 PACKAGE_BUGREPORT='info@anthonybradford.com'
-PACKAGE_URL='http://AnthonyBradford.com '
+PACKAGE_URL='http://AnthonyBradford.com'
 
 ac_unique_file="src/gtk/gtk_scale.cpp"
 # Factoring default headers for most tests.
@@ -1392,7 +1392,7 @@ Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
 
 Report bugs to <info@anthonybradford.com>.
-OptionMatrix home page: <http://AnthonyBradford.com >.
+OptionMatrix home page: <http://AnthonyBradford.com>.
 _ACEOF
 ac_status=$?
 fi
@@ -7493,7 +7493,7 @@ Configuration commands:
 $config_commands
 
 Report bugs to <info@anthonybradford.com>.
-OptionMatrix home page: <http://AnthonyBradford.com >."
+OptionMatrix home page: <http://AnthonyBradford.com>."
 
 _ACEOF
 cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
