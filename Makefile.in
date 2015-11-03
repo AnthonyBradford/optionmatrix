@@ -1079,6 +1079,10 @@ uninstall-local:
 website:
 	sh utils/push_to_web.sh $(PACKAGE_URL) $(distdir).tar.gz $(PACKAGE).pdf $(PACKAGE).epub
 
+zip: $(distdir).zip
+$(distdir).zip:
+	zip -r $(distdir).zip * --exclude *.zip *.tar.gz
+
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

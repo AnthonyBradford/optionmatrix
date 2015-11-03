@@ -102,3 +102,7 @@ uninstall-local:
 # Push HTML/PDF/EPUB/*.tar.gz to any website
 website:
 	sh utils/push_to_web.sh $(PACKAGE_URL) $(distdir).tar.gz $(PACKAGE).pdf $(PACKAGE).epub
+
+zip: $(distdir).zip
+$(distdir).zip:
+	zip -r $(distdir).zip * --exclude *.zip *.tar.gz
