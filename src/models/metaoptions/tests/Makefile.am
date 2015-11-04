@@ -1,4 +1,4 @@
-AUTOMAKE_OPTIONS = subdir-objects
+#AUTOMAKE_OPTIONS = subdir-objects
 FM = -ffast-math
 
 TESTS = check_options\
