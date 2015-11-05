@@ -92,8 +92,14 @@ More instructions will be given.
 ****To clean project
 make clean
 
+****To make tar.gz distribution
+make dist
+
 ****distcheck should be successful before distribution of the tar.gz package
 make dist ; make distcheck
+
+****To make zip distribution
+make distclean ; ./configure ; make zip
 
 ****Install and uninstall check. The find command should yield zero files. If files are found likely problem with "uninstall-local:" in Makefile.am
 sudo make install

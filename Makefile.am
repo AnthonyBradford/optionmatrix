@@ -106,4 +106,4 @@ website:
 # Run 'make distclean ; ./configure ; make zip' to get a clean .zip file
 zip: $(distdir).zip
 $(distdir).zip:
-	zip -r $(distdir).zip * --exclude *.zip *.tar.gz
+	(cd .. && zip -r $(distdir)/$(distdir).zip $(distdir)/* --exclude *.zip *.tar.gz);

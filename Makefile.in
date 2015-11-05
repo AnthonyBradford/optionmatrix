@@ -1082,7 +1082,7 @@ website:
 # Run 'make distclean ; ./configure ; make zip' to get a clean .zip file
 zip: $(distdir).zip
 $(distdir).zip:
-	zip -r $(distdir).zip * --exclude *.zip *.tar.gz
+	(cd .. && zip -r $(distdir)/$(distdir).zip $(distdir)/* --exclude *.zip *.tar.gz);
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
