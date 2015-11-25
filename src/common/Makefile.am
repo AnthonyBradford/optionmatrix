@@ -46,4 +46,5 @@ liboptionmatrix_a_CPPFLAGS = -I$(top_srcdir)/src/financialrecipes/src -I$(top_sr
 liboptionmatrix_a_LIBADD = ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
 
 checks_CPPFLAGS = -I$(top_srcdir)/src/models/financialrecipes/src -I$(top_srcdir)/src/models/metaoptions/src -I$(top_srcdir)/src/common
-checks_LDADD = ./liboptionmatrix.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a /usr/local/lib/libQuantLib.a
+checks_LDADD = ./liboptionmatrix.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
+#/usr/local/lib/libQuantLib.a
