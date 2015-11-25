@@ -141,7 +141,8 @@ am_checks_OBJECTS = checks-checks.$(OBJEXT)
 checks_OBJECTS = $(am_checks_OBJECTS)
 checks_DEPENDENCIES = ./liboptionmatrix.a \
 	../models/financialrecipes/src/librecipes.a \
-	../models/metaoptions/src/libmetaoptions.a
+	../models/metaoptions/src/libmetaoptions.a \
+	/usr/local/lib/libQuantLib.a
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -477,6 +478,7 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+QUANTLIB = @QUANTLIB@
 RANLIB = @RANLIB@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
@@ -555,6 +557,7 @@ sanity.cpp\
 termstructure.cpp\
 time.cpp\
 tickers.cpp\
+QuantLib.h\
 abradford/basicmodels.h\
 abradford/black_76.cpp\
 abradford/black_scholes.cpp\
@@ -571,7 +574,7 @@ liboptionmatrix_a_CFLAGS = $(FM) -O3 -std=c99 \
 liboptionmatrix_a_CPPFLAGS = -I$(top_srcdir)/src/financialrecipes/src -I$(top_srcdir)/src/metaoptions/src -I/.
 liboptionmatrix_a_LIBADD = ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
 checks_CPPFLAGS = -I$(top_srcdir)/src/models/financialrecipes/src -I$(top_srcdir)/src/models/metaoptions/src -I$(top_srcdir)/src/common
-checks_LDADD = ./liboptionmatrix.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
+checks_LDADD = ./liboptionmatrix.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a /usr/local/lib/libQuantLib.a
 all: all-am
 
 .SUFFIXES:

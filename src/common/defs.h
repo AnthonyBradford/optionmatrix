@@ -520,7 +520,7 @@ enum {
        SIMEUROGENERICAV,       // derivative_price_simulate_european_option_generic_with_antithetic_variate() 104
        SIMPRICEPATH,           // derivative_price_simulate_european_option_generic() 105
        SIMPRICEPATHCONTROLVARIATE,  // derivative_price_simulate_european_option_generic_with_control_variate() 106
-       DISTLOGRAND,             // simulate_lognormal_random_variable() 107
+       DISTLOGRAND,            // simulate_lognormal_random_variable() 107
        AMFINITEDIFFEXP,        // option_price_call_american_finite_diff_explicit() 108
        EUROFINITEDIFFEXP,      // option_price_call_european_finite_diff_explicit() 109
 
@@ -633,6 +633,17 @@ enum {
 
 #endif
 
+#ifdef HAVE_QL_QUANTLIB_HPP
+
+       QUANTLIB_BLACKSCHOLES_EUROPEAN,          // 140
+       QUANTLIB_HESTON_SEMI_ANALYTIC,           // 141
+       QUANTLIB_BARONE_ADESI_WHALEY,            // 142
+       QUANTLIB_BJERKSUND_STENSLAND,            // 143
+       QUANTLIB_FINITE_DIFFERENCES_EUROPEAN,    // 144
+       QUANTLIB_FINITE_DIFFERENCES_AMERICAN,    // 145
+       
+#endif
+
 #ifdef DUMMYTESTMODELS
 
        TESTOPTION1,
@@ -667,6 +678,8 @@ struct option_algorithm {
   char sourceCode[200];
   char sourceCode2[200];
   char category[200];
+
+  bool supportRealTime;
 
   int ReservedNotUsed1;
   bool supportCND;

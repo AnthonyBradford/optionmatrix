@@ -80,12 +80,9 @@ AC_CHECK_LIB([curses], [initscr], [
 ])
 
 AC_CHECK_LIB([pthread],[main])
-AC_CHECK_LIB([gslcblas],[cblas_dgemm], [
-		      financialrecipes_LIBS="-lgslcblas"
-                      AC_CHECK_HEADERS([gsl/gsl_cblas.h])
-])
-AC_CHECK_LIB([gsl],[gsl_blas_dgemm])
-#AC_CHECK_LIB([gsl],[main])
+AC_CHECK_LIB([gslcblas],[cblas_dgemm])
+#AC_CHECK_LIB([gsl],[gsl_blas_dgemm])
+AC_CHECK_LIB([gsl],[main])
 
 AC_CHECK_LIB([newmat],[main], [
                       CPPFLAGS="$CPPFLAGS -I/newmat"
@@ -99,7 +96,99 @@ AC_CHECK_LIB([itpp],[main], [
                       AC_CHECK_HEADERS([itpp/itbase.h])
 ])
 
+AC_CHECK_PROG(QUANTLIB,quantlib-config,yes)
+if test x"${QUANTLIB}" == x"yes" ; then
+    # use quantlib-config for QL settings
+    pkg_cxxflags=`quantlib-config --cflags`
+    CFLAGS="$CFLAGS $pkg_cxxflags"
+    pkg_libs=`quantlib-config --libs`
+    LIBS="$LIBS $pkg_libs"
+    pkg_version=`quantlib-config --version`
+
+    # also test for quantlib version using result from quantlib-config --version
+    case ${pkg_version} in
+    0.1.*|0.2.*|0.3.*|0.4.*|0.8.*|0.9.*|1.0.*|1.1.*|1.2.*|1.3.*)
+	AC_MSG_WARN([OptionMatrix needs QuantLib (>= 1.4.0).])
+	;;
+    esac
+
+    # now use all these
+    AC_SUBST([CXXFLAGS],["${CXXFLAGS} "])
+    AC_SUBST([CXXFLAGS],["${CXXFLAGS} ${pkg_cxxflags} ${gxx_newer_than_45}"])
+    AC_SUBST([LDFLAGS],["${LDFLAGS} $pkg_libs"])
+else
+    AC_MSG_WARN([Installation of QuantLib will enable more financial models])
+fi
+
+## check for boost, this segment as well as segment below are 
+## from QuantLib's configure.ac
+## 
+##
+## Help the compiler find external software
+AC_ARG_WITH([boost-include],
+            AC_HELP_STRING([--with-boost-include=INCLUDE_PATH],
+                           [Supply the location of Boost header files]),
+            [ql_boost_include_path=$withval],
+            [ql_boost_include_path=""])
+if test [ -n "$ql_boost_include_path" ] ; then
+   AC_SUBST([CXXFLAGS],["${CXXFLAGS} -I${ql_boost_include_path}"])
+fi
+AC_ARG_WITH([boost-lib],
+            AC_HELP_STRING([--with-boost-lib=LIB_PATH],
+                           [Supply the location of Boost libraries]),
+            [ql_boost_lib_path=$withval],
+            [ql_boost_lib_path=""])
+if test [ -n "$ql_boost_lib_path" ] ; then
+   AC_SUBST([LDFLAGS],["${LDFLAGS} -L${ql_boost_lib_path}"])
+fi
+##
+## Check for Boost components
+# QL_CHECK_BOOST_DEVEL
+# --------------------
+# Check whether the Boost headers are available
+AC_DEFUN([QL_CHECK_BOOST_DEVEL],
+[AC_MSG_CHECKING([for Boost development files])
+ AC_TRY_COMPILE(
+    [@%:@include <boost/version.hpp>
+     @%:@include <boost/shared_ptr.hpp>
+     @%:@include <boost/assert.hpp>
+     @%:@include <boost/current_function.hpp>],
+    [],
+    [AC_MSG_RESULT([yes])],
+    [AC_MSG_RESULT([no])
+     AC_MSG_ERROR([Boost development files not found])
+    ])
+])
+
+# QL_CHECK_BOOST_VERSION
+# ----------------------
+# Check whether the Boost installation is up to date
+AC_DEFUN([QL_CHECK_BOOST_VERSION],
+[AC_MSG_CHECKING([for minimal Boost version])
+ AC_REQUIRE([QL_CHECK_BOOST_DEVEL])
+ AC_TRY_COMPILE(
+    [@%:@include <boost/version.hpp>],
+    [@%:@if BOOST_VERSION < 103400
+     @%:@error too old
+     @%:@endif],
+    [AC_MSG_RESULT([yes])],
+    [AC_MSG_RESULT([no])
+     AC_MSG_ERROR([outdated Boost installation])
+    ])
+])
+
+# QL_CHECK_BOOST
+# ------------------------
+# Boost-related tests
+AC_DEFUN([QL_CHECK_BOOST],
+[AC_REQUIRE([QL_CHECK_BOOST_DEVEL])
+ AC_REQUIRE([QL_CHECK_BOOST_VERSION])
+])
+QL_CHECK_BOOST
+
 # Checks for header files.
+AC_CHECK_HEADERS([ql/quantlib.hpp])
+AC_CHECK_HEADERS([boost/timer.hpp])
 AC_CHECK_HEADERS([curses.h ncurses.h pdcurses.h])
 AC_CHECK_HEADERS([ncurses/ncurses.h ncurses/curses.h pdcurses/pdcurses.h pdcurses/curses.h ])
 AC_CHECK_HEADERS([float.h locale.h stddef.h stdlib.h string.h strings.h unistd.h getopt.h pthread.h sys/time.h math.h gsl/gsl_errno.h])

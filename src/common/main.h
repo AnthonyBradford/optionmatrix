@@ -211,6 +211,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/abradford/black_scholes.cpp",
     "",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -231,6 +232,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/abradford/merton_73.cpp",
     "",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -251,6 +253,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/abradford/black_76.cpp",
     "",
     "a;Futures",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -274,6 +277,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/spinsky/binomial.cpp",
     "",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -294,6 +298,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/spinsky/binomial.cpp",
     "",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -314,6 +319,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/spinsky/binomial.cpp",
     "",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0,  1,  25, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -334,6 +340,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/spinsky/binomial.cpp",
     "",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -358,6 +365,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/blackscholes.c",
     "",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -378,6 +386,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/gbs.c",
     "",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -398,6 +407,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/merton73.c",
     "",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -418,6 +428,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/gfrench.c",
     "",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 2, "trading days", 0, "",
@@ -438,6 +449,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/gcarry.c",
     "",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -458,6 +470,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/BAWAmericanApprox.c",
     "",
     "1;American Options",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -478,6 +491,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/BSAmericanApprox.c",
     "",
     "1;American Options",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Exiration", 0, "", 0, "",
@@ -498,6 +512,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/black76.c",
     "",
     "a;Futures",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -518,6 +533,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/AssetOrNothing.c",
     "",
     "2;Single Asset;Binary",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -538,6 +554,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/Executive.c",
     "",
     "2;Single Asset",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -558,6 +575,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/GarmanKohlhagen.c",
     "",
     "8;Currency",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -578,6 +596,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/CashOrNothing.c",
     "",
     "2;Single Asset;Binary",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -598,6 +617,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/GapOption.c",
     "",
     "2;Single Asset;Binary",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -618,6 +638,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/SuperShare.c",
     "",
     "2;Single Asset;Binary",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -638,6 +659,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/SuperShare.c",
     "",
     "2;Single Asset;Binary",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -658,6 +680,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/VasicekBondPrice.c",
     "",
     "e;Bonds",
+                                       1, // supportRealTime
                                       -1, 0, 0, 0, 0, 0,
                                        0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 2, "time2", 0, "",
@@ -678,6 +701,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/VasicekBondOption.c",
     "",
     "e;Bonds",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -698,6 +722,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/TimeSwitchOption.c",
     "",
     "2;Single Asset",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 2, "Switch", 0, "",
@@ -718,6 +743,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/ForEquOptInDomCur.c",
     "",
     "8;Currency",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -738,6 +764,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/Quanto.c",
     "",
     "8;Currency",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -758,6 +785,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/EquityLinkedFXO.c",
     "",
     "8;Currency",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -778,6 +806,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/SpreadApproximation.c",
     "",
     "3;Two Asset",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -798,6 +827,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/JumpDiffusion.c",
     "",
     "4;Jump Diffusion",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -818,6 +848,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/bisection.c",
     "",
     "d;Implied Volatility",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -837,6 +868,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/NewtonRaphson.c",
     "",
     "d;Implied Volatility",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -856,7 +888,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/BAWbisection.c",
     "",
     "d;Implied Volatility",
-
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -877,6 +909,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/BSbisection.c",
     "",
     "d;Implied Volatility",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        2, 0.07, "Expiration", 0, "", 0, "",
@@ -897,6 +930,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/AmericanExchangeOption.c",
     "",
     "3;Two Asset;Exchange",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -917,6 +951,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/EuropeanExchangeOption.c",
     "",
     "3;Two Asset;Exchange",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -937,6 +972,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/MiltersenSwartz.c",
     "",
     "a;Futures",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 2, "Futures Exp", 0, "",
@@ -957,6 +993,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/PartialTimeTwoAssetBarrier.c",
     "",
     "3;Two Asset;Barrier",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 2, "time2", 0, "",
@@ -977,6 +1014,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/TakeoverFXoption.c",
     "",
     "8;Currency",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -997,6 +1035,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/TwoAssetBarrier.c",
     "",
     "3;Two Asset;Barrier",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1017,6 +1056,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/TwoAssetCashOrNothing.c",
     "",
     "3;Two Asset",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1037,6 +1077,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/TwoAssetCorrelation.c",
     "",
     "3;Two Asset",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1056,6 +1097,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/FloatingStrikeLookback.c",
     "",
     "2;Single Asset;Lookbacks",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        2, 0.03, "Expiration", 0, "", 0, "",
@@ -1076,6 +1118,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/FloatingStrikeLookback.c",
     "",
     "2;Single Asset;Lookbacks",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        2, 0.03, "Expiration", 0, "", 0, "",
@@ -1096,6 +1139,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/FixedStrikeLookback.c",
     "",
     "2;Single Asset;Lookbacks",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        2, 0.03, "Expiration", 0, "", 0, "",
@@ -1116,6 +1160,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/OptionsOnTheMaxMin.c",
     "",
     "3;Two Asset",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -1136,6 +1181,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/StandardBarrier.c",
     "",
     "2;Single Asset;Barrier",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -1156,6 +1202,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/DoubleBarrier.c",
     "",
     "2;Single Asset;Barrier",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -1176,6 +1223,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/SoftBarrier.c",
     "",
     "2;Single Asset;Barrier",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        2, 0.03, "Expiration", 0, "", 0, "",
@@ -1196,6 +1244,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/BinaryBarrier.c",
     "",
     "2;Single Asset;Barrier",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -1216,6 +1265,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/DiscreteAdjustedBarrier.c",
     "",
     "2;Single Asset;Barrier",
+                                       1, // supportRealTime
                                       -1, 0, 0, 0, 0, 0,
                                        1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "dt", 0, "", 0, "",
@@ -1237,6 +1287,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/BarrierBinominal.c",
     "",
     "2;Single Asset;Barrier",
+                                       1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -1258,6 +1309,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/ConvertibleBond.c",
     "",
     "e;Bonds",
+                                       1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Maturity", 2, "Convert", 0, "",
@@ -1278,6 +1330,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/CRRBinominal.c",
     "",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -1299,6 +1352,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/ImpliedTrinominalTree.c",
     "",
     "d;Implied Volatility",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, 0, 0,
                                        1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1320,6 +1374,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/ThreeDimensionalBinominal.c",
     "",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.7, "Expiration", 0, "", 0, "",
@@ -1340,6 +1395,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/TrinominalTree.c",
     "",
     "5;Trees & Finite Diff;Trinomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -1360,6 +1416,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/LookBarrier.c",
     "",
     "2;Single Asset;Barrier",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // iSupportTime2 dont use 2
@@ -1382,6 +1439,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/PartialTimeBarrier.c",
     "",
     "2;Single Asset;Barrier",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 2, "partial time", 0, "",
@@ -1403,6 +1461,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/RollGeskeWhaley.c",
     "",
     "7;Discrete Dividend",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 2, "dividend", 0, "",
@@ -1423,6 +1482,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/ExtremeSpreadOption.c",
     "",
     "2;Single Asset;Lookbacks",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        2, 0.03, "Expiration", 2, "T1", 0, "",
@@ -1443,6 +1503,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/ExtremeSpreadOption.c",
     "",
     "2;Single Asset;Lookbacks",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        2, 0.03, "Expiration", 2, "T1", 0, "",
@@ -1463,6 +1524,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/PartialFixedLB.c",
     "",
     "2;Single Asset;Lookbacks",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // iSupportTime2 don't use 2
@@ -1484,6 +1546,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/PartialFloatLB.c",
     "",
     "2;Single Asset;Lookbacks",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // iSupportTime2 don't use 2
@@ -1505,6 +1568,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/PartialFloatLB.c",
     "",
     "2;Single Asset;Lookbacks",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // iSupportTime2 don't use 2
@@ -1526,6 +1590,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/ExtendibleWriter.c",
     "",
     "2;Single Asset",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // iSupportTime2 dont use 2
@@ -1547,6 +1612,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/OptionsOnOptions.c",
     "",
     "2;Single Asset;Options on Options",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // iSupportTime2 don't use 2
@@ -1568,6 +1634,7 @@ const struct option_algorithm option_algorithms[] = {
    "models/metaoptions/src/OptionsOnOptions.c",
     "",
     "2;Single Asset;Options on Options",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 1, "time to option", 0, "",
@@ -1588,6 +1655,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/LevyAsian.c",
     "",
     "c;Asian",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        2, 0.03, "Expiration", 2, "dividend", 0, "",
@@ -1608,6 +1676,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/GeometricAverageRateOption.c",
     "",
     "c;Asian",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 2, "avg", 0, "",
@@ -1628,6 +1697,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/ForwardStartOption.c",
     "",
     "2;Single Asset",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 2, "time to start", 0, "",
@@ -1648,6 +1718,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/Swapoption.c",
     "",
     "b;Interest Rate Dx",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 2, "time to swap", 0, "",
@@ -1668,6 +1739,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/TurnbullWakemanAsian.c",
     "",
     "c;Asian",
+                                       1, // supportRealTime
                                        1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        2, 0.03, "Expiration", 2, "avg start", 0, "",
@@ -1688,6 +1760,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/ExchangeExchangeOption.c",
     "",
     "3;Two Asset;Exchange",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Crashing on dividend, Disabled dividend
@@ -1710,7 +1783,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/SimpleChooser.c",
     "",
     "2;Single Asset;Chooser",
-    
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 2, "choose", 0, "",
@@ -1731,6 +1804,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/metaoptions/src/ComplexChooser.c",
     "",
     "2;Single Asset;Chooser",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,  
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Call", 1, "time", 1, "Put",
@@ -1755,6 +1829,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/black_scholes_call.cc",
     "models/financialrecipes/src/black_scholes_put.cc",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1775,6 +1850,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/option_price_american_perpetual_call.cc",
     "models/financialrecipes/src/option_price_american_perpetual_put.cc",
     "1;American Options",
+                                       1, // supportRealTime
                                        1, 0, 0, 0, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // not a t2 model, but iSupportTime2 will not
@@ -1797,6 +1873,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/futures_opt_call_black.cc",
     "models/financialrecipes/src/futures_opt_put_black.cc",
     "a;Futures",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1817,6 +1894,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/futures_opt_call_bin.cc",
     "models/financialrecipes/src/futures_opt_put_bin.cc",
     "a;Futures",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1837,6 +1915,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/approx_am_put_bjerksund_stensland.cc",
     "",
     "1;American Options",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1857,6 +1936,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bin_am_call_payout.cc",
     "models/financialrecipes/src/bin_am_put_payout.cc",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1878,6 +1958,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bin_am_call_payout.cc",
     "models/financialrecipes/src/bin_am_put_payout.cc",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -1898,6 +1979,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/opt_price_trinom_am_call.cc",
     "models/financialrecipes/src/opt_price_trinom_am_put.cc",
     "5;Trees & Finite Diff;Trinomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -1918,6 +2000,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/approx_am_call.cc",
     "models/financialrecipes/src/approx_am_put.cc",
     "1;American Options",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -1938,6 +2021,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/approx_am_put_johnson.cc",
     "",
     "1;American Options",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1960,6 +2044,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/approx_am_put_geske_johnson.cc",
     "",
     "1;American Options",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -1979,7 +2064,8 @@ const struct option_algorithm option_algorithms[] = {
     "Model not supported in curses version.\nNot all variables can be controlled. Please use GUI version of program.",
     "models/financialrecipes/src/heston_price.cc",
     "",
-    "5;Trees & Finite Diff",
+    "5;Trees & Finite Diff;Heston",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2002,6 +2088,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bondopt_call_bs.cc",
     "models/financialrecipes/src/bondopt_put_bs.cc",
     "e;Bonds",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2022,6 +2109,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bondopt_call_binom_am.cc",
     "models/financialrecipes/src/bondopt_put_binom_am.cc",
     "e;Bonds",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2042,6 +2130,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bondopt_call_rend_bart.cc",
     "",
     "e;Bonds",
+                                       1, // supportRealTime
                                       -1, 0, 1, 100, 0, 0,
                                        1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 2, "option maturity", 0, "",
@@ -2062,6 +2151,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/black_scholes_price_payout_call.cc",
     "models/financialrecipes/src/black_scholes_price_payout_put.cc",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -2082,6 +2172,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bin_eur_call.cc",
     "models/financialrecipes/src/bin_eur_put.cc",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2102,6 +2193,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/exotics_asian_price_call.cc",
     "",
     "c;Asian",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -2122,6 +2214,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/exotics_lookback_call.cc",
     "models/financialrecipes/src/exotics_lookback_put.cc",
     "2;Single Asset;Lookbacks",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -2142,6 +2235,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/exotics_lookback_call.cc",
     "models/financialrecipes/src/exotics_lookback_put.cc",
     "2;Single Asset;Lookbacks",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -2162,6 +2256,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/merton_jump_diff_call.cc",
     "",
     "4;Jump Diffusion",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2182,6 +2277,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/currency_opt_bin_call.cc",
     "models/financialrecipes/src/currency_opt_bin_put.cc",
     "8;Currency",
+                                       1, // supportRealTime
                                        0, 0, 1, 25, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2202,6 +2298,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/currency_opt_euro_call.cc",
     "models/financialrecipes/src/currency_opt_euro_put.cc",
     "8;Currency",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2222,6 +2319,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/anal_price_am_call_div.cc",
     "",
     "7;Discrete Dividend",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 2, "dividend", 0, "",
@@ -2242,6 +2340,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bin_eur_call_ud_one.cc",
     "",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        // Perpetual no sensitivity to time
                                       -1, 0, 0, 0, 0, 1,
                                        1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2265,6 +2364,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bin_eur_call_ud.cc",
     "",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        // Perpetual no sensitivity to time
                                       -1, 0, 1, 25, 0, 1,
                                        1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2288,6 +2388,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/binomial_generic.cc",
     "models/financialrecipes/src/binomial_generic_delta.cc",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2308,6 +2409,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/simulated_call_euro.cc",
     "models/financialrecipes/src/simulated_put_euro.cc",
     "6;Monte Carlo",
+                                       1, // supportRealTime
                                        0, 0, 1, 500, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2328,6 +2430,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/simulate_european_options_generic_routine.cc",
     "",
     "6;Monte Carlo",
+                                       1, // supportRealTime
                                        0, 0, 1, 500, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2348,6 +2451,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/simulate_european_options_generic_routine_control_variate.cc",
     "",
     "6;Monte Carlo",
+                                       1, // supportRealTime
                                        0, 0, 1, 500, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2368,6 +2472,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/simulate_european_options_generic_routine_antithetic_variate.cc",
     "",
     "6;Monte Carlo",
+                                       1, // supportRealTime
                                        0, 0, 1, 500, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2388,6 +2493,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/simulate_european_options_generic_routine_price_sequence.cc",
     "",
     "6;Monte Carlo",
+                                       1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2408,6 +2514,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/simulate_european_options_generic_routine_control_variate.cc",
     "",
     "6;Monte Carlo",
+                                       1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2428,6 +2535,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/simulate_lognormal_variable.cc",
     "",
     "g;Misc",
+                                       1, // supportRealTime
                                        -1, 0, 0, 0, 0, 0,
                                        1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2448,6 +2556,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/findiff_exp_am_call.cc",
     "",
     "5;Trees & Finite Diff;Finite Diff",
+                                       1, // supportRealTime
                                        -1, 0, 1, 50, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2468,6 +2577,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/findiff_exp_eur_call.cc",
     "",
     "5;Trees & Finite Diff;Finite Diff",
+                                       1, // supportRealTime
                                        -1, 0, 1, 50, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2490,6 +2600,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/findiff_imp_am_call_newmat.cc",
     "models/financialrecipes/src/findiff_imp_am_put_newmat.cc",
     "5;Trees & Finite Diff;Finite Diff",
+                                       1, // supportRealTime
                                        -1, 0, 1, 50, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2510,6 +2621,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/findiff_imp_eur_call_newmat.cc",
     "models/financialrecipes/src/findiff_imp_eur_put_newmat.cc",
     "5;Trees & Finite Diff;Finite Diff",
+                                       1, // supportRealTime
                                        -1, 0, 1, 50, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2534,6 +2646,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/findiff_imp_am_put_itpp.cc",
     "",
     "5;Trees & Finite Diff;Finite Diff",
+                                       1, // supportRealTime
                                        -1, 0, 1, 50, 0, 0,
                                        1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2556,6 +2669,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/black_scholes_imp_vol_newt.cc",
     "",
     "d;Implied Volatility",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2576,6 +2690,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/black_scholes_imp_vol_bisect.cc",
     "",
     "d;Implied Volatility",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2596,6 +2711,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bondopt_call_vasicek.cc",
     "models/financialrecipes/src/bondopt_put_vasicek.cc",
     "e;Bonds",
+                                       1, // supportRealTime
                                       -1, 1, 0, 0, 0, 0,
                                        0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 2, "maturity", 0, "",
@@ -2616,6 +2732,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/black_scholes_call_div.cc",
     "models/financialrecipes/src/black_scholes_put_div.cc",
     "7;Discrete Dividend",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        3, 1.0, "Expiration", 0, "", 0, "",
@@ -2637,6 +2754,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bin_am_div_call.cc",
     "models/financialrecipes/src/bin_am_div_put.cc",
     "7;Discrete Dividend",
+                                       1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        3, 0.0, "Expiration", 0, "", 0, "",
@@ -2658,6 +2776,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bin_am_prop_div_call.cc",
     "models/financialrecipes/src/bin_am_prop_div_put.cc",
     "7;Discrete Dividend",
+                                       1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        3, 0.03, "Expiration", 0, "", 0, "",
@@ -2678,6 +2797,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bermudan_call_option.cc",
     "models/financialrecipes/src/bermudan_put_option.cc",
     "5;Trees & Finite Diff;Binomial",
+                                       1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        4, 0.0, "Expiration", 0, "", 0, "",
@@ -2698,6 +2818,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bondopt_call_coupon_bs.cc",
     "models/financialrecipes/src/bondopt_put_coupon_bs.cc",
     "7;Discrete Dividend",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        3, 0.03, "Expiration", 0, "", 0, "",
@@ -2718,6 +2839,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/warrant_price_black_scholes.cc",
     "",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2738,6 +2860,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/warrant_price_black_scholes_dividends.cc",
     "",
     "0;BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -2759,6 +2882,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/term_structure_class_ho_lee_price_bond_option.cc",
     "",
     "e;Bonds",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, BOND_CLASS, 0,
                                        1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        //3, 0.2, "T2", 0, "T1", 0, "",
@@ -2783,7 +2907,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/term_structure_class_flat.cc",
     "models/financialrecipes/src/term_structure_class_flat.h",
     "f;Term Structures",
-
+                                       1, // supportRealTime
                                        0, 0, 0, 0, TERMSTRUCTURE_CLASS, 0,
                                        0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "T2", 1, "T1", 0, "",
@@ -2804,7 +2928,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/term_structure_class_cir.cc",
     "models/financialrecipes/src/termstru_discfact_cir.cc",
     "f;Term Structures",
-
+                                       1, // supportRealTime
                                        0, 0, 0, 0, TERMSTRUCTURE_CLASS, 0,
                                        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "T2", 1, "T1", 0, "",
@@ -2825,7 +2949,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/term_structure_class_vasicek.cc",
     "models/financialrecipes/src/termstru_discfact_vasicek.cc",
     "f;Term Structures",
-
+                                       1, // supportRealTime
                                        0, 0, 0, 0, TERMSTRUCTURE_CLASS, 0,
                                        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "T2", 1, "T1", 0, "",
@@ -2847,6 +2971,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/",
     "",
     "f;Term Structures",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, TERMSTRUCTURE_CLASS, 0,
                                        0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "T2", 1, "T1", 0, "",
@@ -2871,6 +2996,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/",
     "",
     "f;Term Structures",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, TERMSTRUCTURE_CLASS, 0,
                                        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "T2", 1, "T1", 0, "",
@@ -2893,7 +3019,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/term_structure_class_nelson_siegel.cc",
     "models/financialrecipes/src/termstru_yield_nels_sie.cc",
     "f;Term Structures",
-
+                                       1, // supportRealTime
                                        0, 0, 0, 0, TERMSTRUCTURE_CLASS, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "T2", 1, "T1", 0, "",
@@ -2914,6 +3040,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/term_structure_class_svensson.cc",
     "models/financialrecipes/src/termstru_yield_svensson.cc",
     "f;Term Structures",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, TERMSTRUCTURE_CLASS, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "T2", 1, "T1", 0, "",
@@ -2934,6 +3061,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/term_structure_class_cubic_spline.cc",
     "models/financialrecipes/src/termstru_discfact_cubic_spline.cc",
     "f;Term Structures",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, TERMSTRUCTURE_CLASS, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        3, 0.01, "T2", 1, "T1", 0, "",
@@ -2954,6 +3082,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/term_structure_class_interpolated.cc",
     "models/financialrecipes/src/term_structure_class_interpolated.h",
     "f;Term Structures",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, TERMSTRUCTURE_CLASS, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        3, 0.01, "T2", 1, "T1", 0, "",
@@ -2974,6 +3103,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/futures_price.cc",
     "",
     "a;Futures",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, FUTURES_CLASS, 0,
                                        1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2998,6 +3128,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/abradford/future.cpp",
     "",
     "a;Futures",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, FUTURES_CLASS, 0,
                                        1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3018,6 +3149,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/abradford/pre-BSM.cpp",
     "",
     "i;Pre-BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -3038,6 +3170,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/abradford/pre-BSM.cpp",
     "",
     "i;Pre-BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -3058,6 +3191,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/abradford/pre-BSM.cpp",
     "",
     "i;Pre-BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -3078,6 +3212,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/abradford/pre-BSM.cpp",
     "",
     "i;Pre-BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -3098,6 +3233,7 @@ const struct option_algorithm option_algorithms[] = {
     "common/abradford/pre-BSM.cpp",
     "",
     "i;Pre-BSM",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -3124,6 +3260,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bonds_price.cc",
     "models/financialrecipes/src/bonds_duration.cc",
     "e;Bonds",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, BOND_CLASS, 1,
                                        0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        5, 1.25, "Expiration", 0, "", 0, "",
@@ -3146,6 +3283,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bonds_price_termstru.cc",
     "models/financialrecipes/src/bonds_duration_termstru.cc",
     "e;Bonds",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, BOND_CLASS, 0,
                                        0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        5, 1.25, "T2", 1, "T1", 0, "",
@@ -3166,6 +3304,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bonds_price_both.cc",
     "",
     "e;Bonds",
+                                       1, // supportRealTime
                                        0, 0, 0, 1, BOND_CLASS, 1,
                                        0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        6, 20, "Expiration", 0, "", 0, "",
@@ -3188,6 +3327,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/cflow_irr.cc",
     "models/financialrecipes/src/cflow_pv.cc",
     "g;Misc",
+                                       1, // supportRealTime
                                        0, 0, 0, 2, BOND_CLASS, 1,
                                        0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        5, 1.25, "Expiration", 0, "", 0, "",
@@ -3205,6 +3345,136 @@ const struct option_algorithm option_algorithms[] = {
 
 #endif
 
+#ifdef HAVE_QL_QUANTLIB_HPP
+
+    { QUANTLIB_BLACKSCHOLES_EUROPEAN,  "Black-Scholes 4", "QuantLib",  
+    "Black-Scholes European QuantLib. Model is only accurate to the day.",
+    "",
+    "",
+    "0;BSM",
+                                       0, // supportRealTime
+                                       0, 0, 0, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0.0, "Expiration", 0, "", 0, "",
+                                       "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0 },
+
+    { QUANTLIB_HESTON_SEMI_ANALYTIC,  "Heston Semi-Analytic", "QuantLib",  
+    "Heston Semi-Analytic QuantLib. Model is only accurate to the day.",
+    "",
+    "",
+    "5;Trees & Finite Diff;Heston",
+                                       0, // supportRealTime
+                                       0, 0, 0, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0.0, "Expiration", 0, "", 0, "",
+                                       "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0 },
+
+    { QUANTLIB_BARONE_ADESI_WHALEY,  "Barone-Adesi Whaley", "QuantLib",  
+    "Barone-Adesi and Whaley approximation for American. Model is only accurate to the day.",
+    "",
+    "",
+    "1;American Options",
+                                       0, // supportRealTime
+                                       0, 0, 0, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       1, 0.0, "Expiration", 0, "", 0, "",
+                                       "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0 },
+
+    { QUANTLIB_BJERKSUND_STENSLAND,  "Bjerksund Stensland", "QuantLib",  
+    "Bjerksund/Stensland approximation for American. Model is only accurate to the day.",
+    "",
+    "",
+    "1;American Options",
+                                       0, // supportRealTime
+                                       0, 0, 0, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       1, 0.0, "Expiration", 0, "", 0, "",
+                                       "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0 },
+
+    { QUANTLIB_FINITE_DIFFERENCES_EUROPEAN,  "Finite Diff Euro", "QuantLib",  
+    "Finite Differences European. Model is only accurate to the day.",
+    "",
+    "",
+    "5;Trees & Finite Diff;Finite Diff",
+                                       0, // supportRealTime
+                                       0, 0, 1, 801, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       1, 0.0, "Expiration", 0, "", 0, "",
+                                       "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0 },
+
+    { QUANTLIB_FINITE_DIFFERENCES_AMERICAN,  "Finite Diff American", "QuantLib",  
+    "Finite Differences American. Model is only accurate to the day.",
+    "",
+    "",
+    "5;Trees & Finite Diff;Finite Diff",
+                                       0, // supportRealTime
+                                       0, 0, 1, 100, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       1, 0.0, "Expiration", 0, "", 0, "",
+                                       "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0 },
+  
+#endif
+  
 #ifdef DUMMYTESTMODELS
 
   { TESTOPTION1,  "Testing Option1", "Anthony Bradford",  
@@ -3212,6 +3482,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "",
     "g;Misc;Test",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -3232,6 +3503,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "",
     "g;Misc;Test",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -3252,6 +3524,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "",
     "g;Misc;Test",
+                                       1, // supportRealTime
                                        0, 1, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        1, 0.0, "Expiration", 1, "Dividend", 1, "t3",
@@ -3272,6 +3545,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "",
     "g;Misc;Test",
+                                       1, // supportRealTime
                                        0, 1, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        1, 0.0, "Expiration", 1, "Dividend", 1, "t3",
@@ -3292,6 +3566,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "",
     "g;Misc;Test",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 1, "dividend", 0, "",
@@ -3312,6 +3587,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "",
     "g;Misc;Test",
+                                       1, // supportRealTime
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 2, "dividend", 0, "",
@@ -3332,6 +3608,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "",
     "g;Misc;Test",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, 1, 0,
                                        1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -3352,6 +3629,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "",
     "g;Misc;Test",
+                                       1, // supportRealTime
                                        0, 0, 0, 0, 1, 0,
                                        1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",

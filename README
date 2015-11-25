@@ -29,8 +29,7 @@ sudo zypper install gcc-c++ llvm-clang ncurses-devel gtk2-devel gtk3-devel gsl g
 or run: utils/zypper.sh
 
 ****The configure script checks for the installation of the
-GSL, Newmat and IT++ libraries. These libraries are not needed but inclusion
-will add more models.
+QuantLib, GNU Scientific Library (GSL), Newmat and IT++ libraries. These libraries are not needed but inclusion will add more models. OptionMatrix was tested with QuantLib 1.6.2.
 
 ****To install under GNU/Linux
 ./configure ; make ; sudo make install
@@ -79,8 +78,8 @@ with the apt-get package manager.
 cd doc ; make png2eps ; make ps
 See: doc/optionmatrix.ps doc/optionmatrix.dvi
 ImageMagick mogrify must be installed.
-Try "sudo apt-get install imagemagick" for Debian
-GNU/Linux systems.
+Try "sudo apt-get install imagemagick" to install in systems
+with the apt-get package manager.
 
 ****To create source-highlight HTML zip file
 cd doc ; make source_html

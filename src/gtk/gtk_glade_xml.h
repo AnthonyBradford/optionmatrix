@@ -1214,7 +1214,7 @@ const char *const gtkBuilderString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
                 <child>\
                   <object class=\"GtkSpinButton\" id=\"spinbuttonSteps\">\
                     <property name=\"can_focus\">True</property>\
-                    <property name=\"editable\">False</property>\
+                    <property name=\"editable\">True</property>\
                     <property name=\"invisible_char\">●</property>\
                     <property name=\"primary_icon_activatable\">False</property>\
                     <property name=\"secondary_icon_activatable\">False</property>\

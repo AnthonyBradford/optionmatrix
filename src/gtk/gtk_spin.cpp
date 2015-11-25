@@ -260,7 +260,7 @@ void on_spinbuttonDividend_value_changed(GtkSpinButton *spinbutton, struct _prop
 
 void on_spinbuttonSteps_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonSteps_value_changed(): ");
+  g_print("on_spinbuttonSteps_value_changed(): ");
 
   if(option_algorithms[properties->modeltype].supportSteps)
   {

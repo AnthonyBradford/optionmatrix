@@ -106,7 +106,7 @@ am__v_AR_ = $(am__v_AR_@AM_DEFAULT_V@)
 am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 librecipes_a_AR = $(AR) $(ARFLAGS)
-librecipes_a_DEPENDENCIES =
+librecipes_a_LIBADD =
 am_librecipes_a_OBJECTS = cflow_irr.$(OBJEXT) \
 	cflow_irr_test_unique.$(OBJEXT) cflow_pv.$(OBJEXT) \
 	cflow_pv_discrete.$(OBJEXT) cflow_irr_discrete.$(OBJEXT) \
@@ -326,6 +326,7 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+QUANTLIB = @QUANTLIB@
 RANLIB = @RANLIB@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
@@ -458,7 +459,6 @@ librecipes_a_SOURCES = cflow_irr.cc cflow_irr_test_unique.cc \
 	mv_calc_itpp.cc mv_calc_port_unconstrained_itpp.cc \
 	findiff_imp_am_put_itpp.cc approx_am_put_geske_johnson.cc \
 	heston_price.cc N3.cc
-librecipes_a_LIBADD = $(financialrecipes_LIBS)
 all: all-am
 
 .SUFFIXES:

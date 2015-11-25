@@ -764,6 +764,11 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
   {
     gtk_widget_show(properties->GtkInfo.checkbuttonRealTime);
   }
+
+  if( option_algorithms[modeltype].supportRealTime )
+  {
+    gtk_widget_show(properties->GtkInfo.checkbuttonRealTime);
+  }
 }
 
 void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties)
@@ -878,6 +883,41 @@ void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties
     gtk_widget_hide(properties->GtkInfo.comboboxState);
   }
 
+  if( !option_algorithms[modeltype].supportRealTime )
+  {
+    gtk_widget_hide(properties->GtkInfo.checkbuttonRealTime);
+    g_print("Leaving realtime. Model probably doesn't support timing to hour, minute, second\n");
+    properties->realTimeBleeding = 0;
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(properties->GtkInfo.checkbuttonRealTime),false);
+
+    properties->data.t[0] = properties->data.t[0] - properties->data.te;
+    properties->data.t[1] = properties->data.t[1] - properties->data.te2;
+    properties->data.t[2] = properties->data.t[2] - properties->data.te3;
+
+    pthread_mutex_lock(&properties->data.mutexCashflow);
+
+    for( std::vector<double>::iterator it = properties->data.times.begin(); it != properties->data.times.end(); ++it)
+    {
+      *it -= properties->data.te;
+    }
+
+    for( std::vector<double>::iterator it = properties->data.coupon_times.begin(); it != properties->data.coupon_times.end(); ++it)
+    {
+      *it -= properties->data.te;
+    }
+
+    for( std::vector<double>::iterator it = properties->data.principal_times.begin(); it != properties->data.principal_times.end(); ++it)
+    {
+      *it -= properties->data.te;
+    }
+    
+    pthread_mutex_unlock(&properties->data.mutexCashflow);
+
+    properties->data.te  = 0;
+    properties->data.te2 = 0;
+    properties->data.te3 = 0;
+
+  }
 }
 
 void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties)

@@ -716,7 +716,7 @@ int main(int argc, char *argv[])
 
   g_signal_connect(G_OBJECT (properties.GtkInfo.calendar1), "day-selected", G_CALLBACK(on_calendar1_day_selected), &properties);
 
-  properties.GtkInfo.spin_int_precision  = GTK_ADJUSTMENT(gtk_adjustment_new (properties.precision, 0.0,  15.0,   1.0,  2.0, 0));
+  properties.GtkInfo.spin_int_precision   = GTK_ADJUSTMENT(gtk_adjustment_new (properties.precision, 0.0,  15.0,   1.0,  2.0, 0));
   properties.GtkInfo.spin_int_steps       = GTK_ADJUSTMENT(gtk_adjustment_new (100,   1,  50000,     1,   10, 0));
   properties.GtkInfo.spin_int_sleep_delay = GTK_ADJUSTMENT(gtk_adjustment_new (1  ,   1,  86400,     1,   10, 0));
   properties.GtkInfo.spin_float_price     = GTK_ADJUSTMENT(gtk_adjustment_new (100,   0,  50000,  0.01, 0.10, 0));
@@ -747,9 +747,11 @@ int main(int argc, char *argv[])
 
   properties.GtkInfo.scale_int_months = GTK_ADJUSTMENT (gtk_adjustment_new (0,   0,  120,  1, 1, 0));
   gtk_scale_button_set_adjustment(GTK_SCALE_BUTTON(properties.GtkInfo.scaleMonths),properties.GtkInfo.scale_int_months);
+  gtk_button_set_relief(GTK_BUTTON(properties.GtkInfo.scaleMonths), GTK_RELIEF_NORMAL);
 
   properties.GtkInfo.scale_int_months2 = GTK_ADJUSTMENT (gtk_adjustment_new (0,   0,  120,  1, 1, 0));
   gtk_scale_button_set_adjustment(GTK_SCALE_BUTTON(properties.GtkInfo.scaleMonths2),properties.GtkInfo.scale_int_months2);
+  gtk_button_set_relief(GTK_BUTTON(properties.GtkInfo.scaleMonths2), GTK_RELIEF_NORMAL);
 
   gtk_spin_button_set_adjustment(GTK_SPIN_BUTTON(properties.GtkInfo.spinbuttonPrice),properties.GtkInfo.spin_float_price);
   gtk_spin_button_set_adjustment(GTK_SPIN_BUTTON(properties.GtkInfo.spinbuttonRate),properties.GtkInfo.spin_float_rate);

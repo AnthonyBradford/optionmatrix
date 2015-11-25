@@ -28,8 +28,16 @@
 */
 
 #include "defs.h"
+
+#ifdef HAVE_QL_QUANTLIB_HPP
+   #include <ql/quantlib.hpp>
+   #include <QuantLib.h>
+#endif
+
 #include "extern.h"
 #include "prototypes.h"
+
+//using namespace QuantLib;
 
 struct _data option_put(struct _data *dat)
 {
@@ -1415,6 +1423,370 @@ struct _data option_put(struct _data *dat)
 
 #endif
 
+#ifdef HAVE_QL_QUANTLIB_HPP
+      
+    case QUANTLIB_BLACKSCHOLES_EUROPEAN:
+      
+      // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
+      {
+        // set up dates
+	QuantLib::Calendar calendar = QuantLib::TARGET();
+	int year; int month; int day; int hour;	int min; int second;
+	decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+	//g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+	QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+
+	decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
+	//g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+
+        // our options
+        QuantLib::Option::Type type(QuantLib::Option::Put);
+        QuantLib::Real underlying = price;
+        QuantLib::Real strike_ = strike;
+        QuantLib::Spread dividendYield = dividend;
+        QuantLib::Rate riskFreeRate = rate;
+        QuantLib::Volatility volatility_ = volatility;
+	QuantLib::Date maturity(day, QuantLibMonths[month], year);
+        QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
+
+        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
+                                         new QuantLib::EuropeanExercise(maturity));
+	
+        QuantLib::Handle<QuantLib::Quote> underlyingH(
+            boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
+
+        // bootstrap the yield/dividend/vol curves
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatTermStructure(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, riskFreeRate, dayCounter)));
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatDividendTS(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
+        QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTS(
+            boost::shared_ptr<QuantLib::BlackVolTermStructure>(
+                new QuantLib::BlackConstantVol(settlementDate, calendar, volatility_, dayCounter)));
+        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff(
+                                        new QuantLib::PlainVanillaPayoff(type, strike_));
+        boost::shared_ptr<QuantLib::BlackScholesMertonProcess> bsmProcess(
+                 new QuantLib::BlackScholesMertonProcess(underlyingH, flatDividendTS,
+                                               flatTermStructure, flatVolTS));
+
+        // options
+        QuantLib::VanillaOption europeanOption(payoff, europeanExercise);
+
+        // Black-Scholes for European
+         std::string method = "Black-Scholes";
+        europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(new QuantLib::AnalyticEuropeanEngine(bsmProcess)));
+
+	putprice = europeanOption.NPV();
+      }
+
+    case QUANTLIB_HESTON_SEMI_ANALYTIC:
+
+      // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
+      {
+        // set up dates
+	QuantLib::Calendar calendar = QuantLib::TARGET();
+	int year; int month; int day; int hour;	int min; int second;
+	decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+	//g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+	QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+
+	decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
+	//g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+
+        // our options
+        QuantLib::Option::Type type(QuantLib::Option::Put);
+        QuantLib::Real underlying = price;
+        QuantLib::Real strike_ = strike;
+        QuantLib::Spread dividendYield = dividend;
+        QuantLib::Rate riskFreeRate = rate;
+        QuantLib::Volatility volatility_ = volatility;
+	QuantLib::Date maturity(day, QuantLibMonths[month], year);
+        QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
+
+        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
+                                         new QuantLib::EuropeanExercise(maturity));
+	
+        QuantLib::Handle<QuantLib::Quote> underlyingH(
+            boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
+
+        // bootstrap the yield/dividend/vol curves
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatTermStructure(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, riskFreeRate, dayCounter)));
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatDividendTS(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
+        QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTS(
+            boost::shared_ptr<QuantLib::BlackVolTermStructure>(
+                new QuantLib::BlackConstantVol(settlementDate, calendar, volatility_, dayCounter)));
+        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff(
+                                        new QuantLib::PlainVanillaPayoff(type, strike_));
+        boost::shared_ptr<QuantLib::BlackScholesMertonProcess> bsmProcess(
+                 new QuantLib::BlackScholesMertonProcess(underlyingH, flatDividendTS,
+                                               flatTermStructure, flatVolTS));
+
+        // options
+        QuantLib::VanillaOption europeanOption(payoff, europeanExercise);
+
+	// semi-analytic Heston for European
+	std::string method = "Heston semi-analytic";
+        boost::shared_ptr<QuantLib::HestonProcess> hestonProcess(
+            new QuantLib::HestonProcess(flatTermStructure, flatDividendTS,
+                              underlyingH, volatility_*volatility_,
+                              1.0, volatility_*volatility_, 0.001, 0.0));
+        boost::shared_ptr<QuantLib::HestonModel> hestonModel(
+                                              new QuantLib::HestonModel(hestonProcess));
+        europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+                                     new QuantLib::AnalyticHestonEngine(hestonModel)));
+
+	putprice = europeanOption.NPV();
+      }
+
+      break;
+
+    case QUANTLIB_BARONE_ADESI_WHALEY:
+
+      // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
+      {
+        // set up dates
+	QuantLib::Calendar calendar = QuantLib::TARGET();
+	int year; int month; int day; int hour;	int min; int second;
+	decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+	//g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+	QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+
+	decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
+	//g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+
+        // our options
+        QuantLib::Option::Type type(QuantLib::Option::Put);
+        QuantLib::Real underlying = price;
+        QuantLib::Real strike_ = strike;
+        QuantLib::Spread dividendYield = dividend;
+        QuantLib::Rate riskFreeRate = rate;
+        QuantLib::Volatility volatility_ = volatility;
+	QuantLib::Date maturity(day, QuantLibMonths[month], year);
+        QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
+
+	boost::shared_ptr<QuantLib::Exercise> americanExercise(
+					 new QuantLib::AmericanExercise(settlementDate,
+                                         maturity));
+	
+        QuantLib::Handle<QuantLib::Quote> underlyingH(
+            boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
+
+        // bootstrap the yield/dividend/vol curves
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatTermStructure(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, riskFreeRate, dayCounter)));
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatDividendTS(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
+        QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTS(
+            boost::shared_ptr<QuantLib::BlackVolTermStructure>(
+                new QuantLib::BlackConstantVol(settlementDate, calendar, volatility_, dayCounter)));
+        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff(
+                                        new QuantLib::PlainVanillaPayoff(type, strike_));
+        boost::shared_ptr<QuantLib::BlackScholesMertonProcess> bsmProcess(
+                 new QuantLib::BlackScholesMertonProcess(underlyingH, flatDividendTS,
+                                               flatTermStructure, flatVolTS));
+
+        // options
+        QuantLib::VanillaOption americanOption(payoff, americanExercise);
+	
+	// Barone-Adesi and Whaley approximation for American
+	std::string method = "Barone-Adesi/Whaley";
+        americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+                  new QuantLib::BaroneAdesiWhaleyApproximationEngine(bsmProcess)));
+	
+	putprice = americanOption.NPV();
+      }
+      
+      break;
+
+   case QUANTLIB_BJERKSUND_STENSLAND:
+
+      // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
+      {
+        // set up dates
+	QuantLib::Calendar calendar = QuantLib::TARGET();
+	int year; int month; int day; int hour;	int min; int second;
+	decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+	//g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+	QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+
+	decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
+	//g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+
+        // our options
+        QuantLib::Option::Type type(QuantLib::Option::Put);
+        QuantLib::Real underlying = price;
+        QuantLib::Real strike_ = strike;
+        QuantLib::Spread dividendYield = dividend;
+        QuantLib::Rate riskFreeRate = rate;
+        QuantLib::Volatility volatility_ = volatility;
+	QuantLib::Date maturity(day, QuantLibMonths[month], year);
+        QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
+	boost::shared_ptr<QuantLib::Exercise> americanExercise(
+					 new QuantLib::AmericanExercise(settlementDate,
+                                         maturity));
+	
+        QuantLib::Handle<QuantLib::Quote> underlyingH(
+            boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
+
+        // bootstrap the yield/dividend/vol curves
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatTermStructure(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, riskFreeRate, dayCounter)));
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatDividendTS(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
+        QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTS(
+            boost::shared_ptr<QuantLib::BlackVolTermStructure>(
+                new QuantLib::BlackConstantVol(settlementDate, calendar, volatility_, dayCounter)));
+        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff(
+                                        new QuantLib::PlainVanillaPayoff(type, strike_));
+        boost::shared_ptr<QuantLib::BlackScholesMertonProcess> bsmProcess(
+                 new QuantLib::BlackScholesMertonProcess(underlyingH, flatDividendTS,
+                                               flatTermStructure, flatVolTS));
+
+        // options
+        QuantLib::VanillaOption americanOption(payoff, americanExercise);
+
+	std::string method = "Bjerksund/Stensland";
+        americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+                      new QuantLib::BjerksundStenslandApproximationEngine(bsmProcess)));
+
+	putprice = americanOption.NPV();
+      }
+
+      break;
+
+    case QUANTLIB_FINITE_DIFFERENCES_EUROPEAN:
+      // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
+      {
+        // set up dates
+	QuantLib::Calendar calendar = QuantLib::TARGET();
+	int year; int month; int day; int hour;	int min; int second;
+	decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+	//g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+	QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+
+	decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
+	//g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+
+        // our options
+        QuantLib::Option::Type type(QuantLib::Option::Put);
+        QuantLib::Real underlying = price;
+        QuantLib::Real strike_ = strike;
+        QuantLib::Spread dividendYield = dividend;
+        QuantLib::Rate riskFreeRate = rate;
+        QuantLib::Volatility volatility_ = volatility;
+	QuantLib::Date maturity(day, QuantLibMonths[month], year);
+        QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
+
+	boost::shared_ptr<QuantLib::Exercise> europeanExercise(
+                                         new QuantLib::EuropeanExercise(maturity));
+	
+	QuantLib::Handle<QuantLib::Quote> underlyingH(
+	       boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
+
+        // bootstrap the yield/dividend/vol curves
+	QuantLib::Handle<QuantLib::YieldTermStructure> flatTermStructure(
+		boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, riskFreeRate, dayCounter)));
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatDividendTS(
+                boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
+        QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTS(
+        boost::shared_ptr<QuantLib::BlackVolTermStructure>(
+                new QuantLib::BlackConstantVol(settlementDate, calendar, volatility_, dayCounter)));
+        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff(
+                                        new QuantLib::PlainVanillaPayoff(type, strike_));
+        boost::shared_ptr<QuantLib::BlackScholesMertonProcess> bsmProcess(
+                new QuantLib::BlackScholesMertonProcess(underlyingH, flatDividendTS,
+                                        flatTermStructure, flatVolTS));
+
+        // options
+        QuantLib::VanillaOption europeanOption(payoff, europeanExercise);
+
+        // Finite differences
+        QuantLib::Size timeSteps = 801;
+	std::string method = "Finite differences";
+
+        europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+                 new QuantLib::FDEuropeanEngine<QuantLib::CrankNicolson>(bsmProcess,
+                                                     timeSteps,timeSteps-1)));
+
+	putprice = europeanOption.NPV();
+      }
+
+      break;
+
+    case QUANTLIB_FINITE_DIFFERENCES_AMERICAN:
+      {
+       // set up dates
+	QuantLib::Calendar calendar = QuantLib::TARGET();
+	int year; int month; int day; int hour;	int min; int second;
+	decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+	//g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+	QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+
+	decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
+	//g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+
+        // our options
+        QuantLib::Option::Type type(QuantLib::Option::Put);
+        QuantLib::Real underlying = price;
+        QuantLib::Real strike_ = strike;
+        QuantLib::Spread dividendYield = dividend;
+        QuantLib::Rate riskFreeRate = rate;
+        QuantLib::Volatility volatility_ = volatility;
+	QuantLib::Date maturity(day, QuantLibMonths[month], year);
+        QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
+
+	boost::shared_ptr<QuantLib::Exercise> americanExercise(
+					 new QuantLib::AmericanExercise(settlementDate,
+                                         maturity));
+	
+	QuantLib::Handle<QuantLib::Quote> underlyingH(
+	       boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
+
+          // bootstrap the yield/dividend/vol curves
+	QuantLib::Handle<QuantLib::YieldTermStructure> flatTermStructure(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, riskFreeRate, dayCounter)));
+	QuantLib::Handle<QuantLib::YieldTermStructure> flatDividendTS(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+                new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
+	QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTS(
+	    boost::shared_ptr<QuantLib::BlackVolTermStructure>(
+                new QuantLib::BlackConstantVol(settlementDate, calendar, volatility_, dayCounter)));
+	boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff(
+                                        new QuantLib::PlainVanillaPayoff(type, strike_));
+	boost::shared_ptr<QuantLib::BlackScholesMertonProcess> bsmProcess(
+                new QuantLib::BlackScholesMertonProcess(underlyingH, flatDividendTS,
+                                        flatTermStructure, flatVolTS));
+
+	// options
+	QuantLib::VanillaOption americanOption(payoff, americanExercise);
+	
+        // Finite differences
+        QuantLib::Size timeSteps = dat->steps;
+	
+        americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+                 new QuantLib::FDAmericanEngine<QuantLib::CrankNicolson>(bsmProcess,
+                                                     timeSteps,timeSteps-1)));
+
+	putprice = americanOption.NPV();
+      }
+      
+      break;
+      
+#endif      
+
 #ifdef DUMMYTESTMODELS
 
     case TESTOPTION1:
@@ -1431,7 +1803,7 @@ struct _data option_put(struct _data *dat)
 
     default:
 
-      fprintf(stderr,"option_put(): No implementation for case %d\n",dat->modeltype);
+      fprintf(stderr,"option_put(): No implementation for case %d\n", dat->modeltype);
 
      break;
 

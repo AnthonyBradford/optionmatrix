@@ -168,7 +168,7 @@ int select_model(struct _properties *properties)
         printw("    ");
       }
 
-      printw("%d=%s\n",optiontype+1,option_algorithms[optiontype].des);
+      printw("%d=%.20s\n",optiontype+1,option_algorithms[optiontype].des);
       row++;
     
     }
@@ -257,7 +257,7 @@ int select_model(struct _properties *properties)
             printw("    ");
           }
 
-          printw("%d=%s\n",optiontype+1,option_algorithms[optiontype].des);
+          printw("%d=%.20s\n",optiontype+1,option_algorithms[optiontype].des);
 
           row++;
         }

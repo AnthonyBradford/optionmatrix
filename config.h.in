@@ -3,6 +3,9 @@
 /* Define to 1 if you have the `atexit' function. */
 #undef HAVE_ATEXIT
 
+/* Define to 1 if you have the <boost/timer.hpp> header file. */
+#undef HAVE_BOOST_TIMER_HPP
+
 /* Define to 1 if you have the <curses.h> header file. */
 #undef HAVE_CURSES_H
 
@@ -15,9 +18,6 @@
 /* Define to 1 if you have the `gettimeofday' function. */
 #undef HAVE_GETTIMEOFDAY
 
-/* Define to 1 if you have the <gsl/gsl_cblas.h> header file. */
-#undef HAVE_GSL_GSL_CBLAS_H
-
 /* Define to 1 if you have the <gsl/gsl_errno.h> header file. */
 #undef HAVE_GSL_GSL_ERRNO_H
 
@@ -29,6 +29,9 @@
 
 /* Define to 1 if you have the `gsl' library (-lgsl). */
 #undef HAVE_LIBGSL
+
+/* Define to 1 if you have the `gslcblas' library (-lgslcblas). */
+#undef HAVE_LIBGSLCBLAS
 
 /* Define to 1 if you have the `gtk-3' library (-lgtk-3). */
 #undef HAVE_LIBGTK_3
@@ -90,6 +93,9 @@
 
 /* Define to 1 if you have the <pthread.h> header file. */
 #undef HAVE_PTHREAD_H
+
+/* Define to 1 if you have the <ql/quantlib.hpp> header file. */
+#undef HAVE_QL_QUANTLIB_HPP
 
 /* Define to 1 if you have the `setlocale' function. */
 #undef HAVE_SETLOCALE

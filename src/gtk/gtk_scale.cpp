@@ -69,7 +69,10 @@ void calc_strike_scale(struct _properties *properties)
   properties->GtkInfo.scale_int_strikes2 = GTK_ADJUSTMENT (gtk_adjustment_new ( middle, 1, high, incrementor, incrementor, 0));
 
   gtk_scale_button_set_adjustment(GTK_SCALE_BUTTON(properties->GtkInfo.scaleStrikes),properties->GtkInfo.scale_int_strikes);
+  gtk_button_set_relief(GTK_BUTTON(properties->GtkInfo.scaleStrikes), GTK_RELIEF_NORMAL);
+  
   gtk_scale_button_set_adjustment(GTK_SCALE_BUTTON(properties->GtkInfo.scaleStrikes2),properties->GtkInfo.scale_int_strikes2);
+  gtk_button_set_relief(GTK_BUTTON(properties->GtkInfo.scaleStrikes2), GTK_RELIEF_NORMAL);
 }
 
 void on_scaleStrikes_value_changed(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties)

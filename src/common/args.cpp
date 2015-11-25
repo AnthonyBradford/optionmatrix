@@ -551,7 +551,7 @@ void program_check_pricing_models(bool quietMode)
 
   if ( !quietMode )
   {
-    printf("Tests skipped the following models due to open issues:\n");
+    printf("\nTests skipped the following models due to open issues:\n");
 
     for( indexModelsWithPricingIssues = 0; indexModelsWithPricingIssues < numberOfPricingIssues; indexModelsWithPricingIssues++ )
     {
@@ -563,6 +563,38 @@ void program_check_pricing_models(bool quietMode)
   printf("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000)
 	 - (start.tv_sec + (double) start.tv_usec / 1000000)));
   printf("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);
+
+  #ifndef ABRADFORD
+  printf("ABRADFORD models not defined in source code.\n");
+#endif
+
+#ifndef SPINSKY
+  printf("SPINSKY models not defined in source code.\n");
+#endif
+
+#ifndef METAOPTIONS
+  printf("METAOPTIONS models not defined in source code.\n");
+#endif
+
+#ifndef FINRECIPES
+  printf("FINRECIPES models not defined in source code.\n");
+#endif
+
+#ifndef HAVE_LIBGSL
+  printf("HAVE_LIBGSL models not defined in source code.\n");
+#endif
+
+#ifndef HAVE_ITPP_ITBASE_H
+  printf("HAVE_ITPP_ITBASE_H models not defined in source code.\n");
+#endif
+
+#ifndef HAVE_NEWMAT_NEWMAT_H
+  printf("HAVE_NEWMAT_NEWMAT_H models not defined in source code.\n");
+#endif
+
+#ifndef HAVE_QL_QUANTLIB_HPP
+  printf("HAVE_QL_QUANTLIB_HPP models not defined in source code.\n");
+#endif
 
 }
 
@@ -712,6 +744,8 @@ void program_check_pricing_time(int modelnumber, int iterations)
     // should not reach...
     printf("program_check_pricing_time(): Error: Asset class not understood: %d\n", option_algorithms[modelnumber].assetClass);
   }
+
+  printf("b blort\n");
 
   dat.amounts.erase( dat.amounts.begin(), dat.amounts.end() );
   dat.times.erase( dat.times.begin(), dat.times.end() );
