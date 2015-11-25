@@ -6746,7 +6746,8 @@ $as_echo "yes" >&6; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-     as_fn_error $? "Boost development files not found" "$LINENO" 5
+     { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Boost development files needed if using QuantLib" >&5
+$as_echo "$as_me: WARNING: Boost development files needed if using QuantLib" >&2;}
 
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
@@ -6773,7 +6774,8 @@ $as_echo "yes" >&6; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-     as_fn_error $? "outdated Boost installation" "$LINENO" 5
+     { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: outdated Boost installation" >&5
+$as_echo "$as_me: WARNING: outdated Boost installation" >&2;}
 
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext

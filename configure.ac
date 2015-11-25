@@ -156,7 +156,7 @@ AC_DEFUN([QL_CHECK_BOOST_DEVEL],
     [],
     [AC_MSG_RESULT([yes])],
     [AC_MSG_RESULT([no])
-     AC_MSG_ERROR([Boost development files not found])
+     AC_MSG_WARN([Boost development files needed if using QuantLib])
     ])
 ])
 
@@ -173,7 +173,7 @@ AC_DEFUN([QL_CHECK_BOOST_VERSION],
      @%:@endif],
     [AC_MSG_RESULT([yes])],
     [AC_MSG_RESULT([no])
-     AC_MSG_ERROR([outdated Boost installation])
+     AC_MSG_WARN([outdated Boost installation])
     ])
 ])
 
