@@ -51,7 +51,7 @@ See: doc/optionmatrix.pdf
 make html
 See: doc/html
 
-****To create Zip file HTML documentation
+****To create zip file HTML documentation
 cd doc ; make zip
 See: doc/html/optionmatrix.zip
 
