@@ -1,10 +1,10 @@
-/*
+/* 
    optionmatrix:
 
    Options & Futures Matrix Modeler
    View and Control Theoretical Option Chains
 
-   File: black_76.c of optionmatrix
+   File: black_scholes.c of optionmatrix
 
    Copyright (c) Anthony Bradford. 2012.
    http://anthonybradford.com
@@ -29,71 +29,63 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "../defs.h"
-#include "../extern.h" /* cnd() prototype in here */
+#include "../../common/defs.h"
+#include "../../common/extern.h" /* cnd() prototype in here */
 
 #include "basicmodels.h"
 
-double black76call(const double stockprice, const double strike, const double rate, const double t, const double v, double *delta)
+double black_scholes_call(const double stockprice, const double strike, const double rate, const double t, const double d, double *delta)
 {
     double d1,d2,dd1,dd2,call;
 
-    d1 = (log(stockprice/strike)+((v*v)/2)*t)/(v*sqrt(t));
-    d2 = d1-(v*sqrt(t));
+    /* no time left this thing is worth nothing */
+    if( t <= 0 )
+    {
+        *delta = 0.0;
+        return 0.0;
+    }
+
+    d1 = (log(stockprice/strike)+((rate+((d*d)/2))*t))/(d*sqrt(t));
+    d2 = d1 - (d*sqrt(t));
 
     /* dd1 is the hedge ratio or the option's delta */
     dd1 = cnd(d1);
     dd2 = cnd(d2);
 
-    if(dd1<0)
+    if( dd1 < 0 )
     {
-        *delta=0.0;
+        *delta = 0.0;
     } else
     {
-        if(dd1>=1)
+        if( dd1 >= 1 )
         {
-            *delta=1;
+            *delta = 1;
         } else
         {
-            *delta=dd1;
+            *delta = dd1;
         }
     }
-    
-    call = ( exp(-rate*t) * ( (stockprice*dd1)-(strike*dd2) ) );
+
+    call = ((stockprice*(dd1))-((strike*exp(-rate*t))*(dd2)));
 
     return call;
 }
 
-double black76put(const double stockprice, const double strike, const double rate, const double t, const double v, double *delta)
+double black_scholes_put(const double stockprice, const double strike, const double rate, const double t, const double d, double *delta)
 {
-    double put;
+    double call,put;
 
-    double d1,d2,dd1,dd2;
-
-    d1 = (log(stockprice/strike)+((v*v)/2)*t)/(v*sqrt(t));
-    d2 = d1-(v*sqrt(t));
-
-    /* dd1 is the hedge ratio or the option's delta */
-    dd1 = cnd(-d1);
-    dd2 = cnd(-d2);
-
-    put = (exp(-rate*t)*((strike*dd2) - (stockprice*dd1)));
-
-    if(dd1<0)
+    /* no time left this thing is worth nothing */
+    if( t <= 0 )
     {
-      *delta=0.0;
-
-    } else
-    {
-      if(dd1>=1)
-      {
-         *delta=-1;
-
-      } else
-      {
-         *delta= (dd1 - (double) 1.0);
-      }
+        *delta = 0.0;
+        return 0.0;
     }
+
+    call = black_scholes_call(stockprice,strike,rate,t,d,delta);
+    put = (call+(strike*exp(-rate*t))-stockprice);
+
+    *delta = (*delta - (double) 1.0);
 
     return put;
 }

@@ -110,10 +110,10 @@ am__v_AR_ = $(am__v_AR_@AM_DEFAULT_V@)
 am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 liboptionmatrix_a_AR = $(AR) $(ARFLAGS)
-liboptionmatrix_a_DEPENDENCIES =  \
+liboptionmatrix_a_DEPENDENCIES = ../models/abradford/libabradford.a \
+	../models/spinsky/libspinsky.a \
 	../models/financialrecipes/src/librecipes.a \
 	../models/metaoptions/src/libmetaoptions.a
-am__dirstamp = $(am__leading_dot)dirstamp
 am_liboptionmatrix_a_OBJECTS = liboptionmatrix_a-args.$(OBJEXT) \
 	liboptionmatrix_a-cumulative_norm.$(OBJEXT) \
 	liboptionmatrix_a-defaults.$(OBJEXT) \
@@ -126,20 +126,15 @@ am_liboptionmatrix_a_OBJECTS = liboptionmatrix_a-args.$(OBJEXT) \
 	liboptionmatrix_a-sanity.$(OBJEXT) \
 	liboptionmatrix_a-termstructure.$(OBJEXT) \
 	liboptionmatrix_a-time.$(OBJEXT) \
-	liboptionmatrix_a-tickers.$(OBJEXT) \
-	abradford/liboptionmatrix_a-black_76.$(OBJEXT) \
-	abradford/liboptionmatrix_a-black_scholes.$(OBJEXT) \
-	abradford/liboptionmatrix_a-delta.$(OBJEXT) \
-	abradford/liboptionmatrix_a-future.$(OBJEXT) \
-	abradford/liboptionmatrix_a-merton_73.$(OBJEXT) \
-	abradford/liboptionmatrix_a-pre-BSM.$(OBJEXT) \
-	spinsky/liboptionmatrix_a-binomial.$(OBJEXT)
+	liboptionmatrix_a-tickers.$(OBJEXT)
 liboptionmatrix_a_OBJECTS = $(am_liboptionmatrix_a_OBJECTS)
 am__EXEEXT_1 = checks$(EXEEXT)
 PROGRAMS = $(noinst_PROGRAMS)
 am_checks_OBJECTS = checks-checks.$(OBJEXT)
 checks_OBJECTS = $(am_checks_OBJECTS)
 checks_DEPENDENCIES = ./liboptionmatrix.a \
+	../models/abradford/libabradford.a \
+	../models/spinsky/libspinsky.a \
 	../models/financialrecipes/src/librecipes.a \
 	../models/metaoptions/src/libmetaoptions.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -556,24 +551,15 @@ sanity.cpp\
 termstructure.cpp\
 time.cpp\
 tickers.cpp\
-QuantLib.h\
-abradford/basicmodels.h\
-abradford/black_76.cpp\
-abradford/black_scholes.cpp\
-abradford/delta.cpp\
-abradford/future.cpp\
-abradford/merton_73.cpp\
-abradford/pre-BSM.cpp\
-spinsky/binomial.cpp\
-spinsky/binomial.h
+QuantLib.h
 
 liboptionmatrix_a_CFLAGS = $(FM) -O3 -std=c99 \
 	-Werror -Wshadow -W -Wall -pedantic -DNDEBUG -Wmissing-prototypes
 
-liboptionmatrix_a_CPPFLAGS = -I$(top_srcdir)/src/financialrecipes/src -I$(top_srcdir)/src/metaoptions/src -I/.
-liboptionmatrix_a_LIBADD = ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
-checks_CPPFLAGS = -I$(top_srcdir)/src/models/financialrecipes/src -I$(top_srcdir)/src/models/metaoptions/src -I$(top_srcdir)/src/common
-checks_LDADD = ./liboptionmatrix.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
+liboptionmatrix_a_CPPFLAGS = -I$(top_srcdir)/src/abradford -I$(top_srcdir)/src/financialrecipes/src -I$(top_srcdir)/src/metaoptions/src -I/.
+liboptionmatrix_a_LIBADD = ../models/abradford/libabradford.a ../models/spinsky/libspinsky.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
+checks_CPPFLAGS = -I$(top_srcdir)/src/models/abradford -I$(top_srcdir)/src/models/spinsky -I$(top_srcdir)/src/models/financialrecipes/src -I$(top_srcdir)/src/models/metaoptions/src -I$(top_srcdir)/src/common
+checks_LDADD = ./liboptionmatrix.a ../models/abradford/libabradford.a ../models/spinsky/libspinsky.a  ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
 all: all-am
 
 .SUFFIXES:
@@ -610,32 +596,6 @@ $(am__aclocal_m4_deps):
 
 clean-noinstLIBRARIES:
 	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
-abradford/$(am__dirstamp):
-	@$(MKDIR_P) abradford
-	@: > abradford/$(am__dirstamp)
-abradford/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) abradford/$(DEPDIR)
-	@: > abradford/$(DEPDIR)/$(am__dirstamp)
-abradford/liboptionmatrix_a-black_76.$(OBJEXT):  \
-	abradford/$(am__dirstamp) abradford/$(DEPDIR)/$(am__dirstamp)
-abradford/liboptionmatrix_a-black_scholes.$(OBJEXT):  \
-	abradford/$(am__dirstamp) abradford/$(DEPDIR)/$(am__dirstamp)
-abradford/liboptionmatrix_a-delta.$(OBJEXT):  \
-	abradford/$(am__dirstamp) abradford/$(DEPDIR)/$(am__dirstamp)
-abradford/liboptionmatrix_a-future.$(OBJEXT):  \
-	abradford/$(am__dirstamp) abradford/$(DEPDIR)/$(am__dirstamp)
-abradford/liboptionmatrix_a-merton_73.$(OBJEXT):  \
-	abradford/$(am__dirstamp) abradford/$(DEPDIR)/$(am__dirstamp)
-abradford/liboptionmatrix_a-pre-BSM.$(OBJEXT):  \
-	abradford/$(am__dirstamp) abradford/$(DEPDIR)/$(am__dirstamp)
-spinsky/$(am__dirstamp):
-	@$(MKDIR_P) spinsky
-	@: > spinsky/$(am__dirstamp)
-spinsky/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) spinsky/$(DEPDIR)
-	@: > spinsky/$(DEPDIR)/$(am__dirstamp)
-spinsky/liboptionmatrix_a-binomial.$(OBJEXT): spinsky/$(am__dirstamp) \
-	spinsky/$(DEPDIR)/$(am__dirstamp)
 
 liboptionmatrix.a: $(liboptionmatrix_a_OBJECTS) $(liboptionmatrix_a_DEPENDENCIES) $(EXTRA_liboptionmatrix_a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f liboptionmatrix.a
@@ -654,8 +614,6 @@ checks$(EXEEXT): $(checks_OBJECTS) $(checks_DEPENDENCIES) $(EXTRA_checks_DEPENDE
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f abradford/*.$(OBJEXT)
-	-rm -f spinsky/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -674,13 +632,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liboptionmatrix_a-termstructure.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liboptionmatrix_a-tickers.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liboptionmatrix_a-time.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@abradford/$(DEPDIR)/liboptionmatrix_a-black_76.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@abradford/$(DEPDIR)/liboptionmatrix_a-black_scholes.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@abradford/$(DEPDIR)/liboptionmatrix_a-delta.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@abradford/$(DEPDIR)/liboptionmatrix_a-future.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@abradford/$(DEPDIR)/liboptionmatrix_a-merton_73.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@abradford/$(DEPDIR)/liboptionmatrix_a-pre-BSM.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@spinsky/$(DEPDIR)/liboptionmatrix_a-binomial.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -879,104 +830,6 @@ liboptionmatrix_a-tickers.obj: tickers.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='tickers.cpp' object='liboptionmatrix_a-tickers.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o liboptionmatrix_a-tickers.obj `if test -f 'tickers.cpp'; then $(CYGPATH_W) 'tickers.cpp'; else $(CYGPATH_W) '$(srcdir)/tickers.cpp'; fi`
-
-abradford/liboptionmatrix_a-black_76.o: abradford/black_76.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-black_76.o -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-black_76.Tpo -c -o abradford/liboptionmatrix_a-black_76.o `test -f 'abradford/black_76.cpp' || echo '$(srcdir)/'`abradford/black_76.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-black_76.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-black_76.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/black_76.cpp' object='abradford/liboptionmatrix_a-black_76.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-black_76.o `test -f 'abradford/black_76.cpp' || echo '$(srcdir)/'`abradford/black_76.cpp
-
-abradford/liboptionmatrix_a-black_76.obj: abradford/black_76.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-black_76.obj -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-black_76.Tpo -c -o abradford/liboptionmatrix_a-black_76.obj `if test -f 'abradford/black_76.cpp'; then $(CYGPATH_W) 'abradford/black_76.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/black_76.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-black_76.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-black_76.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/black_76.cpp' object='abradford/liboptionmatrix_a-black_76.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-black_76.obj `if test -f 'abradford/black_76.cpp'; then $(CYGPATH_W) 'abradford/black_76.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/black_76.cpp'; fi`
-
-abradford/liboptionmatrix_a-black_scholes.o: abradford/black_scholes.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-black_scholes.o -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-black_scholes.Tpo -c -o abradford/liboptionmatrix_a-black_scholes.o `test -f 'abradford/black_scholes.cpp' || echo '$(srcdir)/'`abradford/black_scholes.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-black_scholes.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-black_scholes.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/black_scholes.cpp' object='abradford/liboptionmatrix_a-black_scholes.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-black_scholes.o `test -f 'abradford/black_scholes.cpp' || echo '$(srcdir)/'`abradford/black_scholes.cpp
-
-abradford/liboptionmatrix_a-black_scholes.obj: abradford/black_scholes.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-black_scholes.obj -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-black_scholes.Tpo -c -o abradford/liboptionmatrix_a-black_scholes.obj `if test -f 'abradford/black_scholes.cpp'; then $(CYGPATH_W) 'abradford/black_scholes.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/black_scholes.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-black_scholes.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-black_scholes.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/black_scholes.cpp' object='abradford/liboptionmatrix_a-black_scholes.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-black_scholes.obj `if test -f 'abradford/black_scholes.cpp'; then $(CYGPATH_W) 'abradford/black_scholes.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/black_scholes.cpp'; fi`
-
-abradford/liboptionmatrix_a-delta.o: abradford/delta.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-delta.o -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-delta.Tpo -c -o abradford/liboptionmatrix_a-delta.o `test -f 'abradford/delta.cpp' || echo '$(srcdir)/'`abradford/delta.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-delta.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-delta.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/delta.cpp' object='abradford/liboptionmatrix_a-delta.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-delta.o `test -f 'abradford/delta.cpp' || echo '$(srcdir)/'`abradford/delta.cpp
-
-abradford/liboptionmatrix_a-delta.obj: abradford/delta.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-delta.obj -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-delta.Tpo -c -o abradford/liboptionmatrix_a-delta.obj `if test -f 'abradford/delta.cpp'; then $(CYGPATH_W) 'abradford/delta.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/delta.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-delta.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-delta.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/delta.cpp' object='abradford/liboptionmatrix_a-delta.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-delta.obj `if test -f 'abradford/delta.cpp'; then $(CYGPATH_W) 'abradford/delta.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/delta.cpp'; fi`
-
-abradford/liboptionmatrix_a-future.o: abradford/future.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-future.o -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-future.Tpo -c -o abradford/liboptionmatrix_a-future.o `test -f 'abradford/future.cpp' || echo '$(srcdir)/'`abradford/future.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-future.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-future.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/future.cpp' object='abradford/liboptionmatrix_a-future.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-future.o `test -f 'abradford/future.cpp' || echo '$(srcdir)/'`abradford/future.cpp
-
-abradford/liboptionmatrix_a-future.obj: abradford/future.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-future.obj -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-future.Tpo -c -o abradford/liboptionmatrix_a-future.obj `if test -f 'abradford/future.cpp'; then $(CYGPATH_W) 'abradford/future.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/future.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-future.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-future.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/future.cpp' object='abradford/liboptionmatrix_a-future.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-future.obj `if test -f 'abradford/future.cpp'; then $(CYGPATH_W) 'abradford/future.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/future.cpp'; fi`
-
-abradford/liboptionmatrix_a-merton_73.o: abradford/merton_73.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-merton_73.o -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-merton_73.Tpo -c -o abradford/liboptionmatrix_a-merton_73.o `test -f 'abradford/merton_73.cpp' || echo '$(srcdir)/'`abradford/merton_73.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-merton_73.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-merton_73.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/merton_73.cpp' object='abradford/liboptionmatrix_a-merton_73.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-merton_73.o `test -f 'abradford/merton_73.cpp' || echo '$(srcdir)/'`abradford/merton_73.cpp
-
-abradford/liboptionmatrix_a-merton_73.obj: abradford/merton_73.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-merton_73.obj -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-merton_73.Tpo -c -o abradford/liboptionmatrix_a-merton_73.obj `if test -f 'abradford/merton_73.cpp'; then $(CYGPATH_W) 'abradford/merton_73.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/merton_73.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-merton_73.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-merton_73.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/merton_73.cpp' object='abradford/liboptionmatrix_a-merton_73.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-merton_73.obj `if test -f 'abradford/merton_73.cpp'; then $(CYGPATH_W) 'abradford/merton_73.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/merton_73.cpp'; fi`
-
-abradford/liboptionmatrix_a-pre-BSM.o: abradford/pre-BSM.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-pre-BSM.o -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-pre-BSM.Tpo -c -o abradford/liboptionmatrix_a-pre-BSM.o `test -f 'abradford/pre-BSM.cpp' || echo '$(srcdir)/'`abradford/pre-BSM.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-pre-BSM.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-pre-BSM.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/pre-BSM.cpp' object='abradford/liboptionmatrix_a-pre-BSM.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-pre-BSM.o `test -f 'abradford/pre-BSM.cpp' || echo '$(srcdir)/'`abradford/pre-BSM.cpp
-
-abradford/liboptionmatrix_a-pre-BSM.obj: abradford/pre-BSM.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT abradford/liboptionmatrix_a-pre-BSM.obj -MD -MP -MF abradford/$(DEPDIR)/liboptionmatrix_a-pre-BSM.Tpo -c -o abradford/liboptionmatrix_a-pre-BSM.obj `if test -f 'abradford/pre-BSM.cpp'; then $(CYGPATH_W) 'abradford/pre-BSM.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/pre-BSM.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) abradford/$(DEPDIR)/liboptionmatrix_a-pre-BSM.Tpo abradford/$(DEPDIR)/liboptionmatrix_a-pre-BSM.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='abradford/pre-BSM.cpp' object='abradford/liboptionmatrix_a-pre-BSM.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o abradford/liboptionmatrix_a-pre-BSM.obj `if test -f 'abradford/pre-BSM.cpp'; then $(CYGPATH_W) 'abradford/pre-BSM.cpp'; else $(CYGPATH_W) '$(srcdir)/abradford/pre-BSM.cpp'; fi`
-
-spinsky/liboptionmatrix_a-binomial.o: spinsky/binomial.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spinsky/liboptionmatrix_a-binomial.o -MD -MP -MF spinsky/$(DEPDIR)/liboptionmatrix_a-binomial.Tpo -c -o spinsky/liboptionmatrix_a-binomial.o `test -f 'spinsky/binomial.cpp' || echo '$(srcdir)/'`spinsky/binomial.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) spinsky/$(DEPDIR)/liboptionmatrix_a-binomial.Tpo spinsky/$(DEPDIR)/liboptionmatrix_a-binomial.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='spinsky/binomial.cpp' object='spinsky/liboptionmatrix_a-binomial.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spinsky/liboptionmatrix_a-binomial.o `test -f 'spinsky/binomial.cpp' || echo '$(srcdir)/'`spinsky/binomial.cpp
-
-spinsky/liboptionmatrix_a-binomial.obj: spinsky/binomial.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spinsky/liboptionmatrix_a-binomial.obj -MD -MP -MF spinsky/$(DEPDIR)/liboptionmatrix_a-binomial.Tpo -c -o spinsky/liboptionmatrix_a-binomial.obj `if test -f 'spinsky/binomial.cpp'; then $(CYGPATH_W) 'spinsky/binomial.cpp'; else $(CYGPATH_W) '$(srcdir)/spinsky/binomial.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) spinsky/$(DEPDIR)/liboptionmatrix_a-binomial.Tpo spinsky/$(DEPDIR)/liboptionmatrix_a-binomial.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='spinsky/binomial.cpp' object='spinsky/liboptionmatrix_a-binomial.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liboptionmatrix_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spinsky/liboptionmatrix_a-binomial.obj `if test -f 'spinsky/binomial.cpp'; then $(CYGPATH_W) 'spinsky/binomial.cpp'; else $(CYGPATH_W) '$(srcdir)/spinsky/binomial.cpp'; fi`
 
 checks-checks.o: checks.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(checks_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT checks-checks.o -MD -MP -MF $(DEPDIR)/checks-checks.Tpo -c -o checks-checks.o `test -f 'checks.cpp' || echo '$(srcdir)/'`checks.cpp
@@ -1272,10 +1125,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f abradford/$(DEPDIR)/$(am__dirstamp)
-	-rm -f abradford/$(am__dirstamp)
-	-rm -f spinsky/$(DEPDIR)/$(am__dirstamp)
-	-rm -f spinsky/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1286,7 +1135,7 @@ clean-am: clean-checkPROGRAMS clean-generic clean-noinstLIBRARIES \
 	clean-noinstPROGRAMS mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR) abradford/$(DEPDIR) spinsky/$(DEPDIR)
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -1332,7 +1181,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR) abradford/$(DEPDIR) spinsky/$(DEPDIR)
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1368,7 +1217,6 @@ uninstall-am:
 
 .PRECIOUS: Makefile
 
-#/usr/local/lib/libQuantLib.a
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

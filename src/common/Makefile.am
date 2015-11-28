@@ -28,23 +28,13 @@ sanity.cpp\
 termstructure.cpp\
 time.cpp\
 tickers.cpp\
-QuantLib.h\
-abradford/basicmodels.h\
-abradford/black_76.cpp\
-abradford/black_scholes.cpp\
-abradford/delta.cpp\
-abradford/future.cpp\
-abradford/merton_73.cpp\
-abradford/pre-BSM.cpp\
-spinsky/binomial.cpp\
-spinsky/binomial.h
+QuantLib.h
 
 liboptionmatrix_a_CFLAGS=$(FM) -O3 -std=c99 \
 	-Werror -Wshadow -W -Wall -pedantic -DNDEBUG -Wmissing-prototypes
 
-liboptionmatrix_a_CPPFLAGS = -I$(top_srcdir)/src/financialrecipes/src -I$(top_srcdir)/src/metaoptions/src -I/.
-liboptionmatrix_a_LIBADD = ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
+liboptionmatrix_a_CPPFLAGS = -I$(top_srcdir)/src/abradford -I$(top_srcdir)/src/financialrecipes/src -I$(top_srcdir)/src/metaoptions/src -I/.
+liboptionmatrix_a_LIBADD = ../models/abradford/libabradford.a ../models/spinsky/libspinsky.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
 
-checks_CPPFLAGS = -I$(top_srcdir)/src/models/financialrecipes/src -I$(top_srcdir)/src/models/metaoptions/src -I$(top_srcdir)/src/common
-checks_LDADD = ./liboptionmatrix.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
-#/usr/local/lib/libQuantLib.a
+checks_CPPFLAGS = -I$(top_srcdir)/src/models/abradford -I$(top_srcdir)/src/models/spinsky -I$(top_srcdir)/src/models/financialrecipes/src -I$(top_srcdir)/src/models/metaoptions/src -I$(top_srcdir)/src/common
+checks_LDADD = ./liboptionmatrix.a ../models/abradford/libabradford.a ../models/spinsky/libspinsky.a  ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a

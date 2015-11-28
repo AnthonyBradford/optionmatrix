@@ -13,4 +13,4 @@ curses_misc.cpp
 
 optionmatrix_console_CPPFLAGS = -I$(top_srcdir)/src/models/financialrecipes/src -I$(top_srcdir)/src/models/metaoptions/src -I$(top_srcdir)/src/common
 
-optionmatrix_console_LDADD = ../common/liboptionmatrix.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
+optionmatrix_console_LDADD = ../common/liboptionmatrix.a ../models/abradford/libabradford.a ../models/spinsky/libspinsky.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a

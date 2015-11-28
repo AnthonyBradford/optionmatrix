@@ -7085,7 +7085,7 @@ else
   HELP2MAN=:
 fi
 
-ac_config_files="$ac_config_files Makefile src/models/financialrecipes/src/Makefile src/models/financialrecipes/examples/Makefile src/models/metaoptions/src/Makefile src/models/metaoptions/tests/Makefile src/common/Makefile src/curses/Makefile src/gtk/Makefile man/Makefile doc/Makefile doc/html/Makefile"
+ac_config_files="$ac_config_files Makefile src/models/abradford/Makefile src/models/spinsky/Makefile src/models/financialrecipes/src/Makefile src/models/financialrecipes/examples/Makefile src/models/metaoptions/src/Makefile src/models/metaoptions/tests/Makefile src/common/Makefile src/curses/Makefile src/gtk/Makefile man/Makefile doc/Makefile doc/html/Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -7821,6 +7821,8 @@ do
     "config.h") CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+    "src/models/abradford/Makefile") CONFIG_FILES="$CONFIG_FILES src/models/abradford/Makefile" ;;
+    "src/models/spinsky/Makefile") CONFIG_FILES="$CONFIG_FILES src/models/spinsky/Makefile" ;;
     "src/models/financialrecipes/src/Makefile") CONFIG_FILES="$CONFIG_FILES src/models/financialrecipes/src/Makefile" ;;
     "src/models/financialrecipes/examples/Makefile") CONFIG_FILES="$CONFIG_FILES src/models/financialrecipes/examples/Makefile" ;;
     "src/models/metaoptions/src/Makefile") CONFIG_FILES="$CONFIG_FILES src/models/metaoptions/src/Makefile" ;;

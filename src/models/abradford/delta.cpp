@@ -29,8 +29,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "../defs.h"
-#include "../extern.h" /* cnd() prototype in here */
+#include "../../common/defs.h"
+#include "../../common/extern.h" /* cnd() prototype in here */
 
 #include "basicmodels.h"
 

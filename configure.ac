@@ -208,6 +208,8 @@ else
 fi
 
 AC_CONFIG_FILES([Makefile
+                 src/models/abradford/Makefile
+		 src/models/spinsky/Makefile
                  src/models/financialrecipes/src/Makefile
 		 src/models/financialrecipes/examples/Makefile
                  src/models/metaoptions/src/Makefile

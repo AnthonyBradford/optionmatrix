@@ -240,6 +240,12 @@ void program_usage(char *isConsoleVersion)
 
   printf("Financial Derivatives Calculator featuring models from ");
 
+#ifdef HAVE_QL_QUANTLIB_HPP
+
+  printf("QuantLib, ");
+
+#endif
+
 #ifdef METAOPTIONS
 
   printf("Bjorn Augestad, ");
@@ -275,6 +281,10 @@ void program_usage(char *isConsoleVersion)
 
 #if defined(HAVE_LIBGSL) | defined(HAVE_NEWMAT_NEWMAT_H) | defined(HAVE_ITPP_ITBASE_H) | defined(METAOPTIONS) | defined(FINRECIPES)
   printf("Compiled with the following libraries: ");
+#endif
+
+#ifdef HAVE_QL_QUANTLIB_HPP
+  printf("QuantLib, ");
 #endif
 
 #ifdef METAOPTIONS

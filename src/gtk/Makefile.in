@@ -114,6 +114,8 @@ am_optionmatrix_OBJECTS = optionmatrix-gtk_bonds.$(OBJEXT) \
 	optionmatrix-gtk_thread.$(OBJEXT)
 optionmatrix_OBJECTS = $(am_optionmatrix_OBJECTS)
 optionmatrix_DEPENDENCIES = ../common/liboptionmatrix.a \
+	../models/abradford/libabradford.a \
+	../models/spinsky/libspinsky.a \
 	../models/financialrecipes/src/librecipes.a \
 	../models/metaoptions/src/libmetaoptions.a
 optionmatrix_LINK = $(CXXLD) $(optionmatrix_CXXFLAGS) $(CXXFLAGS) \
@@ -341,7 +343,7 @@ images/optionmatrixdos.ico\
 images/optionmatrix.ico
 
 optionmatrix_CPPFLAGS = -I$(top_srcdir)/src/models/financialrecipes/src -I$(top_srcdir)/src/models/metaoptions/src -I$(top_srcdir)/src/common
-optionmatrix_LDADD = ../common/liboptionmatrix.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
+optionmatrix_LDADD = ../common/liboptionmatrix.a ../models/abradford/libabradford.a ../models/spinsky/libspinsky.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
 all: all-am
 
 .SUFFIXES:

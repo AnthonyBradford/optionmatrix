@@ -43,7 +43,7 @@ images/optionmatrix.ico
 
 optionmatrix_CPPFLAGS = -I$(top_srcdir)/src/models/financialrecipes/src -I$(top_srcdir)/src/models/metaoptions/src -I$(top_srcdir)/src/common
 
-optionmatrix_LDADD = ../common/liboptionmatrix.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
+optionmatrix_LDADD = ../common/liboptionmatrix.a ../models/abradford/libabradford.a ../models/spinsky/libspinsky.a ../models/financialrecipes/src/librecipes.a ../models/metaoptions/src/libmetaoptions.a
 
 install-glade-file:
 	for file in $(GLADE_FILE); do \

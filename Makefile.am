@@ -1,4 +1,4 @@
-SUBDIRS = src/models/financialrecipes/src src/models/financialrecipes/examples src/models/metaoptions/src src/models/metaoptions/tests src/common src/curses src/gtk man doc doc/html
+SUBDIRS = src/models/abradford/ src/models/spinsky src/models/financialrecipes/src src/models/financialrecipes/examples src/models/metaoptions/src src/models/metaoptions/tests src/common src/curses src/gtk man doc doc/html
 
 appicondir = $(datadir)/pixmaps
 appicon_DATA = icons/32x32/optionmatrix.xpm\

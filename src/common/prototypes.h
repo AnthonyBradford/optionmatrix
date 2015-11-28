@@ -31,11 +31,11 @@
 #define __PROTOTYPES__
 
 #ifdef ABRADFORD
- #include "abradford/basicmodels.h"
+ #include "../models/abradford/basicmodels.h"
 #endif
 
 #ifdef SPINSKY
- #include "spinsky/binomial.h"
+ #include "../models/spinsky/binomial.h"
 #endif
 
 #if defined(__cplusplus) && defined(FINRECIPES)
