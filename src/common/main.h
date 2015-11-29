@@ -69,6 +69,14 @@ const int sizeofoptionscycle      = sizeof(optionscycle);
 
 const struct numerical_integration_method integration_method[] = {
 
+    /*
+      double (*method) (const double a, const double b, int n, double (*fun) (double,double,double),const double parm2, const double parm3);
+      char           des[30];
+      mutable int    resolution;
+      bool           allowOnlyEven;
+      int            UpperLimit;
+    */
+
     { 0,                "PolyApprox6",          0, 0,  0 },
     { 0,                "PolyApprox4",          0, 0,  0 },
     { 0,                "Rational1.0*E-7",      0, 0,  0 },
@@ -3347,7 +3355,7 @@ const struct option_algorithm option_algorithms[] = {
 
 #ifdef HAVE_QL_QUANTLIB_HPP
 
-    { QUANTLIB_BLACKSCHOLES_EUROPEAN,  "Black-Scholes 4", "QuantLib",  
+    { QUANTLIB_BLACKSCHOLES_EUROPEAN,  "Black-Scholes 4", "QuantLib, QuantLib.a",  
     "Black-Scholes European QuantLib. Model is only accurate to the day.",
     "",
     "",
@@ -3368,7 +3376,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-    { QUANTLIB_HESTON_SEMI_ANALYTIC,  "Heston Semi-Analytic", "QuantLib",  
+    { QUANTLIB_HESTON_SEMI_ANALYTIC,  "Heston Semi-Analytic", "QuantLib, QuantLib.a",  
     "Heston Semi-Analytic QuantLib. Model is only accurate to the day.",
     "",
     "",
@@ -3389,7 +3397,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-    { QUANTLIB_BARONE_ADESI_WHALEY,  "Barone-Adesi Whaley", "QuantLib",  
+    { QUANTLIB_BARONE_ADESI_WHALEY,  "Barone-Adesi Whaley", "QuantLib, QuantLib.a",  
     "Barone-Adesi and Whaley approximation for American. Model is only accurate to the day.",
     "",
     "",
@@ -3410,7 +3418,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-    { QUANTLIB_BJERKSUND_STENSLAND,  "Bjerksund Stensland", "QuantLib",  
+    { QUANTLIB_BJERKSUND_STENSLAND,  "Bjerksund Stensland", "QuantLib, QuantLib.a",  
     "Bjerksund/Stensland approximation for American. Model is only accurate to the day.",
     "",
     "",
@@ -3431,7 +3439,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-    { QUANTLIB_FINITE_DIFFERENCES_EUROPEAN,  "Finite Diff Euro", "QuantLib",  
+    { QUANTLIB_FINITE_DIFFERENCES_EUROPEAN,  "Finite Diff Euro", "QuantLib, QuantLib.a",  
     "Finite Differences European. Model is only accurate to the day.",
     "",
     "",
@@ -3452,7 +3460,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-    { QUANTLIB_FINITE_DIFFERENCES_AMERICAN,  "Finite Diff American", "QuantLib",  
+    { QUANTLIB_FINITE_DIFFERENCES_AMERICAN,  "Finite Diff American", "QuantLib, QuantLib.a",  
     "Finite Differences American. Model is only accurate to the day.",
     "",
     "",

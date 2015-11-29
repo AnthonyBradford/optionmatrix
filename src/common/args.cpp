@@ -129,15 +129,15 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
 
          case 'D':
 
-	    //printf("optarg = %s\n", optarg);
-	    sprintf(properties.source_directory_prefix,"%s", optarg);
+            //printf("optarg = %s\n", optarg);
+            sprintf(properties.source_directory_prefix,"%s", optarg);
 
             break;
 
-	 case 'x':
+         case 'x':
 
-	    //printf("optarg = %s\n", optarg);
-	    sprintf(properties.data_dir,"%s", optarg);
+            //printf("optarg = %s\n", optarg);
+            sprintf(properties.data_dir,"%s", optarg);
 
             break;
 
@@ -365,7 +365,7 @@ void program_source()
         printf("Source code cannot be accessed: %s\n",option_algorithms[index].sourceCode);
       } else if( strcmp( option_algorithms[index].sourceCode2,"") != 0 )
       {
-	if( access( source_levelup2, F_OK ) != 0 )
+        if( access( source_levelup2, F_OK ) != 0 )
          {
            printf("Source code cannot be accessed: %s\n",option_algorithms[index].sourceCode2);
          }
@@ -451,13 +451,13 @@ void program_check_pricing_models(bool quietMode)
     if( option_algorithms[index].assetClass == BOND_CLASS )
     {
       if ( !quietMode )
-	printf("Bond class check not implemented\n");
+        printf("Bond class check not implemented\n");
       continue;
 
     } else if( option_algorithms[index].assetClass == TERMSTRUCTURE_CLASS )
     {
       if ( !quietMode )
-	printf("Term Structure class check not implemented\n");
+        printf("Term Structure class check not implemented\n");
       continue;
     }
 
@@ -513,8 +513,8 @@ void program_check_pricing_models(bool quietMode)
              optiondata = option_call(&dat);
              totalNumberOfTests++;
 
-	     if ( !quietMode )
-	       printf("%f ",optiondata.call);
+             if ( !quietMode )
+               printf("%f ",optiondata.call);
 
            }
 
@@ -523,8 +523,8 @@ void program_check_pricing_models(bool quietMode)
              optiondata = option_put(&dat);
              totalNumberOfTests++;
 
-	     if ( !quietMode )
-	       printf("%f ",optiondata.put);
+             if ( !quietMode )
+               printf("%f ",optiondata.put);
 
             }
 
@@ -535,8 +535,8 @@ void program_check_pricing_models(bool quietMode)
            futuredata = future(&dat);
            totalNumberOfTests++;
 
-	   if ( !quietMode )
-	     printf("%f ", futuredata.price);
+           if ( !quietMode )
+             printf("%f ", futuredata.price);
 
            // break futures have no strikes to iterate...
            break;
@@ -544,8 +544,8 @@ void program_check_pricing_models(bool quietMode)
          } else
          {
            // should not reach...
-	   if ( !quietMode )
-	     printf("program_check_pricing_models(): asset class not understood: %d\n", option_algorithms[index].assetClass);
+           if ( !quietMode )
+             printf("program_check_pricing_models(): asset class not understood: %d\n", option_algorithms[index].assetClass);
 
            break;
          }
@@ -571,7 +571,7 @@ void program_check_pricing_models(bool quietMode)
 
   printf("Total number of tests run: %.0f\n", totalNumberOfTests);
   printf("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000)
-	 - (start.tv_sec + (double) start.tv_usec / 1000000)));
+          - (start.tv_sec + (double) start.tv_usec / 1000000)));
   printf("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);
 
   #ifndef ABRADFORD

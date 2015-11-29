@@ -28,6 +28,6 @@
 */
 
 const QuantLib::Month QuantLibMonths[]= { QuantLib::January, QuantLib::February, QuantLib::March,
-					  QuantLib::April,   QuantLib::May,      QuantLib::June,
-					  QuantLib::July,    QuantLib::August,   QuantLib::September,
+                                          QuantLib::April,   QuantLib::May,      QuantLib::June,
+                                          QuantLib::July,    QuantLib::August,   QuantLib::September,
                                           QuantLib::October, QuantLib::November, QuantLib::December };

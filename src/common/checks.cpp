@@ -95,7 +95,7 @@ bool process_arguments_checks(int argc, char **argv, bool *debug)
 
          case 'q':
 
-	    return true;
+            return true;
 
          case 'v':
 

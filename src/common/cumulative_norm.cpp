@@ -105,6 +105,12 @@ double cnd(const double d1)
           dd1 = 0.5 + erf(d1/1.414213562) / 2.00;
 
           break;
+
+        default:
+
+          fprintf(stderr,"Integration type: %d not found\n", properties.integration_type);
+
+          break;
       }
     }
 

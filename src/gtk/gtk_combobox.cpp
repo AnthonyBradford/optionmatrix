@@ -166,7 +166,7 @@ static void is_model_sensitive(GtkCellLayout *cell_layout, GtkCellRenderer *cell
 
 void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListWithGroup *array, const size_t number, treeToIndex& TreeToIndex, const int sort)
 {
-  g_print("set_up_combobox_with_array_use_groups():\n");
+  g_print("set_up_combobox_with_array_use_groups()\n");
 
   static GtkTreeStore *store;
   static GtkTreeStore *destroy_store;
@@ -382,7 +382,7 @@ void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *
 
 void on_comboboxStrikes_changed(GtkComboBox *combo, struct _properties *properties)
 {
-  //g_print("on_comboboxStrikes_changed(): ");
+  //g_print("on_comboboxStrikes_changed()\n");
   properties->strikestoogle = gtk_combo_box_get_active(combo);
 
   properties->strike_offset = (int) properties->strike_offset;
@@ -922,7 +922,7 @@ void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties
 
 void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties)
 {
-  g_print("on_comboboxModel_changed():\n");
+  g_print("on_comboboxModel_changed()\n");
 
   GtkTreeIter iter;
   GtkTreeModel *mstore;
@@ -1170,14 +1170,14 @@ void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties
 
 void on_comboboxState_changed(GtkComboBox *combo, struct _properties *properties)
 {
-  //g_print("on_comboboxState_changed(): ");
+  //g_print("on_comboboxState_changed()\n");
   properties->data.UsePound = gtk_combo_box_get_active(combo) + 1;
   //g_print("State = %d\n",properties->data.UsePound);
 }
 
 void on_comboboxCycle_changed(GtkComboBox *combo, struct _properties *properties)
 {
-  //g_print("on_comboboxCycle_changed(): ");
+  g_print("on_comboboxCycle_changed()\n");
   properties->optionscycle = gtk_combo_box_get_active(combo);
 
   expires(LEG1,30,properties->skipmonth,properties);
@@ -1188,8 +1188,11 @@ void on_comboboxCycle_changed(GtkComboBox *combo, struct _properties *properties
 
 void on_comboboxCND_changed(GtkComboBox *combo, struct _properties *properties)
 {
-  //g_print("on_comboboxCND_changed(): ");
+  g_print("on_comboboxCND_changed() to ");
+   
   properties->integration_type = gtk_combo_box_get_active(combo);
+
+  g_print("%d %s\n", properties->integration_type,integration_method[properties->integration_type].des);
 
   properties->distribution_mean = 0.0;
   gtk_spin_button_set_value(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonDistMean),0.0);
