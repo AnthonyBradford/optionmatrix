@@ -216,7 +216,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { BLACKSCHOLES,      "Black-Scholes", "Anthony Bradford",  
     "",
-    "common/abradford/black_scholes.cpp",
+    "models/abradford/black_scholes.cpp",
     "",
     "0;BSM",
                                        1, // supportRealTime
@@ -237,7 +237,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { MERTON73,          "Merton-73",  "Anthony Bradford",  
     "Continuous dividends supported.",
-    "common/abradford/merton_73.cpp",
+    "models/abradford/merton_73.cpp",
     "",
     "0;BSM",
                                        1, // supportRealTime
@@ -258,7 +258,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { BLACK76,           "Black-76",  "Anthony Bradford",
     "",
-    "common/abradford/black_76.cpp",
+    "models/abradford/black_76.cpp",
     "",
     "a;Futures",
                                        1, // supportRealTime
@@ -282,7 +282,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { AMERICAN_CRR,      "AmericanCRR", "Seth Pinsky",
     "Increase / decrease binomial steps with 'G', 'g' keys when displayed.",
-    "common/spinsky/binomial.cpp",
+    "models/spinsky/binomial.cpp",
     "",
     "5;Trees & Finite Diff;Binomial",
                                        1, // supportRealTime
@@ -303,7 +303,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { AMERICAN_EQUIPROB, "AmericanEqui", "Seth Pinsky",
     "Increase / decrease binomial steps with 'G', 'g' keys when displayed.",
-    "common/spinsky/binomial.cpp",
+    "models/spinsky/binomial.cpp",
     "",
     "5;Trees & Finite Diff;Binomial",
                                        1, // supportRealTime
@@ -324,7 +324,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { EURO_CRR,          "EuropeanCRR",  "Seth Pinsky",
     "Increase / decrease binomial steps with 'G', 'g' keys when displayed.",
-    "common/spinsky/binomial.cpp",
+    "models/spinsky/binomial.cpp",
     "",
     "5;Trees & Finite Diff;Binomial",
                                        1, // supportRealTime
@@ -345,7 +345,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { EURO_EQUIPROB,     "EuropeanEqui",  "Seth Pinsky",
     "Increase / decrease binomial steps with 'G', 'g' keys when displayed.",
-    "common/spinsky/binomial.cpp",
+    "models/spinsky/binomial.cpp",
     "",
     "5;Trees & Finite Diff;Binomial",
                                        1, // supportRealTime
@@ -3133,7 +3133,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { FUTURES2,          "Futures Div",     "Anthony Bradford",
     "Continuous dividends supported.",
-    "common/abradford/future.cpp",
+    "models/abradford/future.cpp",
     "",
     "a;Futures",
                                        1, // supportRealTime
@@ -3154,7 +3154,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { BACHELIER,      "Bachelier-1900", "Anthony Bradford",  
     "Louis Bachelier, French Mathematician",
-    "common/abradford/pre-BSM.cpp",
+    "models/abradford/pre-BSM.cpp",
     "",
     "i;Pre-BSM",
                                        1, // supportRealTime
@@ -3175,7 +3175,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { BACHELIERMODIFIED,      "BachelierMod", "Anthony Bradford",  
     "Bachelier Model modified to adjust for time value of money",
-    "common/abradford/pre-BSM.cpp",
+    "models/abradford/pre-BSM.cpp",
     "",
     "i;Pre-BSM",
                                        1, // supportRealTime
@@ -3196,7 +3196,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { SPRENKLE,      "Sprenkle-64", "Anthony Bradford",  
     "",
-    "common/abradford/pre-BSM.cpp",
+    "models/abradford/pre-BSM.cpp",
     "",
     "i;Pre-BSM",
                                        1, // supportRealTime
@@ -3217,7 +3217,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { BONESS,      "Boness-64", "Anthony Bradford",  
     "",
-    "common/abradford/pre-BSM.cpp",
+    "models/abradford/pre-BSM.cpp",
     "",
     "i;Pre-BSM",
                                        1, // supportRealTime
@@ -3238,7 +3238,7 @@ const struct option_algorithm option_algorithms[] = {
 
   { SAMUELSON,      "Samuelson-65", "Anthony Bradford",  
     "",
-    "common/abradford/pre-BSM.cpp",
+    "models/abradford/pre-BSM.cpp",
     "",
     "i;Pre-BSM",
                                        1, // supportRealTime
