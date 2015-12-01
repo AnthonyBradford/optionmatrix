@@ -2276,12 +2276,12 @@ struct _data option_call(struct _data *dat)
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
-        decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
-        //g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
-        QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+	decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
+        //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
+        QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
         decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
-        //g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
+        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
 
         // our options
         QuantLib::Option::Type type(QuantLib::Option::Call);
@@ -2334,9 +2334,9 @@ struct _data option_call(struct _data *dat)
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
-        decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+        decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
         //g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
-        QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+        QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
         decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
         //g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
@@ -2390,6 +2390,8 @@ struct _data option_call(struct _data *dat)
         callprice = europeanOption.NPV();
       }
 
+      break;
+
     case QUANTLIB_BARONE_ADESI_WHALEY:
 
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
@@ -2397,9 +2399,9 @@ struct _data option_call(struct _data *dat)
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
-        decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+        decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
         //g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
-        QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+        QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
         decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
         //g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
@@ -2457,9 +2459,9 @@ struct _data option_call(struct _data *dat)
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
-        decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+        decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
         //g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
-        QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+        QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
         decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
         //g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
@@ -2514,9 +2516,9 @@ struct _data option_call(struct _data *dat)
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
-        decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+        decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
         //g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
-        QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+        QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
         decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
         //g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
@@ -2574,9 +2576,9 @@ struct _data option_call(struct _data *dat)
        // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
-        decimal_date_to_real_dates( (double) 1 / (double) 365, &year, &month, &day, &hour, &min, &second);
+        decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
         //g_print("1 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
-        QuantLib::Date settlementDate(day-1, QuantLibMonths[month], year);
+        QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
         decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
         //g_print("2 decimal_date_to_real_dates(%f, %d, %d, %d, hour, min, second)\n", t, year, month, day);
@@ -2671,8 +2673,8 @@ struct _data option_call(struct _data *dat)
 
   catch (exception& e)
   {
-    //g_print("option_call(): Exception caught: %s\n", e.what() );
-    //g_print("P = %f, X = %f, R = %f, V = %f, t = %f, Div = %f\n", price,strike,rate,volatility,t,dividend);
+    fprintf(stderr,"option_call(): Exception caught: %s\n", e.what() );
+    fprintf(stderr,"P = %f, X = %f, R = %f, V = %f, t = %f, Div = %f\n", price,strike,rate,volatility,t,dividend);
 
     // program might not be recoverable...
     fflush(NULL);
