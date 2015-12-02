@@ -37,6 +37,14 @@
 #include <string>
 #include <vector>
 
+/* models to use. comment out to exclude */
+#define ABRADFORD
+#define SPINSKY
+#define METAOPTIONS
+#define FINRECIPES
+#define QUANTLIB
+//#define DUMMYTESTMODELS     // For testing
+
 #ifndef HAVE_LIBPTHREAD
 # error Sorry, missing pthread library which is needed by this code
 #endif
@@ -122,13 +130,6 @@
 #if defined(HAVE_LIBGTK_3) || defined(HAVE_LIBGTK_X11_2_0)
 # include "../gtk/gtk_include.h"
 #endif
-
-/* models to use. comment out to exclude */
-#define ABRADFORD
-#define SPINSKY
-#define METAOPTIONS
-#define FINRECIPES
-//#define DUMMYTESTMODELS     // For testing
 
 using namespace std;
 

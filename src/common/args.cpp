@@ -403,7 +403,9 @@ void program_check_pricing_models(bool quietMode)
   int indexModelsWithPricingIssues = 0;
 
   // EURODIVIDENDS has a mutex lock problem on Fedora 32 bit but not Ubuntu...
-  const int modelsWithPricingIssues[] = { 
+  const int modelsWithPricingIssues[] = {
+    
+#ifdef METAOPTIONS
     LOOKBARRIER,
     PARTIALTIMEBARRIER,
     PARTIALFIXEDLB,
@@ -414,10 +416,15 @@ void program_check_pricing_models(bool quietMode)
     PUTSONOPTIONS,
     EXCHANGEEXCHANGEOPTION,
     COMPLEXCHOOSER,
+#endif // METAOPTIONS
+
+#ifdef FINRECIPES
     EURODIVIDENDS,
     AMPROPORTDIVSBINOMIAL,
     BERMUDIANBINOMIAL,
     BSCOUPONBOND
+#endif // FINRECIPES
+
   };
 
   const int numberOfPricingIssues =  sizeof(modelsWithPricingIssues)/sizeof(modelsWithPricingIssues[0]);
@@ -602,7 +609,7 @@ void program_check_pricing_models(bool quietMode)
   printf("HAVE_NEWMAT_NEWMAT_H models not defined in source code.\n");
 #endif
 
-#ifndef HAVE_QL_QUANTLIB_HPP
+#if !defined(HAVE_QL_QUANTLIB_HPP) || !defined(QUANTLIB)
   printf("HAVE_QL_QUANTLIB_HPP models not defined in source code.\n");
 #endif
 
@@ -729,6 +736,7 @@ void program_check_pricing_time(int modelnumber, int iterations)
       printf("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000)
                   - (start.tv_sec + (double) start.tv_usec / 1000000)));
       printf("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);
+
     }
 
   } else if( option_algorithms[modelnumber].assetClass == FUTURES_CLASS )
@@ -754,8 +762,6 @@ void program_check_pricing_time(int modelnumber, int iterations)
     // should not reach...
     printf("program_check_pricing_time(): Error: Asset class not understood: %d\n", option_algorithms[modelnumber].assetClass);
   }
-
-  printf("b blort\n");
 
   dat.amounts.erase( dat.amounts.begin(), dat.amounts.end() );
   dat.times.erase( dat.times.begin(), dat.times.end() );

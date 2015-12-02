@@ -31,6 +31,10 @@
  #include "../models/financialrecipes/src/fin_recipes.h"
 #endif
 
+#ifndef QUANTLIB
+#undef HAVE_QL_QUANTLIB_HPP
+#endif
+
 /* extend feb 1 day during leap year */
 int months[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -88,6 +92,30 @@ const struct numerical_integration_method integration_method[] = {
     { 0,                "erf()",                0, 0,  0 }
 
 };
+
+const struct _strike_control strike_control[] = {
+
+  /*
+    double xcontrol;
+    double incrementor;
+    int strikes5or1;
+    double retdiscard;
+    char des[5];
+    int precision;
+    double sliderScale;
+  */
+
+  {     5,      .5,    5,   .5,     "5",    0,    1, },
+  {     1,       1,    1,   .5,     "1",    0,    1, },
+  {    .5,      .5,    1,   -1,    ".5",    0,    1, },
+  {    .1,      .1,    1,   -1,    ".1",    1,    1, },
+  {   .01,     .01,    1,   -1,   ".01",    2,    2, },
+  {  .001,    .001,    1,   -1,  ".001",    3,    2  },
+  {     0,       0,    1,   -1,  "CUST",    5,    0  }
+
+};
+
+#ifdef METAOPTIONS
 
 const struct _int_to_name nameliststandardbarrier[] = { { "DOWN_IN" }, { "DOWN_OUT" }, { "UP_IN" }, { "UP_OUT" } };
 const struct _int_to_name namelistlookbarrier[] =   { { "IN" }, { "OUT" } };
@@ -160,6 +188,8 @@ const struct _int_to_name namelistTwoAssetBarrier[]  = {
 const int transextremeoptionput[] =  { 2, 4 };
 const int transextremeoptioncall[] = { 1, 3 };
 
+#endif // METAOPTIONS
+
 #ifdef FINRECIPES
 
 const struct _int_to_function funlistcall[] = {
@@ -188,8 +218,6 @@ const struct term_structure term_structure_list[] = {
 
 const int sizeofterm_structure_list = sizeof(term_structure_list);
 
-#endif
-
 const struct _int_to_name namefunlist[] = { 
                           { "callput" },
                           { "call_cash_or_nothing"},
@@ -203,6 +231,10 @@ const struct _int_to_name namefunlist2[] = {
                           { "lookback_callput" }, 
                     };
 
+#endif // FINRECIPES
+
+#ifdef DUMMYTESTMODELS
+
 const struct _int_to_name nametestlist[] = { 
                           { "Test State" },
                           { "Test State" },
@@ -210,11 +242,13 @@ const struct _int_to_name nametestlist[] = {
                           { "Test State" } 
                     };
 
+#endif // DUMMYTESTMODELS
+
 const struct option_algorithm option_algorithms[] = {
 
 #ifdef ABRADFORD
 
-  { BLACKSCHOLES,      "Black-Scholes", "Anthony Bradford",  
+  { BLACKSCHOLES,      "Black-Scholes", "Anthony Bradford, libabradford.a",  
     "",
     "models/abradford/black_scholes.cpp",
     "",
@@ -235,7 +269,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { MERTON73,          "Merton-73",  "Anthony Bradford",  
+  { MERTON73,          "Merton-73",  "Anthony Bradford, libabradford.a",  
     "Continuous dividends supported.",
     "models/abradford/merton_73.cpp",
     "",
@@ -256,7 +290,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { BLACK76,           "Black-76",  "Anthony Bradford",
+  { BLACK76,           "Black-76",  "Anthony Bradford, libabradford.a",
     "",
     "models/abradford/black_76.cpp",
     "",
@@ -280,7 +314,7 @@ const struct option_algorithm option_algorithms[] = {
 
 #ifdef SPINSKY
 
-  { AMERICAN_CRR,      "AmericanCRR", "Seth Pinsky",
+  { AMERICAN_CRR,      "AmericanCRR", "Seth Pinsky, libspinsky.a",
     "Increase / decrease binomial steps with 'G', 'g' keys when displayed.",
     "models/spinsky/binomial.cpp",
     "",
@@ -301,7 +335,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { AMERICAN_EQUIPROB, "AmericanEqui", "Seth Pinsky",
+  { AMERICAN_EQUIPROB, "AmericanEqui", "Seth Pinsky, libspinsky.a",
     "Increase / decrease binomial steps with 'G', 'g' keys when displayed.",
     "models/spinsky/binomial.cpp",
     "",
@@ -322,7 +356,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { EURO_CRR,          "EuropeanCRR",  "Seth Pinsky",
+  { EURO_CRR,          "EuropeanCRR",  "Seth Pinsky, libspinsky.a",
     "Increase / decrease binomial steps with 'G', 'g' keys when displayed.",
     "models/spinsky/binomial.cpp",
     "",
@@ -343,7 +377,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { EURO_EQUIPROB,     "EuropeanEqui",  "Seth Pinsky",
+  { EURO_EQUIPROB,     "EuropeanEqui",  "Seth Pinsky, libspinsky.a",
     "Increase / decrease binomial steps with 'G', 'g' keys when displayed.",
     "models/spinsky/binomial.cpp",
     "",
@@ -3131,7 +3165,7 @@ const struct option_algorithm option_algorithms[] = {
 
 #ifdef ABRADFORD
 
-  { FUTURES2,          "Futures Div",     "Anthony Bradford",
+  { FUTURES2,          "Futures Div",     "Anthony Bradford, libabradford.a",
     "Continuous dividends supported.",
     "models/abradford/future.cpp",
     "",
@@ -3152,7 +3186,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { BACHELIER,      "Bachelier-1900", "Anthony Bradford",  
+  { BACHELIER,      "Bachelier-1900", "Anthony Bradford, libabradford.a",  
     "Louis Bachelier, French Mathematician",
     "models/abradford/pre-BSM.cpp",
     "",
@@ -3173,7 +3207,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { BACHELIERMODIFIED,      "BachelierMod", "Anthony Bradford",  
+  { BACHELIERMODIFIED,      "BachelierMod", "Anthony Bradford, libabradford.a",  
     "Bachelier Model modified to adjust for time value of money",
     "models/abradford/pre-BSM.cpp",
     "",
@@ -3194,7 +3228,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { SPRENKLE,      "Sprenkle-64", "Anthony Bradford",  
+  { SPRENKLE,      "Sprenkle-64", "Anthony Bradford, libabradford.a",  
     "",
     "models/abradford/pre-BSM.cpp",
     "",
@@ -3215,7 +3249,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { BONESS,      "Boness-64", "Anthony Bradford",  
+  { BONESS,      "Boness-64", "Anthony Bradford, libabradford.a",  
     "",
     "models/abradford/pre-BSM.cpp",
     "",
@@ -3236,7 +3270,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { SAMUELSON,      "Samuelson-65", "Anthony Bradford",  
+  { SAMUELSON,      "Samuelson-65", "Anthony Bradford, libabradford.a",  
     "",
     "models/abradford/pre-BSM.cpp",
     "",
@@ -3527,7 +3561,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, 0, "Test State", 1, 4,
                                        1, &nametestlist[0] },
 
-  { TESTOPTION3,  "Testing Option3", "Anthony Bradford",  
+  { TESTOPTION3,  "Testing Option3", "Anthony Bradford",
     "",
     "",
     "",
@@ -3548,7 +3582,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, 0, "Test State", 1, 100,
                                        0, 0 },
 
-  { TESTOPTION4,  "Testing Option4", "Anthony Bradford",  
+  { TESTOPTION4,  "Testing Option4", "Anthony Bradford",
     "",
     "",
     "",
@@ -3590,7 +3624,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { TESTOPTIONONEDIVIDEND2, "Testing Option6", "Anthony Bradford",  
+  { TESTOPTIONONEDIVIDEND2, "Testing Option6", "Anthony Bradford",
     "",
     "",
     "",
@@ -3611,7 +3645,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { TESTFUTURES1,    "Testing Future1",      "Anthony Bradford",  
+  { TESTFUTURES1,    "Testing Future1",      "Anthony Bradford",
     "",
     "",
     "",
@@ -3654,28 +3688,6 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0 },
 
 #endif
-
-};
-
-const struct _strike_control strike_control[] = {
-
-  /*
-    double xcontrol;
-    double incrementor;
-    int strikes5or1;
-    double retdiscard;
-    char des[5];
-    int precision;
-    double sliderScale;
-  */
-
-  {     5,      .5,    5,   .5,     "5",    0,    1, },
-  {     1,       1,    1,   .5,     "1",    0,    1, },
-  {    .5,      .5,    1,   -1,    ".5",    0,    1, },
-  {    .1,      .1,    1,   -1,    ".1",    1,    1, },
-  {   .01,     .01,    1,   -1,   ".01",    2,    2, },
-  {  .001,    .001,    1,   -1,  ".001",    3,    2  },
-  {     0,       0,    1,   -1,  "CUST",    5,    0  }
 
 };
 

@@ -2276,7 +2276,7 @@ struct _data option_call(struct _data *dat)
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
-	decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
+        decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
         //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
         QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
