@@ -3,7 +3,7 @@
 /* Options & Futures Matrix Modeler                                         */
 /* View and Control Theoretical Option Chains                               */
 /*                                                                          */
-/* File: QuantLib.h of optionmatrix                                         */
+/* File: test.h of optionmatrix                                             */
 /*                                                                          */
 /* Copyright (c) Anthony Bradford. 2012.                                    */
 /* http://anthonybradford.com                                               */
@@ -13,7 +13,7 @@
 /* See file COPYING included with this distribution for license information */
 
 /* 
-   optionmatrix program is free software; you can redistribute it and/or modify
+   optionmatrix is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation; either version 3 of the License, or
    (at your option) any later version.
@@ -27,11 +27,13 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifdef HAVE_QL_QUANTLIB_HPP
+#ifdef DUMMYTESTMODELS
 
-const QuantLib::Month QuantLibMonths[]= { QuantLib::January, QuantLib::February, QuantLib::March,
-                                          QuantLib::April,   QuantLib::May,      QuantLib::June,
-                                          QuantLib::July,    QuantLib::August,   QuantLib::September,
-                                          QuantLib::October, QuantLib::November, QuantLib::December };
+const struct _int_to_name nametestlist[] = { 
+                          { "Test State" },
+                          { "Test State" },
+                          { "Test State" }, 
+                          { "Test State" } 
+                    };
 
-#endif // HAVE_QL_QUANTLIB_HPP
+#endif // DUMMYTESTMODELS

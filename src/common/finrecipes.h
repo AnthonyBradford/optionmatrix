@@ -3,7 +3,7 @@
 /* Options & Futures Matrix Modeler                                         */
 /* View and Control Theoretical Option Chains                               */
 /*                                                                          */
-/* File: QuantLib.h of optionmatrix                                         */
+/* File: finrecipes.h of optionmatrix                                       */
 /*                                                                          */
 /* Copyright (c) Anthony Bradford. 2012.                                    */
 /* http://anthonybradford.com                                               */
@@ -13,7 +13,7 @@
 /* See file COPYING included with this distribution for license information */
 
 /* 
-   optionmatrix program is free software; you can redistribute it and/or modify
+   optionmatrix is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation; either version 3 of the License, or
    (at your option) any later version.
@@ -27,11 +27,45 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifdef HAVE_QL_QUANTLIB_HPP
+#ifdef FINRECIPES
 
-const QuantLib::Month QuantLibMonths[]= { QuantLib::January, QuantLib::February, QuantLib::March,
-                                          QuantLib::April,   QuantLib::May,      QuantLib::June,
-                                          QuantLib::July,    QuantLib::August,   QuantLib::September,
-                                          QuantLib::October, QuantLib::November, QuantLib::December };
+const struct _int_to_function funlistcall[] = {
+  { &payoff_call },
+  { &payoff_cash_or_nothing_call },
+  { &payoff_asset_or_nothing_call },
+  { &payoff_binary_call },
+ };
 
-#endif // HAVE_QL_QUANTLIB_HPP
+const struct _int_to_function funlistput[] = {
+  { &payoff_put },
+  { 0 },
+  { 0 },
+  { &payoff_binary_put },
+};
+
+const struct term_structure term_structure_list[] = {
+  {  TERMFLAT,          },
+  {  TERMCIR,           },
+  {  TERMVASICEK,       },
+  {  TERMNELSONSIEGEL   },
+  {  TERMSVENSSON       },
+  {  TERMCUBICSPLINE    },
+  {  TERMINTERPOLATED   }
+};
+
+const int sizeofterm_structure_list = sizeof(term_structure_list);
+
+const struct _int_to_name namefunlist[] = { 
+                          { "callput" },
+                          { "call_cash_or_nothing"},
+                          { "call_asset_or_nothing" }, 
+                          { "binary" }
+                    };
+
+const struct _int_to_name namefunlist2[] = { 
+                          { "arithmetric_avg_call" },
+                          { "geometric_avg_call"},
+                          { "lookback_callput" }, 
+                    };
+
+#endif // FINRECIPES

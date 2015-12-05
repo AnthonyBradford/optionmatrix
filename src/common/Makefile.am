@@ -21,6 +21,10 @@ greeks.cpp\
 license.h\
 logger.cpp\
 main.h\
+metaoptions.h\
+finrecipes.h\
+misc.h\
+test.h\
 options_calls.cpp\
 options_puts.cpp\
 prototypes.h\

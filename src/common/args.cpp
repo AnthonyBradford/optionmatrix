@@ -279,7 +279,7 @@ void program_usage(char *isConsoleVersion)
 
   printf("Command line arguments can be used to list and test model execution time on the shell level.  ");
 
-#if defined(HAVE_LIBGSL) | defined(HAVE_NEWMAT_NEWMAT_H) | defined(HAVE_ITPP_ITBASE_H) | defined(METAOPTIONS) | defined(FINRECIPES)
+#if defined(HAVE_QL_QUANTLIB_HPP) | defined(HAVE_LIBGSL) | defined(HAVE_NEWMAT_NEWMAT_H) | defined(HAVE_ITPP_ITBASE_H) | defined(METAOPTIONS) | defined(FINRECIPES)
   printf("Compiled with the following libraries: ");
 #endif
 
@@ -619,7 +619,7 @@ void program_check_pricing_time(int modelnumber, int iterations)
 {
   if( iterations < 0 )
   {
-    printf("Error: Iterations must be a postive number.\n");
+    fprintf(stderr,"Error: Iterations must be a postive number.\n");
     return;
   }
 
@@ -627,7 +627,7 @@ void program_check_pricing_time(int modelnumber, int iterations)
 
   if( modelnumber < 0 || modelnumber >= numberofmodels )
   {
-    printf("Error: Model range: 0 to %d\n", numberofmodels-1);
+    fprintf(stderr,"Error: Model range: 0 to %d\n", numberofmodels-1);
     return;
   }
 
@@ -760,7 +760,7 @@ void program_check_pricing_time(int modelnumber, int iterations)
   } else
   {
     // should not reach...
-    printf("program_check_pricing_time(): Error: Asset class not understood: %d\n", option_algorithms[modelnumber].assetClass);
+    fprintf(stderr,"program_check_pricing_time(): Error: Asset class not understood: %d\n", option_algorithms[modelnumber].assetClass);
   }
 
   dat.amounts.erase( dat.amounts.begin(), dat.amounts.end() );
