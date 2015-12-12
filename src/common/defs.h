@@ -636,13 +636,25 @@ enum {
 
 #ifdef HAVE_QL_QUANTLIB_HPP
 
-       QUANTLIB_BLACKSCHOLES_EUROPEAN,          // 140
-       QUANTLIB_HESTON_SEMI_ANALYTIC,           // 141
-       QUANTLIB_BARONE_ADESI_WHALEY,            // 142
-       QUANTLIB_BJERKSUND_STENSLAND,            // 143
-       QUANTLIB_FINITE_DIFFERENCES_EUROPEAN,    // 144
-       QUANTLIB_FINITE_DIFFERENCES_AMERICAN,    // 145
-       
+       QUANTLIB_BLACKSCHOLES_EUROPEAN,                 // 140
+       QUANTLIB_HESTON_SEMI_ANALYTIC_EUR,              // 141
+       QUANTLIB_BARONE_ADESI_WHALEY_AM,                // 142
+       QUANTLIB_BJERKSUND_STENSLAND_AM,                // 143
+       QUANTLIB_FINITE_DIFFERENCES_EUROPEAN,           // 144
+       QUANTLIB_FINITE_DIFFERENCES_AMERICAN,           // 145
+       QUANTLIB_MC_CRUDE_EUR,                          // 146
+       QUANTLIB_QMC_SOBOL_EUR,                         // 147
+       QUANTLIB_MC_LONGSTAFF_SCHWARTZ_AM,              // 148
+       QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM,           // 149
+       QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_EUR_AM,   // 150
+       QUANTLIB_ADDITIVE_EQUIPROBABILITIES_EUR_AM,     // 151
+       QUANTLIB_BINOMIAL_TRIGEORGIS_EUR_AM,            // 152
+       QUANTLIB_BINOMIAL_TIAN_EUR_AM,                  // 153
+       QUANTLIB_BINOMIAL_LEISEN_REIMER_EUR_AM,         // 154
+       QUANTLIB_BINOMIAL_JOSHI_EUR_AM,                 // 155
+       QUANTLIB_BATES_SEMI_ANALYTIC_EUROPEAN,          // 156
+       QUANTLIB_INTEGRAL_EUROPEAN,                     // 157
+
 #endif
 
 #ifdef DUMMYTESTMODELS
@@ -866,3 +878,5 @@ struct elementListWithGroup
   char elementName[200];
   int index;
 };
+
+const struct _int_to_name QuantLibnamelistamericanoreuropean[] = { { "American" }, { "European" } };

@@ -76,7 +76,7 @@ extern void calc_strike_scale(struct _properties *properties);
 extern void updateStepping(struct _properties *properties);
 extern void updateVolatility(int modeltype, const struct _properties *properties);
 extern void updateTime(int modeltype, struct _properties *properties);
-void updatePrecision(struct _properties *properties);
+void updatePrecision(int modeltype, struct _properties *properties);
 
 void calc_strike_scale(struct _properties *properties);
 void on_scaleStrikes_value_changed(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties);

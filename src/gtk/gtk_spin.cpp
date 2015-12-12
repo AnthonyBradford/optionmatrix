@@ -33,7 +33,7 @@
 
 void on_spinbuttonDayOffset_value_changed(GtkSpinButton *spinButton, const struct _properties *properties)
 {
-  //g_print("on_spinbuttonDayOffset_value_changed()\n");
+  g_print("on_spinbuttonDayOffset_value_changed()\n");
 }
 
 void on_spinbuttonUseZ_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
@@ -86,14 +86,14 @@ void on_spinbuttonUseT_value_changed(GtkSpinButton *spinbutton, struct _properti
 
 void on_spinbuttonPrice_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonPrice_value_changed()\n");
+  g_print("on_spinbuttonPrice_value_changed()\n");
   properties->data.price = gtk_spin_button_get_value(spinbutton);
   calc_strike_scale(properties);
 }
 
 int on_spinbuttonTime_focus_out_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
-  //g_print("on_spinbuttonTime_focus_out_event()\n");
+  g_print("on_spinbuttonTime_focus_out_event()\n");
   properties->GtkInfo.spinbuttonTimeInFocusflag = FALSE;
   return false;
 }
@@ -107,7 +107,7 @@ int on_spinbuttonTime_focus_in_event(GtkSpinButton *spinbutton, GdkEventFocus *e
 
 int on_spinbuttonTime2_focus_out_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
-  //g_print("on_spinbuttonTime2_focus_out_event()\n");
+  g_print("on_spinbuttonTime2_focus_out_event()\n");
   properties->GtkInfo.spinbuttonTime2InFocusflag = FALSE;
   return false;
 }
@@ -121,7 +121,7 @@ int on_spinbuttonTime3_focus_out_event(GtkSpinButton *spinbutton, GdkEventFocus 
 
 int on_spinbuttonTime2_focus_in_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
-  //g_print("on_spinbuttonTime2_focus_in_event()\n");
+  g_print("on_spinbuttonTime2_focus_in_event()\n");
   properties->GtkInfo.spinbuttonTime2InFocusflag = TRUE;
   return false;
 }
@@ -135,19 +135,19 @@ int on_spinbuttonTime3_focus_in_event(GtkSpinButton *spinbutton, GdkEventFocus *
 
 void on_spinbuttonDaysToExpr_focus_out_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
-  //g_print("on_spinbuttonDaysToExpr_focus_out_event()\n");
+  g_print("on_spinbuttonDaysToExpr_focus_out_event()\n");
   properties->GtkInfo.spinbuttonTimeInFocusflag = FALSE;
 }
 
 void on_spinbuttonDaysToExpr_focus_in_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
-  //g_print("on_spinbuttonDaysToExpr_focus_in_event()\n");
+  g_print("on_spinbuttonDaysToExpr_focus_in_event()\n");
   properties->GtkInfo.spinbuttonTimeInFocusflag = TRUE;
 }
 
 void on_spinbuttonDaysToDividend_focus_out_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
-  //g_print("on_spinbuttonDaysToDividend_focus_out_event()\n");
+  g_print("on_spinbuttonDaysToDividend_focus_out_event()\n");
   properties->GtkInfo.spinbuttonTime2InFocusflag = FALSE;
 }
 
@@ -184,7 +184,7 @@ void on_spinbuttonTime_value_changed(GtkSpinButton *spinbutton, struct _properti
 
 void on_spinbuttonTime2_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonTime2_value_changed()\n");
+  g_print("on_spinbuttonTime2_value_changed()\n");
   if(properties->GtkInfo.spinbuttonTime2Flag == true)
   {
     properties->data.t[1] = gtk_spin_button_get_value(spinbutton);
@@ -195,7 +195,7 @@ void on_spinbuttonTime2_value_changed(GtkSpinButton *spinbutton, struct _propert
 
 void on_spinbuttonTime3_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonTime3_value_changed()\n");
+  g_print("on_spinbuttonTime3_value_changed()\n");
   if(properties->GtkInfo.spinbuttonTime3Flag == true)
   {
     properties->data.t[2] = gtk_spin_button_get_value(spinbutton);
@@ -218,7 +218,7 @@ void on_spinbuttonDaysToExpr_value_changed(GtkSpinButton *spinbutton, struct _pr
 
 void on_spinbuttonDaysToDividend_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonDaysToDividend_value_changed_value_changed()\n");
+  g_print("on_spinbuttonDaysToDividend_value_changed_value_changed()\n");
   
   if(properties->GtkInfo.spinbuttonTime2Flag == true)
   {
@@ -230,7 +230,7 @@ void on_spinbuttonDaysToDividend_value_changed(GtkSpinButton *spinbutton, struct
 
 void on_spinbuttonDaysToDividend2_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonDaysToDividend2_value_changed_value_changed()\n");
+  g_print("on_spinbuttonDaysToDividend2_value_changed_value_changed()\n");
   
   if(properties->GtkInfo.spinbuttonTime3Flag == true)
   {
@@ -248,7 +248,7 @@ void on_spinbuttonRate_value_changed(GtkSpinButton *spinbutton, struct _properti
 
 void on_spinbuttonStandardDeviation_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonStandardDeviation_value_changed()\n");
+  g_print("on_spinbuttonStandardDeviation_value_changed()\n");
   properties->data.volatility = gtk_spin_button_get_value(spinbutton);
 }
 
@@ -274,24 +274,24 @@ void on_spinbuttonSteps_value_changed(GtkSpinButton *spinbutton, struct _propert
 
 void on_spinbuttonPrecision_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonPrecision_value_changed()\n");
+  g_print("on_spinbuttonPrecision_value_changed()\n");
   properties->precision = gtk_spin_button_get_value(spinbutton);
-  updatePrecision(properties);
+  updatePrecision(properties->modeltype,properties);
 }
 
 void on_spinbuttonDistMean_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonDistMean_value_changed()\n");
+  g_print("on_spinbuttonDistMean_value_changed()\n");
 }
 
 void on_spinbuttonDistVariance_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonDistVariance_value_changed()\n");
+  g_print("on_spinbuttonDistVariance_value_changed()\n");
 }
 
 void on_spinbuttonCustomStrike_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonDistVariance_value_changed()\n");
+  g_print("on_spinbuttonDistVariance_value_changed()\n");
 }
 
 void on_spinbuttonSleepDelay_value_changed(GtkSpinButton *spinButton, struct _properties *properties)

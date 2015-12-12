@@ -192,6 +192,7 @@ struct _data bonddispatch(struct _properties *p)
       on_comboboxModel_changed_show(term_structure_list[dat->UsePound-1].modeltype,p);
       updateTime(term_structure_list[dat->UsePound-1].modeltype,p);
       updateVolatility(term_structure_list[dat->UsePound-1].modeltype,p);
+      updatePrecision(term_structure_list[dat->UsePound-1].modeltype,p);
     }
 
     struct _data termstructuredata;
@@ -413,6 +414,7 @@ struct _data bonddispatch(struct _properties *p)
       on_comboboxModel_changed_show(term_structure_list[dat->UsePound-1].modeltype,p);
       updateTime(term_structure_list[dat->UsePound-1].modeltype,p);
       updateVolatility(term_structure_list[dat->UsePound-1].modeltype,p);
+      updatePrecision(term_structure_list[dat->UsePound-1].modeltype,p);
 
       gtk_widget_show(p->GtkInfo.spinbuttonUseS);
       gtk_widget_show(p->GtkInfo.labelUseS);

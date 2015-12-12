@@ -297,7 +297,7 @@ void updateTime(int modeltype, struct _properties *properties)
   }
 }
 
-void updatePrecision(struct _properties *properties)
+void updatePrecision(int modeltype, struct _properties *properties)
 {
   gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonPrice),properties->precision);
   gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonRate),properties->precision);
@@ -310,28 +310,28 @@ void updatePrecision(struct _properties *properties)
   gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonDaysToDividend),properties->precision);
   gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonDaysToDividend2),properties->precision);
 
-  if( option_algorithms[properties->modeltype].iUseZ == 1 )
+  if( option_algorithms[modeltype].iUseZ == 1 )
     gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseZ),properties->precision);
 
-  if( option_algorithms[properties->modeltype].iUseB == 1 )
+  if( option_algorithms[modeltype].iUseB == 1 )
     gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseB),properties->precision);
 
-  if( option_algorithms[properties->modeltype].iUseJ == 1 )
+  if( option_algorithms[modeltype].iUseJ == 1 )
     gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseJ),properties->precision);
 
-  if( option_algorithms[properties->modeltype].iUseP == 1 )
+  if( option_algorithms[modeltype].iUseP == 1 )
     gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseP),properties->precision);
 
-  if( option_algorithms[properties->modeltype].iUseQ == 1 )
+  if( option_algorithms[modeltype].iUseQ == 1 )
     gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseQ),properties->precision);
 
-  if( option_algorithms[properties->modeltype].iUseR == 1 )
+  if( option_algorithms[modeltype].iUseR == 1 )
     gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseR),properties->precision);
 
-  if( option_algorithms[properties->modeltype].iUseS == 1 )
+  if( option_algorithms[modeltype].iUseS == 1 )
     gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseS),properties->precision);
 
-  if( option_algorithms[properties->modeltype].iUseT == 1 )
+  if( option_algorithms[modeltype].iUseT == 1 )
     gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseT),properties->precision);
 
   gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonDistMean),properties->precision);
@@ -904,7 +904,7 @@ int main(int argc, char *argv[])
   properties.GtkInfo.gcalculate_options = g_timeout_add(1000 * properties.updatedelayseconds, (GSourceFunc) calculate_options, &properties);
   //properties.GtkInfo.gcalculate_options = g_timeout_add_full(G_PRIORITY_LOW, 1000 * properties.updatedelayseconds, (GSourceFunc) calculate_options, &properties, NULL);
 
-  updatePrecision(&properties);
+  updatePrecision(0,&properties);
   updateTime(0,&properties);
 
   //gtk_builder_connect_signals(properties.GtkInfo.builder, NULL);

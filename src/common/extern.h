@@ -149,6 +149,7 @@ extern const int transextremeoptionput[];
 extern const struct _int_to_name namelistpartialtimebarrier[];
 extern const struct _int_to_name namelistimpliedtrinominaltree[];
 extern const struct term_structure term_structure_list[];
+extern const struct _int_to_name QuantLibnamelistamericanoreuropean[];
 
 extern const struct _int_to_function funlistcall[];
 extern const struct _int_to_function funlistput[];

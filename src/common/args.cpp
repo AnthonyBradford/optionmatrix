@@ -346,7 +346,6 @@ void program_list_models()
 
 void program_source()
 {
-
   int index;
   const int numberofmodels = (signed)(sizeofoption_algorithms/sizeof(struct option_algorithm));
   char source_levelup[1024];
@@ -370,9 +369,10 @@ void program_source()
            printf("Source code cannot be accessed: %s\n",option_algorithms[index].sourceCode2);
          }
       }
-    }
-  }
-
+      
+    } // if( strcmp( option_algorithms[index].sourceCode,"") != 0 )
+    
+  } // for( index = 0; index < numberofmodels; index++ )
 }
 
 void program_check_pricing_models(bool quietMode)
@@ -451,20 +451,24 @@ void program_check_pricing_models(bool quietMode)
   c0 = clock();
   gettimeofday(&start, NULL);
 
+  time_t model_start_time;
+  time_t model_time_elasped;
+
   for( index = 0; index < numberofmodels; index++ )
   {
+    time(&model_start_time);
     continueToSkip = false;
 
     if( option_algorithms[index].assetClass == BOND_CLASS )
     {
       if ( !quietMode )
-        printf("Bond class check not implemented\n");
+        printf("Bond class check not implemented for %s\n", option_algorithms[index].des);
       continue;
 
     } else if( option_algorithms[index].assetClass == TERMSTRUCTURE_CLASS )
     {
       if ( !quietMode )
-        printf("Term Structure class check not implemented\n");
+        printf("Term Structure class check not implemented for %s\n", option_algorithms[index].des);
       continue;
     }
 
@@ -484,8 +488,8 @@ void program_check_pricing_models(bool quietMode)
 
     if ( !quietMode )
     {
-      printf("%d ",option_algorithms[index].modeltype);
-      printf("%s ",option_algorithms[index].des);
+      printf("%d ", option_algorithms[index].modeltype);
+      printf("%s ", option_algorithms[index].des);
       //fflush(NULL);
     }
 
@@ -505,8 +509,19 @@ void program_check_pricing_models(bool quietMode)
       dat.t[1] = t * 2;
       dat.t[2] = t * 3;
 
+      bool model_timed_out = false;
+
       for( strike = 5; strike < 150; strike += 5 )
       {
+         time(&model_time_elasped);
+         if( difftime(model_time_elasped,model_start_time) > 4 )
+         {
+           if( !quietMode )
+             printf("%s - not spending >4 seconds on any option model testing.\n", option_algorithms[index].des);
+           model_timed_out = true;
+           break;
+         }
+
          sanity_check(&properties, &statusMessage[0]);
 
          if( option_algorithms[index].assetClass == OPTION_CLASS )
@@ -537,7 +552,6 @@ void program_check_pricing_models(bool quietMode)
 
          } else if( option_algorithms[index].assetClass == FUTURES_CLASS )
          {
-
            struct _data futuredata;
            futuredata = future(&dat);
            totalNumberOfTests++;
@@ -556,9 +570,15 @@ void program_check_pricing_models(bool quietMode)
 
            break;
          }
-      }
-    }
-  }
+
+      } // for( strike = 5; strike < 150; strike += 5 )
+
+      if( model_timed_out == true )
+        break;
+      
+    } // for( t = 0.2; t < 3; t += 0.10 )
+
+  } // for( index = 0; index < numberofmodels; index++ )
 
   gettimeofday(&end, NULL);
   c1 = clock();
@@ -581,7 +601,7 @@ void program_check_pricing_models(bool quietMode)
           - (start.tv_sec + (double) start.tv_usec / 1000000)));
   printf("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);
 
-  #ifndef ABRADFORD
+#ifndef ABRADFORD
   printf("ABRADFORD models not defined in source code.\n");
 #endif
 
@@ -633,13 +653,13 @@ void program_check_pricing_time(int modelnumber, int iterations)
 
   if( option_algorithms[modelnumber].assetClass == BOND_CLASS )
   {
-    printf("Bond time check not implemented\n");
+    printf("Bond time check not implemented for %s\n", option_algorithms[modelnumber].des);
     return;
 
   } else if( option_algorithms[modelnumber].assetClass == TERMSTRUCTURE_CLASS )
   {
-      printf("Term Structure time check not implemented\n");
-      return;
+    printf("Term Structure time check not implemented for %s\n", option_algorithms[modelnumber].des);
+    return;
   }
 
   clock_t c0, c1;

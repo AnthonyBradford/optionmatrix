@@ -96,7 +96,7 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
       }
       else
       {
-        g_print("text2 = %s\n",  text2);
+        g_print("text2 = %s\n", text2);
 
         gtk_tree_store_append(store, &past2, &child);
         gtk_tree_store_set(store, &past2, 0, text2, -1);
@@ -126,7 +126,7 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
       }
       else
       {
-        g_print("text2 = %s\n",  text2);
+        g_print("text2 = %s\n", text2);
 
         gtk_tree_store_append(store, &past2, &it);
         gtk_tree_store_set(store, &past2, 0, text2, -1);
@@ -538,7 +538,7 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
     properties->GtkInfo.spin_z = GTK_ADJUSTMENT (gtk_adjustment_new(option_algorithms[modeltype].Zdefault, 
                             ((option_algorithms[modeltype].bZallow0Negative == 1) ? -100 : .0001),
                             //((option_algorithms[modeltype].bZallow0Negative == 1) ? -100 : (option_algorithms[modeltype].iUseZ == 1 ? 1 : (double) 0.0001)),
-                            ((option_algorithms[modeltype].Zmax == 0) ? 10000 : option_algorithms[modeltype].Zmax),
+                            ((option_algorithms[modeltype].Zmax == 0) ? 99999 : option_algorithms[modeltype].Zmax),
                             ((option_algorithms[modeltype].iUseZ == 2) ? 1 : .01), 
                             ((option_algorithms[modeltype].iUseZ == 2) ? 2 : .1),
                             0));
@@ -569,7 +569,7 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
     properties->GtkInfo.spin_b = GTK_ADJUSTMENT (gtk_adjustment_new(option_algorithms[modeltype].Bdefault, 
                             ((option_algorithms[modeltype].bBallow0Negative == 1) ? -100 : .0001),
                             //(option_algorithms[modeltype].iUseB == 1 ? 1 : (double) 0.0001),
-                            ((option_algorithms[modeltype].Bmax == 0) ? 10000 : option_algorithms[modeltype].Bmax),
+                            ((option_algorithms[modeltype].Bmax == 0) ? 99999 : option_algorithms[modeltype].Bmax),
                             ((option_algorithms[modeltype].iUseB == 2) ? 1 : .01), 
                             ((option_algorithms[modeltype].iUseB == 2) ? 2 : .1),
                             0));
@@ -595,7 +595,7 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
 
     properties->GtkInfo.spin_j = GTK_ADJUSTMENT (gtk_adjustment_new(option_algorithms[modeltype].Jdefault, 
                             ((option_algorithms[modeltype].bJallow0Negative == 1) ? -100 : .0001),
-                            ((option_algorithms[modeltype].Jmax == 0) ? 10000 : option_algorithms[modeltype].Jmax),
+                            ((option_algorithms[modeltype].Jmax == 0) ? 99999 : option_algorithms[modeltype].Jmax),
                             ((option_algorithms[modeltype].iUseJ == 2) ? 1 : .01), 
                             ((option_algorithms[modeltype].iUseJ == 2) ? 2 : .1),
                             0));
@@ -622,7 +622,7 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
 
     properties->GtkInfo.spin_p = GTK_ADJUSTMENT (gtk_adjustment_new( option_algorithms[modeltype].Pdefault, 
                             ((option_algorithms[modeltype].bPallow0Negative == 1) ? -100 : .0001),
-                            ((option_algorithms[modeltype].Pmax == 0) ? 10000 : option_algorithms[modeltype].Pmax),
+                            ((option_algorithms[modeltype].Pmax == 0) ? 99999 : option_algorithms[modeltype].Pmax),
                             ((option_algorithms[modeltype].iUseP == 2) ? 1 : .01), 
                             ((option_algorithms[modeltype].iUseP == 2) ? 2 : .1),
                             0));
@@ -649,7 +649,7 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
 
     properties->GtkInfo.spin_q = GTK_ADJUSTMENT (gtk_adjustment_new( option_algorithms[modeltype].Qdefault, 
                             ((option_algorithms[modeltype].bQallow0Negative == 1) ? -100 : .0001),
-                            ((option_algorithms[modeltype].Qmax == 0) ? 10000 : option_algorithms[modeltype].Qmax),
+                            ((option_algorithms[modeltype].Qmax == 0) ? 99999 : option_algorithms[modeltype].Qmax),
                             ((option_algorithms[modeltype].iUseQ == 2) ? 1 : .01), 
                             ((option_algorithms[modeltype].iUseQ == 2) ? 2 : .1),
                             0));
@@ -676,7 +676,7 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
 
     properties->GtkInfo.spin_r = GTK_ADJUSTMENT (gtk_adjustment_new( option_algorithms[modeltype].Rdefault, 
                             ((option_algorithms[modeltype].bRallow0Negative == 1) ? -100 : .0001),
-                            ((option_algorithms[modeltype].Rmax == 0) ? 10000 : option_algorithms[modeltype].Rmax),
+                            ((option_algorithms[modeltype].Rmax == 0) ? 99999 : option_algorithms[modeltype].Rmax),
                             ((option_algorithms[modeltype].iUseR == 2) ? 1 : .01), 
                             ((option_algorithms[modeltype].iUseR == 2) ? 2 : .1),
                             0));
@@ -703,7 +703,7 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
 
     properties->GtkInfo.spin_s = GTK_ADJUSTMENT (gtk_adjustment_new( option_algorithms[modeltype].Sdefault, 
                             ((option_algorithms[modeltype].bSallow0Negative == 1) ? -100 : .0001),
-                            ((option_algorithms[modeltype].Pmax == 0) ? 10000 : option_algorithms[modeltype].Smax),
+                            ((option_algorithms[modeltype].Pmax == 0) ? 99999 : option_algorithms[modeltype].Smax),
                             ((option_algorithms[modeltype].iUseS == 2) ? 1 : .01), 
                             ((option_algorithms[modeltype].iUseS == 2) ? 2 : .1),
                             0));
@@ -730,7 +730,7 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
 
     properties->GtkInfo.spin_t = GTK_ADJUSTMENT (gtk_adjustment_new( option_algorithms[modeltype].Tdefault, 
                             ((option_algorithms[modeltype].bTallow0Negative == 1) ? -100 : .0001),
-                            ((option_algorithms[modeltype].Tmax == 0) ? 10000 : option_algorithms[modeltype].Tmax),
+                            ((option_algorithms[modeltype].Tmax == 0) ? 99999 : option_algorithms[modeltype].Tmax),
                             ((option_algorithms[modeltype].iUseT == 2) ? 1 : .01), 
                             ((option_algorithms[modeltype].iUseT == 2) ? 2 : .1),
                             0));
@@ -966,7 +966,7 @@ void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties
   updateStepping(properties);
   updateTime(properties->modeltype,properties);
   updateVolatility(properties->modeltype,properties);
-  updatePrecision(properties);
+  updatePrecision(properties->modeltype,properties);
 
   on_comboboxModel_changed_hide(properties->modeltype,properties);
 
@@ -1166,6 +1166,19 @@ void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties
 
   setup_tree_view(properties);
   show_title(properties);
+
+#ifdef HAVE_QL_QUANTLIB_HPP
+  /*
+  if( properties->modeltype == QUANTLIB_MC_CRUDE )
+  {
+    g_print("QUANTLIB_MC_CRUDE detected\n");
+
+    g_source_remove(::properties.GtkInfo.gcalculate_options);
+    ::properties.GtkInfo.gcalculate_options = g_timeout_add(1000 * 10, (GSourceFunc) calculate_options, &properties);
+  }
+  */
+#endif // HAVE_QL_QUANTLIB_HPP
+
 }
 
 void on_comboboxState_changed(GtkComboBox *combo, struct _properties *properties)
