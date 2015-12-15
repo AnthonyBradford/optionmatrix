@@ -2878,7 +2878,7 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-   case QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_EUR_AM:
+    case QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
         // set up dates
@@ -2995,7 +2995,7 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BlackScholesMertonProcess(underlyingH, flatDividendTS,
                 flatTermStructure, flatVolTS));
 
-       // Binomial method: Cox-Ross-Rubinstein
+       // Binomial method: Additive EQP
        if( dat->UsePound == 1 )
        {
          //g_print("American\n");
@@ -3149,7 +3149,7 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BlackScholesMertonProcess(underlyingH, flatDividendTS,
                 flatTermStructure, flatVolTS));
 
-       // Binomial method: Cox-Ross-Rubinstein
+       // Binomial method: Tian
        if( dat->UsePound == 1 )
        {
          //g_print("American\n");
@@ -3226,7 +3226,7 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BlackScholesMertonProcess(underlyingH, flatDividendTS,
                 flatTermStructure, flatVolTS));
 
-       // Binomial method: Cox-Ross-Rubinstein
+       // Binomial method: LeisenReimer
        if( dat->UsePound == 1 )
        {
          //g_print("American\n");
@@ -3303,7 +3303,7 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BlackScholesMertonProcess(underlyingH, flatDividendTS,
                 flatTermStructure, flatVolTS));
 
-       // Binomial method: Cox-Ross-Rubinstein
+       // Binomial method: Joshi
        if( dat->UsePound == 1 )
        {
          //g_print("American\n");
