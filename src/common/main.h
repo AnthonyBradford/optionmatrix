@@ -3573,7 +3573,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff;Bermudan",
                                        0, // supportRealTime
-                                       0, 0, 1, 5, 0, 0,
+                                       0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
                                        4, 0.0, "Expiration", 0, "", 0, "",
@@ -3595,7 +3595,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff;Bermudan",
                                        0, // supportRealTime
-                                       0, 0, 1, 5, 0, 0,
+                                       0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
                                        4, 0.0, "Expiration", 0, "", 0, "",
@@ -3617,7 +3617,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff;Bermudan",
                                        0, // supportRealTime
-                                       0, 0, 1, 5, 0, 0,
+                                       0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
                                        4, 0.0, "Expiration", 0, "", 0, "",
@@ -3639,7 +3639,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff;Bermudan",
                                        0, // supportRealTime
-                                       0, 0, 1, 5, 0, 0,
+                                       0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
                                        4, 0.0, "Expiration", 0, "", 0, "",
@@ -3661,7 +3661,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff;Bermudan",
                                        0, // supportRealTime
-                                       0, 0, 1, 5, 0, 0,
+                                       0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
                                        4, 0.0, "Expiration", 0, "", 0, "",
@@ -3683,7 +3683,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff;Bermudan",
                                        0, // supportRealTime
-                                       0, 0, 1, 5, 0, 0,
+                                       0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
                                        4, 0.0, "Expiration", 0, "", 0, "",
@@ -3705,7 +3705,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff;Bermudan",
                                        0, // supportRealTime
-                                       0, 0, 1, 5, 0, 0,
+                                       0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
                                        4, 0.0, "Expiration", 0, "", 0, "",
@@ -3727,7 +3727,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff;Bermudan",
                                        0, // supportRealTime
-                                       0, 0, 1, 5, 0, 0,
+                                       0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
                                        4, 0.0, "Expiration", 0, "", 0, "",

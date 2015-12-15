@@ -2625,9 +2625,6 @@ struct _data option_put(struct _data *dat)
         //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
         QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
-        decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
-        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
-
         // our options
         QuantLib::Option::Type type(QuantLib::Option::Put);
         QuantLib::Real underlying = price;
@@ -2635,12 +2632,8 @@ struct _data option_put(struct _data *dat)
         QuantLib::Spread dividendYield = dividend;
         QuantLib::Rate riskFreeRate = rate;
         QuantLib::Volatility volatility_ = volatility;
-        QuantLib::Date maturity(day, QuantLibMonths[month], year);
         QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
 
-        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
-                                         new QuantLib::EuropeanExercise(maturity));
-        
         QuantLib::Handle<QuantLib::Quote> underlyingH(
             boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
 
@@ -2697,9 +2690,6 @@ struct _data option_put(struct _data *dat)
         //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
         QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
-        decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
-        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
-
         // our options
         QuantLib::Option::Type type(QuantLib::Option::Put);
         QuantLib::Real underlying = price;
@@ -2707,12 +2697,8 @@ struct _data option_put(struct _data *dat)
         QuantLib::Spread dividendYield = dividend;
         QuantLib::Rate riskFreeRate = rate;
         QuantLib::Volatility volatility_ = volatility;
-        QuantLib::Date maturity(day, QuantLibMonths[month], year);
         QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
 
-        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
-                                         new QuantLib::EuropeanExercise(maturity));
-        
         QuantLib::Handle<QuantLib::Quote> underlyingH(
             boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
 
@@ -2769,9 +2755,6 @@ struct _data option_put(struct _data *dat)
         //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
         QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
-        decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
-        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
-
         // our options
         QuantLib::Option::Type type(QuantLib::Option::Put);
         QuantLib::Real underlying = price;
@@ -2779,12 +2762,8 @@ struct _data option_put(struct _data *dat)
         QuantLib::Spread dividendYield = dividend;
         QuantLib::Rate riskFreeRate = rate;
         QuantLib::Volatility volatility_ = volatility;
-        QuantLib::Date maturity(day, QuantLibMonths[month], year);
         QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
 
-        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
-                                         new QuantLib::EuropeanExercise(maturity));
-        
         QuantLib::Handle<QuantLib::Quote> underlyingH(
             boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
 
@@ -2841,9 +2820,6 @@ struct _data option_put(struct _data *dat)
         //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
         QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
-        decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
-        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
-
         // our options
         QuantLib::Option::Type type(QuantLib::Option::Put);
         QuantLib::Real underlying = price;
@@ -2851,12 +2827,8 @@ struct _data option_put(struct _data *dat)
         QuantLib::Spread dividendYield = dividend;
         QuantLib::Rate riskFreeRate = rate;
         QuantLib::Volatility volatility_ = volatility;
-        QuantLib::Date maturity(day, QuantLibMonths[month], year);
         QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
 
-        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
-                                         new QuantLib::EuropeanExercise(maturity));
-        
         QuantLib::Handle<QuantLib::Quote> underlyingH(
             boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
 
@@ -2916,9 +2888,6 @@ struct _data option_put(struct _data *dat)
         //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
         QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
-        decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
-        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
-
         // our options
         QuantLib::Option::Type type(QuantLib::Option::Put);
         QuantLib::Real underlying = price;
@@ -2926,12 +2895,8 @@ struct _data option_put(struct _data *dat)
         QuantLib::Spread dividendYield = dividend;
         QuantLib::Rate riskFreeRate = rate;
         QuantLib::Volatility volatility_ = volatility;
-        QuantLib::Date maturity(day, QuantLibMonths[month], year);
         QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
 
-        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
-                                         new QuantLib::EuropeanExercise(maturity));
-        
         QuantLib::Handle<QuantLib::Quote> underlyingH(
             boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
 
@@ -2988,9 +2953,6 @@ struct _data option_put(struct _data *dat)
         //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
         QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
-        decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
-        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
-
         // our options
         QuantLib::Option::Type type(QuantLib::Option::Put);
         QuantLib::Real underlying = price;
@@ -2998,12 +2960,8 @@ struct _data option_put(struct _data *dat)
         QuantLib::Spread dividendYield = dividend;
         QuantLib::Rate riskFreeRate = rate;
         QuantLib::Volatility volatility_ = volatility;
-        QuantLib::Date maturity(day, QuantLibMonths[month], year);
         QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
 
-        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
-                                         new QuantLib::EuropeanExercise(maturity));
-        
         QuantLib::Handle<QuantLib::Quote> underlyingH(
             boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
 
@@ -3060,9 +3018,6 @@ struct _data option_put(struct _data *dat)
         //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
         QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
-        decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
-        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
-
         // our options
         QuantLib::Option::Type type(QuantLib::Option::Put);
         QuantLib::Real underlying = price;
@@ -3070,12 +3025,8 @@ struct _data option_put(struct _data *dat)
         QuantLib::Spread dividendYield = dividend;
         QuantLib::Rate riskFreeRate = rate;
         QuantLib::Volatility volatility_ = volatility;
-        QuantLib::Date maturity(day, QuantLibMonths[month], year);
         QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
 
-        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
-                                         new QuantLib::EuropeanExercise(maturity));
-        
         QuantLib::Handle<QuantLib::Quote> underlyingH(
             boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
 
@@ -3132,9 +3083,6 @@ struct _data option_put(struct _data *dat)
         //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
         QuantLib::Date settlementDate(day, QuantLibMonths[month], year);
 
-        decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
-        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
-
         // our options
         QuantLib::Option::Type type(QuantLib::Option::Put);
         QuantLib::Real underlying = price;
@@ -3142,12 +3090,8 @@ struct _data option_put(struct _data *dat)
         QuantLib::Spread dividendYield = dividend;
         QuantLib::Rate riskFreeRate = rate;
         QuantLib::Volatility volatility_ = volatility;
-        QuantLib::Date maturity(day, QuantLibMonths[month], year);
         QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
 
-        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
-                                         new QuantLib::EuropeanExercise(maturity));
-        
         QuantLib::Handle<QuantLib::Quote> underlyingH(
             boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(underlying)));
 
