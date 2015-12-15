@@ -551,7 +551,7 @@ enum {
        //AMDISDIVSBINOMIAL,      // option_price_call_american_discrete_dividends_binomial()
 
        AMPROPORTDIVSBINOMIAL,  // option_price_call_american_proportional_dividends_binomial() 117
-       BERMUDIANBINOMIAL,      // option_price_call_bermudan_binomial() 118
+       BERMUDANBINOMIAL,       // option_price_call_bermudan_binomial() 118
        BSCOUPONBOND,           // bond_option_price_call_coupon_bond_black_scholes() 119
        WARRANT_NO_DIV,         // warrant_price_adjusted_black_scholes() 120
        WARRANT_DIV,            // warrant_price_adjusted_black_scholes() 121
@@ -654,6 +654,14 @@ enum {
        QUANTLIB_BINOMIAL_JOSHI_EUR_AM,                 // 155
        QUANTLIB_BATES_SEMI_ANALYTIC_EUROPEAN,          // 156
        QUANTLIB_INTEGRAL_EUROPEAN,                     // 157
+       QUANTLIB_FINITE_DIFFERENCES_BERMUDAN,           // 158
+       QUANTLIB_BINOMIAL_JARROW_RUDD_BERMUDAN,         // 159
+       QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_BERMUDAN, // 160
+       QUANTLIB_ADDITIVE_EQUIPROBABILITIES_BERMUDAN,   // 161
+       QUANTLIB_BINOMIAL_TRIGEORGIS_BERMUDAN,          // 162
+       QUANTLIB_BINOMIAL_TIAN_BERMUDAN,                // 163
+       QUANTLIB_BINOMIAL_LEISEN_REIMER_BERMUDAN,       // 164
+       QUANTLIB_BINOMIAL_JOSHI_BERMUDAN,               // 165
 
 #endif
 
@@ -670,7 +678,7 @@ enum {
 
 #endif
 
-     };
+};
 
 /* _FUTURES is used for internal calendar control. Don't remove */
 enum { _FUTURES = -1 };

@@ -421,7 +421,7 @@ void program_check_pricing_models(bool quietMode)
 #ifdef FINRECIPES
     EURODIVIDENDS,
     AMPROPORTDIVSBINOMIAL,
-    BERMUDIANBINOMIAL,
+    BERMUDANBINOMIAL,
     BSCOUPONBOND
 #endif // FINRECIPES
 
