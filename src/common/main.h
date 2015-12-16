@@ -2635,7 +2635,7 @@ const struct option_algorithm option_algorithms[] = {
     "Model not supported in curses version.\nExercise times can not be controlled. Please use GUI version of program.",
     "models/financialrecipes/src/bermudan_call_option.cc",
     "models/financialrecipes/src/bermudan_put_option.cc",
-    "5;Trees & Finite Diff;Binomial",
+    "5;Trees & Finite Diff;Binomial;Bermudan",
                                        1, // supportRealTime
                                        0, 0, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3376,7 +3376,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-    { QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM,  "Binomial Jarrow-Rudd", "QuantLib, QuantLib.a",  
+    { QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM,  "Jarrow-Rudd", "QuantLib, QuantLib.a",  
     "Binomial Jarrow-Rudd with European and American options.\nModel is only accurate to the day.",
     "",
     "",
@@ -3593,7 +3593,7 @@ const struct option_algorithm option_algorithms[] = {
     "Jarrow Rudd Bermudan. Model not supported in curses version.\nExercise times can not be controlled. Please use GUI version of program.",
     "",
     "",
-    "5;Trees & Finite Diff;Finite Diff;Bermudan",
+    "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3615,7 +3615,7 @@ const struct option_algorithm option_algorithms[] = {
     "Cox-Ross-Rubinstein Bermudan. Model not supported in curses version.\nExercise times can not be controlled. Please use GUI version of program.",
     "",
     "",
-    "5;Trees & Finite Diff;Finite Diff;Bermudan",
+    "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3637,7 +3637,7 @@ const struct option_algorithm option_algorithms[] = {
     "Additive Equiprobabilities Bermudan. Model not supported in curses version.\nExercise times can not be controlled. Please use GUI version of program.",
     "",
     "",
-    "5;Trees & Finite Diff;Finite Diff;Bermudan",
+    "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3659,7 +3659,7 @@ const struct option_algorithm option_algorithms[] = {
     "Trigeorgis Bermudan. Model not supported in curses version.\nExercise times can not be controlled. Please use GUI version of program.",
     "",
     "",
-    "5;Trees & Finite Diff;Finite Diff;Bermudan",
+    "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3681,7 +3681,7 @@ const struct option_algorithm option_algorithms[] = {
     "Tian Bermudan. Model not supported in curses version.\nExercise times can not be controlled. Please use GUI version of program.",
     "",
     "",
-    "5;Trees & Finite Diff;Finite Diff;Bermudan",
+    "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3703,7 +3703,7 @@ const struct option_algorithm option_algorithms[] = {
     "Leisen-Reimer Bermudan. Model not supported in curses version.\nExercise times can not be controlled. Please use GUI version of program.",
     "",
     "",
-    "5;Trees & Finite Diff;Finite Diff;Bermudan",
+    "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3725,7 +3725,7 @@ const struct option_algorithm option_algorithms[] = {
     "Joshi Bermudan. Model not supported in curses version.\nExercise times can not be controlled. Please use GUI version of program.",
     "",
     "",
-    "5;Trees & Finite Diff;Finite Diff;Bermudan",
+    "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
