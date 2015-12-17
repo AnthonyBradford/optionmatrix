@@ -36,4 +36,18 @@ const struct _int_to_name nametestlist[] = {
                           { "Test State" } 
                     };
 
+const struct _int_to_name nametestlist2[] = { 
+                          { "White" },
+                          { "Gray" },
+                          { "Pink" }, 
+                          { "Red" },
+                          { "Brown" },
+                          { "Orange" },
+                          { "Yellow" },
+                          { "Green" },
+                          { "Cyan" },
+                          { "Blue" },
+                          { "Violet" }
+                    };
+
 #endif // DUMMYTESTMODELS

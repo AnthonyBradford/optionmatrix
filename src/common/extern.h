@@ -167,6 +167,7 @@ extern const struct _int_to_name namefunlist[];
 extern const struct _int_to_name namefunlist2[];
 
 extern const struct _int_to_name nametestlist[];
+extern const struct _int_to_name nametestlist2[];
 
 extern int init_demo(struct _properties *properties);
 extern int init_futures_demo(struct _properties *properties, struct _properties *future_properties);

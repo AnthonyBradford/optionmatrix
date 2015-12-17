@@ -2867,12 +2867,9 @@ struct _data option_put(struct _data *dat)
         // options
         QuantLib::VanillaOption bermudanOption(payoff, bermudanExercise);
 
-	//    bermudanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
-	//   new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(bsmProcess,dat->steps)));
-
         bermudanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
-	   new QuantLib::BinomialVanillaEngine<QuantLib::AdditiveEQPBinomialTree>(bsmProcess,dat->steps)));
-	
+           new QuantLib::BinomialVanillaEngine<QuantLib::AdditiveEQPBinomialTree>(bsmProcess,dat->steps)));
+
         putprice = bermudanOption.NPV();
       }
 
@@ -2937,7 +2934,7 @@ struct _data option_put(struct _data *dat)
 
         bermudanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
            new QuantLib::BinomialVanillaEngine<QuantLib::Trigeorgis>(bsmProcess,dat->steps)));
-	
+
         putprice = bermudanOption.NPV();
       }
 
@@ -3002,7 +2999,7 @@ struct _data option_put(struct _data *dat)
 
         bermudanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
            new QuantLib::BinomialVanillaEngine<QuantLib::Tian>(bsmProcess,dat->steps)));
-	
+
         putprice = bermudanOption.NPV();
       }
 
@@ -3145,6 +3142,8 @@ struct _data option_put(struct _data *dat)
     case TESTOPTION1:
     case TESTOPTION2:
     case TESTOPTION3:
+    case TESTOPTION4:
+    case TESTOPTION5:
     case TESTOPTIONONEDIVIDEND1:
     case TESTOPTIONONEDIVIDEND2:
 

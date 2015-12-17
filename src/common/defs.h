@@ -43,7 +43,7 @@
 #define METAOPTIONS
 #define FINRECIPES
 #define QUANTLIB
-//#define DUMMYTESTMODELS     // For testing
+#define DUMMYTESTMODELS     // For testing
 
 #ifndef HAVE_LIBPTHREAD
 # error Sorry, missing pthread library which is needed by this code
@@ -671,6 +671,7 @@ enum {
        TESTOPTION2,
        TESTOPTION3,
        TESTOPTION4,
+       TESTOPTION5,
        TESTOPTIONONEDIVIDEND1,
        TESTOPTIONONEDIVIDEND2,
        TESTFUTURES1,

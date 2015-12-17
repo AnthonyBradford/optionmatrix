@@ -3747,7 +3747,7 @@ const struct option_algorithm option_algorithms[] = {
   
 #ifdef DUMMYTESTMODELS
 
-  { TESTOPTION1,  "Testing Option1", "Anthony Bradford",  
+  { TESTOPTION1,  "Testing Option1", "Test",  
     "",
     "",
     "",
@@ -3768,7 +3768,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { TESTOPTION2,  "Testing Option2", "Anthony Bradford",  
+  { TESTOPTION2,  "Testing Option2", "Test",  
     "",
     "",
     "",
@@ -3789,7 +3789,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, 0, "Test State", 1, 4,
                                        1, &nametestlist[0] },
 
-  { TESTOPTION3,  "Testing Option3", "Anthony Bradford",
+  { TESTOPTION3,  "Testing Option3", "Test",
     "",
     "",
     "",
@@ -3810,7 +3810,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, 0, "Test State", 1, 100,
                                        0, 0 },
 
-  { TESTOPTION4,  "Testing Option4", "Anthony Bradford",
+  { TESTOPTION4,  "Testing Option4", "Test",
     "",
     "",
     "",
@@ -3831,7 +3831,28 @@ const struct option_algorithm option_algorithms[] = {
                                        1, 0, "Test State", 1, 100,
                                        0, 0 },
 
-  { TESTOPTIONONEDIVIDEND1, "Testing Option5", "Anthony Bradford",  
+     { TESTOPTION5,  "Testing Option5", "Test",
+    "",
+    "",
+    "",
+    "g;Misc;Test",
+                                       1, // supportRealTime
+                                       0, 1, 1, 100, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                                       1, 0.0, "Expiration", 1, "Dividend", 1, "t3",
+                                       "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
+                                       2, 0, "int", 1, 0,
+                                       2, 0, "int", 1, 0,
+                                       2, 0, "int", 1, 0,
+                                       2, 0, "int", 1, 0,
+                                       2, 0, "int", 1, 0,
+                                       2, 0, "int", 1, 0,
+                                       2, 0, "int", 1, 0,
+                                       2, 0, "int", 1, 0,
+                                       1, 0, "Test State", 1, 11,
+                                       1, &nametestlist2[0] },
+
+  { TESTOPTIONONEDIVIDEND1, "Testing Option6", "Test",  
     "",
     "",
     "",
@@ -3852,7 +3873,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { TESTOPTIONONEDIVIDEND2, "Testing Option6", "Anthony Bradford",
+  { TESTOPTIONONEDIVIDEND2, "Testing Option7", "Test",
     "",
     "",
     "",
@@ -3873,7 +3894,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { TESTFUTURES1,    "Testing Future1",      "Anthony Bradford",
+  { TESTFUTURES1,    "Testing Future1",      "Test",
     "",
     "",
     "",
@@ -3894,7 +3915,7 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-  { TESTFUTURES2,    "Testing Future2",      "Anthony Bradford",  
+  { TESTFUTURES2,    "Testing Future2",      "Test",  
     "",
     "",
     "",
