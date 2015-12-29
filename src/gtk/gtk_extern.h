@@ -32,7 +32,7 @@ extern void show_title(const struct _properties *properties);
 
 extern void setup_tree_view(struct _properties *properties);
 extern gboolean calculate_options(struct _properties *properties);
-extern void process_greeks(struct _properties *properties, char *textCallDelta, char *textPutDelta, char *textGamma, char *textVega, char *textCallTheta, char *textPutTheta, char *textCallRho, char *textPutRho);
+extern void process_greeks(struct _properties *properties, struct _data *dat, char *textCallDelta, char *textPutDelta, char *textGamma, char *textVega, char *textCallTheta, char *textPutTheta, char *textCallRho, char *textPutRho);
 void text_export(struct _properties *properties, char *);
 
 void spreadName(struct _properties *properties);

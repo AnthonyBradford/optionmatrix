@@ -143,14 +143,14 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
 
          case 'p':
 
-            program_check_pricing_models(false);
+            program_check_pricing_models(false,*debug);
             exit(EXIT_SUCCESS);
 
             break;
 
          case 'q':
 
-            program_check_pricing_models(true);
+            program_check_pricing_models(true,*debug);
             exit(EXIT_SUCCESS);
 
             break;
@@ -373,13 +373,14 @@ void program_source()
     } // if( strcmp( option_algorithms[index].sourceCode,"") != 0 )
     
   } // for( index = 0; index < numberofmodels; index++ )
-}
+  
+} // void program_source()
 
-void program_check_pricing_models(bool quietMode)
+void program_check_pricing_models(bool quietMode, bool debug)
 {
   int index;
   const int numberofmodels = (signed)(sizeofoption_algorithms/sizeof(struct option_algorithm));
-  char statusMessage[80 * 3] = { 0 };
+  char statusMessage[80 * 4] = { 0 };
   double strike;
   double t;
   double totalNumberOfTests = 0;
@@ -397,8 +398,7 @@ void program_check_pricing_models(bool quietMode)
   dat.te2 = 0;
   dat.te3 = 0;
   dat.te4 = 0;
-  // turn debug log off
-  dat.debug = false;
+  dat.debug = debug;
 
   int indexModelsWithPricingIssues = 0;
 
@@ -419,11 +419,12 @@ void program_check_pricing_models(bool quietMode)
 #endif // METAOPTIONS
 
 #ifdef FINRECIPES
-    EURODIVIDENDS,
-    AMPROPORTDIVSBINOMIAL,
-    BERMUDANBINOMIAL,
-    BSCOUPONBOND
+
 #endif // FINRECIPES
+
+#ifdef HAVE_QL_QUANTLIB_HPP
+
+#endif // HAVE_QL_QUANTLIB_HPP
 
   };
 
@@ -488,7 +489,7 @@ void program_check_pricing_models(bool quietMode)
 
     if ( !quietMode )
     {
-      printf("%d ", option_algorithms[index].modeltype);
+      printf("Model: %d ", option_algorithms[index].modeltype);
       printf("%s ", option_algorithms[index].des);
       //fflush(NULL);
     }
@@ -522,6 +523,7 @@ void program_check_pricing_models(bool quietMode)
            break;
          }
 
+         statusMessage[0] = 0;
          sanity_check(&properties, &statusMessage[0]);
 
          if( option_algorithms[index].assetClass == OPTION_CLASS )
@@ -665,7 +667,7 @@ void program_check_pricing_time(int modelnumber, int iterations)
   clock_t c0, c1;
   struct timeval start, end;
 
-  char statusMessage[80 * 3] = { 0 };
+  char statusMessage[80 * 4] = { 0 };
 
   struct _data dat;
 

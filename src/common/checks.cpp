@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 #endif
 
     program_source();
-    program_check_pricing_models(quietMode);
+    program_check_pricing_models(quietMode, properties.data.debug);
 
     exit(EXIT_SUCCESS);
 }
@@ -67,13 +67,14 @@ bool process_arguments_checks(int argc, char **argv, bool *debug)
 
     static struct option long_options[] = {
         { "quiet",   no_argument,       NULL, 'q' },
+        { "debug",   no_argument,       NULL, 'd' },
         { "version", no_argument,       NULL, 'v' },
         { "help",    no_argument,       NULL, 'h' },
         { NULL,      no_argument,       NULL,  0  }
     };
 
     int option_index = 0;
-    while ((c = getopt_long(argc, argv, "qvh", long_options, &option_index)) != -1)
+    while ((c = getopt_long(argc, argv, "qdvh", long_options, &option_index)) != -1)
     {
         int this_option_optind = optind ? optind : 1;
 
@@ -96,6 +97,12 @@ bool process_arguments_checks(int argc, char **argv, bool *debug)
          case 'q':
 
             return true;
+
+         case 'd':
+
+            *debug = true;
+
+            break;
 
          case 'v':
 
@@ -164,6 +171,7 @@ void program_usage_checks()
 
   printf("\n\n");
   printf("  -q, --quiet           do not display output during option computations\n");
+  printf("  -d, --debug           create %s.log debug file\n", PACKAGE);
   printf("  -h, --help            display this help and exit\n");
   printf("  -v, --version         output version information\n");
 

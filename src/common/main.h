@@ -3193,7 +3193,7 @@ const struct option_algorithm option_algorithms[] = {
     "0;BSM",
                                        0, // supportRealTime
                                        0, 0, 0, 0, 0, 0,
-                                       1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        // Supports dividend
                                        1, 0.0, "Expiration", 0, "", 0, "",
                                        "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
@@ -3215,6 +3215,7 @@ const struct option_algorithm option_algorithms[] = {
     "5;Trees & Finite Diff;Heston",
                                        0, // supportRealTime
                                        0, 0, 0, 0, 0, 0,
+      //                               1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
                                        "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",

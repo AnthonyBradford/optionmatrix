@@ -191,7 +191,7 @@ extern void program_usage(char *isGtkVersion);
 extern void program_list_models(void);
 extern void program_version(void);
 extern void program_source(void);
-extern void program_check_pricing_models(bool quietMode);
+extern void program_check_pricing_models(bool quietMode, bool debug);
 extern void program_check_pricing_time(int modelnumber, int iterations);
 
 extern bool process_arguments_checks(int argc, char **argv, bool *debug);

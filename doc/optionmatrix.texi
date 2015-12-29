@@ -1331,7 +1331,7 @@ The OptionMatrix programs support the following models:
 @ifdocbook
 
 @end ifdocbook
-The Windows Installer includes full source code and documentation.
+The Windows Installers include full source code and documentation.
 
 @section Mac OS X
 @cindex Macintosh

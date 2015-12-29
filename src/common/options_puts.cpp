@@ -1426,9 +1426,12 @@ struct _data option_put(struct _data *dat)
 #ifdef HAVE_QL_QUANTLIB_HPP
 
     case QUANTLIB_BLACKSCHOLES_EUROPEAN:
-      
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BLACKSCHOLES_EUROPEAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -1479,14 +1482,25 @@ struct _data option_put(struct _data *dat)
         europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(new QuantLib::AnalyticEuropeanEngine(bsmProcess)));
 
         putprice = europeanOption.NPV();
+
+        dat->putdelta = europeanOption.delta();
+        dat->putElasticity = europeanOption.elasticity();
+        //dat->gamma = europeanOption.gamma();
+        //dat-> vega = europeanOption.vega();
+        dat->puttheta = europeanOption.thetaPerDay();
+        dat->putrho = europeanOption.rho() / 100;
+
       }
 
       break;
 
     case QUANTLIB_HESTON_SEMI_ANALYTIC_EUR:
-
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_HESTON_SEMI_ANALYTIC_EUR put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+        
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -1548,9 +1562,12 @@ struct _data option_put(struct _data *dat)
       break;
 
     case QUANTLIB_BARONE_ADESI_WHALEY_AM:
-
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BARONE_ADESI_WHALEY_AM put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+        
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -1607,9 +1624,12 @@ struct _data option_put(struct _data *dat)
       break;
 
    case QUANTLIB_BJERKSUND_STENSLAND_AM:
-
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BJERKSUND_STENSLAND_AM put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -1664,9 +1684,12 @@ struct _data option_put(struct _data *dat)
       break;
 
     case QUANTLIB_FINITE_DIFFERENCES_EUROPEAN:
-
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_FINITE_DIFFERENCES_EUROPEAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -1725,9 +1748,12 @@ struct _data option_put(struct _data *dat)
       break;
 
     case QUANTLIB_FINITE_DIFFERENCES_AMERICAN:
-
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_FINITE_DIFFERENCES_AMERICAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -1786,9 +1812,13 @@ struct _data option_put(struct _data *dat)
       
       break;
 
-    case  QUANTLIB_MC_CRUDE_EUR:
+    case QUANTLIB_MC_CRUDE_EUR:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_MC_CRUDE_EUR put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -1845,9 +1875,13 @@ struct _data option_put(struct _data *dat)
 
       break;
 
-    case  QUANTLIB_QMC_SOBOL_EUR:
+    case QUANTLIB_QMC_SOBOL_EUR:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_QMC_SOBOL_EUR put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -1903,9 +1937,13 @@ struct _data option_put(struct _data *dat)
 
       break;
 
-   case  QUANTLIB_MC_LONGSTAFF_SCHWARTZ_AM:
+   case QUANTLIB_MC_LONGSTAFF_SCHWARTZ_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_MC_LONGSTAFF_SCHWARTZ_AM put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -1968,9 +2006,13 @@ struct _data option_put(struct _data *dat)
 
       break;
 
-   case  QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM:
+   case QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2044,6 +2086,10 @@ struct _data option_put(struct _data *dat)
    case QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_EUR_AM put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2117,6 +2163,10 @@ struct _data option_put(struct _data *dat)
    case QUANTLIB_ADDITIVE_EQUIPROBABILITIES_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_ADDITIVE_EQUIPROBABILITIES_EUR_AM put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2194,6 +2244,10 @@ struct _data option_put(struct _data *dat)
    case QUANTLIB_BINOMIAL_TRIGEORGIS_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_TRIGEORGIS_EUR_AM put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2271,6 +2325,10 @@ struct _data option_put(struct _data *dat)
    case QUANTLIB_BINOMIAL_TIAN_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_TIAN_EUR_AM put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2348,6 +2406,10 @@ struct _data option_put(struct _data *dat)
    case QUANTLIB_BINOMIAL_LEISEN_REIMER_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_LEISEN_REIMER_EUR_AM put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2425,6 +2487,10 @@ struct _data option_put(struct _data *dat)
    case QUANTLIB_BINOMIAL_JOSHI_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_JOSHI_EUR_AM put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2502,6 +2568,10 @@ struct _data option_put(struct _data *dat)
      case QUANTLIB_BATES_SEMI_ANALYTIC_EUROPEAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BATES_SEMI_ANALYTIC_EUROPEAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2562,6 +2632,10 @@ struct _data option_put(struct _data *dat)
     case QUANTLIB_INTEGRAL_EUROPEAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_INTEGRAL_EUROPEAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2618,6 +2692,10 @@ struct _data option_put(struct _data *dat)
     case QUANTLIB_FINITE_DIFFERENCES_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_FINITE_DIFFERENCES_BERMUDAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2661,6 +2739,11 @@ struct _data option_put(struct _data *dat)
           decimal_date_to_real_dates( *it, &year, &month, &day, &hour, &min, &second);
           //g_print("decimal_date_to_real_dates(it = %lf, year = %d, month = %d, day = %d, hour, min, second)\n", *it, year, month, day);
           QuantLib::Date ExDate(day, QuantLibMonths[month], year);
+
+          if(dat->debug)
+            logger( (char *) "QUANTLIB_FINITE_DIFFERENCES_BERMUDAN put exercises", 3,
+                    (double) day, (double) month, (double) year);
+
           exerciseDates.push_back(ExDate);
         }
 
@@ -2683,6 +2766,10 @@ struct _data option_put(struct _data *dat)
     case QUANTLIB_BINOMIAL_JARROW_RUDD_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_JARROW_RUDD_BERMUDAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2748,6 +2835,10 @@ struct _data option_put(struct _data *dat)
     case QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_BERMUDAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2813,6 +2904,10 @@ struct _data option_put(struct _data *dat)
     case QUANTLIB_ADDITIVE_EQUIPROBABILITIES_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_ADDITIVE_EQUIPROBABILITIES_BERMUDAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2878,6 +2973,10 @@ struct _data option_put(struct _data *dat)
     case QUANTLIB_BINOMIAL_TRIGEORGIS_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_TRIGEORGIS_BERMUDAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+        
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2943,6 +3042,10 @@ struct _data option_put(struct _data *dat)
     case QUANTLIB_BINOMIAL_TIAN_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_TIAN_BERMUDAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+        
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3008,6 +3111,10 @@ struct _data option_put(struct _data *dat)
     case QUANTLIB_BINOMIAL_LEISEN_REIMER_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_LEISEN_REIMER_BERMUDAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+        
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3073,6 +3180,10 @@ struct _data option_put(struct _data *dat)
     case QUANTLIB_BINOMIAL_JOSHI_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_JOSHI_BERMUDAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3181,11 +3292,10 @@ struct _data option_put(struct _data *dat)
     fprintf(stderr,"option_put(): Exception caught: %s\n", e.what() );
     fprintf(stderr,"P = %f, X = %f, R = %f, V = %f, t = %f, Div = %f\n", price,strike,rate,volatility,t,dividend);
 
-    // program might not be recoverable...
-    fflush(NULL);
-    
-    // a number implies probability...force NaN price since exception
-    dat->put = sqrt(-1);
+  } catch (...)
+  {
+    fprintf(stderr,"option_put(): unknown error\n");
+    fprintf(stderr,"P = %f, X = %f, R = %f, V = %f, t = %f, Div = %f\n", price,strike,rate,volatility,t,dividend);
   }
 
   return *dat;

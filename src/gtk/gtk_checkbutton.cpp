@@ -33,7 +33,7 @@
 
 void on_checkbuttonFilterNegativePrice_toggled(GtkButton *button, struct _properties *properties)
 {
-  g_print("on_checkbuttonFilterNegativePrice_toggled:\n");
+  g_print("on_checkbuttonFilterNegativePrice_toggled()\n");
 
   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (button)) )
   {
@@ -49,7 +49,7 @@ void on_checkbuttonFilterNegativePrice_toggled(GtkButton *button, struct _proper
 
 void on_checkbuttonDateEngine_toggled(GtkButton *button, struct _properties *properties)
 {
-  //g_print("on_checkbuttonDateEngine_toggled():\n");
+  //g_print("on_checkbuttonDateEngine_toggled()\n");
 
   if( properties->GtkInfo.checkbuttonDateEngineIgnore == true )
   {

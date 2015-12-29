@@ -53,7 +53,10 @@ void programInits(struct _properties *properties)
 
 #endif
 
-    pthread_mutex_init(&properties->data.mutexCashflow, NULL);
+    if( pthread_mutex_init(&properties->data.mutexCashflow, NULL) != 0 )
+    {
+      fprintf(stderr,"programInits(): pthread_mutex_init() failed.\n");
+    }
 
     time(&properties->starttime);
     time(&properties->starttime2);

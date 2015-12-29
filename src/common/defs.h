@@ -242,6 +242,9 @@ struct _data {
   double callrho;
   double putrho;
 
+  double callElasticity;
+  double putElasticity;
+
   // Term Stuctures
   double discount_t1;
   double discount_t2;

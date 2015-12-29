@@ -760,6 +760,16 @@ gboolean calculate_options(struct _properties *properties)
       index = 0;
       for(i=(properties->strike_offset+(int)price-35/(strike_control[properties->strikestoogle].precision+1));i<(properties->strike_offset+(int)price+160);i+=strike_control[properties->strikestoogle].incrementor)
       {
+         properties->data.calldelta = NAN;
+         properties->data.putdelta = NAN;
+         properties->data.callElasticity = NAN;
+         properties->data.putElasticity = NAN;
+         properties->data.gamma = NAN;
+         properties->data.vega = NAN;
+         properties->data.calltheta = NAN;
+         properties->data.puttheta = NAN;
+         properties->data.callrho = NAN;
+         properties->data.putrho = NAN;
 
          if( (((int)i%strike_control[properties->strikestoogle].strikes5or1==0) && (modf(i,&properties->discard)!=strike_control[properties->strikestoogle].retdiscard)) ||
             ((i== 2.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
@@ -820,7 +830,7 @@ gboolean calculate_options(struct _properties *properties)
            sprintf(&textPut[0][0], "%.*f",properties->precision,optiondata.put);
          }
 
-         process_greeks(properties, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
+         process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
 
          gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
          gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, textPrice, X2, textStrike, X3, textCall[0], X4, textPut[0], X5, textCallDelta, X6, textPutDelta, X7, textGamma, X8, textVega, X9, textCallTheta, X10, textPutTheta, X11, textCallRho, X12, textPutRho, -1);
@@ -947,7 +957,7 @@ gboolean calculate_options(struct _properties *properties)
       char textDaysToExpr[200] = { 0 };
       sprintf(textDaysToExpr,"%.*f",properties->precision,(365*properties->data.t[0]));
 
-      process_greeks(properties, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
+      process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
 
       if ( option_algorithms[properties->modeltype].supportStrikes )
         sprintf(textLegacyCall,"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
@@ -1042,6 +1052,17 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
     index = 0;
     for(i=(properties->strike_offset+(int)price-35/(strike_control[properties->strikestoogle].precision+1));i<(properties->strike_offset+(int)price+160);i+=strike_control[properties->strikestoogle].incrementor)
     {
+      properties->data.calldelta = NAN;
+      properties->data.putdelta = NAN;
+      properties->data.callElasticity = NAN;
+      properties->data.putElasticity = NAN;
+      properties->data.gamma = NAN;
+      properties->data.vega = NAN;
+      properties->data.calltheta = NAN;
+      properties->data.puttheta = NAN;
+      properties->data.callrho = NAN;
+      properties->data.putrho = NAN;
+
       if( (((int)i%strike_control[properties->strikestoogle].strikes5or1==0) && (modf(i,&properties->discard)!=strike_control[properties->strikestoogle].retdiscard)) ||
           ((i== 2.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
           ((i== 7.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
@@ -1149,6 +1170,17 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
     if( option_algorithms[properties->modeltype].supportCalls )
     for(i=(properties->strike_offset+(int)price-35/(strike_control[properties->strikestoogle].precision+1));i<(properties->strike_offset+(int)price+160);i+=strike_control[properties->strikestoogle].incrementor)
     {
+      properties->data.calldelta = NAN;
+      properties->data.putdelta = NAN;
+      properties->data.callElasticity = NAN;
+      properties->data.putElasticity = NAN;
+      properties->data.gamma = NAN;
+      properties->data.vega = NAN;
+      properties->data.calltheta = NAN;
+      properties->data.puttheta = NAN;
+      properties->data.callrho = NAN;
+      properties->data.putrho = NAN;
+
       if( (((int)i%strike_control[properties->strikestoogle].strikes5or1==0) && (modf(i,&properties->discard)!=strike_control[properties->strikestoogle].retdiscard)) ||
           ((i== 2.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
           ((i== 7.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
@@ -1240,6 +1272,17 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
     if( option_algorithms[properties->modeltype].supportPuts )
     for(i=(properties->strike_offset+(int)price-35/(strike_control[properties->strikestoogle].precision+1));i<(properties->strike_offset+(int)price+160);i+=strike_control[properties->strikestoogle].incrementor)
     {
+      properties->data.calldelta = NAN;
+      properties->data.putdelta = NAN;
+      properties->data.callElasticity = NAN;
+      properties->data.putElasticity = NAN;
+      properties->data.gamma = NAN;
+      properties->data.vega = NAN;
+      properties->data.calltheta = NAN;
+      properties->data.puttheta = NAN;
+      properties->data.callrho = NAN;
+      properties->data.putrho = NAN;
+
       if( (((int)i%strike_control[properties->strikestoogle].strikes5or1==0) && (modf(i,&properties->discard)!=strike_control[properties->strikestoogle].retdiscard)) ||
           ((i== 2.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
           ((i== 7.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
@@ -1343,6 +1386,17 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
       for(i=(properties->strike_offset2+(int)price-35/(strike_control[properties->strikestoogle].precision+1));i<(properties->strike_offset2+(int)price+160);i+=strike_control[properties->strikestoogle].incrementor)
       {
+        properties->data.calldelta = NAN;
+        properties->data.putdelta = NAN;
+        properties->data.callElasticity = NAN;
+        properties->data.putElasticity = NAN;
+        properties->data.gamma = NAN;
+        properties->data.vega = NAN;
+        properties->data.calltheta = NAN;
+        properties->data.puttheta = NAN;
+        properties->data.callrho = NAN;
+        properties->data.putrho = NAN;
+
         if( (((int)i%strike_control[properties->strikestoogle].strikes5or1==0) && (modf(i,&properties->discard)!=strike_control[properties->strikestoogle].retdiscard)) ||
             ((i== 2.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
             ((i== 7.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
@@ -1450,6 +1504,17 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
     totalCounter = 0;
     for(i=(properties->strike_offset+(int)price-35/(strike_control[properties->strikestoogle].precision+1));i<(properties->strike_offset+(int)price+160);i+=strike_control[properties->strikestoogle].incrementor)
     {
+      properties->data.calldelta = NAN;
+      properties->data.putdelta = NAN;
+      properties->data.callElasticity = NAN;
+      properties->data.putElasticity = NAN;
+      properties->data.gamma = NAN;
+      properties->data.vega = NAN;
+      properties->data.calltheta = NAN;
+      properties->data.puttheta = NAN;
+      properties->data.callrho = NAN;
+      properties->data.putrho = NAN;
+
       if( (((int)i%strike_control[properties->strikestoogle].strikes5or1==0) && (modf(i,&properties->discard)!=strike_control[properties->strikestoogle].retdiscard)) ||
           ((i== 2.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
           ((i== 7.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
@@ -1529,7 +1594,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           char textDaysToExpr[200] = { 0 };
           sprintf(textDaysToExpr,"%.*f",properties->precision,(365*properties->data.t[0]));
 
-          process_greeks(properties, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
+          process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
 
           if ( option_algorithms[properties->modeltype].supportStrikes )
             sprintf(textLegacyCall,"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
@@ -1639,6 +1704,17 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
         for(i=(properties->strike_offset2+(int)price-35/(strike_control[properties->strikestoogle].precision+1));i<(properties->strike_offset2+(int)price+160);i+=strike_control[properties->strikestoogle].incrementor)
         {
+          properties->data.calldelta = NAN;
+          properties->data.putdelta = NAN;
+          properties->data.callElasticity = NAN;
+          properties->data.putElasticity = NAN;
+          properties->data.gamma = NAN;
+          properties->data.vega = NAN;
+          properties->data.calltheta = NAN;
+          properties->data.puttheta = NAN;
+          properties->data.callrho = NAN;
+          properties->data.putrho = NAN;
+
           if( (((int)i%strike_control[properties->strikestoogle].strikes5or1==0) && (modf(i,&properties->discard)!=strike_control[properties->strikestoogle].retdiscard)) ||
               ((i== 2.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
               ((i== 7.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
@@ -1749,6 +1825,17 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
       for(i=(properties->strike_offset+(int)price-35/(strike_control[properties->strikestoogle].precision+1));i<(properties->strike_offset+(int)price+160);i+=strike_control[properties->strikestoogle].incrementor)
       {
+        properties->data.calldelta = NAN;
+        properties->data.putdelta = NAN;
+        properties->data.callElasticity = NAN;
+        properties->data.putElasticity = NAN;
+        properties->data.gamma = NAN;
+        properties->data.vega = NAN;
+        properties->data.calltheta = NAN;
+        properties->data.puttheta = NAN;
+        properties->data.callrho = NAN;
+        properties->data.putrho = NAN;
+
         if( (((int)i%strike_control[properties->strikestoogle].strikes5or1==0) && (modf(i,&properties->discard)!=strike_control[properties->strikestoogle].retdiscard)) ||
           ((i== 2.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
           ((i== 7.5) && strike_control[properties->strikestoogle].strikes5or1==5) ||
@@ -1826,7 +1913,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           char textDaysToExpr[200] = { 0 };
           sprintf(textDaysToExpr,"%.*f",properties->precision,(365*properties->data.t[0]));
 
-          process_greeks(properties, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
+          process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
 
           if ( option_algorithms[properties->modeltype].supportStrikes )
             sprintf(textLegacyCall,"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
@@ -1928,55 +2015,104 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
   return TRUE;
 }
 
-void process_greeks(struct _properties *properties, char *textCallDelta, char *textPutDelta, char *textGamma, char *textVega, char *textCallTheta, char *textPutTheta, char *textCallRho, char *textPutRho)
+void process_greeks(struct _properties *properties, struct _data *dat, char *textCallDelta, char *textPutDelta, char *textGamma, char *textVega, char *textCallTheta, char *textPutTheta, char *textCallRho, char *textPutRho)
 {
   struct _data optiondata;
 
   if( option_algorithms[properties->modeltype].produceCallDelta )
   {
-    optiondata = option_call_delta(&properties->data);
+    if( !isnan(dat->calldelta) )
+    {
+      optiondata.calldelta = dat->calldelta;
+    }
+    else
+    {
+      optiondata = option_call_delta(&properties->data);
+    }
     sprintf(textCallDelta,"%.*f", properties->precision,optiondata.calldelta);
   }
         
   if( option_algorithms[properties->modeltype].producePutDelta )
   {
-    optiondata = option_put_delta(&properties->data);
+    if( !isnan(dat->putdelta) )
+    {
+      optiondata.putdelta = dat->putdelta;
+    } else
+    {
+      optiondata = option_put_delta(&properties->data);
+    }
     sprintf(textPutDelta,"%.*f", properties->precision,optiondata.putdelta);
   }
 
   if( option_algorithms[properties->modeltype].produceGamma )
   {
-    optiondata = option_gamma(&properties->data);
+    if( !isnan(dat->gamma) )
+    {
+      optiondata.gamma = dat->gamma;
+    } else
+    {
+      optiondata = option_gamma(&properties->data);
+    }
     sprintf(textGamma,"%.*f", properties->precision,optiondata.gamma);
   }
 
   if( option_algorithms[properties->modeltype].produceVega )
   {
-    optiondata = option_vega(&properties->data);
+    if( !isnan(dat->vega) )
+    {
+      optiondata.vega = dat->vega;
+    } else
+    {
+      optiondata = option_vega(&properties->data);
+    }
     sprintf(textVega,"%.*f", properties->precision,optiondata.vega);
   }
 
   if( option_algorithms[properties->modeltype].produceCallTheta )
   {
-    optiondata = option_call_theta(&properties->data);
+    if( !isnan(dat->calltheta) )
+    {
+      optiondata.calltheta = dat->calltheta;
+    } else
+    {
+      optiondata = option_call_theta(&properties->data);
+    }
     sprintf(textCallTheta,"%.*f", properties->precision,optiondata.calltheta);
   }
 
   if( option_algorithms[properties->modeltype].producePutTheta )
   {
-    optiondata = option_put_theta(&properties->data);
+    if( !isnan(dat->puttheta) )
+    {
+      optiondata.puttheta = dat->puttheta;
+    } else
+    {
+      optiondata = option_put_theta(&properties->data);
+    }
     sprintf(textPutTheta,"%.*f", properties->precision,optiondata.puttheta);
   }
 
   if( option_algorithms[properties->modeltype].produceCallRho )
   {
-    optiondata = option_call_rho(&properties->data);
+    if( !isnan(dat->callrho) )
+    {
+      optiondata.callrho = dat->callrho;
+    } else
+    {
+      optiondata = option_call_rho(&properties->data);
+    }
     sprintf(textCallRho,"%.*f", properties->precision,optiondata.callrho);
+
   }
 
   if( option_algorithms[properties->modeltype].producePutRho )
   {
-    optiondata = option_put_rho(&properties->data);
+    if( !isnan(dat->putrho) )
+    {
+      optiondata.putrho = dat->putrho;
+    } else {
+      optiondata = option_put_rho(&properties->data);
+    }
     sprintf(textPutRho,"%.*f", properties->precision,optiondata.putrho);
   }
 }

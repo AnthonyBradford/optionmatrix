@@ -304,10 +304,8 @@ int sanity_check(struct _properties *properties, char *statusMessage)
 
     if( properties->decimalorcalendar == DECIMALS && properties->data.t[0] <= 0.0 )
     {
-      //properties->data.t[0] = .25;
       properties->data.t[0] = 0;
       properties->data.te = 0;
-      //sprintf(statusMessage,"Not set. Decimal time forced to: %.3f",properties->data.t[0]);
       sprintf(statusMessage,"Please set time to positive amount for pricing");
       messageSet = 1;
     }

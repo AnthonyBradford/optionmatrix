@@ -516,7 +516,6 @@ void setup_tree_view(struct _properties *properties)
 
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
-      //                   ("Decimal Time", renderer, "text", X7, NULL);
                            ("Years to Expr", renderer, "text", X7, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 

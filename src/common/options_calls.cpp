@@ -2272,6 +2272,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_BLACKSCHOLES_EUROPEAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BLACKSCHOLES_EUROPEAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+        
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2321,6 +2325,14 @@ struct _data option_call(struct _data *dat)
         europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(new QuantLib::AnalyticEuropeanEngine(bsmProcess)));
         
         callprice = europeanOption.NPV();
+
+        dat->calldelta = europeanOption.delta();
+        dat->callElasticity = europeanOption.elasticity();
+        dat->gamma = europeanOption.gamma();
+        dat->vega = europeanOption.vega();
+        dat->calltheta = europeanOption.thetaPerDay();
+        dat->callrho = europeanOption.rho() / 100;
+
       }
 
       break;
@@ -2328,6 +2340,10 @@ struct _data option_call(struct _data *dat)
    case QUANTLIB_HESTON_SEMI_ANALYTIC_EUR:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_HESTON_SEMI_ANALYTIC_EUR call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2384,6 +2400,14 @@ struct _data option_call(struct _data *dat)
                                      new QuantLib::AnalyticHestonEngine(hestonModel)));
 
         callprice = europeanOption.NPV();
+
+        //dat->calldelta = europeanOption.delta();
+        //dat->callElasticity = europeanOption.elasticity();
+        //dat->gamma = europeanOption.gamma();
+        //dat->vega = europeanOption.vega();
+        //dat->calltheta = europeanOption.thetaPerDay();
+        //dat->callrho = europeanOption.rho() / 100;
+
       }
 
       break;
@@ -2391,6 +2415,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_BARONE_ADESI_WHALEY_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BARONE_ADESI_WHALEY_AM call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2442,6 +2470,14 @@ struct _data option_call(struct _data *dat)
                   new QuantLib::BaroneAdesiWhaleyApproximationEngine(bsmProcess)));
         
         callprice = americanOption.NPV();
+
+        //dat->calldelta = americanOption.delta();
+        //dat->callElasticity = americanOption.elasticity();
+        //dat->gamma = americanOption.gamma();
+        //dat->vega = americanOption.vega();
+        //dat->calltheta = americanOption.thetaPerDay();
+        //dat->callrho = americanOption.rho() / 100;
+
       }
       
       break;
@@ -2449,6 +2485,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_BJERKSUND_STENSLAND_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BJERKSUND_STENSLAND_AM call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2498,6 +2538,14 @@ struct _data option_call(struct _data *dat)
                       new QuantLib::BjerksundStenslandApproximationEngine(bsmProcess)));
 
         callprice = americanOption.NPV();
+
+        //dat->calldelta = americanOption.delta();
+        //dat->callElasticity = americanOption.elasticity();
+        //dat->gamma = americanOption.gamma();
+        //dat->vega = americanOption.vega();
+        //dat->calltheta = americanOption.thetaPerDay();
+        //dat->callrho = americanOption.rho() / 100;
+
       }
 
       break;
@@ -2505,6 +2553,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_FINITE_DIFFERENCES_EUROPEAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_FINITE_DIFFERENCES_EUROPEAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2558,6 +2610,14 @@ struct _data option_call(struct _data *dat)
                                                      timeSteps,timeSteps-1)));
 
         callprice = europeanOption.NPV();
+
+        //dat->calldelta = europeanOption.delta();
+        //dat->callElasticity = europeanOption.elasticity();
+        //dat->gamma = europeanOption.gamma();
+        //dat->vega = europeanOption.vega();
+        //dat->calltheta = europeanOption.thetaPerDay();
+        //dat->callrho = europeanOption.rho() / 100;
+        
       }
 
       break;
@@ -2565,7 +2625,11 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_FINITE_DIFFERENCES_AMERICAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
-       // set up dates
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_FINITE_DIFFERENCES_AMERICAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
+        // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
         decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
@@ -2619,13 +2683,25 @@ struct _data option_call(struct _data *dat)
                                                      timeSteps,timeSteps-1)));
 
         callprice = americanOption.NPV();
+
+        //dat->calldelta = americanOption.delta();
+        //dat->callElasticity = americanOption.elasticity();
+        //dat->gamma = americanOption.gamma();
+        //dat->vega = americanOption.vega();
+        //dat->calltheta = americanOption.thetaPerDay();
+        //dat->callrho = americanOption.rho() / 100;
+
       }
 
       break;
 
-    case  QUANTLIB_MC_CRUDE_EUR:
+    case QUANTLIB_MC_CRUDE_EUR:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_MC_CRUDE_EUR call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2678,13 +2754,25 @@ struct _data option_call(struct _data *dat)
        europeanOption.setPricingEngine(mcengine1);
        
        callprice =  europeanOption.NPV();
+
+       //dat->calldelta = europeanOption.delta();
+       //dat->callElasticity = europeanOption.elasticity();
+       //dat->gamma = europeanOption.gamma();
+       //dat->vega = europeanOption.vega();
+       //dat->calltheta = europeanOption.thetaPerDay();
+       //dat->callrho = europeanOption.rho() / 100;
+ 
       }
 
       break;
 
-    case  QUANTLIB_QMC_SOBOL_EUR:
+    case QUANTLIB_QMC_SOBOL_EUR:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_QMC_SOBOL_EUR call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2736,13 +2824,25 @@ struct _data option_call(struct _data *dat)
        europeanOption.setPricingEngine(mcengine2);
 
        callprice =  europeanOption.NPV();
+
+       //dat->calldelta = europeanOption.delta();
+       //dat->callElasticity = europeanOption.elasticity();
+       //dat->gamma = europeanOption.gamma();
+       //dat->vega = europeanOption.vega();
+       //dat->calltheta = europeanOption.thetaPerDay();
+       //dat->callrho = europeanOption.rho() / 100;
+       
       }
 
       break;
 
-   case  QUANTLIB_MC_LONGSTAFF_SCHWARTZ_AM:
+   case QUANTLIB_MC_LONGSTAFF_SCHWARTZ_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_MC_LONGSTAFF_SCHWARTZ_AM call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2801,13 +2901,25 @@ struct _data option_call(struct _data *dat)
        americanOption.setPricingEngine(mcengine3);
 
        callprice = americanOption.NPV();
+
+       //dat->calldelta = americanOption.delta();
+       //dat->callElasticity = americanOption.elasticity();
+       //dat->gamma = americanOption.gamma();
+       //dat->vega = americanOption.vega();
+       //dat->calltheta = americanOption.thetaPerDay();
+       //dat->callrho = americanOption.rho() / 100;
+
       }
 
       break;
 
-   case  QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM:
+   case QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2860,6 +2972,13 @@ struct _data option_call(struct _data *dat)
              new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(bsmProcess,dat->steps)));
          callprice = americanOption.NPV();
 
+         //dat->calldelta = americanOption.delta();
+         //dat->callElasticity = americanOption.elasticity();
+         //dat->gamma = americanOption.gamma();
+         //dat->vega = americanOption.vega();
+         //dat->calltheta = americanOption.thetaPerDay();
+         //dat->callrho = americanOption.rho() / 100;
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -2867,6 +2986,13 @@ struct _data option_call(struct _data *dat)
          europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
              new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(bsmProcess,dat->steps)));
          callprice = europeanOption.NPV();
+
+         //dat->calldelta = europeanOption.delta();
+         //dat->callElasticity = europeanOption.elasticity();
+         //dat->gamma = europeanOption.gamma();
+         //dat->vega = europeanOption.vega();
+         //dat->calltheta = europeanOption.thetaPerDay();
+         //dat->callrho = europeanOption.rho() / 100;
 
        } else
        {
@@ -2881,6 +3007,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_EUR_AM call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -2933,6 +3063,13 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(bsmProcess,dat->steps)));
          callprice = americanOption.NPV();
 
+         //dat->calldelta = americanOption.delta();
+         //dat->callElasticity = americanOption.elasticity();
+         //dat->gamma = americanOption.gamma();
+         //dat->vega = americanOption.vega();
+         //dat->calltheta = americanOption.thetaPerDay();
+         //dat->callrho = americanOption.rho() / 100;
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -2940,6 +3077,13 @@ struct _data option_call(struct _data *dat)
          europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
             new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(bsmProcess,dat->steps)));
          callprice = europeanOption.NPV();
+
+         //dat->calldelta = europeanOption.delta();
+         //dat->callElasticity = europeanOption.elasticity();
+         //dat->gamma = europeanOption.gamma();
+         //dat->vega = europeanOption.vega();
+         //dat->calltheta = europeanOption.thetaPerDay();
+         //dat->callrho = europeanOption.rho() / 100;
 
        } else
        {
@@ -2954,6 +3098,10 @@ struct _data option_call(struct _data *dat)
    case QUANTLIB_ADDITIVE_EQUIPROBABILITIES_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_ADDITIVE_EQUIPROBABILITIES_EUR_AM call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3007,6 +3155,13 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::AdditiveEQPBinomialTree>(bsmProcess,dat->steps)));
 
          callprice = americanOption.NPV();
+         
+         //dat->calldelta = americanOption.delta();
+         //dat->callElasticity = americanOption.elasticity();
+         //dat->gamma = americanOption.gamma();
+         //dat->vega = americanOption.vega();
+         //dat->calltheta = americanOption.thetaPerDay();
+         //dat->callrho = americanOption.rho() / 100;
 
        } else if( dat->UsePound == 2 )
        {
@@ -3017,6 +3172,13 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::AdditiveEQPBinomialTree>(bsmProcess,dat->steps)));
 
          callprice = europeanOption.NPV();
+
+         //dat->calldelta = europeanOption.delta();
+         //dat->callElasticity = europeanOption.elasticity();
+         //dat->gamma = europeanOption.gamma();
+         //dat->vega = europeanOption.vega();
+         //dat->calltheta = europeanOption.thetaPerDay();
+         //dat->callrho = europeanOption.rho() / 100;
 
        } else
        {
@@ -3031,6 +3193,10 @@ struct _data option_call(struct _data *dat)
    case QUANTLIB_BINOMIAL_TRIGEORGIS_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_TRIGEORGIS_EUR_AM call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3085,6 +3251,13 @@ struct _data option_call(struct _data *dat)
 
          callprice = americanOption.NPV();
 
+         //dat->calldelta = americanOption.delta();
+         //dat->callElasticity = americanOption.elasticity();
+         //dat->gamma = americanOption.gamma();
+         //dat->vega = americanOption.vega();
+         //dat->calltheta = americanOption.thetaPerDay();
+         //dat->callrho = americanOption.rho() / 100;
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -3094,6 +3267,13 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::Trigeorgis>(bsmProcess,dat->steps)));
 
          callprice = europeanOption.NPV();
+
+         //dat->calldelta = europeanOption.delta();
+         //dat->callElasticity = europeanOption.elasticity();
+         //dat->gamma = europeanOption.gamma();
+         //dat->vega = europeanOption.vega();
+         //dat->calltheta = europeanOption.thetaPerDay();
+         //dat->callrho = europeanOption.rho() / 100;
 
        } else
        {
@@ -3108,6 +3288,10 @@ struct _data option_call(struct _data *dat)
    case QUANTLIB_BINOMIAL_TIAN_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_TIAN_EUR_AM call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3162,6 +3346,13 @@ struct _data option_call(struct _data *dat)
  
          callprice = americanOption.NPV();
 
+         //dat->calldelta = americanOption.delta();
+         //dat->callElasticity = americanOption.elasticity();
+         //dat->gamma = americanOption.gamma();
+         //dat->vega = americanOption.vega();
+         //dat->calltheta = americanOption.thetaPerDay();
+         //dat->callrho = americanOption.rho() / 100;
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -3171,6 +3362,13 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::Tian>(bsmProcess,dat->steps)));
 
          callprice = europeanOption.NPV();
+
+         //dat->calldelta = europeanOption.delta();
+         //dat->callElasticity = europeanOption.elasticity();
+         //dat->gamma = europeanOption.gamma();
+         //dat->vega = europeanOption.vega();
+         //dat->calltheta = europeanOption.thetaPerDay();
+         //dat->callrho = europeanOption.rho() / 100;
 
        } else
        {
@@ -3185,6 +3383,10 @@ struct _data option_call(struct _data *dat)
    case QUANTLIB_BINOMIAL_LEISEN_REIMER_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_LEISEN_REIMER_EUR_AM call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3239,6 +3441,13 @@ struct _data option_call(struct _data *dat)
  
          callprice = americanOption.NPV();
 
+         //dat->calldelta = americanOption.delta();
+         //dat->callElasticity = americanOption.elasticity();
+         //dat->gamma = americanOption.gamma();
+         //dat->vega = americanOption.vega();
+         //dat->calltheta = americanOption.thetaPerDay();
+         //dat->callrho = americanOption.rho() / 100;
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -3248,6 +3457,13 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::LeisenReimer>(bsmProcess,dat->steps)));
 
          callprice = europeanOption.NPV();
+
+         //dat->calldelta = europeanOption.delta();
+         //dat->callElasticity = europeanOption.elasticity();
+         //dat->gamma = europeanOption.gamma();
+         //dat->vega = europeanOption.vega();
+         //dat->calltheta = europeanOption.thetaPerDay();
+         //dat->callrho = europeanOption.rho() / 100;
 
        } else
        {
@@ -3262,6 +3478,10 @@ struct _data option_call(struct _data *dat)
    case QUANTLIB_BINOMIAL_JOSHI_EUR_AM:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_JOSHI_EUR_AM call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3316,6 +3536,13 @@ struct _data option_call(struct _data *dat)
  
          callprice = americanOption.NPV();
 
+         //dat->calldelta = americanOption.delta();
+         //dat->callElasticity = americanOption.elasticity();
+         //dat->gamma = americanOption.gamma();
+         //dat->vega = americanOption.vega();
+         //dat->calltheta = americanOption.thetaPerDay();
+         //dat->callrho = americanOption.rho() / 100;
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -3325,6 +3552,13 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::Joshi4>(bsmProcess,dat->steps)));
 
          callprice = europeanOption.NPV();
+
+         //dat->calldelta = europeanOption.delta();
+         //dat->callElasticity = europeanOption.elasticity();
+         //dat->gamma = europeanOption.gamma();
+         //dat->vega = europeanOption.vega();
+         //dat->calltheta = europeanOption.thetaPerDay();
+         //dat->callrho = europeanOption.rho() / 100;
 
        } else
        {
@@ -3339,6 +3573,10 @@ struct _data option_call(struct _data *dat)
      case QUANTLIB_BATES_SEMI_ANALYTIC_EUROPEAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BATES_SEMI_ANALYTIC_EUROPEAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3392,6 +3630,14 @@ struct _data option_call(struct _data *dat)
               new QuantLib::BatesEngine(batesModel)));
 
         callprice = europeanOption.NPV();
+
+        //dat->calldelta = europeanOption.delta();
+        //dat->callElasticity = europeanOption.elasticity();
+        //dat->gamma = europeanOption.gamma();
+        //dat->vega = europeanOption.vega();
+        //dat->calltheta = europeanOption.thetaPerDay();
+        //dat->callrho = europeanOption.rho() / 100;
+
       }
 
       break;
@@ -3399,6 +3645,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_INTEGRAL_EUROPEAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_INTEGRAL_EUROPEAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3448,6 +3698,14 @@ struct _data option_call(struct _data *dat)
            new QuantLib::IntegralEngine(bsmProcess)));
 
         callprice = europeanOption.NPV();
+
+        //dat->calldelta = europeanOption.delta();
+        //dat->callElasticity = europeanOption.elasticity();
+        //dat->gamma = europeanOption.gamma();
+        //dat->vega = europeanOption.vega();
+        //dat->calltheta = europeanOption.thetaPerDay();
+        //dat->callrho = europeanOption.rho() / 100;
+
       }
 
       break;
@@ -3455,6 +3713,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_FINITE_DIFFERENCES_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_FINITE_DIFFERENCES_BERMUDAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3498,6 +3760,11 @@ struct _data option_call(struct _data *dat)
           decimal_date_to_real_dates( *it, &year, &month, &day, &hour, &min, &second);
           //g_print("decimal_date_to_real_dates(it = %lf, year = %d, month = %d, day = %d, hour, min, second)\n", *it, year, month, day);
           QuantLib::Date ExDate(day, QuantLibMonths[month], year);
+          
+          if(dat->debug)
+            logger( (char *) "QUANTLIB_FINITE_DIFFERENCES_BERMUDAN call exercises", 3,
+                    (double) day, (double) month, (double) year);
+
           exerciseDates.push_back(ExDate);
         }
 
@@ -3513,6 +3780,14 @@ struct _data option_call(struct _data *dat)
            new QuantLib::FDBermudanEngine<QuantLib::CrankNicolson>(bsmProcess,dat->steps,dat->steps-1)));
 
         callprice = bermudanOption.NPV();
+
+         //dat->calldelta = bermudanOption.delta();
+         //dat->callElasticity = bermudanOption.elasticity();
+         //dat->gamma = bermudanOption.gamma();
+         //dat->vega = bermudanOption.vega();
+         //dat->calltheta = bermudanOption.thetaPerDay();
+         //dat->callrho = bermudanOption.rho() / 100;
+
       }
 
       break;
@@ -3520,6 +3795,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_BINOMIAL_JARROW_RUDD_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_JARROW_RUDD_BERMUDAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3578,6 +3857,14 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(bsmProcess,dat->steps)));
 
         callprice = bermudanOption.NPV();
+
+        //dat->calldelta = bermudanOption.delta();
+        //dat->callElasticity = bermudanOption.elasticity();
+        //dat->gamma = bermudanOption.gamma();
+        //dat->vega = bermudanOption.vega();
+        //dat->calltheta = bermudanOption.thetaPerDay();
+        //dat->callrho = bermudanOption.rho() / 100;
+
       }
 
       break;
@@ -3585,6 +3872,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_BERMUDAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3643,6 +3934,14 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(bsmProcess,dat->steps)));
 
         callprice = bermudanOption.NPV();
+
+        //dat->calldelta = bermudanOption.delta();
+        //dat->callElasticity = bermudanOption.elasticity();
+        //dat->gamma = bermudanOption.gamma();
+        //dat->vega = bermudanOption.vega();
+        //dat->calltheta = bermudanOption.thetaPerDay();
+        //dat->callrho = bermudanOption.rho() / 100;
+
       }
 
       break;
@@ -3650,6 +3949,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_ADDITIVE_EQUIPROBABILITIES_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_ADDITIVE_EQUIPROBABILITIES_BERMUDAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3708,6 +4011,14 @@ struct _data option_call(struct _data *dat)
            new QuantLib::BinomialVanillaEngine<QuantLib::AdditiveEQPBinomialTree>(bsmProcess,dat->steps)));
 
         callprice = bermudanOption.NPV();
+
+        //dat->calldelta = bermudanOption.delta();
+        //dat->callElasticity = bermudanOption.elasticity();
+        //dat->gamma = bermudanOption.gamma();
+        //dat->vega = bermudanOption.vega();
+        //dat->calltheta = bermudanOption.thetaPerDay();
+        //dat->callrho = bermudanOption.rho() / 100;
+        
       }
 
       break;
@@ -3715,6 +4026,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_BINOMIAL_TRIGEORGIS_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_TRIGEORGIS_BERMUDAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3773,6 +4088,14 @@ struct _data option_call(struct _data *dat)
            new QuantLib::BinomialVanillaEngine<QuantLib::Trigeorgis>(bsmProcess,dat->steps)));
 
         callprice = bermudanOption.NPV();
+
+        //dat->calldelta = bermudanOption.delta();
+        //dat->callElasticity = bermudanOption.elasticity();
+        //dat->gamma = bermudanOption.gamma();
+        //dat->vega = bermudanOption.vega();
+        //dat->calltheta = bermudanOption.thetaPerDay();
+        //dat->callrho = bermudanOption.rho() / 100;
+
       }
 
       break;
@@ -3780,6 +4103,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_BINOMIAL_TIAN_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_TIAN_BERMUDAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3838,6 +4165,14 @@ struct _data option_call(struct _data *dat)
            new QuantLib::BinomialVanillaEngine<QuantLib::Tian>(bsmProcess,dat->steps)));
 
         callprice = bermudanOption.NPV();
+
+        //dat->calldelta = bermudanOption.delta();
+        //dat->callElasticity = bermudanOption.elasticity();
+        //dat->gamma = bermudanOption.gamma();
+        //dat->vega = bermudanOption.vega();
+        //dat->calltheta = bermudanOption.thetaPerDay();
+        //dat->callrho = bermudanOption.rho() / 100;
+
       }
 
       break;
@@ -3845,6 +4180,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_BINOMIAL_LEISEN_REIMER_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_LEISEN_REIMER_BERMUDAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3903,6 +4242,14 @@ struct _data option_call(struct _data *dat)
            new QuantLib::BinomialVanillaEngine<QuantLib::LeisenReimer>(bsmProcess,dat->steps)));
 
         callprice = bermudanOption.NPV();
+
+        //dat->calldelta = bermudanOption.delta();
+        //dat->callElasticity = bermudanOption.elasticity();
+        //dat->gamma = bermudanOption.gamma();
+        //dat->vega = bermudanOption.vega();
+        //dat->calltheta = bermudanOption.thetaPerDay();
+        //dat->callrho = bermudanOption.rho() / 100;
+
       }
 
       break;
@@ -3910,6 +4257,10 @@ struct _data option_call(struct _data *dat)
     case QUANTLIB_BINOMIAL_JOSHI_BERMUDAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_BINOMIAL_JOSHI_BERMUDAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
         // set up dates
         QuantLib::Calendar calendar = QuantLib::TARGET();
         int year; int month; int day; int hour; int min; int second;
@@ -3968,6 +4319,14 @@ struct _data option_call(struct _data *dat)
            new QuantLib::BinomialVanillaEngine<QuantLib::Joshi4>(bsmProcess,dat->steps)));
 
         callprice = bermudanOption.NPV();
+
+        //dat->calldelta = bermudanOption.delta();
+        //dat->callElasticity = bermudanOption.elasticity();
+        //dat->gamma = bermudanOption.gamma();
+        //dat->vega = bermudanOption.vega();
+        //dat->calltheta = bermudanOption.thetaPerDay();
+        //dat->callrho = bermudanOption.rho() / 100;
+
       }
 
       break;
@@ -4018,11 +4377,10 @@ struct _data option_call(struct _data *dat)
     fprintf(stderr,"option_call(): Exception caught: %s\n", e.what() );
     fprintf(stderr,"P = %f, X = %f, R = %f, V = %f, t = %f, Div = %f\n", price,strike,rate,volatility,t,dividend);
 
-    // program might not be recoverable...
-    fflush(NULL);
-
-    // a number implies probability...force NaN price since exception
-    dat->call = sqrt(-1);
+  } catch (...)
+  {
+    fprintf(stderr,"option_call(): unknown error\n");
+    fprintf(stderr,"P = %f, X = %f, R = %f, V = %f, t = %f, Div = %f\n", price,strike,rate,volatility,t,dividend);
   }
 
   return *dat;
