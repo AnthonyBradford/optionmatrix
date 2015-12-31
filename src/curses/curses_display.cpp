@@ -36,6 +36,17 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 {
     static int messageClear;
 
+    properties->data.calldelta = NAN;
+    properties->data.putdelta = NAN;
+    properties->data.callElasticity = NAN;
+    properties->data.putElasticity = NAN;
+    properties->data.gamma = NAN;
+    properties->data.vega = NAN;
+    properties->data.calltheta = NAN;
+    properties->data.puttheta = NAN;
+    properties->data.callrho = NAN;
+    properties->data.putrho = NAN;
+
     int row;
     for( row = 0; row <= 3; row++ )
     {
@@ -252,7 +263,11 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
       if( option_algorithms[properties->modeltype].produceCallDelta == 1 )
       {
-        optiondata = option_call_delta(&properties->data);
+        if( !isnan(properties->data.calldelta) )
+          optiondata.calldelta = properties->data.calldelta;
+        else
+          optiondata = option_call_delta(&properties->data);
+
         printw("C Delta = %.*f\t",properties->precision,optiondata.calldelta); clrtoeol();
       } else
       {
@@ -261,7 +276,11 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
       if( option_algorithms[properties->modeltype].producePutDelta == 1 )
       {
-        optiondata = option_put_delta(&properties->data);
+        if( !isnan(properties->data.putdelta) )
+          optiondata.putdelta = properties->data.putdelta;
+        else
+          optiondata = option_put_delta(&properties->data);
+
         printw("P Delta = %.*f\n",properties->precision,optiondata.putdelta); clrtoeol();
       } else
       {
@@ -270,7 +289,11 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
       if( option_algorithms[properties->modeltype].produceGamma == 1 )
       {
-        optiondata = option_gamma(&properties->data);
+        if( !isnan(properties->data.gamma) )
+          optiondata.gamma = properties->data.gamma;
+        else
+          optiondata = option_gamma(&properties->data);
+
         printw("Gamma   = %.*f\t",properties->precision,optiondata.gamma);
 
       } else
@@ -280,7 +303,11 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
       if( option_algorithms[properties->modeltype].produceVega == 1 )
       {
-        optiondata = option_vega(&properties->data);
+        if( !isnan(properties->data.vega) )
+          optiondata.vega = properties->data.vega;
+        else
+          optiondata = option_vega(&properties->data);
+
         printw("Vega    = %.*f\n\n",properties->precision,optiondata.vega);
 
       } else
@@ -290,7 +317,11 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
       if( option_algorithms[properties->modeltype].produceCallTheta == 1 )
       {
-        optiondata = option_call_theta(&properties->data);
+        if( !isnan(properties->data.calltheta) )
+          optiondata.calltheta = properties->data.calltheta;
+        else
+          optiondata = option_call_theta(&properties->data);
+
         printw("C Theta  = %.*f\t",properties->precision,optiondata.calltheta);
 
       } else
@@ -300,7 +331,11 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
       if( option_algorithms[properties->modeltype].producePutTheta == 1 )
       {
-        optiondata = option_put_theta(&properties->data);
+        if( !isnan(properties->data.puttheta) )
+          optiondata.puttheta = properties->data.puttheta;
+        else
+          optiondata = option_put_theta(&properties->data);
+ 
         printw("P Theta  = %.*f\n",properties->precision,optiondata.puttheta);
 
       } else
@@ -310,7 +345,11 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
       if( option_algorithms[properties->modeltype].produceCallRho == 1 )
       {
-        optiondata = option_call_rho(&properties->data);
+        if( !isnan(properties->data.callrho) )
+          optiondata.callrho = properties->data.callrho;
+        else
+          optiondata = option_call_rho(&properties->data);
+
         printw("C Rho    = %.*f\t",properties->precision,optiondata.callrho);
 
       } else
@@ -320,13 +359,19 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
       if( option_algorithms[properties->modeltype].producePutRho == 1 )
       {
-        optiondata = option_put_rho(&properties->data);
+        if( !isnan(properties->data.putrho) )
+          optiondata.putrho = properties->data.putrho;
+        else
+          optiondata = option_put_rho(&properties->data);
+
         printw("P Rho    = %.*f\n",properties->precision,optiondata.putrho);
 
       } else
       {
         printw("P Rho not avail");
       }
+
+
     }
     /*********************************************************/
 
@@ -449,9 +494,12 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
             if( option_algorithms[properties->modeltype].produceCallDelta == 1 )
             {
-              optiondata = option_call_delta(&properties->data);
+              if( !isnan(properties->data.calldelta) )
+                optiondata.calldelta = properties->data.calldelta;
+              else
+                optiondata = option_call_delta(&properties->data);
 
-              printw(" %.*f   ",properties->precision,optiondata.calldelta);
+              printw(" %.*f   ", properties->precision,optiondata.calldelta);
 
             } else
             {
@@ -459,8 +507,11 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
             }
 
             if( option_algorithms[properties->modeltype].producePutDelta == 1 )
-            {
-              optiondata = option_put_delta(&properties->data);
+             {
+              if( properties->data.putdelta )
+                optiondata.putdelta = properties->data.putdelta;
+              else
+                optiondata = option_put_delta(&properties->data);
 
               printw("%.*f",properties->precision,optiondata.putdelta);
 
@@ -758,7 +809,10 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
              if( option_algorithms[properties->modeltype].produceCallDelta == 1 )
              {
-               optiondata = option_call_delta(&properties->data);
+              if( !isnan(properties->data.calldelta) )
+                optiondata.calldelta = properties->data.calldelta;
+              else
+                optiondata = option_call_delta(&properties->data);
 
                printw("%.*f",properties->precision,optiondata.calldelta);
              } else
@@ -1049,7 +1103,10 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
              if( option_algorithms[properties->modeltype].produceCallDelta == 1 )
              {
-               optiondata = option_call_delta(&properties->data);
+               if( !isnan(properties->data.calldelta) )
+                 optiondata.calldelta = properties->data.calldelta;
+               else
+                 optiondata = option_call_delta(&properties->data);
                
                printw("%.*f",properties->precision,optiondata.calldelta);
              } else
@@ -1521,8 +1578,11 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
         printw("  %4d       %s%2d %02.0f  ",(*properties->time_to_expiration-properties->day_offset_counter),mon[*properties->expiration_month],*properties->days_to_expiration,(double) *properties->expiration_year);
 
         if( option_algorithms[properties->modeltype].produceCallDelta == 1 )
-        {                           
-          optiondata = option_call_delta(&properties->data);
+        {
+          if( !isnan(properties->data.calldelta) )
+            optiondata.calldelta = properties->data.calldelta;
+          else
+            optiondata = option_call_delta(&properties->data);
 
           printw("%.*f",properties->precision,optiondata.calldelta);
 
@@ -2108,13 +2168,15 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
       printw("h-help New asset class implemented? Ending banner not set");
       clrtoeol();
     }
-}
+
+} // void matrix(struct _properties *properties, struct _properties *future_properties)
 
 // remove a set but un-used compiler warning...
 inline void noop(int x)
 {
     return;
-}
+
+} // inline void noop(int x)
 
 void parameter_display(struct _properties *properties,struct _properties *future_properties)
 {
@@ -2284,4 +2346,5 @@ void parameter_display(struct _properties *properties,struct _properties *future
   clrtoeol();
     
   refresh();
-}
+  
+} // void parameter_display(struct _properties *properties,struct _properties *future_properties)

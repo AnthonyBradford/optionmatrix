@@ -731,7 +731,7 @@ struct _data option_call(struct _data *dat)
         if(dat->UseZ == strike)
         {
           // force NaN price
-          callprice = sqrt(-1);
+          callprice = NAN;
           break;
         }
       }
@@ -817,7 +817,7 @@ struct _data option_call(struct _data *dat)
       if(price == strike)
       {
         // force NaN price
-        callprice = sqrt(-1);
+        callprice = NAN;
       } else
       {
         callprice = DiscreteAdjustedBarrier(price, strike, volatility, t);

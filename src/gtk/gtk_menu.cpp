@@ -148,8 +148,8 @@ static gboolean pngTimer(struct _properties *properties)
   // DATADIR can be overridden from the command line with the -x directory option
 
   int index = 0;
-  char imageName[1000] = { 0 };
-  char dataDIRlocation[1000] = { 0 };
+  char imageName[PATH_MAX] = { 0 };
+  char dataDIRlocation[PATH_MAX] = { 0 };
   bool dataDIR = false;
 
   for( index = 0; index < 30; index++ )
@@ -271,7 +271,7 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 
   GdkPixbuf *logo;
   GError *error = NULL;
-  char imageName[1024];
+  char imageName[PATH_MAX];
 
   // This works for Windows
   if( access("images/6.png", F_OK ) == 0 )
@@ -394,9 +394,9 @@ void display_source(const char *name, const struct _properties *properties)
   char *bufferSource;
   unsigned long fileLen;
 
-  char name2[1000]  = { 0 };
-  char name3[1000]  = { 0 };
-  char name4[1000]  = { 0 };
+  char name2[PATH_MAX]  = { 0 };
+  char name3[PATH_MAX]  = { 0 };
+  char name4[PATH_MAX]  = { 0 };
 
   sprintf(name2,"src/%s-%s/src/%s", PACKAGE_TARNAME,VERSION,name);
   sprintf(name3,"../../src/%s", name);
@@ -465,9 +465,9 @@ void checkForSourceCode(struct _properties *properties)
   // maybe the source should just be pulled from the website
   // with a gtk_show_uri(...) ??
 
-  char sourceLocation2[1000]  = { 0 };
-  char sourceLocation3[1000]  = { 0 };
-  char sourceLocation4[1000]  = { 0 };
+  char sourceLocation2[PATH_MAX]  = { 0 };
+  char sourceLocation3[PATH_MAX]  = { 0 };
+  char sourceLocation4[PATH_MAX]  = { 0 };
 
   sprintf(sourceLocation2,"src/%s-%s/src/%s",PACKAGE_TARNAME,VERSION,option_algorithms[properties->modeltype].sourceCode);
   g_print("sourceLocation2 = %s\n",sourceLocation2);

@@ -348,8 +348,8 @@ void program_source()
 {
   int index;
   const int numberofmodels = (signed)(sizeofoption_algorithms/sizeof(struct option_algorithm));
-  char source_levelup[1024];
-  char source_levelup2[1024];
+  char source_levelup[PATH_MAX];
+  char source_levelup2[PATH_MAX];
   
   for( index = 0; index < numberofmodels; index++ )
   {
