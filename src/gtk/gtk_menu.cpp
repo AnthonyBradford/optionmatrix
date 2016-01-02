@@ -59,7 +59,7 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
   g_print("__APPLE__ %s\n", PACKAGE_URL);
 
   char openURL[1024];
-  sprintf(openURL,"open %s", PACKAGE_URL);
+  snprintf(openURL,sizeof(openURL),"open %s", PACKAGE_URL);
   system(openURL);
 
 #elif __CYGWIN__
@@ -67,7 +67,7 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
   g_print("__CYGWIN__\n");
 
   char openURL[1024];
-  sprintf(openURL,"explorer %s", PACKAGE_URL);
+  snprintf(openURL,sizeof(openURL),"explorer %s", PACKAGE_URL);
   system(openURL);
   
 #else
@@ -100,26 +100,26 @@ void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *prop
 #ifdef WIN32
   
   int ret;
-  sprintf(packageBugreport,"mailto:%s",PACKAGE_BUGREPORT);
+  snprintf(packageBugreport,sizeof(packageBugreport),"mailto:%s",PACKAGE_BUGREPORT);
   ret = (int) ShellExecute( NULL, "open", packageBugreport, NULL, NULL, SW_SHOWNORMAL );
   
 #elif __APPLE__
   
   g_print("__APPLE__ %s\n", PACKAGE_URL);
-  sprintf(packageBugreport,"open mailto:%s",PACKAGE_BUGREPORT);
+  snprintf(packageBugreport,sizeof(packageBugreport),"open mailto:%s",PACKAGE_BUGREPORT);
   system(packageBugreport);
   
 #elif __CYGWIN__
   
   g_print("__CYGWIN__\n");
-  sprintf(packageBugreport,"explorer mailto:%s",PACKAGE_BUGREPORT);
+  snprintf(packageBugreport,sizeof(packageBugreport),"explorer mailto:%s",PACKAGE_BUGREPORT);
   system(packageBugreport);
 
 #else
   
   GError *error = NULL;
 
-  sprintf(packageBugreport,"mailto:%s",PACKAGE_BUGREPORT);
+  snprintf(packageBugreport,sizeof(packageBugreport),"mailto:%s",PACKAGE_BUGREPORT);
   gtk_show_uri(NULL,packageBugreport, GDK_CURRENT_TIME, &error);
 
   if (error != NULL)
@@ -154,7 +154,7 @@ static gboolean pngTimer(struct _properties *properties)
 
   for( index = 0; index < 30; index++ )
   {
-    sprintf(imageName, "images/%d.png", index + 1);
+    snprintf(imageName,sizeof(imageName),"images/%d.png", index + 1);
     g_print("1 Checking for name: ./%s\n", imageName);
 
     if( access( imageName, F_OK ) == -1 )
@@ -171,7 +171,8 @@ static gboolean pngTimer(struct _properties *properties)
 
     for( index = 0; index < 30; index++ )
     {
-      sprintf(imageName, "%s/%s/images/%d.png",  (properties->data_dir[0] ? properties->data_dir : DATADIR), PACKAGE, index + 1);
+      snprintf(imageName,sizeof(imageName),
+               "%s/%s/images/%d.png",  (properties->data_dir[0] ? properties->data_dir : DATADIR), PACKAGE, index + 1);
       g_print("2 Checking for name: %s\n", imageName);
 
       if( access( imageName, F_OK ) == -1 )
@@ -184,7 +185,8 @@ static gboolean pngTimer(struct _properties *properties)
 
   if(dataDIR)
   {
-    sprintf(dataDIRlocation,"%s/%s/images", (properties->data_dir[0] ? properties->data_dir : DATADIR), PACKAGE);
+    snprintf(dataDIRlocation, sizeof(dataDIRlocation),
+             "%s/%s/images", (properties->data_dir[0] ? properties->data_dir : DATADIR), PACKAGE);
   }
 #endif
 
@@ -195,11 +197,12 @@ static gboolean pngTimer(struct _properties *properties)
   {
     if( index == 1 )
     {
-      sprintf(imageName,"%s/1.png", dataDIR ? dataDIRlocation : "images" );
+      snprintf(imageName,sizeof(imageName),"%s/1.png", dataDIR ? dataDIRlocation : "images" );
       logo = gdk_pixbuf_new_from_file(imageName, &error);
     } else
     {
-      sprintf(imageName,"%s/%d.png", dataDIR ? dataDIRlocation : "images", 1 + (int)(index * (rand() / (RAND_MAX + 1.0))));
+      snprintf(imageName,sizeof(imageName),
+               "%s/%d.png", dataDIR ? dataDIRlocation : "images", 1 + (int)(index * (rand() / (RAND_MAX + 1.0))));
       g_print("imageName = %s\n",imageName);
       logo = gdk_pixbuf_new_from_file (imageName, &error);
     }
@@ -276,17 +279,17 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
   // This works for Windows
   if( access("images/6.png", F_OK ) == 0 )
   {
-    sprintf(imageName, "images/6.png");
+    snprintf(imageName,sizeof(imageName),"images/6.png");
     logo = gdk_pixbuf_new_from_file(imageName, &error);
     gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), logo);
     g_object_unref(logo);
   }
 
 #ifdef DATADIR
-   g_print("DATADIR  = %s\n", DATADIR );
-   g_print("data_dir = %s\n", properties->data_dir);
+  g_print("DATADIR  = %s\n", DATADIR );
+  g_print("data_dir = %s\n", properties->data_dir);
 
-  sprintf(imageName, "%s/%s/images/6.png",  (properties->data_dir[0] ? properties->data_dir : DATADIR), PACKAGE);
+  snprintf(imageName,sizeof(imageName),"%s/%s/images/6.png",  (properties->data_dir[0] ? properties->data_dir : DATADIR), PACKAGE);
   g_print("3 Checking for name: %s\n", imageName);
 
   if( access( imageName, F_OK ) == 0 )
@@ -303,7 +306,7 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
   gtk_about_dialog_set_version(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), PACKAGE_VERSION);
 
   char aboutDialog[1024];
-  sprintf(aboutDialog,"The Ultimate Options Calculator\n%s", PACKAGE_BUGREPORT);
+  snprintf(aboutDialog,sizeof(aboutDialog),"The Ultimate Options Calculator\n%s", PACKAGE_BUGREPORT);
   gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), 
                                  aboutDialog);
 
@@ -318,7 +321,7 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 
   gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(properties->GtkInfo.dialogAbout), authors);
   gtk_about_dialog_set_documenters(GTK_ABOUT_DIALOG(properties->GtkInfo.dialogAbout), documenters);
-  sprintf(aboutDialog,"Anthony Bradford\n<%s>\n%s          ", PACKAGE_BUGREPORT, PACKAGE_URL);
+  snprintf(aboutDialog,sizeof(aboutDialog),"Anthony Bradford\n<%s>\n%s          ", PACKAGE_BUGREPORT, PACKAGE_URL);
   gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(properties->GtkInfo.dialogAbout), aboutDialog);
 
   // Next line places 1 images in the about dialog
@@ -378,7 +381,7 @@ void display_source(const char *name, const struct _properties *properties)
   GtkTextBuffer *buffer;
 
   char windowTitle[1000] = { 0 };
-  sprintf(windowTitle,"%s Source Export %s", PACKAGE_NAME, name);
+  snprintf(windowTitle,sizeof(windowTitle),"%s Source Export %s", PACKAGE_NAME, name);
   
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window), windowTitle);
@@ -398,9 +401,9 @@ void display_source(const char *name, const struct _properties *properties)
   char name3[PATH_MAX]  = { 0 };
   char name4[PATH_MAX]  = { 0 };
 
-  sprintf(name2,"src/%s-%s/src/%s", PACKAGE_TARNAME,VERSION,name);
-  sprintf(name3,"../../src/%s", name);
-  sprintf(name4,"%s/src/%s", properties->source_directory_prefix,name);
+  snprintf(name2,sizeof(name2),"src/%s-%s/src/%s", PACKAGE_TARNAME,VERSION,name);
+  snprintf(name3,sizeof(name3),"../../src/%s", name);
+  snprintf(name4,sizeof(name4),"%s/src/%s", properties->source_directory_prefix,name);
 
   if( access( name, F_OK ) == 0 )
   {
@@ -469,13 +472,13 @@ void checkForSourceCode(struct _properties *properties)
   char sourceLocation3[PATH_MAX]  = { 0 };
   char sourceLocation4[PATH_MAX]  = { 0 };
 
-  sprintf(sourceLocation2,"src/%s-%s/src/%s",PACKAGE_TARNAME,VERSION,option_algorithms[properties->modeltype].sourceCode);
+  snprintf(sourceLocation2,sizeof(sourceLocation2),"src/%s-%s/src/%s",PACKAGE_TARNAME,VERSION,option_algorithms[properties->modeltype].sourceCode);
   g_print("sourceLocation2 = %s\n",sourceLocation2);
 
-  sprintf(sourceLocation3,"../../src/%s", option_algorithms[properties->modeltype].sourceCode);
+  snprintf(sourceLocation3,sizeof(sourceLocation3),"../../src/%s", option_algorithms[properties->modeltype].sourceCode);
   g_print("sourceLocation3 = %s\n",sourceLocation3);
 
-  sprintf(sourceLocation4,"%s/src/%s", properties->source_directory_prefix,option_algorithms[properties->modeltype].sourceCode);
+  snprintf(sourceLocation4,sizeof(sourceLocation4),"%s/src/%s", properties->source_directory_prefix,option_algorithms[properties->modeltype].sourceCode);
   g_print("sourceLocation4 = %s\n",sourceLocation4);
 
   if( strcmp( option_algorithms[properties->modeltype].sourceCode,"") != 0 )
@@ -523,8 +526,10 @@ void on_menu_ListCategory_activate(GtkWidget *widget, struct _properties *proper
   int index = 0;
   for(index = 0; index < num_models; index++)
   {
-    sprintf(properties->listModelsForGroups[index].elementName,"%s",option_algorithms[index].des);
-    sprintf(properties->listModelsForGroups[index].groupName,"%s",option_algorithms[index].category);
+    snprintf(properties->listModelsForGroups[index].elementName,sizeof(properties->listModelsForGroups[index].elementName),
+             "%s",option_algorithms[index].des);
+    snprintf(properties->listModelsForGroups[index].groupName,sizeof(properties->listModelsForGroups[index].groupName),
+             "%s",option_algorithms[index].category);
     properties->listModelsForGroups[index].index = index;
   }
 
@@ -543,8 +548,10 @@ void on_menu_ListAuthor_activate(GtkWidget *widget, struct _properties *properti
   int index = 0;
   for(index = 0; index < num_models; index++)
   {
-    sprintf(properties->listModelsForGroups[index].elementName,"%s",option_algorithms[index].des);
-    sprintf(properties->listModelsForGroups[index].groupName,"%s",option_algorithms[index].source);
+    snprintf(properties->listModelsForGroups[index].elementName,sizeof(properties->listModelsForGroups[index].elementName),
+             "%s",option_algorithms[index].des);
+    snprintf(properties->listModelsForGroups[index].groupName,sizeof(properties->listModelsForGroups[index].groupName),
+             "%s",option_algorithms[index].source);
     properties->listModelsForGroups[index].index = index;
   }
 
@@ -562,7 +569,8 @@ void on_menu_List_activate(GtkWidget *widget, struct _properties *properties)
   int index = 0;
   for(index = 0; index < num_models; index++)
   {
-    sprintf(listModels[index].elementName,"%d - %s", index + 1, option_algorithms[index].des);
+    snprintf(listModels[index].elementName,sizeof(listModels[index].elementName),
+             "%d - %s", index + 1, option_algorithms[index].des);
   }
 
   set_up_combobox_with_array(properties->GtkInfo.comboboxModel, listModels, num_models);

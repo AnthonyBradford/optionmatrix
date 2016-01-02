@@ -508,7 +508,7 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
             if( option_algorithms[properties->modeltype].producePutDelta == 1 )
              {
-              if( properties->data.putdelta )
+              if( !isnan(properties->data.putdelta) )
                 optiondata.putdelta = properties->data.putdelta;
               else
                 optiondata = option_put_delta(&properties->data);

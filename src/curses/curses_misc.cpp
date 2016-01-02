@@ -96,7 +96,7 @@ void welcome_screen()
     const char *author = "Anthony Bradford's";
 
     char program[200] = { 0 };
-    sprintf(program,"| Options & Futures Matrix Modeler V%s |", PACKAGE_VERSION);
+    snprintf(program,sizeof(program),"| Options & Futures Matrix Modeler V%s |", PACKAGE_VERSION);
 
     move(((height/2))-9+x,(width/2)-strlen(author)/2);
     attron(A_BOLD);

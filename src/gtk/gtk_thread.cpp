@@ -169,7 +169,7 @@ gboolean calculate_options(struct _properties *properties)
      option_algorithms[properties->modeltype].perpetual == 0 &&
      properties->GtkInfo.spinbuttonTime2InFocusflag == FALSE)
   {
-    sprintf(dateTime2,"%s Date: %s  ",option_algorithms[properties->modeltype].supportTime2des,decimal_date_to_real_date(decimalTime2));
+    snprintf(dateTime2,sizeof(dateTime2),"%s Date: %s  ",option_algorithms[properties->modeltype].supportTime2des,decimal_date_to_real_date(decimalTime2));
     //g_print("%.*f = %s\n",15,decimalTime2,dateTime2);
     gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelTime2),dateTime2);
 
@@ -196,7 +196,7 @@ gboolean calculate_options(struct _properties *properties)
   if(option_algorithms[properties->modeltype].supportTime3 &&
      properties->GtkInfo.spinbuttonTime3InFocusflag == FALSE)
   {
-    sprintf(dateTime3,"%s Date: %s  ",option_algorithms[properties->modeltype].supportTime3des,decimal_date_to_real_date(decimalTime3));
+    snprintf(dateTime3,sizeof(dateTime3),"%s Date: %s  ",option_algorithms[properties->modeltype].supportTime3des,decimal_date_to_real_date(decimalTime3));
     //g_print("%.*f = %s\n",15,decimalTime2,dateTime2);
     gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelTime3),dateTime3);
 
@@ -222,8 +222,7 @@ gboolean calculate_options(struct _properties *properties)
 
   if( properties->decimalorcalendar == DECIMALS && !option_algorithms[properties->modeltype].perpetual )
   {
-    //sprintf(dateTime,"Expiration Date: %s",decimal_date_to_real_date(decimalTime));
-    sprintf(dateTime,"%s Date: %s", option_algorithms[properties->modeltype].supportTime1des, decimal_date_to_real_date(decimalTime));
+    snprintf(dateTime,sizeof(dateTime),"%s Date: %s", option_algorithms[properties->modeltype].supportTime1des, decimal_date_to_real_date(decimalTime));
     gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelTime1),dateTime);
     gtk_widget_show(properties->GtkInfo.labelTime1);
 
@@ -257,53 +256,53 @@ gboolean calculate_options(struct _properties *properties)
 
     if( !option_algorithms[properties->modeltype].perpetual )
     {
-      sprintf(description,"Discount Factor T1");
-      sprintf(timeDecimal,"%.*f", properties->precision,decimalTime2);
-      sprintf(dateTime,"%s", decimal_date_to_real_date(decimalTime2));
-      sprintf(value,"%.*f", properties->precision,properties->data.discount_t2);
+      snprintf(description,sizeof(description),"Discount Factor T1");
+      snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime2);
+      snprintf(dateTime,sizeof(dateTime),"%s", decimal_date_to_real_date(decimalTime2));
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.discount_t2);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
-      sprintf(lineData,"Discount Factor T1   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
+      snprintf(lineData,sizeof(lineData),"Discount Factor T1   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
       strcat(dataExport,lineData);
 
-      sprintf(description,"Discount Factor T2");
-      sprintf(timeDecimal,"%.*f", properties->precision,decimalTime);
-      sprintf(dateTime,"%s", decimal_date_to_real_date(decimalTime));
-      sprintf(value,"%.*f", properties->precision,properties->data.discount_t1);
+      snprintf(description,sizeof(description),"Discount Factor T2");
+      snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime);
+      snprintf(dateTime,sizeof(dateTime),"%s", decimal_date_to_real_date(decimalTime));
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.discount_t1);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
-      sprintf(lineData,"Discount Factor T2   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
+      snprintf(lineData,sizeof(lineData),"Discount Factor T2   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
       strcat(dataExport,lineData);
 
-      sprintf(description,"Spot Rate T1");
-      sprintf(timeDecimal,"%.*f", properties->precision,decimalTime2);
-      sprintf(dateTime,"%s", decimal_date_to_real_date(decimalTime2));
-      sprintf(value,"%.*f", properties->precision,properties->data.spot_t2);
+      snprintf(description,sizeof(description),"Spot Rate T1");
+      snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime2);
+      snprintf(dateTime,sizeof(dateTime),"%s", decimal_date_to_real_date(decimalTime2));
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.spot_t2);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
-      sprintf(lineData,"Spot Rate T1   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
+      snprintf(lineData,sizeof(lineData),"Spot Rate T1   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
       strcat(dataExport,lineData);
 
-      sprintf(description,"Spot Rate T2");
-      sprintf(timeDecimal,"%.*f", properties->precision,decimalTime);
-      sprintf(dateTime,"%s", decimal_date_to_real_date(decimalTime));
-      sprintf(value,"%.*f", properties->precision,properties->data.spot_t1);
+      snprintf(description,sizeof(description),"Spot Rate T2");
+      snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime);
+      snprintf(dateTime,sizeof(dateTime),"%s", decimal_date_to_real_date(decimalTime));
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.spot_t1);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
-      sprintf(lineData,"Spot Rate T2   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
+      snprintf(lineData,sizeof(lineData),"Spot Rate T2   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
       strcat(dataExport,lineData);
       
-      sprintf(description,"Forward T1 : T2");
+      snprintf(description,sizeof(description),"Forward T1 : T2");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.forward);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.forward);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
-      sprintf(lineData,"Forward T1 : T2   %.*f\n", properties->precision,properties->data.forward);
+      snprintf(lineData,sizeof(lineData),"Forward T1 : T2   %.*f\n", properties->precision,properties->data.forward);
       strcat(dataExport,lineData);
 
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
@@ -313,181 +312,181 @@ gboolean calculate_options(struct _properties *properties)
 
     if( properties->data.bond_price )
     {
-      sprintf(description,"Bond Price");
+      snprintf(description,sizeof(description),"Bond Price");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.bond_price);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.bond_price);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"Bond Price   %.*f\n",properties->precision,properties->data.bond_price);
+      snprintf(lineData,sizeof(lineData),"Bond Price   %.*f\n",properties->precision,properties->data.bond_price);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.pv_continous )
     {
-      sprintf(description,"Present Value");
+      snprintf(description,sizeof(description),"Present Value");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.pv_continous);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.pv_continous);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"Present Value %.*f\n",properties->precision,properties->data.pv_continous);
+      snprintf(lineData,sizeof(lineData),"Present Value %.*f\n",properties->precision,properties->data.pv_continous);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.pv_discrete )
     {
-      sprintf(description,"Present Value Discrete");
+      snprintf(description,sizeof(description),"Present Value Discrete");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.pv_discrete);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.pv_discrete);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"Present Value Discrete   %.*f\n",properties->precision,properties->data.pv_discrete);
+      snprintf(lineData,sizeof(lineData),"Present Value Discrete   %.*f\n",properties->precision,properties->data.pv_discrete);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.YTMContinous )
     {
-      sprintf(description,"YTM");
+      snprintf(description,sizeof(description),"YTM");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.YTMContinous);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.YTMContinous);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"YTM   %.*f\n",properties->precision,properties->data.YTMContinous);
+      snprintf(lineData,sizeof(lineData),"YTM   %.*f\n",properties->precision,properties->data.YTMContinous);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.YTMDiscrete )
     {
-      sprintf(description,"YTM Discrete");
+      snprintf(description,sizeof(description),"YTM Discrete");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.YTMDiscrete);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.YTMDiscrete);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"YTM Discrete   %.*f\n",properties->precision,properties->data.YTMDiscrete);
+      snprintf(lineData,sizeof(lineData),"YTM Discrete   %.*f\n",properties->precision,properties->data.YTMDiscrete);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.durationContinous )
     {
-      sprintf(description,"Duration");
+      snprintf(description,sizeof(description),"Duration");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.durationContinous);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.durationContinous);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"Duration   %.*f\n",properties->precision,properties->data.durationContinous);
+      snprintf(lineData,sizeof(lineData),"Duration   %.*f\n",properties->precision,properties->data.durationContinous);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.durationDiscrete )
     {
-      sprintf(description,"Duration Discrete");
+      snprintf(description,sizeof(description),"Duration Discrete");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.durationDiscrete);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.durationDiscrete);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"Duration Discrete   %.*f\n",properties->precision,properties->data.durationDiscrete);
+      snprintf(lineData,sizeof(lineData),"Duration Discrete   %.*f\n",properties->precision,properties->data.durationDiscrete);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.durationModifiedDiscrete )
     {
-      sprintf(description,"Duration Modified Discrete");
+      snprintf(description,sizeof(description),"Duration Modified Discrete");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.durationModifiedDiscrete);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.durationModifiedDiscrete);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"Duration Modified Discrete   %.*f\n",properties->precision,properties->data.durationModifiedDiscrete);
+      snprintf(lineData,sizeof(lineData),"Duration Modified Discrete   %.*f\n",properties->precision,properties->data.durationModifiedDiscrete);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.durationMacaulayDiscrete )
     {
-      sprintf(description,"Duration Macaulay Discrete");
+      snprintf(description,sizeof(description),"Duration Macaulay Discrete");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.durationMacaulayDiscrete);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.durationMacaulayDiscrete);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"Duration Macaulay Discrete   %.*f\n",properties->precision,properties->data.durationMacaulayDiscrete);
+      snprintf(lineData,sizeof(lineData),"Duration Macaulay Discrete   %.*f\n",properties->precision,properties->data.durationMacaulayDiscrete);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.convexityContinous )
     {
-      sprintf(description,"Convexity");
+      snprintf(description,sizeof(description),"Convexity");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.convexityContinous);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.convexityContinous);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"Convexity %.*f\n",properties->precision,properties->data.convexityContinous);
+      snprintf(lineData,sizeof(lineData),"Convexity %.*f\n",properties->precision,properties->data.convexityContinous);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.convexityDiscrete )
     {
-      sprintf(description,"Convexity Discrete");
+      snprintf(description,sizeof(description),"Convexity Discrete");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.convexityDiscrete);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.convexityDiscrete);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"Convexity Discrete %.*f\n",properties->precision,properties->data.convexityDiscrete);
+      snprintf(lineData,sizeof(lineData),"Convexity Discrete %.*f\n",properties->precision,properties->data.convexityDiscrete);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.call )
     {
-      sprintf(description,"Call");
+      snprintf(description,sizeof(description),"Call");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.call);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.call);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"Call   %.*f\n",properties->precision,properties->data.call);
+      snprintf(lineData,sizeof(lineData),"Call   %.*f\n",properties->precision,properties->data.call);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.irr )
     {
-      sprintf(description,"IRR");
+      snprintf(description,sizeof(description),"IRR");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.irr);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.irr);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"IRR   %.*f\n",properties->precision,properties->data.irr);
+      snprintf(lineData,sizeof(lineData),"IRR   %.*f\n",properties->precision,properties->data.irr);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.irr_discrete )
     {
-      sprintf(description,"IRR Discrete");
+      snprintf(description,sizeof(description),"IRR Discrete");
       timeDecimal[0] = dateTime[0] = 0; 
-      sprintf(value,"%.*f", properties->precision,properties->data.irr_discrete);
+      snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.irr_discrete);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"IRR Discrete   %.*f\n",properties->precision,properties->data.irr_discrete);
+      snprintf(lineData,sizeof(lineData),"IRR Discrete   %.*f\n",properties->precision,properties->data.irr_discrete);
       strcat(dataExport,lineData);
     }
 
     if( properties->data.uirr )
     {
-      sprintf(description,"UIRR");
+      snprintf(description,sizeof(description),"UIRR");
       timeDecimal[0] = dateTime[0] = 0; 
       strcpy(value,"True");
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
-      sprintf(lineData,"UIRR   True\n");
+      snprintf(lineData,sizeof(lineData),"UIRR   True\n");
       strcat(dataExport,lineData);
     }
 
@@ -520,52 +519,52 @@ gboolean calculate_options(struct _properties *properties)
     g_print("*spot rate t2 = %.*f:%.*f\n", properties->precision,decimalTime2,properties->precision,properties->data.spot_t2);
     g_print("*forward rate from t1= %.*f to t2 %.*f:%.*f\n",properties->precision,decimalTime,properties->precision,decimalTime2,properties->precision,properties->data.forward);
 
-    sprintf(description,"Discount Factor T1");
-    sprintf(timeDecimal,"%.*f", properties->precision,decimalTime2);
-    sprintf(dateTime,"%s", decimal_date_to_real_date(decimalTime2));
-    sprintf(value,"%.*f", properties->precision,properties->data.discount_t2);
+    snprintf(description,sizeof(description),"Discount Factor T1");
+    snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime2);
+    snprintf(dateTime,sizeof(dateTime),"%s", decimal_date_to_real_date(decimalTime2));
+    snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.discount_t2);
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
-    sprintf(lineData,"Discount Factor T1   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
+    snprintf(lineData,sizeof(lineData),"Discount Factor T1   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
     strcat(dataExport,lineData);
 
-    sprintf(description,"Discount Factor T2");
-    sprintf(timeDecimal,"%.*f", properties->precision,decimalTime);
-    sprintf(dateTime,"%s", decimal_date_to_real_date(decimalTime));
-    sprintf(value,"%.*f", properties->precision,properties->data.discount_t1);
+    snprintf(description,sizeof(description),"Discount Factor T2");
+    snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime);
+    snprintf(dateTime,sizeof(dateTime),"%s", decimal_date_to_real_date(decimalTime));
+    snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.discount_t1);
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
-    sprintf(lineData,"Discount Factor T2   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
+    snprintf(lineData,sizeof(lineData),"Discount Factor T2   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
     strcat(dataExport,lineData);
 
-    sprintf(description,"Spot Rate T1");
-    sprintf(timeDecimal,"%.*f", properties->precision,decimalTime2);
-    sprintf(dateTime,"%s", decimal_date_to_real_date(decimalTime2));
-    sprintf(value,"%.*f", properties->precision,properties->data.spot_t2);
-    gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
-    gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
-
-    sprintf(lineData,"Spot Rate T1   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
-    strcat(dataExport,lineData);
-
-    sprintf(description,"Spot Rate T2");
-    sprintf(timeDecimal,"%.*f", properties->precision,decimalTime);
-    sprintf(dateTime,"%s", decimal_date_to_real_date(decimalTime));
-    sprintf(value,"%.*f", properties->precision,properties->data.spot_t1);
+    snprintf(description,sizeof(description),"Spot Rate T1");
+    snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime2);
+    snprintf(dateTime,sizeof(dateTime),"%s", decimal_date_to_real_date(decimalTime2));
+    snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.spot_t2);
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
-    sprintf(lineData,"Spot Rate T2   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
+    snprintf(lineData,sizeof(lineData),"Spot Rate T1   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
     strcat(dataExport,lineData);
 
-    sprintf(description,"Forward T1 : T2");
+    snprintf(description,sizeof(description),"Spot Rate T2");
+    snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime);
+    snprintf(dateTime,sizeof(dateTime),"%s", decimal_date_to_real_date(decimalTime));
+    snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.spot_t1);
+    gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
+    gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
+
+    snprintf(lineData,sizeof(lineData),"Spot Rate T2   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
+    strcat(dataExport,lineData);
+
+    snprintf(description,sizeof(description),"Forward T1 : T2");
     timeDecimal[0] = dateTime[0] = 0; 
-    sprintf(value,"%.*f", properties->precision,properties->data.forward);
+    snprintf(value,sizeof(value),"%.*f", properties->precision,properties->data.forward);
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
-    sprintf(lineData,"Forward T1 : T2   %.*f\n", properties->precision,properties->data.forward);
+    snprintf(lineData,sizeof(lineData),"Forward T1 : T2   %.*f\n", properties->precision,properties->data.forward);
     strcat(dataExport,lineData);
 
     if( properties->data.term )
@@ -588,63 +587,63 @@ gboolean calculate_options(struct _properties *properties)
     futuredata = future(&properties->data);
 
     char textSpot[200] = { 0 };
-    sprintf(textSpot,"%.*f",properties->precision,properties->data.price);
+    snprintf(textSpot,sizeof(textSpot),"%.*f",properties->precision,properties->data.price);
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Spot Price", X2, textSpot, -1);
 
-    sprintf(lineData," %s, %s\n", "Spot Price",textSpot);
+    snprintf(lineData,sizeof(lineData)," %s, %s\n", "Spot Price",textSpot);
     strcat(dataExport,lineData);
 
     char textFuturesPrice[200] = { 0 };
-    sprintf(textFuturesPrice,"%.*f (%s)",properties->precision,properties->data.future,(properties->data.future > properties->data.price ? "Cotango" : "Backwardation") );
+    snprintf(textFuturesPrice,sizeof(textFuturesPrice),"%.*f (%s)",properties->precision,properties->data.future,(properties->data.future > properties->data.price ? "Cotango" : "Backwardation") );
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Futures Price", X2, textFuturesPrice, -1);
 
-    sprintf(lineData," %s, %s\n", "Futures Price",textFuturesPrice);
+    snprintf(lineData,sizeof(lineData)," %s, %s\n", "Futures Price",textFuturesPrice);
     strcat(dataExport,lineData);
 
     char textRate[200] = { 0 };
-    sprintf(textRate,"%.*f%%",properties->precision,properties->data.rate*100);
+    snprintf(textRate,sizeof(textRate),"%.*f%%",properties->precision,properties->data.rate*100);
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Interest Rate", X2, textRate, -1);
 
-    sprintf(lineData," %s, %s\n", "Interest Rate", textRate);
+    snprintf(lineData,sizeof(lineData)," %s, %s\n", "Interest Rate", textRate);
     strcat(dataExport,lineData);
 
     char textBasis[200] = { 0 };
-    sprintf(textBasis,"%.*f", properties->precision,properties->data.price-properties->data.future);
+    snprintf(textBasis,sizeof(textBasis),"%.*f", properties->precision,properties->data.price-properties->data.future);
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Basis", X2, textBasis, -1);
 
-    sprintf(lineData," %s, %s\n", "Basis", textBasis);
+    snprintf(lineData,sizeof(lineData)," %s, %s\n", "Basis", textBasis);
     strcat(dataExport,lineData);
 
     if( option_algorithms[properties->modeltype].supportDividend )
     {
       char textDiv[200] = { 0 };
-      sprintf(textDiv,"%.*f", properties->precision,properties->data.dividend);
+      snprintf(textDiv,sizeof(textDiv),"%.*f", properties->precision,properties->data.dividend);
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Div yield underlying", X2, textDiv, -1);
 
-      sprintf(lineData," %s, %s\n", "Div yield underlying", textDiv);
+      snprintf(lineData,sizeof(lineData)," %s, %s\n", "Div yield underlying", textDiv);
       strcat(dataExport,lineData);
     }
 
     char textExpr[200] = { 0 };
-    sprintf(textExpr,"%s",decimal_date_to_real_date(properties->data.t[0]-properties->data.te));
+    snprintf(textExpr,sizeof(textExpr),"%s",decimal_date_to_real_date(properties->data.t[0]-properties->data.te));
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Expiration Date", X2, textExpr, -1);
 
-    sprintf(lineData," %s, %s\n", "Expiration Date",textExpr);
+    snprintf(lineData,sizeof(lineData)," %s, %s\n", "Expiration Date",textExpr);
     strcat(dataExport,lineData);
     
     char textTicker[200] = { 0 };
-    sprintf(textTicker,"%s%02d",future_codes[decimal_date_to_int_month(adjust_to_current_time(properties->data.t[0]-properties->data.te,0))],decimal_date_to_int_year(adjust_to_current_time(properties->data.t[0]-properties->data.te,0)));
+    snprintf(textTicker,sizeof(textTicker),"%s%02d",future_codes[decimal_date_to_int_month(adjust_to_current_time(properties->data.t[0]-properties->data.te,0))],decimal_date_to_int_year(adjust_to_current_time(properties->data.t[0]-properties->data.te,0)));
 
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Ticker", X2, textTicker, -1);
 
-    sprintf(lineData," %s, %s\n", "Ticker", textTicker);
+    snprintf(lineData,sizeof(lineData)," %s, %s\n", "Ticker", textTicker);
     strcat(dataExport,lineData);
   }
 
@@ -680,13 +679,12 @@ gboolean calculate_options(struct _properties *properties)
       futuredata = future(&properties->data);
       leg1 = properties->data.future;
       
-      sprintf(textPrice,"%.*f",properties->precision,properties->data.future);
-      //sprintf(textTicker,"%s",future_codes[*properties->expiration_month]);
-      sprintf(textTicker,"%s%02d",future_codes[*properties->expiration_month],*properties->expiration_year);
-      sprintf(textMonthDayYear,"%s%2d %02.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
-      sprintf(textDecimalDate,"%.*f",properties->precision,properties->data.t[0]);
+      snprintf(textPrice,sizeof(textPrice),"%.*f",properties->precision,properties->data.future);
+      snprintf(textTicker,sizeof(textTicker),"%s%02d",future_codes[*properties->expiration_month],*properties->expiration_year);
+      snprintf(textMonthDayYear,sizeof(textMonthDayYear),"%s%2d %02.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
+      snprintf(textDecimalDate,sizeof(textDecimalDate),"%.*f",properties->precision,properties->data.t[0]);
       //g_print("textDecimalDate %.*f\n",properties->precision,properties->data.t[0]);
-      sprintf(textDaysToExpr,"%.*f",properties->precision,(365*properties->data.t[0]));
+      snprintf(textDaysToExpr,sizeof(textDaysToExpr),"%.*f",properties->precision,(365*properties->data.t[0]));
       //g_print("textDaysToExpr = %.*f\n",properties->precision,(365*properties->data.t[0]));
 
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
@@ -697,7 +695,7 @@ gboolean calculate_options(struct _properties *properties)
 
         if( properties->textExport == true )
         {
-          sprintf(lineData,"%s, %s, %s, %s, %s\n", 
+          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s\n", 
                 textMonthDayYear, textPrice, textDaysToExpr, textDecimalDate, textTicker);
           strcat(dataExport,lineData);
         }
@@ -710,22 +708,21 @@ gboolean calculate_options(struct _properties *properties)
         futuredata2 = future(&properties->data);
         leg2 = properties->data.future;
 
-        sprintf(textPrice2,"%.*f",properties->precision,properties->data.future);
-        //sprintf(textTicker2,"%s",future_codes[*properties->expiration_month2]);
-        sprintf(textTicker2,"%s%02d",future_codes[*properties->expiration_month2],*properties->expiration_year2);
-        sprintf(textMonthDayYear2,"%s%2d %02.0f",mon[*properties->expiration_month2],*properties->days_to_expiration2,(double)*properties->expiration_year2 + 2000);
-        sprintf(textDecimalDate2,"%.*f",properties->precision,properties->data.t[0]);
+        snprintf(textPrice2,sizeof(textPrice2),"%.*f",properties->precision,properties->data.future);
+        snprintf(textTicker2,sizeof(textTicker2),"%s%02d",future_codes[*properties->expiration_month2],*properties->expiration_year2);
+        snprintf(textMonthDayYear2,sizeof(textMonthDayYear2),"%s%2d %02.0f",mon[*properties->expiration_month2],*properties->days_to_expiration2,(double)*properties->expiration_year2 + 2000);
+        snprintf(textDecimalDate2,sizeof(textDecimalDate2),"%.*f",properties->precision,properties->data.t[0]);
         //g_print("textDecimalDate %.*f\n",properties->precision,properties->data.t[0]);
-        sprintf(textDaysToExpr2,"%.*f",properties->precision,(365*properties->data.t[0]));
+        snprintf(textDaysToExpr2,sizeof(textDaysToExpr2),"%.*f",properties->precision,(365*properties->data.t[0]));
         //g_print("textDaysToExpr = %.*f\n",properties->precision,(365*properties->data.t[0]));
-        sprintf(textSpread,"%.*f",properties->precision, (double) leg1 - (double) leg2);
-        sprintf(textSpreadTicker,"%s - %s",textTicker, textTicker2);
+        snprintf(textSpread,sizeof(textSpread),"%.*f",properties->precision, (double) leg1 - (double) leg2);
+        snprintf(textSpreadTicker,sizeof(textSpreadTicker),"%s - %s",textTicker, textTicker2);
 
         gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, textMonthDayYear, X2, textPrice, X3, textDaysToExpr, X4, textDecimalDate, X5, textTicker, X6, textMonthDayYear2, X7, textPrice2, X8, textDaysToExpr2, X9, textDecimalDate2, X10, textTicker2, X11, textSpread, X12, textSpreadTicker, -1);
 
         if( properties->textExport == true )
         {
-          sprintf(lineData,"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", 
+          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", 
               textMonthDayYear, textPrice, textDaysToExpr, textDecimalDate, textTicker, textMonthDayYear2, textPrice2, textDaysToExpr2, textDecimalDate2, textTicker2, textSpread, textSpreadTicker);
           strcat(dataExport,lineData);
         }
@@ -796,7 +793,7 @@ gboolean calculate_options(struct _properties *properties)
          }
 
          if ( option_algorithms[properties->modeltype].supportPrice )
-           sprintf(textPrice,"%.*f", properties->precision,price);
+           snprintf(textPrice,sizeof(textPrice),"%.*f", properties->precision,price);
 
          if( strike_control[properties->strikestoogle].incrementor == 0 )
            properties->data.strike = gtk_spin_button_get_value(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonCustomStrike2));
@@ -807,10 +804,10 @@ gboolean calculate_options(struct _properties *properties)
          {
            if( modf(i,&properties->discard) == .5 )
            {
-             sprintf(textStrike,"%.*f", 1,properties->data.strike);
+             snprintf(textStrike,sizeof(textStrike),"%.*f", 1,properties->data.strike);
            } else
            {
-             sprintf(textStrike,"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
+             snprintf(textStrike,sizeof(textStrike),"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
            }
          }
 
@@ -821,13 +818,13 @@ gboolean calculate_options(struct _properties *properties)
          if( option_algorithms[properties->modeltype].supportCalls )
          {
            optiondata = option_call(&properties->data);
-           sprintf(&textCall[0][0],"%.*f",properties->precision,optiondata.call);
+           snprintf(&textCall[0][0],sizeof(textCall[0]),"%.*f",properties->precision,optiondata.call);
          }
 
          if( option_algorithms[properties->modeltype].supportPuts )
          {
            optiondata = option_put(&properties->data);
-           sprintf(&textPut[0][0], "%.*f",properties->precision,optiondata.put);
+           snprintf(&textPut[0][0],sizeof(textPut[0]),"%.*f",properties->precision,optiondata.put);
          }
 
          process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
@@ -837,7 +834,7 @@ gboolean calculate_options(struct _properties *properties)
 
          if( properties->textExport == true )
          {
-           sprintf(lineData,"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", textPrice, textStrike, textCall[0], textPut[0], textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho);
+           snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", textPrice, textStrike, textCall[0], textPut[0], textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho);
            strcat(dataExport,lineData);
          }
 
@@ -866,9 +863,8 @@ gboolean calculate_options(struct _properties *properties)
 
         if ( option_algorithms[properties->modeltype].supportStrikes )
         {
-          sprintf(textStrikeLeg2[totalCounter],"%.*f",properties->precision,i);
+          snprintf(textStrikeLeg2[totalCounter],sizeof(textStrikeLeg2[totalCounter]),"%.*f",properties->precision,i);
         }
-        //sprintf(textPrice,"%.*f",properties->precision,price);
 
         if( strike_control[properties->strikestoogle].incrementor == 0 )
            properties->data.strike = gtk_spin_button_get_value(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonCustomStrike2));
@@ -892,9 +888,11 @@ gboolean calculate_options(struct _properties *properties)
           putLeg2[totalCounter] = optiondata.put;
         }
 
-        sprintf(&textMonthLeg2[totalCounter][0],"%s%2d %04.0f",mon[*properties->expiration_month2],*properties->days_to_expiration2,(double)*properties->expiration_year2 + 2000);
+        snprintf(&textMonthLeg2[totalCounter][0],sizeof(textMonthLeg2[totalCounter]),
+                 "%s%2d %04.0f",mon[*properties->expiration_month2],*properties->days_to_expiration2,(double)*properties->expiration_year2 + 2000);
 
-        sprintf(&textMonthLeg2[totalCounter][0],"%s%2d %04.0f",mon[*properties->expiration_month2],*properties->days_to_expiration2,(double)*properties->expiration_year2 + 2000);
+        snprintf(&textMonthLeg2[totalCounter][0],sizeof(textMonthLeg2[totalCounter]),
+                 "%s%2d %04.0f",mon[*properties->expiration_month2],*properties->days_to_expiration2,(double)*properties->expiration_year2 + 2000);
 
         properties->time_to_expiration2++;  properties->days_to_expiration2++;  properties->expiration_month2++;  properties->expiration_year2++;
 
@@ -927,10 +925,10 @@ gboolean calculate_options(struct _properties *properties)
          properties->data.strike = i;
 
       if ( option_algorithms[properties->modeltype].supportStrikes )
-        sprintf(textStrike,"%.*f", properties->precision,properties->data.strike);
+        snprintf(textStrike,sizeof(textStrike),"%.*f", properties->precision,properties->data.strike);
 
       if ( option_algorithms[properties->modeltype].supportPrice )
-          sprintf(textPrice,"%.*f",properties->precision,price);
+        snprintf(textPrice,sizeof(textPrice),"%.*f",properties->precision,price);
 
       properties->data.t[0] = adjust_to_current_time_and_expr(properties->time_to_expiration,properties->expiration_time,0);
       //g_print("t = %.*f\t%s\n",15,(double)properties->data.t[0],decimal_date_to_real_date(properties->data.t[0]));
@@ -940,34 +938,34 @@ gboolean calculate_options(struct _properties *properties)
       if( option_algorithms[properties->modeltype].supportCalls )
       {
         optiondata = option_call(&properties->data);
-        sprintf(&textCall[0][0],"%.*f",properties->precision,optiondata.call);
+        snprintf(&textCall[0][0],sizeof(textCall[0]),"%.*f",properties->precision,optiondata.call);
       }
 
       if( option_algorithms[properties->modeltype].supportPuts )
       {
         optiondata = option_put(&properties->data);
-        sprintf(&textPut[0][0], "%.*f",properties->precision,optiondata.put);
+        snprintf(&textPut[0][0],sizeof(textPut[0]),"%.*f",properties->precision,optiondata.put);
       }
 
-      sprintf(textMonth,"%s%2d %04.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
+      snprintf(textMonth,sizeof(textMonth),"%s%2d %04.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
 
       char textDecimalDate[200]  = { 0 };
-      sprintf(textDecimalDate,"%.*f",properties->precision,properties->data.t[0]);
+      snprintf(textDecimalDate,sizeof(textDecimalDate),"%.*f",properties->precision,properties->data.t[0]);
 
       char textDaysToExpr[200] = { 0 };
-      sprintf(textDaysToExpr,"%.*f",properties->precision,(365*properties->data.t[0]));
+      snprintf(textDaysToExpr,sizeof(textDaysToExpr),"%.*f",properties->precision,(365*properties->data.t[0]));
 
       process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
 
       if ( option_algorithms[properties->modeltype].supportStrikes )
-        sprintf(textLegacyCall,"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
+        snprintf(textLegacyCall,sizeof(textLegacyCall),"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
       else
-        sprintf(textLegacyCall,"%s",option_calls[decimal_date_to_int_month(properties->data.t[0])]);
+        snprintf(textLegacyCall,sizeof(textLegacyCall),"%s",option_calls[decimal_date_to_int_month(properties->data.t[0])]);
 
       if ( option_algorithms[properties->modeltype].supportStrikes )
-        sprintf(textLegacyPut,"%s%c",option_puts[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
+        snprintf(textLegacyPut,sizeof(textLegacyPut),"%s%c",option_puts[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
       else
-        sprintf(textLegacyPut,"%s",option_puts[decimal_date_to_int_month(properties->data.t[0])]);
+        snprintf(textLegacyPut,sizeof(textLegacyPut),"%s",option_puts[decimal_date_to_int_month(properties->data.t[0])]);
  
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
 
@@ -977,7 +975,7 @@ gboolean calculate_options(struct _properties *properties)
 
         if( properties->textExport == true )
         {
-          sprintf(lineData,"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
+          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
 textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textDecimalDate, textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textLegacyCall, textLegacyPut);
           strcat(dataExport,lineData);
         }
@@ -993,27 +991,27 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
         if( option_algorithms[properties->modeltype].supportCalls )
         {
-          sprintf(textCallLeg2,"%.*f",properties->precision,callLeg2[totalCounter]);
-          sprintf(textCallCallSpread,"%.*f",properties->precision,optiondata.call - callLeg2[totalCounter]);
+          snprintf(textCallLeg2,sizeof(textCallLeg2),"%.*f",properties->precision,callLeg2[totalCounter]);
+          snprintf(textCallCallSpread,sizeof(textCallCallSpread),"%.*f",properties->precision,optiondata.call - callLeg2[totalCounter]);
         }
 
         if( option_algorithms[properties->modeltype].supportPuts )
         {
-          sprintf(textPutLeg2, "%.*f",properties->precision,putLeg2[totalCounter]);
-          sprintf(textPutPutSpread,"%.*f",properties->precision,optiondata.put - putLeg2[totalCounter]);
+          snprintf(textPutLeg2,sizeof(textPutLeg2),"%.*f",properties->precision,putLeg2[totalCounter]);
+          snprintf(textPutPutSpread,sizeof(textPutPutSpread),"%.*f",properties->precision,optiondata.put - putLeg2[totalCounter]);
         }
 
         if( option_algorithms[properties->modeltype].supportCalls && option_algorithms[properties->modeltype].supportPuts )
         {
-          sprintf(textCallPutSpread,"%.*f", properties->precision, optiondata.call - putLeg2[totalCounter]);
-          sprintf(textPutCallSpread,"%.*f", properties->precision, optiondata.put  - callLeg2[totalCounter]);
+          snprintf(textCallPutSpread,sizeof(textCallPutSpread),"%.*f", properties->precision, optiondata.call - putLeg2[totalCounter]);
+          snprintf(textPutCallSpread,sizeof(textPutCallSpread),"%.*f", properties->precision, optiondata.put  - callLeg2[totalCounter]);
         }
 
         gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, textPrice, X2, textMonth, X3, textStrike, X4, textCall[0], X5, textPut[0], X6, textMonthLeg2[totalCounter], X7, textStrikeLeg2[totalCounter], X8, textCallLeg2, X9, textPutLeg2, X10, textCallCallSpread, X11, textPutPutSpread, X12, textCallPutSpread, X13, textPutCallSpread, -1);
 
         if( properties->textExport == true )
         {
-          sprintf(lineData,"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
+          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
                 textPrice, textMonth, textStrike, textCall[0], textPut[0], textMonthLeg2[totalCounter], textStrikeLeg2[totalCounter], textCallLeg2, textPutLeg2, textCallCallSpread, textPutPutSpread, textCallPutSpread, textPutCallSpread);
           strcat(dataExport,lineData);
         }
@@ -1090,7 +1088,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
         }
 
         if ( option_algorithms[properties->modeltype].supportPrice )
-          sprintf(textPrice,"%.*f",properties->precision,price);
+          snprintf(textPrice,sizeof(textPrice),"%.*f",properties->precision,price);
 
         if( strike_control[properties->strikestoogle].incrementor == 0 )
           properties->data.strike = gtk_spin_button_get_value(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonCustomStrike2));
@@ -1101,10 +1099,10 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
         {
           if( modf(i,&properties->discard) == .5 )
           {
-            sprintf(textStrike,"%.*f", 1,properties->data.strike);
+            snprintf(textStrike,sizeof(textStrike),"%.*f", 1,properties->data.strike);
           } else
           {
-            sprintf(textStrike,"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
+            snprintf(textStrike,sizeof(textStrike),"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
           }
         }
 
@@ -1120,12 +1118,12 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           if( option_algorithms[properties->modeltype].supportCalls )
           {
             optiondata = option_call(&properties->data);
-            sprintf(&textCall[counter][0],"%.*f",properties->precision,optiondata.call);
+            snprintf(&textCall[counter][0],sizeof(textCall[counter]),"%.*f",properties->precision,optiondata.call);
           }
           if( option_algorithms[properties->modeltype].supportPuts )
           {
             optiondata = option_put(&properties->data);
-            sprintf(&textPut[counter][0], "%.*f",properties->precision,optiondata.put);
+            snprintf(&textPut[counter][0],sizeof(textPut[counter]),"%.*f",properties->precision,optiondata.put);
           }
 
           properties->time_to_expiration++;  properties->days_to_expiration++;  properties->expiration_month++;  properties->expiration_year++;
@@ -1147,7 +1145,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
         if( properties->textExport == true )
         {
-          sprintf(lineData," %s, %s, %s, %s, %s, %s, %s, %s\n",
+          snprintf(lineData,sizeof(lineData)," %s, %s, %s, %s, %s, %s, %s, %s\n",
                 textPrice, textStrike, textCall[0], textCall[1], textCall[2], textPut[0], textPut[1], textPut[2]);
           strcat(dataExport,lineData);
         }
@@ -1205,21 +1203,21 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
         }
 
         if ( option_algorithms[properties->modeltype].supportPrice )
-          sprintf(textPrice,"%.*f",properties->precision,price);
+          snprintf(textPrice,sizeof(textPrice),"%.*f",properties->precision,price);
 
         if( strike_control[properties->strikestoogle].incrementor == 0 )
           properties->data.strike = gtk_spin_button_get_value(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonCustomStrike2));
         else
-         properties->data.strike = i;
+          properties->data.strike = i;
 
         if ( option_algorithms[properties->modeltype].supportStrikes )        
         {
           if( modf(i,&properties->discard) == .5 )
           {
-            sprintf(textStrike,"%.*f", 1,properties->data.strike);
+            snprintf(textStrike,sizeof(textStrike),"%.*f", 1,properties->data.strike);
           } else
           {
-            sprintf(textStrike,"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
+            snprintf(textStrike,sizeof(textStrike),"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
           }
         }
 
@@ -1234,7 +1232,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           if( option_algorithms[properties->modeltype].supportCalls )
           {
             optiondata = option_call(&properties->data);
-            sprintf(&textCall[counter][0],"%c %.*f",tolower(option_algorithms[properties->modeltype].call[0]),properties->precision,optiondata.call);
+            snprintf(&textCall[counter][0],sizeof(textCall[counter]),"%c %.*f",tolower(option_algorithms[properties->modeltype].call[0]),properties->precision,optiondata.call);
           }
 
           properties->time_to_expiration++;  properties->days_to_expiration++;  properties->expiration_month++;  properties->expiration_year++;
@@ -1255,7 +1253,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
         if( properties->textExport == true )
         {
-          sprintf(lineData,"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", 
+          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", 
                 textPrice, textStrike, textCall[0], textCall[1], textCall[2], textCall[3], textCall[4], textCall[5], textCall[6], textCall[7]);
           strcat(dataExport,lineData);
         }
@@ -1307,7 +1305,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
         }
 
         if ( option_algorithms[properties->modeltype].supportPrice )
-          sprintf(textPrice,"%.*f",properties->precision,price);
+          snprintf(textPrice,sizeof(textPrice),"%.*f",properties->precision,price);
 
         if( strike_control[properties->strikestoogle].incrementor == 0 )
           properties->data.strike = gtk_spin_button_get_value(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonCustomStrike2));
@@ -1318,10 +1316,10 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
         {
           if( modf(i,&properties->discard) == .5 )
           {
-            sprintf(textStrike,"%.*f", 1,properties->data.strike);
+            snprintf(textStrike,sizeof(textStrike),"%.*f", 1,properties->data.strike);
           } else
           {
-            sprintf(textStrike,"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
+            snprintf(textStrike,sizeof(textStrike),"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
           }
         }
 
@@ -1337,7 +1335,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           if( option_algorithms[properties->modeltype].supportPuts )
           {
             optiondata = option_put(&properties->data);
-            sprintf(&textPut[counter][0],"%c %.*f",tolower(option_algorithms[properties->modeltype].put[0]),properties->precision,optiondata.put);
+            snprintf(&textPut[counter][0],sizeof(textPut[counter]),"%c %.*f",tolower(option_algorithms[properties->modeltype].put[0]),properties->precision,optiondata.put);
           }
 
           properties->time_to_expiration++;  properties->days_to_expiration++;  properties->expiration_month++;  properties->expiration_year++;
@@ -1358,7 +1356,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
         if( properties->textExport == true )
         {
-          sprintf(lineData,"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
+          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
                 textPrice, textStrike, textPut[0], textPut[1], textPut[2], textPut[3], textPut[4], textPut[5], textPut[6], textPut[7]);
           strcat(dataExport,lineData);
         }
@@ -1444,10 +1442,10 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
             {
               if( modf(i,&properties->discard) == .5 )
               {
-                sprintf(textStrikeLeg2[totalCounter],"%.*f", 1,properties->data.strike);
+                snprintf(textStrikeLeg2[totalCounter],sizeof(textStrikeLeg2[totalCounter]),"%.*f", 1,properties->data.strike);
               } else
               {
-                sprintf(textStrikeLeg2[totalCounter],"%.*f",strike_control[properties->strikestoogle].precision,properties->data.strike);
+                snprintf(textStrikeLeg2[totalCounter],sizeof(textStrikeLeg2[totalCounter]),"%.*f",strike_control[properties->strikestoogle].precision,properties->data.strike);
               }
 
               g_print("textStrikeLeg2[totalCounter] = %s\n",textStrikeLeg2[totalCounter]);
@@ -1469,9 +1467,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
               putLeg2[totalCounter] = optiondata.put;
             }
 
-            //sprintf(textMonth,"%s%2d %04.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
-
-            sprintf(&textMonthLeg2[totalCounter][0],"%s%2d %04.0f",mon[*properties->expiration_month2],*properties->days_to_expiration2,(double)*properties->expiration_year2 + 2000);
+            snprintf(&textMonthLeg2[totalCounter][0],sizeof(textMonthLeg2[totalCounter]),"%s%2d %04.0f",mon[*properties->expiration_month2],*properties->days_to_expiration2,(double)*properties->expiration_year2 + 2000);
 
             properties->time_to_expiration2++;  properties->days_to_expiration2++;  properties->expiration_month2++;  properties->expiration_year2++;
 
@@ -1539,7 +1535,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
         }
 
         if ( option_algorithms[properties->modeltype].supportPrice )
-          sprintf(textPrice,"%.*f",properties->precision,price);
+          snprintf(textPrice,sizeof(textPrice),"%.*f",properties->precision,price);
 
         cumStrikeLeg1 += i;
 
@@ -1560,10 +1556,10 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
         {
           if( modf(i,&properties->discard) == .5 )
           {
-            sprintf(textStrike,"%.*f", 1,properties->data.strike);
+            snprintf(textStrike,sizeof(textStrike),"%.*f", 1,properties->data.strike);
           } else
           {
-            sprintf(textStrike,"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
+            snprintf(textStrike,sizeof(textStrike),"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
           }
         }
 
@@ -1578,33 +1574,33 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           if( option_algorithms[properties->modeltype].supportCalls )
           {
             optiondata = option_call(&properties->data);
-            sprintf(&textCall[0][0],"%.*f",properties->precision,optiondata.call);
+            snprintf(&textCall[0][0],sizeof(textCall[0]),"%.*f",properties->precision,optiondata.call);
           }
           if( option_algorithms[properties->modeltype].supportPuts )
           {
             optiondata = option_put(&properties->data);
-            sprintf(&textPut[0][0], "%.*f",properties->precision,optiondata.put);
+            snprintf(&textPut[0][0],sizeof(textPut[0]),"%.*f",properties->precision,optiondata.put);
           }
 
-          sprintf(textMonth,"%s%2d %04.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
+          snprintf(textMonth,sizeof(textMonth),"%s%2d %04.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
 
           char textDecimalDate[200] = { 0 };
-          sprintf(textDecimalDate,"%.*f",properties->precision,properties->data.t[0]);
+          snprintf(textDecimalDate,sizeof(textDecimalDate),"%.*f",properties->precision,properties->data.t[0]);
 
           char textDaysToExpr[200] = { 0 };
-          sprintf(textDaysToExpr,"%.*f",properties->precision,(365*properties->data.t[0]));
+          snprintf(textDaysToExpr,sizeof(textDaysToExpr),"%.*f",properties->precision,(365*properties->data.t[0]));
 
           process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
 
           if ( option_algorithms[properties->modeltype].supportStrikes )
-            sprintf(textLegacyCall,"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
+            snprintf(textLegacyCall,sizeof(textLegacyCall),"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
           else
-            sprintf(textLegacyCall,"%s",option_calls[decimal_date_to_int_month(properties->data.t[0])]); 
+            snprintf(textLegacyCall,sizeof(textLegacyCall),"%s",option_calls[decimal_date_to_int_month(properties->data.t[0])]); 
 
           if ( option_algorithms[properties->modeltype].supportStrikes )
-            sprintf(textLegacyPut,"%s%c",option_puts[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
+            snprintf(textLegacyPut,sizeof(textLegacyPut),"%s%c",option_puts[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
           else
-            sprintf(textLegacyPut,"%s",option_puts[decimal_date_to_int_month(properties->data.t[0])]);
+            snprintf(textLegacyPut,sizeof(textLegacyPut),"%s",option_puts[decimal_date_to_int_month(properties->data.t[0])]);
  
           gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
 
@@ -1614,7 +1610,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
             if( properties->textExport == true )
             {
-              sprintf(lineData,"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
+              snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
                     textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textDecimalDate, textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textLegacyCall, textLegacyPut);
               strcat(dataExport,lineData);
             }
@@ -1631,27 +1627,27 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
             if( option_algorithms[properties->modeltype].supportCalls )
             {
-              sprintf(textCallLeg2,"%.*f",properties->precision,callLeg2[totalCounter]);
-              sprintf(textCallCallSpread,"%.*f",properties->precision,optiondata.call - callLeg2[totalCounter]);
+              snprintf(textCallLeg2,sizeof(textCallLeg2),"%.*f",properties->precision,callLeg2[totalCounter]);
+              snprintf(textCallCallSpread,sizeof(textCallCallSpread),"%.*f",properties->precision,optiondata.call - callLeg2[totalCounter]);
             }
 
             if( option_algorithms[properties->modeltype].supportPuts )
             {
-              sprintf(textPutLeg2, "%.*f",properties->precision,putLeg2[totalCounter]);
-              sprintf(textPutPutSpread,"%.*f",properties->precision,optiondata.put - putLeg2[totalCounter]);
+              snprintf(textPutLeg2,sizeof(textPutLeg2),"%.*f",properties->precision,putLeg2[totalCounter]);
+              snprintf(textPutPutSpread,sizeof(textPutPutSpread),"%.*f",properties->precision,optiondata.put - putLeg2[totalCounter]);
             }
 
             if( option_algorithms[properties->modeltype].supportCalls && option_algorithms[properties->modeltype].supportPuts )
             {
-              sprintf(textCallPutSpread,"%.*f", properties->precision, optiondata.call - putLeg2[totalCounter]);
-              sprintf(textPutCallSpread,"%.*f", properties->precision, optiondata.put  - callLeg2[totalCounter]);
+              snprintf(textCallPutSpread,sizeof(textCallPutSpread),"%.*f", properties->precision, optiondata.call - putLeg2[totalCounter]);
+              snprintf(textPutCallSpread,sizeof(textPutCallSpread),"%.*f", properties->precision, optiondata.put  - callLeg2[totalCounter]);
             }
 
             gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, textPrice, X2, textMonth, X3, textStrike, X4, textCall[0], X5, textPut[0], X6, textMonthLeg2[totalCounter], X7, textStrikeLeg2[totalCounter], X8, textCallLeg2, X9, textPutLeg2, X10, textCallCallSpread, X11, textPutPutSpread, X12, textCallPutSpread, X13, textPutCallSpread, -1);
 
             if( properties->textExport == true )
             {
-              sprintf(lineData,"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
+              snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
                     textPrice, textMonth, textStrike, textCall[0], textPut[0], textMonthLeg2[totalCounter], textStrikeLeg2[totalCounter], textCallLeg2, textPutLeg2, textCallCallSpread, textPutPutSpread, textCallPutSpread, textPutCallSpread);
 
               strcat(dataExport,lineData);
@@ -1739,7 +1735,6 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
             }
 
             cumStrikeLeg2 += i;
-            //sprintf(textPrice,"%.*f",properties->precision,price);
 
             if( strike_control[properties->strikestoogle].incrementor == 0 && properties->spreads == 1 )
             {
@@ -1758,10 +1753,10 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
             {
               if( modf(i,&properties->discard) == .5 )
               {
-                sprintf(textStrikeLeg2[totalCounter],"%.*f", 1,properties->data.strike);
+                snprintf(textStrikeLeg2[totalCounter],sizeof(textStrikeLeg2[totalCounter]),"%.*f", 1,properties->data.strike);
               } else
               {
-                sprintf(textStrikeLeg2[totalCounter],"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
+                snprintf(textStrikeLeg2[totalCounter],sizeof(textStrikeLeg2[totalCounter]),"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
               }
             }
 
@@ -1782,9 +1777,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
               putLeg2[totalCounter] = optiondata.put;
             }
 
-            //sprintf(textMonth,"%s%2d %04.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
-
-            sprintf(&textMonthLeg2[totalCounter][0],"%s%2d %04.0f",mon[*properties->expiration_month2],*properties->days_to_expiration2,(double)*properties->expiration_year2 + 2000);
+            snprintf(&textMonthLeg2[totalCounter][0],sizeof(textMonthLeg2[totalCounter]),"%s%2d %04.0f",mon[*properties->expiration_month2],*properties->days_to_expiration2,(double)*properties->expiration_year2 + 2000);
 
             totalCounter++;
 
@@ -1860,7 +1853,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           }
 
           if ( option_algorithms[properties->modeltype].supportPrice )
-            sprintf(textPrice,"%.*f",properties->precision,price);
+            snprintf(textPrice,sizeof(textPrice),"%.*f",properties->precision,price);
 
           cumStrikeLeg1 += i;
 
@@ -1881,10 +1874,10 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           {
             if( modf(i,&properties->discard) == .5 )
             {
-              sprintf(textStrike,"%.*f", 1,properties->data.strike);
+              snprintf(textStrike,sizeof(textStrike),"%.*f", 1,properties->data.strike);
             } else
             {
-              sprintf(textStrike,"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
+              snprintf(textStrike,sizeof(textStrike),"%.*f", strike_control[properties->strikestoogle].precision,properties->data.strike);
             }
           }
 
@@ -1896,34 +1889,34 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           if( option_algorithms[properties->modeltype].supportCalls )
           {
             optiondata = option_call(&properties->data);
-            sprintf(&textCall[0][0],"%.*f",properties->precision,optiondata.call);
+            snprintf(&textCall[0][0],sizeof(textCall[0]),"%.*f",properties->precision,optiondata.call);
           }
 
           if( option_algorithms[properties->modeltype].supportPuts )
           {
             optiondata = option_put(&properties->data);
-            sprintf(&textPut[0][0], "%.*f",properties->precision,optiondata.put);
+            snprintf(&textPut[0][0],sizeof(textPut[0]),"%.*f",properties->precision,optiondata.put);
           }
 
-          sprintf(textMonth,"%s%2d %04.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
+          snprintf(textMonth,sizeof(textMonth),"%s%2d %04.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
 
           char textDecimalDate[200] = { 0 };
-          sprintf(textDecimalDate,"%.*f",properties->precision,properties->data.t[0]);
+          snprintf(textDecimalDate,sizeof(textDecimalDate),"%.*f",properties->precision,properties->data.t[0]);
 
           char textDaysToExpr[200] = { 0 };
-          sprintf(textDaysToExpr,"%.*f",properties->precision,(365*properties->data.t[0]));
+          snprintf(textDaysToExpr,sizeof(textDaysToExpr),"%.*f",properties->precision,(365*properties->data.t[0]));
 
           process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
 
           if ( option_algorithms[properties->modeltype].supportStrikes )
-            sprintf(textLegacyCall,"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
+            snprintf(textLegacyCall,sizeof(textLegacyCall),"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
           else
-            sprintf(textLegacyCall,"%s",option_calls[decimal_date_to_int_month(properties->data.t[0])]);
+            snprintf(textLegacyCall,sizeof(textLegacyCall),"%s",option_calls[decimal_date_to_int_month(properties->data.t[0])]);
 
           if ( option_algorithms[properties->modeltype].supportStrikes )
-            sprintf(textLegacyPut,"%s%c",option_puts[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
+            snprintf(textLegacyPut,sizeof(textLegacyPut),"%s%c",option_puts[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
           else
-            sprintf(textLegacyPut,"%s",option_puts[decimal_date_to_int_month(properties->data.t[0])]);
+            snprintf(textLegacyPut,sizeof(textLegacyPut),"%s",option_puts[decimal_date_to_int_month(properties->data.t[0])]);
  
           gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
 
@@ -1933,7 +1926,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
             if( properties->textExport == true )
             {            
-              sprintf(lineData,"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
+              snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
                       textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textDecimalDate, textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textLegacyCall, textLegacyPut);
               strcat(dataExport,lineData);
             }
@@ -1949,27 +1942,27 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
             if( option_algorithms[properties->modeltype].supportCalls )
             {
-              sprintf(textCallLeg2,"%.*f",properties->precision,callLeg2[totalCounter]);
-              sprintf(textCallCallSpread,"%.*f",properties->precision,optiondata.call - callLeg2[totalCounter]);
+              snprintf(textCallLeg2,sizeof(textCallLeg2),"%.*f",properties->precision,callLeg2[totalCounter]);
+              snprintf(textCallCallSpread,sizeof(textCallCallSpread),"%.*f",properties->precision,optiondata.call - callLeg2[totalCounter]);
             }
 
             if( option_algorithms[properties->modeltype].supportPuts )
             {
-              sprintf(textPutLeg2, "%.*f",properties->precision,putLeg2[totalCounter]);
-              sprintf(textPutPutSpread,"%.*f",properties->precision,optiondata.put - putLeg2[totalCounter]);
+              snprintf(textPutLeg2,sizeof(textPutLeg2),"%.*f",properties->precision,putLeg2[totalCounter]);
+              snprintf(textPutPutSpread,sizeof(textPutPutSpread),"%.*f",properties->precision,optiondata.put - putLeg2[totalCounter]);
             }
 
             if( option_algorithms[properties->modeltype].supportCalls && option_algorithms[properties->modeltype].supportPuts )
             {
-              sprintf(textCallPutSpread,"%.*f", properties->precision, optiondata.call - putLeg2[totalCounter]);
-              sprintf(textPutCallSpread,"%.*f", properties->precision, optiondata.put  - callLeg2[totalCounter]);
+              snprintf(textCallPutSpread,sizeof(textCallPutSpread),"%.*f", properties->precision, optiondata.call - putLeg2[totalCounter]);
+              snprintf(textPutCallSpread,sizeof(textPutCallSpread),"%.*f", properties->precision, optiondata.put  - callLeg2[totalCounter]);
             }
 
             gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, textPrice, X2, textMonth, X3, textStrike, X4, textCall[0], X5, textPut[0], X6, textMonthLeg2[totalCounter], X7, textStrikeLeg2[totalCounter], X8, textCallLeg2, X9, textPutLeg2, X10, textCallCallSpread, X11, textPutPutSpread, X12, textCallPutSpread, X13, textPutCallSpread, -1);
 
             if( properties->textExport == true )
             {            
-              sprintf(lineData,"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
+              snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
                       textPrice, textMonth, textStrike, textCall[0], textPut[0], textMonthLeg2[totalCounter], textStrikeLeg2[totalCounter], textCallLeg2, textPutLeg2, textCallCallSpread, textPutPutSpread, textCallPutSpread, textPutCallSpread);
               strcat(dataExport,lineData);
             }
@@ -2029,7 +2022,7 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_call_delta(&properties->data);
     }
-    sprintf(textCallDelta,"%.*f", properties->precision,optiondata.calldelta);
+    snprintf(textCallDelta,200,"%.*f", properties->precision,optiondata.calldelta);
   }
         
   if( option_algorithms[properties->modeltype].producePutDelta )
@@ -2041,7 +2034,7 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_put_delta(&properties->data);
     }
-    sprintf(textPutDelta,"%.*f", properties->precision,optiondata.putdelta);
+    snprintf(textPutDelta,200,"%.*f", properties->precision,optiondata.putdelta);
   }
 
   if( option_algorithms[properties->modeltype].produceGamma )
@@ -2053,7 +2046,7 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_gamma(&properties->data);
     }
-    sprintf(textGamma,"%.*f", properties->precision,optiondata.gamma);
+    snprintf(textGamma,200,"%.*f", properties->precision,optiondata.gamma);
   }
 
   if( option_algorithms[properties->modeltype].produceVega )
@@ -2065,7 +2058,7 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_vega(&properties->data);
     }
-    sprintf(textVega,"%.*f", properties->precision,optiondata.vega);
+    snprintf(textVega,200,"%.*f", properties->precision,optiondata.vega);
   }
 
   if( option_algorithms[properties->modeltype].produceCallTheta )
@@ -2077,7 +2070,7 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_call_theta(&properties->data);
     }
-    sprintf(textCallTheta,"%.*f", properties->precision,optiondata.calltheta);
+    snprintf(textCallTheta,200,"%.*f", properties->precision,optiondata.calltheta);
   }
 
   if( option_algorithms[properties->modeltype].producePutTheta )
@@ -2089,7 +2082,7 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_put_theta(&properties->data);
     }
-    sprintf(textPutTheta,"%.*f", properties->precision,optiondata.puttheta);
+    snprintf(textPutTheta,200,"%.*f", properties->precision,optiondata.puttheta);
   }
 
   if( option_algorithms[properties->modeltype].produceCallRho )
@@ -2101,8 +2094,7 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_call_rho(&properties->data);
     }
-    sprintf(textCallRho,"%.*f", properties->precision,optiondata.callrho);
-
+    snprintf(textCallRho,200,"%.*f", properties->precision,optiondata.callrho);
   }
 
   if( option_algorithms[properties->modeltype].producePutRho )
@@ -2113,6 +2105,6 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     } else {
       optiondata = option_put_rho(&properties->data);
     }
-    sprintf(textPutRho,"%.*f", properties->precision,optiondata.putrho);
+    snprintf(textPutRho,200,"%.*f", properties->precision,optiondata.putrho);
   }
 }

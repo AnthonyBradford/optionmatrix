@@ -66,17 +66,17 @@ void show_title(const struct _properties *properties)
 
   if( properties->decimalorcalendar == DECIMALS )
   {
-    sprintf(title,"%s: Decimal Dated, Model Source: %s", PACKAGE_NAME, option_algorithms[properties->modeltype].source);
+    snprintf(title,sizeof(title),"%s: Decimal Dated, Model Source: %s", PACKAGE_NAME, option_algorithms[properties->modeltype].source);
     gtk_widget_hide(properties->GtkInfo.labelDisplayFormats2);
 
   } else if( properties->decimalorcalendar == CALENDAR )
   {
-    sprintf(title,"%s: Calendar Dated, Model Source: %s", PACKAGE_NAME, option_algorithms[properties->modeltype].source);
+    snprintf(title,sizeof(title),"%s: Calendar Dated, Model Source: %s", PACKAGE_NAME, option_algorithms[properties->modeltype].source);
 
     if( !option_algorithms[properties->modeltype].assetClass )
     {
       char formatStyle[1000] = { 0 };
-      sprintf(formatStyle,"Format: %s",formatNames[supportStrikes].format[properties->format - CALENDAR_OPTIONS3]);
+      snprintf(formatStyle,sizeof(formatStyle),"Format: %s",formatNames[supportStrikes].format[properties->format - CALENDAR_OPTIONS3]);
       gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelDisplayFormats2),formatStyle);
       gtk_widget_show(properties->GtkInfo.labelDisplayFormats2);
     }
@@ -93,10 +93,10 @@ void show_label_expirations(const struct _properties *properties)
 
   if( properties->occurence_plus_offset )
   {
-    sprintf(expiration,"Expirations set to %d%s %s + %d @ %02d:%02d:%02d",properties->occurence_in_month,order[properties->occurence_in_month-1],weekdays[properties->occurence_day-1],properties->occurence_plus_offset,properties->expiration_hour,properties->expiration_minute,properties->expiration_second);
+    snprintf(expiration,sizeof(expiration),"Expirations set to %d%s %s + %d @ %02d:%02d:%02d",properties->occurence_in_month,order[properties->occurence_in_month-1],weekdays[properties->occurence_day-1],properties->occurence_plus_offset,properties->expiration_hour,properties->expiration_minute,properties->expiration_second);
   } else
   {
-    sprintf(expiration,"Expirations set to %d%s %s @ %02d:%02d:%02d",properties->occurence_in_month,order[properties->occurence_in_month-1],weekdays[properties->occurence_day-1],properties->expiration_hour,properties->expiration_minute,properties->expiration_second);
+    snprintf(expiration,sizeof(expiration),"Expirations set to %d%s %s @ %02d:%02d:%02d",properties->occurence_in_month,order[properties->occurence_in_month-1],weekdays[properties->occurence_day-1],properties->expiration_hour,properties->expiration_minute,properties->expiration_second);
   }
 
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelExpirations),expiration);
@@ -447,7 +447,7 @@ int main(int argc, char *argv[])
 
 #ifdef DATADIR
   char imageName[1024];
-  sprintf(imageName, "%s/%s/images/6.png", DATADIR, PACKAGE);
+  snprintf(imageName,sizeof(imageName), "%s/%s/images/6.png", DATADIR, PACKAGE);
   
   if( access(imageName, F_OK ) == 0 )
   {
@@ -479,7 +479,7 @@ int main(int argc, char *argv[])
 
 #ifdef DATADIR
   //char gladeFile[1024];
-  //sprintf(gladeFile, "%s/%s/gtk_glade_xml.glade", DATADIR, PACKAGE);
+  //snprintf(gladeFile,sizeof(gladeFile),"%s/%s/gtk_glade_xml.glade", DATADIR, PACKAGE);
   //gtk_builder_add_from_file(properties.GtkInfo.builder, gladeFile, &err);
 #endif
 
@@ -838,7 +838,7 @@ int main(int argc, char *argv[])
   struct elementList listOptionCycles[num_cycles];
   for(index = 0; index < num_cycles; index++)
   {
-    sprintf(listOptionCycles[index].elementName,"%s",optionscycle[index]);
+    snprintf(listOptionCycles[index].elementName,sizeof(listOptionCycles[index].elementName),"%s",optionscycle[index]);
   }
   set_up_combobox_with_array2(properties.GtkInfo.comboboxCycle, listOptionCycles, num_cycles);
 
@@ -873,7 +873,7 @@ int main(int argc, char *argv[])
   for(index = 0; index < num_models; index++)
   {
     //strcpy(listModels[index].elementName,option_algorithms[index].des);
-    sprintf(listModels[index].elementName,"%d - %s",index+1,option_algorithms[index].des);
+    snprintf(listModels[index].elementName,sizeof(listModels[index].elementName),"%d - %s",index+1,option_algorithms[index].des);
   }
   set_up_combobox_with_array(properties.GtkInfo.comboboxModel, listModels, num_models);
   */
@@ -882,8 +882,10 @@ int main(int argc, char *argv[])
   properties.listModelsForGroups = new elementListWithGroup[num_models];
   for(index = 0; index < num_models; index++)
   {
-    sprintf(properties.listModelsForGroups[index].elementName,"%s",option_algorithms[index].des);
-    sprintf(properties.listModelsForGroups[index].groupName,"%s",option_algorithms[index].category);
+    snprintf(properties.listModelsForGroups[index].elementName,sizeof(properties.listModelsForGroups[index].elementName),
+             "%s",option_algorithms[index].des);
+    snprintf(properties.listModelsForGroups[index].groupName,sizeof(properties.listModelsForGroups[index].groupName),
+             "%s",option_algorithms[index].category);
     properties.listModelsForGroups[index].index = index;
   }
 

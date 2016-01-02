@@ -145,7 +145,7 @@ void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *p
   const char *const weekDays[]= { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
   for(index = 0; index < 7; index++)
   {
-    sprintf(listWeekdays[index].elementName,"%s", weekDays[index]);
+    snprintf(listWeekdays[index].elementName,sizeof(listWeekdays[index].elementName),"%s", weekDays[index]);
     //g_print("%s\n",listWeekdays[index].elementName);
   }
   set_up_combobox_with_array2(properties->GtkInfo.comboboxWeekday, listWeekdays, 7);
@@ -155,7 +155,7 @@ void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *p
 
   for(index = 0; index < 4; index++)
   {
-    sprintf(listOccurance[index].elementName,"%d%s %s", index+1, order[index], weekDays[occurence_day] );
+    snprintf(listOccurance[index].elementName,sizeof(listOccurance[index].elementName),"%d%s %s", index+1, order[index], weekDays[occurence_day] );
     //g_print("%s\n",listOccurance[index].elementName);
   }
 
@@ -183,7 +183,7 @@ void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *p
   }
 
   char expirationTime[400] = { 0 };
-  sprintf(expirationTime,"%02d:%02d:%02d",properties->expiration_hour,properties->expiration_minute,properties->expiration_second);
+  snprintf(expirationTime,sizeof(expirationTime),"%02d:%02d:%02d",properties->expiration_hour,properties->expiration_minute,properties->expiration_second);
   gtk_entry_set_text(GTK_ENTRY(properties->GtkInfo.entryExpirationTime), expirationTime);
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogProperties));

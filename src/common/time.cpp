@@ -290,7 +290,7 @@ char *decimal_date_to_real_date(double decimaltime)
             hoursoftoday = 0;
         }
 
-        sprintf(string,"%s %02d %02d %02.0f:%02d",mon[my_tm->tm_mon],my_tm->tm_mday,my_tm->tm_year+1900,hoursoftoday,(minutes == 60 ? 0 : minutes));
+        snprintf(string,sizeof(string),"%s %02d %02d %02.0f:%02d",mon[my_tm->tm_mon],my_tm->tm_mday,my_tm->tm_year+1900,hoursoftoday,(minutes == 60 ? 0 : minutes));
 
         return &string[0];
     }
@@ -339,9 +339,9 @@ char *decimal_date_to_real_date(double decimaltime)
                   if( lasthours < 0 )
                     lasthours = 0;
                 }
-                
-                /*sprintf(string,"%s %02d %02d %02.0f:%02d",mon[mm],counter1+1,yy,lasthours,(minutes == 60 ? 0: minutes));*/
-                sprintf(string,"%s %02d %d %02.0f:%02d",mon[mm],counter1+1,yy+2000,lasthours,(minutes == 60 ? 0: minutes));
+
+                /*snprintf(string,sizeof(string),"%s %02d %02d %02.0f:%02d",mon[mm],counter1+1,yy,lasthours,(minutes == 60 ? 0: minutes));*/
+                snprintf(string,sizeof(string),"%s %02d %d %02.0f:%02d",mon[mm],counter1+1,yy+2000,lasthours,(minutes == 60 ? 0: minutes));
 
                 break;
             }
@@ -459,7 +459,7 @@ void decimal_date_to_real_dates(double decimaltime, int *y, int *m, int *d, int 
                 mm = month;
                 found = 1;
 
-                //sprintf(string,"%s %02d %d %02.0f:%02d",mon[mm],counter1+1,yy+2000,lasthours,(minutes == 60 ? 0: minutes));
+                //snprintf(string,sizeof(string),"%s %02d %d %02.0f:%02d",mon[mm],counter1+1,yy+2000,lasthours,(minutes == 60 ? 0: minutes));
 
                 *y = yy + 2000;
                 *m = mm;
@@ -530,7 +530,7 @@ int decimal_date_to_int_month(double decimaltime)
                 /* dd = day;*/
                 found = 1;
                 
-                /*sprintf(string,"%s %02d %02d",mon[mm],counter1+1,yy);*/
+                /*snprintf(string,sizeof(string),"%s %02d %02d",mon[mm],counter1+1,yy);*/
                 break;
             }
             counter1++;
@@ -593,7 +593,7 @@ int decimal_date_to_int_year(const double decimaltime)
                 /* dd = day;*/
                 found = 1;
                 
-                /*sprintf(string,"%s %02d %02d",mon[mm],counter1+1,yy);*/
+                /*snprintf(string,sizeof(string),"%s %02d %02d",mon[mm],counter1+1,yy);*/
                 break;
             }
             counter1++;

@@ -56,10 +56,9 @@ void InitPaint(struct _properties *properties)
        it != properties->data.generic_amounts->end();  
        ++it, it2++)
   {
-    sprintf(amountText,"%.*f", properties->precision,*it);
-    //sprintf(decimalTimeText,"%.*f", properties->precision,*it2);
-    sprintf(decimalTimeText,"%.15f", *it2);
-    sprintf(actualTimeText,"%s", decimal_date_to_real_date(*it2) );
+    snprintf(amountText,sizeof(amountText),"%.*f", properties->precision,*it);
+    snprintf(decimalTimeText,sizeof(decimalTimeText),"%.15f", *it2);
+    snprintf(actualTimeText,sizeof(actualTimeText),"%s", decimal_date_to_real_date(*it2) );
 
     if( option_algorithms[properties->modeltype].supportDividend == 3 ||
         option_algorithms[properties->modeltype].supportDividend == 5 ||
@@ -119,10 +118,9 @@ gboolean ListTimer(struct _properties *properties)
          it != properties->data.generic_amounts->end();  
          ++it, it2++)
     {
-      sprintf(amountText,"%.*f", properties->precision,*it);
-      //sprintf(decimalTimeText,"%.*f", properties->precision,*it2);
-      sprintf(decimalTimeText,"%.15f", *it2);
-      sprintf(actualTimeText,"%s", decimal_date_to_real_date(*it2) );
+      snprintf(amountText,sizeof(amountText),"%.*f", properties->precision,*it);
+      snprintf(decimalTimeText,sizeof(decimalTimeText),"%.15f", *it2);
+      snprintf(actualTimeText,sizeof(actualTimeText),"%s", decimal_date_to_real_date(*it2) );
 
       if( option_algorithms[properties->modeltype].supportDividend == 3 ||
           option_algorithms[properties->modeltype].supportDividend == 5 ||
@@ -538,9 +536,9 @@ void add_cashflow3(GtkButton *add, struct _properties *properties)
 
     } while(gtk_tree_model_iter_next (model, &iter));
 
-    sprintf(amountText,"%f", amount);
-    sprintf(decimalTimeText,"%.15f", t);
-    sprintf(actualTimeText,"%s", decimal_date_to_real_date(t) );
+    snprintf(amountText,sizeof(amountText),"%f", amount);
+    snprintf(decimalTimeText,sizeof(decimalTimeText),"%.15f", t);
+    snprintf(actualTimeText,sizeof(actualTimeText),"%s", decimal_date_to_real_date(t) );
   
     //g_print("found     = %d\t", found);
     //g_print("counter   = %d\t", counter);
@@ -704,9 +702,8 @@ void add_cashflow4(GtkButton *add, struct _properties *properties)
 
     } while(gtk_tree_model_iter_next (model, &iter));
 
-    //sprintf(amountText,"%f", amount);
-    sprintf(decimalTimeText,"%.15f", t);
-    sprintf(actualTimeText,"%s", decimal_date_to_real_date(t) );
+    snprintf(decimalTimeText,sizeof(decimalTimeText),"%.15f", t);
+    snprintf(actualTimeText,sizeof(actualTimeText),"%s", decimal_date_to_real_date(t) );
   
     //g_print("found     = %d\t", found);
     //g_print("counter   = %d\t", counter);

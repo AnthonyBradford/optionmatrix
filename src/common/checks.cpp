@@ -53,7 +53,8 @@ int main(int argc, char **argv)
     program_check_pricing_models(quietMode, properties.data.debug);
 
     exit(EXIT_SUCCESS);
-}
+
+} // int main(int argc, char **argv)
 
 #ifdef HAVE_GETOPT_H
 
@@ -153,14 +154,15 @@ bool process_arguments_checks(int argc, char **argv, bool *debug)
       exit(exit_status);
     
     return false;
-}
+
+} // bool process_arguments_checks(int argc, char **argv, bool *debug)
 
 void program_version_checks()
 {
 
   printf("checks for %s %s\n\n%s\n", PACKAGE, PACKAGE_VERSION, license2);
 
-}
+} // void program_version_checks()
 
 void program_usage_checks()
 {
@@ -177,6 +179,6 @@ void program_usage_checks()
 
   printf("\nReport %s bugs to %s\n", PACKAGE, PACKAGE_BUGREPORT);
 
-}
+} // void program_usage_checks()
 
 #endif

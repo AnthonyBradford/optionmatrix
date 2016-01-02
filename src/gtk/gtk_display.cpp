@@ -48,7 +48,7 @@ void text_export(struct _properties *properties, char *dataExport)
   char tstring[400] = { 0 };
   char windowTitle[400] = { 0 };
   strftime(tstring,sizeof(tstring),"%a %b %d %Y %H:%M:%S",my_tm);
-  sprintf(windowTitle,"%s Export %s @ %s", PACKAGE_NAME, option_algorithms[properties->modeltype].des, tstring);
+  snprintf(windowTitle,sizeof(windowTitle),"%s Export %s @ %s", PACKAGE_NAME, option_algorithms[properties->modeltype].des, tstring);
   
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window), windowTitle);
@@ -266,7 +266,7 @@ void setup_tree_view(struct _properties *properties)
 
     if( option_algorithms[properties->modeltype].supportStrikes )
     {
-      sprintf(strike,"%s",option_algorithms[properties->modeltype].strike);
+      snprintf(strike,sizeof(strike),"%s",option_algorithms[properties->modeltype].strike);
     } else
     {
       strike[0] = 0;
@@ -276,13 +276,13 @@ void setup_tree_view(struct _properties *properties)
                            (strike, renderer, "text", X2, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(call,"%s",option_algorithms[properties->modeltype].call);
+    snprintf(call,sizeof(call),"%s",option_algorithms[properties->modeltype].call);
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (call, renderer, "text", X3, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(put,"%s",option_algorithms[properties->modeltype].put);
+    snprintf(put,sizeof(put),"%s",option_algorithms[properties->modeltype].put);
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (put, renderer, "text", X4, NULL);
@@ -342,7 +342,7 @@ void setup_tree_view(struct _properties *properties)
   
     if( option_algorithms[properties->modeltype].supportStrikes )
     {
-      sprintf(strike,"%s",option_algorithms[properties->modeltype].strike);
+      snprintf(strike,sizeof(strike),"%s",option_algorithms[properties->modeltype].strike);
     } else
     {
       strike[0] = 0;
@@ -354,37 +354,37 @@ void setup_tree_view(struct _properties *properties)
 
     char textDate[500] = { 0 };
 
-    sprintf(textDate,"%s %s%2d %04.0f",option_algorithms[properties->modeltype].call,mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
+    snprintf(textDate,sizeof(textDate),"%s %s%2d %04.0f",option_algorithms[properties->modeltype].call,mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X3, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s %s%2d %04.0f",option_algorithms[properties->modeltype].call,mon[*(properties->expiration_month+1)],*(properties->days_to_expiration+1),(double)*(properties->expiration_year+1) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s %s%2d %04.0f",option_algorithms[properties->modeltype].call,mon[*(properties->expiration_month+1)],*(properties->days_to_expiration+1),(double)*(properties->expiration_year+1) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X4, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s %s%2d %04.0f",option_algorithms[properties->modeltype].call,mon[*(properties->expiration_month+2)],*(properties->days_to_expiration+2),(double)*(properties->expiration_year+2) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s %s%2d %04.0f",option_algorithms[properties->modeltype].call,mon[*(properties->expiration_month+2)],*(properties->days_to_expiration+2),(double)*(properties->expiration_year+2) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X5, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s %s%2d %04.0f",option_algorithms[properties->modeltype].put,mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s %s%2d %04.0f",option_algorithms[properties->modeltype].put,mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X6, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s %s%2d %04.0f",option_algorithms[properties->modeltype].put,mon[*(properties->expiration_month+1)],*(properties->days_to_expiration+1),(double)*(properties->expiration_year+1) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s %s%2d %04.0f",option_algorithms[properties->modeltype].put,mon[*(properties->expiration_month+1)],*(properties->days_to_expiration+1),(double)*(properties->expiration_year+1) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X7, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s %s%2d %04.0f",option_algorithms[properties->modeltype].put,mon[*(properties->expiration_month+2)],*(properties->days_to_expiration+2),(double)*(properties->expiration_year+2) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s %s%2d %04.0f",option_algorithms[properties->modeltype].put,mon[*(properties->expiration_month+2)],*(properties->days_to_expiration+2),(double)*(properties->expiration_year+2) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X8, NULL);
@@ -404,7 +404,7 @@ void setup_tree_view(struct _properties *properties)
   
     if( option_algorithms[properties->modeltype].supportStrikes )
     {
-      sprintf(strike,"%s",option_algorithms[properties->modeltype].strike);
+      snprintf(strike,sizeof(strike),"%s",option_algorithms[properties->modeltype].strike);
     } else
     {
       strike[0] = 0;
@@ -416,49 +416,49 @@ void setup_tree_view(struct _properties *properties)
 
     char textDate[400] = { 0 };
 
-    sprintf(textDate,"%s%2d %04.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
+    snprintf(textDate,sizeof(textDate),"%s%2d %04.0f",mon[*properties->expiration_month],*properties->days_to_expiration,(double)*properties->expiration_year + 2000);
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X3, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s%2d %04.0f",mon[*(properties->expiration_month+1)],*(properties->days_to_expiration+1),(double)*(properties->expiration_year+1) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s%2d %04.0f",mon[*(properties->expiration_month+1)],*(properties->days_to_expiration+1),(double)*(properties->expiration_year+1) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X4, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s%2d %04.0f",mon[*(properties->expiration_month+2)],*(properties->days_to_expiration+2),(double)*(properties->expiration_year+2) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s%2d %04.0f",mon[*(properties->expiration_month+2)],*(properties->days_to_expiration+2),(double)*(properties->expiration_year+2) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X5, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s%2d %04.0f",mon[*(properties->expiration_month+3)],*(properties->days_to_expiration+3),(double)*(properties->expiration_year+3) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s%2d %04.0f",mon[*(properties->expiration_month+3)],*(properties->days_to_expiration+3),(double)*(properties->expiration_year+3) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X6, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s%2d %04.0f",mon[*(properties->expiration_month+4)],*(properties->days_to_expiration+4),(double)*(properties->expiration_year+4) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s%2d %04.0f",mon[*(properties->expiration_month+4)],*(properties->days_to_expiration+4),(double)*(properties->expiration_year+4) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X7, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s%2d %04.0f",mon[*(properties->expiration_month+5)],*(properties->days_to_expiration+5),(double)*(properties->expiration_year+5) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s%2d %04.0f",mon[*(properties->expiration_month+5)],*(properties->days_to_expiration+5),(double)*(properties->expiration_year+5) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X8, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s%2d %04.0f",mon[*(properties->expiration_month+6)],*(properties->days_to_expiration+6),(double)*(properties->expiration_year+6) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s%2d %04.0f",mon[*(properties->expiration_month+6)],*(properties->days_to_expiration+6),(double)*(properties->expiration_year+6) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X9, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(textDate,"%s%2d %04.0f",mon[*(properties->expiration_month+7)],*(properties->days_to_expiration+7),(double)*(properties->expiration_year+7) + 2000 );
+    snprintf(textDate,sizeof(textDate),"%s%2d %04.0f",mon[*(properties->expiration_month+7)],*(properties->days_to_expiration+7),(double)*(properties->expiration_year+7) + 2000 );
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (textDate, renderer, "text", X10, NULL);
@@ -483,7 +483,7 @@ void setup_tree_view(struct _properties *properties)
   
     if( option_algorithms[properties->modeltype].supportStrikes )
     {
-      sprintf(strike,"%s",option_algorithms[properties->modeltype].strike);
+      snprintf(strike,sizeof(strike),"%s",option_algorithms[properties->modeltype].strike);
     } else
     {
       strike[0] = 0;
@@ -493,14 +493,14 @@ void setup_tree_view(struct _properties *properties)
                            (strike, renderer, "text", X3, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(call,"%s",option_algorithms[properties->modeltype].call);
+    snprintf(call,sizeof(call),"%s",option_algorithms[properties->modeltype].call);
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (call, renderer, "text", X4, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
     if(option_algorithms[properties->modeltype].supportPuts)
-      sprintf(put,"%s",option_algorithms[properties->modeltype].put);
+      snprintf(put,sizeof(put),"%s",option_algorithms[properties->modeltype].put);
     else
       put[0] = 0;
 
@@ -590,7 +590,7 @@ void setup_tree_view(struct _properties *properties)
 
     if( option_algorithms[properties->modeltype].supportStrikes )
     {
-      sprintf(strike,"%s",option_algorithms[properties->modeltype].strike);
+      snprintf(strike,sizeof(strike),"%s",option_algorithms[properties->modeltype].strike);
     } else
     {
       strike[0] = 0;
@@ -600,14 +600,14 @@ void setup_tree_view(struct _properties *properties)
                            (strike, renderer, "text", X3, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(call,"%s",option_algorithms[properties->modeltype].call);
+    snprintf(call,sizeof(call),"%s",option_algorithms[properties->modeltype].call);
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (call, renderer, "text", X4, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
     if(option_algorithms[properties->modeltype].supportPuts)
-      sprintf(put,"%s",option_algorithms[properties->modeltype].put);
+      snprintf(put,sizeof(put),"%s",option_algorithms[properties->modeltype].put);
     else
       put[0] = 0;
 
@@ -623,7 +623,7 @@ void setup_tree_view(struct _properties *properties)
   
     if( option_algorithms[properties->modeltype].supportStrikes )
     {
-      sprintf(strike,"%s",option_algorithms[properties->modeltype].strike);
+      snprintf(strike,sizeof(strike),"%s",option_algorithms[properties->modeltype].strike);
     } else
     {
       strike[0] = 0;
@@ -633,14 +633,14 @@ void setup_tree_view(struct _properties *properties)
                            (strike, renderer, "text", X7, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
-    sprintf(call,"%s",option_algorithms[properties->modeltype].call);
+    snprintf(call,sizeof(call),"%s",option_algorithms[properties->modeltype].call);
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes
                            (call, renderer, "text", X8, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
     if(option_algorithms[properties->modeltype].supportPuts)
-      sprintf(put,"%s",option_algorithms[properties->modeltype].put);
+      snprintf(put,sizeof(put),"%s",option_algorithms[properties->modeltype].put);
     else
       put[0] = 0;
 

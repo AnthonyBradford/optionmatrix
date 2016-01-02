@@ -694,7 +694,7 @@ struct _int_to_function { double (*fun) (const double&, const double&); };
 struct option_algorithm {
 
   int modeltype;
-  char des[100];
+  char des[256];
   char source[PATH_MAX];
   char curses_des[240]; // 240 = 3 lines of text
 
@@ -743,7 +743,7 @@ struct option_algorithm {
   */
   int supportDividend;
   double defaultDividend;
-  char supportTime1des[100];
+  char supportTime1des[256];
   /* 
      supportTime2
         0 - t2 not used
@@ -751,17 +751,17 @@ struct option_algorithm {
         2 - t2 used, model supports decimal/date entry and calendar dating...
   */
   int supportTime2;
-  char supportTime2des[100];
+  char supportTime2des[256];
 
   int supportTime3;
-  char supportTime3des[100];
+  char supportTime3des[256];
 
-  char price[100];
-  char dividend[100];
-  char call[100];
-  char put[100];
-  char strike[100];
-  char volatility[100];
+  char price[256];
+  char dividend[256];
+  char call[256];
+  char put[256];
+  char strike[256];
+  char volatility[256];
 
   /*
     0 = not used
@@ -770,7 +770,7 @@ struct option_algorithm {
   */
   int iUseZ;
   bool bZallow0Negative;
-  char UseZdes[100];
+  char UseZdes[256];
   double Zdefault;
   double Zmax;
 
@@ -781,7 +781,7 @@ struct option_algorithm {
   */
   int iUseB;
   bool bBallow0Negative;
-  char UseBdes[100];
+  char UseBdes[256];
   double Bdefault;
   double Bmax;
 
@@ -792,7 +792,7 @@ struct option_algorithm {
   */
   int iUseJ;
   bool bJallow0Negative;
-  char UseJdes[100];
+  char UseJdes[256];
   double Jdefault;
   double Jmax;
 
@@ -803,7 +803,7 @@ struct option_algorithm {
   */
   int iUseP;
   bool bPallow0Negative;
-  char UsePdes[100];
+  char UsePdes[256];
   double Pdefault;
   double Pmax;  
 
@@ -814,7 +814,7 @@ struct option_algorithm {
   */
   int iUseQ;
   bool bQallow0Negative;
-  char UseQdes[100];
+  char UseQdes[256];
   double Qdefault;
   double Qmax;  
 
@@ -825,7 +825,7 @@ struct option_algorithm {
   */
   int iUseR;
   bool bRallow0Negative;
-  char UseRdes[100];
+  char UseRdes[256];
   double Rdefault;
   double Rmax;  
 
@@ -836,7 +836,7 @@ struct option_algorithm {
   */
   int iUseS;
   bool bSallow0Negative;
-  char UseSdes[100];
+  char UseSdes[256];
   double Sdefault;
   double Smax;  
 
@@ -847,14 +847,14 @@ struct option_algorithm {
   */
   int iUseT;
   bool bTallow0Negative;
-  char UseTdes[100];
+  char UseTdes[256];
   double Tdefault;
   double Tmax;  
 
   /* bUsePound '#' is for option states */
   int bUsePound;
   bool bPoundallow0Negative;
-  char UsePounddes[100];
+  char UsePounddes[256];
   int Pounddefault;
   int Poundmax;
 
@@ -869,7 +869,7 @@ struct _strike_control {
   double incrementor;
   int strikes5or1;
   double retdiscard;
-  char des[100];
+  char des[256];
   int precision;
   double sliderScale;
 
@@ -881,7 +881,7 @@ struct term_structure {
 
 struct elementList
 {
-  char elementName[200];
+  char elementName[256];
 };
 
 struct elementListWithGroup

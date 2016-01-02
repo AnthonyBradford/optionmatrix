@@ -46,9 +46,9 @@ void logger(const char *name, const int num_args, ...)
     homeDirectory = getenv("HOME");
 
     if( homeDirectory != NULL )
-       sprintf(logFile,"%s/%s.log", homeDirectory, PACKAGE);
+       snprintf(logFile,sizeof(logFile),"%s/%s.log", homeDirectory, PACKAGE);
      else
-       sprintf(logFile,"%s.log", PACKAGE);
+       snprintf(logFile,sizeof(logFile),"%s.log", PACKAGE);
   }
 
   if( !fp && strcmp(name,"") )

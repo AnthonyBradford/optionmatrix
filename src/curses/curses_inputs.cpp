@@ -519,7 +519,7 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
           } else
           {
             char buf[128] = { 0 };
-            sprintf(buf,"%c",c);
+            snprintf(buf,sizeof(buf),"%c",c);
 
             int x = -1;
             sscanf(buf,"%d",&x);
@@ -833,7 +833,7 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
               if( option_algorithms[properties->modeltype].supportTime2 && rollgeskewhaley_counter == 1 )
               {
                 printw("Time to %-17s(%s25=1/4 year)\n",option_algorithms[properties->modeltype].supportTime2des,properties->lc->mon_decimal_point);
-                sprintf(buf,"%s %s",option_algorithms[properties->modeltype].supportTime2des,mmddyy);
+                snprintf(buf,sizeof(buf),"%s %s",option_algorithms[properties->modeltype].supportTime2des,mmddyy);
                 printw("or %-*s: ",34 + sizeof(mmddyy),buf);
 
               } else
@@ -841,7 +841,7 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
                 if( option_algorithms[properties->modeltype].assetClass == TERMSTRUCTURE_CLASS )
                 {
                   printw("Time to %-17s(%s25=1/4 year)\n",option_algorithms[properties->modeltype].supportTime1des,properties->lc->mon_decimal_point);
-                  sprintf(buf,"%s %s",option_algorithms[properties->modeltype].supportTime1des,mmddyy);
+                  snprintf(buf,sizeof(buf),"%s %s",option_algorithms[properties->modeltype].supportTime1des,mmddyy);
                   printw("or %-*s: ",34 + sizeof(mmddyy),buf);
 
                 } else

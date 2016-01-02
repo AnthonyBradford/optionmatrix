@@ -73,7 +73,8 @@ void programInits(struct _properties *properties)
     {
       //g_print("index = %d\n", index);
       int term = term_structure_list[index].modeltype;
-      sprintf(&properties->termstructure_name_list[index].string[0],"%s", option_algorithms[term].des);
+      snprintf(&properties->termstructure_name_list[index].string[0],sizeof(properties->termstructure_name_list[index].string),
+               "%s", option_algorithms[term].des);
       //g_print("\"%s\"\n",&properties->termstructure_name_list[index].string[0]);
     }
 

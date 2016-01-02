@@ -130,14 +130,14 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
          case 'D':
 
             //printf("optarg = %s\n", optarg);
-            sprintf(properties.source_directory_prefix,"%s", optarg);
+            snprintf(properties.source_directory_prefix,sizeof(properties.source_directory_prefix),"%s", optarg);
 
             break;
 
          case 'x':
 
             //printf("optarg = %s\n", optarg);
-            sprintf(properties.data_dir,"%s", optarg);
+            snprintf(properties.data_dir,sizeof(properties.data_dir),"%s", optarg);
 
             break;
 
@@ -203,15 +203,15 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
 
     if(*debug == true)
     {
-      char logText[512];
+      char logText[PATH_MAX];
 
-      sprintf(logText,"%s %s", PACKAGE_NAME, PACKAGE_VERSION);
+      snprintf(logText,sizeof(logText),"%s %s", PACKAGE_NAME, PACKAGE_VERSION);
       logger(logText, 0);
 
-      sprintf(logText,"Compiler version: %s" , __VERSION__);
+      snprintf(logText,sizeof(logText),"Compiler version: %s" , __VERSION__);
       logger(logText, 0);
 
-      sprintf(logText,"properties.source_directory_prefix = %s\n", properties.source_directory_prefix);
+      snprintf(logText,sizeof(logText),"properties.source_directory_prefix = %s\n", properties.source_directory_prefix);
       logger(logText, 0);
     }
 
@@ -219,7 +219,8 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
      exit(exit_status);
     
     return;
-}
+
+} // void process_arguments(int argc, char **argv, bool *debug, char *source_directory_prefix)
 
 #endif
 
@@ -228,7 +229,7 @@ void program_version()
 
   printf("%s %s\n\n%s\n", PACKAGE, PACKAGE_VERSION, license2);
 
-}
+} // void program_version()
 
 void program_usage(char *isConsoleVersion)
 {
@@ -328,7 +329,7 @@ void program_usage(char *isConsoleVersion)
 
   printf("\nReport %s bugs to %s\n", PACKAGE, PACKAGE_BUGREPORT);
 
-}
+} // void program_usage(char *isConsoleVersion)
 
 void program_list_models()
 {
@@ -342,7 +343,7 @@ void program_list_models()
     printf("%s\n",option_algorithms[index].des);
   }
 
-}
+} // void program_list_models()
 
 void program_source()
 {
@@ -353,8 +354,8 @@ void program_source()
   
   for( index = 0; index < numberofmodels; index++ )
   {
-    sprintf(source_levelup,"../%s",option_algorithms[index].sourceCode);
-    sprintf(source_levelup2,"../%s",option_algorithms[index].sourceCode2);
+    snprintf(source_levelup,sizeof(source_levelup),"../%s",option_algorithms[index].sourceCode);
+    snprintf(source_levelup2,sizeof(source_levelup2),"../%s",option_algorithms[index].sourceCode2);
     //printf("%s %s\n",source_levelup,source_levelup);
 
     if( strcmp( option_algorithms[index].sourceCode,"") != 0 )
@@ -635,7 +636,7 @@ void program_check_pricing_models(bool quietMode, bool debug)
   printf("HAVE_QL_QUANTLIB_HPP models not defined in source code.\n");
 #endif
 
-}
+} // void program_check_pricing_models(bool quietMode, bool debug)
 
 void program_check_pricing_time(int modelnumber, int iterations)
 {
@@ -788,4 +789,4 @@ void program_check_pricing_time(int modelnumber, int iterations)
   dat.amounts.erase( dat.amounts.begin(), dat.amounts.end() );
   dat.times.erase( dat.times.begin(), dat.times.end() );
 
-}
+} // void program_check_pricing_time(int modelnumber, int iterations)

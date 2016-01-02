@@ -285,7 +285,7 @@ void set_up_combobox_with_array(GtkWidget *combo, const struct elementList *arra
   for (i = 0; i < number; i++)
   {
     gtk_list_store_append(store, &iter);
-    sprintf(text,"%s",array[i].elementName);
+    snprintf(text,sizeof(text),"%s",array[i].elementName);
     gtk_list_store_set (store, &iter, 0, text, -1);
   }
 
@@ -322,7 +322,7 @@ void set_up_combobox_with_array2(GtkWidget *combo, const struct elementList *arr
   for (i = 0; i < number; i++)
   {
     gtk_list_store_append(store, &iter);
-    sprintf(text,"%s",array[i].elementName);
+    snprintf(text,sizeof(text),"%s",array[i].elementName);
     gtk_list_store_set (store, &iter, 0, text, -1);
   }
 
@@ -352,7 +352,7 @@ void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *pr
     int index;
     for( index = 0; index < 4; index++ )
     {
-      sprintf(listOccurance[index].elementName,"%d%s %s", index+1, order[index], weekDays[value] );
+      snprintf(listOccurance[index].elementName,sizeof(listOccurance[index].elementName),"%d%s %s", index+1, order[index], weekDays[value] );
       //g_print("%s\n",listOccurance[index].elementName);
     }
     set_up_combobox_with_array2(properties->GtkInfo.comboboxOccurance, listOccurance, sizeof(listOccurance) / sizeof(listOccurance[0]));
@@ -426,9 +426,9 @@ void on_comboboxStrikes_changed(GtkComboBox *combo, struct _properties *properti
 void on_comboboxModel_changed_show(int modeltype, struct _properties *properties)
 {
   char t1Des[1000] = { 0 };
-  sprintf(t1Des,"Time to %s", option_algorithms[modeltype].supportTime1des);
+  snprintf(t1Des,sizeof(t1Des),"Time to %s", option_algorithms[modeltype].supportTime1des);
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.label1), t1Des);
-  sprintf(t1Des,"Days to %s", option_algorithms[modeltype].supportTime1des);
+  snprintf(t1Des,sizeof(t1Des),"Days to %s", option_algorithms[modeltype].supportTime1des);
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelDaysToExpr), t1Des);
 
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelStrikes),"Strikes");
@@ -439,11 +439,11 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
   if( option_algorithms[modeltype].supportTime2 && !option_algorithms[modeltype].perpetual )
   {
     char des[1000] = { 0 };
-    sprintf(des,"Time to %s",option_algorithms[modeltype].supportTime2des);
+    snprintf(des,sizeof(des),"Time to %s",option_algorithms[modeltype].supportTime2des);
     gtk_label_set_text(GTK_LABEL(properties->GtkInfo.label2),des);
     gtk_widget_show(properties->GtkInfo.label2);
 
-    sprintf(des,"Days to %s",option_algorithms[modeltype].supportTime2des);
+    snprintf(des,sizeof(des),"Days to %s",option_algorithms[modeltype].supportTime2des);
     gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelDaysToDividend),des);
     gtk_widget_show(properties->GtkInfo.labelDaysToDividend);
 
@@ -475,11 +475,11 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
   if( option_algorithms[properties->modeltype].supportTime3 )
   {
     char des[1000] = { 0 };
-    sprintf(des,"Time to %s",option_algorithms[properties->modeltype].supportTime3des);
+    snprintf(des,sizeof(des),"Time to %s",option_algorithms[properties->modeltype].supportTime3des);
     gtk_label_set_text(GTK_LABEL(properties->GtkInfo.label3),des);
     gtk_widget_show(properties->GtkInfo.label3);
 
-    sprintf(des,"Days to %s",option_algorithms[properties->modeltype].supportTime3des);
+    snprintf(des,sizeof(des),"Days to %s",option_algorithms[properties->modeltype].supportTime3des);
     gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelDaysToDividend2),des);
     gtk_widget_show(properties->GtkInfo.labelDaysToDividend2);
 
@@ -1095,11 +1095,12 @@ void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties
     {
       if( option_algorithms[properties->modeltype].bUseStateNames )
       {
-        sprintf(listStates[index].elementName,"%d - %s",index+1,(char *) &(option_algorithms[properties->modeltype].StateNames[index]));
+        snprintf(listStates[index].elementName,sizeof(listStates[index].elementName),
+                 "%d - %s",index+1,(char *) &(option_algorithms[properties->modeltype].StateNames[index]));
         //g_print("%d - %s\n",index+1,(char *) &(option_algorithms[properties->modeltype].StateNames[index]));
       } else
       {
-        sprintf(listStates[index].elementName,"%d",index+1);
+        snprintf(listStates[index].elementName,sizeof(listStates[index].elementName),"%d",index+1);
       }
     }
     set_up_combobox_with_array2(properties->GtkInfo.comboboxState, listStates, num_states);
