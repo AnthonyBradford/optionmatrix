@@ -825,7 +825,6 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-/*
     case BARRIERBINOMINAL:
       {
         int state;
@@ -876,7 +875,7 @@ struct _data option_call(struct _data *dat)
       }
 
       break;
- */
+
     case CONVERTIBLEBOND:
 
       if(dat->debug)
@@ -1940,7 +1939,6 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-/*
     case AMDISDIVSBINOMIAL:
       {
 
@@ -1974,6 +1972,7 @@ struct _data option_call(struct _data *dat)
                                                                           (double)t,
                                                                           (double)dat->steps);
 
+      // t should be > than last dividend...sanity.cpp forces this.
       callprice = option_price_call_american_discrete_dividends_binomial( price,
                                                                           strike,
                                                                           rate,
@@ -1988,7 +1987,6 @@ struct _data option_call(struct _data *dat)
       }
 
       break;
-*/
 
     case AMPROPORTDIVSBINOMIAL:
       {

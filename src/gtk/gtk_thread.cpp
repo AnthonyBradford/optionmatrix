@@ -97,7 +97,7 @@ gboolean calculate_options(struct _properties *properties)
   double cumStrikeLeg2 = 0.0;
 
   char statusMessage[80 * 3]  = { 0 };
-  if( sanity_check(properties, &statusMessage[0]) )
+  if( sanity_check(properties, &statusMessage[0], sizeof(statusMessage)) )
   {
     g_print("%s\n",statusMessage);
     gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelInfo),statusMessage);

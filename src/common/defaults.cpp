@@ -79,11 +79,11 @@ void programInits(struct _properties *properties)
     }
 
     option_algorithms[BONDSTERM].StateNames = ( _int_to_name * ) properties->termstructure_name_list;
-    //option_algorithms[EURBOND_HO_LEE].StateNames = ( _int_to_name * ) properties->termstructure_name_list;
+    option_algorithms[EURBOND_HO_LEE].StateNames = ( _int_to_name * ) properties->termstructure_name_list;
 
 #endif
 
-}
+} // void programInits(struct _properties *properties)
 
 void props_defaults_options(struct _properties *properties, const int clearcalendar)
 {  
@@ -176,7 +176,8 @@ void props_defaults_options(struct _properties *properties, const int clearcalen
     properties->data_dir[0] = 0;
 
     return;
-}
+
+} // void props_defaults_options(struct _properties *properties, const int clearcalendar)
 
 // props_defaults_futures() is only used by the curses version of this 
 // program...
@@ -204,9 +205,9 @@ void props_defaults_futures(struct _properties *properties, const int clearcalen
   properties->expiration_second = 0;
 
   return;
-}
+} // void props_defaults_futures(struct _properties *properties, const int clearcalendar)
 
 void programExit(void)
 {
 
-}
+} // void programExit(void)

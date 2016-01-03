@@ -38,9 +38,8 @@ struct _data bonddispatch(struct _properties *p)
   dat = (struct _data *) &p->data;
   const double rate = dat->rate;
 
-  // t3 only used by case EURBOND_HO_LEE which
-  // is commented out pending the fixing of a segmentation fault...
-  //const double t3 = dat->t[2] - dat->te3;
+  // t3 only used by case EURBOND_HO_LEE
+  const double t3 = dat->t[2] - dat->te3;
 
   //g_print("rate = %f\n", rate);
 
@@ -398,7 +397,6 @@ struct _data bonddispatch(struct _properties *p)
 
     break;
 
-/*
   case EURBOND_HO_LEE:
     {
 
@@ -474,7 +472,6 @@ struct _data bonddispatch(struct _properties *p)
     }
 
     break;
-*/
 
 #endif
 

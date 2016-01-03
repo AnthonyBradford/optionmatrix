@@ -57,7 +57,7 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
     one_time_banner_message();
 
     char statusMessage[80 * 3] = { 0 };
-    if( sanity_check(properties, &statusMessage[0]) )
+    if( sanity_check(properties, &statusMessage[0], sizeof(statusMessage)) )
     {
       move(4,0);
       printw("%s",statusMessage);

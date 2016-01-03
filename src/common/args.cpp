@@ -525,7 +525,7 @@ void program_check_pricing_models(bool quietMode, bool debug)
          }
 
          statusMessage[0] = 0;
-         sanity_check(&properties, &statusMessage[0]);
+         sanity_check(&properties, &statusMessage[0],sizeof(statusMessage));
 
          if( option_algorithms[index].assetClass == OPTION_CLASS )
          {
@@ -718,7 +718,7 @@ void program_check_pricing_time(int modelnumber, int iterations)
   dat.UseT = option_algorithms[modelnumber].Tdefault;
   dat.UsePound = option_algorithms[modelnumber].Pounddefault;
 
-  sanity_check(&properties, &statusMessage[0]);
+  sanity_check(&properties, &statusMessage[0],sizeof(statusMessage));
 
   if( option_algorithms[modelnumber].assetClass == OPTION_CLASS )
   {

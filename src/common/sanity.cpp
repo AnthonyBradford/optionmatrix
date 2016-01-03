@@ -34,7 +34,7 @@
 # include "../gtk/gtk_extern.h"
 #endif
 
-int sanity_check(struct _properties *properties, char *statusMessage)
+int sanity_check(struct _properties *properties, char *statusMessage, size_t n)
 {
     bool messageSet = 0;
 
@@ -49,7 +49,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
         option_algorithms[properties->modeltype].Zdefault != 0 )
     {
       properties->data.UseZ = option_algorithms[properties->modeltype].Zdefault;
-      snprintf(statusMessage,sizeof(statusMessage),"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseZdes,properties->precision,option_algorithms[properties->modeltype].Zdefault);
+      snprintf(statusMessage,n,"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseZdes,properties->precision,option_algorithms[properties->modeltype].Zdefault);
       messageSet = 1;
     }
 
@@ -58,7 +58,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
         option_algorithms[properties->modeltype].Bdefault != 0 )
     {
       properties->data.UseB = option_algorithms[properties->modeltype].Bdefault;
-      snprintf(statusMessage,sizeof(statusMessage),"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseBdes,properties->precision,option_algorithms[properties->modeltype].Bdefault);
+      snprintf(statusMessage,n,"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseBdes,properties->precision,option_algorithms[properties->modeltype].Bdefault);
       messageSet = 1;
     }
 
@@ -67,7 +67,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
         option_algorithms[properties->modeltype].Jdefault != 0 )
     {
       properties->data.UseJ = option_algorithms[properties->modeltype].Jdefault;
-      snprintf(statusMessage,sizeof(statusMessage),"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseJdes,properties->precision,option_algorithms[properties->modeltype].Jdefault);
+      snprintf(statusMessage,n,"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseJdes,properties->precision,option_algorithms[properties->modeltype].Jdefault);
       messageSet = 1;
     }
 
@@ -76,7 +76,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
        option_algorithms[properties->modeltype].Pdefault != 0 )
     {
       properties->data.UseP = option_algorithms[properties->modeltype].Pdefault;
-      snprintf(statusMessage,sizeof(statusMessage),"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UsePdes,properties->precision,option_algorithms[properties->modeltype].Pdefault);
+      snprintf(statusMessage,n,"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UsePdes,properties->precision,option_algorithms[properties->modeltype].Pdefault);
       messageSet = 1;
     }
 
@@ -85,7 +85,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
        option_algorithms[properties->modeltype].Qdefault != 0 )
     {
       properties->data.UseQ = option_algorithms[properties->modeltype].Qdefault;
-      snprintf(statusMessage,sizeof(statusMessage),"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseQdes,properties->precision,option_algorithms[properties->modeltype].Qdefault);
+      snprintf(statusMessage,n,"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseQdes,properties->precision,option_algorithms[properties->modeltype].Qdefault);
       messageSet = 1;
     }
 
@@ -94,7 +94,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
        option_algorithms[properties->modeltype].Rdefault != 0 )
     {
       properties->data.UseR = option_algorithms[properties->modeltype].Rdefault;
-      snprintf(statusMessage,sizeof(statusMessage),"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseRdes,properties->precision,option_algorithms[properties->modeltype].Rdefault);
+      snprintf(statusMessage,n,"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseRdes,properties->precision,option_algorithms[properties->modeltype].Rdefault);
       messageSet = 1;
     }
 
@@ -103,7 +103,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
        option_algorithms[properties->modeltype].Sdefault != 0 )
     {
       properties->data.UseS = option_algorithms[properties->modeltype].Sdefault;
-      snprintf(statusMessage,sizeof(statusMessage),"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseSdes,properties->precision,option_algorithms[properties->modeltype].Sdefault);
+      snprintf(statusMessage,n,"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseSdes,properties->precision,option_algorithms[properties->modeltype].Sdefault);
       messageSet = 1;
     }
 
@@ -112,7 +112,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
        option_algorithms[properties->modeltype].Tdefault != 0 )
     {
       properties->data.UseT = option_algorithms[properties->modeltype].Tdefault;
-      snprintf(statusMessage,sizeof(statusMessage),"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseTdes,properties->precision,option_algorithms[properties->modeltype].Tdefault);
+      snprintf(statusMessage,n,"Defaulting %s to %.*f\n",option_algorithms[properties->modeltype].UseTdes,properties->precision,option_algorithms[properties->modeltype].Tdefault);
       messageSet = 1;
     }
 
@@ -124,12 +124,12 @@ int sanity_check(struct _properties *properties, char *statusMessage)
 
       if( option_algorithms[properties->modeltype].bUseStateNames == 0 )
       {
-        snprintf(statusMessage,sizeof(statusMessage),"Defaulting %s to %d\n",option_algorithms[properties->modeltype].UsePounddes,option_algorithms[properties->modeltype].Pounddefault);
+        snprintf(statusMessage,n,"Defaulting %s to %d\n",option_algorithms[properties->modeltype].UsePounddes,option_algorithms[properties->modeltype].Pounddefault);
         messageSet = 1;
 
       } else
       {
-        snprintf(statusMessage,sizeof(statusMessage),"Defaulting %s to %s\n",option_algorithms[properties->modeltype].UsePounddes,(char *)&(option_algorithms[properties->modeltype].StateNames[properties->data.UsePound-1]));
+        snprintf(statusMessage,n,"Defaulting %s to %s\n",option_algorithms[properties->modeltype].UsePounddes,(char *)&(option_algorithms[properties->modeltype].StateNames[properties->data.UsePound-1]));
         messageSet = 1;
       }
     }
@@ -210,11 +210,11 @@ int sanity_check(struct _properties *properties, char *statusMessage)
 
         if( option_algorithms[properties->modeltype].bUseStateNames == 1 ) 
         {
-          //snprintf(statusMessage,sizeof(statusMessage),"%s = %s",option_algorithms[properties->modeltype].UsePounddes,&(option_algorithms[properties->modeltype].StateNames[properties->data.UsePound-1]));
+          //snprintf(statusMessage,n,"%s = %s",option_algorithms[properties->modeltype].UsePounddes,&(option_algorithms[properties->modeltype].StateNames[properties->data.UsePound-1]));
 
         } else
         {
-          //snprintf(statusMessage,sizeof(statusMessage),"%s = %d",option_algorithms[properties->modeltype].UsePounddes,properties->data.UsePound);
+          //snprintf(statusMessage,n,"%s = %d",option_algorithms[properties->modeltype].UsePounddes,properties->data.UsePound);
         }
         //messageSet = 1;
       }
@@ -243,14 +243,14 @@ int sanity_check(struct _properties *properties, char *statusMessage)
     if( properties->data.t[1] <= 0 )
     {
       properties->data.t[1] = 0;
-      snprintf(statusMessage,sizeof(statusMessage),"Please set second time variable to positive amount for pricing");
+      snprintf(statusMessage,n,"Please set second time variable to positive amount for pricing");
       messageSet = 1;
     }
 
     if( properties->data.t[2] <= 0 )
     {
       properties->data.t[2] = 0;
-      snprintf(statusMessage,sizeof(statusMessage),"Please set third time variable to positive amount for pricing");
+      snprintf(statusMessage,n,"Please set third time variable to positive amount for pricing");
       messageSet = 1;
     }
 
@@ -270,7 +270,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
         properties->data.t[1] >= properties->data.t[0] )
     {
       properties->data.t[0] = properties->data.t[1]*2;
-      snprintf(statusMessage,sizeof(statusMessage),
+      snprintf(statusMessage,n,
               "Setting %s %.*f greater than %s %.*f",
               option_algorithms[properties->modeltype].supportTime1des,
               properties->precision,
@@ -285,7 +285,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
         properties->data.t[1] >= properties->data.t[2] )
     {
       properties->data.t[2] = properties->data.t[1]*2;
-      snprintf(statusMessage,sizeof(statusMessage),
+      snprintf(statusMessage,n,
               "Setting %s %.*f greater than %s %.*f",
               option_algorithms[properties->modeltype].supportTime3des,
               properties->precision,
@@ -300,7 +300,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
         properties->data.volatility < 0 )
     {
       properties->data.volatility = .25;
-      snprintf(statusMessage,sizeof(statusMessage),"Not set. Standard deviation forced to : %.3f",properties->data.volatility);
+      snprintf(statusMessage,n,"Not set. Standard deviation forced to : %.3f",properties->data.volatility);
       messageSet = 1;
     }
 
@@ -308,7 +308,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
     {
       properties->data.t[0] = 0;
       properties->data.te = 0;
-      snprintf(statusMessage,sizeof(statusMessage),"Please set time to positive amount for pricing");
+      snprintf(statusMessage,n,"Please set time to positive amount for pricing");
       messageSet = 1;
     }
 
@@ -345,7 +345,7 @@ int sanity_check(struct _properties *properties, char *statusMessage)
         properties->data.UsePound <= 0 )
     {
       properties->data.UsePound = 1;
-      snprintf(statusMessage,sizeof(statusMessage),"%s set to 1",option_algorithms[properties->modeltype].UsePounddes);
+      snprintf(statusMessage,n,"%s set to 1",option_algorithms[properties->modeltype].UsePounddes);
       messageSet = 1;
     }
     
@@ -356,6 +356,30 @@ int sanity_check(struct _properties *properties, char *statusMessage)
       {
         properties->data.dividend = option_algorithms[properties->modeltype].defaultDividend;
       }
+    }
+
+    if( properties->modeltype == AMDISDIVSBINOMIAL )
+    {
+        pthread_mutex_lock(&properties->data.mutexCashflow);
+
+        double high_dividend_time = 0;
+        for( std::vector<double>::iterator it = properties->data.times.begin(); it != properties->data.times.end(); ++it)
+        {
+          //g_print("%lf ", *it);
+          if( *it > high_dividend_time )
+              high_dividend_time = *it;
+        }
+        //g_print("High dividend time = %f\n", high_dividend_time);
+        if( high_dividend_time >= properties->data.t[0] )
+        {
+          properties->data.t[0] = high_dividend_time + 1;
+          //g_print("Forcing time > last dividend. time = %f\n", properties->data.t[0]);
+          snprintf(statusMessage,n,"Forcing time > last dividend. time = %f", properties->data.t[0]);
+          messageSet = 1;
+        }
+
+        pthread_mutex_unlock(&properties->data.mutexCashflow);
+
     }
 
     return messageSet;

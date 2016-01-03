@@ -140,7 +140,7 @@ extern int select_model(struct _properties *properties);
 extern void matrix(struct _properties *properties, struct _properties *future_properties);
 extern void parameter_display(struct _properties *properties, struct _properties *future_properties);
 
-extern int sanity_check(struct _properties *properties, char *statusMessage);
+extern int sanity_check(struct _properties *properties, char *statusMessage, size_t n);
 
 extern const int transextremeoptioncall[];
 extern const struct _int_to_name namelistoptionsontheminmax2[];

@@ -362,7 +362,7 @@ struct integratable_distributions {
 
   double (*constantvalue) (double);
   double (*integrationpart) (double,double,double);
-  char   des[30];
+  char   des[256];
 
 };
 
@@ -371,7 +371,7 @@ struct numerical_integration_method {
 
   double (*method) (const double a, const double b, int n, double (*fun) (double,double,double),const double parm2, const double parm3);
 
-  char           des[30];
+  char           des[256];
   mutable int    resolution;
   bool           allowOnlyEven;
   int            UpperLimit;
@@ -444,131 +444,124 @@ enum {
        SOFTBARRIER,                // by metaoptions 49
        BINARYBARRIER,              // by metaoptions has 28 int states 50
        DISCRETEADJUSTEDBARRIER,    // by metaoptions 51
-
-       // Crashes - Segmentation fault
-       //BARRIERBINOMINAL,           // BarrierBinominal.c
-
-       CONVERTIBLEBOND,            // ConvertibleBond.c 52
-       CRRBINOMINAL,               // CRRBinominal.c 53
+       BARRIERBINOMINAL,           // by metaoptions BarrierBinominal.c 52
+       CONVERTIBLEBOND,            // by metaoptions ConvertibleBond.c 53
+       CRRBINOMINAL,               // by metaoptions CRRBinominal.c 54
 
        // Missing Transpose() function...
        //IMPLIEDTRINOMINALTREE,      // ImpliedTrinominalTree.c  - computes volatility
 
-       THREEDIMENSIONALBINOMINAL,  // ThreeDimensionalBinominal.c 54
-       TRINOMINALTREE,             // TrinominalTree.c 55
-       LOOKBARRIER,                // by metaoptions 56
-       PARTIALTIMEBARRIER,         // has multiple text states, some call abort()? 57
-       ROLLGESKEWHALEY,            // by metaoptions 58
-       EXTREMESPREADOPTION,        // by metaoptions 59
-       EXTREMESPREADOPTION2,       // by metaoptions 60
-       PARTIALFIXEDLB,             // by metaoptions 61
-       PARTIALFLOATLB,             // by metaoptions 62
-       PARTIALFLOATLB2,            // by metaoptions 63
-       EXTENDIBLEWRITER,           // by metaoptions 64
-       CALLSONOPTIONS,             // by metaoptions OptionsOnOptions.c 65
-       PUTSONOPTIONS,              // by metaoptions OptionsOnOptions.c 66
-       LEVYASIAN,                  // by metaoptions 67
-       GEOMETRICAVERAGERATEOPTION, // by metaoptions 68
-       FORWARDSTARTOPTION,         // by metaoptions 69
-       SWAPOPTION,                 // by metaoptions 70
-       TURNBULLWAKEMANASIAN,       // by metaoptions 71
+       THREEDIMENSIONALBINOMINAL,  // ThreeDimensionalBinominal.c 55
+       TRINOMINALTREE,             // TrinominalTree.c 56
+       LOOKBARRIER,                // by metaoptions 57
+       PARTIALTIMEBARRIER,         // has multiple text states, some call abort()? 58
+       ROLLGESKEWHALEY,            // by metaoptions 59
+       EXTREMESPREADOPTION,        // by metaoptions 60
+       EXTREMESPREADOPTION2,       // by metaoptions 61
+       PARTIALFIXEDLB,             // by metaoptions 62
+       PARTIALFLOATLB,             // by metaoptions 63
+       PARTIALFLOATLB2,            // by metaoptions 64
+       EXTENDIBLEWRITER,           // by metaoptions 65
+       CALLSONOPTIONS,             // by metaoptions OptionsOnOptions.c 66
+       PUTSONOPTIONS,              // by metaoptions OptionsOnOptions.c 67
+       LEVYASIAN,                  // by metaoptions 68
+       GEOMETRICAVERAGERATEOPTION, // by metaoptions 69
+       FORWARDSTARTOPTION,         // by metaoptions 70
+       SWAPOPTION,                 // by metaoptions 71
+       TURNBULLWAKEMANASIAN,       // by metaoptions 72
 
        // Crashes with positive dividend. Dividend disabled
-       EXCHANGEEXCHANGEOPTION,     // by metaoptions 72
-       SIMPLECHOOSER,              // by metaoptions 73
-       COMPLEXCHOOSER,             // by metaoptions uses 3 bleeding time vars 74
+       EXCHANGEEXCHANGEOPTION,     // by metaoptions 73
+       SIMPLECHOOSER,              // by metaoptions 74
+       COMPLEXCHOOSER,             // by metaoptions uses 3 bleeding time vars 75
 
 #endif
 
 #ifdef FINRECIPES
 
-       BLACKSCHOLES3,          // option_price_call_black_scholes() 75
-       PERPETUAL,              // option_price_american_perpetual_call() 76
-       FUTOPTEURBLACK,         // futures_option_price_call_european_black() 77
-       FUTOPTAMBINOMIAL,       // futures_option_price_call_american_binomial() 78
+       BLACKSCHOLES3,          // option_price_call_black_scholes() 76
+       PERPETUAL,              // option_price_american_perpetual_call() 77
+       FUTOPTEURBLACK,         // futures_option_price_call_european_black() 78
+       FUTOPTAMBINOMIAL,       // futures_option_price_call_american_binomial() 79
 
        // prototyped in fin_recipes.h but not defined in the library
        //AMERBJERKSUNDSTENSLAND, // option_price_american_call_approximated_bjerksund_stensland()
 
-       AMERBINOMIAL,           // option_price_call_american_binomial() signature 1 without dividend 79
-       AMERBINOMIALDIV,        // option_price_call_american_binomial() signature 2 with dividend 80
-       AMERICANTRINOMIAL,      // option_price_call_american_trinomial() 81
-       AMERBAW,                // option_price_american_call_approximated_baw() 82
-       AMERPUTAPPROXJOHNSON,   // option_price_american_put_approximated_johnson() 83
+       AMERBINOMIAL,           // option_price_call_american_binomial() signature 1 without dividend 80
+       AMERBINOMIALDIV,        // option_price_call_american_binomial() signature 2 with dividend 81
+       AMERICANTRINOMIAL,      // option_price_call_american_trinomial() 82
+       AMERBAW,                // option_price_american_call_approximated_baw() 83
+       AMERPUTAPPROXJOHNSON,   // option_price_american_put_approximated_johnson() 84
 
 #ifdef HAVE_LIBGSL
 
-       AMERPUTAPPROXGESKEJOHNSON, // option_price_american_put_approximated_geske_johnson() 84
-       HESTON,                    // heston_call_option_price() 85
+       AMERPUTAPPROXGESKEJOHNSON, // option_price_american_put_approximated_geske_johnson() 85
+       HESTON,                    // heston_call_option_price() 86
 
 #endif
 
-       BONDZEROBLACK,          // bond_option_price_call_zero_black_scholes() 86
-       BONDAMERBINOMIAL,       // bond_option_price_call_american_binomial() 87
-       BOND_ZERO_AM_RENDLEMAN_BARTTER, // bond_option_price_call_zero_american_rendleman_bartter() 88
-       BSPAYOUT,               // option_price_european_call_payout() 89
-       EUROBIONMIAL,           // option_price_call_european_binomial() 90
-       ASIANGEOMETRICAVG,      // option_price_asian_geometric_average_price_call() 91
-       EUROLOOKBACK,           // option_price_european_lookback_call() 92
-       EUROLOOKBACK2,          // option_price_european_lookback_call() 93
-       MERTONJUMPDIFF,         // option_price_call_merton_jump_diffusion() 94
-       CURRAMBINOMIAL,         // currency_option_price_call_american_binomial() 95
-       CURREURO,               // currency_option_price_call_european() 96
-       ROLLGESKEWHALEY2,       // option_price_american_call_one_dividend() 97
-       EUROBINOMIAL1P,         // option_price_call_european_binomial_single_period() 98
-       EUROBINOMIALMP,         // option_price_call_european_binomial_multi_period_given_ud() 99
-       AMBINOMIAL,             // option_price_generic_binomial() 100
-       EUROSIM,                // option_price_call_european_simulated() 101
-       SIMEUROGENERIC,         // derivative_price_simulate_european_option_generic() 102
-       SIMEUROGENERICCV,       // derivative_price_simulate_european_option_generic_with_control_variate() 103
-       SIMEUROGENERICAV,       // derivative_price_simulate_european_option_generic_with_antithetic_variate() 104
-       SIMPRICEPATH,           // derivative_price_simulate_european_option_generic() 105
-       SIMPRICEPATHCONTROLVARIATE,  // derivative_price_simulate_european_option_generic_with_control_variate() 106
-       DISTLOGRAND,            // simulate_lognormal_random_variable() 107
-       AMFINITEDIFFEXP,        // option_price_call_american_finite_diff_explicit() 108
-       EUROFINITEDIFFEXP,      // option_price_call_european_finite_diff_explicit() 109
+       BONDZEROBLACK,          // bond_option_price_call_zero_black_scholes() 87
+       BONDAMERBINOMIAL,       // bond_option_price_call_american_binomial() 88
+       BOND_ZERO_AM_RENDLEMAN_BARTTER, // bond_option_price_call_zero_american_rendleman_bartter() 89
+       BSPAYOUT,               // option_price_european_call_payout() 90
+       EUROBIONMIAL,           // option_price_call_european_binomial() 91
+       ASIANGEOMETRICAVG,      // option_price_asian_geometric_average_price_call() 92
+       EUROLOOKBACK,           // option_price_european_lookback_call() 93
+       EUROLOOKBACK2,          // option_price_european_lookback_call() 94
+       MERTONJUMPDIFF,         // option_price_call_merton_jump_diffusion() 95
+       CURRAMBINOMIAL,         // currency_option_price_call_american_binomial() 96
+       CURREURO,               // currency_option_price_call_european() 97
+       ROLLGESKEWHALEY2,       // option_price_american_call_one_dividend() 98
+       EUROBINOMIAL1P,         // option_price_call_european_binomial_single_period() 99
+       EUROBINOMIALMP,         // option_price_call_european_binomial_multi_period_given_ud() 100
+       AMBINOMIAL,             // option_price_generic_binomial() 101
+       EUROSIM,                // option_price_call_european_simulated() 102
+       SIMEUROGENERIC,         // derivative_price_simulate_european_option_generic() 103
+       SIMEUROGENERICCV,       // derivative_price_simulate_european_option_generic_with_control_variate() 104
+       SIMEUROGENERICAV,       // derivative_price_simulate_european_option_generic_with_antithetic_variate() 105
+       SIMPRICEPATH,           // derivative_price_simulate_european_option_generic() 106
+       SIMPRICEPATHCONTROLVARIATE,  // derivative_price_simulate_european_option_generic_with_control_variate() 107
+       DISTLOGRAND,            // simulate_lognormal_random_variable() 108
+       AMFINITEDIFFEXP,        // option_price_call_american_finite_diff_explicit() 109
+       EUROFINITEDIFFEXP,      // option_price_call_european_finite_diff_explicit() 110
 
 #ifdef HAVE_NEWMAT_NEWMAT_H
 
-       AMFINDIFFIMP,           // findiff_imp_am_call_newmat.cc findiff_imp_am_put_newmat.cc 110
-       EURFINDDIFFIMP,         // findiff_imp_eur_call_newmat.cc findiff_imp_eur_put_newmat.cc 111
+       AMFINDIFFIMP,           // findiff_imp_am_call_newmat.cc findiff_imp_am_put_newmat.cc 111
+       EURFINDDIFFIMP,         // findiff_imp_eur_call_newmat.cc findiff_imp_eur_put_newmat.cc 112
 
 #endif
 
 #ifdef HAVE_ITPP_ITBASE_H
 
-       AMFINDIFFIMPPUT,        // option_price_put_american_finite_diff_implicit_itpp() 112
+       AMFINDIFFIMPPUT,        // option_price_put_american_finite_diff_implicit_itpp() 113
 
 #endif
 
        // puts prototyped in fin_recipes.h but not defined in the library
-       IMPLIEDNEWTON,          // option_price_implied_volatility_call_black_scholes_newton() 113
+       IMPLIEDNEWTON,          // option_price_implied_volatility_call_black_scholes_newton() 114
 
        // puts prototyped in fin_recipes.h but not defined in the library
-       IMPLIEDBISECTIONS,      //option_price_implied_volatility_call_black_scholes_bisections() 114
+       IMPLIEDBISECTIONS,      //option_price_implied_volatility_call_black_scholes_bisections() 115
 
-       BONDZEROVASICEK,        // bond_option_price_call_zero_vasicek() 115
-       EURODIVIDENDS,          // option_price_european_call_dividends() 116
+       BONDZEROVASICEK,        // bond_option_price_call_zero_vasicek() 116
+       EURODIVIDENDS,          // option_price_european_call_dividends() 117
 
-       // Throws std::bad_alloc and freezes...
-       //AMDISDIVSBINOMIAL,      // option_price_call_american_discrete_dividends_binomial()
+       AMDISDIVSBINOMIAL,      // option_price_call_american_discrete_dividends_binomial() 118
+       AMPROPORTDIVSBINOMIAL,  // option_price_call_american_proportional_dividends_binomial() 119
+       BERMUDANBINOMIAL,       // option_price_call_bermudan_binomial() 120
+       BSCOUPONBOND,           // bond_option_price_call_coupon_bond_black_scholes() 121
+       WARRANT_NO_DIV,         // warrant_price_adjusted_black_scholes() 122
+       WARRANT_DIV,            // warrant_price_adjusted_black_scholes() 123
+       EURBOND_HO_LEE,         // 124
 
-       AMPROPORTDIVSBINOMIAL,  // option_price_call_american_proportional_dividends_binomial() 117
-       BERMUDANBINOMIAL,       // option_price_call_bermudan_binomial() 118
-       BSCOUPONBOND,           // bond_option_price_call_coupon_bond_black_scholes() 119
-       WARRANT_NO_DIV,         // warrant_price_adjusted_black_scholes() 120
-       WARRANT_DIV,            // warrant_price_adjusted_black_scholes() 121
-
-       // Segmentation fault, To implement un-comment EURBOND_HO_LEE reference in defaults.c
-       //EURBOND_HO_LEE,
-
-       TERMFLAT,                // term_structure_class_flat.cc 122
-       TERMCIR,                 // termstru_discfact_cir.cc 123
-       TERMVASICEK,             // termstru_discfact_vasicek.cc 124
-       TERMNELSONSIEGEL,        // termstru_yield_nelson_siegel.cc 125
-       TERMSVENSSON,            // termstru_yield_svensson.cc 126
-       TERMCUBICSPLINE,         // termstru_discfact_cubic_spline.cc 127
-       TERMINTERPOLATED,        // termstru_yield_interpolated.cc 128
+       TERMFLAT,                // term_structure_class_flat.cc 125
+       TERMCIR,                 // termstru_discfact_cir.cc 126
+       TERMVASICEK,             // termstru_discfact_vasicek.cc 127
+       TERMNELSONSIEGEL,        // termstru_yield_nelson_siegel.cc 128
+       TERMSVENSSON,            // termstru_yield_svensson.cc 129
+       TERMCUBICSPLINE,         // termstru_discfact_cubic_spline.cc 130
+       TERMINTERPOLATED,        // termstru_yield_interpolated.cc 131
 
        // prototyped in fin_recipes_extra.h but not defined in the library
        //TERMDISESTCIR,          // term_structure_discount_factor_estimated_cir()
@@ -613,58 +606,58 @@ enum {
         */
 
 
-       FUTURES,                // futures_price() 129
+       FUTURES,                // futures_price() 132
 
 #endif
 
 #ifdef ABRADFORD
 
-       FUTURES2,               // 130
-       BACHELIER,              // 131
-       BACHELIERMODIFIED,      // 132
-       SPRENKLE,               // 133
-       BONESS,                 // 134
-       SAMUELSON,              // 135
+       FUTURES2,               // 133
+       BACHELIER,              // 134
+       BACHELIERMODIFIED,      // 135
+       SPRENKLE,               // 136
+       BONESS,                 // 137
+       SAMUELSON,              // 138
 
 #endif
 
 #ifdef FINRECIPES
 
-       BONDS,                  // 136
-       BONDSTERM,              // 137
-       BONDSPRINCIPAL,         // 138
-       IRR,                    // 139
+       BONDS,                  // 139
+       BONDSTERM,              // 140
+       BONDSPRINCIPAL,         // 141
+       IRR,                    // 142
 
 #endif
 
 #ifdef HAVE_QL_QUANTLIB_HPP
 
-       QUANTLIB_BLACKSCHOLES_EUROPEAN,                 // 140
-       QUANTLIB_HESTON_SEMI_ANALYTIC_EUR,              // 141
-       QUANTLIB_BARONE_ADESI_WHALEY_AM,                // 142
-       QUANTLIB_BJERKSUND_STENSLAND_AM,                // 143
-       QUANTLIB_FINITE_DIFFERENCES_EUROPEAN,           // 144
-       QUANTLIB_FINITE_DIFFERENCES_AMERICAN,           // 145
-       QUANTLIB_MC_CRUDE_EUR,                          // 146
-       QUANTLIB_QMC_SOBOL_EUR,                         // 147
-       QUANTLIB_MC_LONGSTAFF_SCHWARTZ_AM,              // 148
-       QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM,           // 149
-       QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_EUR_AM,   // 150
-       QUANTLIB_ADDITIVE_EQUIPROBABILITIES_EUR_AM,     // 151
-       QUANTLIB_BINOMIAL_TRIGEORGIS_EUR_AM,            // 152
-       QUANTLIB_BINOMIAL_TIAN_EUR_AM,                  // 153
-       QUANTLIB_BINOMIAL_LEISEN_REIMER_EUR_AM,         // 154
-       QUANTLIB_BINOMIAL_JOSHI_EUR_AM,                 // 155
-       QUANTLIB_BATES_SEMI_ANALYTIC_EUROPEAN,          // 156
-       QUANTLIB_INTEGRAL_EUROPEAN,                     // 157
-       QUANTLIB_FINITE_DIFFERENCES_BERMUDAN,           // 158
-       QUANTLIB_BINOMIAL_JARROW_RUDD_BERMUDAN,         // 159
-       QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_BERMUDAN, // 160
-       QUANTLIB_ADDITIVE_EQUIPROBABILITIES_BERMUDAN,   // 161
-       QUANTLIB_BINOMIAL_TRIGEORGIS_BERMUDAN,          // 162
-       QUANTLIB_BINOMIAL_TIAN_BERMUDAN,                // 163
-       QUANTLIB_BINOMIAL_LEISEN_REIMER_BERMUDAN,       // 164
-       QUANTLIB_BINOMIAL_JOSHI_BERMUDAN,               // 165
+       QUANTLIB_BLACKSCHOLES_EUROPEAN,                 // 143
+       QUANTLIB_HESTON_SEMI_ANALYTIC_EUR,              // 144
+       QUANTLIB_BARONE_ADESI_WHALEY_AM,                // 145
+       QUANTLIB_BJERKSUND_STENSLAND_AM,                // 146
+       QUANTLIB_FINITE_DIFFERENCES_EUROPEAN,           // 147
+       QUANTLIB_FINITE_DIFFERENCES_AMERICAN,           // 148
+       QUANTLIB_MC_CRUDE_EUR,                          // 149
+       QUANTLIB_QMC_SOBOL_EUR,                         // 150
+       QUANTLIB_MC_LONGSTAFF_SCHWARTZ_AM,              // 151
+       QUANTLIB_BINOMIAL_JARROW_RUDD_EUR_AM,           // 152
+       QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_EUR_AM,   // 153
+       QUANTLIB_ADDITIVE_EQUIPROBABILITIES_EUR_AM,     // 154
+       QUANTLIB_BINOMIAL_TRIGEORGIS_EUR_AM,            // 155
+       QUANTLIB_BINOMIAL_TIAN_EUR_AM,                  // 156
+       QUANTLIB_BINOMIAL_LEISEN_REIMER_EUR_AM,         // 157
+       QUANTLIB_BINOMIAL_JOSHI_EUR_AM,                 // 158
+       QUANTLIB_BATES_SEMI_ANALYTIC_EUROPEAN,          // 159
+       QUANTLIB_INTEGRAL_EUROPEAN,                     // 160
+       QUANTLIB_FINITE_DIFFERENCES_BERMUDAN,           // 161
+       QUANTLIB_BINOMIAL_JARROW_RUDD_BERMUDAN,         // 162
+       QUANTLIB_BINOMIAL_COX_ROSS_RUBINSTEIN_BERMUDAN, // 163
+       QUANTLIB_ADDITIVE_EQUIPROBABILITIES_BERMUDAN,   // 164
+       QUANTLIB_BINOMIAL_TRIGEORGIS_BERMUDAN,          // 165
+       QUANTLIB_BINOMIAL_TIAN_BERMUDAN,                // 166
+       QUANTLIB_BINOMIAL_LEISEN_REIMER_BERMUDAN,       // 167
+       QUANTLIB_BINOMIAL_JOSHI_BERMUDAN,               // 168
 
 #endif
 
@@ -687,8 +680,8 @@ enum {
 /* _FUTURES is used for internal calendar control. Don't remove */
 enum { _FUTURES = -1 };
 
-struct _int_to_name          { const char string[30]; };
-struct _int_to_name_nonconst { char string[30]; };
+struct _int_to_name          { const char string[256]; };
+struct _int_to_name_nonconst { char string[256]; };
 struct _int_to_function { double (*fun) (const double&, const double&); };
 
 struct option_algorithm {
@@ -700,9 +693,9 @@ struct option_algorithm {
 
   // source path should have a separator ';' to include multiple files in 1 reference...
   // there are instances where more than 2 source files need to be displayed...
-  char sourceCode[200];
-  char sourceCode2[200];
-  char category[200];
+  char sourceCode[PATH_MAX];
+  char sourceCode2[PATH_MAX];
+  char category[256];
 
   bool supportRealTime;
 
@@ -886,8 +879,8 @@ struct elementList
 
 struct elementListWithGroup
 {
-  char groupName[200];
-  char elementName[200];
+  char groupName[256];
+  char elementName[256];
   int index;
 };
 

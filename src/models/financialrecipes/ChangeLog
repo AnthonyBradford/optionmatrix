@@ -1,4 +1,4 @@
-2012-06-10  Anthony Bradford  <info@opensourcefinancialmodels.com>
+2012-06-10  Anthony Bradford  <info@anthonybradford.com>
 	* heston_price.cc (double heston_Pj) fixed memory leak by
 		adding gsl_integration_workspace_free(w);
 	* N3.cc (N3) fixed memory leak by adding

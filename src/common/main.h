@@ -1120,19 +1120,18 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-/*
   { BARRIERBINOMINAL,  "BarrierBinomial", "Bjorn Augestad, libmetaoptions.a",  
     "",
     "models/metaoptions/src/BarrierBinominal.c",
     "",
     "2;Single Asset;Barrier",
                                        1, // supportRealTime
-                                       0, 0, 1, 100, 0, 0,
+                                       0, 0, 1, 10, 0, 0,
                                        1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
                                        "Price", "b", "Call", "Put", "Strike", "Standard Deviation",
                                        2, 0, "EuropeanOption", 0, 1,      // Z
-                                       1, 0, "H", 100, 0,                 // B
+                                       1, 0, "H", 110, 0,                 // B
                                        0, 0, "", 0, 0,                    // J
                                        0, 0, "", 0, 0,                    // P
                                        0, 0, "", 0, 0,                    // Q
@@ -1141,7 +1140,6 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,                    // T
                                        1, 0, "State", 1, 2,               // #
                                        1, &namelistbarrierbinominal[0] },
-*/
 
   { CONVERTIBLEBOND,  "ConvertibleBond", "Bjorn Augestad, libmetaoptions.a",  
     "",
@@ -2587,14 +2585,13 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
-/*
   { AMDISDIVSBINOMIAL,      "AmDisDivsBinomial", "Bernt Arne Oedegaard, librecipes.a",
     "Model not supported in curses version.\nDividends can not be controlled. Please use GUI version of program.",
     "models/financialrecipes/src/bin_am_div_call.cc",
     "models/financialrecipes/src/bin_am_div_put.cc",
     "7;Discrete Dividend",
                                        1, // supportRealTime
-                                       0, 0, 1, 100, 0, 0,
+                                       0, 0, 1, 10, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        3, 0.0, "Expiration", 0, "", 0, "",
                                        "Price", "Dividends","Call", "Put", "Strike", "sigma",
@@ -2608,7 +2605,6 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0, "", 0, 0,
                                        0, 0 },
-*/
 
   { AMPROPORTDIVSBINOMIAL,    "AmProportDivsBinom", "Bernt Arne Oedegaard, librecipes.a",
     "Model not supported in curses version.\nDividends can not be controlled. Please use GUI version of program.",
@@ -2715,7 +2711,6 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
- /*
   { EURBOND_HO_LEE,      "EuroBond Ho Le",  "Bernt Arne Oedegaard, librecipes.a",  
     "Not supported in curses version.\nPlease use GUI version of program.",
     "models/financialrecipes/src/term_structure_class_ho_lee_price_bond_option.cc",
@@ -2739,7 +2734,6 @@ const struct option_algorithm option_algorithms[] = {
                                        1, 0, "pi",    0.5,  0,  // T
                                        1, 0, " Term Structure ", 1, 7,
                                        1, 0 },
- */
 
   { TERMFLAT,      "TermFlat",  "Bernt Arne Oedegaard, librecipes.a",  
     "",

@@ -521,7 +521,6 @@ struct _data option_put(struct _data *dat)
 
       break;
 
-/*
     case BARRIERBINOMINAL:
       {
         int state;
@@ -559,7 +558,6 @@ struct _data option_put(struct _data *dat)
       }
 
       break;
-*/
 
     case CONVERTIBLEBOND:            // ConvertibleBond.c
 
@@ -1230,7 +1228,6 @@ struct _data option_put(struct _data *dat)
 
       break;
 
-/*
     case AMDISDIVSBINOMIAL:
       {
 
@@ -1250,7 +1247,6 @@ struct _data option_put(struct _data *dat)
       }
 
       break;
-*/
 
     case AMPROPORTDIVSBINOMIAL:
       {
