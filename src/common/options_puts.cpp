@@ -216,6 +216,10 @@ struct _data option_put(struct _data *dat)
 
     case GCARRY:
 
+      // carry puts have negative prices with this model.
+      // Un-check Prefs -> Settings [ ] Filter negative prices to see
+      // the negative prices...
+
       putprice = carry(0,price,strike,t,rate,dividend,volatility);
 
       break;
@@ -3275,7 +3279,7 @@ struct _data option_put(struct _data *dat)
     dat->isnan = 1;
   }
 
-  if(properties.filterNegativePrices == true && dat->put < 0.0 &&
+  if(dat->filterNegativePrices == true && dat->put < 0.0 &&
      properties.distribution_type==NORMAL_DISTRIBUTION)
   {
     dat->put = 0.0;

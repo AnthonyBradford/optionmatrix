@@ -145,7 +145,6 @@ void props_defaults_options(struct _properties *properties, const int clearcalen
     properties->realTimeBleeding = 1;
     properties->updatedelayseconds = 1;
     properties->highlightInTheMoney = 1;
-    properties->filterNegativePrices = true;
 
     properties->distribution_type = NORMAL_DISTRIBUTION;
 
@@ -205,6 +204,7 @@ void props_defaults_futures(struct _properties *properties, const int clearcalen
   properties->expiration_second = 0;
 
   return;
+
 } // void props_defaults_futures(struct _properties *properties, const int clearcalendar)
 
 void programExit(void)

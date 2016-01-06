@@ -864,7 +864,6 @@ void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties
     gtk_widget_hide(properties->GtkInfo.checkbuttonSpreads);
   }
 
-  //if( !option_algorithms[properties->modeltype].supportRate )
   if( !option_algorithms[modeltype].supportRate )
   {
     gtk_widget_hide(properties->GtkInfo.labelRate);
@@ -1164,6 +1163,8 @@ void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties
       gtk_widget_hide(properties->GtkInfo.scaleStrikes);
     }
   }
+
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(properties->GtkInfo.checkbuttonFilterNegativePrice),option_algorithms[properties->modeltype].filterNegativePrices);
 
   setup_tree_view(properties);
   show_title(properties);

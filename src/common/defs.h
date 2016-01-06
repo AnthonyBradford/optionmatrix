@@ -273,6 +273,8 @@ struct _data {
   bool debug;
   bool isnan;
 
+  bool filterNegativePrices;
+
 };
 
 typedef std::map<std::string, int> treeToIndex;
@@ -317,7 +319,6 @@ struct _properties {
     int updatedelayseconds;
     bool highlightInTheMoney;
     bool spreads;
-    bool filterNegativePrices;
 
     int precision;
     int strikestoogle;
@@ -698,6 +699,7 @@ struct option_algorithm {
   char category[256];
 
   bool supportRealTime;
+  mutable bool filterNegativePrices;
 
   int ReservedNotUsed1;
   bool supportCND;

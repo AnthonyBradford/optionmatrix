@@ -63,6 +63,7 @@ gboolean calculate_options(struct _properties *properties)
   properties->data.UseR = gtk_spin_button_get_value( GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseR) );
   properties->data.UseS = gtk_spin_button_get_value( GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseS) );
   properties->data.UseT = gtk_spin_button_get_value( GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonUseT) );
+  properties->data.filterNegativePrices = option_algorithms[properties->modeltype].filterNegativePrices;
 
   double price = properties->data.price;
  

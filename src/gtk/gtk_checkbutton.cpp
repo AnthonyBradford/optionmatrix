@@ -38,14 +38,14 @@ void on_checkbuttonFilterNegativePrice_toggled(GtkButton *button, struct _proper
   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (button)) )
   {
     g_print("button set\n");
-    properties->filterNegativePrices = true;
+    option_algorithms[properties->modeltype].filterNegativePrices = true;
   } else
   {
     g_print("button not set\n");
-    properties->filterNegativePrices = false;
+    option_algorithms[properties->modeltype].filterNegativePrices = false;    
   }
 
-}
+} // void on_checkbuttonFilterNegativePrice_toggled(GtkButton *button, struct _properties *properties)
 
 void on_checkbuttonDateEngine_toggled(GtkButton *button, struct _properties *properties)
 {
@@ -220,7 +220,8 @@ void on_checkbuttonDateEngine_toggled(GtkButton *button, struct _properties *pro
 
   setup_tree_view(properties);
   show_title(properties);
-}
+  
+} // void on_checkbuttonDateEngine_toggled(GtkButton *button, struct _properties *properties)
 
 void on_checkbuttonRealTime_toggled(GtkButton *button, struct _properties *properties)
 {
@@ -263,13 +264,12 @@ void on_checkbuttonRealTime_toggled(GtkButton *button, struct _properties *prope
     
     pthread_mutex_unlock(&properties->data.mutexCashflow);
 
-    //
-
     properties->data.te  = 0;
     properties->data.te2 = 0;
     properties->data.te3 = 0;
   }
-}
+
+} // void on_checkbuttonRealTime_toggled(GtkButton *button, struct _properties *properties)
 
 void on_checkbuttonSpreads_toggled(GtkButton *button, struct _properties *properties)
 {
@@ -356,11 +356,12 @@ void on_checkbuttonSpreads_toggled(GtkButton *button, struct _properties *proper
   }
 
   setup_tree_view(properties);
-}
+
+} // void on_checkbuttonSpreads_toggled(GtkButton *button, struct _properties *properties)
 
 void spreadName(struct _properties *properties)
 {
-  static char spreadName[400];
+  static char spreadName[512];
   spreadName[0] = 0;
 
   if( properties->spreads == 0 )
@@ -382,5 +383,6 @@ void spreadName(struct _properties *properties)
   gtk_widget_show(properties->GtkInfo.labelSpread);
 
   //g_print("properties->skipmonth = %d properties->skipmonth2 = %d\n",properties->skipmonth,properties->skipmonth2);
-  //g_print("spread strike %f, %f\n",properties->strike_offset,properties->strike_offset2);;
-}
+  //g_print("spread strike %f, %f\n",properties->strike_offset,properties->strike_offset2);
+  
+} // void spreadName(struct _properties *properties)

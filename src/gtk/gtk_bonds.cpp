@@ -38,8 +38,13 @@ struct _data bonddispatch(struct _properties *p)
   dat = (struct _data *) &p->data;
   const double rate = dat->rate;
 
-  // t3 only used by case EURBOND_HO_LEE
+  const double t  = dat->t[0] - dat->te;
+  const double t2 = dat->t[1] - dat->te2;
   const double t3 = dat->t[2] - dat->te3;
+
+  //g_print("t = %f\n", t);
+  //g_print("t2 = %f\n", t2);
+  //g_print("t3 = %f\n", t3);
 
   //g_print("rate = %f\n", rate);
 
@@ -278,8 +283,6 @@ struct _data bonddispatch(struct _properties *p)
 
     }
 
-    //
-
     static int numberOfPrincipal = 5;
     int numberOfPrincipalSelected = dat->UseJ;
 
@@ -319,7 +322,6 @@ struct _data bonddispatch(struct _properties *p)
       }
 
     }
-    //
 
     if(dat->debug)
     {

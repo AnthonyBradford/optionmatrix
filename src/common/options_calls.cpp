@@ -274,7 +274,7 @@ struct _data option_call(struct _data *dat)
     case GCARRY:
 
       if(dat->debug)
-        logger( (char *)"carry", 7,
+        logger( (char *)"carry call", 7,
                 (double)1,(double)price,(double)strike,(double)t,(double)rate,(double)dividend,(double)volatility);
 
       callprice = carry(1,price,strike,t,rate,dividend,volatility);
@@ -4362,7 +4362,7 @@ struct _data option_call(struct _data *dat)
     dat->isnan = 1;
   }
 
-  if(properties.filterNegativePrices == true && dat->call < 0.0 &&
+  if(dat->filterNegativePrices == true && dat->call < 0.0 &&
      properties.distribution_type==NORMAL_DISTRIBUTION)
   {
     dat->call = 0.0;

@@ -358,6 +358,11 @@ int sanity_check(struct _properties *properties, char *statusMessage, size_t n)
       }
     }
 
+    if( properties->modeltype == EURBOND_HO_LEE )
+    {
+      return messageSet;
+    }
+
     if( properties->modeltype == AMDISDIVSBINOMIAL )
     {
         pthread_mutex_lock(&properties->data.mutexCashflow);
