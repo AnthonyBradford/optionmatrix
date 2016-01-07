@@ -66,7 +66,7 @@ void programInits(struct _properties *properties)
 #ifdef FINRECIPES
 
     int index;
-    int count = sizeofterm_structure_list / (signed) sizeof(term_structure);
+    const int count = sizeofterm_structure_list / (signed) sizeof(term_structure);
     properties->termstructure_name_list = ( _int_to_name_nonconst * ) malloc( count * sizeof(_int_to_name_nonconst) ); 
 
     for( index = 0 ; index < count ; index++ )

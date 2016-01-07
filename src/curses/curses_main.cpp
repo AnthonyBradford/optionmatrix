@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 
 #if defined(HAVE_GETOPT_H) && defined(HAVE_GETTIMEOFDAY)
 
-    process_arguments(argc, argv, &properties.data.debug, &properties.source_directory_prefix[0]);
+    process_arguments(argc, (const char **) argv, &properties.data.debug);
 
 #endif
 

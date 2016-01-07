@@ -486,7 +486,7 @@ void decimal_date_to_real_dates(double decimaltime, int *y, int *m, int *d, int 
     return;
 }
 
-int decimal_date_to_int_month(double decimaltime)
+int decimal_date_to_int_month(const double decimaltime)
 {
     int daysahead;
     int counter1 = 0;

@@ -44,7 +44,7 @@
 
 #if defined(HAVE_GETOPT_H) && defined(HAVE_GETTIMEOFDAY)
 
-void process_arguments(int argc, char **argv, bool *debug, char *source_directory_prefix)
+void process_arguments(const int argc, const char **argv, bool *debug)
 {
     int c;
     int exit_program = false;
@@ -52,7 +52,7 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
 
     *debug = false;
 
-    static struct option long_options[] = {
+    const static struct option long_options[] = {
         { "version",    no_argument,       NULL, 'v' },
         { "help",       no_argument,       NULL, 'h' },
         { "list",       no_argument,       NULL, 'l' },
@@ -71,7 +71,7 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
     int iopt = 200000;
 
     int option_index = 0;
-    while ((c = getopt_long(argc, argv, "vhlsqdpD:x:m:i:", long_options, &option_index)) != -1)
+    while ((c = getopt_long(argc, (char **) argv, "vhlsqdpD:x:m:i:", long_options, &option_index)) != -1)
     {
         switch (c) {
 
@@ -220,7 +220,7 @@ void process_arguments(int argc, char **argv, bool *debug, char *source_director
     
     return;
 
-} // void process_arguments(int argc, char **argv, bool *debug, char *source_directory_prefix)
+} // void process_arguments(const int argc, const char **argv, bool *debug, char *source_directory_prefix)
 
 #endif
 
@@ -231,7 +231,7 @@ void program_version()
 
 } // void program_version()
 
-void program_usage(char *isConsoleVersion)
+void program_usage(const char *isConsoleVersion)
 {
 
   if( isConsoleVersion )
@@ -329,7 +329,7 @@ void program_usage(char *isConsoleVersion)
 
   printf("\nReport %s bugs to %s\n", PACKAGE, PACKAGE_BUGREPORT);
 
-} // void program_usage(char *isConsoleVersion)
+} // void program_usage(const char *isConsoleVersion)
 
 void program_list_models()
 {
@@ -377,7 +377,7 @@ void program_source()
   
 } // void program_source()
 
-void program_check_pricing_models(bool quietMode, bool debug)
+void program_check_pricing_models(const bool quietMode, const bool debug)
 {
   int index;
   const int numberofmodels = (signed)(sizeofoption_algorithms/sizeof(struct option_algorithm));
@@ -636,9 +636,9 @@ void program_check_pricing_models(bool quietMode, bool debug)
   printf("HAVE_QL_QUANTLIB_HPP models not defined in source code.\n");
 #endif
 
-} // void program_check_pricing_models(bool quietMode, bool debug)
+} // void program_check_pricing_models(const bool quietMode, const bool debug)
 
-void program_check_pricing_time(int modelnumber, int iterations)
+void program_check_pricing_time(const int modelnumber, const int iterations)
 {
   if( iterations < 0 )
   {
@@ -789,4 +789,4 @@ void program_check_pricing_time(int modelnumber, int iterations)
   dat.amounts.erase( dat.amounts.begin(), dat.amounts.end() );
   dat.times.erase( dat.times.begin(), dat.times.end() );
 
-} // void program_check_pricing_time(int modelnumber, int iterations)
+} // void program_check_pricing_time(const int modelnumber, const int iterations)

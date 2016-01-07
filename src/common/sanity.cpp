@@ -34,7 +34,7 @@
 # include "../gtk/gtk_extern.h"
 #endif
 
-int sanity_check(struct _properties *properties, char *statusMessage, size_t n)
+int sanity_check(struct _properties *properties, char *statusMessage, const size_t n)
 {
     bool messageSet = 0;
 

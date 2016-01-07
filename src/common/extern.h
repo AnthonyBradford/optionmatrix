@@ -87,7 +87,7 @@ extern int validate_time(const int hours, const int minutes, const int seconds);
 extern int date_to_days_away(const int day, int month, int year);
 extern char *decimal_date_to_real_date(double);
 extern void decimal_date_to_real_dates(double decimaltime, int *year, int *month, int *day, int *hour, int *minute, int *seconds);
-extern int decimal_date_to_int_month(double);
+extern int decimal_date_to_int_month(const double);
 extern int decimal_date_to_int_year(const double);
 extern double adjust_to_current_time_and_expr(int *tte, unsigned int expiration_time, const double day_offset);
 extern double adjust_to_current_time(double t, const double day_offset);
@@ -140,7 +140,7 @@ extern int select_model(struct _properties *properties);
 extern void matrix(struct _properties *properties, struct _properties *future_properties);
 extern void parameter_display(struct _properties *properties, struct _properties *future_properties);
 
-extern int sanity_check(struct _properties *properties, char *statusMessage, size_t n);
+extern int sanity_check(struct _properties *properties, char *statusMessage, const size_t n);
 
 extern const int transextremeoptioncall[];
 extern const struct _int_to_name namelistoptionsontheminmax2[];
@@ -186,14 +186,14 @@ extern void logger(const char *name, const int num_args, ...);
 extern void programExit(void);
 extern void programInits(struct _properties *properties);
 
-extern void process_arguments(int argc, char **argv, bool *debug, char *source_directory_prefix);
-extern void program_usage(char *isGtkVersion);
+extern void process_arguments(const int argc, const char **argv, bool *debug);
+extern void program_usage(const char *isGtkVersion);
 extern void program_list_models(void);
 extern void program_version(void);
 extern void program_source(void);
-extern void program_check_pricing_models(bool quietMode, bool debug);
-extern void program_check_pricing_time(int modelnumber, int iterations);
+extern void program_check_pricing_models(const bool quietMode, const bool debug);
+extern void program_check_pricing_time(const int modelnumber, const int iterations);
 
-extern bool process_arguments_checks(int argc, char **argv, bool *debug);
+extern bool process_arguments_checks(const int argc, const char **argv, bool *debug);
 extern void program_version_checks();
 extern void program_usage_checks();

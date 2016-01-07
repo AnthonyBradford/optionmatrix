@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
 #ifdef HAVE_GETOPT_H
 
-    quietMode = process_arguments_checks(argc, argv, &properties.data.debug);
+    quietMode = process_arguments_checks(argc, (const char **) argv, &properties.data.debug);
 
 #endif
 
@@ -58,7 +58,7 @@ int main(int argc, char **argv)
 
 #ifdef HAVE_GETOPT_H
 
-bool process_arguments_checks(int argc, char **argv, bool *debug)
+bool process_arguments_checks(const int argc, const char **argv, bool *debug)
 {
     int c;
     int exit_program = false;
@@ -66,7 +66,7 @@ bool process_arguments_checks(int argc, char **argv, bool *debug)
 
     *debug = false;
 
-    static struct option long_options[] = {
+    const static struct option long_options[] = {
         { "quiet",   no_argument,       NULL, 'q' },
         { "debug",   no_argument,       NULL, 'd' },
         { "version", no_argument,       NULL, 'v' },
@@ -75,7 +75,7 @@ bool process_arguments_checks(int argc, char **argv, bool *debug)
     };
 
     int option_index = 0;
-    while ((c = getopt_long(argc, argv, "qdvh", long_options, &option_index)) != -1)
+    while ((c = getopt_long(argc, (char **) argv, "qdvh", long_options, &option_index)) != -1)
     {
         int this_option_optind = optind ? optind : 1;
 
@@ -155,7 +155,7 @@ bool process_arguments_checks(int argc, char **argv, bool *debug)
     
     return false;
 
-} // bool process_arguments_checks(int argc, char **argv, bool *debug)
+} // bool process_arguments_checks(const int argc, const char **argv, bool *debug)
 
 void program_version_checks()
 {

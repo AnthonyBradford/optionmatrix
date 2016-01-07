@@ -67,7 +67,7 @@ const struct numerical_integration_method integration_method[] = {
 
     /*
       double (*method) (const double a, const double b, int n, double (*fun) (double,double,double),const double parm2, const double parm3);
-      char           des[30];
+      char           des[256];
       mutable int    resolution;
       bool           allowOnlyEven;
       int            UpperLimit;
@@ -92,7 +92,7 @@ const struct _strike_control strike_control[] = {
     double incrementor;
     int strikes5or1;
     double retdiscard;
-    char des[5];
+    char des[256];
     int precision;
     double sliderScale;
   */

@@ -275,7 +275,7 @@ struct _data {
 
   bool filterNegativePrices;
 
-};
+}; // struct _data {
 
 typedef std::map<std::string, int> treeToIndex;
 
@@ -361,9 +361,9 @@ struct _properties {
 
 struct integratable_distributions {
 
-  double (*constantvalue) (double);
-  double (*integrationpart) (double,double,double);
-  char   des[256];
+  double (*constantvalue) (const double);
+  double (*integrationpart) (const double,const double, const double);
+  const char des[256];
 
 };
 
@@ -372,10 +372,10 @@ struct numerical_integration_method {
 
   double (*method) (const double a, const double b, int n, double (*fun) (double,double,double),const double parm2, const double parm3);
 
-  char           des[256];
-  mutable int    resolution;
-  bool           allowOnlyEven;
-  int            UpperLimit;
+  const char           des[256];
+  mutable int          resolution;
+  const bool           allowOnlyEven;
+  const int            UpperLimit;
 
 };
 
@@ -860,13 +860,13 @@ struct option_algorithm {
 
 struct _strike_control {
 
-  double xcontrol;
-  double incrementor;
-  int strikes5or1;
-  double retdiscard;
-  char des[256];
-  int precision;
-  double sliderScale;
+  const double xcontrol;
+  const double incrementor;
+  const int strikes5or1;
+  const double retdiscard;
+  const char des[256];
+  const int precision;
+  const double sliderScale;
 
 };
 
