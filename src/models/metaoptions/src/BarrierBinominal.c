@@ -48,7 +48,7 @@ extern double BarrierBinomial(
 	assert_valid_cost_of_carry(b);
 	assert_valid_volatility(v);
 
-	if( (pval = calloc(n + 1024, sizeof *pval)) == NULL) {
+	if( (pval = calloc(n + 10240, sizeof *pval)) == NULL) {
 		abort();
 	}
 

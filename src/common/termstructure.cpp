@@ -231,10 +231,13 @@ struct _data termstructure(struct _data *dat)
   }
   catch (exception& e)
   {
-    //g_print("termstructure(): Exception caught: %s\n", e.what() );
+    fprintf(stderr,"termstructure(): Exception caught: %s\n", e.what() );
+    fprintf(stderr,"Model = %d\n", dat->modeltype);
 
-    // program might not be recoverable...
-    fflush(NULL);
+  } catch (...)
+  {
+    fprintf(stderr,"termstructure(): unknown error\n");
+    fprintf(stderr,"Model = %d\n", dat->modeltype);
   }
 
   return *dat;

@@ -475,7 +475,7 @@ struct _data bonddispatch(struct _properties *p)
 
     break;
 
-#endif
+#endif // FINRECIPES
 
   default:
 
@@ -487,10 +487,13 @@ struct _data bonddispatch(struct _properties *p)
   }
   catch (exception& e)
   {
-    g_print("bonddispatch(): Exception caught: %s\n", e.what() );
+    fprintf(stderr,"bonddispatch(): Exception caught: %s\n", e.what() );
+    fprintf(stderr,"Model = %d\n", dat->modeltype);
 
-    // program might not be recoverable...
-    fflush(NULL);
+  } catch (...)
+  {
+    fprintf(stderr,"bonddispatch(): unknown error\n");
+    fprintf(stderr,"Model = %d\n", dat->modeltype);
   }
 
   return *dat;

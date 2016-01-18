@@ -3290,12 +3290,12 @@ struct _data option_put(struct _data *dat)
   catch (exception& e)
   {
     fprintf(stderr,"option_put(): Exception caught: %s\n", e.what() );
-    fprintf(stderr,"P = %f, X = %f, R = %f, V = %f, t = %f, Div = %f\n", price,strike,rate,volatility,t,dividend);
+    fprintf(stderr,"Model = %d, P = %f, X = %f, R = %f, V = %f, t = %f, Div = %f\n", dat->modeltype, price,strike,rate,volatility,t,dividend);
 
   } catch (...)
   {
     fprintf(stderr,"option_put(): unknown error\n");
-    fprintf(stderr,"P = %f, X = %f, R = %f, V = %f, t = %f, Div = %f\n", price,strike,rate,volatility,t,dividend);
+    fprintf(stderr,"Model = %d, P = %f, X = %f, R = %f, V = %f, t = %f, Div = %f\n", dat->modeltype, price,strike,rate,volatility,t,dividend);
   }
 
   return *dat;
