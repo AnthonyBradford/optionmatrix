@@ -401,7 +401,11 @@ void updateStepping(struct _properties *properties)
 
 void on_window_destroy( gpointer user_data )
 {
-  g_source_remove(properties.GtkInfo.gcalculate_options);
+  if( properties.GtkInfo.gcalculate_options )
+  {
+    g_source_remove(properties.GtkInfo.gcalculate_options);
+    properties.GtkInfo.gcalculate_options = 0;
+  }
 
   pthread_mutex_destroy(&properties.data.mutexCashflow);
 
@@ -902,9 +906,10 @@ int main(int argc, char *argv[])
     
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (properties.GtkInfo.scrolledwindow1), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_container_add( GTK_CONTAINER (properties.GtkInfo.scrolledwindow1), properties.GtkInfo.treeview );
-  
-  properties.GtkInfo.gcalculate_options = g_timeout_add(1000 * properties.updatedelayseconds, (GSourceFunc) calculate_options, &properties);
-  //properties.GtkInfo.gcalculate_options = g_timeout_add_full(G_PRIORITY_LOW, 1000 * properties.updatedelayseconds, (GSourceFunc) calculate_options, &properties, NULL);
+
+  // Use G_PRIORITY_LOW so computationally intensive models are less likely to freeze up GUI...
+  //properties.GtkInfo.gcalculate_options = g_timeout_add(1000 * properties.updatedelayseconds, (GSourceFunc) calculate_options, &properties);
+  properties.GtkInfo.gcalculate_options = g_timeout_add_full(G_PRIORITY_LOW, 1000 * properties.updatedelayseconds, (GSourceFunc) calculate_options, &properties, NULL);
 
   updatePrecision(0,&properties);
   updateTime(0,&properties);

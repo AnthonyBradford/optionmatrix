@@ -186,8 +186,9 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
             break;
 
-        }
-    }
+        } // switch (c) {
+
+    } // while ((c = getopt_long(argc, (char **) argv, "vhlsqdpD:x:m:i:", long_options, &option_index)) != -1)
  
     if( optind < argc )
     {
@@ -199,9 +200,10 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
         exit_program = true;
         exit_status = EXIT_FAILURE;
-    }
 
-    if(*debug == true)
+    } // if( optind < argc )
+
+    if( *debug == true )
     {
       char logText[PATH_MAX];
 
@@ -213,7 +215,8 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
       snprintf(logText,sizeof(logText),"properties.source_directory_prefix = %s\n", properties.source_directory_prefix);
       logger(logText, 0);
-    }
+
+    } // if( *debug == true )
 
     if( exit_program )
      exit(exit_status);
@@ -333,7 +336,6 @@ void program_usage(const char *isConsoleVersion)
 
 void program_list_models()
 {
-
   int index;
   const int numberofmodels = (signed)(sizeofoption_algorithms/sizeof(struct option_algorithm));
   
@@ -597,7 +599,8 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
     {
       printf("%s\n",option_algorithms[modelsWithPricingIssues[indexModelsWithPricingIssues]].des);
     }
-  }
+
+  } // if ( !quietMode )
 
   printf("Total number of tests run: %.0f\n", totalNumberOfTests);
   printf("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000)
@@ -740,7 +743,7 @@ void program_check_pricing_time(const int modelnumber, const int iterations)
                   - (start.tv_sec + (double) start.tv_usec / 1000000)));
       printf("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);
 
-    }
+    } // if( option_algorithms[modelnumber].supportCalls )
 
     if( option_algorithms[modelnumber].supportPuts )
     {
@@ -760,7 +763,7 @@ void program_check_pricing_time(const int modelnumber, const int iterations)
                   - (start.tv_sec + (double) start.tv_usec / 1000000)));
       printf("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);
 
-    }
+    } // if( option_algorithms[modelnumber].supportPuts )
 
   } else if( option_algorithms[modelnumber].assetClass == FUTURES_CLASS )
   {

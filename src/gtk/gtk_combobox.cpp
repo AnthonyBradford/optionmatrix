@@ -1169,19 +1169,7 @@ void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties
   setup_tree_view(properties);
   show_title(properties);
 
-#ifdef HAVE_QL_QUANTLIB_HPP
-  /*
-  if( properties->modeltype == QUANTLIB_MC_CRUDE )
-  {
-    g_print("QUANTLIB_MC_CRUDE detected\n");
-
-    g_source_remove(::properties.GtkInfo.gcalculate_options);
-    ::properties.GtkInfo.gcalculate_options = g_timeout_add(1000 * 10, (GSourceFunc) calculate_options, &properties);
-  }
-  */
-#endif // HAVE_QL_QUANTLIB_HPP
-
-}
+} // void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties)
 
 void on_comboboxState_changed(GtkComboBox *combo, struct _properties *properties)
 {

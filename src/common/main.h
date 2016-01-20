@@ -343,7 +343,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "1;American Options",
                                        1, // supportRealTime
-                                       1, // filterNegativePrices    
+                                       1, // filterNegativePrices
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Exiration", 0, "", 0, "",
@@ -365,7 +365,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "a;Futures",
                                        1, // supportRealTime
-                                       1, // filterNegativePrices    
+                                       1, // filterNegativePrices
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -387,7 +387,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "2;Single Asset;Binary",
                                        1, // supportRealTime
-                                       1, // filterNegativePrices    
+                                       1, // filterNegativePrices
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3329,7 +3329,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "0;BSM",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
                                        0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        // Supports dividend
@@ -3352,7 +3352,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Heston",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
                                        0, 0, 0, 0, 0, 0,
       //                               1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3375,7 +3375,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "1;American Options",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
                                        0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3397,7 +3397,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "1;American Options",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
                                        0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3419,7 +3419,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
                                        0, 0, 1, 801, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3441,7 +3441,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
                                        0, 0, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3463,7 +3463,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "6;Monte Carlo",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
                                        0, 0, 1, 1, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3485,7 +3485,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "6;Monte Carlo",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
                                        0, 0, 1, 5, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3507,7 +3507,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "6;Monte Carlo",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
                                        0, 0, 1, 3, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3529,7 +3529,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3551,7 +3552,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3573,7 +3575,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3595,7 +3598,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3617,7 +3621,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3639,7 +3644,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3661,7 +3667,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -3683,7 +3690,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
@@ -3706,7 +3714,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
@@ -3729,7 +3738,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Finite Diff;Bermudan",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
@@ -3752,7 +3762,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
@@ -3775,7 +3786,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
@@ -3798,7 +3810,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
@@ -3821,7 +3834,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
@@ -3844,7 +3858,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
@@ -3867,7 +3882,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend
@@ -3890,7 +3906,8 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "5;Trees & Finite Diff;Binomial;Bermudan",
                                        0, // supportRealTime
-                                       1, // filterNegativePrices      
+                                       1, // filterNegativePrices
+  
                                        0, 0, 1, 5, 0, 1,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        // Supports dividend

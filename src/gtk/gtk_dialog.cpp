@@ -199,7 +199,11 @@ void on_dialogSettings_ok(GtkWidget *widget, gpointer *data)
 
   gtk_widget_hide(::properties.GtkInfo.dialogSettings);
 
-  g_source_remove(::properties.GtkInfo.gcalculate_options);
+  if( ::properties.GtkInfo.gcalculate_options )
+  {
+    g_source_remove(::properties.GtkInfo.gcalculate_options);
+    ::properties.GtkInfo.gcalculate_options = 0;
+  }
 
   ::properties.GtkInfo.gcalculate_options = g_timeout_add(1000 * ::properties.updatedelayseconds, (GSourceFunc) calculate_options, &properties);
 

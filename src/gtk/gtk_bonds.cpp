@@ -139,7 +139,8 @@ struct _data bonddispatch(struct _properties *p)
       }
 
       g_print("\n");
-    }
+ 
+    } // if(dat->debug)
 
     // cash_flow_pv_discrete() and bonds_price_discrete() should produce the
     // same result...
@@ -222,7 +223,8 @@ struct _data bonddispatch(struct _properties *p)
       }
 
       g_print("\n");
-    }
+
+    } // if(dat->debug)
 
     dat->bond_price = bonds_price(dat->coupon_times_adjusted,dat->coupon,*dat->term);
     dat->durationContinous = bonds_duration(dat->coupon_times_adjusted,dat->coupon,*dat->term);
@@ -279,7 +281,8 @@ struct _data bonddispatch(struct _properties *p)
         
         if( periodicity )
           firstCoupon +=  (double) 1 / periodicity;
-      }
+
+      } // for(counter = 0; counter < numberOfCoupons; counter++)
 
     }
 
@@ -319,7 +322,8 @@ struct _data bonddispatch(struct _properties *p)
 
         if( pperiodicity )
           firstPrincipal +=  (double) 1 / pperiodicity;
-      }
+
+      } // for(counter = 0; counter < numberOfPrincipal; counter++)
 
     }
 
@@ -354,7 +358,8 @@ struct _data bonddispatch(struct _properties *p)
       }
 
       g_print("\n");
-    }
+
+    } // if(dat->debug)
 
     dat->bond_price = bonds_price(dat->coupon_times_adjusted, dat->coupon,dat->principal_times_adjusted, dat->principal, rate);
 
@@ -387,7 +392,8 @@ struct _data bonddispatch(struct _properties *p)
       }
 
       g_print("\n");
-    }
+
+    } // if(dat->debug)
 
     dat->pv_continous = cash_flow_pv(dat->coupon_times_adjusted,dat->coupon,rate);
     dat->pv_discrete = cash_flow_pv_discrete(dat->coupon_times_adjusted,dat->coupon,rate);
@@ -423,7 +429,8 @@ struct _data bonddispatch(struct _properties *p)
       gtk_widget_show(p->GtkInfo.label3);
       gtk_widget_show(p->GtkInfo.labelPrice);
       gtk_widget_show(p->GtkInfo.spinbuttonPrice);
-    }
+
+    } // if( term_selected != term_struct_eurbond_ho_lee )
 
     struct _data termstructuredata;
     p->data.term_model = term_structure_list[dat->UsePound-1].modeltype;
@@ -447,7 +454,8 @@ struct _data bonddispatch(struct _properties *p)
       }
 
       g_print("\n");
-    }
+
+    } // if(dat->debug)
 
     if(dat->debug)
         logger( (char *)"price_european_call_option_on_bond_using_ho_lee", 6,
@@ -482,7 +490,8 @@ struct _data bonddispatch(struct _properties *p)
       fprintf(stderr,"bonddispatch(): No implementation for case %d\n",dat->modeltype);
 
       break;
-  }
+
+  } // switch(dat->modeltype)
 
   }
   catch (exception& e)
@@ -497,4 +506,5 @@ struct _data bonddispatch(struct _properties *p)
   }
 
   return *dat;
-}
+
+} // struct _data bonddispatch(struct _properties *p)

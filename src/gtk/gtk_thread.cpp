@@ -495,7 +495,8 @@ gboolean calculate_options(struct _properties *properties)
       text_export(properties, dataExport);
 
     return TRUE;
-  }
+
+  } // if( option_algorithms[properties->modeltype].assetClass == BOND_CLASS )
 
 #ifdef FINRECIPES
 
@@ -575,9 +576,10 @@ gboolean calculate_options(struct _properties *properties)
       text_export(properties, dataExport);
 
     return TRUE;
-  }
 
-#endif
+  } // if( option_algorithms[properties->modeltype].assetClass == TERMSTRUCTURE_CLASS )
+
+#endif // FINRECIPES
 
   if( properties->format == DECIMAL_FUTURE )
   {
@@ -646,7 +648,8 @@ gboolean calculate_options(struct _properties *properties)
 
     snprintf(lineData,sizeof(lineData)," %s, %s\n", "Ticker", textTicker);
     strcat(dataExport,lineData);
-  }
+
+  } // if( properties->format == DECIMAL_FUTURE )
 
   if( properties->format == CALENDAR_FUTURE )
   {
@@ -748,7 +751,8 @@ gboolean calculate_options(struct _properties *properties)
     properties->days_to_expiration2=properties->start_days_to_expiration2;
     properties->expiration_year2=properties->start_expiration_year2;
     properties->time_to_expiration2=properties->start_time_to_expiration2;
-  }
+
+  } // if( properties->format == CALENDAR_FUTURE )
 
   if( properties->format == DECIMAL_GREEKS )
   {
@@ -847,7 +851,9 @@ gboolean calculate_options(struct _properties *properties)
 
          }
       }
-  }
+
+  } // if( properties->format == DECIMAL_GREEKS )
+
   else if( properties->format == CALENDAR_CUSTOM )
   {
     g_print("CALENDAR_CUSTOM\n");
@@ -911,6 +917,7 @@ gboolean calculate_options(struct _properties *properties)
       properties->days_to_expiration2=properties->start_days_to_expiration2;
       properties->expiration_year2=properties->start_expiration_year2;
       properties->time_to_expiration2=properties->start_time_to_expiration2;
+
     }
 
     index = 0;
@@ -1039,7 +1046,8 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
     properties->verticalSpread = ( cumStrikeLeg1 != cumStrikeLeg2 );
     g_print("properties->verticalSpread = %d\n",properties->verticalSpread);
 
-  }
+  } // if( properties->format == CALENDAR_CUSTOM )
+
   else if( properties->format == CALENDAR_OPTIONS6 )
   {
     g_print("CALENDAR_OPTIONS6\n");
@@ -1158,7 +1166,10 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           break;
       }
     }
-  } else if( properties->format == CALENDAR_OPTIONS5 )
+    
+  } // if( properties->format == CALENDAR_OPTIONS6 )
+
+  else if( properties->format == CALENDAR_OPTIONS5 )
   {
     g_print("CALENDAR_OPTIONS5\n");
     int counter = 0;
@@ -1371,7 +1382,9 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
         //g_print("index = %d\n",index);
       }
     }
-  } else if( properties->format == CALENDAR_OPTIONS4 )
+  } // if( properties->format == CALENDAR_OPTIONS5 )
+
+  else if( properties->format == CALENDAR_OPTIONS4 )
   {
     g_print("CALENDAR_OPTIONS4\n");
     int counter = 0;
@@ -1682,7 +1695,9 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
     properties->verticalSpread = ( cumStrikeLeg1 != cumStrikeLeg2 );
     g_print("properties->verticalSpread = %d\n",properties->verticalSpread);
 
-  } else if( properties->format == CALENDAR_OPTIONS3 )
+  } // if( properties->format == CALENDAR_OPTIONS4 )
+
+  else if( properties->format == CALENDAR_OPTIONS3 )
   {
 
     g_print("CALENDAR_OPTIONS3\n");
@@ -1998,7 +2013,8 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
     properties->verticalSpread = ( cumStrikeLeg1 != cumStrikeLeg2 );
 
     g_print("properties->verticalSpread = %d\n",properties->verticalSpread);
-  }
+
+  } // if( properties->format == CALENDAR_OPTIONS3 )
 
   if( properties->textExport == true )
     text_export(properties, dataExport);
@@ -2007,7 +2023,8 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
     spreadName(properties);
 
   return TRUE;
-}
+
+} // gboolean calculate_options(struct _properties *properties)
 
 void process_greeks(struct _properties *properties, struct _data *dat, char *textCallDelta, char *textPutDelta, char *textGamma, char *textVega, char *textCallTheta, char *textPutTheta, char *textCallRho, char *textPutRho)
 {
@@ -2108,4 +2125,5 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     }
     snprintf(textPutRho,200,"%.*f", properties->precision,optiondata.putrho);
   }
-}
+
+} // void process_greeks()
