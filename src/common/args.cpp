@@ -338,11 +338,10 @@ void program_list_models()
 {
   int index;
   const int numberofmodels = (signed)(sizeofoption_algorithms/sizeof(struct option_algorithm));
-  
+
   for( index = 0; index < numberofmodels; index++ )
   {
-    printf("%d ",option_algorithms[index].modeltype);
-    printf("%s\n",option_algorithms[index].des);
+    printf("%d %s\n", index,option_algorithms[index].des);
   }
 
 } // void program_list_models()
@@ -389,6 +388,7 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
   double totalNumberOfTests = 0;
 
   struct _data dat;
+  memset( &dat, 0, sizeof(dat) );
 
   dat.price = 100;
   dat.rate = 0.03;
@@ -402,6 +402,7 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
   dat.te3 = 0;
   dat.te4 = 0;
   dat.debug = debug;
+  dat.filterNegativePrices = false;
 
   int indexModelsWithPricingIssues = 0;
 
@@ -422,7 +423,7 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
 #endif // METAOPTIONS
 
 #ifdef FINRECIPES
-
+    AMDISDIVSBINOMIAL, // throws Exception caught: std::bad_alloc
 #endif // FINRECIPES
 
 #ifdef HAVE_QL_QUANTLIB_HPP
@@ -492,9 +493,8 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
 
     if ( !quietMode )
     {
-      printf("Model: %d ", option_algorithms[index].modeltype);
+      printf("Model: %d ", index);
       printf("%s ", option_algorithms[index].des);
-      //fflush(NULL);
     }
 
     dat.UseZ = option_algorithms[index].Zdefault;
@@ -659,12 +659,12 @@ void program_check_pricing_time(const int modelnumber, const int iterations)
 
   if( option_algorithms[modelnumber].assetClass == BOND_CLASS )
   {
-    printf("Bond time check not implemented for %s\n", option_algorithms[modelnumber].des);
+    fprintf(stderr,"Bond time check not implemented for %s\n", option_algorithms[modelnumber].des);
     return;
 
   } else if( option_algorithms[modelnumber].assetClass == TERMSTRUCTURE_CLASS )
   {
-    printf("Term Structure time check not implemented for %s\n", option_algorithms[modelnumber].des);
+    fprintf(stderr,"Term Structure time check not implemented for %s\n", option_algorithms[modelnumber].des);
     return;
   }
 
@@ -674,6 +674,7 @@ void program_check_pricing_time(const int modelnumber, const int iterations)
   char statusMessage[80 * 4] = { 0 };
 
   struct _data dat;
+  memset( &dat, 0, sizeof(dat) );
 
   dat.modeltype = modelnumber;
   dat.price = 100;
@@ -720,6 +721,7 @@ void program_check_pricing_time(const int modelnumber, const int iterations)
   dat.UseS = option_algorithms[modelnumber].Sdefault;
   dat.UseT = option_algorithms[modelnumber].Tdefault;
   dat.UsePound = option_algorithms[modelnumber].Pounddefault;
+  dat.filterNegativePrices = false;
 
   sanity_check(&properties, &statusMessage[0],sizeof(statusMessage));
 

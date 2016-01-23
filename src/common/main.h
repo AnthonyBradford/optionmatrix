@@ -32,7 +32,7 @@
 #endif
 
 #ifndef QUANTLIB
-#undef HAVE_QL_QUANTLIB_HPP
+# undef HAVE_QL_QUANTLIB_HPP
 #endif
 
 #include "finrecipes.h"
@@ -2845,7 +2845,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, // filterNegativePrices
                                        0, 0, 0, 0, BOND_CLASS, 0,
                                        1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                       5, 100, "zT2", 1, "zT1", 1, "zCall",
+                                       5, 100, "T2", 1, "T1", 1, "Call",
                                        "K", "Coupons", "0Call", "Put", "Strike", "sigma",
                                        0, 0, "", 0, 0,          // Z
                                        0, 0, "", 0, 0,          // B

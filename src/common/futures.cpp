@@ -55,7 +55,7 @@ struct _data future(struct _data *dat)
 
       break;
 
-#endif
+#endif // FINRECIPES
 
 #ifdef ABRADFORD
 
@@ -69,7 +69,7 @@ struct _data future(struct _data *dat)
 
       break;
 
-#endif
+#endif // ABRADFORD
 
 #ifdef DUMMYTESTMODELS
 
@@ -80,16 +80,18 @@ struct _data future(struct _data *dat)
 
       break;
 
-#endif
+#endif // DUMMYTESTMODELS
 
      default:
 
       fprintf(stderr,"future(): No implementation for case %d\n",dat->modeltype);
 
       break;
-  }
+
+  } // switch(dat->modeltype)
 
   dat->future = price;
 
   return *dat;
-}
+
+} // struct _data future(struct _data *dat)

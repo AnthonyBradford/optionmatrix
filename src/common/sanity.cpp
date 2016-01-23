@@ -44,6 +44,42 @@ int sanity_check(struct _properties *properties, char *statusMessage, const size
       expires(LEG2,30,properties->skipmonth2,properties);
     }
 
+    if( properties->realTimeBleeding == 1 )
+    {
+        time(&properties->updatetime);
+
+        properties->data.te  = difftime(properties->updatetime,properties->starttime) / (double) 31536000;
+        properties->data.te2 = difftime(properties->updatetime,properties->starttime2) / (double) 31536000;
+        properties->data.te3 = difftime(properties->updatetime,properties->starttime3) / (double) 31536000;
+
+        properties->data.te4 = difftime(properties->updatetime,properties->starttime4) / (double) 31536000;
+
+    } else
+    {
+      properties->data.te  = 0;
+      properties->data.te2 = 0;
+      properties->data.te3 = 0;
+      properties->data.te4 = 0;
+    }
+
+#ifdef FINRECIPES
+    
+    if( properties->modeltype == EURBOND_HO_LEE )
+    {
+      if( properties->data.t[1] >= properties->data.t[0] )
+      {
+        properties->data.t[0] = properties->data.t[1] + 1;
+        snprintf(statusMessage,n,"Setting T2 greater than T1. T2 = %f", properties->data.t[1]);
+        messageSet = 1;
+
+      } // if( properties->data.t[1] <= properties->data.t[0] )
+
+      return messageSet;
+
+    } // if( properties->modeltype == EURBOND_HO_LEE )
+
+#endif // FINRECIPES
+
     if( option_algorithms[properties->modeltype].iUseZ && properties->data.UseZ == 0 &&
         option_algorithms[properties->modeltype].bZallow0Negative == 0 &&
         option_algorithms[properties->modeltype].Zdefault != 0 )
@@ -134,8 +170,6 @@ int sanity_check(struct _properties *properties, char *statusMessage, const size
       }
     }
 
-    /************************************************************************************/
-
     if( option_algorithms[properties->modeltype].iUseZ && option_algorithms[properties->modeltype].Zmax )
     {
       if( properties->data.UseZ > option_algorithms[properties->modeltype].Zmax )
@@ -167,8 +201,6 @@ int sanity_check(struct _properties *properties, char *statusMessage, const size
         properties->data.UseP = option_algorithms[properties->modeltype].Pdefault;
       }
     }
-
-    //
 
     if( option_algorithms[properties->modeltype].iUseQ && option_algorithms[properties->modeltype].Qmax )
     {
@@ -220,7 +252,6 @@ int sanity_check(struct _properties *properties, char *statusMessage, const size
       }
     }
 
-    /*******************************************************************/
     if(properties->format != DEMO_FUTURES && properties->format != DEMO_OPTIONS)
     {
       if( option_algorithms[properties->modeltype].assetClass == FUTURES_CLASS && 
@@ -312,24 +343,6 @@ int sanity_check(struct _properties *properties, char *statusMessage, const size
       messageSet = 1;
     }
 
-    if( properties->realTimeBleeding == 1 )
-    {
-        time(&properties->updatetime);
-
-        properties->data.te  = difftime(properties->updatetime,properties->starttime) / (double) 31536000;
-        properties->data.te2 = difftime(properties->updatetime,properties->starttime2) / (double) 31536000;
-        properties->data.te3 = difftime(properties->updatetime,properties->starttime3) / (double) 31536000;
-
-        properties->data.te4 = difftime(properties->updatetime,properties->starttime4) / (double) 31536000;
-
-    } else
-    {
-      properties->data.te  = 0;
-      properties->data.te2 = 0;
-      properties->data.te3 = 0;
-      properties->data.te4 = 0;
-    }
-
     if( properties->decimalorcalendar == CALENDAR )
     {
       properties->data.te = 0;
@@ -358,10 +371,7 @@ int sanity_check(struct _properties *properties, char *statusMessage, const size
       }
     }
 
-    if( properties->modeltype == EURBOND_HO_LEE )
-    {
-      return messageSet;
-    }
+#ifdef FINRECIPES
 
     if( properties->modeltype == AMDISDIVSBINOMIAL )
     {
@@ -385,7 +395,10 @@ int sanity_check(struct _properties *properties, char *statusMessage, const size
 
         pthread_mutex_unlock(&properties->data.mutexCashflow);
 
-    }
+    } // if( properties->modeltype == AMDISDIVSBINOMIAL )
+
+ #endif // FINRECIPES
 
     return messageSet;
-}
+
+} // int sanity_check(struct _properties *properties, char *statusMessage, const size_t n)

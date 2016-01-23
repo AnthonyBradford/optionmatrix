@@ -55,7 +55,7 @@ struct _data option_call_delta(struct _data *dat)
 
        break;
 
-#endif
+#endif // ABRADFORD
 
 #if defined(ABRADFORD) && defined(METAOPTIONS)
 
@@ -67,7 +67,7 @@ struct _data option_call_delta(struct _data *dat)
 
        break;
 
-#endif
+#endif // #if defined(ABRADFORD) && defined(METAOPTIONS)
 
 #ifdef METAOPTIONS
 
@@ -79,7 +79,7 @@ struct _data option_call_delta(struct _data *dat)
 
       break;
 
-#endif
+#endif // METAOPTIONS
 
 #ifdef FINRECIPES
 
@@ -123,19 +123,21 @@ struct _data option_call_delta(struct _data *dat)
 
       break;
 
-#endif
+#endif // FINRECIPES
 
   default:
 
     calldelta  = 0;
 
     break;
-  }
+
+  } // switch(dat->modeltype)
 
   dat->calldelta = calldelta;
 
   return *dat;
-}
+
+} // struct _data option_call_delta(struct _data *dat)
 
 struct _data option_put_delta(struct _data *dat)
 {
@@ -161,7 +163,7 @@ struct _data option_put_delta(struct _data *dat)
 
        break;
 
-#endif
+#endif // ABRADFORD
 
 #if defined(ABRADFORD) && defined(METAOPTIONS)
 
@@ -173,7 +175,7 @@ struct _data option_put_delta(struct _data *dat)
 
        break;
 
-#endif
+#endif // #if defined(ABRADFORD) && defined(METAOPTIONS)
 
 #ifdef METAOPTIONS
 
@@ -185,7 +187,7 @@ struct _data option_put_delta(struct _data *dat)
 
        break;
 
-#endif
+#endif // METAOPTIONS
 
 #ifdef FINRECIPES
 
@@ -235,19 +237,21 @@ struct _data option_put_delta(struct _data *dat)
 
       break;
 
-#endif
+#endif // FINRECIPES
 
     default:
 
       putdelta  = 0;
 
       break;
-  }
+
+  } // switch(dat->modeltype)
 
   dat->putdelta = putdelta;
 
   return *dat;
-}
+
+} // struct _data option_put_delta(struct _data *dat)
 
 struct _data option_gamma(struct _data *dat)
 {
@@ -273,7 +277,7 @@ struct _data option_gamma(struct _data *dat)
        option_price_partials_call_black_scholes(price,strike,rate,volatility,t,dummydelta,gamma_,dummytheta,dummyvega,dummyrho);
        break;
 
-#endif
+#endif // #if defined(ABRADFORD) && defined(FINRECIPES)
 
 #ifdef METAOPTIONS
 
@@ -283,7 +287,7 @@ struct _data option_gamma(struct _data *dat)
       
        break;
 
-#endif
+#endif // METAOPTIONS
 
 #if defined(METAOPTIONS) && defined(FINRECIPES)
 
@@ -294,7 +298,7 @@ struct _data option_gamma(struct _data *dat)
        option_price_partials_call_black_scholes(price,strike,rate,volatility,t,dummydelta,gamma_,dummytheta,dummyvega,dummyrho);
        break;
 
-#endif
+#endif // #if defined(METAOPTIONS) && defined(FINRECIPES)
 
 #ifdef FINRECIPES
 
@@ -313,19 +317,21 @@ struct _data option_gamma(struct _data *dat)
 
        break;
 
-#endif
+#endif // FINRECIPES
        
     default:
 
       gamma_ = 0;
 
       break;
-  }
+
+  } // switch(dat->modeltype)
 
   dat->gamma = gamma_;
 
   return *dat;
-}
+
+} // struct _data option_gamma(struct _data *dat)
 
 struct _data option_vega(struct _data *dat)
 {
@@ -352,7 +358,7 @@ struct _data option_vega(struct _data *dat)
        
        break;
 
-#endif
+#endif // #if defined(ABRADFORD) && defined(FINRECIPES)
 
 #if defined(METAOPTIONS) && defined(FINRECIPES)
 
@@ -364,7 +370,7 @@ struct _data option_vega(struct _data *dat)
        
        break;
 
-#endif
+#endif // #if defined(METAOPTIONS) && defined(FINRECIPES)
 
 #ifdef METAOPTIONS
 
@@ -374,7 +380,7 @@ struct _data option_vega(struct _data *dat)
 
       break;
 
-#endif
+#endif // METAOPTIONS
 
 #ifdef FINRECIPES
 
@@ -393,19 +399,21 @@ struct _data option_vega(struct _data *dat)
 
       break;
 
-#endif
+#endif // FINRECIPES
 
     default:
 
       vega_ = 0;
 
       break;
-  }
+
+  } // switch(dat->modeltype)
 
   dat->vega = vega_;
 
   return *dat;
-}
+
+} // struct _data option_vega(struct _data *dat)
 
 struct _data option_call_theta(struct _data *dat)
 {
@@ -432,7 +440,7 @@ struct _data option_call_theta(struct _data *dat)
        
        break;
 
-#endif
+#endif // #if defined(ABRADFORD) && defined(FINRECIPES)
 
 #if defined(METAOPTIONS) && defined(FINRECIPES)
 
@@ -444,7 +452,7 @@ struct _data option_call_theta(struct _data *dat)
        
        break;
 
-#endif
+#endif // #if defined(METAOPTIONS) && defined(FINRECIPES)
 
 #ifdef METAOPTIONS
 
@@ -454,7 +462,7 @@ struct _data option_call_theta(struct _data *dat)
 
        break;
 
-#endif
+#endif // METAOPTIONS
 
 #ifdef FINRECIPES
 
@@ -473,19 +481,21 @@ struct _data option_call_theta(struct _data *dat)
 
       break;
 
-#endif
+#endif // FINRECIPES
 
     default:
 
       calltheta = 0;
 
       break;
-  }
+
+  } // switch(dat->modeltype)
 
   dat->calltheta = calltheta;
 
   return *dat;
-}
+
+} // struct _data option_call_theta(struct _data *dat)
 
 struct _data option_put_theta(struct _data *dat)
 {
@@ -512,7 +522,7 @@ struct _data option_put_theta(struct _data *dat)
        
        break;
 
-#endif
+#endif // #if defined(ABRADFORD) && defined(FINRECIPES)
 
 #if defined(METAOPTIONS) && defined(FINRECIPES)
 
@@ -524,7 +534,7 @@ struct _data option_put_theta(struct _data *dat)
        
        break;
 
-#endif
+#endif // #if defined(METAOPTIONS) && defined(FINRECIPES)
 
 #ifdef METAOPTIONS
 
@@ -534,7 +544,7 @@ struct _data option_put_theta(struct _data *dat)
 
        break;
 
-#endif
+#endif // METAOPTIONS
 
 #ifdef FINRECIPES
 
@@ -553,19 +563,21 @@ struct _data option_put_theta(struct _data *dat)
 
       break;
 
-#endif
+#endif // FINRECIPES
 
     default:
 
       puttheta = 0;
 
       break;
-  }
+
+  } // switch(dat->modeltype)
 
   dat->puttheta = puttheta;
 
   return *dat;
-}
+
+} // struct _data option_put_theta(struct _data *dat)
 
 struct _data option_call_rho(struct _data *dat)
 {
@@ -592,7 +604,7 @@ struct _data option_call_rho(struct _data *dat)
        
        break;
 
-#endif
+#endif // #if defined(ABRADFORD) && defined(FINRECIPES)
 
 #if defined(METAOPTIONS) && defined(FINRECIPES)
 
@@ -604,7 +616,7 @@ struct _data option_call_rho(struct _data *dat)
        
        break;
 
-#endif
+#endif // #if defined(METAOPTIONS) && defined(FINRECIPES)
 
 #ifdef METAOPTIONS
 
@@ -614,7 +626,7 @@ struct _data option_call_rho(struct _data *dat)
 
        break;
 
-#endif
+#endif // METAOPTIONS
 
 #ifdef FINRECIPES
 
@@ -633,19 +645,21 @@ struct _data option_call_rho(struct _data *dat)
 
       break;
 
-#endif
+#endif // FINRECIPES
 
      default:
 
       callrho = 0;
 
       break;
-  }
+
+  } // switch(dat->modeltype)
 
   dat->callrho = callrho;
 
   return *dat;
-}
+
+} // struct _data option_call_rho(struct _data *dat)
 
 struct _data option_put_rho(struct _data *dat)
 {
@@ -672,7 +686,7 @@ struct _data option_put_rho(struct _data *dat)
        
        break;
 
-#endif
+#endif // #if defined(ABRADFORD) && defined(FINRECIPES)
 
 #if defined(METAOPTIONS) && defined(FINRECIPES)
 
@@ -684,7 +698,7 @@ struct _data option_put_rho(struct _data *dat)
        
        break;
 
-#endif
+#endif // #if defined(METAOPTIONS) && defined(FINRECIPES)
 
 #ifdef METAOPTIONS
 
@@ -694,7 +708,7 @@ struct _data option_put_rho(struct _data *dat)
 
        break;
 
-#endif
+#endif // METAOPTIONS
 
 #ifdef FINRECIPES
 
@@ -713,16 +727,18 @@ struct _data option_put_rho(struct _data *dat)
 
       break;
 
-#endif
+#endif // FINRECIPES
 
     default:
 
       putrho = 0;
 
       break;
-  }
+
+  } // switch(dat->modeltype)
 
   dat->putrho = putrho;
 
   return *dat;
-}
+
+} // struct _data option_put_rho(struct _data *dat)

@@ -90,7 +90,7 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
 
 #endif
 
-}
+} // void on_menu_website_activate(GtkWidget *widget, const struct _properties *properties)
 
 void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *properties)
 {
@@ -136,7 +136,7 @@ void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *prop
 
 #endif
 
-}
+} // void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *properties)
 
 static gboolean pngTimer(struct _properties *properties)
 {
@@ -232,7 +232,8 @@ static gboolean pngTimer(struct _properties *properties)
   }
 
   return GTK_IS_ABOUT_DIALOG(properties->GtkInfo.dialogAbout);
-}
+
+} // static gboolean pngTimer(struct _properties *properties)
 
 void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 {
@@ -332,7 +333,8 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogAbout));
   gtk_widget_destroy(properties->GtkInfo.dialogAbout);
-}
+
+} // void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 
 void on_menu_debug_log_activate(GtkWidget *widget, struct _properties *properties)
 {
@@ -342,7 +344,8 @@ void on_menu_debug_log_activate(GtkWidget *widget, struct _properties *propertie
     properties->data.debug = false;
   else
     properties->data.debug = true;
-}
+
+} // void on_menu_debug_log_activate(GtkWidget *widget, struct _properties *properties)
 
 void on_menu_text_export_activate(GtkWidget *widget, struct _properties *properties)
 {
@@ -369,7 +372,8 @@ void on_menu_source_export_activate(GtkWidget *widget, struct _properties *prope
     g_print("sourceCode2 exists sourceCode2 = %s\n", option_algorithms[properties->modeltype].sourceCode2 );
     display_source(option_algorithms[properties->modeltype].sourceCode2, properties);
   }
-}
+
+} // void on_menu_source_export_activate(GtkWidget *widget, struct _properties *properties)
 
 // display_source() fails on displaying src/models/metaoptions/src/bisection.c source file
 // (under Linux but not Windows) due to some Norwegian in the comments of the source
@@ -461,7 +465,8 @@ void display_source(const char *name, const struct _properties *properties)
   gtk_widget_show_all(window);
 
   free(bufferSource);
-}
+
+} // void display_source(const char *name, const struct _properties *properties)
 
 void checkForSourceCode(struct _properties *properties)
 {
@@ -514,28 +519,36 @@ void checkForSourceCode(struct _properties *properties)
     g_print("sourceCode not defined\n");
     gtk_widget_hide(properties->GtkInfo.menu_source_export);
   }
-}
+
+} // void checkForSourceCode(struct _properties *properties)
 
 void on_menu_ListCategory_activate(GtkWidget *widget, struct _properties *properties)
 {
   g_print("on_menu_ListCategory_activate():\n");
 
   const int num_models = (signed) (sizeofoption_algorithms/sizeof(struct option_algorithm));
-  properties->listModelsForGroups = new elementListWithGroup[num_models];
+
+  struct elementListWithGroup *listModelsForGroups = new elementListWithGroup[num_models];
 
   int index = 0;
   for(index = 0; index < num_models; index++)
   {
-    snprintf(properties->listModelsForGroups[index].elementName,sizeof(properties->listModelsForGroups[index].elementName),
+    snprintf(listModelsForGroups[index].elementName,sizeof(listModelsForGroups[index].elementName),
              "%s",option_algorithms[index].des);
-    snprintf(properties->listModelsForGroups[index].groupName,sizeof(properties->listModelsForGroups[index].groupName),
+    snprintf(listModelsForGroups[index].groupName,sizeof(listModelsForGroups[index].groupName),
              "%s",option_algorithms[index].category);
-    properties->listModelsForGroups[index].index = index;
+    listModelsForGroups[index].index = index;
   }
 
-  set_up_combobox_with_array_use_groups(properties->GtkInfo.comboboxModel, properties->listModelsForGroups, num_models, properties->TreeToIndex,1);
+  set_up_combobox_with_array_use_groups(properties->GtkInfo.comboboxModel, listModelsForGroups, num_models, properties->TreeToIndex,1);
 
-}
+  if( listModelsForGroups )
+  {
+    delete [] listModelsForGroups;
+    listModelsForGroups = 0;
+  }
+
+} // void on_menu_ListCategory_activate(GtkWidget *widget, struct _properties *properties)
 
 void on_menu_ListAuthor_activate(GtkWidget *widget, struct _properties *properties)
 {
@@ -543,21 +556,27 @@ void on_menu_ListAuthor_activate(GtkWidget *widget, struct _properties *properti
 
   const int num_models = (signed) (sizeofoption_algorithms/sizeof(struct option_algorithm));
 
-  properties->listModelsForGroups = new elementListWithGroup[num_models];
+  struct elementListWithGroup *listModelsForGroups = new elementListWithGroup[num_models];
 
   int index = 0;
   for(index = 0; index < num_models; index++)
   {
-    snprintf(properties->listModelsForGroups[index].elementName,sizeof(properties->listModelsForGroups[index].elementName),
+    snprintf(listModelsForGroups[index].elementName,sizeof(listModelsForGroups[index].elementName),
              "%s",option_algorithms[index].des);
-    snprintf(properties->listModelsForGroups[index].groupName,sizeof(properties->listModelsForGroups[index].groupName),
+    snprintf(listModelsForGroups[index].groupName,sizeof(listModelsForGroups[index].groupName),
              "%s",option_algorithms[index].source);
-    properties->listModelsForGroups[index].index = index;
+    listModelsForGroups[index].index = index;
   }
 
-  set_up_combobox_with_array_use_groups(properties->GtkInfo.comboboxModel, properties->listModelsForGroups, num_models, properties->TreeToIndex,0);
+  set_up_combobox_with_array_use_groups(properties->GtkInfo.comboboxModel, listModelsForGroups, num_models, properties->TreeToIndex,0);
 
-}
+  if( listModelsForGroups )
+  {
+    delete [] listModelsForGroups;
+    listModelsForGroups = 0;
+  }
+
+} // void on_menu_ListAuthor_activate(GtkWidget *widget, struct _properties *properties)
 
 void on_menu_List_activate(GtkWidget *widget, struct _properties *properties)
 {
@@ -574,7 +593,8 @@ void on_menu_List_activate(GtkWidget *widget, struct _properties *properties)
   }
 
   set_up_combobox_with_array(properties->GtkInfo.comboboxModel, listModels, num_models);
-}
+
+} // void on_menu_List_activate(GtkWidget *widget, struct _properties *properties)
 
 void on_menu_settings_activate(GtkWidget *widget, struct _properties *properties)
 {
@@ -583,4 +603,5 @@ void on_menu_settings_activate(GtkWidget *widget, struct _properties *properties
   gtk_widget_show_all(properties->GtkInfo.dialogSettings);
 
   gtk_spin_button_set_value(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonSleepDelay),properties->updatedelayseconds);
-}
+
+} // void on_menu_settings_activate(GtkWidget *widget, struct _properties *properties)

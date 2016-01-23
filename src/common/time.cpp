@@ -53,7 +53,8 @@ int day_changed()
   }
 
   return 0;
-}
+
+} // int day_changed()
 
 int date_to_days_away(const int day, int month, int year)
 {
@@ -144,7 +145,8 @@ int date_to_days_away(const int day, int month, int year)
         }
         curr_month = 0;
     }
-}
+
+} // int date_to_days_away(const int day, int month, int year)
 
 /*
  * the greatest date this allow to be entered is 99 which is
@@ -222,7 +224,8 @@ int validate_date(const int day, const int month, int year)
   }
 
   return 0;
-}
+
+} // int validate_date(const int day, const int month, int year)
 
 int validate_time(const int hours, const int minutes, const int seconds)
 {
@@ -242,7 +245,8 @@ int validate_time(const int hours, const int minutes, const int seconds)
   }
 
   return 0;
-}
+
+} // int validate_time(const int hours, const int minutes, const int seconds)
 
 char *decimal_date_to_real_date(double decimaltime)
 {
@@ -359,7 +363,8 @@ char *decimal_date_to_real_date(double decimaltime)
     } /* while(!found) */
     
     return &string[0];
-}
+
+} // char *decimal_date_to_real_date(double decimaltime)
 
 void decimal_date_to_real_dates(double decimaltime, int *y, int *m, int *d, int *h, int *min, int *sec)
 {
@@ -484,7 +489,8 @@ void decimal_date_to_real_dates(double decimaltime, int *y, int *m, int *d, int 
     } /* while(!found) */
     
     return;
-}
+
+} // void decimal_date_to_real_dates(double decimaltime, int *y, int *m, int *d, int *h, int *min, int *sec)
 
 int decimal_date_to_int_month(const double decimaltime)
 {
@@ -547,7 +553,8 @@ int decimal_date_to_int_month(const double decimaltime)
     } /* while(!found) */
     
     return mm;
-}
+
+} // int decimal_date_to_int_month(const double decimaltime)
 
 int decimal_date_to_int_year(const double decimaltime)
 {
@@ -610,7 +617,8 @@ int decimal_date_to_int_year(const double decimaltime)
     } /* while(!found) */
     
     return yy;
-}
+
+} // int decimal_date_to_int_year(const double decimaltime)
 
 double adjust_to_current_time(double t, const double day_offset)
 {
@@ -633,7 +641,8 @@ double adjust_to_current_time(double t, const double day_offset)
   t = t - (double) ( (expiration_time-k) /(double)86400)/(double)365;
   
   return t;
-}
+
+} // double adjust_to_current_time(double t, const double day_offset)
 
 double adjust_to_current_time_forward(double t, const double day_offset)
 {
@@ -656,7 +665,8 @@ double adjust_to_current_time_forward(double t, const double day_offset)
   t = t + (double) ( (expiration_time-k) /(double)86400)/(double)365;
   
   return t;
-}
+
+} // double adjust_to_current_time_forward(double t, const double day_offset)
 
 /*
  * add user adjustable expiration time HH:MM:SS
@@ -684,7 +694,8 @@ double adjust_to_current_time_and_expr(int *tte, unsigned int expiration_time, c
   temp = temp +(double) (k /(double)86400)/(double)365;
   
   return temp;
-}
+
+} // double adjust_to_current_time_and_expr(int *tte, unsigned int expiration_time, const double day_offset)
 
 int expires(const int leg, const int monthsahead, const int skip_, struct _properties *properties)
 {
@@ -1043,4 +1054,5 @@ int expires(const int leg, const int monthsahead, const int skip_, struct _prope
     }
 
     return retvalue;
-}
+
+} // int expires(const int leg, const int monthsahead, const int skip_, struct _properties *properties)

@@ -103,4 +103,5 @@ char strike_price_codes(const double strike)
     }
 
     return  ' ';
-}
+
+} // char strike_price_codes(const double strike)

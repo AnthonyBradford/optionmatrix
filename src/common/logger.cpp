@@ -80,4 +80,5 @@ void logger(const char *name, const int num_args, ...)
   va_end(ap);
 
   fflush(fp);
-}
+
+} // void logger(const char *name, const int num_args, ...)

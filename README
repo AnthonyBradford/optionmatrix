@@ -114,6 +114,16 @@ make website
 ****To ensure no tabs in source code
 cd utils ; ./tab.sh
 
+**** Debug
+gdb src/common/checks
+gdb src/gtk/optionmatrix
+gdb src/curses/optionmatrix_console
+
+**** Memcheck
+valgrind -v --leak-check=yes --track-origins=yes src/common/checks
+valgrind -v --leak-check=yes --track-origins=yes src/gtk/optionmatrix
+valgrind -v --leak-check=yes --track-origins=yes src/curses/optionmatrix_console
+
 -----------------------------------------------------------------------
 
 optionmatrix: 

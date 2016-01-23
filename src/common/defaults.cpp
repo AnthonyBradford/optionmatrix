@@ -63,6 +63,8 @@ void programInits(struct _properties *properties)
     time(&properties->starttime3);
     time(&properties->starttime4);
 
+    properties->listModelsForGroups = NULL;
+
 #ifdef FINRECIPES
 
     int index;

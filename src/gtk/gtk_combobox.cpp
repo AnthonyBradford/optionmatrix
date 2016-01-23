@@ -229,8 +229,6 @@ void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListW
     }
   }
 
-  delete [] array;
-  array = 0;
   //g_print("TreeToIndex.size() = %d\n", TreeToIndex.size());
 
   // Causes warning:
@@ -955,6 +953,7 @@ void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties
     g_print("Key \"%s\" is not in my_map. Using gtk_combo_box_get_active()\n", key);
     properties->modeltype = gtk_combo_box_get_active(combo);
   }
+  g_free(key);
 
   g_print("properties->modeltype = %d\n", properties->modeltype);
 

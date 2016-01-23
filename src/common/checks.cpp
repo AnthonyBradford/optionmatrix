@@ -135,8 +135,9 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
 
             break;
 
-        }
-    }
+        } // switch (c) {
+
+    } // while ((c = getopt_long(argc, (char **) argv, "qdvh", long_options, &option_index)) != -1)
  
     if( optind < argc )
     {
@@ -148,7 +149,8 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
 
         exit_program = true;
         exit_status = EXIT_FAILURE;
-    }
+
+    } // if( optind < argc )
 
     if( exit_program )
       exit(exit_status);

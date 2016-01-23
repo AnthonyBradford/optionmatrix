@@ -29,9 +29,9 @@
 
 #include "defs.h"
 
-#ifdef HAVE_QL_QUANTLIB_HPP
-   #include <ql/quantlib.hpp>
-   #include <QuantLib.h>
+#if defined(HAVE_QL_QUANTLIB_HPP) && defined(QUANTLIB)
+# include <ql/quantlib.hpp>
+# include <QuantLib.h>
 #endif
 
 #include "extern.h"
@@ -153,7 +153,7 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-#endif
+#endif //  ABRADFORD
 
 #ifdef SPINSKY
 
@@ -227,7 +227,7 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-#endif
+#endif // SPINSKY
 
 #ifdef METAOPTIONS
 
@@ -1474,7 +1474,7 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-#endif
+#endif // METAOPTIONS
 
 #ifdef FINRECIPES
 
@@ -1591,7 +1591,7 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-#endif
+#endif //  HAVE_LIBGSL
 
     case BONDAMERBINOMIAL:
 
@@ -2183,7 +2183,7 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-#endif
+#endif // HAVE_NEWMAT_NEWMAT_H
 
 #ifdef HAVE_ITPP_ITBASE_H
 
@@ -2193,7 +2193,7 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-#endif
+#endif //  HAVE_ITPP_ITBASE_H
 
     case WARRANT_NO_DIV:
 
@@ -2263,10 +2263,10 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-#endif
+#endif // FINRECIPES
 
-#ifdef HAVE_QL_QUANTLIB_HPP
-      
+#if defined(HAVE_QL_QUANTLIB_HPP) && defined(QUANTLIB)
+
     case QUANTLIB_BLACKSCHOLES_EUROPEAN:
       // Based on QuantLib-1.6.2/Examples/EquityOption.cpp
       {
@@ -4329,7 +4329,7 @@ struct _data option_call(struct _data *dat)
 
       break;
 
-#endif      
+#endif // #if defined(HAVE_QL_QUANTLIB_HPP) && defined(QUANTLIB)      
 
 #ifdef DUMMYTESTMODELS
 
@@ -4345,7 +4345,7 @@ struct _data option_call(struct _data *dat)
 
       break;
       
-#endif
+#endif // DUMMYTESTMODELS
    
     default:
 

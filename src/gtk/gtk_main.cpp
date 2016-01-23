@@ -990,5 +990,8 @@ int main(int argc, char *argv[])
 
   gtk_main();
 
+  if( properties.listModelsForGroups )
+    delete [] properties.listModelsForGroups;
+
   exit(EXIT_SUCCESS);
 }

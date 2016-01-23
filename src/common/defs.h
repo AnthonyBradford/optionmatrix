@@ -131,6 +131,10 @@
 # include "../gtk/gtk_include.h"
 #endif
 
+#ifndef QUANTLIB
+# undef HAVE_QL_QUANTLIB_HPP
+#endif
+
 using namespace std;
 
 enum { OPTION_CLASS = 0, FUTURES_CLASS, BOND_CLASS, TERMSTRUCTURE_CLASS };
@@ -357,7 +361,7 @@ struct _properties {
     struct elementListWithGroup *listModelsForGroups;
     treeToIndex TreeToIndex;
 
-};
+}; // struct _properties {
 
 struct integratable_distributions {
 
