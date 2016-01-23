@@ -251,4 +251,5 @@ void calendar(const struct _properties *properties)
     
     clear();
     return;
-}
+
+} // void calendar(const struct _properties *properties)

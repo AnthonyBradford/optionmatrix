@@ -2248,4 +2248,5 @@ void curses_process(struct _properties *properties,struct _properties *future_pr
       }
     } /* for(;;) */
   } /* for(;;)*/
-}
+
+} // void curses_process(struct _properties *properties,struct _properties *future_properties)

@@ -83,7 +83,8 @@ void on_calendar1_day_selected( GtkWidget *widget, struct _properties *propertie
     properties->data.t[properties->calendarSelected] += (double) ( (k) /(double)86400)/(double)365;
     gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelCalendar),"");
   }
-}
+
+} // void on_calendar1_day_selected( GtkWidget *widget, struct _properties *properties )
 
 int on_dialogCalendar_delete_event( GtkWidget *widget, GdkEvent *event, const struct _properties *properties )
 {
@@ -115,7 +116,8 @@ void on_buttonCalendar_clicked( GtkWidget *widget, struct _properties *propertie
   gtk_calendar_select_day(GTK_CALENDAR(properties->GtkInfo.calendar1), day);
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogCalendar));
-}
+
+} // void on_buttonCalendar_clicked( GtkWidget *widget, struct _properties *properties )
 
 void on_buttonCalendar2_clicked( GtkWidget *widget, struct _properties *properties )
 {
@@ -139,7 +141,8 @@ void on_buttonCalendar2_clicked( GtkWidget *widget, struct _properties *properti
   gtk_calendar_select_day(GTK_CALENDAR(properties->GtkInfo.calendar1), day);
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogCalendar));
-}
+
+} // void on_buttonCalendar2_clicked( GtkWidget *widget, struct _properties *properties )
 
 void on_buttonCalendar3_clicked( GtkWidget *widget, struct _properties *properties )
 {
@@ -163,4 +166,5 @@ void on_buttonCalendar3_clicked( GtkWidget *widget, struct _properties *properti
   gtk_calendar_select_day(GTK_CALENDAR(properties->GtkInfo.calendar1), day);
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogCalendar));
-}
+
+} // void on_buttonCalendar3_clicked( GtkWidget *widget, struct _properties *properties )

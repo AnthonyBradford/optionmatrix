@@ -98,7 +98,8 @@ int nonblockscan(int *control)
   }
 
   return -1;
-}
+
+} // int nonblockscan(int *control)
 
 int select_model(struct _properties *properties)
 {
@@ -280,7 +281,8 @@ int select_model(struct _properties *properties)
   }
 
   return modelChanged;
-}
+
+} // int select_model(struct _properties *properties)
 
 int get_user_inputs(struct _properties *properties,struct _properties *future_properties)
 {
@@ -1528,4 +1530,5 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
         refresh();
 
         return 0;
-}
+
+} // int get_user_inputs(struct _properties *properties,struct _properties *future_properties)

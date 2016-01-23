@@ -49,7 +49,8 @@ GdkPixbuf *create_pixbuf(const gchar * filename)
    }
 
    return pixbuf;
-}
+
+} // GdkPixbuf *create_pixbuf(const gchar * filename)
 
 void show_title(const struct _properties *properties)
 {
@@ -85,7 +86,7 @@ void show_title(const struct _properties *properties)
   g_print("%s\n",option_algorithms[properties->modeltype].source);
   gtk_window_set_title(GTK_WINDOW(properties->GtkInfo.window), title);
 
-}
+} // void show_title(const struct _properties *properties)
 
 void show_label_expirations(const struct _properties *properties)
 {
@@ -101,7 +102,8 @@ void show_label_expirations(const struct _properties *properties)
 
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelExpirations),expiration);
   gtk_widget_show(properties->GtkInfo.labelExpirations);
-}
+
+} // void show_label_expirations(const struct _properties *properties)
 
 void updateVolatility(int modeltype, const struct _properties *properties)
 {
@@ -114,7 +116,8 @@ void updateVolatility(int modeltype, const struct _properties *properties)
     gtk_widget_hide(properties->GtkInfo.labelStandardDeviation);
     gtk_widget_hide(properties->GtkInfo.spinbuttonStandardDeviation);
   }
-}
+
+} // void updateVolatility(int modeltype, const struct _properties *properties)
 
 void updateTime(int modeltype, struct _properties *properties)
 {
@@ -295,7 +298,8 @@ void updateTime(int modeltype, struct _properties *properties)
     gtk_widget_hide(properties->GtkInfo.labelDisplayFormats);
     gtk_widget_hide(properties->GtkInfo.labelDisplayFormats2);
   }
-}
+
+} // void updateTime(int modeltype, struct _properties *properties)
 
 void updatePrecision(int modeltype, struct _properties *properties)
 {
@@ -340,7 +344,8 @@ void updatePrecision(int modeltype, struct _properties *properties)
   gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonCustomStrike2),properties->precision);
 
   setup_tree_view(properties);
-}
+
+} // void updatePrecision(int modeltype, struct _properties *properties)
 
 void updateStepping(struct _properties *properties)
 {
@@ -397,7 +402,8 @@ void updateStepping(struct _properties *properties)
     gtk_widget_show(properties->GtkInfo.comboboxCND);
     gtk_widget_show(properties->GtkInfo.labelCND);
   }
-}
+
+} // void updateStepping(struct _properties *properties)
 
 void on_window_destroy( gpointer user_data )
 {
@@ -413,7 +419,8 @@ void on_window_destroy( gpointer user_data )
   logger(closeLogger, 0, 0);
  
   gtk_main_quit();
-}
+
+} // void on_window_destroy( gpointer user_data )
 
 int main(int argc, char *argv[])
 {
@@ -460,7 +467,7 @@ int main(int argc, char *argv[])
   {
     g_print("Can't access %s\n", imageName);
   }
-#endif  
+#endif // DATADIR
 
   // First case is for Windows...
   if( access("images/6.png", F_OK ) == 0 )
@@ -868,20 +875,6 @@ int main(int argc, char *argv[])
   }
   set_up_combobox_with_array2(properties.GtkInfo.comboboxStrikes, listStrikeControl, num_strike_control);
 
-  /////////////////////////////////////////////////////////////////////////////////
-  // Original list ComboBox Model drop down which was default prior to version 1.2c
-  /////////////////////////////////////////////////////////////////////////////////
-  /*
-  const int num_models = (signed)(sizeofoption_algorithms/sizeof(struct option_algorithm));
-  struct elementList listModels[num_models];
-  for(index = 0; index < num_models; index++)
-  {
-    //strcpy(listModels[index].elementName,option_algorithms[index].des);
-    snprintf(listModels[index].elementName,sizeof(listModels[index].elementName),"%d - %s",index+1,option_algorithms[index].des);
-  }
-  set_up_combobox_with_array(properties.GtkInfo.comboboxModel, listModels, num_models);
-  */
-
   const int num_models = (signed)(sizeofoption_algorithms/sizeof(struct option_algorithm));
   properties.listModelsForGroups = new elementListWithGroup[num_models];
   for(index = 0; index < num_models; index++)
@@ -994,4 +987,5 @@ int main(int argc, char *argv[])
     delete [] properties.listModelsForGroups;
 
   exit(EXIT_SUCCESS);
-}
+
+} // int main(int argc, char *argv[])

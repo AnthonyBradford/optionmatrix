@@ -237,7 +237,8 @@ int init_demo(struct _properties *properties)
   refresh();
 
   return 0;
-}
+
+} // int init_demo(struct _properties *properties)
 
 int init_futures_demo(struct _properties *properties, struct _properties *future_properties)
 {
@@ -371,7 +372,7 @@ int init_futures_demo(struct _properties *properties, struct _properties *future
 
   return 0;
 
-}
+} // int init_futures_demo(struct _properties *properties, struct _properties *future_properties)
 
 int futures_demo(struct _properties *properties,struct _properties *future_properties, const int bPerpetual)
 {
@@ -475,7 +476,8 @@ int futures_demo(struct _properties *properties,struct _properties *future_prope
   {
     return 0;
   }
-}
+
+} // int futures_demo(struct _properties *properties,struct _properties *future_properties, const int bPerpetual)
 
 int options_demo(struct _properties *properties, const int bPerpetual)
 {
@@ -668,7 +670,8 @@ int options_demo(struct _properties *properties, const int bPerpetual)
   {
     return 0;
   }
-}
+
+} // int options_demo(struct _properties *properties, const int bPerpetual)
 
 int myusleep(const int useconds)
 {
@@ -696,4 +699,5 @@ int myusleep(const int useconds)
   nodelay(stdscr,FALSE);
 
   return 0;
-}
+
+} // int myusleep(const int useconds)

@@ -67,4 +67,5 @@ int main(int argc, char **argv)
         curses_process(&properties,&future_properties);
 
     } /* for(;;) */
-}
+
+} // int main(int argc, char **argv)

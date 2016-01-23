@@ -115,15 +115,18 @@ void on_dialogProperties_ok( GtkWidget *widget, struct _properties *properties )
     setup_tree_view(properties);
 
     show_label_expirations(properties);
-  }
-}
+
+  } // if( timeIsGood == true )
+
+} // void on_dialogProperties_ok( GtkWidget *widget, struct _properties *properties )
 
 void on_dialogProperties_cancel( GtkWidget *widget, const struct _properties *properties )
 {
   //g_print("on_dialogProperties_cancel():\n");
   gtk_widget_hide(properties->GtkInfo.dialogProperties);
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelTimeError),"");
-}
+
+} // void on_dialogProperties_cancel( GtkWidget *widget, const struct _properties *properties )
 
 int on_dialogProperties_delete_event( GtkWidget *widget, const struct _properties *data )
 {
@@ -131,7 +134,8 @@ int on_dialogProperties_delete_event( GtkWidget *widget, const struct _propertie
   gtk_widget_hide(properties.GtkInfo.dialogProperties);
 
   return TRUE;
-}
+
+} // int on_dialogProperties_delete_event( GtkWidget *widget, const struct _properties *data )
 
 void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *properties )
 {
@@ -187,7 +191,8 @@ void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *p
   gtk_entry_set_text(GTK_ENTRY(properties->GtkInfo.entryExpirationTime), expirationTime);
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogProperties));
-}
+
+} // void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *properties )
 
 void on_dialogSettings_ok(GtkWidget *widget, gpointer *data)
 {
@@ -207,13 +212,14 @@ void on_dialogSettings_ok(GtkWidget *widget, gpointer *data)
 
   ::properties.GtkInfo.gcalculate_options = g_timeout_add(1000 * ::properties.updatedelayseconds, (GSourceFunc) calculate_options, &properties);
 
-}
+} // void on_dialogSettings_ok(GtkWidget *widget, gpointer *data)
 
 void on_dialogSettings_cancel(GtkWidget *widget, const struct _properties *properties)
 {
   g_print("on_dialogSettings_cancel()\n");
   gtk_widget_hide(properties->GtkInfo.dialogSettings);
-}
+
+} // void on_dialogSettings_cancel(GtkWidget *widget, const struct _properties *properties)
 
 int on_dialogSettings_delete_event(GtkWidget *widget, const struct _properties *properties)
 {
@@ -221,4 +227,5 @@ int on_dialogSettings_delete_event(GtkWidget *widget, const struct _properties *
   gtk_widget_hide(::properties.GtkInfo.dialogSettings);
 
   return TRUE;
-}
+
+} // int on_dialogSettings_delete_event(GtkWidget *widget, const struct _properties *properties)

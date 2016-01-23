@@ -73,7 +73,8 @@ void calc_strike_scale(struct _properties *properties)
   
   gtk_scale_button_set_adjustment(GTK_SCALE_BUTTON(properties->GtkInfo.scaleStrikes2),properties->GtkInfo.scale_int_strikes2);
   gtk_button_set_relief(GTK_BUTTON(properties->GtkInfo.scaleStrikes2), GTK_RELIEF_NORMAL);
-}
+
+} // void calc_strike_scale(struct _properties *properties)
 
 void on_scaleStrikes_value_changed(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties)
 {
@@ -97,7 +98,8 @@ void on_scaleStrikes_value_changed(GtkScaleButton *scaleButton, gdouble value, s
   //g_print("strike_control[properties->strikestoogle].xcontrol = %f\n", strike_control[properties->strikestoogle].xcontrol);
   //g_print("price = %f, value = %f, strike_offset = %f\n", price, value, properties->strike_offset);
   g_print("strike_offset = %f\n",properties->strike_offset);
-}
+
+} // void on_scaleStrikes_value_changed(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties)
 
 void on_scaleStrikes_value_changed2(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties)
 {
@@ -121,7 +123,8 @@ void on_scaleStrikes_value_changed2(GtkScaleButton *scaleButton, gdouble value, 
   //g_print("strike_control[properties->strikestoogle].xcontrol = %f\n", strike_control[properties->strikestoogle].xcontrol);
   //g_print("price = %f, value = %f, strike_offset2 = %f\n", price, value, properties->strike_offset2);
   g_print("strike_offset2 = %f\n",properties->strike_offset2);
-}
+
+} // void on_scaleStrikes_value_changed2(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties)
 
 void on_scaleMonths_value_changed(GtkScaleButton *scaleButton,  gdouble value, struct _properties *properties)
 {
@@ -134,7 +137,8 @@ void on_scaleMonths_value_changed(GtkScaleButton *scaleButton,  gdouble value, s
 
   if( properties->format != CALENDAR_OPTIONS3 && properties->format != CALENDAR_OPTIONS4 && properties->format != CALENDAR_CUSTOM )
     setup_tree_view(properties);
-}
+
+} // void on_scaleMonths_value_changed(GtkScaleButton *scaleButton,  gdouble value, struct _properties *properties)
 
 void on_scaleMonths_value_changed2(GtkScaleButton *scaleButton,  gdouble value, struct _properties *properties)
 {
@@ -147,4 +151,5 @@ void on_scaleMonths_value_changed2(GtkScaleButton *scaleButton,  gdouble value, 
 
   if( properties->format != CALENDAR_OPTIONS3 && properties->format != CALENDAR_OPTIONS4 && properties->format != CALENDAR_CUSTOM )
     setup_tree_view(properties);
-}
+
+} // void on_scaleMonths_value_changed2(GtkScaleButton *scaleButton,  gdouble value, struct _properties *properties)

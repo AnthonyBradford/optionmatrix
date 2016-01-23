@@ -45,7 +45,8 @@ static int cmpstringp(struct elementListWithGroup *pp1, struct elementListWithGr
     return strcmp(pp1->elementName,pp2->elementName);
 
   return ret;
-}
+
+} // static int cmpstringp(struct elementListWithGroup *pp1, struct elementListWithGroup *pp2)
 
 char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, char *text2)
 {
@@ -81,7 +82,8 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
         found = true;
         break;
       }
-    }
+
+    } // for(index = 0; index < gtk_tree_model_iter_n_children(GTK_TREE_MODEL(store),iter); index++)
 
     if( found == false )
     {
@@ -115,7 +117,7 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
         }
 
       }
-    }
+    } // if( found == false )
     else if( found == true )
     {
       //g_print("found true\n");
@@ -132,7 +134,8 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
         gtk_tree_store_set(store, &past2, 0, text2, -1);
       }
     }
-  }
+
+  } // if( ret == 1  )
 
   if( !pathString[0] )
   {
@@ -150,10 +153,11 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
       g_print("Path failed for %s\n", text2);
     }
 
-  }
+  } // if( !pathString[0] )
 
   return &pathString[0];
-}
+
+} // char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, char *text2)
 
 static void is_model_sensitive(GtkCellLayout *cell_layout, GtkCellRenderer *cell, GtkTreeModel *tree_model, GtkTreeIter *iter, gpointer data)
 {
@@ -162,7 +166,8 @@ static void is_model_sensitive(GtkCellLayout *cell_layout, GtkCellRenderer *cell
   sensitive = !gtk_tree_model_iter_has_child (tree_model, iter);
 
   g_object_set(cell, "sensitive", sensitive, NULL);
-}
+
+} // static void is_model_sensitive()
 
 void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListWithGroup *array, const size_t number, treeToIndex& TreeToIndex, const int sort)
 {
@@ -213,7 +218,8 @@ void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListW
       {
         g_print("set_up_combobox_with_array_use_groups() ERROR: Format needs sort order\n");
       }
-    }
+
+    } // if( sort )
 
     //g_print("groupName = %s\n", array[i].groupName);
     t = recurse(array[i].groupName, store, 0, text, array[i].elementName);
@@ -227,7 +233,8 @@ void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListW
     {
       g_print("ERROR: No path for %s\n", array[i].elementName);
     }
-  }
+
+  } // for (i = 0; i < number; i++)
 
   //g_print("TreeToIndex.size() = %d\n", TreeToIndex.size());
 
@@ -262,7 +269,7 @@ void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListW
     g_object_unref( G_OBJECT(destroy_store) );
   }
 
-}
+} // void set_up_combobox_with_array_use_groups()
 
 void set_up_combobox_with_array(GtkWidget *combo, const struct elementList *array, const size_t number)
 {
@@ -305,7 +312,7 @@ void set_up_combobox_with_array(GtkWidget *combo, const struct elementList *arra
     g_object_unref( G_OBJECT(destroy_store) );
   }
 
-}
+} // void set_up_combobox_with_array(GtkWidget *combo, const struct elementList *array, const size_t number)
 
 void set_up_combobox_with_array2(GtkWidget *combo, const struct elementList *array, const size_t number)
 {
@@ -336,7 +343,8 @@ void set_up_combobox_with_array2(GtkWidget *combo, const struct elementList *arr
   gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combo), renderer, "text", 0, NULL);
 
   g_object_unref( G_OBJECT(store) );
-}
+
+} // void set_up_combobox_with_array2(GtkWidget *combo, const struct elementList *array, const size_t number)
 
 void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *properties)
 {
@@ -355,7 +363,8 @@ void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *pr
     }
     set_up_combobox_with_array2(properties->GtkInfo.comboboxOccurance, listOccurance, sizeof(listOccurance) / sizeof(listOccurance[0]));
   }
-}
+
+} // void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *properties)
 
 void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *properties)
 {
@@ -376,7 +385,8 @@ void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *
   //g_print("comboboxOCC PropButton properties->occurence_plus_offset = %d\n",properties->occurence_plus_offset);
   //g_print("comboboxOcc PropButton properties->occurence_day = %d\n",properties->occurence_day);
   //g_print("comboboxOcc PropButton properties->occurence_in_month-1 = %d\n",properties->occurence_in_month-1);
-}
+
+} // void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *properties)
 
 void on_comboboxStrikes_changed(GtkComboBox *combo, struct _properties *properties)
 {
@@ -419,7 +429,7 @@ void on_comboboxStrikes_changed(GtkComboBox *combo, struct _properties *properti
     gtk_widget_show(properties->GtkInfo.scaleStrikes);
   }
 
-}
+} // void on_comboboxStrikes_changed(GtkComboBox *combo, struct _properties *properties)
 
 void on_comboboxModel_changed_show(int modeltype, struct _properties *properties)
 {
@@ -767,7 +777,8 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
   {
     gtk_widget_show(properties->GtkInfo.checkbuttonRealTime);
   }
-}
+
+} // void on_comboboxModel_changed_show(int modeltype, struct _properties *properties)
 
 void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties)
 {
@@ -860,7 +871,8 @@ void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties
 
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(properties->GtkInfo.checkbuttonSpreads),0);
     gtk_widget_hide(properties->GtkInfo.checkbuttonSpreads);
-  }
+
+  } // if( option_algorithms[modeltype].perpetual )
 
   if( !option_algorithms[modeltype].supportRate )
   {
@@ -914,8 +926,9 @@ void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties
     properties->data.te2 = 0;
     properties->data.te3 = 0;
 
-  }
-}
+  } // if( !option_algorithms[modeltype].supportRealTime )
+
+} // void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties)
 
 void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties)
 {
@@ -1175,7 +1188,8 @@ void on_comboboxState_changed(GtkComboBox *combo, struct _properties *properties
   //g_print("on_comboboxState_changed()\n");
   properties->data.UsePound = gtk_combo_box_get_active(combo) + 1;
   //g_print("State = %d\n",properties->data.UsePound);
-}
+
+} // void on_comboboxState_changed(GtkComboBox *combo, struct _properties *properties)
 
 void on_comboboxCycle_changed(GtkComboBox *combo, struct _properties *properties)
 {
@@ -1186,7 +1200,8 @@ void on_comboboxCycle_changed(GtkComboBox *combo, struct _properties *properties
   expires(LEG2,30,properties->skipmonth2,properties);
 
   setup_tree_view(properties);
-}
+
+} // void on_comboboxCycle_changed(GtkComboBox *combo, struct _properties *properties)
 
 void on_comboboxCND_changed(GtkComboBox *combo, struct _properties *properties)
 {
@@ -1203,4 +1218,5 @@ void on_comboboxCND_changed(GtkComboBox *combo, struct _properties *properties)
   gtk_spin_button_set_value(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonDistVariance),1.0);
 
   updateStepping(properties);
-}
+
+} // void on_comboboxCND_changed(GtkComboBox *combo, struct _properties *properties)

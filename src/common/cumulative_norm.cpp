@@ -35,7 +35,7 @@
 double N(const double& z)
 {
    return cnd(z);
-}
+} // double N(const double& z)
 
 double cnd(const double d1)
 {
@@ -115,7 +115,8 @@ double cnd(const double d1)
     }
 
     return dd1;
-}
+
+} // double cnd(const double d1)
 
 /*
  * get area under the curve. calculate from mean to z-score. area under curve
@@ -175,7 +176,8 @@ double unit_normal_poly_approx6(const double z)
 
     /* should not reach */
     return 0;
-}
+
+} // double unit_normal_poly_approx6(const double z)
 
  /*
   * Calculate the cumulative normal distribution function using
@@ -219,7 +221,8 @@ double unit_normal_poly_approx4(const double z)
 
     /* should not reach */
     return 0;
-}
+
+} // double unit_normal_poly_approx4(const double z)
 
 double trapezoid_rule(const double a, const double b, int n, double (*fun) (double,double,double),const double parm2, const double parm3 )
 {
@@ -246,7 +249,8 @@ double trapezoid_rule(const double a, const double b, int n, double (*fun) (doub
     cum = cum * (b-a)/(2*n);  
     
     return cum;
-}
+
+} // double trapezoid_rule()
 
 /*
  * Approximate integration by breaking into partitions of parabolas and
@@ -286,7 +290,8 @@ double simpsons_rule(const double a, const double b, int n, double (*fun) (doubl
     cum = cum * (b-a)/(3*n);
 
     return cum;
-}
+
+} // double simpsons_rule()
 
 /*
  * The following Romberg's Method is based upon
@@ -331,7 +336,8 @@ double rombergs_method(const double a, const double b, int n, double (*fun) (dou
         }
 
         return I[j%2][i];
-}
+
+} // double rombergs_method()
 
 double unit_normal_rat_7(const double z)
 {
@@ -371,7 +377,8 @@ double unit_normal_rat_7(const double z)
 
     /* should not reach */
     return 0;
-}
+
+} // double unit_normal_rat_7(const double z)
 
 double unit_normal_rat_4(const double z)
 {
@@ -407,7 +414,8 @@ double unit_normal_rat_4(const double z)
 
     /* should not reach */
     return 0;
-}
+
+} // double unit_normal_rat_4(const double z)
 
 double unit_normal_hart(const double x)
 {
@@ -468,9 +476,11 @@ double unit_normal_hart(const double x)
 
   /* should not reach */
   return 0;
-}
+
+} // double unit_normal_hart(const double x)
 
 double normd(const double z)
 {
   return ( ( 1.0 / sqrt( 2 * M_PI ) ) * exp ( - ( z * z ) / 2 ) );
-}
+
+} // double normd(const double z)

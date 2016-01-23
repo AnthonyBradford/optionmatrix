@@ -40,7 +40,8 @@ void quit(int x)
     printf("\n\n\n\n\n%s\n\n\n\n\n\n\n\n\n", license);
     
     exit(EXIT_SUCCESS);
-}
+
+} // void quit(int x)
 
 void choose_options(void)
 {
@@ -81,7 +82,8 @@ void choose_options(void)
 
          printw("Feel free to resize the termial screen larger. Program scales to size.\n");
          printw("Choose option [0-9,dofacClq]: ");
-}
+
+} // void choose_options(void)
 
 void welcome_screen()
 {
@@ -148,7 +150,8 @@ void welcome_screen()
     noecho();
     getch();
     echo();
-}
+
+} // void welcome_screen()
 
 void simple_help(const struct _properties *properties)
 {
@@ -191,21 +194,24 @@ void simple_help(const struct _properties *properties)
   noecho();
   getch();
   echo();
-}
+
+} // void simple_help(const struct _properties *properties)
 
 void calendar_date_message(void)
 {
   move(4,0);
   printw("Expirations set to calendar dates");
   clrtoeol();
-}
+
+} // void calendar_date_message(void)
 
 void decimal_date_message(void)
 {
   move(4,0);
   printw("Expirations set to decimal date");
   clrtoeol();
-}
+
+} // void decimal_date_message(void)
 
 void one_time_banner_message(void)
 {
@@ -226,8 +232,10 @@ void one_time_banner_message(void)
     printw(" to cycle screen formats");
 
     clrtoeol();
-  }
-}
+
+  } // if( counter++ == 0 )
+
+} // void one_time_banner_message(void)
 
 int SetToFuture(struct _properties *properties)
 {
@@ -241,7 +249,8 @@ int SetToFuture(struct _properties *properties)
 
     // no future we default to the zero enum model...
     return 0;
-}
+
+} // int SetToFuture(struct _properties *properties)
 
 int SetToOption(struct _properties *properties)
 {
@@ -255,7 +264,8 @@ int SetToOption(struct _properties *properties)
 
     // no future we default to the zero enum model...
     return 0;
-}
+
+} // int SetToOption(struct _properties *properties)
 
 int DoWeHaveFutures(const struct _properties *properties)
 {
@@ -268,7 +278,8 @@ int DoWeHaveFutures(const struct _properties *properties)
     }
 
     return 0;
-}
+
+} // int DoWeHaveFutures(const struct _properties *properties)
 
 int DoWeHaveOptions(const struct _properties *properties)
 {
@@ -281,4 +292,5 @@ int DoWeHaveOptions(const struct _properties *properties)
     }
 
     return 0;
-}
+
+} // int DoWeHaveOptions(const struct _properties *properties)

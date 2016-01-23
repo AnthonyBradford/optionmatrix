@@ -1099,4 +1099,5 @@ int props(struct _properties *properties,struct _properties *future_properties)
     {
          return 0;
     }
-}
+
+} // int props(struct _properties *properties,struct _properties *future_properties)

@@ -85,7 +85,8 @@ void InitPaint(struct _properties *properties)
   gtk_tree_view_expand_all(GTK_TREE_VIEW (properties->GtkInfo.treeview2));
 
   return;
-}
+
+} // void InitPaint(struct _properties *properties)
 
 gboolean ListTimer(struct _properties *properties)
 {
@@ -153,7 +154,8 @@ gboolean ListTimer(struct _properties *properties)
   }
 
   return GTK_IS_DIALOG(properties->GtkInfo.dialog);
-}
+
+} // gboolean ListTimer(struct _properties *properties)
 
 void AddToVector(struct _properties *properties)
 {
@@ -229,7 +231,8 @@ void AddToVector(struct _properties *properties)
   }
 
   pthread_mutex_unlock(&properties->data.mutexCashflow);
-}
+
+} // void AddToVector(struct _properties *properties)
 
 void on_buttonDividends_clicked( GtkWidget *widget, struct _properties *properties )
 {
@@ -240,7 +243,8 @@ void on_buttonDividends_clicked( GtkWidget *widget, struct _properties *properti
   properties->data.generic_times_adjusted = &properties->data.times_adjusted;
 
   generic_process_button(properties);
-}
+
+} // void on_buttonDividends_clicked( GtkWidget *widget, struct _properties *properties )
 
 void on_buttonCoupons_clicked( GtkWidget *widget, struct _properties *properties )
 {
@@ -251,7 +255,8 @@ void on_buttonCoupons_clicked( GtkWidget *widget, struct _properties *properties
   properties->data.generic_times_adjusted = &properties->data.coupon_times_adjusted;
 
   generic_process_button(properties);
-}
+
+} // void on_buttonCoupons_clicked( GtkWidget *widget, struct _properties *properties )
 
 void on_buttonPrincipal_clicked( GtkWidget *widget, struct _properties *properties )
 {
@@ -262,7 +267,8 @@ void on_buttonPrincipal_clicked( GtkWidget *widget, struct _properties *properti
   properties->data.generic_times_adjusted = &properties->data.principal_times_adjusted;
 
   generic_process_button(properties);
-}
+
+} // void on_buttonPrincipal_clicked( GtkWidget *widget, struct _properties *properties )
 
 void generic_process_button(struct _properties *properties )
 {
@@ -368,7 +374,7 @@ void generic_process_button(struct _properties *properties )
   if( properties->realTimeBleeding )
     g_source_remove(properties->GtkInfo.gListTimer);
 
-}
+} // void generic_process_button(struct _properties *properties )
 
 void add_cashflow3(GtkButton *add, struct _properties *properties)
 {
@@ -561,7 +567,8 @@ void add_cashflow3(GtkButton *add, struct _properties *properties)
 
   if( properties->realTimeBleeding )
     AddToVector(properties);
-}
+
+} // void add_cashflow3(GtkButton *add, struct _properties *properties)
 
 void add_cashflow4(GtkButton *add, struct _properties *properties)
 {
@@ -725,7 +732,8 @@ void add_cashflow4(GtkButton *add, struct _properties *properties)
 
   if( properties->realTimeBleeding )
     AddToVector(properties);
-}
+
+} // void add_cashflow4(GtkButton *add, struct _properties *properties)
 
 void remove_row(GtkTreeRowReference *ref, struct _properties *properties)
 {
@@ -739,7 +747,7 @@ void remove_row(GtkTreeRowReference *ref, struct _properties *properties)
 
   gtk_tree_store_remove(GTK_TREE_STORE (properties->GtkInfo.model), &iter);    
 
-}
+} // void remove_row(GtkTreeRowReference *ref, struct _properties *properties)
 
 void remove_cashflows(GtkButton *remove, struct _properties *properties)
 {
@@ -778,7 +786,7 @@ void remove_cashflows(GtkButton *remove, struct _properties *properties)
     properties->GtkInfo.gListTimer = g_timeout_add(1000, (GSourceFunc) ListTimer, (gpointer) properties);
   }
 
-}
+} // void remove_cashflows(GtkButton *remove, struct _properties *properties)
 
 void setup_tree_view3(GtkWidget *treeview)
 {
@@ -800,7 +808,7 @@ void setup_tree_view3(GtkWidget *treeview)
                          ("Actual Date", renderer, "text", X3, NULL);
   gtk_tree_view_append_column( GTK_TREE_VIEW (treeview), column );
 
-}
+} // void setup_tree_view3(GtkWidget *treeview)
 
 void setup_tree_view4(GtkWidget *treeview)
 {
@@ -817,4 +825,4 @@ void setup_tree_view4(GtkWidget *treeview)
                          ("Actual Date", renderer, "text", X2, NULL);
   gtk_tree_view_append_column( GTK_TREE_VIEW (treeview), column );
 
-}
+} // void setup_tree_view4(GtkWidget *treeview)

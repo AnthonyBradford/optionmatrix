@@ -69,7 +69,8 @@ void text_export(struct _properties *properties, char *dataExport)
   
   gtk_container_add (GTK_CONTAINER (window), scrolled_win);
   gtk_widget_show_all (window);
-}
+
+} // void text_export(struct _properties *properties, char *dataExport)
 
 void setup_tree_view(struct _properties *properties)
 {
@@ -670,4 +671,5 @@ void setup_tree_view(struct _properties *properties)
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
   }
-}
+
+} // void setup_tree_view(struct _properties *properties)
