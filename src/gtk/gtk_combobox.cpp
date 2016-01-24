@@ -108,8 +108,11 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
         if( path )
         {
           //g_print("gtk_tree_path_to_string() = %s\n",gtk_tree_path_to_string(gtk_tree_model_get_path(GTK_TREE_MODEL(store),&past2)));
-          strcpy(pathString,gtk_tree_path_to_string(path));
+          gchar * pathToString = gtk_tree_path_to_string(path);
+          strcpy(pathString,pathToString);
+          g_free(pathToString);
           gtk_tree_path_free(path);
+          path = 0;
 
         } else
         {
@@ -145,7 +148,9 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
     if( path )
     {
       //g_print("gtk_tree_path_to_string() = %s\n",gtk_tree_path_to_string(gtk_tree_model_get_path(GTK_TREE_MODEL(store),&past2)));
-      strcpy(pathString,gtk_tree_path_to_string(path));
+      gchar * pathToString = gtk_tree_path_to_string(path);
+      strcpy(pathString,pathToString);
+      g_free(pathToString);
       gtk_tree_path_free(path);
 
     } else
@@ -227,7 +232,6 @@ void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListW
     if( t )
     {
       //g_print("t = %s for %s\n", t, array[i].elementName);
-      //TreeToIndex[t] = i;
       TreeToIndex[t] = array[i].index;
     } else
     {
@@ -258,15 +262,14 @@ void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListW
   path = gtk_tree_path_new_from_indices(0, 0, -1);
   gtk_tree_model_get_iter(GTK_TREE_MODEL(store), &iter, path);
   gtk_combo_box_set_active_iter(GTK_COMBO_BOX (combo), &iter);
-
   gtk_tree_path_free(path);
 
   if( destroy_store )
   {
     g_print("Executing: gtk_tree_store_clear(destroy_store)\n");
     gtk_tree_store_clear(GTK_TREE_STORE(destroy_store));
-
     g_object_unref( G_OBJECT(destroy_store) );
+    destroy_store = 0;
   }
 
 } // void set_up_combobox_with_array_use_groups()
@@ -310,6 +313,7 @@ void set_up_combobox_with_array(GtkWidget *combo, const struct elementList *arra
     g_print("Executing: gtk_list_store_clear(destroy)\n");
     gtk_list_store_clear( GTK_LIST_STORE(destroy_store) );
     g_object_unref( G_OBJECT(destroy_store) );
+    destroy_store = 0;
   }
 
 } // void set_up_combobox_with_array(GtkWidget *combo, const struct elementList *array, const size_t number)

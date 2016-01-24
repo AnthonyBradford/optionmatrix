@@ -119,6 +119,10 @@ gdb src/common/checks
 gdb src/gtk/optionmatrix
 gdb src/curses/optionmatrix_console
 
+ddd src/common/checks
+ddd src/gtk/optionmatrix
+ddd src/curses/optionmatrix_console
+
 **** Memcheck
 valgrind -v --leak-check=yes --track-origins=yes src/common/checks
 valgrind -v --leak-check=yes --track-origins=yes src/gtk/optionmatrix
