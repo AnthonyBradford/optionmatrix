@@ -1,0 +1,2 @@
+In model QUANTLIB_BLACKSCHOLES_EUROPEAN europeanOption.elasticity() is
+computed and saved but not displayed in curses or GTK+.

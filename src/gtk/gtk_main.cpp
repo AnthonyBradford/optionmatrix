@@ -888,14 +888,6 @@ int main(int argc, char *argv[])
 
   set_up_combobox_with_array_use_groups(properties.GtkInfo.comboboxModel, properties.listModelsForGroups, num_models, properties.TreeToIndex,1);
 
-  properties.TreeToIndex.clear();
-
-  if( properties.listModelsForGroups )
-  {
-    delete [] properties.listModelsForGroups;
-    properties.listModelsForGroups = 0;
-  }
-
   ////////////////////////////////////////////////////////////////////////
 
   expires(LEG1,30,properties.skipmonth,&properties);
@@ -990,6 +982,14 @@ int main(int argc, char *argv[])
   g_object_unref(G_OBJECT (properties.GtkInfo.builder));
 
   gtk_main();
+
+  properties.TreeToIndex.clear();
+
+  if( properties.listModelsForGroups )
+  {
+    delete [] properties.listModelsForGroups;
+    properties.listModelsForGroups = 0;
+  }
 
   exit(EXIT_SUCCESS);
 
