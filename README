@@ -101,7 +101,7 @@ make dist
 make dist ; make distcheck
 
 ****To make zip distribution
-make distclean ; ./configure ; make zip
+make distclean ; ./configure ; rm *.zip ; make zip
 
 ****Install and uninstall check. The find command should yield zero files. If files are found likely problem with "uninstall-local:" in Makefile.am
 sudo make install

@@ -406,24 +406,23 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
 
   int indexModelsWithPricingIssues = 0;
 
-  // EURODIVIDENDS has a mutex lock problem on Fedora 32 bit but not Ubuntu...
   const int modelsWithPricingIssues[] = {
     
 #ifdef METAOPTIONS
-    LOOKBARRIER,
-    PARTIALTIMEBARRIER,
-    PARTIALFIXEDLB,
-    PARTIALFLOATLB,
-    PARTIALFLOATLB2,
-    EXTENDIBLEWRITER,
-    CALLSONOPTIONS,
-    PUTSONOPTIONS,
-    EXCHANGEEXCHANGEOPTION,
-    COMPLEXCHOOSER,
+    LOOKBARRIER,            // Aborted (core dumped)
+    PARTIALTIMEBARRIER,     // Aborted (core dumped)
+    PARTIALFIXEDLB,         // Aborted (core dumped)
+    PARTIALFLOATLB,         // Aborted (core dumped)
+    PARTIALFLOATLB2,        // Aborted (core dumped)
+    EXTENDIBLEWRITER,       // Aborted (core dumped)
+    CALLSONOPTIONS,         // Aborted (core dumped)
+    PUTSONOPTIONS,          // Aborted (core dumped)
+    EXCHANGEEXCHANGEOPTION, // Aborted (core dumped)
+    COMPLEXCHOOSER,         // Aborted (core dumped)
 #endif // METAOPTIONS
 
 #ifdef FINRECIPES
-    AMDISDIVSBINOMIAL, // throws Exception caught: std::bad_alloc
+    AMDISDIVSBINOMIAL,      // throws Exception caught: std::bad_alloc
 #endif // FINRECIPES
 
 #ifdef HAVE_QL_QUANTLIB_HPP
