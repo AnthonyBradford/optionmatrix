@@ -127,6 +127,14 @@ double option_price_call_european_binomial_single_period( const double& S, const
 double option_price_call_european_binomial_multi_period_given_ud( const double& S, const double& K, const double& r,
 								  const double& u, const double& d, const int& no_periods);
 
+// Financial Recipes in C++ forgot to prototype this function - AGB
+double option_price_delta_generic_binomial(const double& S,
+                                           const double& K,  
+                                           double generic_payoff(const double& S, const double& K), 
+                                           const double& r,  
+                                           const double& sigma,
+                                           const double& t, 
+                                           const int& no_steps);
 // multiple periode binomial 
 vector< vector<double> > binomial_tree(const double& S0, const double& u,const double& d, 
 				       const int& no_steps);

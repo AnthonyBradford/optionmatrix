@@ -97,7 +97,7 @@
  *
  * Use the gcc flag -Wshadow to locate scoping problems
  */
-static const double e = 2.7182818284590452354;
+//static const double e = 2.7182818284590452354;
 static const double pi = 3.14159265358979323846;	
 static const double sqrt2pi = 2.50662827463100024161;
 static const double e_div_sqrt2pi = 1.08443755141922748564;

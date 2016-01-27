@@ -1,3 +1,7 @@
+2016-01-27  Anthony Bradford  <info@anthonybradford.com>
+	* Added missing prototype for
+	  option_price_delta_generic_binomial()
+
 2012-06-10  Anthony Bradford  <info@anthonybradford.com>
 	* heston_price.cc (double heston_Pj) fixed memory leak by
 		adding gsl_integration_workspace_free(w);

@@ -154,15 +154,6 @@ extern const struct _int_to_name QuantLibnamelistamericanoreuropean[];
 extern const struct _int_to_function funlistcall[];
 extern const struct _int_to_function funlistput[];
 
-// Financial Recipes in C++ forgot to prototype this function
-double option_price_delta_generic_binomial(const double& S,
-                                           const double& K,  
-                                           double generic_payoff(const double& S, const double& K), 
-                                           const double& r,  
-                                           const double& sigma,
-                                           const double& t, 
-                                           const int& no_steps);
-
 extern const struct _int_to_name namefunlist[];
 extern const struct _int_to_name namefunlist2[];
 
