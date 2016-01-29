@@ -27,6 +27,21 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "../../../config.h"
+
+#ifdef HAVE_MATH_H
+# include <math.h>
+#else
+# error Sorry, this code requires <math.h>
+#endif
+
+extern "C"
+{
+  double cnd(double d1);
+}
+
+extern double cnd(const double d1);
+extern double normd(const double z);
 extern double black_scholes_call(const double, const double, const double, const double, const double, double *);
 extern double black_scholes_put(const double, const double, const double, const double, const double, double *);
 extern double futures_price(const double spot,const double rate,const double dividend, const double time);

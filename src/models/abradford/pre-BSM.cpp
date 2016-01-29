@@ -29,9 +29,6 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "../../common/defs.h"
-#include "../../common/extern.h" /* cnd() prototype in here */
-
 #include "basicmodels.h"
 
 // Louis Bachelier 1870 – 1946...

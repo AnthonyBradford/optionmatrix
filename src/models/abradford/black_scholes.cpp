@@ -29,9 +29,6 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "../../common/defs.h"
-#include "../../common/extern.h" /* cnd() prototype in here */
-
 #include "basicmodels.h"
 
 double black_scholes_call(const double stockprice, const double strike, const double rate, const double t, const double d, double *delta)
