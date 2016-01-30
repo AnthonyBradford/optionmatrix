@@ -261,6 +261,10 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
     "Seth Pinsky",
 #endif
 
+#if defined(HAVE_QL_QUANTLIB_HPP) && defined(QUANTLIB)
+    "QuantLib",
+#endif
+
     NULL
   };
 

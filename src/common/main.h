@@ -4046,7 +4046,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, // supportRealTime    
                                        1, // filterNegativePrices
                                        0, 1, 0, 0, 0, 0,
-                                       1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 1, "dividend", 0, "",
                                        "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
                                        0, 0, "", 0, 0,
@@ -4068,7 +4068,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, // supportRealTime    
                                        1, // filterNegativePrices
                                        0, 1, 0, 0, 0, 0,
-                                       1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 2, "dividend", 0, "",
                                        "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
                                        0, 0, "", 0, 0,
