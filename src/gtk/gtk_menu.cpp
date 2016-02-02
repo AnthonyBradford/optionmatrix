@@ -31,14 +31,6 @@
 
 #include "gtk_main.h"
 
-#ifdef WIN32
-#include <stdarg.h>
-#include <windef.h>
-#include <wingdi.h>
-#include <winuser.h>
-#include <Shellapi.h>
-#endif
-
 void on_menu_quit_activate(GtkWidget *widget, const struct _properties *properties)
 {
   //g_print ("on_menu_quit_activate():\n");
@@ -51,13 +43,14 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
 
 #ifdef WIN32
   
-  int ret;
-  ret = (int) ShellExecute( NULL, "open", PACKAGE_URL, NULL, NULL, SW_SHOWNORMAL );
+  g_print("WIN32\n");
+  char openURL[1024];
+  snprintf(openURL,sizeof(openURL),"explorer %s", PACKAGE_URL);
+  system(openURL);
   
 #elif __APPLE__
   
   g_print("__APPLE__ %s\n", PACKAGE_URL);
-
   char openURL[1024];
   snprintf(openURL,sizeof(openURL),"open %s", PACKAGE_URL);
   system(openURL);
@@ -65,7 +58,6 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
 #elif __CYGWIN__
   
   g_print("__CYGWIN__\n");
-
   char openURL[1024];
   snprintf(openURL,sizeof(openURL),"explorer %s", PACKAGE_URL);
   system(openURL);
@@ -99,9 +91,9 @@ void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *prop
 
 #ifdef WIN32
   
-  int ret;
-  snprintf(packageBugreport,sizeof(packageBugreport),"mailto:%s",PACKAGE_BUGREPORT);
-  ret = (int) ShellExecute( NULL, "open", packageBugreport, NULL, NULL, SW_SHOWNORMAL );
+  g_print("WIN32\n");
+  snprintf(packageBugreport,sizeof(packageBugreport),"explorer mailto:%s",PACKAGE_BUGREPORT);
+  system(packageBugreport);
   
 #elif __APPLE__
   
