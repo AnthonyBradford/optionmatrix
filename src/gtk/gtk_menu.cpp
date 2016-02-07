@@ -324,10 +324,15 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
   // Next line places 1 images in the about dialog
   //pngTimer(properties);
 
+  guint ret = 0;
   // Next line rotates the images in the about dialog, images are not the same size so the dialog jumps around
-  g_timeout_add(4000, (GSourceFunc) pngTimer, (gpointer) properties);
+  ret = g_timeout_add(4000, (GSourceFunc) pngTimer, (gpointer) properties);
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogAbout));
+
+  if( ret )
+    g_source_remove(ret);
+
   gtk_widget_destroy(properties->GtkInfo.dialogAbout);
 
 } // void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
