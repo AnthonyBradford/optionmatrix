@@ -128,7 +128,7 @@ valgrind -v --leak-check=yes --track-origins=yes src/common/checks
 valgrind -v --leak-check=yes --track-origins=yes src/gtk/optionmatrix
 valgrind -v --leak-check=yes --track-origins=yes src/curses/optionmatrix_console
 
-**** Windows MSYS2 Compilation
+**** Windows MSYS2 compilation
 In src/gtk/Makefile add -mwindows to LDFLAGS
 LDFLAGS = -mwindows
 to remove terminal from GTK+ application
