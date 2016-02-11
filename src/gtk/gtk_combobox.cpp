@@ -437,6 +437,8 @@ void on_comboboxStrikes_changed(GtkComboBox *combo, struct _properties *properti
 
 void on_comboboxModel_changed_show(int modeltype, struct _properties *properties)
 {
+  g_print("on_comboboxModel_changed_show()\n");
+
   char t1Des[1000] = { 0 };
   snprintf(t1Des,sizeof(t1Des),"Time to %s", option_algorithms[modeltype].supportTime1des);
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.label1), t1Des);
@@ -473,6 +475,8 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
 
   if( option_algorithms[modeltype].supportCND )
   {
+    g_print("supportCND\n");
+
     if( integration_method[properties->integration_type].method )
     {
       properties->integration_type = 0;
@@ -786,6 +790,8 @@ void on_comboboxModel_changed_show(int modeltype, struct _properties *properties
 
 void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties)
 {
+  g_print("on_comboboxModel_changed_hide()\n");
+
   properties->strikestoogle = 0;
   gtk_combo_box_set_active(GTK_COMBO_BOX(properties->GtkInfo.comboboxStrikes), 0);
 
@@ -837,6 +843,8 @@ void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties
 
   if( !option_algorithms[modeltype].supportCND )
   {
+    g_print("!supportCND\n");
+
     gtk_widget_hide(properties->GtkInfo.labelCND);
     gtk_widget_hide(properties->GtkInfo.comboboxCND);
   }
@@ -1209,6 +1217,12 @@ void on_comboboxCycle_changed(GtkComboBox *combo, struct _properties *properties
 
 void on_comboboxCND_changed(GtkComboBox *combo, struct _properties *properties)
 {
+  if( !option_algorithms[properties->modeltype].supportCND )
+  {
+    g_print("Option model does not support CND\n");
+    return;
+  }
+
   g_print("on_comboboxCND_changed() to ");
    
   properties->integration_type = gtk_combo_box_get_active(combo);

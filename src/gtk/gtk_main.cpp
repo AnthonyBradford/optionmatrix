@@ -349,6 +349,8 @@ void updatePrecision(int modeltype, struct _properties *properties)
 
 void updateStepping(struct _properties *properties)
 {
+  g_print("updateStepping()\n");
+
   if( option_algorithms[properties->modeltype].supportSteps )
   {
     //g_print("supportSteps\n");
@@ -378,8 +380,12 @@ void updateStepping(struct _properties *properties)
     
     gtk_widget_show(properties->GtkInfo.spinbuttonSteps);
     gtk_widget_show(properties->GtkInfo.labelSteps);
-    gtk_widget_show(properties->GtkInfo.comboboxCND);
-    gtk_widget_show(properties->GtkInfo.labelCND);
+
+    if( option_algorithms[properties->modeltype].supportCND )
+    {
+        gtk_widget_show(properties->GtkInfo.comboboxCND);
+        gtk_widget_show(properties->GtkInfo.labelCND);
+    }
 
     if( !option_algorithms[properties->modeltype].failsOnMeanVarianceChanges )
     {
@@ -399,8 +405,13 @@ void updateStepping(struct _properties *properties)
     gtk_widget_hide(properties->GtkInfo.labelDistVariance);
     gtk_widget_hide(properties->GtkInfo.spinbuttonDistMean);
     gtk_widget_hide(properties->GtkInfo.spinbuttonDistVariance);
-    gtk_widget_show(properties->GtkInfo.comboboxCND);
-    gtk_widget_show(properties->GtkInfo.labelCND);
+
+    if( option_algorithms[properties->modeltype].supportCND )
+    {
+      g_print("show comboboxCND\n");
+      gtk_widget_show(properties->GtkInfo.comboboxCND);
+      gtk_widget_show(properties->GtkInfo.labelCND);
+    }
   }
 
 } // void updateStepping(struct _properties *properties)
@@ -976,6 +987,9 @@ int main(int argc, char *argv[])
   gtk_widget_hide(properties.GtkInfo.menu_source_export);
   gtk_widget_hide(properties.GtkInfo.buttonCoupons);
   gtk_widget_hide(properties.GtkInfo.buttonPrincipal);
+
+  on_comboboxModel_changed_show(0, &properties);
+  on_comboboxModel_changed_hide(0, &properties);
 
   checkForSourceCode(&properties);
 
