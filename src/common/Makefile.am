@@ -32,7 +32,8 @@ sanity.cpp\
 termstructure.cpp\
 time.cpp\
 tickers.cpp\
-QuantLib.h
+QuantLib.h\
+environment.h
 
 liboptionmatrix_a_CFLAGS=$(FM) -O3 -std=c99 \
 	-Werror -Wshadow -W -Wall -pedantic -DNDEBUG -Wmissing-prototypes

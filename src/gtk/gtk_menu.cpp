@@ -300,7 +300,17 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 
   gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), PACKAGE_NAME);
 
-  gtk_about_dialog_set_version(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), PACKAGE_VERSION);
+  char version[1024];
+
+#if defined(ENVIRONMENT32)
+  snprintf(version, sizeof(version), "%s 32 bit", PACKAGE_VERSION);
+#elif defined(ENVIRONMENT64)
+  snprintf(version, sizeof(version), "%s 64 bit", PACKAGE_VERSION);
+#else
+  snprintf(version, sizeof(version), "%s", PACKAGE_VERSION);
+#endif
+
+  gtk_about_dialog_set_version(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), version);
 
   char aboutDialog[1024];
   snprintf(aboutDialog,sizeof(aboutDialog),"The Ultimate Options Calculator\n%s", PACKAGE_BUGREPORT);

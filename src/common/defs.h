@@ -37,6 +37,8 @@
 #include <string>
 #include <vector>
 
+#include "environment.h"
+
 /* models to use. comment out to exclude */
 #define ABRADFORD
 #define SPINSKY
