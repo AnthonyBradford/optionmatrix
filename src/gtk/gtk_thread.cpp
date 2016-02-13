@@ -483,7 +483,7 @@ gboolean calculate_options(struct _properties *properties)
     {
       snprintf(description,sizeof(description),"UIRR");
       timeDecimal[0] = dateTime[0] = 0; 
-      strcpy(value,"True");
+      strncpy(value, "True", sizeof(value));
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 

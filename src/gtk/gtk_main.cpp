@@ -871,7 +871,7 @@ int main(int argc, char *argv[])
   struct elementList listCND[num_integration];
   for(index = 0; index < num_integration; index++)
   {
-    strcpy(listCND[index].elementName,integration_method[index].des);
+    strncpy(listCND[index].elementName,integration_method[index].des,sizeof(listCND[index].elementName));
   }
   set_up_combobox_with_array2(properties.GtkInfo.comboboxCND, listCND, num_integration);
 
@@ -882,7 +882,7 @@ int main(int argc, char *argv[])
   for(index = 0; index < num_strike_control; index++)
   {
     g_print("%d  des = %s\n", index, strike_control[index].des);
-    strcpy(listStrikeControl[index].elementName,strike_control[index].des);
+    strncpy(listStrikeControl[index].elementName,strike_control[index].des,sizeof(listStrikeControl[index].elementName));
   }
   set_up_combobox_with_array2(properties.GtkInfo.comboboxStrikes, listStrikeControl, num_strike_control);
 

@@ -109,7 +109,7 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
         {
           //g_print("gtk_tree_path_to_string() = %s\n",gtk_tree_path_to_string(gtk_tree_model_get_path(GTK_TREE_MODEL(store),&past2)));
           gchar * pathToString = gtk_tree_path_to_string(path);
-          strcpy(pathString,pathToString);
+          strncpy(pathString,pathToString,sizeof(pathString));
           g_free(pathToString);
           gtk_tree_path_free(path);
           path = 0;
@@ -149,7 +149,7 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
     {
       //g_print("gtk_tree_path_to_string() = %s\n",gtk_tree_path_to_string(gtk_tree_model_get_path(GTK_TREE_MODEL(store),&past2)));
       gchar * pathToString = gtk_tree_path_to_string(path);
-      strcpy(pathString,pathToString);
+      strncpy(pathString,pathToString,sizeof(pathString));
       g_free(pathToString);
       gtk_tree_path_free(path);
 
@@ -214,8 +214,8 @@ void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListW
         //g_print("groupName = %s\n", array[i].groupName);
         p = &(array[i].groupName[0]);
         p += strlen(first)+1;
-        strcpy(temp,&p[0]);
-        strcpy(array[i].groupName,temp);
+        strncpy(temp,&p[0],sizeof(temp));
+        strncpy(array[i].groupName,temp,sizeof(array[i].groupName));
 
         //g_print("array[i].groupName = %s\n",array[i].groupName);
 
