@@ -80,6 +80,8 @@ gboolean calculate_options(struct _properties *properties)
   gchar textPutTheta[200] = { 0 };
   gchar textCallRho[200] = { 0 };
   gchar textPutRho[200] = { 0 };
+  gchar textCallElasticity[200] = { 0 };
+  gchar textPutElasticity[200] = { 0 };
   gchar textMonth[200] = { 0 };
 
   double callLeg2[200] = { 0 };
@@ -832,14 +834,14 @@ gboolean calculate_options(struct _properties *properties)
            snprintf(&textPut[0][0],sizeof(textPut[0]),"%.*f",properties->precision,optiondata.put);
          }
 
-         process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
+         process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0], &textCallElasticity[0], &textPutElasticity[0]);
 
          gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
-         gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, textPrice, X2, textStrike, X3, textCall[0], X4, textPut[0], X5, textCallDelta, X6, textPutDelta, X7, textGamma, X8, textVega, X9, textCallTheta, X10, textPutTheta, X11, textCallRho, X12, textPutRho, -1);
+         gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, textPrice, X2, textStrike, X3, textCall[0], X4, textPut[0], X5, textCallDelta, X6, textPutDelta, X7, textGamma, X8, textVega, X9, textCallTheta, X10, textPutTheta, X11, textCallRho, X12, textPutRho, X13, textCallElasticity, X14, textPutElasticity, -1);
 
          if( properties->textExport == true )
          {
-           snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", textPrice, textStrike, textCall[0], textPut[0], textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho);
+           snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s %s %s\n", textPrice, textStrike, textCall[0], textPut[0], textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textCallElasticity, textPutElasticity);
            strcat(dataExport,lineData);
          }
 
@@ -963,7 +965,7 @@ gboolean calculate_options(struct _properties *properties)
       char textDaysToExpr[200] = { 0 };
       snprintf(textDaysToExpr,sizeof(textDaysToExpr),"%.*f",properties->precision,(365*properties->data.t[0]));
 
-      process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
+      process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0], &textCallElasticity[0], &textPutElasticity[0]);
 
       if ( option_algorithms[properties->modeltype].supportStrikes )
         snprintf(textLegacyCall,sizeof(textLegacyCall),"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
@@ -1604,7 +1606,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           char textDaysToExpr[200] = { 0 };
           snprintf(textDaysToExpr,sizeof(textDaysToExpr),"%.*f",properties->precision,(365*properties->data.t[0]));
 
-          process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
+          process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0], &textCallElasticity[0], &textPutElasticity[0]);
 
           if ( option_algorithms[properties->modeltype].supportStrikes )
             snprintf(textLegacyCall,sizeof(textLegacyCall),"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
@@ -1922,7 +1924,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           char textDaysToExpr[200] = { 0 };
           snprintf(textDaysToExpr,sizeof(textDaysToExpr),"%.*f",properties->precision,(365*properties->data.t[0]));
 
-          process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0]);
+          process_greeks(properties, &properties->data, &textCallDelta[0], &textPutDelta[0], &textGamma[0], &textVega[0], &textCallTheta[0], &textPutTheta[0], &textCallRho[0], &textPutRho[0], &textCallElasticity[0], &textPutElasticity[0]);
 
           if ( option_algorithms[properties->modeltype].supportStrikes )
             snprintf(textLegacyCall,sizeof(textLegacyCall),"%s%c",option_calls[decimal_date_to_int_month(properties->data.t[0])],(char) strike_price_codes(i));
@@ -2026,7 +2028,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
 } // gboolean calculate_options(struct _properties *properties)
 
-void process_greeks(struct _properties *properties, struct _data *dat, char *textCallDelta, char *textPutDelta, char *textGamma, char *textVega, char *textCallTheta, char *textPutTheta, char *textCallRho, char *textPutRho)
+void process_greeks(struct _properties *properties, struct _data *dat, char *textCallDelta, char *textPutDelta, char *textGamma, char *textVega, char *textCallTheta, char *textPutTheta, char *textCallRho, char *textPutRho, char *textCallElasticity, char *textPutElasticity)
 {
   struct _data optiondata;
 
@@ -2124,6 +2126,22 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
       optiondata = option_put_rho(&properties->data);
     }
     snprintf(textPutRho,200,"%.*f", properties->precision,optiondata.putrho);
+  }
+
+  if( option_algorithms[properties->modeltype].produceCallElasticity )
+  {
+    if( !isnan(dat->callElasticity) )
+    {
+      snprintf(textCallElasticity,200,"%.*f", properties->precision,dat->callElasticity);
+    }
+  }
+
+  if( option_algorithms[properties->modeltype].producePutElasticity )
+  {
+    if( !isnan(dat->putElasticity) )
+    {
+      snprintf(textPutElasticity,200,"%.*f", properties->precision,dat->putElasticity);
+    }
   }
 
 } // void process_greeks()

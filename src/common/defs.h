@@ -729,6 +729,8 @@ struct option_algorithm {
   bool producePutTheta;
   bool produceCallRho;
   bool producePutRho;
+  bool produceCallElasticity;
+  bool producePutElasticity;
   bool failsOnMeanVarianceChanges;
 
   /*

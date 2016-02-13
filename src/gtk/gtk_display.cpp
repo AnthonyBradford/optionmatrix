@@ -255,7 +255,7 @@ void setup_tree_view(struct _properties *properties)
 
   if( properties->decimalorcalendar == DECIMALS )
   {
-    properties->GtkInfo.liststore1 = gtk_list_store_new (12, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING );
+    properties->GtkInfo.liststore1 = gtk_list_store_new (14, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING );
 
     gtk_tree_view_set_model (GTK_TREE_VIEW (properties->GtkInfo.treeview), GTK_TREE_MODEL (properties->GtkInfo.liststore1));
     g_object_unref (properties->GtkInfo.liststore1);
@@ -328,6 +328,17 @@ void setup_tree_view(struct _properties *properties)
     column = gtk_tree_view_column_new_with_attributes
                            ("Put Rho", renderer, "text", X12, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
+
+    renderer = gtk_cell_renderer_text_new();
+    column = gtk_tree_view_column_new_with_attributes
+                           ("Call Elast", renderer, "text", X13, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
+
+    renderer = gtk_cell_renderer_text_new();
+    column = gtk_tree_view_column_new_with_attributes
+                           ("Put Elast", renderer, "text", X14, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
+
   } 
   else if(properties->decimalorcalendar == CALENDAR && properties->format == CALENDAR_OPTIONS6 )
   {
