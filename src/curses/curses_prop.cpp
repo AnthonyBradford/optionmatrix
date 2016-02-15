@@ -687,8 +687,8 @@ int props(struct _properties *properties,struct _properties *future_properties)
     int scounter;
     for( scounter=0; scounter < (sizeofstrike_control/(signed)(sizeof(struct _strike_control))); scounter++ )
     {
-      strcat(stringtemp2,strike_control[scounter].des);
-      strcat(stringtemp2," ");
+      strncat(stringtemp2,strike_control[scounter].des,sizeof(stringtemp2)-1);
+      strncat(stringtemp2," ",sizeof(stringtemp2)-1);
     }
 
     move(++row,0);

@@ -371,13 +371,13 @@ void spreadName(struct _properties *properties)
     return;
 
   if( properties->verticalSpread && !option_algorithms[properties->modeltype].assetClass && option_algorithms[properties->modeltype].supportStrikes )
-    strcat(spreadName,"Vertical ");
+    strncat(spreadName,"Vertical ",sizeof(spreadName)-1);
 
   if( properties->skipmonth != properties->skipmonth2 )
-    strcat(spreadName,"Calendar ");
+    strncat(spreadName,"Calendar ",sizeof(spreadName)-1);
   
   if( (properties->verticalSpread && !option_algorithms[properties->modeltype].assetClass && option_algorithms[properties->modeltype].supportStrikes) || properties->skipmonth != properties->skipmonth2)
-    strcat(spreadName,"Spreads");
+    strncat(spreadName,"Spreads",sizeof(spreadName)-1);
 
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelSpread),spreadName);
   gtk_widget_show(properties->GtkInfo.labelSpread);
