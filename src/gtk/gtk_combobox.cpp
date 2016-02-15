@@ -92,9 +92,9 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
       gtk_tree_store_append(store, &child, iter);
       gtk_tree_store_set(store, &child, 0, first, -1);
 
-      if( strlen(parse) > strlen(first) )
+      if( strlen(parse) > strnlen(first,sizeof(first)) )
       {
-        recurse(parse+strlen(first)+1,store,&child,text,text2);
+        recurse(parse+strnlen(first,sizeof(first))+1,store,&child,text,text2);
       }
       else
       {
@@ -125,9 +125,9 @@ char *recurse(char *parse, GtkTreeStore *store, GtkTreeIter *iter, char *text, c
     {
       //g_print("found true\n");
 
-      if( strlen(parse) > strlen(first) )
+      if( strlen(parse) > strnlen(first,sizeof(first)) )
       {
-        recurse(parse+strlen(first)+1,store,&it,text,text2);
+        recurse(parse+strnlen(first,sizeof(first))+1,store,&it,text,text2);
       }
       else
       {
@@ -213,7 +213,7 @@ void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListW
       {
         //g_print("groupName = %s\n", array[i].groupName);
         p = &(array[i].groupName[0]);
-        p += strlen(first)+1;
+        p += strnlen(first,sizeof(first))+1;
         strncpy(temp,&p[0],sizeof(temp));
         strncpy(array[i].groupName,temp,sizeof(array[i].groupName));
 
