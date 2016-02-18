@@ -214,10 +214,10 @@ void process_arguments(const int argc, const char **argv, bool *debug)
       logger(logText, 0);
 
 #if defined(ENVIRONMENT32)
-      snprintf(logText,sizeof(logText),"32 bit");
+      snprintf(logText,sizeof(logText),"32-bit");
       logger(logText, 0);
 #elif defined(ENVIRONMENT64)
-      snprintf(logText,sizeof(logText),"64 bit");
+      snprintf(logText,sizeof(logText),"64-bit");
       logger(logText, 0);
 #else
       snprintf(logText,sizeof(logText),"Bit size unknown");

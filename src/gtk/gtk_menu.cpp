@@ -303,9 +303,9 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
   char version[1024];
 
 #if defined(ENVIRONMENT32)
-  snprintf(version, sizeof(version), "%s 32 bit", PACKAGE_VERSION);
+  snprintf(version, sizeof(version), "%s 32-bit", PACKAGE_VERSION);
 #elif defined(ENVIRONMENT64)
-  snprintf(version, sizeof(version), "%s 64 bit", PACKAGE_VERSION);
+  snprintf(version, sizeof(version), "%s 64-bit", PACKAGE_VERSION);
 #else
   snprintf(version, sizeof(version), "%s", PACKAGE_VERSION);
 #endif
