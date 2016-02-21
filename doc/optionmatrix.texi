@@ -137,7 +137,6 @@ which is a financial derivatives calculator.
 * Downloading and Installation:: Installation packages.
 * Documentation:: Documentation
 * Reporting bugs::	Sending bug reports and feature suggestions.
-* More projects::       Projects by Anthony Bradford
 * GNU Free Documentation License:: Copying and sharing this documentation.
 * Concept index::	Index of concepts.
 @end menu
@@ -1315,36 +1314,33 @@ The OptionMatrix programs support the following models:
 @ifdocbook
 @center @image{images/10,,,,png}
 @end ifdocbook
-@section Windows Installers
+
+@section Installers
 @cindex Windows installers
-@url{http://@value{WEBSITE}/InstallOptionMatrix-1.4.2-win32.exe,InstallOptionMatrix-1.4.2-win32.exe}
-@*
-@ifdocbook
-
-@end ifdocbook
-@url{http://@value{WEBSITE}/InstallOptionMatrix-1.4.1-win32.exe,InstallOptionMatrix-1.4.1-win32.exe}
-@*
-@ifdocbook
-
-@end ifdocbook
-@*
-@ifdocbook
-
-@end ifdocbook
-The Windows Installers include full source code and documentation.
-
-@section Mac OS X
 @cindex Macintosh
 @cindex OS X
-@url{http://@value{WEBSITE}/OptionMatrix-1.4.3.app.zip,OptionMatrix-1.4.3.app.zip}
+Windows and Mac OS X installers can be found at
+@*
+@ifdocbook
+
+@end ifdocbook
+@url{http://sourceforge.net/projects/optionmatrix/?source=directory}
 
 @section Unix / Linux Autotools Package
+@ifdocbook
+@center @image{images/6,,,,png}
+@end ifdocbook
 @cindex UNIX
 @cindex Linux
 @cindex Autotools package
 @cindex .tar.gz
 @cindex Source code
-@url{http://@value{WEBSITE}/om/downloads/optionmatrix-@value{VERSION}.tar.gz,optionmatrix-@value{VERSION}.tar.gz}
+OptionMatrix source code can be downloaded from
+@*
+@ifdocbook
+
+@end ifdocbook
+@url{http://sourceforge.net/projects/optionmatrix/?source=directory}
 @*
 @ifdocbook
 
@@ -1363,16 +1359,6 @@ cd optionmatrix-@value{VERSION}
 make
 sudo make install
 @end example
-@noindent
-Older versions can be found here @url{http://@value{WEBSITE}/om/downloads}
-
-@section SourceForge
-@cindex SourceForge
-@url{http://sourceforge.net/projects/optionmatrix/?source=directory}
-
-@section GitHub
-@cindex GitHub
-@url{https://github.com/AnthonyBradford/optionmatrix}
 
 @html
 <br>
@@ -1385,24 +1371,16 @@ Older versions can be found here @url{http://@value{WEBSITE}/om/downloads}
 @node Documentation
 @chapter Documentation
 @ifdocbook
-@center @image{images/5,,,,png}
+@center @image{images/10,,,,png}
 @end ifdocbook
-
-@section PDF
 @cindex PDF
-@url{http://@value{WEBSITE}/om/doc/optionmatrix.pdf}
-
-@section EPUB
 @cindex EPUB
-@url{http://@value{WEBSITE}/om/doc/optionmatrix.epub}
+PDF and EPUB documentation can be found at
+@*
+@ifdocbook
 
-@section Source Code in HTML
-@url{http://@value{WEBSITE}/om/doc/source_html}
-
-@section HTML Zip
-@cindex Zipped HTML
-@cindex HTML zip
-@url{http://@value{WEBSITE}/om/doc/optionmatrix.zip}
+@end ifdocbook
+@url{http://sourceforge.net/projects/optionmatrix/?source=directory}
 
 @html
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
@@ -1461,38 +1439,11 @@ Patches are welcome; if possible, please make them with @samp{@w{diff
 </center>
 @end html
 
-@node More projects
-@chapter More projects
-More projects by @url{AnthonyBradford.com,Anthony Bradford}.
-
-@section Texinfo Web Publisher
-@cindex Texinfo
-A multi-format web publishing system with FTP deployment capabilities based on GNU Texinfo. @url{http://AnthonyBradford.com/TexinfoPublisher/}
-
-@section @LaTeX{} Web Publisher
-@cindex @LaTeX{}
-A multi-format web publishing system with FTP deployment capabilities based on @LaTeX{}. @url{http://anthonybradford.com/LaTeXpublisher/}
-
-@section @LaTeX{} Reference Card Creator
-A build system for creating @LaTeX{} reference cards.
-@url{http://anthonybradford.com/LaTeXreferenceCard/}
-
-@html
-<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br><br clear=left>
-@end html
-@html
-<center><a href="Downloading-and-Installation.html"><img src="images/6.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
-</center>
-@end html
-
 @node GNU Free Documentation License
 @appendix GNU Free Documentation License
 @ifdocbook
 @center @image{images/6,,,,png}
 @end ifdocbook
-
 @include fdl.texi
 @html
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
@@ -1503,7 +1454,6 @@ A build system for creating @LaTeX{} reference cards.
 @copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
 </center>
 @end html
-
 
 @node Concept index
 @unnumbered Concept index
