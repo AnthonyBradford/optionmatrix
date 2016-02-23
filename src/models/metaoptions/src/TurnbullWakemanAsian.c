@@ -54,7 +54,7 @@ double TurnbullWakemanAsian(
 	b2vv = b2 + vv;
 	t22 = pow(T2-tau, 2.0);
 
-    m1 = (exp(b * T2) - exp(b * tau)) / (b * (T2 - tau));
+    m1 = b ? (exp(b * T2) - exp(b * tau)) / (b * (T2 - tau)) : 1.0;
     m2 	= 2.0 * exp(b2vv * T2)  / (bvv * b2vv * t22) 
 		+ 2.0 * exp(b2vv * tau) / (b * t22) 
 		* (1.0 / b2vv - exp(b * (T2 - tau)) / bvv);
