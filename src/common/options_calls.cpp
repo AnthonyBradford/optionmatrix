@@ -4342,6 +4342,7 @@ struct _data option_call(struct _data *dat)
     case TESTOPTIONONEDIVIDEND2:
 
       callprice = 0;
+      dat->callElasticity = 0;
 
       break;
       

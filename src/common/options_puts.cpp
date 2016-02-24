@@ -3259,6 +3259,7 @@ struct _data option_put(struct _data *dat)
     case TESTOPTIONONEDIVIDEND2:
 
       putprice = 0;
+      dat->putElasticity = 0;
 
       break;
 

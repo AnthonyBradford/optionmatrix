@@ -3354,7 +3354,6 @@ const struct option_algorithm option_algorithms[] = {
                                        0, // supportRealTime
                                        1, // filterNegativePrices
                                        0, 0, 0, 0, 0, 0,
-      //                               1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
                                        "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
@@ -3919,7 +3918,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, // supportRealTime    
                                        1, // filterNegativePrices
                                        0, 1, 0, 0, 0, 0,
-                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
                                        "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
                                        0, 0, "", 0, 0,
@@ -3941,7 +3940,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, // supportRealTime    
                                        1, // filterNegativePrices
                                        0, 0, 0, 0, 0, 0,
-                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
                                        "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
                                        1, 0, "1", 1, 0,
@@ -3963,7 +3962,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, // supportRealTime    
                                        1, // filterNegativePrices
                                        0, 1, 1, 100, 0, 0,
-                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        1, 0.0, "Expiration", 1, "Dividend", 1, "t3",
                                        "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
                                        1, 0, "1", 1, 0,
@@ -3985,7 +3984,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, // supportRealTime    
                                        1, // filterNegativePrices
                                        0, 1, 1, 100, 0, 0,
-                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        1, 0.0, "Expiration", 1, "Dividend", 1, "t3",
                                        "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
                                        2, 0, "int", 1, 0,
@@ -4007,7 +4006,7 @@ const struct option_algorithm option_algorithms[] = {
                                        1, // supportRealTime    
                                        1, // filterNegativePrices
                                        0, 1, 1, 100, 0, 0,
-                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
                                        1, 0.0, "Expiration", 1, "Dividend", 1, "t3",
                                        "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
                                        2, 0, "int", 1, 0,
