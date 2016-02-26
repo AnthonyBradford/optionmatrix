@@ -128,10 +128,13 @@ valgrind -v --leak-check=yes --track-origins=yes src/common/checks
 valgrind -v --leak-check=yes --track-origins=yes src/gtk/optionmatrix
 valgrind -v --leak-check=yes --track-origins=yes src/curses/optionmatrix_console
 
-**** Windows MSYS2 compilation
+**** Windows MSYS2 compilation and packaging
 In src/gtk/Makefile add -mwindows to LDFLAGS
 LDFLAGS = -mwindows
-to remove terminal from GTK+ application
+to remove terminal from the GTK+ application.
+Run linux command strip on all executables.
+The Nullsoft Scriptable Install System (NSIS)
+can be used to create a Windows Installer.
 
 -----------------------------------------------------------------------
 
