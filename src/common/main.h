@@ -2622,7 +2622,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "d;Implied Volatility",
                                        1, // supportRealTime    
-                                       0, // filterNegativePrices
+                                       1, // filterNegativePrices
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
