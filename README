@@ -114,11 +114,12 @@ make website
 ****To ensure no tabs in source code
 cd utils ; ./tab.sh
 
-**** Debug
+**** Debug gdb
 gdb src/common/checks
 gdb src/gtk/optionmatrix
 gdb src/curses/optionmatrix_console
 
+**** Debug ddd
 ddd src/common/checks
 ddd src/gtk/optionmatrix
 ddd src/curses/optionmatrix_console
