@@ -475,7 +475,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "2;Single Asset;Binary",
                                        1, // supportRealTime    
-                                       1, // filterNegativePrices
+                                       0, // filterNegativePrices
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -563,7 +563,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "e;Bonds",
                                        1, // supportRealTime    
-                                       1, // filterNegativePrices
+                                       0, // filterNegativePrices
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2146,7 +2146,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/exotics_lookback_put.cc",
     "2;Single Asset;Lookbacks",
                                        1, // supportRealTime    
-                                       1, // filterNegativePrices
+                                       0, // filterNegativePrices
                                        0, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        1, 0.0, "Expiration", 0, "", 0, "",
@@ -2394,7 +2394,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "6;Monte Carlo",
                                        1, // supportRealTime    
-                                       1, // filterNegativePrices
+                                       0, // filterNegativePrices
                                        0, 0, 1, 500, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2460,7 +2460,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "6;Monte Carlo",
                                        1, // supportRealTime    
-                                       1, // filterNegativePrices
+                                       0, // filterNegativePrices
                                        0, 0, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2622,7 +2622,7 @@ const struct option_algorithm option_algorithms[] = {
     "",
     "d;Implied Volatility",
                                        1, // supportRealTime    
-                                       1, // filterNegativePrices
+                                       0, // filterNegativePrices
                                       -1, 1, 0, 0, 0, 0,
                                        1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 0, "", 0, "",
@@ -2666,7 +2666,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bondopt_put_vasicek.cc",
     "e;Bonds",
                                        1, // supportRealTime    
-                                       1, // filterNegativePrices
+                                       0, // filterNegativePrices
                                       -1, 1, 0, 0, 0, 0,
                                        0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0.0, "Expiration", 2, "maturity", 0, "",
@@ -2754,7 +2754,7 @@ const struct option_algorithm option_algorithms[] = {
     "models/financialrecipes/src/bermudan_put_option.cc",
     "5;Trees & Finite Diff;Binomial;Bermudan",
                                        1, // supportRealTime    
-                                       1, // filterNegativePrices
+                                       0, // filterNegativePrices
                                        0, 0, 1, 100, 0, 0,
                                        1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        4, 0.0, "Expiration", 0, "", 0, "",
