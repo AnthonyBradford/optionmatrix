@@ -30,6 +30,8 @@
 #include "defs.h"
 #include "extern.h"
 
+#include <list>
+
 #ifdef HAVE_GETOPT_H
  #include <getopt.h>
 #endif
@@ -363,28 +365,41 @@ void program_source()
   const int numberofmodels = (signed)(sizeofoption_algorithms/sizeof(struct option_algorithm));
   char source_levelup[PATH_MAX];
   char source_levelup2[PATH_MAX];
-  
+  char source_src[PATH_MAX];
+  char source_src2[PATH_MAX];
+
   for( index = 0; index < numberofmodels; index++ )
   {
     snprintf(source_levelup,sizeof(source_levelup),"../%s",option_algorithms[index].sourceCode);
     snprintf(source_levelup2,sizeof(source_levelup2),"../%s",option_algorithms[index].sourceCode2);
-    //printf("%s %s\n",source_levelup,source_levelup);
+
+    snprintf(source_src,sizeof(source_levelup),"src/%s-%s/src/%s", PACKAGE_TARNAME,VERSION,option_algorithms[index].sourceCode);
+    snprintf(source_src2,sizeof(source_levelup2),"src/%s-%s/src/%s", PACKAGE_TARNAME,VERSION,option_algorithms[index].sourceCode2);
 
     if( strcmp( option_algorithms[index].sourceCode,"") != 0 )
     {
-      if( access( source_levelup, F_OK ) != 0 )
+      if( access( source_levelup, F_OK ) == 0 || access( source_src, F_OK ) == 0 )
       {
-        printf("Source code cannot be accessed: %s\n",option_algorithms[index].sourceCode);
-      } else if( strcmp( option_algorithms[index].sourceCode2,"") != 0 )
+        //printf("%s source code found: %s\n", option_algorithms[index].des,option_algorithms[index].sourceCode);
+      } else
       {
-        if( access( source_levelup2, F_OK ) != 0 )
-         {
-           printf("Source code cannot be accessed: %s\n",option_algorithms[index].sourceCode2);
-         }
+        printf("%s source code cannot be accessed: %s\n", option_algorithms[index].des,option_algorithms[index].sourceCode);
       }
-      
+ 
     } // if( strcmp( option_algorithms[index].sourceCode,"") != 0 )
-    
+
+    if( strcmp( option_algorithms[index].sourceCode2,"") != 0 )
+    {
+      if( access( source_levelup2, F_OK ) == 0 || access( source_src2, F_OK ) == 0 )
+      {
+        //printf("%s source code found: %s\n", option_algorithms[index].des,option_algorithms[index].sourceCode2);
+      } else
+      {
+        printf("%s source code cannot be accessed: %s\n", option_algorithms[index].des,option_algorithms[index].sourceCode2);
+      }
+
+    } // if( strcmp( option_algorithms[index].sourceCode2,"") != 0 )
+
   } // for( index = 0; index < numberofmodels; index++ )
   
 } // void program_source()
@@ -469,10 +484,14 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
   time_t model_start_time;
   time_t model_time_elasped;
 
+  bool modelHasNegativePricing;
+  std::list<std::string> modelsWithNegativePricing;
+
   for( index = 0; index < numberofmodels; index++ )
   {
     time(&model_start_time);
     continueToSkip = false;
+    modelHasNegativePricing = false;
 
     if( option_algorithms[index].assetClass == BOND_CLASS )
     {
@@ -550,9 +569,12 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
              optiondata = option_call(&dat);
              totalNumberOfTests++;
 
-             if ( !quietMode )
+             if( !quietMode )
                printf("%f ",optiondata.call);
 
+             // sometimes the picing is almost zero but negative -0.000000
+             if( optiondata.call < -1 )   
+               modelHasNegativePricing = true;
            }
 
            if( option_algorithms[index].supportPuts )
@@ -563,6 +585,9 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
              if ( !quietMode )
                printf("%f ",optiondata.put);
 
+             // sometimes the picing is almost zero but negative -0.000000
+             if( optiondata.put < -1 )   
+               modelHasNegativePricing = true;
             }
 
          } else if( option_algorithms[index].assetClass == FUTURES_CLASS )
@@ -593,6 +618,9 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
       
     } // for( t = 0.2; t < 3; t += 0.10 )
 
+    if( modelHasNegativePricing )
+      modelsWithNegativePricing.push_back(option_algorithms[index].des);
+
   } // for( index = 0; index < numberofmodels; index++ )
 
   gettimeofday(&end, NULL);
@@ -603,16 +631,22 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
 
   if ( !quietMode )
   {
-    printf("\nTests skipped the following models due to open issues:\n");
+    printf("\n****Tests skipped the following models due to open issues:\n");
 
     for( indexModelsWithPricingIssues = 0; indexModelsWithPricingIssues < numberOfPricingIssues; indexModelsWithPricingIssues++ )
     {
       printf("%s\n",option_algorithms[modelsWithPricingIssues[indexModelsWithPricingIssues]].des);
     }
 
+    std::list<std::string>::iterator it;
+    printf("****Models with negative pricing:\n");
+    
+    for ( it=modelsWithNegativePricing.begin(); it!=modelsWithNegativePricing.end(); ++it )
+      printf("%s\n", std::string(*it).c_str() );
+
   } // if ( !quietMode )
 
-  printf("Total number of tests run: %.0f\n", totalNumberOfTests);
+  printf("****Total number of tests run: %.0f\n", totalNumberOfTests);
   printf("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000)
           - (start.tv_sec + (double) start.tv_usec / 1000000)));
   printf("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);
