@@ -97,8 +97,16 @@ void welcome_screen()
 
     const char *author = "Anthony Bradford's";
 
-    char program[200] = { 0 };
-    snprintf(program,sizeof(program),"| Options & Futures Matrix Modeler V%s |", PACKAGE_VERSION);
+    char program[256] = { 0 };
+    snprintf(program,sizeof(program),"| Options & Futures Matrix Modeler V%s", PACKAGE_VERSION);
+
+#if defined(ENVIRONMENT32)
+    strncat(program," 32-bit", (sizeof(program)-1) - strnlen(program,sizeof(program));
+#elif defined(ENVIRONMENT64)
+    strncat(program," 64-bit", (sizeof(program)-1) - strnlen(program,sizeof(program)));
+#endif
+
+    strncat(program," |", (sizeof(program)-1) - strnlen(program,sizeof(program)));
 
     move(((height/2))-9+x,(width/2)-strlen(author)/2);
     attron(A_BOLD);
