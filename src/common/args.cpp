@@ -651,6 +651,12 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
           - (start.tv_sec + (double) start.tv_usec / 1000000)));
   printf("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);
 
+#if defined(ENVIRONMENT32)
+    printf("32-bit build\n");
+#elif defined(ENVIRONMENT64)
+    printf("64-bit build\n");
+#endif
+
 #ifndef ABRADFORD
   printf("ABRADFORD models not defined in source code.\n");
 #endif
