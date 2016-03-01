@@ -89,7 +89,7 @@ cd doc ; make source_html
 
 ****To build Microsoft HTML Helper File (.chm)
 cd doc ; make htmlhelp
-More instructions will be given by the Makefile
+More instructions will be given by the Makefile.
 
 ****To clean project
 make clean
