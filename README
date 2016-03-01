@@ -89,7 +89,7 @@ cd doc ; make source_html
 
 ****To build Microsoft HTML Helper File (.chm)
 cd doc ; make htmlhelp
-More instructions will be given.
+More instructions will be given by the Makefile
 
 ****To clean project
 make clean
@@ -108,7 +108,7 @@ sudo make install
 sudo make uninstall
 find /usr -name "optionmatrix*" -print 2>/dev/null
 
-****To publish the HTML, optionmatrix.tar.gz, optionmatrix.zip optionmatrix.pdf and optionmatrix.epub to a website:
+****To publish the HTML, optionmatrix.tar.gz, optionmatrix.zip optionmatrix.pdf and optionmatrix.epub to a website
 make website
 
 ****To ensure no tabs in source code
