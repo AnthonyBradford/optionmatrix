@@ -101,7 +101,7 @@ void welcome_screen()
     snprintf(program,sizeof(program),"| Options & Futures Matrix Modeler V%s", PACKAGE_VERSION);
 
 #if defined(ENVIRONMENT32)
-    strncat(program," 32-bit", (sizeof(program)-1) - strnlen(program,sizeof(program));
+    strncat(program," 32-bit", (sizeof(program)-1) - strnlen(program,sizeof(program)));
 #elif defined(ENVIRONMENT64)
     strncat(program," 64-bit", (sizeof(program)-1) - strnlen(program,sizeof(program)));
 #endif
