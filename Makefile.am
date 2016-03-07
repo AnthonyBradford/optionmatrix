@@ -45,6 +45,15 @@ EXTRA_DIST = \
 	icons/optionmatrix.desktop\
 	icons/optionmatrix_console.desktop\
 	icons/OptionMatrix.png\
+	icons/windows/optionmatrix.ico\
+	icons/windows/optionmatrixdos.ico\
+	icons/windows/installer.ico\
+	icons/windows/C++.ico\
+	icons/windows/HTMLhelper.ico\
+	icons/windows/information.ico\
+	icons/windows/pdf.ico\
+	icons/windows/Tests.ico\
+	icons/windows/Website.ico\
 	HOWTO\
 	WEBSITE\
 	utils/tab.sh\

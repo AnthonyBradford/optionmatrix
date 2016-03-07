@@ -28,6 +28,9 @@ EXTRA_DIST = \
 $(GLADE_FILE)\
 images/10.png\
 images/11.png\
+images/12.png\
+images/13.png\
+images/14.png\
 images/1.png\
 images/2.png\
 images/3.png\
@@ -36,10 +39,7 @@ images/5.png\
 images/6.png\
 images/7.png\
 images/8.png\
-images/9.png\
-images/installer.ico\
-images/optionmatrixdos.ico\
-images/optionmatrix.ico
+images/9.png
 
 optionmatrix_CPPFLAGS = -I$(top_srcdir)/src/models/financialrecipes/src -I$(top_srcdir)/src/models/metaoptions/src -I$(top_srcdir)/src/common
 
