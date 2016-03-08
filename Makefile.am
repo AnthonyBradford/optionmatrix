@@ -29,6 +29,7 @@ icon32_DATA = icons/32x32/optionmatrix.png\
 	icons/32x32/optionmatrix_console.png
 
 EXTRA_DIST = \
+	icons/mac/README\
 	icons/mac/optionmatrix.icns\
 	icons/32x32/optionmatrix.xpm\
 	icons/32x32/optionmatrix_console.xpm\
@@ -45,6 +46,7 @@ EXTRA_DIST = \
 	icons/optionmatrix.desktop\
 	icons/optionmatrix_console.desktop\
 	icons/OptionMatrix.png\
+	icons/windows/README\
 	icons/windows/optionmatrix.ico\
 	icons/windows/optionmatrixdos.ico\
 	icons/windows/installer.ico\
