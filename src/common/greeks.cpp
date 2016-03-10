@@ -127,7 +127,7 @@ struct _data option_call_delta(struct _data *dat)
 
   default:
 
-    calldelta  = 0;
+    calldelta = NAN;
 
     break;
 
@@ -241,7 +241,7 @@ struct _data option_put_delta(struct _data *dat)
 
     default:
 
-      putdelta  = 0;
+      putdelta = NAN;
 
       break;
 
@@ -321,7 +321,7 @@ struct _data option_gamma(struct _data *dat)
        
     default:
 
-      gamma_ = 0;
+      gamma_ = NAN;
 
       break;
 
@@ -403,7 +403,7 @@ struct _data option_vega(struct _data *dat)
 
     default:
 
-      vega_ = 0;
+      vega_ = NAN;
 
       break;
 
@@ -485,7 +485,7 @@ struct _data option_call_theta(struct _data *dat)
 
     default:
 
-      calltheta = 0;
+      calltheta = NAN;
 
       break;
 
@@ -567,7 +567,7 @@ struct _data option_put_theta(struct _data *dat)
 
     default:
 
-      puttheta = 0;
+      puttheta = NAN;
 
       break;
 
@@ -649,7 +649,7 @@ struct _data option_call_rho(struct _data *dat)
 
      default:
 
-      callrho = 0;
+      callrho = NAN;
 
       break;
 
@@ -731,7 +731,7 @@ struct _data option_put_rho(struct _data *dat)
 
     default:
 
-      putrho = 0;
+      putrho = NAN;
 
       break;
 

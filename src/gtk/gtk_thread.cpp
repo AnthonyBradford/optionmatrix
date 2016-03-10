@@ -2042,7 +2042,8 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_call_delta(&properties->data);
     }
-    snprintf(textCallDelta,200,"%.*f", properties->precision,optiondata.calldelta);
+    if( !isnan(optiondata.calldelta))
+      snprintf(textCallDelta,200,"%.*f", properties->precision,optiondata.calldelta);
   }
         
   if( option_algorithms[properties->modeltype].producePutDelta )
@@ -2054,7 +2055,8 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_put_delta(&properties->data);
     }
-    snprintf(textPutDelta,200,"%.*f", properties->precision,optiondata.putdelta);
+    if( !isnan(optiondata.putdelta))
+      snprintf(textPutDelta,200,"%.*f", properties->precision,optiondata.putdelta);
   }
 
   if( option_algorithms[properties->modeltype].produceGamma )
@@ -2066,7 +2068,8 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_gamma(&properties->data);
     }
-    snprintf(textGamma,200,"%.*f", properties->precision,optiondata.gamma);
+    if( !isnan(optiondata.gamma))
+      snprintf(textGamma,200,"%.*f", properties->precision,optiondata.gamma);
   }
 
   if( option_algorithms[properties->modeltype].produceVega )
@@ -2078,7 +2081,8 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_vega(&properties->data);
     }
-    snprintf(textVega,200,"%.*f", properties->precision,optiondata.vega);
+    if( !isnan(optiondata.vega))
+      snprintf(textVega,200,"%.*f", properties->precision,optiondata.vega);
   }
 
   if( option_algorithms[properties->modeltype].produceCallTheta )
@@ -2090,7 +2094,8 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_call_theta(&properties->data);
     }
-    snprintf(textCallTheta,200,"%.*f", properties->precision,optiondata.calltheta);
+    if( !isnan(optiondata.calltheta) )
+      snprintf(textCallTheta,200,"%.*f", properties->precision,optiondata.calltheta);
   }
 
   if( option_algorithms[properties->modeltype].producePutTheta )
@@ -2102,7 +2107,8 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_put_theta(&properties->data);
     }
-    snprintf(textPutTheta,200,"%.*f", properties->precision,optiondata.puttheta);
+    if( !isnan(optiondata.puttheta) )    
+      snprintf(textPutTheta,200,"%.*f", properties->precision,optiondata.puttheta);
   }
 
   if( option_algorithms[properties->modeltype].produceCallRho )
@@ -2114,7 +2120,8 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     {
       optiondata = option_call_rho(&properties->data);
     }
-    snprintf(textCallRho,200,"%.*f", properties->precision,optiondata.callrho);
+    if( !isnan(optiondata.callrho) )    
+      snprintf(textCallRho,200,"%.*f", properties->precision,optiondata.callrho);
   }
 
   if( option_algorithms[properties->modeltype].producePutRho )
@@ -2125,7 +2132,10 @@ void process_greeks(struct _properties *properties, struct _data *dat, char *tex
     } else {
       optiondata = option_put_rho(&properties->data);
     }
-    snprintf(textPutRho,200,"%.*f", properties->precision,optiondata.putrho);
+    if( !isnan(optiondata.putrho) )
+    {
+      snprintf(textPutRho,200,"%.*f", properties->precision,optiondata.putrho);
+    }
   }
 
   if( option_algorithms[properties->modeltype].produceCallElasticity )

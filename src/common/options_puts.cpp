@@ -1481,14 +1481,39 @@ struct _data option_put(struct _data *dat)
         // Black-Scholes for European
         europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(new QuantLib::AnalyticEuropeanEngine(bsmProcess)));
 
-        putprice = europeanOption.NPV();
+       putprice = europeanOption.NPV();
 
-        dat->putdelta = europeanOption.delta();
-        dat->putElasticity = europeanOption.elasticity();
-        //dat->gamma = europeanOption.gamma();
-        //dat-> vega = europeanOption.vega();
-        dat->puttheta = europeanOption.thetaPerDay();
-        dat->putrho = europeanOption.rho() / 100;
+       try {
+         dat->putdelta = europeanOption.delta();
+       }
+       catch (exception& e)
+       {
+         dat->putdelta = NAN;
+       }
+
+       try {
+         dat->putElasticity = europeanOption.elasticity();
+       }
+       catch (exception& e)
+       {
+         dat->putElasticity = NAN;
+       }
+
+       try {
+         dat->puttheta = europeanOption.thetaPerDay();
+       }
+       catch (exception& e)
+       {
+         dat->puttheta = NAN;
+       }
+
+       try {
+         dat->putrho = europeanOption.rho() / 100;
+       }
+       catch (exception& e)
+       {
+         dat->putrho = NAN;
+       }
 
       }
 
@@ -1557,6 +1582,39 @@ struct _data option_put(struct _data *dat)
                                      new QuantLib::AnalyticHestonEngine(hestonModel)));
 
         putprice = europeanOption.NPV();
+
+        try {
+          dat->putdelta = europeanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+       
+        try {
+          dat->putElasticity = europeanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = europeanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = europeanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -1619,6 +1677,39 @@ struct _data option_put(struct _data *dat)
                   new QuantLib::BaroneAdesiWhaleyApproximationEngine(bsmProcess)));
         
         putprice = americanOption.NPV();
+
+        try {
+          dat->putdelta = americanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = americanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = americanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = americanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
       
       break;
@@ -1679,6 +1770,39 @@ struct _data option_put(struct _data *dat)
                       new QuantLib::BjerksundStenslandApproximationEngine(bsmProcess)));
 
         putprice = americanOption.NPV();
+
+        try {
+          dat->putdelta = americanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = americanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = americanOption.thetaPerDay();
+        } 
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = americanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+         dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -1743,6 +1867,39 @@ struct _data option_put(struct _data *dat)
                                                      timeSteps,timeSteps-1)));
 
         putprice = europeanOption.NPV();
+
+        try {
+          dat->putdelta = europeanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = europeanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = europeanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = europeanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -1808,6 +1965,39 @@ struct _data option_put(struct _data *dat)
                                                      timeSteps,timeSteps-1)));
 
         putprice = americanOption.NPV();
+
+        try {
+          dat->putdelta = americanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = americanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = americanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = americanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+         dat->putrho = NAN;
+         }
+
       }
       
       break;
@@ -1871,6 +2061,39 @@ struct _data option_put(struct _data *dat)
        europeanOption.setPricingEngine(mcengine1);
        
        putprice =  europeanOption.NPV();
+
+       try {
+         dat->putdelta = europeanOption.delta();
+       }
+       catch (exception& e)
+       {
+         dat->putdelta = NAN;
+       }
+
+       try {
+         dat->putElasticity = europeanOption.elasticity();
+       }
+       catch (exception& e)
+       {
+         dat->putElasticity = NAN;
+       }
+
+       try {
+         dat->puttheta = europeanOption.thetaPerDay();
+       }
+       catch (exception& e)
+       {
+         dat->puttheta = NAN;
+       }
+
+       try {
+         dat->putrho = europeanOption.rho() / 100;
+       }
+       catch (exception& e)
+       {
+         dat->putrho = NAN;
+       }
+       
       }
 
       break;
@@ -1933,6 +2156,39 @@ struct _data option_put(struct _data *dat)
        europeanOption.setPricingEngine(mcengine2);
 
        putprice =  europeanOption.NPV();
+
+       try {
+         dat->putdelta = europeanOption.delta();
+       }
+       catch (exception& e)
+       {
+         dat->putdelta = NAN;
+       }
+
+       try {
+         dat->putElasticity = europeanOption.elasticity();
+       }
+       catch (exception& e)
+       {
+         dat->putElasticity = NAN;
+       }
+
+       try {
+         dat->puttheta = europeanOption.thetaPerDay();
+       }
+       catch (exception& e)
+       {
+         dat->puttheta = NAN;
+       }
+
+       try {
+         dat->putrho = europeanOption.rho() / 100;
+       }
+       catch (exception& e)
+       {
+         dat->putrho = NAN;
+       }
+       
       }
 
       break;
@@ -2002,6 +2258,39 @@ struct _data option_put(struct _data *dat)
        americanOption.setPricingEngine(mcengine3);
 
        putprice = americanOption.NPV();
+
+       try {
+         dat->putdelta = americanOption.delta();
+       }
+       catch (exception& e)
+       {
+         dat->putdelta = NAN;
+       }
+       
+       try {
+         dat->putElasticity = americanOption.elasticity();
+       }
+       catch (exception& e)
+       {
+         dat->putElasticity = NAN;
+       }
+
+       try {
+         dat->puttheta = americanOption.thetaPerDay();
+       }
+       catch (exception& e)
+       {
+         dat->puttheta = NAN;
+       }
+
+       try {
+         dat->putrho = americanOption.rho() / 100;
+       }
+       catch (exception& e)
+       {
+         dat->putrho = NAN;
+       }
+       
       }
 
       break;
@@ -2063,7 +2352,40 @@ struct _data option_put(struct _data *dat)
          QuantLib::VanillaOption americanOption(payoff, americanExercise);
          americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
              new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(bsmProcess,dat->steps)));
+
          putprice = americanOption.NPV();
+
+         try {
+           dat->putdelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+          dat->putrho = NAN;
+         }
 
        } else if( dat->UsePound == 2 )
        {
@@ -2071,7 +2393,40 @@ struct _data option_put(struct _data *dat)
          QuantLib::VanillaOption europeanOption(payoff, europeanExercise);
          europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
              new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(bsmProcess,dat->steps)));
+
          putprice = europeanOption.NPV();
+
+         try {
+            dat->putdelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->putrho = NAN;
+         }
          
        } else
        {
@@ -2140,7 +2495,40 @@ struct _data option_put(struct _data *dat)
          QuantLib::VanillaOption americanOption(payoff, americanExercise);
          americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
             new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(bsmProcess,dat->steps)));
+
          putprice = americanOption.NPV();
+
+         try {
+           dat->putdelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+          dat->putrho = NAN;
+         }
 
        } else if( dat->UsePound == 2 )
        {
@@ -2148,7 +2536,40 @@ struct _data option_put(struct _data *dat)
          QuantLib::VanillaOption europeanOption(payoff, europeanExercise);
          europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
             new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(bsmProcess,dat->steps)));
+
          putprice = europeanOption.NPV();
+
+         try {
+           dat->putdelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->putrho = NAN;
+         }
          
        } else
        {
@@ -2221,6 +2642,38 @@ struct _data option_put(struct _data *dat)
                                                                                     
          putprice = americanOption.NPV();
 
+         try {
+           dat->putdelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+            dat->putdelta = NAN;
+         }
+
+         try {
+            dat->putElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+          dat->putrho = NAN;
+         }
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -2230,6 +2683,38 @@ struct _data option_put(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::AdditiveEQPBinomialTree>(bsmProcess,dat->steps)));
 
          putprice = europeanOption.NPV();
+
+         try {
+           dat->putdelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->putrho = NAN;
+         }
          
        } else
        {
@@ -2302,6 +2787,38 @@ struct _data option_put(struct _data *dat)
                                                                                     
          putprice = americanOption.NPV();
 
+         try {
+           dat->putdelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->putrho = NAN;
+         }
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -2311,6 +2828,38 @@ struct _data option_put(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::Trigeorgis>(bsmProcess,dat->steps)));
 
          putprice = europeanOption.NPV();
+
+         try {
+           dat->putdelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->putrho = NAN;
+         }
          
        } else
        {
@@ -2383,6 +2932,38 @@ struct _data option_put(struct _data *dat)
  
          putprice = americanOption.NPV();
 
+         try {
+           dat->putdelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->putrho = NAN;
+         }
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -2392,6 +2973,38 @@ struct _data option_put(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::Tian>(bsmProcess,dat->steps)));
 
          putprice = europeanOption.NPV();
+
+         try {
+           dat->putdelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->putrho = NAN;
+         }
          
        } else
        {
@@ -2464,6 +3077,38 @@ struct _data option_put(struct _data *dat)
  
          putprice = americanOption.NPV();
 
+         try {
+           dat->putdelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->putrho = NAN;
+         }
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -2473,6 +3118,38 @@ struct _data option_put(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::LeisenReimer>(bsmProcess,dat->steps)));
 
          putprice = europeanOption.NPV();
+
+         try {
+           dat->putdelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->putrho = NAN;
+         }
          
        } else
        {
@@ -2545,6 +3222,38 @@ struct _data option_put(struct _data *dat)
  
          putprice = americanOption.NPV();
 
+         try {
+            dat->putdelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+
+         try {
+           dat->putrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->putrho = NAN;
+         }
+
        } else if( dat->UsePound == 2 )
        {
          //g_print("European\n");
@@ -2554,6 +3263,38 @@ struct _data option_put(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::Joshi4>(bsmProcess,dat->steps)));
 
          putprice = europeanOption.NPV();
+
+         try {
+           dat->putdelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->putdelta = NAN;
+         }
+
+         try {
+           dat->putElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->putElasticity = NAN;
+         }
+
+         try {
+           dat->puttheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->puttheta = NAN;
+         }
+ 
+         try {
+           dat->putrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+            dat->putrho = NAN;
+         }
          
        } else
        {
@@ -2625,6 +3366,38 @@ struct _data option_put(struct _data *dat)
               new QuantLib::BatesEngine(batesModel)));
 
         putprice = europeanOption.NPV();
+
+        try {
+          dat->putdelta = europeanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = europeanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+  
+        try {
+          dat->puttheta = europeanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = europeanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+           dat->putrho = NAN;
+        }
       }
 
       break;
@@ -2685,6 +3458,39 @@ struct _data option_put(struct _data *dat)
            new QuantLib::IntegralEngine(bsmProcess)));
 
         putprice = europeanOption.NPV();
+ 
+        try {
+          dat->putdelta = europeanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = europeanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = europeanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = europeanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -2759,6 +3565,39 @@ struct _data option_put(struct _data *dat)
            new QuantLib::FDBermudanEngine<QuantLib::CrankNicolson>(bsmProcess,dat->steps,dat->steps-1)));
 
         putprice = bermudanOption.NPV();
+
+        try {
+          dat->putdelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -2828,6 +3667,39 @@ struct _data option_put(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(bsmProcess,dat->steps)));
 
         putprice = bermudanOption.NPV();
+
+        try {
+          dat->putdelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -2897,6 +3769,39 @@ struct _data option_put(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(bsmProcess,dat->steps)));
 
         putprice = bermudanOption.NPV();
+
+        try {
+          dat->putdelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -2966,6 +3871,39 @@ struct _data option_put(struct _data *dat)
            new QuantLib::BinomialVanillaEngine<QuantLib::AdditiveEQPBinomialTree>(bsmProcess,dat->steps)));
 
         putprice = bermudanOption.NPV();
+
+        try {
+          dat->putdelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -3035,6 +3973,39 @@ struct _data option_put(struct _data *dat)
            new QuantLib::BinomialVanillaEngine<QuantLib::Trigeorgis>(bsmProcess,dat->steps)));
 
         putprice = bermudanOption.NPV();
+
+        try {
+          dat->putdelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -3104,6 +4075,39 @@ struct _data option_put(struct _data *dat)
            new QuantLib::BinomialVanillaEngine<QuantLib::Tian>(bsmProcess,dat->steps)));
 
         putprice = bermudanOption.NPV();
+
+        try {
+          dat->putdelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -3173,6 +4177,39 @@ struct _data option_put(struct _data *dat)
            new QuantLib::BinomialVanillaEngine<QuantLib::LeisenReimer>(bsmProcess,dat->steps)));
 
         putprice = bermudanOption.NPV();
+
+        try {
+          dat->putdelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;
@@ -3242,6 +4279,39 @@ struct _data option_put(struct _data *dat)
            new QuantLib::BinomialVanillaEngine<QuantLib::Joshi4>(bsmProcess,dat->steps)));
 
         putprice = bermudanOption.NPV();
+
+        try {
+          dat->putdelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+        }
+
+        try {
+          dat->putElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+        }
+
+        try {
+          dat->puttheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+        }
+
+        try {
+          dat->putrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+        }
+
       }
 
       break;

@@ -2324,12 +2324,53 @@ struct _data option_call(struct _data *dat)
         
         callprice = europeanOption.NPV();
 
-        dat->calldelta = europeanOption.delta();
-        dat->callElasticity = europeanOption.elasticity();
-        dat->gamma = europeanOption.gamma();
-        dat->vega = europeanOption.vega();
-        dat->calltheta = europeanOption.thetaPerDay();
-        dat->callrho = europeanOption.rho() / 100;
+        try {
+          dat->calldelta = europeanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = europeanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = europeanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = europeanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = europeanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = europeanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -2399,12 +2440,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = europeanOption.NPV();
 
-        //dat->calldelta = europeanOption.delta();
-        //dat->callElasticity = europeanOption.elasticity();
-        //dat->gamma = europeanOption.gamma();
-        //dat->vega = europeanOption.vega();
-        //dat->calltheta = europeanOption.thetaPerDay();
-        //dat->callrho = europeanOption.rho() / 100;
+        try {
+          dat->calldelta = europeanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = europeanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = europeanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = europeanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = europeanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = europeanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -2469,12 +2551,53 @@ struct _data option_call(struct _data *dat)
         
         callprice = americanOption.NPV();
 
-        //dat->calldelta = americanOption.delta();
-        //dat->callElasticity = americanOption.elasticity();
-        //dat->gamma = americanOption.gamma();
-        //dat->vega = americanOption.vega();
-        //dat->calltheta = americanOption.thetaPerDay();
-        //dat->callrho = americanOption.rho() / 100;
+        try {
+          dat->calldelta = americanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = americanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = americanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = americanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = americanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = americanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
       
@@ -2537,12 +2660,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = americanOption.NPV();
 
-        //dat->calldelta = americanOption.delta();
-        //dat->callElasticity = americanOption.elasticity();
-        //dat->gamma = americanOption.gamma();
-        //dat->vega = americanOption.vega();
-        //dat->calltheta = americanOption.thetaPerDay();
-        //dat->callrho = americanOption.rho() / 100;
+        try {
+          dat->calldelta = americanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = americanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = americanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = americanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = americanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = americanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -2609,12 +2773,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = europeanOption.NPV();
 
-        //dat->calldelta = europeanOption.delta();
-        //dat->callElasticity = europeanOption.elasticity();
-        //dat->gamma = europeanOption.gamma();
-        //dat->vega = europeanOption.vega();
-        //dat->calltheta = europeanOption.thetaPerDay();
-        //dat->callrho = europeanOption.rho() / 100;
+        try {
+          dat->calldelta = europeanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = europeanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = europeanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = europeanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = europeanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = europeanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
         
       }
 
@@ -2682,12 +2887,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = americanOption.NPV();
 
-        //dat->calldelta = americanOption.delta();
-        //dat->callElasticity = americanOption.elasticity();
-        //dat->gamma = americanOption.gamma();
-        //dat->vega = americanOption.vega();
-        //dat->calltheta = americanOption.thetaPerDay();
-        //dat->callrho = americanOption.rho() / 100;
+        try {
+          dat->calldelta = americanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = americanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = americanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = americanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = americanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = americanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -2752,13 +2998,54 @@ struct _data option_call(struct _data *dat)
        europeanOption.setPricingEngine(mcengine1);
        
        callprice =  europeanOption.NPV();
+       
+       try {
+         dat->calldelta = europeanOption.delta();
+       }
+       catch (exception& e)
+       {
+         dat->calldelta = NAN;
+       }
 
-       //dat->calldelta = europeanOption.delta();
-       //dat->callElasticity = europeanOption.elasticity();
-       //dat->gamma = europeanOption.gamma();
-       //dat->vega = europeanOption.vega();
-       //dat->calltheta = europeanOption.thetaPerDay();
-       //dat->callrho = europeanOption.rho() / 100;
+       try {
+         dat->callElasticity = europeanOption.elasticity();
+       }
+       catch (exception& e)
+       {
+         dat->callElasticity = NAN;
+       }
+
+       try {
+         dat->gamma = europeanOption.gamma();
+       }
+       catch (exception& e)
+       {
+         dat->gamma = NAN;
+       }
+
+       try {
+         dat->vega = europeanOption.vega();
+       }
+       catch (exception& e)
+       {
+         dat->vega = NAN;
+       }
+
+       try {
+         dat->calltheta = europeanOption.thetaPerDay();
+       }
+       catch (exception& e)
+       {
+         dat->calltheta = NAN;
+       }
+
+       try {
+         dat->callrho = europeanOption.rho() / 100;
+       }
+       catch (exception& e)
+       {
+         dat->callrho = NAN;
+       }
  
       }
 
@@ -2823,12 +3110,53 @@ struct _data option_call(struct _data *dat)
 
        callprice =  europeanOption.NPV();
 
-       //dat->calldelta = europeanOption.delta();
-       //dat->callElasticity = europeanOption.elasticity();
-       //dat->gamma = europeanOption.gamma();
-       //dat->vega = europeanOption.vega();
-       //dat->calltheta = europeanOption.thetaPerDay();
-       //dat->callrho = europeanOption.rho() / 100;
+       try {
+         dat->calldelta = europeanOption.delta();
+       }
+       catch (exception& e)
+       {
+         dat->calldelta = NAN;
+       }
+
+       try {
+         dat->callElasticity = europeanOption.elasticity();
+       }
+       catch (exception& e)
+       {
+         dat->callElasticity = NAN;
+       }
+
+       try {
+         dat->gamma = europeanOption.gamma();
+       }
+       catch (exception& e)
+       {
+         dat->gamma = NAN;
+       }
+
+       try {
+         dat->vega = europeanOption.vega();
+       }
+       catch (exception& e)
+       {
+         dat->vega = NAN;
+       }
+
+       try {
+         dat->calltheta = europeanOption.thetaPerDay();
+       }
+       catch (exception& e)
+       {
+         dat->calltheta = NAN;
+       }
+
+       try {
+         dat->callrho = europeanOption.rho() / 100;
+       }
+       catch (exception& e)
+       {
+         dat->callrho = NAN;
+       }
        
       }
 
@@ -2900,12 +3228,53 @@ struct _data option_call(struct _data *dat)
 
        callprice = americanOption.NPV();
 
-       //dat->calldelta = americanOption.delta();
-       //dat->callElasticity = americanOption.elasticity();
-       //dat->gamma = americanOption.gamma();
-       //dat->vega = americanOption.vega();
-       //dat->calltheta = americanOption.thetaPerDay();
-       //dat->callrho = americanOption.rho() / 100;
+       try {
+         dat->calldelta = americanOption.delta();
+       }
+       catch (exception& e)
+       {
+         dat->calldelta = NAN;
+       }
+
+       try {
+         dat->callElasticity = americanOption.elasticity();
+       }
+       catch (exception& e)
+       {
+         dat->callElasticity = NAN;
+       }
+
+       try {
+         dat->gamma = americanOption.gamma();
+       }
+       catch (exception& e)
+       {
+         dat->gamma = NAN;
+       }
+
+       try {
+         dat->vega = americanOption.vega();
+       }
+       catch (exception& e)
+       {
+         dat->vega = NAN;
+       }
+
+       try {
+         dat->calltheta = americanOption.thetaPerDay();
+       }
+       catch (exception& e)
+       {
+         dat->calltheta = NAN;
+       }
+
+       try {
+         dat->callrho = americanOption.rho() / 100;
+       }
+       catch (exception& e)
+       {
+         dat->callrho = NAN;
+       }
 
       }
 
@@ -2968,14 +3337,56 @@ struct _data option_call(struct _data *dat)
          QuantLib::VanillaOption americanOption(payoff, americanExercise);
          americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
              new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(bsmProcess,dat->steps)));
+
          callprice = americanOption.NPV();
 
-         //dat->calldelta = americanOption.delta();
-         //dat->callElasticity = americanOption.elasticity();
-         //dat->gamma = americanOption.gamma();
-         //dat->vega = americanOption.vega();
-         //dat->calltheta = americanOption.thetaPerDay();
-         //dat->callrho = americanOption.rho() / 100;
+         try {
+           dat->calldelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = americanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = americanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else if( dat->UsePound == 2 )
        {
@@ -2983,14 +3394,56 @@ struct _data option_call(struct _data *dat)
          QuantLib::VanillaOption europeanOption(payoff, europeanExercise);
          europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
              new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(bsmProcess,dat->steps)));
+
          callprice = europeanOption.NPV();
 
-         //dat->calldelta = europeanOption.delta();
-         //dat->callElasticity = europeanOption.elasticity();
-         //dat->gamma = europeanOption.gamma();
-         //dat->vega = europeanOption.vega();
-         //dat->calltheta = europeanOption.thetaPerDay();
-         //dat->callrho = europeanOption.rho() / 100;
+         try {
+           dat->calldelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+          dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = europeanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = europeanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+          dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else
        {
@@ -3059,14 +3512,56 @@ struct _data option_call(struct _data *dat)
          QuantLib::VanillaOption americanOption(payoff, americanExercise);
          americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
             new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(bsmProcess,dat->steps)));
+
          callprice = americanOption.NPV();
 
-         //dat->calldelta = americanOption.delta();
-         //dat->callElasticity = americanOption.elasticity();
-         //dat->gamma = americanOption.gamma();
-         //dat->vega = americanOption.vega();
-         //dat->calltheta = americanOption.thetaPerDay();
-         //dat->callrho = americanOption.rho() / 100;
+         try {
+           dat->calldelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = americanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = americanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else if( dat->UsePound == 2 )
        {
@@ -3074,14 +3569,56 @@ struct _data option_call(struct _data *dat)
          QuantLib::VanillaOption europeanOption(payoff, europeanExercise);
          europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
             new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(bsmProcess,dat->steps)));
+
          callprice = europeanOption.NPV();
 
-         //dat->calldelta = europeanOption.delta();
-         //dat->callElasticity = europeanOption.elasticity();
-         //dat->gamma = europeanOption.gamma();
-         //dat->vega = europeanOption.vega();
-         //dat->calltheta = europeanOption.thetaPerDay();
-         //dat->callrho = europeanOption.rho() / 100;
+         try {
+           dat->calldelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = europeanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = europeanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else
        {
@@ -3153,13 +3690,54 @@ struct _data option_call(struct _data *dat)
             new QuantLib::BinomialVanillaEngine<QuantLib::AdditiveEQPBinomialTree>(bsmProcess,dat->steps)));
 
          callprice = americanOption.NPV();
-         
-         //dat->calldelta = americanOption.delta();
-         //dat->callElasticity = americanOption.elasticity();
-         //dat->gamma = americanOption.gamma();
-         //dat->vega = americanOption.vega();
-         //dat->calltheta = americanOption.thetaPerDay();
-         //dat->callrho = americanOption.rho() / 100;
+
+         try {
+           dat->calldelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = americanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = americanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else if( dat->UsePound == 2 )
        {
@@ -3171,12 +3749,53 @@ struct _data option_call(struct _data *dat)
 
          callprice = europeanOption.NPV();
 
-         //dat->calldelta = europeanOption.delta();
-         //dat->callElasticity = europeanOption.elasticity();
-         //dat->gamma = europeanOption.gamma();
-         //dat->vega = europeanOption.vega();
-         //dat->calltheta = europeanOption.thetaPerDay();
-         //dat->callrho = europeanOption.rho() / 100;
+         try {
+           dat->calldelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = europeanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = europeanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else
        {
@@ -3249,12 +3868,53 @@ struct _data option_call(struct _data *dat)
 
          callprice = americanOption.NPV();
 
-         //dat->calldelta = americanOption.delta();
-         //dat->callElasticity = americanOption.elasticity();
-         //dat->gamma = americanOption.gamma();
-         //dat->vega = americanOption.vega();
-         //dat->calltheta = americanOption.thetaPerDay();
-         //dat->callrho = americanOption.rho() / 100;
+         try {
+           dat->calldelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = americanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = americanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else if( dat->UsePound == 2 )
        {
@@ -3266,12 +3926,53 @@ struct _data option_call(struct _data *dat)
 
          callprice = europeanOption.NPV();
 
-         //dat->calldelta = europeanOption.delta();
-         //dat->callElasticity = europeanOption.elasticity();
-         //dat->gamma = europeanOption.gamma();
-         //dat->vega = europeanOption.vega();
-         //dat->calltheta = europeanOption.thetaPerDay();
-         //dat->callrho = europeanOption.rho() / 100;
+         try {
+           dat->calldelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = europeanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = europeanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else
        {
@@ -3344,12 +4045,53 @@ struct _data option_call(struct _data *dat)
  
          callprice = americanOption.NPV();
 
-         //dat->calldelta = americanOption.delta();
-         //dat->callElasticity = americanOption.elasticity();
-         //dat->gamma = americanOption.gamma();
-         //dat->vega = americanOption.vega();
-         //dat->calltheta = americanOption.thetaPerDay();
-         //dat->callrho = americanOption.rho() / 100;
+         try {
+           dat->calldelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = americanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = americanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else if( dat->UsePound == 2 )
        {
@@ -3361,12 +4103,53 @@ struct _data option_call(struct _data *dat)
 
          callprice = europeanOption.NPV();
 
-         //dat->calldelta = europeanOption.delta();
-         //dat->callElasticity = europeanOption.elasticity();
-         //dat->gamma = europeanOption.gamma();
-         //dat->vega = europeanOption.vega();
-         //dat->calltheta = europeanOption.thetaPerDay();
-         //dat->callrho = europeanOption.rho() / 100;
+         try {
+           dat->calldelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = europeanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = europeanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else
        {
@@ -3439,12 +4222,53 @@ struct _data option_call(struct _data *dat)
  
          callprice = americanOption.NPV();
 
-         //dat->calldelta = americanOption.delta();
-         //dat->callElasticity = americanOption.elasticity();
-         //dat->gamma = americanOption.gamma();
-         //dat->vega = americanOption.vega();
-         //dat->calltheta = americanOption.thetaPerDay();
-         //dat->callrho = americanOption.rho() / 100;
+         try {
+           dat->calldelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = americanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = americanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else if( dat->UsePound == 2 )
        {
@@ -3456,12 +4280,53 @@ struct _data option_call(struct _data *dat)
 
          callprice = europeanOption.NPV();
 
-         //dat->calldelta = europeanOption.delta();
-         //dat->callElasticity = europeanOption.elasticity();
-         //dat->gamma = europeanOption.gamma();
-         //dat->vega = europeanOption.vega();
-         //dat->calltheta = europeanOption.thetaPerDay();
-         //dat->callrho = europeanOption.rho() / 100;
+         try {
+           dat->calldelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = europeanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = europeanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else
        {
@@ -3534,12 +4399,53 @@ struct _data option_call(struct _data *dat)
  
          callprice = americanOption.NPV();
 
-         //dat->calldelta = americanOption.delta();
-         //dat->callElasticity = americanOption.elasticity();
-         //dat->gamma = americanOption.gamma();
-         //dat->vega = americanOption.vega();
-         //dat->calltheta = americanOption.thetaPerDay();
-         //dat->callrho = americanOption.rho() / 100;
+         try {
+           dat->calldelta = americanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = americanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = americanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = americanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = americanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = americanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else if( dat->UsePound == 2 )
        {
@@ -3551,12 +4457,53 @@ struct _data option_call(struct _data *dat)
 
          callprice = europeanOption.NPV();
 
-         //dat->calldelta = europeanOption.delta();
-         //dat->callElasticity = europeanOption.elasticity();
-         //dat->gamma = europeanOption.gamma();
-         //dat->vega = europeanOption.vega();
-         //dat->calltheta = europeanOption.thetaPerDay();
-         //dat->callrho = europeanOption.rho() / 100;
+         try {
+           dat->calldelta = europeanOption.delta();
+         }
+         catch (exception& e)
+         {
+           dat->calldelta = NAN;
+         }
+
+         try {
+           dat->callElasticity = europeanOption.elasticity();
+         }
+         catch (exception& e)
+         {
+           dat->callElasticity = NAN;
+         }
+
+         try {
+           dat->gamma = europeanOption.gamma();
+         }
+         catch (exception& e)
+         {
+           dat->gamma = NAN;
+         }
+
+         try {
+           dat->vega = europeanOption.vega();
+         }
+         catch (exception& e)
+         {
+           dat->vega = NAN;
+         }
+
+         try {
+           dat->calltheta = europeanOption.thetaPerDay();
+         }
+         catch (exception& e)
+         {
+           dat->calltheta = NAN;
+         }
+
+         try {
+           dat->callrho = europeanOption.rho() / 100;
+         }
+         catch (exception& e)
+         {
+           dat->callrho = NAN;
+         }
 
        } else
        {
@@ -3629,12 +4576,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = europeanOption.NPV();
 
-        //dat->calldelta = europeanOption.delta();
-        //dat->callElasticity = europeanOption.elasticity();
-        //dat->gamma = europeanOption.gamma();
-        //dat->vega = europeanOption.vega();
-        //dat->calltheta = europeanOption.thetaPerDay();
-        //dat->callrho = europeanOption.rho() / 100;
+        try {
+          dat->calldelta = europeanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = europeanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = europeanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = europeanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = europeanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = europeanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -3697,12 +4685,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = europeanOption.NPV();
 
-        //dat->calldelta = europeanOption.delta();
-        //dat->callElasticity = europeanOption.elasticity();
-        //dat->gamma = europeanOption.gamma();
-        //dat->vega = europeanOption.vega();
-        //dat->calltheta = europeanOption.thetaPerDay();
-        //dat->callrho = europeanOption.rho() / 100;
+        try {
+          dat->calldelta = europeanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = europeanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = europeanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = europeanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = europeanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = europeanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -3779,12 +4808,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = bermudanOption.NPV();
 
-         //dat->calldelta = bermudanOption.delta();
-         //dat->callElasticity = bermudanOption.elasticity();
-         //dat->gamma = bermudanOption.gamma();
-         //dat->vega = bermudanOption.vega();
-         //dat->calltheta = bermudanOption.thetaPerDay();
-         //dat->callrho = bermudanOption.rho() / 100;
+        try {
+          dat->calldelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = bermudanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = bermudanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -3856,12 +4926,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = bermudanOption.NPV();
 
-        //dat->calldelta = bermudanOption.delta();
-        //dat->callElasticity = bermudanOption.elasticity();
-        //dat->gamma = bermudanOption.gamma();
-        //dat->vega = bermudanOption.vega();
-        //dat->calltheta = bermudanOption.thetaPerDay();
-        //dat->callrho = bermudanOption.rho() / 100;
+        try {
+          dat->calldelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = bermudanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = bermudanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -3933,12 +5044,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = bermudanOption.NPV();
 
-        //dat->calldelta = bermudanOption.delta();
-        //dat->callElasticity = bermudanOption.elasticity();
-        //dat->gamma = bermudanOption.gamma();
-        //dat->vega = bermudanOption.vega();
-        //dat->calltheta = bermudanOption.thetaPerDay();
-        //dat->callrho = bermudanOption.rho() / 100;
+        try {
+          dat->calldelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = bermudanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = bermudanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -4010,13 +5162,54 @@ struct _data option_call(struct _data *dat)
 
         callprice = bermudanOption.NPV();
 
-        //dat->calldelta = bermudanOption.delta();
-        //dat->callElasticity = bermudanOption.elasticity();
-        //dat->gamma = bermudanOption.gamma();
-        //dat->vega = bermudanOption.vega();
-        //dat->calltheta = bermudanOption.thetaPerDay();
-        //dat->callrho = bermudanOption.rho() / 100;
-        
+        try {
+          dat->calldelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = bermudanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = bermudanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
+
       }
 
       break;
@@ -4087,12 +5280,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = bermudanOption.NPV();
 
-        //dat->calldelta = bermudanOption.delta();
-        //dat->callElasticity = bermudanOption.elasticity();
-        //dat->gamma = bermudanOption.gamma();
-        //dat->vega = bermudanOption.vega();
-        //dat->calltheta = bermudanOption.thetaPerDay();
-        //dat->callrho = bermudanOption.rho() / 100;
+        try {
+          dat->calldelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = bermudanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = bermudanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -4164,12 +5398,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = bermudanOption.NPV();
 
-        //dat->calldelta = bermudanOption.delta();
-        //dat->callElasticity = bermudanOption.elasticity();
-        //dat->gamma = bermudanOption.gamma();
-        //dat->vega = bermudanOption.vega();
-        //dat->calltheta = bermudanOption.thetaPerDay();
-        //dat->callrho = bermudanOption.rho() / 100;
+        try {
+          dat->calldelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = bermudanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = bermudanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -4241,12 +5516,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = bermudanOption.NPV();
 
-        //dat->calldelta = bermudanOption.delta();
-        //dat->callElasticity = bermudanOption.elasticity();
-        //dat->gamma = bermudanOption.gamma();
-        //dat->vega = bermudanOption.vega();
-        //dat->calltheta = bermudanOption.thetaPerDay();
-        //dat->callrho = bermudanOption.rho() / 100;
+        try {
+          dat->calldelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
+
+        try {
+          dat->callElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = bermudanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = bermudanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
 
       }
 
@@ -4318,13 +5634,53 @@ struct _data option_call(struct _data *dat)
 
         callprice = bermudanOption.NPV();
 
-        //dat->calldelta = bermudanOption.delta();
-        //dat->callElasticity = bermudanOption.elasticity();
-        //dat->gamma = bermudanOption.gamma();
-        //dat->vega = bermudanOption.vega();
-        //dat->calltheta = bermudanOption.thetaPerDay();
-        //dat->callrho = bermudanOption.rho() / 100;
+        try {
+          dat->calldelta = bermudanOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+        }
 
+        try {
+          dat->callElasticity = bermudanOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+        }
+
+        try {
+          dat->gamma = bermudanOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+        }
+
+        try {
+          dat->vega = bermudanOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+        }
+
+        try {
+          dat->calltheta = bermudanOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+        }
+
+        try {
+          dat->callrho = bermudanOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+        }
       }
 
       break;
