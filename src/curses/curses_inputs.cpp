@@ -187,7 +187,10 @@ int select_model(struct _properties *properties)
       while( type == -1 )
       {
         type = nonblockscan(&control);
-        usleep(1);
+
+	timespec sleepValue = { 0 };
+	sleepValue.tv_nsec = 1000;
+	nanosleep(&sleepValue, NULL);
 
         if( control == KEY_LEFT || control == KEY_UP || control == 'k' ||
             control == 'h' )
@@ -265,7 +268,9 @@ int select_model(struct _properties *properties)
 
         refresh();
 
-        usleep(500000);
+	timespec sleepValue = { 0 };
+	sleepValue.tv_nsec = 500000000;
+	nanosleep(&sleepValue, NULL);
 
         modelChanged = 1;
 
@@ -1524,7 +1529,9 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
         expires(LEG1,30,properties->skipmonth,future_properties);
         expires(LEG1,30,properties->skipmonth,properties);
 
-        usleep(100000);
+	timespec sleepValue = { 0 };
+	sleepValue.tv_nsec = 100000000;
+	nanosleep(&sleepValue, NULL);
 
         clear();
         refresh();

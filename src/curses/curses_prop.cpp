@@ -1007,7 +1007,10 @@ int props(struct _properties *properties,struct _properties *future_properties)
              }
 
              refresh();
-             usleep(1000000);
+
+	     timespec sleepValue = { 0 };
+	     sleepValue.tv_sec = 1;
+	     nanosleep(&sleepValue, NULL);
            
              break;
              
