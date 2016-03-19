@@ -1010,8 +1010,12 @@ int props(struct _properties *properties,struct _properties *future_properties)
 
              timespec sleepValue = { 0 };
              sleepValue.tv_sec = 1;
-             nanosleep(&sleepValue, NULL);
-           
+             if( nanosleep(&sleepValue, NULL) < 0 )
+             {
+               printw("nanosleep() failed\n");
+               refresh();
+             }
+
              break;
              
          } else if( ret == 0 || ret == -1 || inputstring[0] == ' ' )

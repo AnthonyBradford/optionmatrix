@@ -102,7 +102,11 @@ void curses_process(struct _properties *properties,struct _properties *future_pr
       {
         timespec sleepValue = { 0 };
         sleepValue.tv_nsec = 50000000;
-        nanosleep(&sleepValue, NULL);
+        if( nanosleep(&sleepValue, NULL) < 0 )
+        {
+          printw("nanosleep() failed\n");
+          refresh();
+        }
 
         if(++timercounter == (20 * properties->updatedelayseconds))
         {

@@ -190,7 +190,11 @@ int select_model(struct _properties *properties)
 
         timespec sleepValue = { 0 };
         sleepValue.tv_nsec = 1000;
-        nanosleep(&sleepValue, NULL);
+        if( nanosleep(&sleepValue, NULL) < 0 )
+        {
+          printw("nanosleep() failed\n");
+          refresh();
+        }
 
         if( control == KEY_LEFT || control == KEY_UP || control == 'k' ||
             control == 'h' )
@@ -270,7 +274,11 @@ int select_model(struct _properties *properties)
 
         timespec sleepValue = { 0 };
         sleepValue.tv_nsec = 500000000;
-        nanosleep(&sleepValue, NULL);
+        if( nanosleep(&sleepValue, NULL) < 0 )
+        {
+          printw("nanosleep() failed\n");
+          refresh();
+        }
 
         modelChanged = 1;
 
@@ -1531,7 +1539,11 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
 
         timespec sleepValue = { 0 };
         sleepValue.tv_nsec = 100000000;
-        nanosleep(&sleepValue, NULL);
+        if( nanosleep(&sleepValue, NULL) < 0 )
+        {
+          printw("nanosleep() failed\n");
+          refresh();
+        }
 
         clear();
         refresh();

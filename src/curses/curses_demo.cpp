@@ -697,7 +697,11 @@ int myusleep(const int useconds)
 
     timespec sleepValue = { 0 };
     sleepValue.tv_nsec = ( useconds / 40 ) * 1000;
-    nanosleep(&sleepValue, NULL);
+    if( nanosleep(&sleepValue, NULL) < 0 )
+    {
+      printw("nanosleep() failed\n");
+      refresh();
+    }
 
   } // for( i = 0; i < 40; i++ )
 
