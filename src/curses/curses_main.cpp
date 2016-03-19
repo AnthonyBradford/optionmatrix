@@ -56,6 +56,11 @@ int main(int argc, char **argv)
     initscr();
     keypad(stdscr,TRUE);
 
+    // if mousemask() not called Windows MSYS2 seems to change
+    // from nodelay(stdscr,TRUE); to nodelay(stdscr,FALSE);
+    // on any mouse click
+    mousemask(ALL_MOUSE_EVENTS, NULL);
+
     welcome_screen();
 
     for(;;)
