@@ -468,7 +468,7 @@ int main(int argc, char *argv[])
 #endif
 
 #ifdef DATADIR
-  char imageName[1024];
+  char imageName[PATH_MAX];
   snprintf(imageName,sizeof(imageName), "%s/%s/images/6.png", DATADIR, PACKAGE);
   
   if( access(imageName, F_OK ) == 0 )
@@ -500,7 +500,7 @@ int main(int argc, char *argv[])
   //gtk_builder_add_from_file(properties.GtkInfo.builder, "gtk_glade_xml.glade", &err);
 
 #ifdef DATADIR
-  //char gladeFile[1024];
+  //char gladeFile[PATH_MAX];
   //snprintf(gladeFile,sizeof(gladeFile),"%s/%s/gtk_glade_xml.glade", DATADIR, PACKAGE);
   //gtk_builder_add_from_file(properties.GtkInfo.builder, gladeFile, &err);
 #endif

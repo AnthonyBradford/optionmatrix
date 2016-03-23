@@ -36,7 +36,7 @@ void logger(const char *name, const int num_args, ...)
   double dval;
 
   static FILE *fp = 0;
-  static char logFile[512];
+  static char logFile[PATH_MAX];
   char *homeDirectory;
 
   static int oneTime = 0;
