@@ -327,7 +327,7 @@ const char *const gtkBuilderString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
             <property name=\"can_focus\">False</property>\
             <child>\
               <object class=\"GtkCheckButton\" id=\"checkbuttonFilterNegativePrice\">\
-                <property name=\"label\" translatable=\"yes\">Filter negative prices</property>\
+                <property name=\"label\" translatable=\"yes\">Filter negative put/call prices</property>\
                 <property name=\"visible\">True</property>\
                 <property name=\"can_focus\">False</property>\
                 <property name=\"receives_default\">False</property>\
