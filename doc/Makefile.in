@@ -937,8 +937,8 @@ install-html: $(optionmatrix__TEXINFOS) $(EQN_IMAGES)
 	fi;
 	if test -n '$(TEXI2ANY)'; then \
 		echo "texi2any installed"; \
-		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable TOP_NODE_UP_URL=.. --html --number-sections -o $(DESTDIR)${htmldir}/optionmatrix.html $(abs_top_srcdir)/doc/optionmatrix.texi -I $(abs_top_srcdir)/doc/images/; \
-		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable TOP_NODE_UP_URL=.. --html --no-split --no-headers -o $(DESTDIR)${htmldir}/optionmatrix.html/indexNoSplit.html $(abs_top_srcdir)/doc/optionmatrix.texi -I $(abs_top_srcdir)/doc/images/; \
+		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable TOP_NODE_UP_URL=https://github.com --html --number-sections -o $(DESTDIR)${htmldir}/optionmatrix.html $(abs_top_srcdir)/doc/optionmatrix.texi -I $(abs_top_srcdir)/doc/images/; \
+		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable TOP_NODE_UP_URL=https://github.com/ --html --no-split --no-headers -o $(DESTDIR)${htmldir}/optionmatrix.html/indexNoSplit.html $(abs_top_srcdir)/doc/optionmatrix.texi -I $(abs_top_srcdir)/doc/images/; \
 	fi; 
 	if ( test -z '$(TEXI2ANY)' && test -z '$(MAKEINFO_INSTALLED)' ); then \
 		echo "makeinfo or texi2any needs to be installed to create HTML documentation."; \
@@ -996,8 +996,8 @@ html: $(optionmatrix__TEXINFOS) $(EQN_IMAGES) check_makeinfo_texi2any
 		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --html --no-split --no-headers -o html/indexNoSplit.html $(DESTDIR)optionmatrix.texi; \
 	else \
 		echo "texi2any installed"; \
-		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable 'FRAMES=TRUE' --set-customization-variable TOP_NODE_UP_URL=.. --set-customization-variable 'AFTER_BODY_OPEN=<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>' --set-customization-variable 'PRE_BODY_CLOSE=<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>' --html --number-sections -o html $(DESTDIR)optionmatrix.texi; \
-		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable TOP_NODE_UP_URL=.. --set-customization-variable 'AFTER_BODY_OPEN=<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>' --set-customization-variable 'PRE_BODY_CLOSE=<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>' --html --no-split --no-headers -o html/indexNoSplit.html $(DESTDIR)optionmatrix.texi; \
+		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable 'FRAMES=TRUE' --set-customization-variable TOP_NODE_UP_URL=https://github.com --set-customization-variable 'AFTER_BODY_OPEN=<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a>' --set-customization-variable 'PRE_BODY_CLOSE=<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a>' --html --number-sections -o html $(DESTDIR)optionmatrix.texi; \
+		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable TOP_NODE_UP_URL=https://github.com --set-customization-variable 'AFTER_BODY_OPEN=<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>' --set-customization-variable 'PRE_BODY_CLOSE=<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>' --html --no-split --no-headers -o html/indexNoSplit.html $(DESTDIR)optionmatrix.texi; \
 	fi;
 	for i in $(EQN_IMAGES); do cp -f ${srcdir}/$$i $(DESTDIR)html/images ; done
 	@echo
@@ -1013,7 +1013,7 @@ frames: check_makeinfo_texi2any
 		echo "texi2any needed for Frames HTML"; \
 		echo ; \
 	else \
-		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable 'FRAMES=TRUE' --set-customization-variable TOP_NODE_UP_URL=.. --set-customization-variable 'AFTER_BODY_OPEN=<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>' --set-customization-variable 'PRE_BODY_CLOSE=<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>' --html --number-sections -o html $(DESTDIR)optionmatrix.texi; \
+		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable 'FRAMES=TRUE' --set-customization-variable TOP_NODE_UP_URL=https://github.com --set-customization-variable 'AFTER_BODY_OPEN=<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a>' --set-customization-variable 'PRE_BODY_CLOSE=<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a>' --html --number-sections -o html $(DESTDIR)optionmatrix.texi; \
 	echo ; \
 	echo "See file html/optionmatrix_frame.html"; \
 	echo ; \
@@ -1187,7 +1187,7 @@ linkchecker: check_makeinfo_texi2any $(optionmatrix__TEXINFOS) $(EQN_IMAGES)
 		echo ; \
 	else \
 		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --html --number-sections -o html $(DESTDIR)optionmatrix.texi; \
-		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable TOP_NODE_UP_URL=.. --html --no-split --no-headers -o html/indexNoSplit.html $(DESTDIR)optionmatrix.texi; \
+		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable TOP_NODE_UP_URL=https://github.com --html --no-split --no-headers -o html/indexNoSplit.html $(DESTDIR)optionmatrix.texi; \
 		linkchecker -Fhtml -o none html/index.html; \
 		echo ; \
 		echo "See linkchecker-out.html"; \

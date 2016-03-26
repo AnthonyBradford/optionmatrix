@@ -122,7 +122,7 @@ which is a financial derivatives calculator.
 <br>
 <a href="indexNoSplit.html">OptionMatrix single HTML page manual</a>
 <br>
-<a href="http://@value{WEBSITE}/om/doc/optionmatrix.epub">EPUB version of this manual</a>
+<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.epub">EPUB version of this manual</a>
 <br>
 <br>
 @end html
