@@ -34,7 +34,7 @@
 
 void InitPaint(struct _properties *properties)
 {
-  g_print("InitPaint():\n");
+  g_print("InitPaint()\n");
 
   GtkTreeIter iter;
   char amountText[400] = { 0 };
@@ -45,6 +45,9 @@ void InitPaint(struct _properties *properties)
 
   std::vector<double>::iterator it;
   std::vector<double>::iterator it2;
+
+  g_print("InitPaint(): data.generic_amounts->size() = %lu\n", properties->data.generic_amounts->size());
+  g_print("InitPaint(): data.generic_times_adjusted->size() = %lu\n", properties->data.generic_times_adjusted->size());
 
   if( properties->data.generic_amounts->size() != properties->data.generic_times_adjusted->size() )
   {
@@ -140,13 +143,12 @@ gboolean ListTimer(struct _properties *properties)
 
       gtk_tree_model_iter_next(model, &iter);
 
-    }
+    } // for(...)
 
     pthread_mutex_unlock(&properties->data.mutexCashflow);
 
     gtk_tree_view_set_model(GTK_TREE_VIEW (properties->GtkInfo.treeview2), GTK_TREE_MODEL (properties->GtkInfo.store));
     gtk_tree_view_expand_all(GTK_TREE_VIEW (properties->GtkInfo.treeview2));
-    //g_object_unref(properties->GtkInfo.store);
 
   } else
   {
@@ -159,6 +161,8 @@ gboolean ListTimer(struct _properties *properties)
 
 void AddToVector(struct _properties *properties)
 {
+  g_print("AddToVector()\n");
+
   GtkTreeModel *model;
   model = gtk_tree_view_get_model(GTK_TREE_VIEW(properties->GtkInfo.treeview2));
 
@@ -188,10 +192,10 @@ void AddToVector(struct _properties *properties)
         gtk_tree_model_get(model, &iter, X2, &timeText, -1);
 
         if( sscanf(amountsText,"%lf", &amount) != 1 )
-          g_print("AddToVector(): Error: sscanf does not equal 1 for amountText\n");
+          g_print("AddToVector(): Error(1): sscanf does not equal 1 for amountText\n");
 
         if( sscanf(timeText,"%lf", &decimalTime) != 1 )
-          g_print("AddToVector(): Error: sscanf does not equal 1 for timeText\n");
+          g_print("AddToVector(): Error(2): sscanf does not equal 1 for timeText\n");
 
         g_print("amount = %lf, decimalTime = %lf\n", amount, decimalTime);
 
@@ -209,9 +213,9 @@ void AddToVector(struct _properties *properties)
         gtk_tree_model_get(model, &iter, X1, &timeText, -1);
 
         if( sscanf(timeText,"%lf", &decimalTime) != 1 )
-          g_print("on_buttonDividends_clicked(): Error: sscanf does not equal 1 for timeText\n");
+          g_print("AddToVector(): Error(3): sscanf does not equal 1 for timeText\n");
 
-        g_print("decimalTime = %lf\n", decimalTime);
+        g_print("AddToVector(): decimalTime = %lf\n", decimalTime);
 
         properties->data.generic_amounts->push_back(amount);
         properties->data.generic_times->push_back(decimalTime);
@@ -223,12 +227,12 @@ void AddToVector(struct _properties *properties)
 
       } else
       {
-        g_print("on_buttonDividends_clicked(): dividend format not understood\n");
+        g_print("AddToVector(): dividend format not understood\n");
       }
 
     }  while(gtk_tree_model_iter_next (model, &iter));
 
-  }
+  } // if( gtk_tree_model_get_iter_from_string(model, &iter, "0") )
 
   pthread_mutex_unlock(&properties->data.mutexCashflow);
 
@@ -272,6 +276,8 @@ void on_buttonPrincipal_clicked( GtkWidget *widget, struct _properties *properti
 
 void generic_process_button(struct _properties *properties )
 {
+  g_print("generic_process_button()\n");
+
   GtkWidget *scrolled_win, *vbox, *hbox, *add, *remove;
   GtkTreeSelection *selection;
   
@@ -369,7 +375,7 @@ void generic_process_button(struct _properties *properties )
   gtk_tree_store_clear(properties->GtkInfo.store);
   g_object_unref(properties->GtkInfo.store);
 
-  g_print("on_buttonDividends_clicked(): Fell through\n");
+  g_print("generic_process_button(): Fell through\n");
 
   if( properties->realTimeBleeding )
     g_source_remove(properties->GtkInfo.gListTimer);
@@ -378,6 +384,8 @@ void generic_process_button(struct _properties *properties )
 
 void add_cashflow3(GtkButton *add, struct _properties *properties)
 {
+  g_print("add_cashflow3()\n");
+
   GtkWidget *dialog;
   GtkWidget *table, *spin, *spin2;
   GtkWidget *content_area;
@@ -572,6 +580,8 @@ void add_cashflow3(GtkButton *add, struct _properties *properties)
 
 void add_cashflow4(GtkButton *add, struct _properties *properties)
 {
+  g_print("add_cashflow4()\n");
+
   GtkWidget *dialog, *table, *spin2;
   GtkWidget *content_area;
 
@@ -737,7 +747,7 @@ void add_cashflow4(GtkButton *add, struct _properties *properties)
 
 void remove_row(GtkTreeRowReference *ref, struct _properties *properties)
 {
-  //g_print("remove_row()\n");
+  g_print("remove_row()\n");
 
   GtkTreeIter iter;
   GtkTreePath *path;
@@ -751,7 +761,7 @@ void remove_row(GtkTreeRowReference *ref, struct _properties *properties)
 
 void remove_cashflows(GtkButton *remove, struct _properties *properties)
 {
-  //g_print("remove_cashflows()\n");
+  g_print("remove_cashflows()\n");
 
   g_source_remove(properties->GtkInfo.gListTimer);
 
@@ -790,6 +800,8 @@ void remove_cashflows(GtkButton *remove, struct _properties *properties)
 
 void setup_tree_view3(GtkWidget *treeview)
 {
+  g_print("setup_tree_view3()\n");
+
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
 
@@ -812,6 +824,8 @@ void setup_tree_view3(GtkWidget *treeview)
 
 void setup_tree_view4(GtkWidget *treeview)
 {
+  g_print("setup_tree_view4()\n");
+
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
 
