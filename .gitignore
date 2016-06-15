@@ -11,6 +11,8 @@ doc/optionmatrix.epub
 doc/optionmatrix.xml
 doc/html/source_html.tar.gz
 doc/html/source_html/
+doc/html/*.html
+doc/html/images/*.png
 Makefile
 autom4te.cache/*
 config.h
