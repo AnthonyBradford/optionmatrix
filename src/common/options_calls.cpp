@@ -2330,6 +2330,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2338,6 +2341,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2346,6 +2352,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2354,6 +2363,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2362,6 +2374,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2370,6 +2385,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -2446,6 +2464,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2454,6 +2475,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2462,6 +2486,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2470,6 +2497,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2478,6 +2508,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2486,6 +2519,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -2557,6 +2593,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2565,6 +2604,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2573,6 +2615,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2581,6 +2626,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2589,6 +2637,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2597,6 +2648,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -2666,6 +2720,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2674,6 +2731,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2682,6 +2742,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2690,6 +2753,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2698,6 +2764,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2706,6 +2775,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -2779,6 +2851,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2787,6 +2862,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2795,6 +2873,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2803,6 +2884,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2811,6 +2895,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2819,6 +2906,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
         
       }
@@ -2893,6 +2983,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2901,6 +2994,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2909,6 +3005,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2917,6 +3016,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2925,6 +3027,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -2933,6 +3038,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -3005,6 +3113,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
        }
 
        try {
@@ -3013,6 +3124,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
        }
 
        try {
@@ -3021,6 +3135,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
        }
 
        try {
@@ -3029,6 +3146,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
        }
 
        try {
@@ -3037,6 +3157,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
        }
 
        try {
@@ -3045,6 +3168,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
        }
  
       }
@@ -3116,6 +3242,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->calldelta = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
        try {
@@ -3124,6 +3253,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->callElasticity = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
        try {
@@ -3132,6 +3264,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->gamma = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
        try {
@@ -3140,6 +3275,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->vega = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
        try {
@@ -3148,6 +3286,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->calltheta = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
        try {
@@ -3156,6 +3297,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->callrho = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
        
       }
@@ -3234,6 +3378,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->calldelta = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
        try {
@@ -3242,6 +3389,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->callElasticity = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
        try {
@@ -3250,6 +3400,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->gamma = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
        try {
@@ -3258,6 +3411,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->vega = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
        try {
@@ -3266,6 +3422,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->calltheta = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
        try {
@@ -3274,6 +3433,9 @@ struct _data option_call(struct _data *dat)
        catch (exception& e)
        {
          dat->callrho = NAN;
+
+         if(dat->debug)
+           logger(e.what(), 0);
        }
 
       }
@@ -3346,6 +3508,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3354,6 +3519,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3362,6 +3530,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3370,6 +3541,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3378,6 +3552,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3386,6 +3563,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else if( dat->UsePound == 2 )
@@ -3403,6 +3583,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
          }
 
          try {
@@ -3411,6 +3594,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
          }
 
          try {
@@ -3419,6 +3605,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3427,6 +3616,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3434,7 +3626,10 @@ struct _data option_call(struct _data *dat)
          }
          catch (exception& e)
          {
-          dat->calltheta = NAN;
+           dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3443,6 +3638,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else
@@ -3521,6 +3719,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3529,6 +3730,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3537,6 +3741,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3545,6 +3752,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3553,6 +3763,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3561,6 +3774,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else if( dat->UsePound == 2 )
@@ -3578,6 +3794,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3586,6 +3805,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3594,6 +3816,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3602,6 +3827,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3610,6 +3838,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3618,6 +3849,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else
@@ -3697,6 +3931,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3705,6 +3942,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3713,6 +3953,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3721,6 +3964,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3729,6 +3975,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3737,6 +3986,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else if( dat->UsePound == 2 )
@@ -3755,6 +4007,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3763,6 +4018,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3771,6 +4029,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3779,6 +4040,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3787,6 +4051,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3795,6 +4062,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else
@@ -3874,6 +4144,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3882,6 +4155,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3890,6 +4166,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3898,6 +4177,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3906,6 +4188,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3914,6 +4199,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else if( dat->UsePound == 2 )
@@ -3932,6 +4220,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3940,6 +4231,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3948,6 +4242,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3956,6 +4253,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3964,6 +4264,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -3972,6 +4275,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
          }
 
        } else
@@ -4051,6 +4357,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4059,6 +4368,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4067,6 +4379,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4075,6 +4390,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4083,6 +4401,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4091,6 +4412,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else if( dat->UsePound == 2 )
@@ -4109,6 +4433,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4117,6 +4444,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4125,6 +4455,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4133,6 +4466,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4141,6 +4477,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4149,6 +4488,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else
@@ -4228,6 +4570,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4236,6 +4581,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4244,6 +4592,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4252,6 +4603,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
          }
 
          try {
@@ -4260,6 +4614,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4268,6 +4625,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else if( dat->UsePound == 2 )
@@ -4286,6 +4646,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4294,6 +4657,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4302,6 +4668,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4310,6 +4679,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4318,6 +4690,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4326,6 +4701,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else
@@ -4405,6 +4783,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4413,6 +4794,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4421,6 +4805,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4429,6 +4816,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4437,6 +4827,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4445,6 +4838,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else if( dat->UsePound == 2 )
@@ -4463,6 +4859,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calldelta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4471,6 +4870,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callElasticity = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4479,6 +4881,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->gamma = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4487,6 +4892,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->vega = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4495,6 +4903,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->calltheta = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
          try {
@@ -4503,6 +4914,9 @@ struct _data option_call(struct _data *dat)
          catch (exception& e)
          {
            dat->callrho = NAN;
+
+           if(dat->debug)
+             logger(e.what(), 0);
          }
 
        } else
@@ -4582,6 +4996,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4590,6 +5007,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4598,6 +5018,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4606,6 +5029,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4614,6 +5040,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4622,6 +5051,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -4691,6 +5123,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4699,6 +5134,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4707,6 +5145,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4715,6 +5156,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4723,6 +5167,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4731,6 +5178,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -4814,6 +5264,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4822,6 +5275,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4830,6 +5286,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4838,6 +5297,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4846,6 +5308,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4854,6 +5319,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -4932,6 +5400,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4940,6 +5411,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4948,6 +5422,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4956,6 +5433,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4964,6 +5444,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -4972,6 +5455,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -5050,6 +5536,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5058,6 +5547,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5066,6 +5558,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5074,6 +5569,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5082,6 +5580,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5090,6 +5591,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -5168,6 +5672,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5176,6 +5683,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5184,6 +5694,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5192,6 +5705,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5200,6 +5716,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5208,6 +5727,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -5286,6 +5808,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5294,6 +5819,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5302,6 +5830,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5310,6 +5841,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5318,6 +5852,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5326,6 +5863,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -5404,6 +5944,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5412,6 +5955,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5420,6 +5966,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5428,6 +5977,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5436,6 +5988,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5444,6 +5999,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -5522,6 +6080,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5530,6 +6091,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5538,6 +6102,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5546,6 +6113,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5554,6 +6124,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5562,6 +6135,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
       }
@@ -5640,6 +6216,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5648,6 +6227,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5656,6 +6238,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5664,6 +6249,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5672,6 +6260,9 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
 
         try {
@@ -5680,10 +6271,225 @@ struct _data option_call(struct _data *dat)
         catch (exception& e)
         {
           dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
         }
       }
 
       break;
+
+    case QUANTLIB_DISCRETE_AVERAGE_ASIAN:
+      {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_DISCRETE_AVERAGE_ASIAN call", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
+        try {
+
+        // Calendar set up
+        QuantLib::Calendar calendar = QuantLib::TARGET();
+
+        int year; int month; int day; int hour; int min; int second;
+        decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
+        //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
+        QuantLib::Date todaysDate(day, QuantLibMonths[month], year);
+
+        decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
+        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
+ 
+        // Option parameters
+        QuantLib::Option::Type optionType(QuantLib::Option::Call);
+        QuantLib::Average::Type averageType = QuantLib::Average::Geometric;
+        QuantLib::Real strike_ = strike;
+        QuantLib::Real underlying = price;
+        QuantLib::Rate riskFreeRate = rate;
+        QuantLib::Volatility volatility = volatility;
+        QuantLib::Spread dividendYield = dat->UseJ;
+        QuantLib::Date maturity(day, QuantLibMonths[month], year);
+        QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
+        QuantLib::Real runningSum = dat->UseZ;
+        QuantLib::Size pastFixings = dat->UseB;
+        std::vector<QuantLib::Date> fixingDates;
+
+        pthread_mutex_lock(&dat->mutexCashflow);
+
+        static int oneTime_QUANTLIB_DISCRETE_AVERAGE_ASIAN = 0;
+
+        if( oneTime_QUANTLIB_DISCRETE_AVERAGE_ASIAN++ == 0 )
+        {
+          dat->times.erase( dat->times.begin(), dat->times.end() );
+          dat->amounts.erase( dat->amounts.begin(), dat->amounts.end() );
+          //dat->times_adjusted.erase( dat->times_adjusted.begin(), dat->times_adjusted.end() );
+
+          for( QuantLib::Date incrementedDate = todaysDate+7; incrementedDate <= maturity; incrementedDate += 7 )
+          {
+            //std::cout << "incrementedDate = " << incrementedDate << std::endl;
+
+            g_print("%d %d %d\n", incrementedDate.dayOfMonth(),incrementedDate.month(),incrementedDate.year() );
+            int daysaway = date_to_days_away( incrementedDate.dayOfMonth(),incrementedDate.month(),incrementedDate.year() - 2000 );
+            //std::cout << "daysaway = " << daysaway << std::endl;
+            //std::cout << "dat->generic_times->push_back( " << adjust_to_current_time_and_expr(&daysaway,0,0) << " )" << std::endl;
+            dat->times.push_back( adjust_to_current_time_and_expr(&daysaway,0,0) );
+            dat->amounts.push_back( 1 );
+            //dat->times_adjusted.push_back( adjust_to_current_time_and_expr(&daysaway,0,0) );
+
+          } // for( QuantLib::Date incrementedDate = todaysDate+7; incrementedDate <= maturity; incrementedDate += 7 )
+
+          //std::cout << "dat->times.size() = " << dat->times.size() << std::endl;
+          dat->generic_times_adjusted = &dat->times;
+          dat->generic_amounts = &dat->amounts;
+ 
+        } // if( oneTime_QUANTLIB_DISCRETE_AVERAGE_ASIAN++ == 0 )
+
+        for( std::vector<double>::iterator it = dat->times.begin(); it != dat->times.end(); ++it)
+        {
+          decimal_date_to_real_dates( *it, &year, &month, &day, &hour, &min, &second);
+          //g_print("decimal_date_to_real_dates(it = %lf, year = %d, month = %d, day = %d, hour, min, second)\n", *it, year, month, day);
+          QuantLib::Date ExDate(day, QuantLibMonths[month], year);
+          //std::cout << "ExDate( " << day << " " << month << " " << year << ")" << std::endl;
+          //std::cout << "options_calls():fixingDates.push_back( " << ExDate << " )" << std::endl;
+          fixingDates.push_back(ExDate);
+        }
+
+        std::cout << "options_calls:fixingDates.size() = " << fixingDates.size() << std::endl;
+        pthread_mutex_unlock(&dat->mutexCashflow);
+     
+        std::cout << "maturity = " << maturity << std::endl;
+        std::cout << "todaysDate = " << todaysDate << std::endl;
+        std::cout << "runningSum = " << runningSum << std::endl;
+        std::cout << "pastFixings = " << pastFixings << std::endl;      
+
+        // Option exercise type
+        boost::shared_ptr<QuantLib::Exercise> europeanExercise(
+               new QuantLib::EuropeanExercise(maturity));
+ 
+        // Quote handling
+        QuantLib::Handle<QuantLib::Quote> underlyingH(
+               boost::shared_ptr<QuantLib::Quote>(
+               new QuantLib::SimpleQuote(underlying)));
+ 
+        // Yield term structure handling
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatTermStructure(
+               boost::shared_ptr<QuantLib::YieldTermStructure>(
+               new QuantLib::FlatForward(todaysDate,riskFreeRate,dayCounter)));
+ 
+        // Dividend term structure handling
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatDividendTermStructure(
+               boost::shared_ptr<QuantLib::YieldTermStructure>(
+               new QuantLib::FlatForward(todaysDate,dividendYield,dayCounter)));
+ 
+        // Volatility structure handling
+        QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTermStructure(
+               boost::shared_ptr<QuantLib::BlackVolTermStructure>(
+               new QuantLib::BlackConstantVol(todaysDate,calendar,volatility,dayCounter)));
+ 
+        // the BS equation behind
+        boost::shared_ptr<QuantLib::BlackScholesMertonProcess> bsmProcess(
+               new QuantLib::BlackScholesMertonProcess(underlyingH,flatDividendTermStructure,flatTermStructure,flatVolTermStructure));
+ 
+        // Payoff
+        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoffAsianOption (
+               new QuantLib::PlainVanillaPayoff(QuantLib::Option::Type(optionType),strike_));
+
+        unsigned int ii;
+        for(ii=0; ii < fixingDates.size(); ii++)
+        {
+          std::cout << ii << ' ' << fixingDates[ii] << ' ';
+        }
+        std::cout << std::endl;
+
+        // Discretely-averaged Asian option
+        QuantLib::DiscreteAveragingAsianOption discreteAsianAverageOption(
+                  averageType,
+                  runningSum,
+                  pastFixings,
+                  fixingDates,
+                  payoffAsianOption,
+                  europeanExercise);
+ 
+        // Pricing engine
+        discreteAsianAverageOption.setPricingEngine(
+               boost::shared_ptr<QuantLib::PricingEngine>(
+               new QuantLib::AnalyticDiscreteGeometricAveragePriceAsianEngine(bsmProcess)));
+
+        callprice = discreteAsianAverageOption.NPV();
+
+        try {
+          dat->calldelta = discreteAsianAverageOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->calldelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+        try {
+          dat->callElasticity = discreteAsianAverageOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->callElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+        try {
+          dat->gamma = discreteAsianAverageOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+        try {
+          dat->vega = discreteAsianAverageOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+        try {
+          dat->calltheta = discreteAsianAverageOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->calltheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+        try {
+          dat->callrho = discreteAsianAverageOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->callrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+      } catch(exception& e)
+      {
+          if(dat->debug)
+            logger(e.what(), 0);
+      }
+        
+      }
+
+      break;      
 
 #endif // #if defined(HAVE_QL_QUANTLIB_HPP) && defined(QUANTLIB)      
 

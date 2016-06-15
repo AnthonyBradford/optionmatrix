@@ -3906,6 +3906,29 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
+    { QUANTLIB_DISCRETE_AVERAGE_ASIAN,  "Discrete Avg Asian", "QuantLib, QuantLib.a",  
+    "Discrete Average Asian. Model not supported in curses version.\nFixing dates can not be controlled. Please use GUI version of program.",
+    "",
+    "",
+    "c;Asian",
+                                       0, // supportRealTime
+                                       1, // filterNegativePrices
+                                       0, 0, 0, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                                       // Supports dividend
+                                       4, 0.0, "Expiration", 0, "", 0, "",
+                                       "Price", "Fixings", "Call", "Put", "Strike", "Standard Deviation",
+                                       1, 0, "runningSum", 1, 0,
+                                       2, 0, "pastFixings", 0, 0,
+                                       1, 1, "Dividend", 0.03, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0 },
+
 #endif
   
 #ifdef DUMMYTESTMODELS
