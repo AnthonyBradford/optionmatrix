@@ -6392,14 +6392,14 @@ struct _data option_call(struct _data *dat)
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoffAsianOption (
                new QuantLib::PlainVanillaPayoff(QuantLib::Option::Type(optionType),strike_));
 
-	/*
+        /*
         unsigned int ii;
         for(ii=0; ii < fixingDates.size(); ii++)
         {
           std::cout << ii << ' ' << fixingDates[ii] << ' ';
         }
         std::cout << std::endl;
-	*/
+        */
 
         // Discretely-averaged Asian option
         QuantLib::DiscreteAveragingAsianOption discreteAsianAverageOption(
