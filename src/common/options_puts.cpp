@@ -4735,8 +4735,7 @@ struct _data option_put(struct _data *dat)
         QuantLib::Real strike_ = strike;
         QuantLib::Real underlying = price;
         QuantLib::Rate riskFreeRate = rate;
-        QuantLib::Volatility volatility = volatility;
-        //QuantLib::Spread dividendYield = riskFreeRate-(0.5*volatility*volatility);
+        QuantLib::Volatility volatility_ = volatility;
         QuantLib::Spread dividendYield = dat->UseJ;
         QuantLib::Date maturity(day, QuantLibMonths[month], year);
         QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
@@ -4783,7 +4782,7 @@ struct _data option_put(struct _data *dat)
         // Volatility structure handling
         QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTermStructure(
                boost::shared_ptr<QuantLib::BlackVolTermStructure>(
-               new QuantLib::BlackConstantVol(todaysDate,calendar,volatility,dayCounter)));
+               new QuantLib::BlackConstantVol(todaysDate,calendar,volatility_,dayCounter)));
  
         // the BS equation behind
         boost::shared_ptr<QuantLib::BlackScholesMertonProcess> bsmProcess(
