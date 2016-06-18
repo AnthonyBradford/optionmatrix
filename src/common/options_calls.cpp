@@ -6304,7 +6304,7 @@ struct _data option_call(struct _data *dat)
         QuantLib::Real strike_ = strike;
         QuantLib::Real underlying = price;
         QuantLib::Rate riskFreeRate = rate;
-        QuantLib::Volatility volatility = volatility;
+        QuantLib::Volatility volatility_ = volatility;
         QuantLib::Spread dividendYield = dat->UseJ;
         QuantLib::Date maturity(day, QuantLibMonths[month], year);
         QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
@@ -6352,13 +6352,13 @@ struct _data option_call(struct _data *dat)
           fixingDates.push_back(ExDate);
         }
 
-        std::cout << "options_calls:fixingDates.size() = " << fixingDates.size() << std::endl;
+        //std::cout << "options_calls:fixingDates.size() = " << fixingDates.size() << std::endl;
         pthread_mutex_unlock(&dat->mutexCashflow);
      
-        std::cout << "maturity = " << maturity << std::endl;
-        std::cout << "todaysDate = " << todaysDate << std::endl;
-        std::cout << "runningSum = " << runningSum << std::endl;
-        std::cout << "pastFixings = " << pastFixings << std::endl;      
+        //std::cout << "maturity = " << maturity << std::endl;
+        //std::cout << "todaysDate = " << todaysDate << std::endl;
+        //std::cout << "runningSum = " << runningSum << std::endl;
+        //std::cout << "pastFixings = " << pastFixings << std::endl;      
 
         // Option exercise type
         boost::shared_ptr<QuantLib::Exercise> europeanExercise(
@@ -6382,7 +6382,7 @@ struct _data option_call(struct _data *dat)
         // Volatility structure handling
         QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTermStructure(
                boost::shared_ptr<QuantLib::BlackVolTermStructure>(
-               new QuantLib::BlackConstantVol(todaysDate,calendar,volatility,dayCounter)));
+               new QuantLib::BlackConstantVol(todaysDate,calendar,volatility_,dayCounter)));
  
         // the BS equation behind
         boost::shared_ptr<QuantLib::BlackScholesMertonProcess> bsmProcess(
@@ -6392,12 +6392,14 @@ struct _data option_call(struct _data *dat)
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoffAsianOption (
                new QuantLib::PlainVanillaPayoff(QuantLib::Option::Type(optionType),strike_));
 
+	/*
         unsigned int ii;
         for(ii=0; ii < fixingDates.size(); ii++)
         {
           std::cout << ii << ' ' << fixingDates[ii] << ' ';
         }
         std::cout << std::endl;
+	*/
 
         // Discretely-averaged Asian option
         QuantLib::DiscreteAveragingAsianOption discreteAsianAverageOption(

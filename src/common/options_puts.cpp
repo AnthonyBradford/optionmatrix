@@ -4755,8 +4755,7 @@ struct _data option_put(struct _data *dat)
 
         pthread_mutex_unlock(&dat->mutexCashflow);
 
-        std::cout << "options_puts:fixingDates.size() = " << fixingDates.size() << std::endl;
-     
+        //std::cout << "options_puts:fixingDates.size() = " << fixingDates.size() << std::endl;
         //std::cout << "maturity = " << maturity << std::endl;
         //std::cout << "todaysDate = " << todaysDate << std::endl;      
 
