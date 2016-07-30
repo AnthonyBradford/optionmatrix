@@ -1,5 +1,5 @@
 2016-02-06  Anthony Bradford  <info@anthonybradford.com>
-	* configure.ac detects QuantLib. Added 26 QuantLib
+	* configure.ac detects QuantLib. Added 28 QuantLib
 	  option models.
 	* Added Mac OS X file icons/mac/optionmatrix.icns
 	* gtk_menu.cpp changes to support Mac OS X and
