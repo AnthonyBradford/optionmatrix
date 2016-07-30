@@ -3929,6 +3929,30 @@ const struct option_algorithm option_algorithms[] = {
                                        0, 0, "", 0, 0,
                                        0, 0 },
 
+    { QUANTLIB_CONTINUOUS_AVERAGING_ASIAN,  "Continuous Avg Asian", "QuantLib, QuantLib.a",  
+    "",
+    "",
+    "",
+    "c;Asian",
+                                       0, // supportRealTime
+                                       1, // filterNegativePrices
+                                       0, 0, 0, 0, 0, 0,
+                                       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                                       // Supports dividend
+                                       1, 0.0, "Expiration", 0, "", 0, "",
+                                       "Price", "Dividend", "Call", "Put", "Strike", "Standard Deviation",
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       //1, 1, "Dividend", 0.03, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0, "", 0, 0,
+                                       0, 0 },
+
 #endif
   
 #ifdef DUMMYTESTMODELS

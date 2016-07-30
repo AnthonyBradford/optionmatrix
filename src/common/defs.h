@@ -666,6 +666,7 @@ enum {
        QUANTLIB_BINOMIAL_LEISEN_REIMER_BERMUDAN,       // 167
        QUANTLIB_BINOMIAL_JOSHI_BERMUDAN,               // 168
        QUANTLIB_DISCRETE_AVERAGE_ASIAN,                // 169
+       QUANTLIB_CONTINUOUS_AVERAGING_ASIAN,            // 170
 
 #endif
 
