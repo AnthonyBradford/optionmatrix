@@ -158,7 +158,7 @@ distributed by @url{http://@value{WEBSITE}}.
 These calculators are real-time multi-model option chain pricers with
 analytics and interactive controls. @command{optionmatrix} is the GTK+ graphical user interface version and @command{optionmatrix_console} is the Curses version (Unix/Linux console, DOS).
 
-Both programs feature: greeks, decimal date to real-date translations, real-date to decimal date translations, real-time time bleeding, configurable option expiration date engines, calendars, strike control systems, tickers and over 168 option models. @command{optionmatrix} also supports: spreads, bonds, term structures, cash flow editing, source code viewing and text exporting.
+Both programs feature: greeks, decimal date to real-date translations, real-date to decimal date translations, real-time time bleeding, configurable option expiration date engines, calendars, strike control systems, tickers and over 170 option models. @command{optionmatrix} also supports: spreads, bonds, term structures, cash flow editing, source code viewing and text exporting.
 
 @cindex authors
 @cindex Anthony Bradford
@@ -765,7 +765,7 @@ Spread views are automatically labeled Vertical Spread, Calendar Spread or Verti
 Vertical Spread indicates strike differences between Leg 1 and Leg 2 (expiration dates are the same). Calendar Spread indicates expiration date differences between Leg 1 and Leg 2 (Strikes are the same). Vertical Calendar Spread indicates strike and calendar date expiration differences between the legs.
 
 @section Models
-Over 168+ option models are featured in the OptionMatrix Calculator. Model numbers may vary between systems due to library and linker options.
+Over 170+ option models are featured in the OptionMatrix Calculator. Model numbers may vary between systems due to library and linker options.
 @subsection Changing Models
 @cindex Model drop down
 The current pricing model can be changed with the ``Model'' drop down. The models are listed as categorized folders in the drop down.
