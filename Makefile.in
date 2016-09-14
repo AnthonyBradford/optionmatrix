@@ -336,6 +336,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -1090,11 +1091,6 @@ uninstall-local:
 # Push HTML/PDF/EPUB/*.tar.gz to any website
 website:
 	sh utils/push_to_web.sh $(PACKAGE_URL) $(distdir).tar.gz $(PACKAGE).pdf $(PACKAGE).epub
-
-# Run 'make distclean ; ./configure ; make zip' to get a clean .zip file
-zip: $(distdir).zip
-$(distdir).zip:
-	(cd .. && zip -r $(distdir)/$(distdir).zip $(distdir)/* --exclude *.zip *.tar.gz);
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
