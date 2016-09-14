@@ -67,12 +67,12 @@ void show_title(const struct _properties *properties)
 
   if( properties->decimalorcalendar == DECIMALS )
   {
-    snprintf(title,sizeof(title),"%s %s: Decimal Dated, Model Source: %s", PACKAGE_NAME, PACKAGE_VERSION, option_algorithms[properties->modeltype].source);
+    snprintf(title,sizeof(title),"%s %s Decimal Dated, Model Source: %s", PACKAGE_NAME, PACKAGE_VERSION, option_algorithms[properties->modeltype].source);
     gtk_widget_hide(properties->GtkInfo.labelDisplayFormats2);
 
   } else if( properties->decimalorcalendar == CALENDAR )
   {
-    snprintf(title,sizeof(title),"%s %s: Calendar Dated, Model Source: %s", PACKAGE_NAME, PACKAGE_VERSION, option_algorithms[properties->modeltype].source);
+    snprintf(title,sizeof(title),"%s %s Calendar Dated, Model Source: %s", PACKAGE_NAME, PACKAGE_VERSION, option_algorithms[properties->modeltype].source);
 
     if( !option_algorithms[properties->modeltype].assetClass )
     {
