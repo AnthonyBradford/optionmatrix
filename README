@@ -100,8 +100,11 @@ make dist
 ****distcheck should be successful before distribution of the tar.gz package
 make dist ; make distcheck
 
+****To make ‘xz’ tar archive of the distribution
+make dist-xz
+
 ****To make zip distribution
-make distclean ; ./configure ; rm *.zip ; make zip
+make dist-zip
 
 ****Install and uninstall check. The find command should yield zero files. If files are found likely problem with "uninstall-local:" in Makefile.am
 sudo make install
