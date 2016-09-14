@@ -113,8 +113,3 @@ uninstall-local:
 # Push HTML/PDF/EPUB/*.tar.gz to any website
 website:
 	sh utils/push_to_web.sh $(PACKAGE_URL) $(distdir).tar.gz $(PACKAGE).pdf $(PACKAGE).epub
-
-# Run 'make distclean ; ./configure ; make zip' to get a clean .zip file
-zip: $(distdir).zip
-$(distdir).zip:
-	(cd .. && zip -r $(distdir)/$(distdir).zip $(distdir)/* --exclude *.zip *.tar.gz);
