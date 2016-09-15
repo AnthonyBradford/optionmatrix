@@ -6,7 +6,6 @@
 *.Po
 *.xz
 *.lz
-*.in
 doc/optionmatrix.t2p/*
 doc/optionmatrix.txt
 doc/optionmatrix.dbk
