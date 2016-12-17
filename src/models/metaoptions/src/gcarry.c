@@ -43,7 +43,7 @@ double carry(int fCall, double S, double X, double T, double r, double b, double
     else 
         result = -T * S * exp((b - r) * T) * cnd(-d1);
     
-	return result;
+    return result;
 }
 
 extern double carry_call(double S, double X, double T, double r, double b, double v) 

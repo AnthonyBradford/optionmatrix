@@ -45,7 +45,7 @@ double french(int fCall, double S, double X, double T, double t1, double r, doub
     else 
         result = X * exp(-r * T) * cnd(-d2) - S * exp((b - r) * T) * cnd(-d1);
     
-	return result;
+    return result;
 }
 
 extern double french_put(double S, double X, double T, double t1, double r, double b, double v) 

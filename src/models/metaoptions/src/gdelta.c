@@ -41,7 +41,7 @@ double delta(int fCall, double S, double X, double T, double r,  double b, doubl
     else 
         result *= (cnd(d1) - 1.0);
     
-	return result;
+    return result;
 }
 
 extern double delta_call(double S, double X, double T, double r,  double b, double v) 

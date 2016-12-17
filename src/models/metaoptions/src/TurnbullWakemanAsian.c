@@ -70,7 +70,7 @@ double TurnbullWakemanAsian(
     else
         result = gbs(fCall, S, X, T2, r, bA, vA);
 
-	return result;
+    return result;
 }
 
 #ifdef TURNBULLWAKEMANASIAN_CHECK

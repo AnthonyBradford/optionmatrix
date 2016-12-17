@@ -53,7 +53,7 @@ double VasicekBondOption(
     else
         result = F * (X * PtT * cnd(-H + vp) - Pt_tau * cnd(-H));
     
-	return result;
+    return result;
 }
 
 #ifdef VASICEKBONDOPTION_CHECK
