@@ -66,7 +66,8 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
   
   GError *error = NULL;
 
-  gtk_show_uri(NULL,PACKAGE_URL, GDK_CURRENT_TIME, &error);
+  //gtk_show_uri(NULL,PACKAGE_URL, GDK_CURRENT_TIME, &error);
+  gtk_show_uri_on_window(NULL,PACKAGE_URL, GDK_CURRENT_TIME, &error);
 
   if (error != NULL)
   {
@@ -112,7 +113,8 @@ void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *prop
   GError *error = NULL;
 
   snprintf(packageBugreport,sizeof(packageBugreport),"mailto:%s",PACKAGE_BUGREPORT);
-  gtk_show_uri(NULL,packageBugreport, GDK_CURRENT_TIME, &error);
+  //gtk_show_uri(NULL,packageBugreport, GDK_CURRENT_TIME, &error);
+  gtk_show_uri_on_window(NULL,packageBugreport, GDK_CURRENT_TIME, &error);
 
   if (error != NULL)
   {
@@ -140,8 +142,8 @@ static gboolean pngTimer(struct _properties *properties)
   // DATADIR can be overridden from the command line with the -x directory option
 
   int index = 0;
-  char imageName[PATH_MAX] = { 0 };
-  char dataDIRlocation[PATH_MAX] = { 0 };
+  char imageName[PATH_MAX*3] = { 0 };
+  char dataDIRlocation[PATH_MAX*3] = { 0 };
   bool dataDIR = false;
 
   for( index = 0; index < 30; index++ )
@@ -271,7 +273,7 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 
   GdkPixbuf *logo;
   GError *error = NULL;
-  char imageName[PATH_MAX];
+  char imageName[PATH_MAX*3];
 
   // This works for Windows
   if( access("images/6.png", F_OK ) == 0 )
@@ -312,7 +314,7 @@ void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 
   gtk_about_dialog_set_version(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), version);
 
-  char aboutDialog[1024];
+  char aboutDialog[PATH_MAX];
   snprintf(aboutDialog,sizeof(aboutDialog),"The Ultimate Options Calculator\n%s", PACKAGE_BUGREPORT);
   gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG (properties->GtkInfo.dialogAbout), 
                                  aboutDialog);
@@ -369,9 +371,6 @@ void on_menu_source_export_activate(GtkWidget *widget, struct _properties *prope
 {
   g_print("on_menu_source_export_activate()\n");
 
-  // maybe the source should just be pulled from the website
-  // with a gtk_show_uri(...) ??
-
   if( strcmp(option_algorithms[properties->modeltype].sourceCode,"") != 0 )
   {
     g_print("option_algorithms[properties->modeltype].sourceCode = %s\n", option_algorithms[properties->modeltype].sourceCode );
@@ -395,7 +394,7 @@ void display_source(const char *name, const struct _properties *properties)
   GtkWidget *window, *scrolled_win, *textview;
   GtkTextBuffer *buffer;
 
-  char windowTitle[1000] = { 0 };
+  char windowTitle[PATH_MAX*2] = { 0 };
   snprintf(windowTitle,sizeof(windowTitle),"%s Source Export %s", PACKAGE_NAME, name);
   
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -412,9 +411,9 @@ void display_source(const char *name, const struct _properties *properties)
   char *bufferSource;
   unsigned long fileLen;
 
-  char name2[PATH_MAX]  = { 0 };
-  char name3[PATH_MAX]  = { 0 };
-  char name4[PATH_MAX]  = { 0 };
+  char name2[PATH_MAX*3]  = { 0 };
+  char name3[PATH_MAX*3]  = { 0 };
+  char name4[PATH_MAX*3]  = { 0 };
 
   snprintf(name2,sizeof(name2),"src/%s-%s/src/%s", PACKAGE_TARNAME,VERSION,name);
   snprintf(name3,sizeof(name3),"../../src/%s", name);
@@ -481,12 +480,9 @@ void display_source(const char *name, const struct _properties *properties)
 
 void checkForSourceCode(struct _properties *properties)
 {
-  // maybe the source should just be pulled from the website
-  // with a gtk_show_uri(...) ??
-
-  char sourceLocation2[PATH_MAX]  = { 0 };
-  char sourceLocation3[PATH_MAX]  = { 0 };
-  char sourceLocation4[PATH_MAX]  = { 0 };
+  char sourceLocation2[PATH_MAX*3]  = { 0 };
+  char sourceLocation3[PATH_MAX*3]  = { 0 };
+  char sourceLocation4[PATH_MAX*3]  = { 0 };
 
   snprintf(sourceLocation2,sizeof(sourceLocation2),"src/%s-%s/src/%s",PACKAGE_TARNAME,VERSION,option_algorithms[properties->modeltype].sourceCode);
   g_print("sourceLocation2 = %s\n",sourceLocation2);

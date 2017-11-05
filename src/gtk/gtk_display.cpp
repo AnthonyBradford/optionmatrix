@@ -208,6 +208,36 @@ void setup_tree_view(struct _properties *properties)
     
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes("Description", renderer, "text", X1 , NULL);
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    g_object_set (GTK_TREE_VIEW (properties->GtkInfo.treeview), "has-tooltip", TRUE, NULL); // Works
+    
+    //g_signal_connect (column, "query-tooltip",
+    //                G_CALLBACK (query_tooltip_tree_view_cb), NULL);
+    //g_signal_connect (gtk_tree_view_get_selection (GTK_TREE_VIEW (tree_view)),
+    //                "changed", G_CALLBACK (selection_changed_cb), tree_view);
+
+    if(gtk_tree_view_column_get_widget(column))
+    {
+      g_print("gtk_tree_view_column_get_widget(column) WORKS!!!!!!!!!!!!!!!!!!!!!!!!");
+      gtk_widget_set_tooltip_text(GTK_WIDGET(gtk_tree_view_column_get_widget(column)), "This is a test"); // Fails
+      gtk_widget_set_tooltip_text(gtk_tree_view_column_get_widget(column), "This is a test"); // Fails
+      gtk_widget_set_tooltip_markup(GTK_WIDGET(gtk_tree_view_column_get_widget(column)), "This is a test"); // Fails
+      gtk_widget_set_tooltip_markup(gtk_tree_view_column_get_widget(column), "This is a test"); // Fails
+    }
+
+    if(gtk_tree_view_get_column (GTK_TREE_VIEW (properties->GtkInfo.treeview), 0))
+    {
+       g_print("gtk_tree_view_get_column (GTK_TREE_VIEW (properties->GtkInfo.treeview), 0) WORKS!!!!!!!!!!!!!!!!!!!!!!!!");
+    }
+   
+
+    //gtk_tree_view_column_set_clickable (column, TRUE);       // works
+    //g_object_set (gtk_tree_view_column_get_button (column), "tooltip-text", "Header", NULL);    
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
     renderer = gtk_cell_renderer_text_new();

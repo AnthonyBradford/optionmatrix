@@ -207,7 +207,7 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
     if( *debug == true )
     {
-      char logText[PATH_MAX];
+      char logText[PATH_MAX*3];
 
       snprintf(logText,sizeof(logText),"%s %s", PACKAGE_NAME, PACKAGE_VERSION);
       logger(logText, 0);
@@ -363,10 +363,10 @@ void program_source()
 {
   int index;
   const int numberofmodels = (signed)(sizeofoption_algorithms/sizeof(struct option_algorithm));
-  char source_levelup[PATH_MAX];
-  char source_levelup2[PATH_MAX];
-  char source_src[PATH_MAX];
-  char source_src2[PATH_MAX];
+  char source_levelup[PATH_MAX*2];
+  char source_levelup2[PATH_MAX*2];
+  char source_src[PATH_MAX*2];
+  char source_src2[PATH_MAX*2];
 
   for( index = 0; index < numberofmodels; index++ )
   {

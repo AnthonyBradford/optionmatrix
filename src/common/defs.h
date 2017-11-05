@@ -346,8 +346,8 @@ struct _properties {
     bool textExport;
     struct lconv * lc;
 
-    char source_directory_prefix[PATH_MAX];
-    char data_dir[PATH_MAX];
+    char source_directory_prefix[PATH_MAX*2];
+    char data_dir[PATH_MAX*2];
 
     // curses specific
     int start;
@@ -667,6 +667,7 @@ enum {
        QUANTLIB_BINOMIAL_JOSHI_BERMUDAN,               // 168
        QUANTLIB_DISCRETE_AVERAGE_ASIAN,                // 169
        QUANTLIB_CONTINUOUS_AVERAGING_ASIAN,            // 170
+       QUANTLIB_CONTINUOUS_LEVY_ASIAN,                 // 171
 
 #endif
 
@@ -697,13 +698,13 @@ struct option_algorithm {
 
   int modeltype;
   char des[256];
-  char source[PATH_MAX];
+  char source[PATH_MAX*2];
   char curses_des[240]; // 240 = 3 lines of text
 
   // source path should have a separator ';' to include multiple files in 1 reference...
   // there are instances where more than 2 source files need to be displayed...
-  char sourceCode[PATH_MAX];
-  char sourceCode2[PATH_MAX];
+  char sourceCode[PATH_MAX*2];
+  char sourceCode2[PATH_MAX*2];
   char category[256];
 
   bool supportRealTime;

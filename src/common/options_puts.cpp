@@ -5021,6 +5021,148 @@ struct _data option_put(struct _data *dat)
 
       break;
 
+    case QUANTLIB_CONTINUOUS_LEVY_ASIAN:
+      {
+        if(dat->debug)
+          logger( (char *) "QUANTLIB_CONTINUOUS_LEVY_ASIAN put", 6,
+                  (double) price, (double) strike, (double) dividend, (double) rate, (double) volatility, (double) t);
+
+        // Calendar set up
+        QuantLib::Calendar calendar = QuantLib::TARGET();
+
+        int year; int month; int day; int hour; int min; int second;
+        decimal_date_to_real_dates( 0, &year, &month, &day, &hour, &min, &second);
+        //g_print("1 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
+        QuantLib::Date todaysDate(day, QuantLibMonths[month], year);
+
+        decimal_date_to_real_dates(t, &year, &month, &day, &hour, &min, &second);
+        //g_print("2 decimal_date_to_real_dates(t = %f, year = %d, month = %d, day = %d, hour, min, second)\n", t, year, month, day);
+ 
+        // Option parameters
+        QuantLib::Option::Type optionType(QuantLib::Option::Put);
+        QuantLib::Average::Type averageType = QuantLib::Average::Arithmetic;
+        QuantLib::Real strike_ = strike;
+        QuantLib::Real underlying = price;
+        QuantLib::Real underlying_average = dat->UseZ;
+        QuantLib::Rate riskFreeRate = rate;
+        QuantLib::Volatility volatility_ = volatility;
+        QuantLib::Spread dividendYield = dividend;
+        QuantLib::Date maturity(day, QuantLibMonths[month], year);
+        QuantLib::DayCounter dayCounter = QuantLib::Actual365Fixed();
+
+        boost::shared_ptr<QuantLib::Quote> average(
+              new QuantLib::SimpleQuote(underlying_average));
+  
+        // Quote handling
+        QuantLib::Handle<QuantLib::Quote> underlyingH(
+            boost::shared_ptr<QuantLib::Quote>(
+            new QuantLib::SimpleQuote(underlying)));
+ 
+        // Yield term structure handling
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatTermStructure(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+            new QuantLib::FlatForward(todaysDate,riskFreeRate,dayCounter)));
+ 
+        // Dividend term structure handling
+        QuantLib::Handle<QuantLib::YieldTermStructure> flatDividendTermStructure(
+            boost::shared_ptr<QuantLib::YieldTermStructure>(
+            new QuantLib::FlatForward(todaysDate,dividendYield,dayCounter)));
+ 
+        // Volatility structure handling
+        QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTermStructure(
+           boost::shared_ptr<QuantLib::BlackVolTermStructure>(
+           new QuantLib::BlackConstantVol(todaysDate,calendar,volatility,dayCounter)));
+ 
+        // the BS equation behind
+        boost::shared_ptr<QuantLib::BlackScholesMertonProcess> bsmProcess(
+           new QuantLib::BlackScholesMertonProcess(underlyingH,flatDividendTermStructure,flatTermStructure,flatVolTermStructure));
+ 
+        // Payoff
+        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff(
+           new QuantLib::PlainVanillaPayoff(QuantLib::Option::Type(optionType),strike_));
+
+        boost::shared_ptr<QuantLib::Exercise> exercise(new QuantLib::EuropeanExercise(maturity));
+
+        boost::shared_ptr<QuantLib::PricingEngine> engine(
+           new QuantLib::ContinuousArithmeticAsianLevyEngine(
+           bsmProcess, QuantLib::Handle<QuantLib::Quote>(average), todaysDate));
+
+        QuantLib::ContinuousAveragingAsianOption levyAsianOption(averageType,payoff, exercise);
+
+        levyAsianOption.setPricingEngine(engine);
+
+        putprice = levyAsianOption.NPV();
+
+        try {
+          dat->putdelta = levyAsianOption.delta();
+        }
+        catch (exception& e)
+        {
+          dat->putdelta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+        try {
+          dat->putElasticity = levyAsianOption.elasticity();
+        }
+        catch (exception& e)
+        {
+          dat->putElasticity = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+        try {
+          dat->gamma = levyAsianOption.gamma();
+        }
+        catch (exception& e)
+        {
+          dat->gamma = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+        try {
+          dat->vega = levyAsianOption.vega();
+        }
+        catch (exception& e)
+        {
+          dat->vega = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+        try {
+          dat->puttheta = levyAsianOption.thetaPerDay();
+        }
+        catch (exception& e)
+        {
+          dat->puttheta = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+        try {
+          dat->putrho = levyAsianOption.rho() / 100;
+        }
+        catch (exception& e)
+        {
+          dat->putrho = NAN;
+
+          if(dat->debug)
+            logger(e.what(), 0);
+        }
+
+      }
+
+      break;
+      
 #endif // #if defined(HAVE_QL_QUANTLIB_HPP) && defined(QUANTLIB)      
 
 #ifdef DUMMYTESTMODELS
@@ -5044,7 +5186,7 @@ struct _data option_put(struct _data *dat)
 
       fprintf(stderr,"option_put(): No implementation for case %d\n", dat->modeltype);
 
-     break;
+      break;
 
   }
 
