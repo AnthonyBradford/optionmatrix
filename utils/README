@@ -7,5 +7,3 @@ dnf.sh - install packages to compile OptionMatrix for systems using the dnf pack
 zypper.sh - install packages to compile OptionMatrix for systems using the zypper package manager
 
 tab.sh - search source code for tabs
-
-push_to_web.sh - Create OptionMatrix website. Run one level up with 'make website'
