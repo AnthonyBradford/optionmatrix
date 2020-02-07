@@ -57,9 +57,7 @@ EXTRA_DIST = \
 	icons/windows/Tests.ico\
 	icons/windows/Website.ico\
 	HOWTO\
-	WEBSITE\
 	utils/tab.sh\
-	utils/push_to_web.sh\
 	utils/apt-get.sh\
 	utils/yum.sh\
 	utils/dnf.sh\
