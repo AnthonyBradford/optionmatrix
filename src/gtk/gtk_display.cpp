@@ -46,7 +46,7 @@ void text_export(struct _properties *properties, char *dataExport)
   my_tm=localtime(&mytime);
 
   char tstring[400] = { 0 };
-  char windowTitle[400] = { 0 };
+  char windowTitle[1024] = { 0 };
   strftime(tstring,sizeof(tstring),"%a %b %d %Y %H:%M:%S",my_tm);
   snprintf(windowTitle,sizeof(windowTitle),"%s Export %s @ %s", PACKAGE_NAME, option_algorithms[properties->modeltype].des, tstring);
   

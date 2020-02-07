@@ -672,7 +672,7 @@ gboolean calculate_options(struct _properties *properties)
     char textDaysToExpr[200] = { 0 };
     char textDaysToExpr2[200] = { 0 };
     char textSpread[200] = { 0 };
-    char textSpreadTicker[200] = { 0 };
+    char textSpreadTicker[600] = { 0 };
 
     double leg1;
     double leg2;

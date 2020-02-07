@@ -142,7 +142,7 @@ static gboolean pngTimer(struct _properties *properties)
   // DATADIR can be overridden from the command line with the -x directory option
 
   int index = 0;
-  char imageName[PATH_MAX*3] = { 0 };
+  char imageName[PATH_MAX*4] = { 0 };
   char dataDIRlocation[PATH_MAX*3] = { 0 };
   bool dataDIR = false;
 
