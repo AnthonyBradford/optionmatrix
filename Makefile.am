@@ -109,7 +109,3 @@ uninstall-local:
 	if test -d $(DESTDIR)${pkgdatadir}/images; then rmdir $(DESTDIR)${pkgdatadir}/images; fi
 	if test -d $(DESTDIR)${pkgdatadir}; then rmdir $(DESTDIR)${pkgdatadir}; fi
 	if test -d $(DESTDIR)$(docdir); then rmdir $(DESTDIR)$(docdir); fi
-
-# Push HTML/PDF/EPUB/*.tar.gz to any website
-website:
-	sh utils/push_to_web.sh $(PACKAGE_URL) $(distdir).tar.gz $(PACKAGE).pdf $(PACKAGE).epub
