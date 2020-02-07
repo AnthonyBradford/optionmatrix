@@ -1,4 +1,4 @@
-2016-02-06  Anthony Bradford  <info@anthonybradford.com>
+2016-02-06  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* configure.ac detects QuantLib. Added 28 QuantLib
 	  option models.
 	* Added Mac OS X file icons/mac/optionmatrix.icns
@@ -7,7 +7,7 @@
 	* args.cpp new command line option --datadir or -x
 	* gtk_combobox.cpp now qsorting model names.
 
-2014-05-15  Anthony Bradford  <info@anthonybradford.com>
+2014-05-15  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* Prefs->Settings has new checkbox named
 	  Filter negative prices
 	* Removed LIBGTK_3 deprecations.
@@ -16,7 +16,7 @@
 	* Reorganize source into src/common src/curses src/gtk src/models
 	  directories.
 
-2012-11-18  Anthony Bradford  <info@anthonybradford.com>
+2012-11-18  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* Autotools packaging changes to enable DESTDIR support.
 	* Added optionmatrix.desktop, optionmatrix_console.desktop
 	  files.
@@ -26,7 +26,7 @@
 	* gtk_main.cpp increased spin button GTK_ADJUSTMENT upper bound
 	  size of dividend to 99999
 
-2012-06-22  Anthony Bradford  <info@anthonybradford.com>
+2012-06-22  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* Migrated to GTK+ 3.0 (backwardly compatible w/Gtk 2.0)
 	* Autotools will automatically detect select Gtk 3.0, Gtk 2.0,
 	  curses, ncurses, pdcurses
@@ -36,12 +36,12 @@
 	* Removed compiler warnings for gcc 4.6.1
 	* Minor fixes
 
-2012-02-20  Anthony Bradford  <info@anthonybradford.com>
+2012-02-20  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* Fixed strcpy issue impacting categorized combobox entries
 	  on higher versions of gcc.
 	* Added file "missing" to distribution.
 
-2012-02-07  Anthony Bradford  <info@anthonybradford.com>
+2012-02-07  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* Categorized Model ComboBox Dropdown, 136+ models
 	* Term Structure Models:
 	  TermFlat, TermCir, TermVasicek, TermNelsonSiegel
@@ -57,7 +57,7 @@
 	* Adjustable sleep between recalculations
 	* Minor fixes.
 
-2011-09-04  Anthony Bradford  <info@anthonybradford.com>
+2011-09-04  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* Support for Spreads, controls for both legs
 	* Menu File -> Text Export - Export screens to flat file
 	* Menu File -> Source View - View model source code
@@ -70,7 +70,7 @@
 	  Convertible Bond, CRRBinominal, 3D-Binominal, Trinominal Tree,
 	  Finite Diff Explicit and more.
 
-2011-04-20  Anthony Bradford  <info@anthonybradford.com>
+2011-04-20  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* ExtendibleWriter, OptionsOnOptions, PartialFixedLB, LookBarrier,
 	  PartialTimeBarrier, TurnbullWakemanAsian, PartialFloatLB all
 	  could cash when first time variable was less than the secondary
@@ -79,7 +79,7 @@
 	  re-done.
 	* Custom strike display format for the date engine.
 
-2011-02-15  Anthony Bradford  <info@anthonybradford.com>
+2011-02-15  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* Fixed GUI alignment of some spin buttons
 	* bug in curses version, time(&properties.starttime2) timer
 	  not being called for t2 models
