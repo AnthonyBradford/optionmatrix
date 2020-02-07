@@ -111,9 +111,6 @@ sudo make install
 sudo make uninstall
 find /usr -name "optionmatrix*" -print 2>/dev/null
 
-****To publish the HTML, optionmatrix.tar.gz, optionmatrix.zip optionmatrix.pdf and optionmatrix.epub to a website
-make website
-
 ****To ensure no tabs in source code
 cd utils ; ./tab.sh
 
