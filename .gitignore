@@ -5,6 +5,8 @@ stamp-h1
 doc/Makefile.in
 doc/html/Makefile.in
 man/Makefile.in
+man/optionmatrix.1
+man/optionmatrix_console.1
 src/common/Makefile.in
 src/curses/Makefile.in
 src/gtk/Makefile.in
