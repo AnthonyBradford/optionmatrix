@@ -6,8 +6,7 @@
 /* File: gtk_scale.cpp of optionmatrix                                      */
 /*                                                                          */
 /* Copyright (c) Anthony Bradford. 2012.                                    */
-/* http://anthonybradford.com                                               */
-/* info@anthonybradford.com                                                 */
+/* anthony_bradford@yahoo.com                                               */
 /*                                                                          */
 /* optionmatrix may be freely redistributed.                                */
 /* See file COPYING included with this distribution for license information */
