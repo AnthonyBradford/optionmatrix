@@ -1,6 +1,7 @@
 Makefile.in
 aclocal.m4
 configure
+stamp-h1
 doc/Makefile.in
 doc/html/Makefile.in
 man/Makefile.in
