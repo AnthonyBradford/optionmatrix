@@ -2,7 +2,7 @@
 @c %**start of header
 @setfilename optionmatrix.info
 @include version.texi
-@set WEBSITE anthonybradford.com
+@set WEBSITE sourceforge.net/projects/optionmatrix
 @settitle OptionMatrix @value{VERSION}
 @documentdescription
 Financial Derivatives Calculator. Black-Scholes Calculator.
@@ -47,7 +47,7 @@ Texts.  A copy of the license is included in the section entitled
 @subtitle for version @value{VERSION}, @value{UPDATED}
 @sp 10
 @center @image{images/6,,,,png}
-@author Anthony Bradford (@email{info@@@value{WEBSITE}})
+@author @email{anthony_bradford@@yahoo.com,Anthony Bradford}
 @page
 @vskip 0pt plus 1filll
 @insertcopying
@@ -145,8 +145,8 @@ which is a financial derivatives calculator.
 @html
 @contents
 <center><a href="Downloading-and-Installation.html"><img src="images/6.png" alt="Download OptionMatrix" align="top"/></a><br clear=left>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 
@@ -168,7 +168,7 @@ Both programs feature: greeks, decimal date to real-date translations, real-date
 @cindex Financial Numerical Recipes in C++
 @cindex Seth Pinsky
 @cindex QuantLib
-The OptionMatrix programs use financial model libraries. Models are included from QuantLib, Bj@o{}rn Augestad (Metaoptions), @url{http://@value{WEBSITE}, Anthony Bradford}, @url{http://www.google.com/search?q=Bernt+Arne+Oedegaard,Bernt Arne @O{}edegaard} (Financial Numerical Recipes in C++) and Seth Pinsky. The code base can be easily extended to include new models.
+The OptionMatrix programs use financial model libraries. Models are included from QuantLib, Bj@o{}rn Augestad (Metaoptions), Anthony Bradford, @url{http://www.google.com/search?q=Bernt+Arne+Oedegaard,Bernt Arne @O{}edegaard} (Financial Numerical Recipes in C++) and Seth Pinsky. The code base can be easily extended to include new models.
 
 @cindex C++
 @cindex Autotools
@@ -176,15 +176,15 @@ The OptionMatrix programs use financial model libraries. Models are included fro
 The OptionMatrix programs are implemented in C++@ and use Autotools for packaging. @xref{Downloading and Installation}, for source code and installers. These programs are protected by the GNU General Public License,
 users are free (in perpetuity) to share and change them.
 
-OptionMatrix was written by @email{info@@@value{WEBSITE},Anthony Bradford}.
+OptionMatrix was written by @email{anthony_bradford@@yahoo.com,Anthony Bradford}.
 
 @html
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/></a><br clear=left>
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/6.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 
@@ -194,7 +194,6 @@ OptionMatrix was written by @email{info@@@value{WEBSITE},Anthony Bradford}.
 @ifdocbook
 @center @image{images/2,,,,png}
 @end ifdocbook
-
 
 @section Usage Options
 @cindex usage
@@ -382,8 +381,8 @@ Run the GTK+ (GUI) version of OptionMatrix and define the model source code loca
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/5.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 
@@ -932,8 +931,8 @@ Two menu export options are available.
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/11.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 
@@ -1064,8 +1063,8 @@ Type @kbd{q} or @kbd{Q} to quit.
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/7.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 @node Models supported
@@ -1304,8 +1303,8 @@ The OptionMatrix programs support the following models:
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/10.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 
@@ -1363,8 +1362,8 @@ sudo make install
 @html
 <br>
 <center><img src="images/6.png" align="top"><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 
@@ -1381,14 +1380,22 @@ PDF and EPUB documentation can be found at
 
 @end ifdocbook
 @url{http://sourceforge.net/projects/optionmatrix}
+@*
+@*
+HTML documentation can be found at
+@*
+@ifdocbook
+
+@end ifdocbook
+@url{https://anthonybradford.github.io/optionmatrix/}
 
 @html
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/10.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 
@@ -1403,7 +1410,7 @@ PDF and EPUB documentation can be found at
 @cindex Reporting bugs
 
 To report bugs, suggest enhancements or otherwise discuss optionmatrix,
-please send electronic mail to @email{info@@@value{WEBSITE}}.
+please send electronic mail to @email{anthony_bradford@@yahoo.com,Anthony Bradford}.
 
 @cindex Checklist for bug reports
 For bug reports, please include enough information for the maintainers
@@ -1434,8 +1441,8 @@ Patches are welcome; if possible, please make them with @samp{@w{diff
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/9.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 
@@ -1450,8 +1457,8 @@ Patches are welcome; if possible, please make them with @samp{@w{diff
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/5.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 
@@ -1464,8 +1471,8 @@ Patches are welcome; if possible, please make them with @samp{@w{diff
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/11.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="mailto:info@@@value{WEBSITE}">info@@@value{WEBSITE}</a><br>
-@copyright{} 2013 <a href="http://@value{WEBSITE}">Anthony Bradford</a>
+<a href="http://@value{WEBSITE}">OptionMatrix</a><br>
+@copyright{} 2013 <a href="mailto:anthony_bradford@@yahoo.com">Anthony Bradford</a>
 </center>
 @end html
 
