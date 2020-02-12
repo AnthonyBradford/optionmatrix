@@ -6,4 +6,4 @@ echo
 echo Install proper packages for GNU/Linux distributions using the zypper package manager
 echo
 
-sudo zypper install gcc-c++ llvm-clang ncurses-devel gtk2-devel gtk3-devel gsl gsl-devel help2man texinfo automake
+sudo zypper install gcc-c++ clang ncurses-devel gtk2-devel gtk3-devel gsl gsl-devel help2man texinfo automake
