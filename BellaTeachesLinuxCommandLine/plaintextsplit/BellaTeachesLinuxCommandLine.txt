@@ -1,0 +1,27 @@
+[Picture of Bella]
+Bella Teaches the Linux Command Line Version February 26, 2020
+1 Login Screen, Desktop and Terminal
+  1.1 Login Screen
+  1.2 Desktop
+  1.3 Terminal
+2 Linux Commands
+  2.1 'whoami'
+  2.2 'ls'
+  2.3 'pwd'
+  2.4 'mkdir' and 'rmdir'
+  2.5 'cd'
+  2.6 'echo' and 'cat'
+  2.7 'cp' and 'rm'
+  2.8 'gedit'
+  2.9 'more' and 'less'
+  2.10 'man'
+  2.11 'date'
+  2.12 'cal'
+  2.13 'top'
+  2.14 'clear'
+Concept index
+Bella Teaches the Linux Command Line Version February 26, 2020
+**************************************************************
+
+Bella Teaches the Linux Command Line.  Copyright (C) 2019.
+

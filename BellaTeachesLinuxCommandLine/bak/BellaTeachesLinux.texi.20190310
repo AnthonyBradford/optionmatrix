@@ -1,0 +1,210 @@
+\input texinfo @c -*-texinfo-*-
+@c %**start of header
+@set Manual BellaTeachesLinux
+@setfilename @value{Manual}.info
+@settitle Bella Teaches Linux
+
+@c Define a new index for options.
+@defcodeindex op
+@c Combine everything into one index (arbitrarily chosen to be the
+@c concept index).
+@syncodeindex op cp
+@c %**end of header
+@image{images/1,,160pt,Picture of Bella,JPG}
+
+@copying
+Bella Teaches Linux. Copyright @copyright{} 2019.
+
+@quotation
+All rights reserved.
+@end quotation
+@end copying
+
+@dircategory Template
+@direntry
+* The Texinfo BellaTeachesLinux
+@end direntry
+
+@titlepage
+@title Bella Teaches Linux
+@subtitle for version @today{}
+@sp 10
+@author @email{anthony_bradford@@yahoo.com,A. Bradford}
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@ifnothtml
+@contents
+@end ifnothtml
+
+@ifnottex
+@node Top
+@top Bella Teaches Linux Version @today{}
+ 
+Bella Teaches Linux. Copyright @copyright{} 2019.
+@end ifnottex
+
+@html
+@ifset PDF
+<a href="@value{Manual}.pdf">PDF version of Bella Teaches Linux</a>
+<br>
+@end ifset
+@ifset DJVU
+<a href="@value{Manual}.djvu">DjVu version of Bella Teaches Linux</a>
+<br>
+@end ifset
+@ifset SPLIT
+<a href="index.html">HTML version of Bella Teaches Linux</a>
+<br>
+<a href="@value{Manual}_frame.html">Framed HTML version of this website</a>
+<br>
+@end ifset
+@ifset NOSPLIT
+<a href="indexNoSplit.html">Single-page HTML version of Bella Teaches Linux</a>
+<br>
+@end ifset
+@ifset TEXT
+@cindex Text
+<a href="@value{Manual}.txt">Text version of Bella Teaches Linux</a> 
+<br>
+@cindex Plain text
+<a href="@value{Manual}_PlainText.txt">Plain text version of Bella Teaches Linux</a> 
+<br>
+<a href="textsplit">Split text version of Bella Teaches Linux</a> 
+<br>
+<a href="plaintextsplit">Split plain text version of Bella Teaches Linux</a>
+<br>
+@end ifset
+@ifset EPUB
+@cindex EPUB
+<a href="@value{Manual}.epub">EPUB version of Bella Teaches Linux</a> 
+<br>
+@end ifset
+@ifset POSTSCRIPT
+@cindex PostScript
+<a href="@value{Manual}.ps">PostScript version of Bella Teaches Linux</a> 
+<br>
+@end ifset
+@ifset DVI
+@cindex @TeX{} DVI
+@cindex DVI
+<a href="@value{Manual}.dvi">@TeX{} DVI version of this manual</a> 
+<br>
+@end ifset
+@ifset ZIP
+@cindex Zip
+<a href="@value{Manual}.zip">HTML zip package of Bella Teaches Linux</a>
+<br>
+@end ifset
+<a href="@value{Manual}.tar.gz">Gzipped tar source of Bella Teaches Linux</a> 
+<br>
+<br>
+@end html
+
+@ifnottex
+@menu
+* Login Screen::
+* The Terminal::
+* Concept index::	Index of concepts.
+@end menu
+@end ifnottex
+
+@html
+@ifset LongContents
+@contents
+@end ifset
+@ifset ShortContents
+@shortcontents
+@end ifset
+@end html
+
+@node Login Screen
+@chapter Login Screen
+@cindex Login Screen
+@image{images/LoginScreenCropped,,180pt,Login Screen Linux,png}
+@*
+@*
+@image{images/LoginScreenCropped-960x576,,180pt,Login Screen Linux,png}
+@*
+@*
+@image{images/LoginScreenCropped-640x480,,180pt,Login Screen Linux,png}
+@*
+@*
+@image{images/LoginScreenPasswordCropped,,180pt,Login Screen Linux,png}
+@*
+@*
+@image{images/LoginScreenPasswordCropped-960x576,,180pt,Login Screen Linux,png}
+@*
+@*
+@image{images/LoginScreenPasswordCropped-640x480,,180pt,Login Screen Linux,png}
+@*
+@*
+@image{images/Desktop,,180pt,Login Screen Linux,png}
+@*
+@*
+@image{images/Desktop-960x576,,180pt,Login Screen Linux,png}
+@*
+@*
+@image{images/Desktop-640x480,,180pt,Login Screen Linux,png}
+@*
+@*
+@image{images/2-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/2-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/3-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/4-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/5-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/6-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/8-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/9-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/11-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/12-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/14-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/15-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/16-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/17-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/18-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+@image{images/19-640x480,,180pt,Picture of Bella,jpg}
+@*
+@*
+
+@node The Terminal
+@chapter The Terminal
+@cindex The Terminal
+
+@node Concept index
+@unnumbered Concept index
+@printindex cp
+
+@bye

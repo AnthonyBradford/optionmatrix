@@ -1,0 +1,170 @@
+/* === === === === === === === === === === === === === === === === ===
+
+    This file: texinfo_bright_colors.css
+    Version:   1.0
+    Date:      September 13, 2010
+    Author:    Jaakko Hollm@'en, e-mail: Jaakko.Hollmen@tkk.fi
+
+    (c) Copyright, Jaakko Hollm@'en, Finland, Jaakko.Hollmen@tkk.fi
+        September, 2010
+
+    The current file "texinfo_bright_colors.css" is free software:
+    you can redistribute it and/or modify it under the terms of the
+    GNU General Public License as published by the Free Software
+    Foundation, either version 3 of the License, or (at your option)
+    any later version.
+
+    The current file "texinfo_bright_colors.css" is distributed in
+    the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS
+    FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+    more details.
+
+    === === === === === === === === === === === === === === === === */
+
+body {
+margin: 30px 10% 30px 8%;
+background-color: white;
+font-family: serif;
+font-size: 1.0em;
+}
+
+h1 {
+font-size: 2.4em;
+background-color: #FF0000;
+}
+
+h2 {
+font-size: 2.0em;
+background-color: #FF0066;
+}
+
+h3 {
+font-size: 1.8em;
+background-color: #FF00CC;
+}
+
+h4 {
+font-size: 1.6em;
+background-color: #FF33FF;
+;
+}
+
+h5 {
+font-size: 1.4em;
+background-color: #FF99FF;
+}
+
+p {
+background-color: #B0B0B0;
+}
+
+blockquote {
+background-color: #FFCCFF;
+}
+
+div.shortcontents {
+background-color: #FF9900;
+}
+
+div.contents {
+background-color: #FF9900;
+}
+
+div.defun {
+background-color: #FF9900;
+}
+
+div.float {
+background-color: #FF9900;
+}
+
+div.footnote {
+background-color: #FF9900;
+}
+
+div.node {
+background-color: #FF9900;
+}
+
+ul {
+background-color: #FF9900;
+}
+
+ol {
+background-color: #CCFF33;
+}
+
+table {
+background-color: #FFFF00;
+}
+
+tr {
+background-color: #66FF00;
+}
+
+td {
+background-color: #66CC00;
+}
+
+dl {
+background-color: #00FF00;
+}
+
+dt {
+background-color: #66CC00;
+}
+
+dd {
+background-color: #00FFFF;
+}
+
+pre.display {
+background-color: #33CCFF;
+}
+
+pre.smalldisplay {
+background-color: #33CCFF;
+}
+
+pre.example {
+background-color: #33CCFF;
+}
+
+pre.smallexample {
+background-color: #33CCFF;
+}
+
+pre.format {
+background-color: #33CCFF;
+}
+
+pre.smallformat {
+background-color: #33CCFF;
+}
+
+pre.lisp {
+background-color: #33CCFF;
+}
+
+pre.smalllisp {
+background-color: #33CCFF;
+}
+
+pre.sp {
+background-color: #33CCFF;
+}
+
+pre.verbatim {
+background-color: #33CCFF;
+}
+
+code {
+background-color: #00FF00;
+}
+
+hr {
+background-color: #0000FF;
+margin: 0.5em;
+padding: 0.5em;
+}

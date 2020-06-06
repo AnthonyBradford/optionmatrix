@@ -1,0 +1,234 @@
+/*
+CSS for TexInfo/HTML files.
+
+Copyright (C) 2015-2016 Assaf Gordon (assafgordon@gmail.com)
+
+License:
+ GNU All Permissive License
+ http://www.gnu.org/prep/maintain/html_node/License-Notices-for-Other-Files.html
+
+ Copying and distribution of this file, with or without modification,
+ are permitted in any medium without royalty provided the copyright
+ notice and this notice are preserved.  This file is offered as-is,
+ without any warranty.
+
+
+The used tags/classes were collected from a Texinfo-generated HTML using:
+
+  cd coreutils
+  makeinfo --html --no-split -o coreutils.html doc/coreutils.texi
+  cat coreutils.html | sed 's/</\n</g' | sed 's;>.*;>;g' \
+         | grep '^<' | grep 'class=' | sort -u \
+         | perl -lane 'm/<(\w+) .*class="([-\w]+)"/ ; print $1, "\t", $2' \
+         | sort -u
+
+*/
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  margin: 1em;
+
+  overflow-x: hidden; /* Coupled with the div.header trick,
+			 this will extend the header lines
+			 access the entire page width without causing
+			 a horizontal scroll bar to appear. */
+}
+
+
+a {
+  text-decoration: none;
+  outline-style: none;
+  color: blue;
+}
+a:visited {
+  color: rgb(16,0,112);
+}
+a:hover {
+  text-decoration: underline;
+}
+
+
+/*****************************************************
+   Titles / Headers
+******************************************************/
+
+/* @settitle:
+   The title of the document at the top of the document/header */
+h1.settitle {
+  color: rgb(51,70,131);
+  text-shadow: rgb(153,153,153) 1px 1px 0px;
+}
+
+/* The title at the beginning of the document, before the @menu */
+h1.top {
+  color: rgb(51,70,131);
+  text-shadow: rgb(153,153,153) 1px 1px 0px;
+}
+
+/* @chapter */
+h2.chapter {
+}
+
+h2.appendix { }
+h2.unnumbered { }
+
+/* @section */
+h3.section {
+}
+/* @unnumberedsec */
+h3.unnumberedsec {
+}
+/* @heading (seems to be only used in fdl.texi) */
+h3.heading {
+}
+
+/* @subsection */
+h4.subsection {
+}
+
+
+/**************************************************
+  Short Contents (if @shortcontents command is used)
+***************************************************/
+h2.shortcontents-heading { }
+div.shortcontents { }
+div.shortcontents ul { }
+div.shortcontents ul li { }
+
+
+/**************************************************
+  Contents (if @contents command is used)
+***************************************************/
+h2.contents-heading { }
+div.contents { }
+div.contents ul { }
+div.contents ul li { }
+
+
+/* The @menu table */
+table.menu { }
+pre.menu-comment {}
+
+
+
+/************************************
+  @example   and   @verbatim
+************************************/
+div.example {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+div.example pre.example {
+  /* Round Corners */
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #c0c0c0;
+
+  padding: 1ex;
+  background-color: #f3f3f3;
+}
+
+/* Note: @verbatim is also rendered inside a 'div.example' */
+div.example pre.verbatim {
+  /* Round Corners */
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #c0c0c0;
+
+  padding: 1ex;
+  background-color: #f3f3f3;
+}
+
+
+
+/************************************
+  @smallexample
+************************************/
+div.smallexample {
+}
+div.smallexample pre.smallexample {
+}
+
+/***********************************
+  @display
+***********************************/
+div.display {
+}
+div.display pre.display {
+}
+
+
+
+/**************************************
+  @footnote
+**************************************/
+div.footnote { }
+h4.footnotes-heading { }
+
+/**************************************
+The header at the top of each page / section
+(the next/previous/top/up links)
+**************************************/
+div.header {
+   padding-top: 0.5ex;
+   padding-bottom: 0.5ex;
+   background-color: #ddddff;
+
+   /* This will extend the background color of the header
+      bar to the entire width of the page (and beyond),
+      requires 'overflow-x: hidden' in the 'body'. */
+   padding-left: 3000px;
+   margin-left: -3000px;
+   padding-right: 3000px;
+   margin-right: -3000px;
+}
+
+/* Disable any additional margins */
+div.header p {
+    margin: 0;
+}
+div.header p a {
+    color: blue;
+}
+
+
+/**************************************
+   @table is rendered as <dl> (defnition list),
+   @item  is rendered as <dt> (definition term),
+   text is rendered as <dd> (definition description)
+**************************************/
+dl {
+   margin: 0 1em;
+}
+dl dt {
+   margin: 1em 0;
+}
+dl dd {
+   margin-left: 2em;
+}
+
+/*******************************************************
+  Text Styles
+*******************************************************/
+
+/* @var{} */
+var {
+  color: #CC0000;
+}
+
+/* @samp{} */
+samp {
+  color: #6600CC;
+}
+
+/* @env{} will result in <p><code>X</code></p> */
+p code {
+  color: #532c14;
+}
+
+/* @option{} */
+span.nocodebreak {
+  color: #5D4C46;
+}

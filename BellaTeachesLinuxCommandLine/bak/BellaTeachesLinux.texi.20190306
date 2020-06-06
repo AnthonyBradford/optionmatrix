@@ -1,0 +1,152 @@
+\input texinfo @c -*-texinfo-*-
+@c %**start of header
+@set Manual BellaTeachesLinux
+@setfilename @value{Manual}.info
+@settitle Bella Teaches Linux
+
+@c Define a new index for options.
+@defcodeindex op
+@c Combine everything into one index (arbitrarily chosen to be the
+@c concept index).
+@syncodeindex op cp
+@c %**end of header
+@image{images/1,,160pt,Picture of Bella,JPG}
+
+@copying
+Bella Teaches Linux. Copyright @copyright{} 2012.
+
+@quotation
+All right reserved.
+@end quotation
+@end copying
+
+@dircategory Template
+@direntry
+* The Texinfo BellaTeachesLinux
+@end direntry
+
+@titlepage
+@title Bella Teaches Linux
+@subtitle for version @today{}
+@sp 10
+@author @email{anthony_bradford@@yahoo.com,A. Bradford}
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@ifnothtml
+@contents
+@end ifnothtml
+
+@ifnottex
+@node Top
+@top Bella Teaches Linux Version @today{}
+ 
+Bella Teaches Linux. Copyright @copyright{} 2012.
+@end ifnottex
+
+@html
+@ifset PDF
+<a href="@value{Manual}.pdf">PDF content of this website</a>
+<br>
+@end ifset
+@ifset DJVU
+<a href="@value{Manual}.djvu">DjVu content of this website</a>
+<br>
+@end ifset
+@ifset SPLIT
+<a href="index.html">HTML version of this website</a>
+<br>
+@end ifset
+@ifset NOSPLIT
+<a href="indexNoSplit.html">Single-page HTML version of this website</a>
+<br>
+@end ifset
+@ifset TEXT
+@cindex Text
+@cindex Plain text
+<a href="@value{Manual}.txt">Text version of this website</a> 
+<br>
+@end ifset
+@ifset EPUB
+@cindex EPUB
+<a href="@value{Manual}.epub">EPUB content of this website</a> 
+<br>
+@end ifset
+@ifset POSTSCRIPT
+@cindex PostScript
+<a href="@value{Manual}.ps">PostScript content of this website</a> 
+<br>
+@end ifset
+@ifset DVI
+@cindex @TeX{} DVI
+@cindex DVI
+<a href="@value{Manual}.dvi">@TeX{} DVI version of this manual</a> 
+<br>
+@end ifset
+@ifset ZIP
+@cindex Zip
+<a href="@value{Manual}.zip">HTML zip package of this website</a>
+<br>
+@end ifset
+<a href="@value{Manual}.tar.gz">Gzipped tar source of this website</a> 
+<br>
+<br>
+@end html
+
+@ifnottex
+@menu
+* Chapter 1::
+* Concept index::	Index of concepts.
+@end menu
+@end ifnottex
+
+@html
+@ifset LongContents
+@contents
+@end ifset
+@ifset ShortContents
+@shortcontents
+@end ifset
+@end html
+
+@node Chapter 1
+@chapter Chapter 1
+@cindex Chapter 1
+@image{images/2,,320pt,Picture of Bella,JPG}
+@*
+@image{images/3,,320pt,Picture of Bella,JPG}
+@*
+@image{images/4,,320pt,Picture of Bella,JPG}
+@*
+@image{images/5,,320pt,Picture of Bella,JPG}
+@*
+@image{images/6,,320pt,Picture of Bella,JPG}
+@*
+@image{images/8,,320pt,Picture of Bella,JPG}
+@*
+@image{images/9,,320pt,Picture of Bella,JPG}
+@*
+@image{images/11,,320pt,Picture of Bella,JPG}
+@*
+@image{images/12,,320pt,Picture of Bella,JPG}
+@*
+@image{images/14,,320pt,Picture of Bella,JPG}
+@*
+@image{images/15,,320pt,Picture of Bella,JPG}
+@*
+@image{images/16,,320pt,Picture of Bella,JPG}
+@*
+@image{images/17,,320pt,Picture of Bella,JPG}
+@*
+@image{images/18,,320pt,Picture of Bella,JPG}
+@*
+@image{images/19,,320pt,Picture of Bella,JPG}
+@*
+
+@node Concept index
+@unnumbered Concept index
+@printindex cp
+
+@bye

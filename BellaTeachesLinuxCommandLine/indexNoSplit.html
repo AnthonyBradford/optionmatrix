@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Bella Teaches the Linux Command Line. Copyright Bella (C) 2019.
+
+All rights reserved. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Bella Teaches the Linux Command Line</title>
+
+<meta name="description" content="Bella Teaches the Linux Command Line">
+<meta name="keywords" content="Bella Teaches the Linux Command Line">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2any">
+<link href="#Top" rel="start" title="Top">
+<link href="#Concept-index" rel="index" title="Concept index">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href=".." rel="up" title="(dir)">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a href="BellaTeachesLinuxCommandLine.pdf">PDF content of this website</a><h1 class="settitle" align="center">Bella Teaches the Linux Command Line</h1>
+
+<img src="images/Bella-1.jpg" alt="Picture of Bella">
+
+
+
+
+
+<span id="Top"></span><span id="Bella-Teaches-the-Linux-Command-Line-Version-"></span><h1 class="top">Bella Teaches the Linux Command Line Version February 26, 2020</h1>
+ 
+<p>Bella Teaches the Linux Command Line. Copyright &copy; 2019.
+</p>
+<a href="BellaTeachesLinuxCommandLine.pdf">PDF version of Bella Teaches the Linux Command Line</a>
+<br>
+<a href="index.html">HTML version of Bella Teaches the Linux Command Line</a>
+<br>
+<a href="BellaTeachesLinuxCommandLine_frame.html">Framed HTML version of Bella Teaches the Linux Command Line</a>
+<br>
+<a href="indexNoSplit.html">Single-page HTML version of Bella Teaches the Linux Command Line</a>
+<br>
+<span id="index-Text"></span>
+<a href="BellaTeachesLinuxCommandLine.txt">Text version of Bella Teaches the Linux Command Line</a> 
+<br>
+<span id="index-Plain-text"></span>
+<a href="BellaTeachesLinuxCommandLine_PlainText.txt">Plain text version of Bella Teaches the Linux Command Line</a> 
+<br>
+<a href="textsplit">Split text version of Bella Teaches the Linux Command Line</a> 
+<br>
+<a href="plaintextsplit">Split plain text version of Bella Teaches the Linux Command Line</a>
+<br>
+<span id="index-EPUB"></span>
+<a href="BellaTeachesLinuxCommandLine.epub">EPUB version of Bella Teaches the Linux Command Line</a> 
+<br>
+<span id="index-Zip"></span>
+<a href="BellaTeachesLinuxCommandLine.zip">HTML zip package of Bella Teaches the Linux Command Line</a>
+<br>
+<a href="BellaTeachesLinuxCommandLine.tar.gz">Gzipped tar source of Bella Teaches the Linux Command Line</a> 
+<br>
+<br>
+
+
+<span id="SEC_Contents"></span>
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a id="toc-Login-Screen_002c-Desktop-and-Terminal" href="#Login-Screen-Desktop-and-Terminal">1 Login Screen, Desktop and Terminal</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Login-Screen" href="#Login-Screen">1.1 Login Screen</a></li>
+    <li><a id="toc-Desktop" href="#Desktop">1.2 Desktop</a></li>
+    <li><a id="toc-Terminal" href="#Terminal">1.3 Terminal</a></li>
+  </ul></li>
+  <li><a id="toc-Linux-Commands-1" href="#Linux-Commands">2 Linux Commands</a>
+  <ul class="no-bullet">
+    <li><a id="toc-whoami" href="#whoami">2.1 <code>whoami</code></a></li>
+    <li><a id="toc-ls" href="#ls">2.2 <code>ls</code></a></li>
+    <li><a id="toc-pwd" href="#pwd">2.3 <code>pwd</code></a></li>
+    <li><a id="toc-mkdir-and-rmdir" href="#mkdir-and-rmdir">2.4 <code>mkdir</code> and <code>rmdir</code></a></li>
+    <li><a id="toc-cd" href="#cd">2.5 <code>cd</code></a></li>
+    <li><a id="toc-echo-and-cat" href="#echo-and-cat">2.6 <code>echo</code> and <code>cat</code></a></li>
+    <li><a id="toc-cp-and-rm" href="#cp-and-rm">2.7 <code>cp</code> and <code>rm</code></a></li>
+    <li><a id="toc-gedit" href="#gedit">2.8 <code>gedit</code></a></li>
+    <li><a id="toc-more-and-less" href="#more-and-less">2.9 <code>more</code> and <code>less</code></a></li>
+    <li><a id="toc-man" href="#man">2.10 <code>man</code></a></li>
+    <li><a id="toc-date" href="#date">2.11 <code>date</code></a></li>
+    <li><a id="toc-cal" href="#cal">2.12 <code>cal</code></a></li>
+    <li><a id="toc-top" href="#top">2.13 <code>top</code></a></li>
+    <li><a id="toc-clear" href="#clear">2.14 <code>clear</code></a></li>
+  </ul></li>
+  <li><a id="toc-Concept-index-1" href="#Concept-index" rel="index">Concept index</a></li>
+</ul>
+</div>
+
+
+
+<hr>
+<span id="Login-Screen-Desktop-and-Terminal"></span><span id="Login-Screen_002c-Desktop-and-Terminal"></span><h2 class="chapter">1 Login Screen, Desktop and Terminal</h2>
+<p>Examples are given with Ubuntu Linux. Other Linux distributions should be
+similar.
+</p>
+<span id="Login-Screen"></span><h3 class="section">1.1 Login Screen</h3>
+<span id="index-Login-Screen"></span>
+<p>Start the Linux computer and it will proceed to the login screen.
+<br>
+<br>
+</p><div align="center"><img src="images/LoginScreenCropped.png" alt="Login Screen Linux">
+</div><br>
+<br>
+<p>Select the user name and enter the password.
+<br>
+<br>
+</p><div align="center"><img src="images/LoginScreenPasswordCropped.png" alt="Login Screen Linux">
+</div>
+<span id="Desktop"></span><h3 class="section">1.2 Desktop</h3>
+<span id="index-Desktop"></span>
+<p>The Linux desktop will display.
+<br>
+<br>
+</p><div align="center"><img src="images/Desktop.png" alt="Desktop Linux Screen">
+</div><br>
+<br>
+<div align="center"><img src="images/Bella-2.jpg" alt="Picture of Bella">
+</div>
+<span id="Terminal"></span><h3 class="section">1.3 Terminal</h3>
+<span id="index-Terminal"></span>
+<p>We will proceed to open a Linux terminal. On the upper left hand side of the screen select Activities.
+<br>
+<br>
+</p><div align="center"><img src="images/Activities.png" alt="Activies on upper left hand of Linux Desktop">
+</div><br>
+<br>
+<p>A input box saying &ldquo;Type To Search&rdquo; box will appear.
+<br>
+<br>
+</p><div align="center"><img src="images/TypeToSearch.png" alt="Type To Search box">
+</div><br>
+<br>
+<p>Inside the &ldquo;Type To Search&rdquo; input box type the word Terminal.
+<br>
+<br>
+</p><div align="center"><img src="images/TypeToSearchTerminal.png" alt="Terminal typed into Type to Search box">
+</div><br>
+<br>
+<p>The Linux terminal will appear. The terminal is also known as the Linux Shell or the command line.
+<br>
+<br>
+</p><div align="center"><img src="images/Terminal.png" alt="Image of the Linux Terminal">
+</div><br>
+<br>
+<div align="center"><img src="images/Bella-3.jpg" alt="Picture of Bella">
+</div><br>
+<br>
+<p>Congratulations! You have logged into Linux and opened a terminal on the desktop! The Linux Terminal is a command language interpreter that executes commands read from your input. In the next chapter we will execute some commands.
+</p>
+<hr>
+<span id="Linux-Commands"></span><span id="Linux-Commands-1"></span><h2 class="chapter">2 Linux Commands</h2>
+<span id="index-Linux-Commands"></span>
+<div align="center"><img src="images/Bella-5.jpg" alt="Picture of Bella">
+</div><span id="whoami"></span><h3 class="section">2.1 <code>whoami</code></h3>
+<span id="index-whoami"></span>
+<p>The command <code>whoami</code> prints your userid. At the Linux terminal type the command <code>whoami</code>.
+<br>
+<br>
+<img src="images/command-whoami.png" alt="Example of Linux command whoami">
+<br>
+<br>
+Linux responds that Bella is logged in. Your system should respond that your logged in by displaying your login name.
+</p>
+<span id="ls"></span><h3 class="section">2.2 <code>ls</code></h3>
+<span id="index-ls"></span>
+<p>The command <code>ls</code> lists directory contents. Directories can also be called folders. At the Linux terminal type the command <code>ls</code>.
+<br>
+<br>
+<img src="images/command-ls.png" alt="Example of Linux command ls">
+<br>
+<br>
+We see Bella has the following directories:
+<br>
+Desktop, Documents, Downloads, Music, Pictures, Public, Templates, Videos.
+<br>
+<br>
+We can look inside an individual directory by giving command <code>ls</code> a specific
+directory name to look in. Type: <code>ls Music</code>
+<br>
+<br>
+<img src="images/command-ls-Music.png" alt="Example of Linux command ls on Music directory">
+<br>
+<br>
+Looks like Bella has no music.
+<br>
+<br>
+We can check if Bella has any documents. Type: <code>ls Documents</code>
+<br>
+<br>
+<img src="images/command-ls-Music-Documents.png" alt="Example of Linux command ls on Documents directory">
+<br>
+<br>
+Bella has no documents
+<br>
+<br>
+</p><div align="center"><img src="images/Bella-4.jpg" alt="Picture of Bella">
+</div>
+<span id="pwd"></span><h3 class="section">2.3 <code>pwd</code></h3>
+<span id="index-pwd"></span>
+<p>The command <code>pwd</code> is used to print the name of current working directory.
+<br>
+<br>
+<img src="images/command-pwd.png" alt="Example of Linux command pwd">
+<br>
+<br>
+Bella&rsquo;s current working directory is &ldquo;/home/bella&rdquo;. Therefore the &ldquo;bella&rdquo; directory is
+inside the &ldquo;home&rdquo; directory.
+</p>
+<span id="mkdir-and-rmdir"></span><h3 class="section">2.4 <code>mkdir</code> and <code>rmdir</code></h3>
+<span id="index-mkdir"></span>
+<span id="index-rmdir"></span>
+<p>When using the command <code>ls</code> we can see that Bella has the following folders in
+her &ldquo;/home/bella&rdquo; directory.
+</p><div class="example">
+<pre class="example">Desktop, Documents, Downloads, Music, Pictures, Public, Templates, Videos
+</pre></div>
+<p>Try typing the command <code>ls</code> and enter again.
+<br>
+<br>
+</p><div align="center"><img src="images/Bella-8.jpg" alt="Picture of Bella">
+</div>
+<span id="cd"></span><h3 class="section">2.5 <code>cd</code></h3>
+<span id="index-cd"></span>
+<p>At the Linux terminal type the command <code>cd</code>.
+<br>
+<br>
+</p><div align="center"><img src="images/Bella-6.jpg" alt="Picture of Bella">
+</div>
+<span id="echo-and-cat"></span><h3 class="section">2.6 <code>echo</code> and <code>cat</code></h3>
+<span id="index-echo"></span>
+<span id="index-cat"></span>
+<p>At the Linux terminal type the command <code>echo</code>.
+<br>
+<br>
+</p><div align="center"><img src="images/Bella-9.jpg" alt="Picture of Bella">
+</div>
+<span id="cp-and-rm"></span><h3 class="section">2.7 <code>cp</code> and <code>rm</code></h3>
+<span id="index-cp"></span>
+<span id="index-rm"></span>
+<br>
+<br>
+<div align="center"><img src="images/Bella-11.jpg" alt="Picture of Bella">
+</div>
+<span id="gedit"></span><h3 class="section">2.8 <code>gedit</code></h3>
+<span id="index-gedit"></span>
+<br>
+<br>
+<div align="center"><img src="images/Bella-15.jpg" alt="Picture of Bella">
+</div>
+<span id="more-and-less"></span><h3 class="section">2.9 <code>more</code> and <code>less</code></h3>
+<span id="index-more"></span>
+<span id="index-less"></span>
+<br>
+<br>
+<div align="center"><img src="images/Bella-16.jpg" alt="Picture of Bella">
+</div>
+<span id="man"></span><h3 class="section">2.10 <code>man</code></h3>
+<span id="index-man"></span>
+<br>
+<br>
+<div align="center"><img src="images/Bella-17.jpg" alt="Picture of Bella">
+</div>
+<span id="date"></span><h3 class="section">2.11 <code>date</code></h3>
+<span id="index-date"></span>
+<br>
+<br>
+<div align="center"><img src="images/Bella-19.jpg" alt="Picture of Bella">
+</div>
+<span id="cal"></span><h3 class="section">2.12 <code>cal</code></h3>
+<span id="index-cal"></span>
+<br>
+<br>
+<div align="center"><img src="images/Bella-14.jpg" alt="Picture of Bella">
+</div>
+<span id="top"></span><h3 class="section">2.13 <code>top</code></h3>
+<span id="index-top"></span>
+<br>
+<br>
+<div align="center"><img src="images/Bella-12.jpg" alt="Picture of Bella">
+</div>
+<span id="clear"></span><h3 class="section">2.14 <code>clear</code></h3>
+<span id="index-clear"></span>
+<br>
+<br>
+<div align="center"><img src="images/Bella-18.jpg" alt="Picture of Bella">
+</div>
+<hr>
+<span id="Concept-index"></span><span id="Concept-index-1"></span><h2 class="unnumbered">Concept index</h2>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Concept-index_cp_letter-C"><b>C</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-D"><b>D</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-E"><b>E</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-G"><b>G</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-L"><b>L</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-M"><b>M</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-P"><b>P</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-R"><b>R</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-T"><b>T</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-W"><b>W</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-Z"><b>Z</b></a>
+ &nbsp; 
+</td></tr></table>
+<table class="index-cp" border="0">
+<tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-C">C</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-cal">cal</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-cat">cat</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-cd">cd</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-clear">clear</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-cp">cp</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-D">D</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-date">date</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Desktop">Desktop</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Login-Screen-Desktop-and-Terminal">Login Screen Desktop and Terminal</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-E">E</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-echo">echo</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-EPUB">EPUB</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Top">Top</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-G">G</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gedit">gedit</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-L">L</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-less">less</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Linux-Commands">Linux Commands</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Login-Screen">Login Screen</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Login-Screen-Desktop-and-Terminal">Login Screen Desktop and Terminal</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ls">ls</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-M">M</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-man">man</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-mkdir">mkdir</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-more">more</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-P">P</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Plain-text">Plain text</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Top">Top</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-pwd">pwd</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-R">R</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rm">rm</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-rmdir">rmdir</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-T">T</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Terminal">Terminal</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Login-Screen-Desktop-and-Terminal">Login Screen Desktop and Terminal</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Text">Text</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Top">Top</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-top">top</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-W">W</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-whoami">whoami</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Linux-Commands">Linux Commands</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-Z">Z</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Zip">Zip</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Top">Top</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Concept-index_cp_letter-C"><b>C</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-D"><b>D</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-E"><b>E</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-G"><b>G</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-L"><b>L</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-M"><b>M</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-P"><b>P</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-R"><b>R</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-T"><b>T</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-W"><b>W</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-Z"><b>Z</b></a>
+ &nbsp; 
+</td></tr></table>
+
+<hr>
+
+
+<a href="BellaTeachesLinuxCommandLine.pdf">PDF content of this website</a>
+</body>
+</html>

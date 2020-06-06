@@ -1,0 +1,325 @@
+\input texinfo @c -*-texinfo-*-
+@c %**start of header
+@set Manual BellaTeachesLinuxCommandLine
+@setfilename @value{Manual}.info
+@settitle Bella Teaches the Linux Command Line
+
+@c Define a new index for options.
+@defcodeindex op
+@c Combine everything into one index (arbitrarily chosen to be the
+@c concept index).
+@syncodeindex op cp
+@c %**end of header
+@image{images/Bella-1,,160pt,Picture of Bella,jpg}
+
+@copying
+Bella Teaches the Linux Command Line. Copyright Bella @copyright{} 2019.
+
+@quotation
+All rights reserved.
+@end quotation
+@end copying
+
+@dircategory Template
+@direntry
+* The Texinfo BellaTeachesLinuxCommandLine
+@end direntry
+
+@titlepage
+@title Bella Teaches the Linux Command Line
+@subtitle for version @today{}
+@sp 10
+@author @email{anthony_bradford@@yahoo.com,A. Bradford}
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@ifnothtml
+@contents
+@end ifnothtml
+
+@ifnottex
+@node Top
+@top Bella Teaches the Linux Command Line Version @today{}
+ 
+Bella Teaches the Linux Command Line. Copyright @copyright{} 2019.
+@end ifnottex
+
+@html
+@ifset PDF
+<a href="@value{Manual}.pdf">PDF version of Bella Teaches the Linux Command Line</a>
+<br>
+@end ifset
+@ifset DJVU
+<a href="@value{Manual}.djvu">DjVu version of Bella Teaches the Linux Command Line</a>
+<br>
+@end ifset
+@ifset SPLIT
+<a href="index.html">HTML version of Bella Teaches the Linux Command Line</a>
+<br>
+<a href="@value{Manual}_frame.html">Framed HTML version of Bella Teaches the Linux Command Line</a>
+<br>
+@end ifset
+@ifset NOSPLIT
+<a href="indexNoSplit.html">Single-page HTML version of Bella Teaches the Linux Command Line</a>
+<br>
+@end ifset
+@ifset TEXT
+@cindex Text
+<a href="@value{Manual}.txt">Text version of Bella Teaches the Linux Command Line</a> 
+<br>
+@cindex Plain text
+<a href="@value{Manual}_PlainText.txt">Plain text version of Bella Teaches the Linux Command Line</a> 
+<br>
+<a href="textsplit">Split text version of Bella Teaches the Linux Command Line</a> 
+<br>
+<a href="plaintextsplit">Split plain text version of Bella Teaches the Linux Command Line</a>
+<br>
+@end ifset
+@ifset EPUB
+@cindex EPUB
+<a href="@value{Manual}.epub">EPUB version of Bella Teaches the Linux Command Line</a> 
+<br>
+@end ifset
+@ifset POSTSCRIPT
+@cindex PostScript
+<a href="@value{Manual}.ps">PostScript version of Bella Teaches the Linux Command Line</a> 
+<br>
+@end ifset
+@ifset DVI
+@cindex @TeX{} DVI
+@cindex DVI
+<a href="@value{Manual}.dvi">@TeX{} DVI version of this manual</a> 
+<br>
+@end ifset
+@ifset ZIP
+@cindex Zip
+<a href="@value{Manual}.zip">HTML zip package of Bella Teaches the Linux Command Line</a>
+<br>
+@end ifset
+<a href="@value{Manual}.tar.gz">Gzipped tar source of Bella Teaches the Linux Command Line</a> 
+<br>
+<br>
+@end html
+
+@ifnottex
+@menu
+* Login Screen Desktop and Terminal::
+* Linux Commands::
+* Concept index::	Index of concepts.
+@end menu
+@end ifnottex
+
+@html
+@ifset LongContents
+@contents
+@end ifset
+@ifset ShortContents
+@shortcontents
+@end ifset
+@end html
+
+@paragraphindent none
+
+@node Login Screen Desktop and Terminal
+@chapter Login Screen, Desktop and Terminal
+Examples are given with Ubuntu Linux. Other Linux distributions should be
+similar.
+
+@section Login Screen
+@cindex Login Screen
+Start the Linux computer and it will proceed to the login screen.
+@*
+@*
+@center @image{images/LoginScreenCropped,12.5cm,7.5cm,Login Screen Linux,png}
+@*
+@*
+Select the user name and enter the password.
+@*
+@*
+@center @image{images/LoginScreenPasswordCropped,12.5cm,7.5cm,Login Screen Linux,png}
+
+@section Desktop
+@cindex Desktop
+The Linux desktop will display.
+@*
+@*
+@center @image{images/Desktop,,200pt,Desktop Linux Screen,png}
+@*
+@*
+@center @image{images/Bella-2,,140pt,Picture of Bella,jpg}
+
+@section Terminal
+@cindex Terminal
+We will proceed to open a Linux terminal. On the upper left hand side of the screen select Activities.
+@*
+@*
+@center @image{images/Activities,,100pt,Activies on upper left hand of Linux Desktop,png}
+@*
+@*
+A input box saying ``Type To Search'' box will appear.
+@*
+@*
+@center @image{images/TypeToSearch,12cm,2.5cm,Type To Search box,png}
+@*
+@*
+Inside the ``Type To Search'' input box type the word Terminal.
+@*
+@*
+@center @image{images/TypeToSearchTerminal,12cm,3.5cm,Terminal typed into Type to Search box,png}
+@*
+@*
+The Linux terminal will appear. The terminal is also known as the Linux Shell or the command line.
+@*
+@*
+@center @image{images/Terminal,12cm,7cm,Image of the Linux Terminal,png}
+@*
+@*
+@center @image{images/Bella-3,,140pt,Picture of Bella,jpg}
+@*
+@*
+Congratulations! You have logged into Linux and opened a terminal on the desktop! The Linux Terminal is a command language interpreter that executes commands read from your input. In the next chapter we will execute some commands.
+
+@node Linux Commands
+@chapter Linux Commands
+@cindex Linux Commands
+@center @image{images/Bella-5,,180pt,Picture of Bella,jpg}
+@section @command{whoami}
+@cindex whoami
+The command @command{whoami} prints your userid. At the Linux terminal type the command @command{whoami}.
+@*
+@*
+@image{images/command-whoami,13cm,2cm,Example of Linux command whoami,png}
+@*
+@*
+Linux responds that Bella is logged in. Your system should respond that your logged in by displaying your login name.
+
+@section @command{ls}
+@cindex ls
+The command @command{ls} lists directory contents. Directories can also be called folders. At the Linux terminal type the command @command{ls}.
+@*
+@*
+@image{images/command-ls,15cm,2cm,Example of Linux command ls,png}
+@*
+@*
+We see Bella has the following directories:
+@*
+Desktop, Documents, Downloads, Music, Pictures, Public, Templates, Videos.
+@*
+@*
+We can look inside an individual directory by giving command @command{ls} a specific
+directory name to look in. Type: @command{ls Music}
+@*
+@*
+@image{images/command-ls-Music,14cm,2cm,Example of Linux command ls on Music directory,png}
+@*
+@*
+Looks like Bella has no music.
+@*
+@*
+We can check if Bella has any documents. Type: @command{ls Documents}
+@*
+@*
+@image{images/command-ls-Music-Documents,14cm,2.3cm,Example of Linux command ls on Documents directory,png}
+@*
+@*
+Bella has no documents
+@*
+@*
+@center @image{images/Bella-4,,180pt,Picture of Bella,jpg}
+
+@section @command{pwd}
+@cindex pwd
+The command @command{pwd} is used to print the name of current working directory.
+@*
+@*
+@image{images/command-pwd,11cm,1.75cm,Example of Linux command pwd,png}
+@*
+@*
+Bella's current working directory is ``/home/bella''. Therefore the ``bella'' directory is
+inside the ``home'' directory.
+
+@section @command{mkdir} and @command{rmdir}
+@cindex mkdir
+@cindex rmdir
+When using the command @command{ls} we can see that Bella has the following folders in
+her ``/home/bella'' directory.
+@smallexample
+Desktop, Documents, Downloads, Music, Pictures, Public, Templates, Videos
+@end smallexample
+Try typing the command @command{ls} and enter again.
+@*
+@*
+@center @image{images/Bella-8,,180pt,Picture of Bella,jpg}
+
+@section @command{cd}
+@cindex cd
+At the Linux terminal type the command @command{cd}.
+@*
+@*
+@center @image{images/Bella-6,,180pt,Picture of Bella,jpg}
+
+@section @command{echo} and @command{cat}
+@cindex echo
+@cindex cat
+At the Linux terminal type the command @command{echo}.
+@*
+@*
+@center @image{images/Bella-9,,180pt,Picture of Bella,jpg}
+
+@section @command{cp} and @command{rm}
+@cindex cp
+@cindex rm
+@*
+@*
+@center @image{images/Bella-11,,180pt,Picture of Bella,jpg}
+
+@section @command{gedit}
+@cindex gedit
+@*
+@*
+@center @image{images/Bella-15,,180pt,Picture of Bella,jpg}
+
+@section @command{more} and @command{less}
+@cindex more
+@cindex less
+@*
+@*
+@center @image{images/Bella-16,,180pt,Picture of Bella,jpg}
+
+@section @command{man}
+@cindex man
+@*
+@*
+@center @image{images/Bella-17,,180pt,Picture of Bella,jpg}
+
+@section @command{date}
+@cindex date
+@*
+@*
+@center @image{images/Bella-19,,180pt,Picture of Bella,jpg}
+
+@section @command{cal}
+@cindex cal
+@*
+@*
+@center @image{images/Bella-14,,180pt,Picture of Bella,jpg}
+
+@section @command{top}
+@cindex top
+@*
+@*
+@center @image{images/Bella-12,,180pt,Picture of Bella,jpg}
+
+@section @command{clear}
+@cindex clear
+@*
+@*
+@center @image{images/Bella-18,,180pt,Picture of Bella,jpg}
+
+@node Concept index
+@unnumbered Concept index
+@printindex cp
+
+@bye

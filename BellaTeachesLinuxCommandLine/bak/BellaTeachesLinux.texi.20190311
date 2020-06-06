@@ -1,0 +1,227 @@
+\input texinfo @c -*-texinfo-*-
+@c %**start of header
+@set Manual BellaTeachesLinux
+@setfilename @value{Manual}.info
+@settitle Bella Teaches Linux
+
+@c Define a new index for options.
+@defcodeindex op
+@c Combine everything into one index (arbitrarily chosen to be the
+@c concept index).
+@syncodeindex op cp
+@c %**end of header
+@image{images/1,,160pt,Picture of Bella,JPG}
+
+@copying
+Bella Teaches Linux. Copyright @copyright{} 2019.
+
+@quotation
+All rights reserved.
+@end quotation
+@end copying
+
+@dircategory Template
+@direntry
+* The Texinfo BellaTeachesLinux
+@end direntry
+
+@titlepage
+@title Bella Teaches Linux
+@subtitle for version @today{}
+@sp 10
+@author @email{anthony_bradford@@yahoo.com,A. Bradford}
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@ifnothtml
+@contents
+@end ifnothtml
+
+@ifnottex
+@node Top
+@top Bella Teaches Linux Version @today{}
+ 
+Bella Teaches Linux. Copyright @copyright{} 2019.
+@end ifnottex
+
+@html
+@ifset PDF
+<a href="@value{Manual}.pdf">PDF version of Bella Teaches Linux</a>
+<br>
+@end ifset
+@ifset DJVU
+<a href="@value{Manual}.djvu">DjVu version of Bella Teaches Linux</a>
+<br>
+@end ifset
+@ifset SPLIT
+<a href="index.html">HTML version of Bella Teaches Linux</a>
+<br>
+<a href="@value{Manual}_frame.html">Framed HTML version of this website</a>
+<br>
+@end ifset
+@ifset NOSPLIT
+<a href="indexNoSplit.html">Single-page HTML version of Bella Teaches Linux</a>
+<br>
+@end ifset
+@ifset TEXT
+@cindex Text
+<a href="@value{Manual}.txt">Text version of Bella Teaches Linux</a> 
+<br>
+@cindex Plain text
+<a href="@value{Manual}_PlainText.txt">Plain text version of Bella Teaches Linux</a> 
+<br>
+<a href="textsplit">Split text version of Bella Teaches Linux</a> 
+<br>
+<a href="plaintextsplit">Split plain text version of Bella Teaches Linux</a>
+<br>
+@end ifset
+@ifset EPUB
+@cindex EPUB
+<a href="@value{Manual}.epub">EPUB version of Bella Teaches Linux</a> 
+<br>
+@end ifset
+@ifset POSTSCRIPT
+@cindex PostScript
+<a href="@value{Manual}.ps">PostScript version of Bella Teaches Linux</a> 
+<br>
+@end ifset
+@ifset DVI
+@cindex @TeX{} DVI
+@cindex DVI
+<a href="@value{Manual}.dvi">@TeX{} DVI version of this manual</a> 
+<br>
+@end ifset
+@ifset ZIP
+@cindex Zip
+<a href="@value{Manual}.zip">HTML zip package of Bella Teaches Linux</a>
+<br>
+@end ifset
+<a href="@value{Manual}.tar.gz">Gzipped tar source of Bella Teaches Linux</a> 
+<br>
+<br>
+@end html
+
+@ifnottex
+@menu
+* Login Screen Desktop and Terminal::
+* Linux Commands::
+* Concept index::	Index of concepts.
+@end menu
+@end ifnottex
+
+@html
+@ifset LongContents
+@contents
+@end ifset
+@ifset ShortContents
+@shortcontents
+@end ifset
+@end html
+
+@node Login Screen Desktop and Terminal
+@chapter Login Screen, Desktop and Terminal
+@cindex Login Screen, Desktop and Terminal
+Examples are given with Ubuntu Linux. Other Linux distributions should be
+similar.
+@*
+@*
+Start the Linux computer and it will proceed to the login screen.
+@*
+@*
+@center @image{images/LoginScreenCropped-960x576,12.5cm,7.5cm,Login Screen Linux,png}
+@*
+@*
+Select the user name and enter the password.
+@*
+@*
+@center @image{images/LoginScreenPasswordCropped-960x576,12.5cm,7.5cm,Login Screen Linux,png}
+@*
+@*
+The Linux desktop will display.
+@*
+@*
+@center @image{images/Desktop-960x576,,210pt,Desktop Linux Screen,png}
+@*
+@*
+@center @image{images/2-960x576,,120pt,Picture of Bella,jpg}
+@*
+@*
+We will proceed to open a Linux terminal. On the upper left hand side of the screen select Activities.
+@*
+@*
+@center @image{images/Activities,,110pt,Activies,png}
+@*
+@*
+A input box saying ``Type To Search'' box will appear.
+@*
+@*
+@center @image{images/TypeToSearch,12cm,2.5cm,Type To Search,png}
+@*
+@*
+Inside the ``Type To Search'' input box type the word Terminal.
+@*
+@*
+@center @image{images/TypeToSearchTerminal,12cm,3.5cm,Activies,png}
+@*
+@*
+The Linux terminal will appear.
+@*
+@*
+@center @image{images/Terminal-960x576,12cm,7cm,Image of the Linux Terminal,png}
+@*
+@*
+@center @image{images/3-960x576,,80pt,Picture of Bella,jpg}
+@*
+@*
+Congratulations! You have logged into Linux and opened a Linux terminal on the desktop!
+
+@node Linux Commands
+@chapter Linux Commands
+@cindex Linux Commands
+@center @image{images/4-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/5-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/6-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/8-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/9-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/11-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/12-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/14-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/15-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/16-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/17-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/18-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+@center @image{images/19-960x576,,180pt,Picture of Bella,jpg}
+@*
+@*
+
+@node Concept index
+@unnumbered Concept index
+@printindex cp
+
+@bye

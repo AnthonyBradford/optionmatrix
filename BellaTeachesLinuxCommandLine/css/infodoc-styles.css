@@ -1,0 +1,941 @@
+/* CSS Info for HTML documents created by the 'makeinfo --html' option 
+ * Copyright 2014-2015 The Software Samurai.
+ * Version: 0.0.07  -  2015_02_23  (see VERSION_HISTORY for change details)
+ * 
+ *  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ * Copyright Notice:
+ * This program is free software: you can redistribute it and/or modify it 
+ * under the terms of the GNU General Public License as published by the Free 
+ * Software Foundation, either version 3 of the License, or (at your option) 
+ * any later version, PROVIDED THAT the copyright notices for both code and 
+ * documentation are included and unmodified. 
+ * 
+ * This program is distributed in the hope that it will be useful, but 
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+ * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License 
+ * for more details. 
+ * 
+ * You should have received a copy of the GNU General Public License along 
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ *
+ * Description:
+ * Texinfo is the official documentation engine for GNU/Linux. It is a capable, but 
+ * unpolished system, especially when producing documentation in external formats.
+ * The style definitions provided here address the major issues in producing HTML 
+ * output from the Texinfo source data.
+ *
+ * The makeinfo utility when invoked with the --html option references a large number 
+ * of CSS class names; however, it does not actually define these classes in a meaningful 
+ * way. Instead, it relies on browser defaults to handle the missing classes. While this 
+ * is a reasonable default process, we find it to be a bit too Wild-West for our taste.
+ *
+ * To customize the HTML output, it is necessary to actually define these named classes
+ * which are referenced in the HTML output. This is not entirely straightforward because 
+ * classes are often embedded within other classes, inheriting from, or overriding definitions 
+ * of the parent class.
+ *
+ * This file uses CSS version 3 exclusively. Some of the attributes used here may not be 
+ * understood if your browser is ancient (2012 or older).
+ * 
+ * Please refer to the accompanying Texinfo document for full  descriptions of the CSS styles 
+ * defined here:
+ *         info -f infodoc.info -n 'CSS Definition File'
+ * and how to apply those styles to your documents: 
+ *         info -f infodoc.info -n 'Infodoc Post Processor'
+ * ______________________________________________________________________________________________
+ */
+ 
+
+/* These should function even if all the other definitions are unsupported by the browser. */
+body
+{
+  /* Some "standard" HTML colors for a pale background: 
+   * #FFFFFF = white, #CCFFFF = pale blue, #FFFFCC = pale yellow, 
+   * #CCFFCC = pale green, #FFCCFF = pale magenta
+   */
+  background-color: #CCFFFF;    /* Default background color == pale blue */
+  color: #000000;               /* Default text color == black */
+  font-size: 18px;              /* Default font size == 18 pixels */
+  font-weight: normal;          /* Default font weight == normal */ 
+  font-style: normal;           /* Default font style == not fancy */
+  font-variant: normal;         /* Default font varient == not fancy */
+  /* Default font family, notes:
+   * The structure of Texinfo documents is based on a three-font system:
+   *  1) default font (sans-serif)  - body text, paragraphs, and styles inherited from top level
+   *  2) code font (monospace)      - pre-formatted blocks, special-style blocks, etc.
+   *  3) Roman font (serif)         - 'quotation' and 'display' blocks, '@r' command, etc.
+   * For the default font family, specify as many specific font families 
+   * as desired, generic 'Helvetica' for instance, but be sure the list ends with 'sans-serif'.
+   */
+  font-family: sans-serif;
+}
+body h1   /* Texinfo Document Title */
+{         /* Note that 'settitle' class and 'top' class default to this definition. */
+  font-family: sans-serif;
+  font-size: 2.0em;
+  font-weight: bold;
+}                
+body h2   /* Texinfo Chapter Titles */
+{         /* Note that 'contents-heading' class and 'unnumbered' class default to this definition. */
+  font-family: sans-serif;  /* Force to default family */
+  font-size: 1.5em;         /* This is the HTML default */
+  font-weight: bold;
+}                
+body h3   /* Texinfo commands: '@section', '@heading' */
+{         /* Note that 'section' class, 'heading' class and 'unnumberedsec' class default to this definition. */
+  font-family: sans-serif;  /* Force to default family */
+  font-size: 1.2em;         /* This is the HTML default */
+  font-weight: bold;
+}                
+body h4   /* Texinfo commands: '@subsection', '@subsubsection', '@subheading', '@subsubheading' */
+{         /* Note that 'subsection' class and 'subheading' class default to this definition. */
+  font-family: sans-serif;  /* Force to default family */
+  font-size: 1.05em;        /* This is the HTML default */
+  font-weight: bold;
+}
+h4.subsubsection  /* Defines target class for Texinfo @subsubsection command */
+{
+  font-family: sans-serif;
+  font-size: 1.00em;
+  font-weight: bold;
+  font-style: italic;
+}
+h4.subsubheading  /* Defines target class for Texinfo @subsubheading command */
+{
+  font-family: sans-serif;
+  font-size: 1.00em;
+  font-weight: bold;
+  font-style: italic;
+}
+body h5   /* Not currently used by Texinfo */
+{
+  font-family: sans-serif;
+  font-size: 1.0em;
+  font-weight: bold;
+}                
+p    /* Default Texinfo Text <p></p> (paragraph) contents. */
+{
+  font-family: inherit;     /* Inherit from parent class */
+  font-size: 1.0em;         /* Be sure that size doesn't get trashed */
+}
+
+/* Basic Layout of Page 
+ * Restrict all page content to left area of screen.
+ * Ensures that lower-resolution monitors can contain the data. 
+ * Fits comfortably within a 1280 pixel display. 1170 + 15 + 15 == 1200px
+ */
+.infodoc_container
+{
+  margin-left: 0;
+  margin-right: auto;
+  margin-top: 0;
+  max-width: 1170px;
+  padding-right: 15px;
+  padding-left: 15px;
+  text-align: left;
+  /*border: 1px solid blue;*/
+}
+
+/***********************************
+ * Lists: <ul> and <ol> variations *
+ ***********************************/
+ul.no-bullet    /* For unordered lists: add NO bullet to the <li> item */
+{               /* NOTE: This is the auto-generator's default class. See notes below. */
+  list-style-type: none;
+  list-style-position: outside;
+}
+ul.disc-bullet      /* Replace the auto-generated 'no-bullet' invocation with this to get disc-bullet */
+{                   /* (similar to Texinfo @itemize list OR @itemize @bullet list) */
+  list-style-type: disc;
+  list-style-position: outside;
+}
+ul.circle-bullet    /* Replace the auto-generated 'no-bullet' invocation with this to get circle-bullet */
+{                   /* (similar to Texinfo @itemize @textdegree list) */
+  list-style-type: circle;
+  list-style-position: outside;
+}
+ul.square-bullet    /* Replace the auto-generated 'no-bullet' invocation with this to get square-bullet */
+{                   /* (use this to replace @itemize @minus list because a '-' bullet is not supported in HTML) */
+  list-style-type: square;
+  list-style-position: outside;
+}
+ul.custom-bullet    /* For unordered lists: add SPECIFIED bullet to the <li> item */
+{
+  list-style-type: square;        /* Modify this statement to produce your custom-bulleted items */
+  list-style-position: outside;
+}
+ul li               /* Force vertical spacing between items - this addresses a makeinfo bug */
+{
+  margin-bottom: 0.3em;
+  /* Note the hanging-indent created to make the embedded bullet appear "outside" the list item.
+   * Because this affects ALL <ul><li> and not just the ones with embedded bullets, we don't use it. */
+/*  padding-left: 1.0em;
+  text-indent: -1.0em; */
+}
+
+/* Default 'ordered-list' element *
+ * Texinfo '@enumerate' and '@enumerate 1' commands. 
+ * Any Arabic (decimal) number as argument (or no argument) should invoke this default class.
+ */
+ol
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  list-style-type: decimal;
+  list-style-position: outside;
+}
+ol li           /* Line-item spacing. Compensates for an off-by-one error in the texi-to-HTML converter. */
+{
+  margin-bottom: 0.5em;
+}
+ol.enum-decimal /* For ordered lists <ol> that use decimal numbers.   */
+{
+  list-style-type: decimal;
+  list-style-position: inherit;
+}
+ol.enum-decimal-zero /* For ordered lists <ol> that use decimal numbers with leading zeros.   */
+{
+  list-style-type: decimal-leading-zero;
+  list-style-position: inherit;
+}
+ol.enum-lower-alpha   /* For ordered lists <ol> that use lower-case alphabetical.   */
+{
+  list-style-type: lower-alpha;
+  list-style-position: inherit;
+}
+ol.enum-upper-alpha   /* For ordered lists <ol> that use upper-case alphabetical.   */
+{
+  list-style-type: upper-alpha;
+  list-style-position: inherit;
+}
+ol.enum-lower-roman   /* For ordered lists <ol> that use lower-case Roman numerals. */
+{
+  list-style-type: lower-roman;
+  list-style-position: inherit;
+}
+ol.enum-upper-roman  /* For ordered lists <ol> that use upper-case Roman numerals. */
+{
+  list-style-type: upper-roman;
+  list-style-position: inherit;
+}
+ol.enum-lower-greek  /* For ordered lists <ol> that use lower-case Greek letters. */
+{
+  list-style-type: lower-greek;
+  list-style-position: inherit;
+}
+ol.enum-custom  /* For ordered lists <ol>: */
+{          /* Used for an argument option not otherwise supported by this definition file.
+            * Options: decimal-leading-zero,
+            *          lower-greek, lower-latin, upper-latin, armenian, georgian, inherit
+            */
+  list-style-type: decimal-leading-zero;  /* modify this parameter as needed */
+  list-style-position: inherit;
+}
+
+
+/* Redefine the HTML 'blockquote' element.
+ * This is necessary to overcome a logical error in the texi-to-HTML converter 
+ * which assumes that the @quotation command is the same as the HTML 'blockquote' 
+ * element - which it is not! See 'infodoc.info' for more details.
+ */
+blockquote
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  margin-left: 3.2em;
+  margin-right: 3.2em;
+}
+blockquote.quotation  /* UNDER DEVELOPMENT */
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  margin-left: 3.2em;
+  margin-right: 3.2em;
+}
+blockquote.smallquotation
+{
+  font-size: smaller;
+  font-weight: bolder;  /* UNDER DEVELOPMENT */
+}
+
+/* Texinfo @indentedblock Command */
+.indentedblock
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  margin-left: 3.2em;
+}
+/* Texinfo @smallindentedblock Command */
+.smallindentedblock
+{
+  font-family: inherit;
+  font-size: smaller;   /* 'smaller' means approximately 0.9em; */
+  font-style: inherit;
+  font-weight: bolder;  /* UNDER DEVELOPMENT */
+/*  font-weight: inherit;*/
+  color: inherit;
+  margin-left: 3.2em;
+}
+
+/* Note that because Texinfo (unnecessarily) declares a <pre> tag inside the the 
+ * following class invocations, we define our own 'pre' class for each of them  
+ * so that the extra 'pre' in the HTML output does nothing.
+ * @example ('example' class) and @smallexample ('smallexample' class) 
+ * @display ('display' class) and @smalldisplay ('smalldisplay' class)
+ * @format  ('format'  class) and @smallformat  ('smallformat'  class) 
+ */
+
+/* Texinfo @example Command */
+.example
+{
+  font-family: monospace;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: pre;
+  margin-left: 3.2em;
+/*  margin-left: 0;  EXPERIMENTAL ONLY (@exdent) */
+}
+.example pre
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: inherit;
+  margin-left: 0;
+/*  margin-left: 3.2em; EXPERIMENTAL ONLY (@exdent) */
+}
+/* Texinfo @smallexample Command */
+.smallexample
+{
+  font-family: monospace;
+  font-size: smaller;   /* 'smaller' means approximately 0.9em; */
+  font-style: inherit;
+  font-weight: bolder;  /* UNDER DEVELOPMENT */
+/*  font-weight: inherit;*/
+  color: inherit;
+  white-space: pre;
+  margin-left: 3.2em;
+}
+.smallexample pre
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: bolder;  /* UNDER DEVELOPMENT */
+/*  font-weight: inherit;*/
+  color: inherit;
+  white-space: inherit;
+  margin-left: 0;
+}
+/* Texinfo @lisp Command */
+.lisp       /* The @lisp command is documented as "synonymous with @example" */
+{
+  font-family: monospace;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: pre;
+  margin-left: 3.2em;
+}
+.lisp pre
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: inherit;
+  margin-left: 0;
+}
+/* Texinfo @smalllisp Command */
+.smalllisp  /* The @smalllisp command is documented as "synonymous with @smallexample" */
+{
+  font-family: monospace;
+  font-size: smaller;   /* 'smaller' means approximately 0.9em; */
+  font-style: inherit;
+  font-weight: bolder;  /* UNDER DEVELOPMENT */
+/*  font-weight: inherit;*/
+  color: inherit;
+  white-space: pre;
+  margin-left: 3.2em;
+}
+.smalllisp pre
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: inherit;
+  margin-left: 0;
+}
+
+/* Texinfo @display Command */
+.display
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: pre;
+  margin-left: 3.2em;
+}
+.display pre
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: inherit;
+  margin-left: 0;
+}
+/* Texinfo @smalldisplay Command */
+.smalldisplay
+{
+  font-family: inherit;
+  font-size: smaller;   /* 'smaller' means approximately 0.9em; */
+  font-style: inherit;
+  font-weight: bolder;  /* UNDER DEVELOPMENT */
+/*  font-weight: inherit;*/
+  color: inherit;
+  white-space: pre;
+  margin-left: 3.2em;
+}
+.smalldisplay pre
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: inherit;
+  margin-left: 0;
+}
+
+/* Texinfo @format Command */
+.format
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: pre;
+  margin-left: 0;
+}
+.format pre
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: inherit;
+  margin-left: 0;
+}
+/* Texinfo @smallformat Command */
+.smallformat
+{
+  font-family: inherit;
+  font-size: smaller;   /* 'smaller' means approximately 0.9em; */
+  font-style: inherit;
+  font-weight: bolder;  /* UNDER DEVELOPMENT */
+/*  font-weight: inherit;*/
+  color: inherit;
+  white-space: pre;
+  margin-left: 0;
+}
+.smallformat pre
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: inherit;
+  margin-left: 0;
+}
+
+/* Texinfo @verbatim Command - pre-formatted text in monospace font. *
+ * The texi-to-HTML converter (perhaps unnecessarily) declares a verbatim class inside 
+ * the <pre> tag block: <pre class="verbatim"> ... </pre>
+ * This causes an error in the font-size inheritance, so we fully define the 'verbatim' 
+ * sub-element along with the 'pre' element. These elements are identical.
+ */
+pre
+{
+  font-family: monospace;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: pre;
+  margin-left: 0;
+}
+pre.verbatim
+{
+  font-family: monospace;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: pre;
+  margin-left: 0;
+}
+
+
+/* Texinfo @allowcodebreaks Command - This requires the 'nocodebreak' class to be defined. */
+.nocodebreak
+{
+  white-space: nowrap;
+  overflow: hidden;   /* NOTE: Hiding the overflow does not work for some reason. */
+}
+
+/* Texinfo @w{} Command - This requires the 'nolinebreak' class to be defined. */
+.nolinebreak
+{
+  white-space: nowrap;
+  overflow: hidden;   /* NOTE: Hiding the overflow does not work for some reason. */
+}
+
+/* ******************************************
+ * TextInfo @multitable and @table Commands *
+ *************************************************************************
+ * We redefine the standard HTML <table> element and its sub-elements to *
+ * support the @multitable command. This is necessary because although   *
+ * the 'info' formatted @multitable looks very good, its unmodified HTML *
+ * equivalent is rather embarrassing.                                    *
+ *************************************************************************/ 
+table
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  text-decoration: none;
+  margin-left: 0;
+}
+table thead       /* Heading row */
+{
+}
+table th          /* Heading text */
+{
+/*  padding-right: 1em;*/
+  text-align: center;
+  padding-bottom: 0.5em;
+  font-weight: bold;
+  text-decoration: underline;
+}
+table tr          /* Table row */
+{
+}
+table td          /* Table-row data */
+{
+  padding-right: 1em;
+  color: inherit;
+}
+
+/***************************************************************
+ * Table class for <table> ... </table> blocks with borders.   *
+ * REQUIRES POST-PROCESSING TO: <table class="bordered">       *
+ * Inherits everything from parent <table> tag EXCEPT          *
+ * for the addition of a border. Note where the borders are    *
+ * placed to avoid border duplication among the elements.      *
+ ***************************************************************/
+table.bordered
+{
+  border-top: thin solid blue;
+  border-right: thin solid blue;
+}
+table.bordered thead
+{
+}
+table.bordered th
+{
+  border-left: thin solid blue;
+  border-bottom: thin solid blue;
+  text-decoration: none;        /* underlining is unnecessary if we have borders */
+}
+table.bordered tr
+{
+}
+table.bordered td
+{
+  border-left: thin solid blue;
+  border-bottom: thin solid blue;
+}
+
+/****************************************************************
+ * Table class for the Index: <table class="index-cp">          *
+ * Inherits everything from parent <table> tag EXCEPT as noted. *
+ ****************************************************************/
+table.index-cp
+{
+}
+table.index-cp th       /* UNDER CONSTRUCTION For the Index: */
+{
+  text-decoration: none; /* This negates the main <th> element's attribute */
+}
+
+/*************************************************************************
+ * Table class for the two 'Jump to' blocks which are part of the Index. *
+ * Inherits everything from parent <table> tag EXCEPT for removing the   *
+ * parent's 'underline' from the display elements.                       *
+ *************************************************************************/
+table.jumpto
+{
+}
+table.jumpto th         /* UNDER CONSTRUCTION For the Index: 'Jump to' tables (2) */
+{
+  text-decoration: none; /* This negates the main <th> element's attribute */
+}
+table.jumpto a.summary-letter
+{
+  text-decoration: none;   /* This removes the underline from the entries */
+}
+
+table.cartouche
+{
+/*
+ * NOTE: This class is called out by the Texinfo '@cartouche' command, but is not 
+ * defined by default. Even so, the generated HTML looks fine without it.
+ * Be aware, however, that the generated HTML explicitly calls out the 
+ * attribute:  border="1"  which may generate it own border IN ADDITION TO the 
+ * border style defined in this class. For this reason, the 'idpp' post processor 
+ * removes the extra attribute by default.
+ *
+ * There are several available options for 'border-style'. We have chosen 'ridge' 
+ * as the default value because it most closely resembles the deleted attribute, 
+ * but feel free to experiment with other border styles.
+ */
+  border-style: ridge;
+  border-width: thick;
+  border-color: gray;
+}
+
+/* The Texinfo @table command looks bad in the 'info' output and TERRIBLE in HTML.
+ * Avoid the @table command if possible, and always use @@multitable instead.
+ * If you absolutely must use the @table command, we have redefined the 
+ * standard HTML <dl> tag below so it at least looks no worse than the 'info' output.
+ */
+dl      /* 'description list' */
+{
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: normal;
+} 
+dt      /* 'term' (column 1) */
+{       /*Note that the font family and style of this element MAY be explicitly overriden in the output. */
+  display: inherit;
+  margin: 0;
+} 
+dd      /*'description' (column 2) */
+{
+  display: inherit;
+  margin-left: 2.5em; /* (this is a key to beautification) */
+}
+dd p{ margin: 0; }    /* (this is another key to beautification) */
+
+
+/************************************
+ * Texinfo HTML Table Of Contents   *
+ ************************************
+ * The Table Of Contents is declared as: <div class="contents"> ... </div>
+ * All levels of lists within the block are defined as <ul class="no-bullet"> ... </ul>
+ * If the HTML Table Of Contents is not modified, then it is rendered without bullets.
+ * For our website, we prefer to replace the "no-bullet" class (see notes below).
+ */
+.contents
+{
+  font-family: inherit;     /* Inherit from parent class */
+  font-size: 1.0em;
+  font-weight: normal;
+  font-style: normal;
+}
+.contents ul                /* Default style */
+{
+  list-style-type: none;
+  list-style-position: outside;
+}
+.contents ul.no-bullet      /* 'no-bullet' style */
+{
+  list-style-type: none;
+  list-style-position: outside;
+}
+.contents ul.toc-level1     /* Table Of Contents - top level */
+{
+  list-style-type: disc;
+  list-style-position: outside;
+}
+.contents ul.toc-level2     /* Table Of Contents - second level */
+{
+  list-style-type: circle;
+  list-style-position: outside;
+}
+.contents ul.toc-level3     /* Table Of Contents - third and subsequent levels */
+{
+  list-style-type: square;
+  list-style-position: outside;
+}
+
+
+/*********************************
+ * Texinfo Node (chapter) Header *
+ *********************************
+ * The node header (navigation bar) looks something like this in the HTML output:
+ *   <div class="header"><p>
+ *     Next: <a></a>, Previous: <a></a>, Up: <a></a> [<a>Contents</a>][<a>Index</a>]
+ *   </p></div>
+ * The default layout and rendering is quite acceptable for general use. However, if you want to 
+ * customize this navigation bar, start here. 
+ * The two tags used inside the 'header' class are:
+ *   <p>  inherits everything from the parent
+ *   <a>  define: beforeclickcolor(blue), and afterclickcolor(purple), decoration (underline is the default)  
+ * The definitions here show no obvious visual differences from the default tag definitions 
+ * used in this construct.
+ * 
+ */
+/*.header
+{
+  font-family: sans-serif;
+  font-size: 1.00em;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  color: inherit;
+}
+.header p
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+.header a
+{
+  text-decoration: underline;
+  color: #0000FF;
+}
+.header a:visited
+{
+  color: #800080;
+}*/
+
+/************************************************************
+ * Styles which have functional and pleasing HTML defaults. *
+ ************************************************************
+ * These standard HTML tags are called out in the code generated by the text-to-HTML converter. 
+ * When this file IS NOT used, some of the HTML output for these tags looks pretty bad.
+ * The HTML output for these standard tags when this file IS IN USE is acceptably 
+ * formatted by default browser behavior, so unless you have special requirements 
+ * for these tags, there is no need for custom definitions.
+ * We have researched these tags (www.w3schools.com/tags/) and in our test setup,
+ * the definitions provided here show no obvious visual differences from the default tags. 
+ * Thus, if you want to go wild, these definitions are a reasonable starting point. 
+ */
+/*code
+{
+  font-family: monospace;
+  font-size: inherit;
+  font-style: normal;
+}*/
+/*kbd
+{
+  font-family: monospace;
+  font-size: inherit;
+  font-style: normal;
+}*/
+/*samp
+{
+  font-family: monospace;
+  font-size: inherit;
+  font-style: normal;
+}*/
+/*cite
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: italic;
+}*/
+/*var
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: italic;
+}*/
+/*abbr
+{
+  font-family: sans-serif;
+  font-size: inherit;
+  font-style: inherit;
+}*/
+/*em
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: italic;
+}*/
+/*.dfn
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: italic;
+}*/
+tt      /* NOTE: <tt> tag is not supported in HTML5, so we define it explicitly (see <code>) */
+{
+  font-family: monospace;
+  white-space: pre;
+  font-size: inherit;
+  font-style: normal;
+}
+tt.key  /* NOTE: 'key' sub-class of <tt> tag must also be explicitly defined. */
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: normal;
+}
+acronym /* NOTE: <acronym> tag is not supported in HTML5, so we define it explicitly (see <abbr>) */
+{
+  font-family: sans-serif;
+  font-size: inherit;
+  font-style: inherit;
+}
+
+ 
+/* Defines a class for Texinfo-generated menus within a <table></table>
+ * Note that the Texinfo output overrides the 'border' and 'cellspacing' definitions 
+ * for the 'table' class, and overides some alignment definitions of the 'td' class. 
+ * A 'table' is a multi-dimensional data object.
+ * Note that tables can get much more complex than we describe here.
+ * 'tbody' defines a block of 'tr' elements (optional, and not used by Texinfo menus)
+ * 'tr' defines a row of cells in a table (one 'tr' element per menu item)
+ * 'td' defines a single data cell in a table (three 'td' elements per menu item)
+ * 'a'  defines the hyperlink's style
+ */
+.menu
+{
+  font-family: inherit;
+  font-variant: normal;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  text-align: left;
+  color: inherit;             /* the color you select will propagate through sub-elements */
+  margin-left: inherit;
+  border: none;   /* TEMP - TESTING */
+}
+.menu tr
+{
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+.menu td
+{
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  border: none;   /* TEMP - TESTING */
+}
+.menu td a
+{
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  /* uses the HTML default <a> element color */
+  text-decoration: underline; /* this is the HTML default */
+}
+/* * * *
+Pat says that these are used in special circumstances, so we need to include them in our definitions.
+Unfortunately, we haven't yet been able to invoke them from the texi source, so we don't know what they 
+are intended to do. (see email exchange)
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+.menu-comment
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+.menu-preformatted
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: pre;
+}
+ * * * */
+
+/********************************************
+ * Styles specific to SoftwareSam's website *
+ * - not necessary for generic documents.   *
+ ********************************************
+ * Style for site internal-links header (i.e. 'Back to HTML Docs')
+ */
+.infodoc_interlink
+{
+  position: relative;
+  left: 0;
+  margin-left: 0;
+  margin-right:  auto;
+  max-width: 300px;
+  /*       top right bottom left   */
+  padding: 8px 10px 8px 10px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #FFFF00;
+  border-style: solid;
+  border-color: #0000FF;
+  border-width: 3px;
+}
+.infodoc_interlink a
+{
+  color: #0000FF;
+  text-decoration: none;
+}
+
+
+/* ______________________________________________________________________________________________
+ * 
+ * Application Notes:
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * 1) Have fun!
+ * 
+ * ______________________________________________________________________________________________
+ */

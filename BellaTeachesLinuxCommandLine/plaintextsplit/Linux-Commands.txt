@@ -1,0 +1,134 @@
+2 Linux Commands
+****************
+
+                          [Picture of Bella]
+
+2.1 'whoami'
+============
+
+The command 'whoami' prints your userid.  At the Linux terminal type the
+command 'whoami'.
+
+[Example of Linux command whoami]
+
+Linux responds that Bella is logged in.  Your system should respond that
+your logged in by displaying your login name.
+
+2.2 'ls'
+========
+
+The command 'ls' lists directory contents.  Directories can also be
+called folders.  At the Linux terminal type the command 'ls'.
+
+[Example of Linux command ls]
+
+We see Bella has the following directories:
+Desktop, Documents, Downloads, Music, Pictures, Public, Templates,
+Videos.
+
+We can look inside an individual directory by giving command 'ls' a
+specific directory name to look in.  Type: 'ls Music'
+
+[Example of Linux command ls on Music directory]
+
+Looks like Bella has no music.
+
+We can check if Bella has any documents.  Type: 'ls Documents'
+
+[Example of Linux command ls on Documents directory]
+
+Bella has no documents
+
+                          [Picture of Bella]
+
+2.3 'pwd'
+=========
+
+The command 'pwd' is used to print the name of current working
+directory.
+
+[Example of Linux command pwd]
+
+Bella's current working directory is "/home/bella".  Therefore the
+"bella" directory is inside the "home" directory.
+
+2.4 'mkdir' and 'rmdir'
+=======================
+
+When using the command 'ls' we can see that Bella has the following
+folders in her "/home/bella" directory.
+     Desktop, Documents, Downloads, Music, Pictures, Public, Templates, Videos
+Try typing the command 'ls' and enter again.
+
+                          [Picture of Bella]
+
+2.5 'cd'
+========
+
+At the Linux terminal type the command 'cd'.
+
+                          [Picture of Bella]
+
+2.6 'echo' and 'cat'
+====================
+
+At the Linux terminal type the command 'echo'.
+
+                          [Picture of Bella]
+
+2.7 'cp' and 'rm'
+=================
+
+
+
+                          [Picture of Bella]
+
+2.8 'gedit'
+===========
+
+
+
+                          [Picture of Bella]
+
+2.9 'more' and 'less'
+=====================
+
+
+
+                          [Picture of Bella]
+
+2.10 'man'
+==========
+
+
+
+                          [Picture of Bella]
+
+2.11 'date'
+===========
+
+
+
+                          [Picture of Bella]
+
+2.12 'cal'
+==========
+
+
+
+                          [Picture of Bella]
+
+2.13 'top'
+==========
+
+
+
+                          [Picture of Bella]
+
+2.14 'clear'
+============
+
+
+
+                          [Picture of Bella]
+

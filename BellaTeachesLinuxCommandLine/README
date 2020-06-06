@@ -1,0 +1,150 @@
+Texinfo Publisher.
+Copyright (C)  2012  Anthony G. Bradford.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+See file 'COPYING' for more information.
+
+You will need specific GNU/Linux packages installed.
+Run the command './configure' for more information.
+
+After configuration run the command 'make'
+This will build:
+
+index.html and associated HTML files.
+	   This file has relative links to the .pdf, .txt, .epub and .zip files.
+
+Website.pdf  - Your PDF manual
+Website.txt  - Text version of your manual
+Website.info - Info version of your manual
+Website.epub - EPUB Book of your manual. This will only be created if your
+              system has the package dbtoepub installed.
+Website.dbk  - DocBook version of your manual
+Website.zip  - Zip files of HTML, PDF, .txt and EPUB files. This Zip file can
+              be un-zipped in a public_html web server space to make a website.
+Website.tar.gz - Gzipped tar file to recreate all content.
+
+Individual builds
+-----------------
+
+Run the command 'make pdf'.
+Builds: Website.pdf
+
+Run the command 'make docbook'.
+Builds: Website.dbk
+
+Run the command 'make xml'.
+Builds: Website.xml
+
+Run the command 'make epub'.
+Builds: Website.epub
+
+Run the command 'make frames'.
+Builds: Website_frame.html
+
+Run the command 'make html2'.
+Builds index.html and associated HTML files. This HTML is different
+from the HTML generated from 'make all'
+
+Run the command 'make pdf2'.
+Builds: Website.pdf. This PDF is different style from the PDF
+generated from 'make all'.
+
+Run the command 'make djvu'
+Builds: Website.djvu
+
+Run the command 'make dvi'.
+Builds: Website.dvi
+
+Run the command 'make ps'.
+Builds: Website.ps
+
+Run the command 'make text'.
+Builds: Website.txt
+Images are converted to ASCII.
+
+Run the command 'make info'.
+Builds: Website.info
+
+Run the command 'make htmlhelper'.
+This will create the file Website.hhp which can be made into a
+Microsoft HTML Helper file (.chm) with the utility hhc.exe
+
+Run the command 'make distclean ; make zip'
+This will build the compressed Website.zip
+Backup directories are deleted by distclean.
+
+Run the command 'make clean'.
+To delete all Makefile generated files. All source files are kept.
+
+Run the command 'make distclean ; make dist'
+This will build the compressed gzipped .tar.gz distribution.
+Backup directories are deleted by distclean.
+
+More commands
+-------------
+
+make clean; make TEXI2DVI_FLAGS=''
+Do nothing.
+
+make clean; make 'TEXI2DVI_FLAGS=-D SPLIT'
+Generate index.html
+
+make clean; make 'TEXI2DVI_FLAGS=-D SPLIT -D NOSPLIT'
+Generate index.html and indexNoSplit.html
+
+make clean; make 'TEXI2DVI_FLAGS=-D SPLIT -D NOSPLIT -D ZIP'
+Generate index.html, indexNoSplit.html and Zip file content.
+
+make clean; make 'TEXI2DVI_FLAGS=-D SPLIT -D NOSPLIT -D PDF'
+Generate index.html, indexNoSplit.html and PDF.
+
+make clean; make 'TEXI2DVI_FLAGS=-D SPLIT -D NOSPLIT -D PDF -D EPUB'
+Generate index.html, indexNoSplit.html, PDF and EPUB.
+
+make clean; make 'TEXI2DVI_FLAGS=-D SPLIT -D POSTSCRIPT -DVI'
+Generate index.html, PostScript and TeX DVI.
+
+make clean; make 'TEXI2DVI_FLAGS=-D SPLIT -D PDF'
+Generate index.html and PDF.
+
+make clean; make 'TEXI2DVI_FLAGS=-D SPLIT -D EPUB'
+Generate index.html and EPUB.
+
+make clean; make 'TEXI2DVI_FLAGS=-D SPLIT -D PDF -D EPUB'
+Generate index.html, PDF and EPUB.
+
+HTML output always has links to non-HTML formats. 'make' and 'make all'
+are equivalent to command
+make 'TEXI2DVI_FLAGS=-D SPLIT -D NOSPLIT -D PDF -D TEXT -D EPUB -D ZIP'
+
+The variable TEXI2DVI_FLAGS can also be customized by editing the Makefile.
+
+make CSS=css/janix-texinfo.css
+Generate HTML using the Cascading Style Sheet (CSS) css/janix-texinfo.css
+
+make CSS=css/bright-colors.css
+Generate HTML using the Cascading Style Sheet (CSS) css/bright-colors.css
+
+make CSS=css/datamash-texinfo.css
+Generate HTML using the Cascading Style Sheet (CSS) css/datamash-texinfo.css
+
+make CSS=css/infodoc-styles.css
+Generate HTML using the Cascading Style Sheet (CSS) css/infodoc-styles.css
+
+make CSS=css/sirgazil-document-1.0.1.css
+Generate HTML using the Cascading Style Sheet (CSS) css/sirgazil-document-1.0.1.css
+
+To build your own Texinfo Web Publisher Website
+cd doc ; make website

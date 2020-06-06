@@ -1,0 +1,308 @@
+/*
+#+##############################################################################
+#
+# A CSS stylesheet for Texinfo HTML output produced by texi2any 5.0 (or greater)
+#
+#    Copyright (C) 2012,2013  Jason Massey <jason@janixsoft.com>
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+#    02110-1301  USA
+#
+#-##############################################################################
+*/
+
+/* CSS RESET */
+*
+{
+margin: 0;
+padding: 0;
+vertical-align: baseline;
+}
+
+sup {
+    vertical-align: super;
+}
+
+hr
+{
+margin: 1em 0em 1em 0em;
+border-top: 1px solid #C2C2C2;
+}
+
+body
+{
+margin: 2% 7% 3% 7%;
+font-size: 125%;
+}
+
+div.smallexample, div.example
+{
+border: 1px solid silver;
+background: rgb(244, 244, 244);
+margin: 1em 0em 1em 0em;
+color: #033DA3;
+border-radius: 4px;
+}
+
+pre.example, pre.smallexample
+{
+margin: .5em 1em .5em 1em;
+
+}
+
+pre.verbatim
+{
+border: 1px solid #900;
+padding: 1em;
+color: #900;
+background: white;
+border-radius: 4px;
+}
+
+pre.lisp
+{
+border: 1px solid black;
+padding: 1em;
+color: black;
+background: #CCE0F5;
+border-radius: 4px;
+}
+
+div.lisp
+{
+margin: 0;
+}
+
+pre.display
+{
+border: 1px solid black;
+padding: 1em;
+color: black;
+background: #E6F0FA;
+border-radius: 4px;
+font-family: serif;
+}
+
+pre.format
+{
+font-family: serif;
+border: 1px solid black;
+padding: 1em;
+color: black;
+background: #C2E0C2;
+border-radius: 4px;
+}
+
+blockquote
+{
+border: 1px solid #900;
+margin: 1em 3em 1em 3em;
+background: rgba(248, 248, 2, 0.16);
+border-radius: 4px;
+padding: .25em .5em .25em .5em;
+}
+
+img
+{
+margin-top: 1em;
+margin-bottom: .5em;
+}
+
+
+h1, h2, h3, h4, h5
+{
+ color: #990000;
+}
+
+h1
+{
+margin-top: 1em;
+margin-bottom: .5em;
+}
+
+h1.chapter, h2.section, .subheading
+{
+margin-bottom: .375em;
+}
+
+h2.section, h3.section, h3.heading, h3.subsection
+{
+margin-top: 1em;
+}
+
+div.footnote h3
+{
+font-size: 90%;
+}
+
+.subheading
+{
+margin-top: 1em;
+}
+
+table.header, div.header p
+{
+/*border: 1px solid black;*/
+/*padding: .5em;*/
+white-space: nowrap;
+/*border-radius: 4px;*/
+}
+
+table.header a, div.header p a
+{
+    border-bottom: none;
+}
+
+table.header
+{
+    margin: .5em 0em .5em 0em;
+}
+
+table.cartouche
+{
+    border: 2px solid black;
+    padding: .5em;
+    box-shadow: 5px 5px silver;
+}
+
+p
+{
+    margin: 1em 0em 1em 0em;
+}
+
+/*
+table.header a:link, div.header p a:link
+{text-decoration:none;}
+*/
+
+table.header a:visited, div.header p a:visited
+{text-decoration:none;}
+
+table.header a:hover, div.header p a:hover
+{text-decoration:underline;}
+
+table.header a:active, div.header p a:active
+{text-decoration:underline;}
+
+
+div.contents code, div.contents var, div.contents samp, div.contents kbd,
+table.menu code, table.menu var, table.menu samp, table.menu kbd,
+h1 code, h1 var, h1 samp, h1 kbd,
+h2 code, h2 var, h2 samp, h2 kbd,
+h3 code, h3 var, h3 samp, h3 kbd,
+h4 code, h4 var, h4 samp, h4 kbd,
+a code, a var, a samp, a kbd
+{
+    padding: inherit;
+    font-family: inherit;
+    border: inherit;
+    background-color: inherit;
+    box-shadow: inherit;
+    color: inherit;
+}
+
+div.contents li
+{
+    margin-bottom: .25ex;
+    white-space: nowrap;
+}
+
+div.contents li, ul
+{
+    margin-top: .25ex;
+}
+
+ul, ol
+{
+    margin-left: 2.5em;
+    margin-top: .5em;
+    margin-bottom: 1em;
+}
+
+li
+{
+    margin-bottom: .5em;
+}
+
+table.menu
+{
+    border-top: solid 1px #C2C2C2;
+    padding-top: .5em;
+    white-space: nowrap;
+    margin-top: 2em;
+    line-height: 1.4em;
+}
+
+dl
+{
+    display: block;
+    margin-top: 1em;
+}
+
+dt
+{
+    color: #900;
+}
+
+dd
+{
+    margin-left: 2.5em;
+}
+
+pre.menu-comment
+{
+    margin-top: 1.5em;
+    font-family: Arial,sans-serif;
+}
+
+code
+{
+    color: #900;
+}
+
+kbd
+{
+    padding-left: .25em;
+    padding-right: .25em;
+    border: solid 1px #C2C2C2;
+    border-radius: 4px;
+    background-color: #F0F0F0;
+    box-shadow: 1px 1px silver;
+    color: black;
+}
+
+
+samp
+{
+    color: #046370;
+}
+
+var
+{
+
+    color: #927811;
+}
+
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+
+/*
+--------------------------------------------------------------------------
+END OF janix-texinfo.css
+--------------------------------------------------------------------------
+*/

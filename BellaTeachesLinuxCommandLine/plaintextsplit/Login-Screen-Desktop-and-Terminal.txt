@@ -1,0 +1,61 @@
+1 Login Screen, Desktop and Terminal
+************************************
+
+Examples are given with Ubuntu Linux.  Other Linux distributions should
+be similar.
+
+1.1 Login Screen
+================
+
+Start the Linux computer and it will proceed to the login screen.
+
+                         [Login Screen Linux]
+
+
+Select the user name and enter the password.
+
+                         [Login Screen Linux]
+
+1.2 Desktop
+===========
+
+The Linux desktop will display.
+
+                        [Desktop Linux Screen]
+
+
+                          [Picture of Bella]
+
+1.3 Terminal
+============
+
+We will proceed to open a Linux terminal.  On the upper left hand side
+of the screen select Activities.
+
+            [Activies on upper left hand of Linux Desktop]
+
+
+A input box saying "Type To Search" box will appear.
+
+                         [Type To Search box]
+
+
+Inside the "Type To Search" input box type the word Terminal.
+
+               [Terminal typed into Type to Search box]
+
+
+The Linux terminal will appear.  The terminal is also known as the Linux
+Shell or the command line.
+
+                     [Image of the Linux Terminal]
+
+
+                          [Picture of Bella]
+
+
+Congratulations!  You have logged into Linux and opened a terminal on
+the desktop!  The Linux Terminal is a command language interpreter that
+executes commands read from your input.  In the next chapter we will
+execute some commands.
+
