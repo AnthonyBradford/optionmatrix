@@ -2194,7 +2194,7 @@ void curses_process(struct _properties *properties,struct _properties *future_pr
 
         } else
         {
-          printw("%s = %s", option_algorithms[properties->modeltype].UsePounddes,&(option_algorithms[properties->modeltype].StateNames[(properties->data.UsePound-1 >= option_algorithms[properties->modeltype].Poundmax ? 0 : properties->data.UsePound-1)]));
+          printw("%s = %s", option_algorithms[properties->modeltype].UsePounddes,(char *) &(option_algorithms[properties->modeltype].StateNames[(properties->data.UsePound-1 >= option_algorithms[properties->modeltype].Poundmax ? 0 : properties->data.UsePound-1)]));
           clrtoeol();
         }
 
