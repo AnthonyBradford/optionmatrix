@@ -4,6 +4,7 @@
 @include version.texi
 @set WEBSITE sourceforge.net/projects/optionmatrix
 @settitle OptionMatrix @value{VERSION}
+@c @paragraphindent none
 @documentdescription
 Financial Derivatives Calculator. Black-Scholes Calculator.
 @end documentdescription
@@ -153,6 +154,7 @@ which is a financial derivatives calculator.
 @node Overview
 @chapter Overview
 @cindex overview
+
 The OptionMatrix programs are financial derivative calculators
 distributed by @url{http://@value{WEBSITE}}.
 These calculators are real-time multi-model option chain pricers with
@@ -179,7 +181,7 @@ users are free (in perpetuity) to share and change them.
 OptionMatrix was written by @email{anthony_bradford@@yahoo.com,Anthony Bradford}.
 
 @html
-<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/></a><br clear=left>
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/6.png" alt="Download OptionMatrix" align="top"/></a><br>
@@ -304,9 +306,6 @@ FITNESS FOR A PARTICULAR PURPOSE.
 Written by Anthony Bradford.
 @end example
 @*
-@ifdocbook
-
-@end ifdocbook
 @cindex Black-Scholes
 Run and time model zero, Black-Scholes, at the default number of iterations (200000)
 
@@ -326,9 +325,6 @@ Time 1.416533s
 CPU time: 0.560000s
 @end example
 @*
-@ifdocbook
-
-@end ifdocbook
 Run and time model zero, Black-Scholes, at 1 million iterations
 
 @samp{optionmatrix --iterate 1000000 --model 0}
@@ -344,38 +340,21 @@ Time 7.357173s
 CPU time: 2.780000s
 @end example
 @*
-@ifdocbook
-
-@end ifdocbook
 Run the Curses version of OptionMatrix
 
 @samp{optionmatrix_console}
 @*
-@ifdocbook
-
-@end ifdocbook
 @*
-@ifdocbook
-
-@end ifdocbook
 Run the GTK+ (GUI) version of OptionMatrix
 
 @samp{optionmatrix}
 @*
-@ifdocbook
-
-@end ifdocbook
 @*
-@ifdocbook
-
-@end ifdocbook
 Run the GTK+ (GUI) version of OptionMatrix and define the model source code location.
 
 @samp{optionmatrix --Directory src/c++/optionmatrix/optionmatrix-@value{VERSION}}
 @*
-@ifdocbook
 
-@end ifdocbook
 @html
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 @end html
@@ -402,10 +381,6 @@ Running @command{optionmatrix} with no arguments or just the @option{--debug}, @
 
 The initial screen will appear. The default model is Black-Scholes. The option chain on display is being re-calculated every second. Price changes are the result of time bleeding between the current time and the expiration time. 
 
-@*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/OptionMatrix,380pt,,Financial Derivatives Calculator,png}
 
 @section Input Controls
@@ -417,9 +392,7 @@ The initial screen will appear. The default model is Black-Scholes. The option c
 @cindex volatility
 Price, interest rate, and standard deviation can be configured via spin buttons. 
 @*
-@ifdocbook
 
-@end ifdocbook
 @html
 <br>
 @end html
@@ -430,17 +403,11 @@ Price, interest rate, and standard deviation can be configured via spin buttons.
 @cindex Expiration date
 Time can be entered by the ``Time to Expiration'' or the ``Days to Expiration'' spin buttons.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/Time,380pt,,Financial Option Expiration Time,png}
-@*
-@ifdocbook
 
-@end ifdocbook
 ``Time to Expiration'' displays time to expiration in years. ``Days to Expiration'' displays expiration time in days.
 
 @cindex Leap year
@@ -450,9 +417,7 @@ Both spin button's time value decreases every second as the expiration date appr
 @cindex real-time
 This real-time updating can be toggled with the checkbox ``RealTime''.
 @*
-@ifdocbook
 
-@end ifdocbook
 @html
 <br>
 @end html
@@ -464,9 +429,7 @@ A specific calendar date can be selected with the Calendar Picker.
 
 Calendar date selections will update both the ``Time to Expiration'' and the ``Days to Expirations'' spin buttons. Pressing the ``Calendar'' push button will invoke the Calendar Picker popup.
 @*
-@ifdocbook
 
-@end ifdocbook
 @html
 <br>
 @end html
@@ -474,9 +437,7 @@ Calendar date selections will update both the ``Time to Expiration'' and the ``D
 
 The popup features year, month and day calendar selections. 
 @*
-@ifdocbook
 
-@end ifdocbook
 @html
 <br>
 @end html
@@ -488,37 +449,22 @@ Select an expiration date and dismiss the popup. The popup does not feature a ``
 @cindex Strike increments
 @cindex Custom strike
 A drop down box ``Strikes'' changes the strike increments or allows custom strike mode.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/StrikesDrop,180pt,,Financial Derivatives Strikes,png}
-
-Selections include: 5, 1, .5, .1, .01, .001 and CUST
-
 @*
-@ifdocbook
-
-@end ifdocbook
+Selections include: 5, 1, .5, .1, .01, .001 and CUST
+@*
 @center @image{images/Strikes,140pt,,Equity Puts Call Strikes,png}
 @cindex Strike adjuster
 A scale button ``Strike Adjuster'' allows scrolling of strikes being displayed in the selected strike increments.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/StrikeDropDownAndAdjuster,290pt,,Equity Options Strikes,png}
-
 @cindex Strike custom
 Selection of drop down item ``CUST'' allows entering of any strike in the Strike input box.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
@@ -527,11 +473,7 @@ Selection of drop down item ``CUST'' allows entering of any strike in the Strike
 @section Date Engine
 @cindex Date engine
 Selecting the checkbox ``Use Date Engine'' will invoke the Date Engine. 
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/DateEngineSelected,100pt,,Equity Puts Calls Expiration,png}
 
 @cindex expiration
@@ -539,77 +481,47 @@ Selecting the checkbox ``Use Date Engine'' will invoke the Date Engine.
 The Date Engine will map option expirations to a default of 3rd Friday+1 @@11:59AM going into the future. This is the standard expiration for U.S. Exchange Traded Options. The Date Engine is configurable and can make any re-occuring date used by the options industry.
 
 The option chain's pricing will be updated as time decreases between the current time and the expirations.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/OptionMatrixCalendarDated,380pt,,Equity Stock Option Calculator,png}
 
 @subsection Date Engine Properties
 @cindex Date engine properties
 @cindex expiration
 The Date Engine Properties popup is used to configure the Date Engine. It can be invoked by pressing the Date Engine Properties push button. 
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/DateEngineProperties,150pt,,Stock Option Expirations,png}
-
-The default expiration setting of 3rd Friday+1 @@11:59AM can be changed.
-
 @*
-@ifdocbook
-
-@end ifdocbook
+The default expiration setting of 3rd Friday+1 @@11:59AM can be changed.
+@*
 @center @image{images/DateEngine,190pt,,Equity Option Expirations,png}
 
 @subsection Month Adjuster
 @cindex Month adjuster
 A scale button named ``Month Adjuster'' can adjust the Date Engine's months forward.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/MonthAdjuster,200pt,,Financial Modelling Month Adjustment,png}
 
 @subsection Option Cycles
 @cindex Option cycles
 @cindex Months in option cycles
 The Date Engine supports option cycles. See drop down with label ``Cycle''.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/CycleClosed,245pt,,Equity Option Cycles,png}
-
+@*
 @cindex LEAPS
 The Cycle drop down includes: All, Jan, Feb, Mar and LEAPS.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/CycleDropOpen,245pt,,Equity Option Cycles Jan Feb Mar,png}
 @*
-@ifdocbook
-
-@end ifdocbook
 The default setting is ``All'' which displays all months.
 
 @subsection Display Formats
 @cindex Display formats
 @cindex Option chain
 The Date Engine supports many display formats for the option chain.
-
+@*
 In the grouping of radio buttons labeled ``Display Formats'' each radio button changes the option chains display format.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
@@ -620,9 +532,6 @@ The display formats are: Month to Strikes, Months to Strike, Months Across and `
 @cindex Month to strikes
 ``Month to Strikes'' features sets of the same expiration month mapped to incrementing strikes.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
@@ -631,9 +540,6 @@ The display formats are: Month to Strikes, Months to Strike, Months Across and `
 @cindex Months to strike
 ``Months to Strike'' features sets of incrementing expiration months mapped to the same strike.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
@@ -642,9 +548,6 @@ The display formats are: Month to Strikes, Months to Strike, Months Across and `
 @cindex Months across
 ``Months Across'' features sets of calls, puts, incrementing strikes and incrementing expiration month columns. The calls have the letter 'c' before the price while puts have the letter 'p' before the price.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
@@ -653,9 +556,6 @@ The display formats are: Month to Strikes, Months to Strike, Months Across and `
 @cindex 3 Call / 3 Put Columns
 ``3 Call / 3 Put Columns'' features incrementing strikes with 3 Call Columns and 3 Put Columns.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
@@ -672,9 +572,6 @@ The display formats are: Month to Strikes, Months to Strike, Months Across and `
 @cindex rho
 Option analytics of Call Delta, Put Delta, Gamma, Vega, Call Theta, Put Theta, Call Rho, Put Rho are calculated. They can be seen on the row at the top of the option chain.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
@@ -683,37 +580,22 @@ Option analytics of Call Delta, Put Delta, Gamma, Vega, Call Theta, Put Theta, C
 @section Spreads
 @cindex Spread mode
 Selection of the checkbox ``Spreads'' will invoke the Spread Mode.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/SpreadCheckbox,120pt,,Financial Derivative Spread Trading,png}
-
-Spread Mode allows the individual leg information for a spread to be controlled.
-
 @*
-@ifdocbook
-
-@end ifdocbook
+Spread Mode allows the individual leg information for a spread to be controlled.
+@*
 @center @image{images/OptionMatrixSpreads,380pt,,Derivative Spread Leg Controls,png}
 
 @cindex Month adjuster legs
 @cindex leg 1
 @cindex leg 2
 Scale buttons ``Strike Adj Leg1'' and ``Month Adj Leg1'' can be used to adjust strikes and months for Leg 1. Scale buttons ``Strike Adj Leg2'' and ``Month Adj Leg2'' can be used to adjust strikes and months for Leg 2.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/LegControls,350pt,,Put Call Derivative Leg Controls,png}
-
+@*
 Spreads are displayed on a per row basis.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
@@ -722,9 +604,6 @@ Spreads are displayed on a per row basis.
 The first set of column references to ``Expr Date, Strike, Call, Put'' is 
 considered Leg 1. Use scale controls ``Strike Adj Leg1'' and ``Month Adj Leg1'' to adjust. 
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
@@ -732,35 +611,25 @@ considered Leg 1. Use scale controls ``Strike Adj Leg1'' and ``Month Adj Leg1'' 
 
 The second set of column references to ``Expr Date, Strike, Call, Put'' is considered Leg 2. Use scale controls ``Strike Adj Leg2'' and ``Month Adj Leg2'' to adjust.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/Leg1Leg2,370pt,,Spread Option Legs,png}
-
+@*
 @cindex spreads
 Four spreads are computed ``Spread C-C'' (Leg 1 Call minus Leg 2 Call), ``Spread P-P'' (Leg 1 Put minus Leg 2 Put), ``Spread C-P'' (Leg 1 Call minus Leg 2 Put) and ``Spread P-C'' (Leg 1 Put minus Leg 2 Call).
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/SpreadsCCPPCPPC,250pt,,Equity Financial Derivatives Spread Legs,png}
-
+@*
 @cindex Vertical spread
 @cindex Calendar spread
 Spread views are automatically labeled Vertical Spread, Calendar Spread or Vertical Calendar Spread. 
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/CalendarSpread,180pt,,Financial Calendar Horizontal Spread,png}
-
+@*
 Vertical Spread indicates strike differences between Leg 1 and Leg 2 (expiration dates are the same). Calendar Spread indicates expiration date differences between Leg 1 and Leg 2 (Strikes are the same). Vertical Calendar Spread indicates strike and calendar date expiration differences between the legs.
 
 @section Models
@@ -769,9 +638,6 @@ Over 170+ option models are featured in the OptionMatrix Calculator. Model numbe
 @cindex Model drop down
 The current pricing model can be changed with the ``Model'' drop down. The models are listed as categorized folders in the drop down.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
@@ -781,39 +647,19 @@ The current pricing model can be changed with the ``Model'' drop down. The model
 @cindex Model categories
 The model drop down box categorization can be controlled via the menu item ``Models''. Options include: 
 @clicksequence{Models @click{} List by Category}, @clicksequence{Models @click{} List by Author} and @clicksequence{Models @click{} List}.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/ModelsList,195pt,,Financial Derivatives Model List,png}
-
+@*
 @clicksequence{Models @click{} List by Author}, changes the categorization in the ``Models'' drop down to be based on author of the model.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/ModelByAuthor,330pt,,Financial Derivatives Model Authors,png}
 @*
-@ifdocbook
-
-@end ifdocbook
-@*
-@ifdocbook
-
-@end ifdocbook
 @clicksequence{Models @click{} List,} creates no categorized folders. The ``Models'' drop down box becomes a list of all models.
 @*
-@ifdocbook
-
-@end ifdocbook
 @*
-@ifdocbook
-
-@end ifdocbook
 @clicksequence{Models @click{} List by Category,} is the default.
 
 @section Cash Flow Editor
@@ -821,43 +667,28 @@ The model drop down box categorization can be controlled via the menu item ``Mod
 @cindex Coupon editor
 @cindex Cash flow editor
 Some models have multiple dividends or coupons. @command{optionmatrix} provides a cash flow editor to add / remove these cash streams. The cash stream is ordered by time. If the ``RealTime'' checkbox is enabled the dividend or coupons time will bleed.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/CouponEditor,210pt,,Financial Cash Flow Editor,png}
 
 @section Re-calculations
 @cindex Sleep delay
 Selection of Menu item @clicksequence{Prefs @click{} Settings} will invoke the ``Settings Popup''.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/PrefsSettings,255pt,,Financial Modelling Preferences,png}
-
-The setting ``Sleep Delay'' controls the time in between option chain re-calculations in seconds. The default setting is 1.
-
 @*
-@ifdocbook
-
-@end ifdocbook
+The setting ``Sleep Delay'' controls the time in between option chain re-calculations in seconds. The default setting is 1.
+@*
 @center @image{images/SleepDelay,140pt,,Financial Modelling Pricer Real Time,png}
 
 @section Cumulative Normal Distribution
 @cindex Cumulative normal distribution
 The method of calculating the cumulative normal distribution is controlled with drop down named ``CND''.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/CNDDrop,190pt,,Cumulative Normal Distribution,png}
-
+@*
 @cindex polyapprox
 @cindex rational1.0*E-7
 @cindex rational2.5*E-4
@@ -867,14 +698,11 @@ The method of calculating the cumulative normal distribution is controlled with 
 @cindex Trapezoidal rule
 Methods include: PolyApprox6, PolyApprox4, Rational1.0*E-7, Rational2.5*E-4, Hart Equation, Romberg's Method, @url{http://www.google.com/search?q=Simpson's+Rule,Simpson's Rule} and @url{http://www.google.com/search?q=Trapezoidal+Rule,Trapezoidal Rule}.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/CNDDropDown,290pt,,Cumulative Normal Distribution List,png}
-
+@*
 PolyApprox6 is the default.
 
 @section Precision
@@ -882,14 +710,11 @@ PolyApprox6 is the default.
 @cindex Precision decimal
 Decimal place precision can be adjusted with the spin button ``Precision''.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/Precision,140pt,,Financial Modelling Decimal Precision,png}
-
+@*
 Precision is defaulted to eight decimal places to show real-time time bleeding.
 
 @section Exporting
@@ -899,33 +724,16 @@ Precision is defaulted to eight decimal places to show real-time time bleeding.
 @cindex Source code
 Two menu export options are available.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/Export,160pt,,Financial Modelling Decimal Precision,png}
 @*
-@ifdocbook
-
-@end ifdocbook
-@*
-@ifdocbook
-
-@end ifdocbook
 @clicksequence{File @click{} Text Export}, exports the current option chain to a text window.
 @*
-@ifdocbook
-
-@end ifdocbook
 @*
-@ifdocbook
-
-@end ifdocbook
-@noindent
 @clicksequence{File @click{} Source View}, exports the current option models C/C++ source code to a text window.
-
+@*
 @html
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 @end html
@@ -953,28 +761,20 @@ The Curses Application typically runs from a UNIX like console or DOS prompt, it
 @section Welcome Screen
 @cindex Welcome screen curses
 A welcome screen will appear with author, version, license, e-mail and website information. Press any key to continue to model selection screen.
-
 @*
-@ifdocbook
-
-@end ifdocbook
-
 @center @image{images/ConsoleWelcome,,,Financial Engineering Linux,png}
 
 @section Model Selection
 @cindex Model selection curses
 Choose a model on the Model Selection screen by typing in its number and pressing @key{RET}.
-
+@*
 The arrow down and arrow up keys can be used to scroll and view more models. The listing of models exceeds the screen size. 
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/ConsoleSelect,,,Financial Engineering Linux Models,png}
-
+@*
 Once a model is selected the Format Selection screen will appear.
 
 @section Format Selection
@@ -982,49 +782,32 @@ Once a model is selected the Format Selection screen will appear.
 @cindex Display formats curses
 @cindex Option chain format curses
 The Format Selection screen displays the model's name, models source, display formats and miscellaneous selections. Key selection of  @kbd{1} - @kbd{9} will select a display format for the option's chain.
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/ConsoleFormat,,,Financial Engineering Model Format,png}
 @*
-@ifdocbook
 
-@end ifdocbook
 @cindex Decimal date curses
 @cindex Calendar date curses
 Formats are categorized as ``(decimal date/date entry dated)'' or ``(calendar dated)''. See column on the right of the screen. 
-
 @*
-@ifdocbook
-
-@end ifdocbook
 @center @image{images/ConsoleCategories,250pt,,Financial Engineering Model Format Category,png}
 @*
-@ifdocbook
 
-@end ifdocbook
 @cindex Expiration curses
 @cindex Date engine curses
 The ``(decimal date/date entry dated)'' formats allow the user to enter the time to expiration as a decimal date (Example: .5 years away) or enter an explicit date (Example: 1/20/14 - read: Jan 20 2014). The ``(calendar dated)'' formats set option expirations using a date engine which has a default setting of 3rd Friday+1 @@11:59AM going into the future. The Date Engine can be configured to match most industry used option expirations.
-
+@*
 Selection of any key @kbd{1} - @kbd{9} to proceed to the Inputs Screen.
 
 @section Inputs
 The Input Screen is customized on a per model basis. The user will be prompted for specific inputs for the selected model.
 @*
-@ifdocbook
 
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/ConsoleInputs,380pt,,Black-Scholes Inputs,png}
 @*
-@ifdocbook
-
-@end ifdocbook
 The Pricing Screen will follow.
 
 @section Pricing Screen
@@ -1033,26 +816,14 @@ The Pricing Screen will follow.
 @cindex Time bleeding curses
 The option model will begin pricing. The updating pricing changes are the result of time bleeding between the current time and the expiration times. Inputs can be adjusted while the model is pricing. Try typing: @kbd{S, s, X, x, R, r, V, v} or the arrow keys.
 @*
-@ifdocbook
-
-@end ifdocbook
 @html
 <br>
 @end html
 @center @image{images/ConsoleChain,,,Black-Scholes Options,png}
 @*
-@ifdocbook
-
-@end ifdocbook
 At the money, in the money options are highlighted by default.
 @*
-@ifdocbook
-
-@end ifdocbook
 @*
-@ifdocbook
-
-@end ifdocbook
 Pressing the @key{TAB} key will switch to another display format screen.
 Type @key{ESC} to go back to the Model Selection Screen.
 Type @kbd{h} or @kbd{?} for help.
@@ -1320,9 +1091,6 @@ The OptionMatrix programs support the following models:
 @cindex OS X
 Windows and Mac OS X installers can be found at
 @*
-@ifdocbook
-
-@end ifdocbook
 @url{http://sourceforge.net/projects/optionmatrix}
 
 @section Unix / Linux Autotools Package
@@ -1336,18 +1104,9 @@ Windows and Mac OS X installers can be found at
 @cindex Source code
 OptionMatrix source code can be downloaded from
 @*
-@ifdocbook
-
-@end ifdocbook
 @url{http://sourceforge.net/projects/optionmatrix}
 @*
-@ifdocbook
-
-@end ifdocbook
 @*
-@ifdocbook
-
-@end ifdocbook
 Type the following on the console in the directory of the download to install.
 @cindex tar
 @cindex make
@@ -1376,18 +1135,12 @@ sudo make install
 @cindex EPUB
 PDF and EPUB documentation can be found at
 @*
-@ifdocbook
-
-@end ifdocbook
 @url{http://sourceforge.net/projects/optionmatrix}
 @*
 @*
 HTML documentation can be found at
 @*
-@ifdocbook
-
-@end ifdocbook
-@url{https://anthonybradford.github.io/optionmatrix/}
+@url{https://anthonybradford.github.io/optionmatrix/index.html}
 
 @html
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
@@ -1437,7 +1190,7 @@ Patches are welcome; if possible, please make them with @samp{@w{diff
 -c}}. Please follow the existing coding style.
 
 @html
-<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br><br clear=left>
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 @end html
 @html
 <center><a href="Downloading-and-Installation.html"><img src="images/9.png" alt="Download OptionMatrix" align="top"/></a><br>
