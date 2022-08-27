@@ -692,7 +692,7 @@ int props(struct _properties *properties,struct _properties *future_properties)
 
     move(++row,0);
     printw("Strike increments %19s [0-%d] : %d\n", stringtemp2,
-            (sizeofstrike_control/(sizeof(struct _strike_control))-1),
+            (int) (sizeofstrike_control/(sizeof(struct _strike_control))-1),
             properties->strikestoogle);
 
     for(;;)
@@ -713,7 +713,7 @@ int props(struct _properties *properties,struct _properties *future_properties)
              move(row,0);
 
              printw("Strike increments %19s [0-%d] : %d\n", stringtemp2,
-                     (sizeofstrike_control/(sizeof(struct _strike_control))-1),
+                     (int) (sizeofstrike_control/(sizeof(struct _strike_control))-1),
                      properties->strikestoogle);
 
              refresh();
@@ -725,7 +725,7 @@ int props(struct _properties *properties,struct _properties *future_properties)
              move(row,0);
 
              printw("Strike increments %19s [0-%d] : %d\n", stringtemp2,
-                     (sizeofstrike_control/(sizeof(struct _strike_control))-1),
+                     (int) (sizeofstrike_control/(sizeof(struct _strike_control))-1),
                      properties->strikestoogle);
 
              refresh();
