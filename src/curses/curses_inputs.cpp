@@ -774,7 +774,7 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
             move(row,0);
 
             /* next line generally %s="Strike" */
-            printw("Enter %-31s    : ",option_algorithms[properties->modeltype].strike,properties->customstrike);
+            printw("Enter %-31s    : ",option_algorithms[properties->modeltype].strike);
             clrtoeol();
 
             memset(inputstring,(int) ' ',sizeof(inputstring));
@@ -848,7 +848,7 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
               {
                 printw("Time to %-17s(%s25=1/4 year)\n",option_algorithms[properties->modeltype].supportTime2des,properties->lc->mon_decimal_point);
                 snprintf(buf,sizeof(buf),"%s %s",option_algorithms[properties->modeltype].supportTime2des,mmddyy);
-                printw("or %-*s: ",34 + sizeof(mmddyy),buf);
+                printw("or %-*s: ",34 + (int) sizeof(mmddyy),buf);
 
               } else
               {
@@ -856,7 +856,7 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
                 {
                   printw("Time to %-17s(%s25=1/4 year)\n",option_algorithms[properties->modeltype].supportTime1des,properties->lc->mon_decimal_point);
                   snprintf(buf,sizeof(buf),"%s %s",option_algorithms[properties->modeltype].supportTime1des,mmddyy);
-                  printw("or %-*s: ",34 + sizeof(mmddyy),buf);
+                  printw("or %-*s: ",34 + (int) sizeof(mmddyy),buf);
 
                 } else
                 {
