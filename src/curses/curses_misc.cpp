@@ -172,8 +172,8 @@ void simple_help(const struct _properties *properties)
   printw("+,- changes size of increments or decrements of all vars\n");
   printw("z,Z,b,B,j,J,p,P - Exotic var controls, # - State change\n");
   printw("w-walk months backward.\t\tW-walk months forward.\n");
-  printw("x-decreases %s prices.", option_algorithms[properties->modeltype].strike,properties->customstrike);
-  printw("\tX-increases %s prices.\n", option_algorithms[properties->modeltype].strike,properties->customstrike);
+  printw("x-decreases %s prices.", option_algorithms[properties->modeltype].strike);
+  printw("\tX-increases %s prices.\n", option_algorithms[properties->modeltype].strike);
   printw("s-decreases stock price.\tS-increases stock price.\n");
   printw("d-decreases dividend.\t\tD-increases dividend.\n");             
   printw("r-decreases interest rates.\tR-increases interest rates.\n");
