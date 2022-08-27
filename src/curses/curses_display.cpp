@@ -1587,7 +1587,7 @@ void matrix(struct _properties *properties, struct _properties *future_propertie
 
         } else
         {
-          printw("        ",properties->precision,optiondata.calldelta);
+          printw("        ");
         }
 
         /* print the tickers */
@@ -2281,7 +2281,7 @@ void parameter_display(struct _properties *properties,struct _properties *future
       printw("#%s=%d ",option_algorithms[properties->modeltype].UsePounddes,properties->data.UsePound);
     } else
     {
-      printw("#%s=%s ",option_algorithms[properties->modeltype].UsePounddes,&(option_algorithms[properties->modeltype].StateNames[properties->data.UsePound-1]));
+      printw("#%s=%s ",option_algorithms[properties->modeltype].UsePounddes, (char *) &(option_algorithms[properties->modeltype].StateNames[properties->data.UsePound-1]));
 
     }
   }
