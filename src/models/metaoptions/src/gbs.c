@@ -42,19 +42,16 @@ double gbs(
 
 	vst = v * sqrt(T);
 	assert(is_sane(vst));
-    d1 = (log(S / X) + (b + pow2(v) / 2.0) * T) / vst;
-    d2 = d1 - vst;
+	d1 = (log(S / X) + (b + pow2(v) / 2.0) * T) / vst;
+	d2 = d1 - vst;
 	ebrt = exp((b - r) * T);
 	ert = exp(-r * T);
 
-    if(fCall)
-        result 
-			= S * ebrt * cnd(d1) 
-			- X * ert  * cnd(d2);
-    else 
-        result 
-			= X * ert  * cnd(-d2) 
-			- S * ebrt * cnd(-d1);
+	if(fCall) {
+		result = S * ebrt * cnd(d1) - X * ert  * cnd(d2);
+	} else {
+		result = X * ert  * cnd(-d2) - S * ebrt * cnd(-d1);
+	}
 
 	assert(is_sane(result));
 	return result;
@@ -72,7 +69,7 @@ extern double gbs_call(double S, double X, double T, double r, double b, double 
 	assert_valid_volatility(v);
 
 	vst = v * sqrt(T);
-    d1 = (log(S / X) + (b + pow2(v) / 2) * T) / vst;
+	d1 = (log(S / X) + (b + pow2(v) / 2) * T) / vst;
 
 	return S * exp((b - r) * T) * cnd(d1) - X * exp(-r * T)  * cnd(d1 - vst);
 }
@@ -89,7 +86,7 @@ extern double gbs_put(double S, double X, double T, double r, double b, double v
 	assert_valid_volatility(v);
 
 	vst = v * sqrt(T);
-    d1 = (log(S / X) + (b + pow2(v) / 2) * T) / vst;
+	d1 = (log(S / X) + (b + pow2(v) / 2) * T) / vst;
 
 	return X * exp(-r * T)  * cnd(-(d1 - vst)) - S * exp((b - r) * T) * cnd(-d1);
 }

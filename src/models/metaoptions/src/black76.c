@@ -34,13 +34,14 @@ double black76(int fCall, double F, double X, double T, double r, double v)
 	assert_valid_volatility(v);
 
 	vst = v * sqrt(T);
-    d1 = (log(F / X) + (pow2(v) / 2.0) * T) / vst;
-    d2 = d1 - vst;
+	d1 = (log(F / X) + (pow2(v) / 2.0) * T) / vst;
+	d2 = d1 - vst;
 
-    if(fCall)
-        result = exp(-r * T) * (F * cnd(d1) - X * cnd(d2));
-    else 
-        result = exp(-r * T) * (X * cnd(-d2) - F * cnd(-d1));
+	if(fCall) {
+		result = exp(-r * T) * (F * cnd(d1) - X * cnd(d2));
+	} else {
+		result = exp(-r * T) * (X * cnd(-d2) - F * cnd(-d1));
+	}
 
 	assert(is_sane(result));
 	return result;
@@ -56,7 +57,7 @@ extern double black76_put(double F, double X, double T, double r, double v)
 	assert_valid_volatility(v);
 
 	vst = v * sqrt(T);
-    d1 = (log(F / X) + (pow2(v) / 2) * T) / vst;
+	d1 = (log(F / X) + (pow2(v) / 2) * T) / vst;
 
 	return exp(-r * T) * (X * cnd(-(d1 - vst)) - F * cnd(-d1));
 }
@@ -72,7 +73,7 @@ extern double black76_call(double F, double X, double T, double r, double v)
 	assert_valid_volatility(v);
 
 	vst = v * sqrt(T);
-    d1 = (log(F / X) + (pow2(v) / 2) * T) / vst;
+	d1 = (log(F / X) + (pow2(v) / 2) * T) / vst;
 
 	return exp(-r * T) * (F * cnd(d1) - X * cnd((d1 - vst)));
 }
@@ -94,7 +95,6 @@ void check_black76(void)
 
 	result = black76(1, S, X, T, r, v);
 	assert_equal(result, fasit_call);
-
 }
 
 int main(void)

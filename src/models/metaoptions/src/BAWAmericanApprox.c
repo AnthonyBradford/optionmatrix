@@ -43,36 +43,36 @@ static double Kp(
 	vst = v * st;
 	p2v = pow2(v);
 
-    /* Calculation of seed value, Si */
-    n = 2.0 * b / p2v;
-    m = 2.0 * r / p2v;
-    q1u = (-(n - 1) - sqrt(pow2(n - 1) + 4 * m)) / 2.0;
-    Su = X / (1.0 - 1.0 / q1u);
-    h1 = (b * T - 2.0 * vst) * X / (X - Su);
-    Si = Su + (X - Su) * exp(h1);
+	/* Calculation of seed value, Si */
+	n = 2.0 * b / p2v;
+	m = 2.0 * r / p2v;
+	q1u = (-(n - 1) - sqrt(pow2(n - 1) + 4 * m)) / 2.0;
+	Su = X / (1.0 - 1.0 / q1u);
+	h1 = (b * T - 2.0 * vst) * X / (X - Su);
+	Si = Su + (X - Su) * exp(h1);
     
-    K = 2.0 * r / (p2v * (1.0 - exp(-r * T)));
-    d1 = (log(Si / X) + (b + p2v / 2.0) * T) / vst;
+	K = 2.0 * r / (p2v * (1.0 - exp(-r * T)));
+	d1 = (log(Si / X) + (b + p2v / 2.0) * T) / vst;
 	cndd1 = cnd(-d1);
-    Q1 = (-(n - 1.0) - sqrt(pow2(n - 1.0) + 4.0 * K)) / 2.0;
-    LHS = X - Si;
+	Q1 = (-(n - 1.0) - sqrt(pow2(n - 1.0) + 4.0 * K)) / 2.0;
+	LHS = X - Si;
 
 	ebrt = exp((b - r) * T);
-    RHS = gbs_put(Si, X, T, r, b, v) - (1.0 - ebrt * cndd1) * Si / Q1;
+	RHS = gbs_put(Si, X, T, r, b, v) - (1.0 - ebrt * cndd1) * Si / Q1;
 
-    bi = -ebrt * cndd1 * (1.0 - 1.0 / Q1) - (1.0 + ebrt * normdist(-d1) / vst) / Q1;
-    E = 0.000001;
+	bi = -ebrt * cndd1 * (1.0 - 1.0 / Q1) - (1.0 + ebrt * normdist(-d1) / vst) / Q1;
+	E = 0.000001;
 
-    /* Newton Raphson algorithm for finding critical price Si */
-    while(fabs(LHS - RHS) / X > E) {
-        Si = (X - RHS + bi * Si) / (1.0 + bi);
-        d1 = (log(Si / X) + (b + p2v / 2.0) * T) / vst;
-		cndd1 = cnd(-d1);
-        LHS = X - Si;
-		ebrt = exp((b - r) * T);
-        RHS = gbs_put(Si, X, T, r, b, v) - (1.0 - ebrt * cndd1) * Si / Q1;
+	/* Newton Raphson algorithm for finding critical price Si */
+	while(fabs(LHS - RHS) / X > E) {
+	  Si = (X - RHS + bi * Si) / (1.0 + bi);
+	  d1 = (log(Si / X) + (b + p2v / 2.0) * T) / vst;
+	  cndd1 = cnd(-d1);
+	  LHS = X - Si;
+	  ebrt = exp((b - r) * T);
+	  RHS = gbs_put(Si, X, T, r, b, v) - (1.0 - ebrt * cndd1) * Si / Q1;
 
-        bi	= -ebrt * cndd1 * (1.0 - 1.0 / Q1) 
+	  bi = -ebrt * cndd1 * (1.0 - 1.0 / Q1) 
 			- (1.0 + ebrt * cndd1 / vst) / Q1;
     }
 
@@ -93,34 +93,34 @@ static double Kc(double X, double T, double r, double b, double v)
 	st = sqrt(T);
 
 
-    /* Calculation of seed value, Si */
+	/* Calculation of seed value, Si */
 	p2v = pow2(v);
-    n = 2.0 * b / p2v;
-    m = 2.0 * r / p2v;
-    q2u = (-(n - 1.0) + sqrt(pow2(n - 1.0) + 4.0 * m)) / 2.0;
-    Su = X / (1.0 - (1.0 / q2u));
-    h2 = -(b * T + 2.0 * v * st) * X / (Su - X);
-    Si = X + (Su - X) * (1.0 - exp(h2));
+	n = 2.0 * b / p2v;
+	m = 2.0 * r / p2v;
+	q2u = (-(n - 1.0) + sqrt(pow2(n - 1.0) + 4.0 * m)) / 2.0;
+	Su = X / (1.0 - (1.0 / q2u));
+	h2 = -(b * T + 2.0 * v * st) * X / (Su - X);
+	Si = X + (Su - X) * (1.0 - exp(h2));
 
-    K = 2.0 * r / (p2v * (1.0 - exp(-r * T)));
-    d1 = (log(Si / X) + (b + p2v / 2.0) * T) / (v * st);
-    Q2 = (-(n - 1.0) + sqrt(pow2(n - 1.0) + 4.0 * K)) / 2.0;
-    LHS = Si - X;
-    RHS = gbs_call(Si, X, T, r, b, v) + (1.0 - ebrt * cnd(d1)) * Si / Q2;
-    bi = ebrt * cnd(d1) * (1.0 - 1.0 / Q2) + (1.0 - ebrt * cnd(d1) / (v * st)) / Q2;
+	K = 2.0 * r / (p2v * (1.0 - exp(-r * T)));
+	d1 = (log(Si / X) + (b + p2v / 2.0) * T) / (v * st);
+	Q2 = (-(n - 1.0) + sqrt(pow2(n - 1.0) + 4.0 * K)) / 2.0;
+	LHS = Si - X;
+	RHS = gbs_call(Si, X, T, r, b, v) + (1.0 - ebrt * cnd(d1)) * Si / Q2;
+	bi = ebrt * cnd(d1) * (1.0 - 1.0 / Q2) + (1.0 - ebrt * cnd(d1) / (v * st)) / Q2;
 
-    E = 0.000001;
+	E = 0.000001;
 
-    /* Newton Raphson algorithm for finding critical price Si */
-    while(fabs(LHS - RHS) / X > E) {
-        Si = (X + RHS - bi * Si) / (1.0 - bi);
-        d1 = (log(Si / X) + (b + p2v / 2.0) * T) / (v * st);
-        LHS = Si - X;
-        RHS = gbs_call(Si, X, T, r, b, v) + (1.0 - ebrt * cnd(d1)) * Si / Q2;
+	/* Newton Raphson algorithm for finding critical price Si */
+	while(fabs(LHS - RHS) / X > E) {
+	  Si = (X + RHS - bi * Si) / (1.0 - bi);
+	  d1 = (log(Si / X) + (b + p2v / 2.0) * T) / (v * st);
+	  LHS = Si - X;
+	  RHS = gbs_call(Si, X, T, r, b, v) + (1.0 - ebrt * cnd(d1)) * Si / Q2;
 
-        bi 	= ebrt * cnd(d1) * (1.0 - (1.0 / Q2)) 
+	  bi = ebrt * cnd(d1) * (1.0 - (1.0 / Q2)) 
 			+ (1.0 - ebrt * normdist(d1) / (v * st)) / Q2;
-    }
+	}
 
 	assert(is_sane(Si));
 	return Si;
@@ -144,22 +144,23 @@ static double BAWAmericanCallApprox(
 	assert_valid_cost_of_carry(b);
 	assert_valid_volatility(v);
 
-    if(b >= r) 
-        result = gbs_call(S, X, T, r, b, v);
-    else {
-		const double p2v = pow2(v);
-        const double Sk = Kc(X, T, r, b, v);
-        const double n = 2.0 * b / p2v;
-        const double K = 2.0 * r / (p2v * (1.0 - exp(-r * T)));
-        const double d1 = (log(Sk / X) + (b + p2v / 2.0) * T) / (v * sqrt(T));
-        const double Q2 = (-(n - 1.0) + sqrt(pow2(n - 1.0) + 4.0 * K)) / 2.0;
-        const double a2 = (Sk / Q2) * (1.0 - exp((b - r) * T) * cnd(d1));
+	if(b >= r)  {
+	  result = gbs_call(S, X, T, r, b, v);
+	} else {
+	  const double p2v = pow2(v);
+	  const double Sk = Kc(X, T, r, b, v);
+	  const double n = 2.0 * b / p2v;
+	  const double K = 2.0 * r / (p2v * (1.0 - exp(-r * T)));
+	  const double d1 = (log(Sk / X) + (b + p2v / 2.0) * T) / (v * sqrt(T));
+	  const double Q2 = (-(n - 1.0) + sqrt(pow2(n - 1.0) + 4.0 * K)) / 2.0;
+	  const double a2 = (Sk / Q2) * (1.0 - exp((b - r) * T) * cnd(d1));
 
-        if(S < Sk)
-            result = gbs_call(S, X, T, r, b, v) + a2 * pow((S / Sk), Q2);
-        else
-            result = S - X;
-    }
+	  if(S < Sk) {
+	    result = gbs_call(S, X, T, r, b, v) + a2 * pow((S / Sk), Q2);
+	  } else {
+	    result = S - X;
+	  }
+	}
 
 	assert(is_sane(result));
 	return result;
@@ -183,18 +184,20 @@ static double BAWAmericanPutApprox(
 	assert_valid_cost_of_carry(b);
 	assert_valid_volatility(v);
 
-    Sk = Kp(X, T, r, b, v);
-    if(S > Sk ) {
-		const double p2v = pow2(v);
-		const double n = 2.0 * b / p2v;
-		const double K = 2.0 * r / (p2v * (1.0 - exp(-r * T)));
-		const double d1 = (log(Sk / X) + (b + p2v / 2.0) * T) / (v * sqrt(T));
-		const double Q1 = (-(n - 1.0) - sqrt(pow2(n - 1.0) + 4.0 * K)) / 2.0;
-		const double a1 = -(Sk / Q1) * (1.0 - exp((b - r) * T) * cnd(-d1));
-        result = gbs_put(S, X, T, r, b, v) + a1 * pow((S / Sk), Q1);
+	Sk = Kp(X, T, r, b, v);
+    
+	if(S > Sk ) {
+	  
+	  const double p2v = pow2(v);
+	  const double n = 2.0 * b / p2v;
+	  const double K = 2.0 * r / (p2v * (1.0 - exp(-r * T)));
+	  const double d1 = (log(Sk / X) + (b + p2v / 2.0) * T) / (v * sqrt(T));
+	  const double Q1 = (-(n - 1.0) - sqrt(pow2(n - 1.0) + 4.0 * K)) / 2.0;
+	  const double a1 = -(Sk / Q1) * (1.0 - exp((b - r) * T) * cnd(-d1));
+	  result = gbs_put(S, X, T, r, b, v) + a1 * pow((S / Sk), Q1);
+	} else {
+	  result = X - S;
 	}
-    else
-        result = X - S;
     
 	assert(is_sane(result));
 	return result;
@@ -219,10 +222,11 @@ double BAWAmericanApprox(
 	assert_valid_cost_of_carry(b);
 	assert_valid_volatility(v);
 
-    if(fCall)
-        result = BAWAmericanCallApprox(S, X, T, r, b, v);
-    else 
-        result = BAWAmericanPutApprox(S, X, T, r, b, v);
+	if(fCall) {
+		result = BAWAmericanCallApprox(S, X, T, r, b, v);
+	} else { 
+		result = BAWAmericanPutApprox(S, X, T, r, b, v);
+	}
     
 	assert(is_sane(result));
 	return result;

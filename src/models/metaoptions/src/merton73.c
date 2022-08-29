@@ -40,13 +40,14 @@ double merton73(
 	assert_valid_interest_rate(r);
 	assert_valid_volatility(v);
 
-    d1 = (log(S / X) + (r - q + pow2(v) / 2.0) * T) / (v * sqrt(T));
-    d2 = d1 - v * sqrt(T);
+	d1 = (log(S / X) + (r - q + pow2(v) / 2.0) * T) / (v * sqrt(T));
+	d2 = d1 - v * sqrt(T);
 
-    if(fCall)
-        result = S * exp(-q * T) * cnd(d1) - X * exp(-r * T) * cnd(d2);
-    else 
-        result = X * exp(-r * T) * cnd(-d2) - S * exp(-q * T) * cnd(-d1);
+	if(fCall) {
+	  result = S * exp(-q * T) * cnd(d1) - X * exp(-r * T) * cnd(d2);
+	} else { 
+	  result = X * exp(-r * T) * cnd(-d2) - S * exp(-q * T) * cnd(-d1);
+	}
 
 	assert(is_sane(result));
 	return result;
