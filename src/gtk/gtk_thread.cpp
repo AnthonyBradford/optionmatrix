@@ -93,7 +93,7 @@ gboolean calculate_options(struct _properties *properties)
   int totalCounter = 0;
 
   char dataExport[20000] = { 0 };
-  char lineData[5000] = { 0 };
+  char lineData[50000] = { 0 };
 
   double cumStrikeLeg1 = 0.0;
   double cumStrikeLeg2 = 0.0;
