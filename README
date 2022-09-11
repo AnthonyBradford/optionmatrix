@@ -7,7 +7,7 @@ Two application executables will be built
 src/gtk/optionmatrix
 src/curses/optionmatrix_console
 
-Many testing executables built
+Many testing executables will be built
 common/checks
 models/financialrecipes/run_all_examples
 models/metaoptions/tests/
