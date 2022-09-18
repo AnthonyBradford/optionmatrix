@@ -2838,9 +2838,12 @@ struct _data option_call(struct _data *dat)
         // Finite differences
         QuantLib::Size timeSteps = dat->steps;
 
+        //europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+        //new QuantLib::FDEuropeanEngine<QuantLib::CrankNicolson>(bsmProcess,
+        //timeSteps,timeSteps-1)));
+
         europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
-                 new QuantLib::FDEuropeanEngine<QuantLib::CrankNicolson>(bsmProcess,
-                                                     timeSteps,timeSteps-1)));
+            new QuantLib::FdBlackScholesVanillaEngine(bsmProcess,dat->steps,dat->steps-1)));
 
         callprice = europeanOption.NPV();
 
@@ -2970,10 +2973,12 @@ struct _data option_call(struct _data *dat)
         // Finite differences
         QuantLib::Size timeSteps = dat->steps;
         
+        //americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+        //       new QuantLib::FDAmericanEngine<QuantLib::CrankNicolson>(bsmProcess,
+        
         americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
-                 new QuantLib::FDAmericanEngine<QuantLib::CrankNicolson>(bsmProcess,
-                                                     timeSteps,timeSteps-1)));
-
+            new QuantLib::FdBlackScholesVanillaEngine(bsmProcess,dat->steps,dat->steps-1)));
+        
         callprice = americanOption.NPV();
 
         try {
@@ -3707,6 +3712,7 @@ struct _data option_call(struct _data *dat)
          boost::shared_ptr<QuantLib::Exercise> americanExercise(
              new QuantLib::AmericanExercise(settlementDate,maturity));
          QuantLib::VanillaOption americanOption(payoff, americanExercise);
+         
          americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
             new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(bsmProcess,dat->steps)));
 
@@ -5252,9 +5258,12 @@ struct _data option_call(struct _data *dat)
         // options
         QuantLib::VanillaOption bermudanOption(payoff, bermudanExercise);
 
-        bermudanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
-           new QuantLib::FDBermudanEngine<QuantLib::CrankNicolson>(bsmProcess,dat->steps,dat->steps-1)));
+        //bermudanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+        //   new QuantLib::FDBermudanEngine<QuantLib::CrankNicolson>(bsmProcess,dat->steps,dat->steps-1)));
 
+        bermudanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+            new QuantLib::FdBlackScholesVanillaEngine(bsmProcess,dat->steps,dat->steps-1)));
+        
         callprice = bermudanOption.NPV();
 
         try {

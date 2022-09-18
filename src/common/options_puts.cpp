@@ -1909,9 +1909,12 @@ struct _data option_put(struct _data *dat)
         // Finite differences
         QuantLib::Size timeSteps = 801;
 
+        //europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+        //         new QuantLib::FDEuropeanEngine<QuantLib::CrankNicolson>(bsmProcess,
+        //                                            timeSteps,timeSteps-1)));
+
         europeanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
-                 new QuantLib::FDEuropeanEngine<QuantLib::CrankNicolson>(bsmProcess,
-                                                     timeSteps,timeSteps-1)));
+            new QuantLib::FdBlackScholesVanillaEngine(bsmProcess,dat->steps,dat->steps-1)));    
 
         putprice = europeanOption.NPV();
 
@@ -2019,9 +2022,12 @@ struct _data option_put(struct _data *dat)
         // Finite differences
         QuantLib::Size timeSteps = dat->steps;
         
+        //americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+        //         new QuantLib::FDAmericanEngine<QuantLib::CrankNicolson>(bsmProcess,
+        //                                             timeSteps,timeSteps-1)));
+
         americanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
-                 new QuantLib::FDAmericanEngine<QuantLib::CrankNicolson>(bsmProcess,
-                                                     timeSteps,timeSteps-1)));
+            new QuantLib::FdBlackScholesVanillaEngine(bsmProcess,dat->steps,dat->steps-1)));    
 
         putprice = americanOption.NPV();
 
@@ -3860,8 +3866,11 @@ struct _data option_put(struct _data *dat)
         // options
         QuantLib::VanillaOption bermudanOption(payoff, bermudanExercise);
 
+        //bermudanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
+        //   new QuantLib::FDBermudanEngine<QuantLib::CrankNicolson>(bsmProcess,dat->steps,dat->steps-1)));
+
         bermudanOption.setPricingEngine(boost::shared_ptr<QuantLib::PricingEngine>(
-           new QuantLib::FDBermudanEngine<QuantLib::CrankNicolson>(bsmProcess,dat->steps,dat->steps-1)));
+            new QuantLib::FdBlackScholesVanillaEngine(bsmProcess,dat->steps,dat->steps-1)));    
 
         putprice = bermudanOption.NPV();
 
