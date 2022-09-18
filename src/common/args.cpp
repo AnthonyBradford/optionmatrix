@@ -256,7 +256,7 @@ void program_usage(const char *isConsoleVersion)
 
   printf("Financial Derivatives Calculator featuring models from ");
 
-#ifdef HAVE_QL_QUANTLIB_HPP
+#if defined(HAVE_QL_QUANTLIB_HPP) && defined(QUANTLIB)  
 
   printf("QuantLib, ");
 
@@ -299,28 +299,28 @@ void program_usage(const char *isConsoleVersion)
   printf("Compiled with the following libraries: ");
 #endif
 
-#ifdef HAVE_QL_QUANTLIB_HPP
+#if defined(HAVE_QL_QUANTLIB_HPP) && defined(QUANTLIB)
   printf("QuantLib, ");
 #endif
 
 #ifdef METAOPTIONS
-  printf("MetaOptions");
+  printf("MetaOptions, ");
 #endif
 
 #ifdef FINRECIPES
-  printf(", Financial Numerical Recipes in C++");
+  printf("Financial Numerical Recipes in C++, ");
 #endif
 
 #ifdef HAVE_LIBGSL
-  printf(", GSL");
+  printf("GSL, ");
 #endif
   
 #ifdef HAVE_NEWMAT_NEWMAT_H
-  printf(", Newmat");
+  printf("Newmat, ");
 #endif
 
 #ifdef HAVE_ITPP_ITBASE_H
-  printf(", IT++");
+  printf("IT++");
 #endif
 
   printf(".");
