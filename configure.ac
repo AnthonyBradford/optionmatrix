@@ -1,8 +1,8 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.69])
-AC_INIT([OptionMatrix],[1.4.3],[anthony_bradford@yahoo.com],[optionmatrix],[https://sourceforge.net/projects/optionmatrix/])
+AC_PREREQ([2.71])
+AC_INIT([OptionMatrix],[1.4.4],[anthony_bradford@yahoo.com],[optionmatrix],[https://sourceforge.net/projects/optionmatrix/])
 AM_INIT_AUTOMAKE([1.9 tar-ustar subdir-objects])
 AC_CONFIG_SRCDIR([src/gtk/gtk_scale.cpp])
 AC_CONFIG_HEADERS([config.h])
@@ -37,10 +37,10 @@ AC_MSG_CHECKING(for gtk)
 without_curses=true
 without_gtk3=true
 without_gtk2=true
-AM_PATH_GTK_3_0(3.0.0,without_gtk3=false,)
+PKG_CHECK_MODULES([GTK], [gtk+-3.0],without_gtk3=false,)
 if test $without_gtk3 = true
 then
-  AM_PATH_GTK_2_0(2.6.0,
+  PKG_CHECK_MODULES([GTK], [gtk+-2.0],
   [ 
     AC_MSG_CHECKING(for Gtk2.0 libraries)
     AC_CHECK_LIB([gtk-x11-2.0], [gtk_main])
@@ -126,16 +126,14 @@ fi
 ##
 ## Help the compiler find external software
 AC_ARG_WITH([boost-include],
-            AC_HELP_STRING([--with-boost-include=INCLUDE_PATH],
-                           [Supply the location of Boost header files]),
+            AS_HELP_STRING([--with-boost-include=INCLUDE_PATH],[Supply the location of Boost header files]),
             [ql_boost_include_path=$withval],
             [ql_boost_include_path=""])
 if test [ -n "$ql_boost_include_path" ] ; then
    AC_SUBST([CXXFLAGS],["${CXXFLAGS} -I${ql_boost_include_path}"])
 fi
 AC_ARG_WITH([boost-lib],
-            AC_HELP_STRING([--with-boost-lib=LIB_PATH],
-                           [Supply the location of Boost libraries]),
+            AS_HELP_STRING([--with-boost-lib=LIB_PATH],[Supply the location of Boost libraries]),
             [ql_boost_lib_path=$withval],
             [ql_boost_lib_path=""])
 if test [ -n "$ql_boost_lib_path" ] ; then
@@ -148,14 +146,10 @@ fi
 # Check whether the Boost headers are available
 AC_DEFUN([QL_CHECK_BOOST_DEVEL],
 [AC_MSG_CHECKING([for Boost development files])
- AC_TRY_COMPILE(
-    [@%:@include <boost/version.hpp>
+ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[@%:@include <boost/version.hpp>
      @%:@include <boost/shared_ptr.hpp>
      @%:@include <boost/assert.hpp>
-     @%:@include <boost/current_function.hpp>],
-    [],
-    [AC_MSG_RESULT([yes])],
-    [AC_MSG_RESULT([no])
+     @%:@include <boost/current_function.hpp>]], [[]])],[AC_MSG_RESULT([yes])],[AC_MSG_RESULT([no])
      AC_MSG_WARN([Boost development files needed if using QuantLib])
     ])
 ])
@@ -166,13 +160,9 @@ AC_DEFUN([QL_CHECK_BOOST_DEVEL],
 AC_DEFUN([QL_CHECK_BOOST_VERSION],
 [AC_MSG_CHECKING([for minimal Boost version])
  AC_REQUIRE([QL_CHECK_BOOST_DEVEL])
- AC_TRY_COMPILE(
-    [@%:@include <boost/version.hpp>],
-    [@%:@if BOOST_VERSION < 103400
+ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[@%:@include <boost/version.hpp>]], [[@%:@if BOOST_VERSION < 103400
      @%:@error too old
-     @%:@endif],
-    [AC_MSG_RESULT([yes])],
-    [AC_MSG_RESULT([no])
+     @%:@endif]])],[AC_MSG_RESULT([yes])],[AC_MSG_RESULT([no])
      AC_MSG_WARN([outdated Boost installation])
     ])
 ])
