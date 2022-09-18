@@ -1,3 +1,5 @@
+OptionMatrix 1.4.4 updated for QuantLib-1.27
+
 OptionMatrix 1.4.3 now supports QuantLib Option models.
 
 The OptionMatrix 1.4.3 autotools package will automatically
