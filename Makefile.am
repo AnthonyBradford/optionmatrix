@@ -29,6 +29,8 @@ icon32_DATA = icons/32x32/optionmatrix.png\
 	icons/32x32/optionmatrix_console.png
 
 EXTRA_DIST = \
+	README.md\
+	README.how_to_make_a_release\
 	icons/mac/README\
 	icons/mac/optionmatrix.icns\
 	icons/32x32/optionmatrix.xpm\
