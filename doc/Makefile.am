@@ -182,6 +182,7 @@ clean:
 	-rm -f optionmatrix.htmlhelp/*.css
 	-rm -f optionmatrix.htmlhelp/*.html
 	-rm -f linkchecker-out.html
+	-rm -f optionmatrix.texi2
 	-rm -rf html/source_html/*
 
 install-info:
@@ -282,8 +283,10 @@ frames: check_makeinfo_texi2any
 
 .PHONY: docbook
 docbook: check_makeinfo_texi2any $(optionmatrix__TEXINFOS) $(EQN_IMAGES)
+	sed 's/@\*/@\*\n@ifdocbook\n\n@end ifdocbook/g' $(DESTDIR)optionmatrix.texi >$(DESTDIR)optionmatrix.texi2
 	$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) \
-		--docbook $(DESTDIR)optionmatrix.texi -o $(DESTDIR)optionmatrix.dbk
+		--docbook $(DESTDIR)optionmatrix.texi2 -o $(DESTDIR)optionmatrix.dbk
+	rm $(DESTDIR)optionmatrix.texi2
 	@echo
 	@echo "See file optionmatrix.dbk"
 	@echo
