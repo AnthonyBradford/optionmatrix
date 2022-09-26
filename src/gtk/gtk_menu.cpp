@@ -65,9 +65,14 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
   
   GError *error = NULL;
 
-  //gtk_show_uri(NULL,PACKAGE_URL, GDK_CURRENT_TIME, &error);
+#ifdef HAVE_LIBGTK_3
+  g_print("HAVE_LIBGTK_3\n");
   gtk_show_uri_on_window(NULL,PACKAGE_URL, GDK_CURRENT_TIME, &error);
-
+#else
+  g_print("!HAVE_LIBGTK_3\n");
+  gtk_show_uri(NULL,PACKAGE_URL, GDK_CURRENT_TIME, &error);
+#endif
+  
   if (error != NULL)
   {
     if (error->domain == GDK_PIXBUF_ERROR)
@@ -112,8 +117,14 @@ void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *prop
   GError *error = NULL;
 
   snprintf(packageBugreport,sizeof(packageBugreport),"mailto:%s",PACKAGE_BUGREPORT);
-  //gtk_show_uri(NULL,packageBugreport, GDK_CURRENT_TIME, &error);
+
+#ifdef HAVE_LIBGTK_3
+  g_print("HAVE_LIBGTK_3\n");
   gtk_show_uri_on_window(NULL,packageBugreport, GDK_CURRENT_TIME, &error);
+#else
+  g_print("!HAVE_LIBGTK_3\n");  
+  gtk_show_uri(NULL,packageBugreport, GDK_CURRENT_TIME, &error);
+#endif
 
   if (error != NULL)
   {
