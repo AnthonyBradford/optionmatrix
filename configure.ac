@@ -28,55 +28,47 @@ AC_PATH_PROG([XMLTO], xmlto)
 AC_PATH_PROG([MOGRIFY], mogrify)
 AC_PATH_PROG([SOURCEHIGHLIGHT], source-highlight)
 AC_PATH_PROG([ZIP], zip)
-
-# check for m...
 AC_CHECK_LIB([m], [pow])
 
-# check for gtk...
-AC_MSG_CHECKING(for gtk)
-without_curses=true
-without_gtk3=true
-without_gtk2=true
-PKG_CHECK_MODULES([GTK], [gtk+-3.0],without_gtk3=false,)
-if test $without_gtk3 = true
-then
-  PKG_CHECK_MODULES([GTK], [gtk+-2.0],
-  [ 
-    AC_MSG_CHECKING(for Gtk2.0 libraries)
-    AC_CHECK_LIB([gtk-x11-2.0], [gtk_main])
-    without_gtk2=false
-  ],AC_MSG_WARN(Cannot find GTK: Is pkg-config in path?))
-else
-  AC_MSG_CHECKING(for Gtk3.0 libraries)
-  AC_CHECK_LIB([gtk-3], [gtk_main])
-  CFLAGS="$CFLAGS -DGTK_DISABLE_SINGLE_INCLUDES -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGSEAL_ENABLE"
-  without_gtk3=false
-fi
+AC_LANG([C++])
+
+PKG_CHECK_MODULES([GTK], [gtk+-3.0],
+   [
+     AC_CHECK_LIB([gtk-3], [gtk_main])
+     CFLAGS="$CFLAGS -DGTK_DISABLE_SINGLE_INCLUDES -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGSEAL_ENABLE"
+   ],
+   [
+     PKG_CHECK_MODULES([GTK], [gtk+-2.0],
+     [ 
+         AC_CHECK_LIB([gtk-x11-2.0], [gtk_main])
+     ], AC_MSG_WARN(Cannot find GTK: Is pkg-config in path?))
+   ]
+)
 
 CFLAGS="$CFLAGS $GTK_CFLAGS"
 CPPFLAGS="$CPPFLAGS $GTK_CFLAGS"
 LIBS="$LIBS $GTK_LIBS"
 
-AC_LANG([C++])
-
-AC_CHECK_LIB([curses], [initscr], [
-                                      CPPFLAGS="$CPPFLAGS -I/curses"
-                                      LIBS="$LIBS -lcurses"
-                                      without_curses=false
-                              ] , [  
-                                      AC_CHECK_LIB([ncurses], [initscr], [
-      			      	      CPPFLAGS="$CPPFLAGS -I/ncurses"
-				      LIBS="$LIBS -lncurses"
-                                      without_curses=false
-       			      ], [
-                                      AC_CHECK_LIB([pdcurses], [initscr], [
-                                      CPPFLAGS="$CPPFLAGS -I/pdcurses"  
-                                      LIBS="$LIBS -lpdcurses"
-                                      without_curses=false
-	      		      ] , [
-                                      AC_MSG_WARN([Cannot find curses])
-                    	      ])
-      ])
+AC_CHECK_LIB([curses], [initscr],
+    [
+      CPPFLAGS="$CPPFLAGS -I/curses"
+      LIBS="$LIBS -lcurses"
+    ] ,
+    [  
+      AC_CHECK_LIB([ncurses], [initscr],
+          [
+            CPPFLAGS="$CPPFLAGS -I/ncurses"
+            LIBS="$LIBS -lncurses"
+          ],
+          [
+            AC_CHECK_LIB([pdcurses], [initscr], [
+            CPPFLAGS="$CPPFLAGS -I/pdcurses"  
+            LIBS="$LIBS -lpdcurses"
+          ] ,
+          [
+            AC_MSG_WARN([Cannot find curses])
+          ])
+    ])
 ])
 
 AC_CHECK_LIB([pthread],[main])
@@ -86,13 +78,13 @@ AC_CHECK_LIB([gsl],[main])
 
 AC_CHECK_LIB([newmat],[main], [
                       CPPFLAGS="$CPPFLAGS -I/newmat"
-		      LIBS="$LIBS -lnewmat"
+                      LIBS="$LIBS -lnewmat"
                       AC_CHECK_HEADERS([newmat/newmat.h])
 ])
 
 AC_CHECK_LIB([itpp],[main], [
                       CPPFLAGS="$CPPFLAGS -I/itpp"
-		      LIBS="$LIBS -litpp"
+                      LIBS="$LIBS -litpp"
                       AC_CHECK_HEADERS([itpp/itbase.h])
 ])
 
@@ -108,8 +100,8 @@ if test x"${QUANTLIB}" == x"yes" ; then
     # also test for quantlib version using result from quantlib-config --version
     case ${pkg_version} in
     0.1.*|0.2.*|0.3.*|0.4.*|0.8.*|0.9.*|1.0.*|1.1.*|1.2.*|1.3.*)
-	AC_MSG_WARN([OptionMatrix needs QuantLib (>= 1.4.0).])
-	;;
+        AC_MSG_WARN([OptionMatrix needs QuantLib (>= 1.4.0).])
+        ;;
     esac
 
     # now use all these
@@ -199,18 +191,18 @@ fi
 
 AC_CONFIG_FILES([Makefile
                  src/models/abradford/Makefile
-		 src/models/spinsky/Makefile
+                 src/models/spinsky/Makefile
                  src/models/financialrecipes/src/Makefile
-		 src/models/financialrecipes/examples/Makefile
+                 src/models/financialrecipes/examples/Makefile
                  src/models/metaoptions/src/Makefile
                  src/models/metaoptions/tests/Makefile
-		 src/common/Makefile
-		 src/curses/Makefile
-		 src/gtk/Makefile
+                 src/common/Makefile
+                 src/curses/Makefile
+                 src/gtk/Makefile
                  man/Makefile
                  doc/Makefile
                  doc/html/Makefile])
-		 
+                 
 AC_OUTPUT
 
 AC_MSG_NOTICE([
