@@ -1,7 +1,8 @@
-2022-09-17  Anthony Bradford  <anthony_bradford@yahoo.com>
+2022-09-26  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* Updated to GNU automake 1.16.5, GNU autoconf 2.71
 	* Fixed compiler warnings with g++ 11.2.0
 	* Fixed compiler errors with QuantLib-1.27
+	* Fixed compiler errors with GTK+ 2
 	* Updated to Texinfo 6.8
 
 2016-02-06  Anthony Bradford  <anthony_bradford@yahoo.com>
