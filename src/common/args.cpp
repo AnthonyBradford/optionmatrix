@@ -256,11 +256,11 @@ void program_usage(const char *isConsoleVersion)
     printf("Usage: %s [OPTION] ...\n", PACKAGE);
     
 #ifdef HAVE_LIBGTK_3
-    printf("GTK 3 ");
+    printf("GTK+ 3 ");
 #endif
 
 #ifdef HAVE_LIBGTK_X11_2_0
-    printf("GTK 2 ");
+    printf("GTK+ 2 ");
 #endif
  
   }
