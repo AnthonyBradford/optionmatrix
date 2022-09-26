@@ -249,10 +249,12 @@ void program_version()
 void program_usage(const char *isConsoleVersion)
 {
 
-  if( isConsoleVersion )
+  if( isConsoleVersion ) {
     printf("Usage: %s_console [OPTION] ...\n", PACKAGE);
-  else
+  } else
+  {
     printf("Usage: %s [OPTION] ...\n", PACKAGE);
+  }
 
   printf("Financial Derivatives Calculator featuring models from ");
 
@@ -288,10 +290,12 @@ void program_usage(const char *isConsoleVersion)
 
   printf("Program with no arguments will launch the %s Application.  ", ( isConsoleVersion ? "Curses" : "Gtk+") );
 
-  if( isConsoleVersion )
+  if( isConsoleVersion ) {
     printf("See optionmatrix for the GTK+ Version.  ");
-  else
+  } else
+  {
     printf("See optionmatrix_console for the Curses Version.  ");
+  }
 
   printf("Command line arguments can be used to list and test model execution time on the shell level.  ");
 
