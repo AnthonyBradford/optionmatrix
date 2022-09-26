@@ -6115,8 +6115,6 @@ fi
 
 
 
-# check for m...
-
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for pow in -lm" >&5
 printf %s "checking for pow in -lm... " >&6; }
 if test ${ac_cv_lib_m_pow+y}
@@ -6161,12 +6159,13 @@ then :
 fi
 
 
-# check for gtk...
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gtk" >&5
-printf %s "checking for gtk... " >&6; }
-without_curses=true
-without_gtk3=true
-without_gtk2=true
+ac_ext=cpp
+ac_cpp='$CXXCPP $CPPFLAGS'
+ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
+
+
 
 
 
@@ -6298,6 +6297,7 @@ printf "%s\n" "no" >&6; }
 	fi
 fi
 
+
 pkg_failed=no
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gtk+-3.0" >&5
 printf %s "checking for gtk+-3.0... " >&6; }
@@ -6356,40 +6356,7 @@ fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$GTK_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (gtk+-3.0) were not met:
 
-$GTK_PKG_ERRORS
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables GTK_CFLAGS
-and GTK_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details." "$LINENO" 5
-elif test $pkg_failed = untried; then
-        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
-printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
-as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively, you may set the environment variables GTK_CFLAGS
-and GTK_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
-See \`config.log' for more details" "$LINENO" 5; }
-else
-	GTK_CFLAGS=$pkg_cv_GTK_CFLAGS
-	GTK_LIBS=$pkg_cv_GTK_LIBS
-        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-printf "%s\n" "yes" >&6; }
-	without_gtk3=false
-fi
-if test $without_gtk3 = true
-then
 
 pkg_failed=no
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gtk+-2.0" >&5
@@ -6462,9 +6429,7 @@ else
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
 
-    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for Gtk2.0 libraries" >&5
-printf %s "checking for Gtk2.0 libraries... " >&6; }
-    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gtk_main in -lgtk-x11-2.0" >&5
+         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gtk_main in -lgtk-x11-2.0" >&5
 printf %s "checking for gtk_main in -lgtk-x11-2.0... " >&6; }
 if test ${ac_cv_lib_gtk_x11_2_0_gtk_main+y}
 then :
@@ -6475,19 +6440,18 @@ LIBS="-lgtk-x11-2.0  $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-char gtk_main ();
+namespace conftest {
+  extern "C" int gtk_main ();
+}
 int
 main (void)
 {
-return gtk_main ();
+return conftest::gtk_main ();
   ;
   return 0;
 }
 _ACEOF
-if ac_fn_c_try_link "$LINENO"
+if ac_fn_cxx_try_link "$LINENO"
 then :
   ac_cv_lib_gtk_x11_2_0_gtk_main=yes
 else $as_nop
@@ -6507,13 +6471,139 @@ then :
 
 fi
 
-    without_gtk2=false
 
 fi
+
+
+elif test $pkg_failed = untried; then
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+
+
+pkg_failed=no
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gtk+-2.0" >&5
+printf %s "checking for gtk+-2.0... " >&6; }
+
+if test -n "$GTK_CFLAGS"; then
+    pkg_cv_GTK_CFLAGS="$GTK_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0") 2>&5
+  ac_status=$?
+  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
 else
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for Gtk3.0 libraries" >&5
-printf %s "checking for Gtk3.0 libraries... " >&6; }
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gtk_main in -lgtk-3" >&5
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$GTK_LIBS"; then
+    pkg_cv_GTK_LIBS="$GTK_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0") 2>&5
+  ac_status=$?
+  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        GTK_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "gtk+-2.0" 2>&1`
+        else
+	        GTK_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "gtk+-2.0" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$GTK_PKG_ERRORS" >&5
+
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Cannot find GTK: Is pkg-config in path?" >&5
+printf "%s\n" "$as_me: WARNING: Cannot find GTK: Is pkg-config in path?" >&2;}
+elif test $pkg_failed = untried; then
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Cannot find GTK: Is pkg-config in path?" >&5
+printf "%s\n" "$as_me: WARNING: Cannot find GTK: Is pkg-config in path?" >&2;}
+else
+	GTK_CFLAGS=$pkg_cv_GTK_CFLAGS
+	GTK_LIBS=$pkg_cv_GTK_LIBS
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+
+         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gtk_main in -lgtk-x11-2.0" >&5
+printf %s "checking for gtk_main in -lgtk-x11-2.0... " >&6; }
+if test ${ac_cv_lib_gtk_x11_2_0_gtk_main+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lgtk-x11-2.0  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+namespace conftest {
+  extern "C" int gtk_main ();
+}
+int
+main (void)
+{
+return conftest::gtk_main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"
+then :
+  ac_cv_lib_gtk_x11_2_0_gtk_main=yes
+else $as_nop
+  ac_cv_lib_gtk_x11_2_0_gtk_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_gtk_x11_2_0_gtk_main" >&5
+printf "%s\n" "$ac_cv_lib_gtk_x11_2_0_gtk_main" >&6; }
+if test "x$ac_cv_lib_gtk_x11_2_0_gtk_main" = xyes
+then :
+  printf "%s\n" "#define HAVE_LIBGTK_X11_2_0 1" >>confdefs.h
+
+  LIBS="-lgtk-x11-2.0 $LIBS"
+
+fi
+
+
+fi
+
+
+else
+	GTK_CFLAGS=$pkg_cv_GTK_CFLAGS
+	GTK_LIBS=$pkg_cv_GTK_LIBS
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+
+     { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gtk_main in -lgtk-3" >&5
 printf %s "checking for gtk_main in -lgtk-3... " >&6; }
 if test ${ac_cv_lib_gtk_3_gtk_main+y}
 then :
@@ -6524,19 +6614,18 @@ LIBS="-lgtk-3  $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-char gtk_main ();
+namespace conftest {
+  extern "C" int gtk_main ();
+}
 int
 main (void)
 {
-return gtk_main ();
+return conftest::gtk_main ();
   ;
   return 0;
 }
 _ACEOF
-if ac_fn_c_try_link "$LINENO"
+if ac_fn_cxx_try_link "$LINENO"
 then :
   ac_cv_lib_gtk_3_gtk_main=yes
 else $as_nop
@@ -6556,21 +6645,13 @@ then :
 
 fi
 
-  CFLAGS="$CFLAGS -DGTK_DISABLE_SINGLE_INCLUDES -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGSEAL_ENABLE"
-  without_gtk3=false
+     CFLAGS="$CFLAGS -DGTK_DISABLE_SINGLE_INCLUDES -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGSEAL_ENABLE"
+
 fi
 
 CFLAGS="$CFLAGS $GTK_CFLAGS"
 CPPFLAGS="$CPPFLAGS $GTK_CFLAGS"
 LIBS="$LIBS $GTK_LIBS"
-
-ac_ext=cpp
-ac_cpp='$CXXCPP $CPPFLAGS'
-ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
-
-
 
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for initscr in -lcurses" >&5
 printf %s "checking for initscr in -lcurses... " >&6; }
@@ -6609,13 +6690,12 @@ printf "%s\n" "$ac_cv_lib_curses_initscr" >&6; }
 if test "x$ac_cv_lib_curses_initscr" = xyes
 then :
 
-                                      CPPFLAGS="$CPPFLAGS -I/curses"
-                                      LIBS="$LIBS -lcurses"
-                                      without_curses=false
+      CPPFLAGS="$CPPFLAGS -I/curses"
+      LIBS="$LIBS -lcurses"
 
 else $as_nop
 
-                                      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for initscr in -lncurses" >&5
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for initscr in -lncurses" >&5
 printf %s "checking for initscr in -lncurses... " >&6; }
 if test ${ac_cv_lib_ncurses_initscr+y}
 then :
@@ -6652,13 +6732,12 @@ printf "%s\n" "$ac_cv_lib_ncurses_initscr" >&6; }
 if test "x$ac_cv_lib_ncurses_initscr" = xyes
 then :
 
-      			      	      CPPFLAGS="$CPPFLAGS -I/ncurses"
-				      LIBS="$LIBS -lncurses"
-                                      without_curses=false
+            CPPFLAGS="$CPPFLAGS -I/ncurses"
+            LIBS="$LIBS -lncurses"
 
 else $as_nop
 
-                                      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for initscr in -lpdcurses" >&5
+            { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for initscr in -lpdcurses" >&5
 printf %s "checking for initscr in -lpdcurses... " >&6; }
 if test ${ac_cv_lib_pdcurses_initscr+y}
 then :
@@ -6695,13 +6774,12 @@ printf "%s\n" "$ac_cv_lib_pdcurses_initscr" >&6; }
 if test "x$ac_cv_lib_pdcurses_initscr" = xyes
 then :
 
-                                      CPPFLAGS="$CPPFLAGS -I/pdcurses"
-                                      LIBS="$LIBS -lpdcurses"
-                                      without_curses=false
+            CPPFLAGS="$CPPFLAGS -I/pdcurses"
+            LIBS="$LIBS -lpdcurses"
 
 else $as_nop
 
-                                      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Cannot find curses" >&5
+            { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Cannot find curses" >&5
 printf "%s\n" "$as_me: WARNING: Cannot find curses" >&2;}
 
 fi
@@ -6908,7 +6986,7 @@ if test "x$ac_cv_lib_newmat_main" = xyes
 then :
 
                       CPPFLAGS="$CPPFLAGS -I/newmat"
-		      LIBS="$LIBS -lnewmat"
+                      LIBS="$LIBS -lnewmat"
                       ac_fn_cxx_check_header_compile "$LINENO" "newmat/newmat.h" "ac_cv_header_newmat_newmat_h" "$ac_includes_default"
 if test "x$ac_cv_header_newmat_newmat_h" = xyes
 then :
@@ -6958,7 +7036,7 @@ if test "x$ac_cv_lib_itpp_main" = xyes
 then :
 
                       CPPFLAGS="$CPPFLAGS -I/itpp"
-		      LIBS="$LIBS -litpp"
+                      LIBS="$LIBS -litpp"
                       ac_fn_cxx_check_header_compile "$LINENO" "itpp/itbase.h" "ac_cv_header_itpp_itbase_h" "$ac_includes_default"
 if test "x$ac_cv_header_itpp_itbase_h" = xyes
 then :
@@ -7023,9 +7101,9 @@ if test x"${QUANTLIB}" == x"yes" ; then
     # also test for quantlib version using result from quantlib-config --version
     case ${pkg_version} in
     0.1.*|0.2.*|0.3.*|0.4.*|0.8.*|0.9.*|1.0.*|1.1.*|1.2.*|1.3.*)
-	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: OptionMatrix needs QuantLib (>= 1.4.0)." >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: OptionMatrix needs QuantLib (>= 1.4.0)." >&5
 printf "%s\n" "$as_me: WARNING: OptionMatrix needs QuantLib (>= 1.4.0)." >&2;}
-	;;
+        ;;
     esac
 
     # now use all these
