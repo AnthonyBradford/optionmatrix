@@ -1,5 +1,7 @@
 2022-09-26  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* Updated to GNU automake 1.16.5, GNU autoconf 2.71
+	* configure.ac added AM_MAINTAINER_MODE so git clone
+	  doesn't re-run configure with make.
 	* Fixed compiler warnings with g++ 11.2.0
 	* Fixed compiler errors with QuantLib-1.27
 	* Fixed compiler errors with GTK+ 2
