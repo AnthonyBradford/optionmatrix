@@ -4,6 +4,7 @@
 AC_PREREQ([2.71])
 AC_INIT([OptionMatrix],[1.4.4],[anthony_bradford@yahoo.com],[optionmatrix],[https://sourceforge.net/projects/optionmatrix/])
 AM_INIT_AUTOMAKE([1.9 tar-ustar subdir-objects])
+AM_MAINTAINER_MODE
 AC_CONFIG_SRCDIR([src/gtk/gtk_scale.cpp])
 AC_CONFIG_HEADERS([config.h])
 
