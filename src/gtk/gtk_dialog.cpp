@@ -31,10 +31,9 @@
 
 void on_dialogProperties_ok( GtkWidget *widget, struct _properties *properties )
 {
-  //g_print("on_dialogProperties_ok():\n");;
+  g_print("on_dialogProperties_ok():\n");;
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelTimeError),"");
   gtk_widget_hide(properties->GtkInfo.labelTimeError);
-
   properties->occurence_day = gtk_combo_box_get_active(GTK_COMBO_BOX(properties->GtkInfo.comboboxWeekday));
 
   if( properties->occurence_day == 0 )
@@ -138,7 +137,7 @@ int on_dialogProperties_delete_event( GtkWidget *widget, const struct _propertie
 
 void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *properties )
 {
-  //g_print ("on_buttonProperties_clicked():\n");
+  g_print("on_buttonProperties_clicked():\n");
 
   int index;
   struct elementList listWeekdays[7];
@@ -165,7 +164,9 @@ void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *p
   set_up_combobox_with_array2(properties->GtkInfo.comboboxOccurance, listOccurance, sizeof(listOccurance) / sizeof(listOccurance[0]));
   gtk_combo_box_set_active(GTK_COMBO_BOX(properties->GtkInfo.comboboxOccurance), properties->occurence_in_month-1);
   gtk_combo_box_set_active(GTK_COMBO_BOX(properties->GtkInfo.comboboxWeekday), occurence_day);
-  gtk_combo_box_set_active(GTK_COMBO_BOX(properties->GtkInfo.comboboxOccurance), properties->occurence_in_month-1);
+
+  gtk_spin_button_set_value(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonDayOffset), properties->occurence_plus_offset);
+  g_print("properties->occurence_plus_offset = %d\n", properties->occurence_plus_offset);
 
   g_signal_connect(G_OBJECT (properties->GtkInfo.spinbuttonDayOffset), "value-changed", G_CALLBACK(on_spinbuttonDayOffset_value_changed), &properties);
 
