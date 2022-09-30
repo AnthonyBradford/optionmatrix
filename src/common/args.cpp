@@ -343,7 +343,7 @@ void program_usage(const char *isConsoleVersion)
   printf("  -v, --version           output version information\n\n");
   printf("  -l, --list              list models\n");
   printf("  -s, --source            print model source code which cannot be accessed\n");
-  printf("  -d, --debug             create %s.log debug file\n", PACKAGE);
+  printf("  -d, --debug             create %s.log debug file in home directory\n", PACKAGE);
   printf("  -p, --price             test all pricing models\n");
   printf("  -q, --quiet             test all pricing models in quiet mode\n");
   printf("  -m, --model NUMBER      time test model number\n");

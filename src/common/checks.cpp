@@ -174,7 +174,7 @@ void program_usage_checks()
 
   printf("\n\n");
   printf("  -q, --quiet           do not display output during option computations\n");
-  printf("  -d, --debug           create %s.log debug file\n", PACKAGE);
+  printf("  -d, --debug           create %s.log debug file in home directory\n", PACKAGE);
   printf("  -h, --help            display this help and exit\n");
   printf("  -v, --version         output version information\n");
 
