@@ -11,6 +11,7 @@ man/optionmatrix_console.1
 *.Po
 *.xz
 *.lz
+*.bak
 doc/optionmatrix.t2p/*
 doc/optionmatrix.txt
 doc/optionmatrix.dbk
@@ -109,4 +110,3 @@ src/models/metaoptions/tests/quanto_check
 .dirstamp
 optionmatrix-*.zip
 typescript
-.bak
