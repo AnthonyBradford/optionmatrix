@@ -109,3 +109,4 @@ src/models/metaoptions/tests/quanto_check
 .dirstamp
 optionmatrix-*.zip
 typescript
+.bak
