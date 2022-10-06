@@ -106,6 +106,8 @@ void show_label_expirations(const struct _properties *properties)
 
 void updateVolatility(int modeltype, const struct _properties *properties)
 {
+  g_print("updateVolatility()\n");
+  
   if( option_algorithms[modeltype].supportVolatility )
   {
     gtk_widget_show(properties->GtkInfo.labelStandardDeviation);
@@ -120,9 +122,14 @@ void updateVolatility(int modeltype, const struct _properties *properties)
 
 void updateTime(int modeltype, struct _properties *properties)
 {
+
+  g_print("updateTime()\n");
+  
   if( option_algorithms[modeltype].assetClass == FUTURES_CLASS ||
       option_algorithms[modeltype].assetClass == BOND_CLASS )
   {
+    g_print("FUTURES_CLAS || BOND_CLASS hide\n");
+    
     gtk_widget_hide(properties->GtkInfo.labelCycle);
     gtk_widget_hide(properties->GtkInfo.comboboxCycle);
     gtk_widget_hide(properties->GtkInfo.spinbuttonTime2);
@@ -139,6 +146,8 @@ void updateTime(int modeltype, struct _properties *properties)
 
   if( option_algorithms[modeltype].perpetual )
   {
+    g_print("perpetual hide\n");
+    
     gtk_widget_hide(properties->GtkInfo.spinbuttonTime);
     gtk_widget_hide(properties->GtkInfo.label1);
     gtk_widget_hide(properties->GtkInfo.labelDaysToExpr);
@@ -159,15 +168,15 @@ void updateTime(int modeltype, struct _properties *properties)
     gtk_widget_hide(properties->GtkInfo.buttonCalendar3);
     gtk_widget_hide(properties->GtkInfo.label2);
     gtk_widget_hide(properties->GtkInfo.label3);
-    //g_print("label2 hide\n");
     gtk_widget_hide(properties->GtkInfo.labelDaysToDividend);
     gtk_widget_hide(properties->GtkInfo.labelDaysToDividend2);
     gtk_widget_hide(properties->GtkInfo.spinbuttonDaysToDividend);
+    gtk_widget_hide(properties->GtkInfo.spinbuttonDaysToDividend2);
     gtk_widget_hide(properties->GtkInfo.labelExpirations);
     gtk_widget_hide(properties->GtkInfo.scaleMonths);
     properties->decimalorcalendar = DECIMALS;
     properties->format = DECIMAL_GREEKS;
-    //g_print("perpetual hide\n");
+    
     return;
   }
 
@@ -302,6 +311,8 @@ void updateTime(int modeltype, struct _properties *properties)
 
 void updatePrecision(int modeltype, struct _properties *properties)
 {
+  g_print("updatePrecision()\n");
+  
   gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonPrice),properties->precision);
   gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonRate),properties->precision);
   gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonStandardDeviation),properties->precision);
@@ -737,6 +748,8 @@ int main(int argc, char *argv[])
 
   g_signal_connect(G_OBJECT (properties.GtkInfo.calendar1), "day-selected", G_CALLBACK(on_calendar1_day_selected), &properties);
 
+  g_signal_connect(G_OBJECT(properties.GtkInfo.window), "configure-event", G_CALLBACK(window_configure_event), &properties);
+
   properties.GtkInfo.spin_int_precision   = GTK_ADJUSTMENT(gtk_adjustment_new (properties.precision, 0.0,  15.0,   1.0,  2.0, 0));
   properties.GtkInfo.spin_int_steps       = GTK_ADJUSTMENT(gtk_adjustment_new (100,   1,  50000,     1,   10, 0));
   properties.GtkInfo.spin_int_sleep_delay = GTK_ADJUSTMENT(gtk_adjustment_new (1  ,   1,  86400,     1,   10, 0));
@@ -1007,3 +1020,8 @@ int main(int argc, char *argv[])
   exit(EXIT_SUCCESS);
 
 } // int main(int argc, char *argv[])
+
+void window_configure_event( GtkWidget *widget, struct _properties *properties )
+{
+  g_print("window_configure_event()\n");
+}
