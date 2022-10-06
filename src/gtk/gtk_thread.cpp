@@ -31,11 +31,42 @@
 #include "gtk_main.h"
 #include "../common/prototypes.h"
 
+#include <sys/time.h>
+
+static void fill_line(char *lineData, int line_len, const std::vector<string> &fields)
+{
+  string data;
+  for (std::vector<string>::const_iterator it = fields.cbegin(); it != fields.cend(); it++)
+  {
+    if (*it != "")
+      data += *it + ", ";
+  }
+  data += "\n";
+  strncpy(lineData, data.c_str(), line_len - 1);
+}
+
 gboolean calculate_options(struct _properties *properties)
 {
   //g_print("calculate_options()\n");
   //g_print("properties->format = %d\n", properties->format );
   //g_print("properties->decimalorcalendar = %d\n",properties->decimalorcalendar);
+
+  clock_t c0, c1;
+  struct timeval start, end;
+
+  c0 = clock();
+  gettimeofday(&start, NULL);
+  
+  gint width;
+  gint height;
+  gtk_window_get_size(GTK_WINDOW(properties->GtkInfo.window),&width,&height);
+  g_print("Window width = %d, height = %d\n", width,height);
+  
+  // OptionMatrix gets a window size of about 704 pixels...
+  // When the user enlarges the window display more option rows
+  double rowMultiplier = ((double) height - (double) 704) / (double) 704;
+  rowMultiplier = (double) rowMultiplier * (double) 1.50;
+  g_print("Height multiplier = %f\n", rowMultiplier);
 
   static int messageClear;
 
@@ -92,7 +123,7 @@ gboolean calculate_options(struct _properties *properties)
 
   int totalCounter = 0;
 
-  char dataExport[20000] = { 0 };
+  char dataExport[100000] = { 0 };
   char lineData[50000] = { 0 };
 
   double cumStrikeLeg1 = 0.0;
@@ -266,7 +297,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
       snprintf(lineData,sizeof(lineData),"Discount Factor T1   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
       snprintf(description,sizeof(description),"Discount Factor T2");
       snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime);
@@ -276,7 +307,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
       snprintf(lineData,sizeof(lineData),"Discount Factor T2   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
       snprintf(description,sizeof(description),"Spot Rate T1");
       snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime2);
@@ -286,7 +317,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
       snprintf(lineData,sizeof(lineData),"Spot Rate T1   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
       snprintf(description,sizeof(description),"Spot Rate T2");
       snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime);
@@ -296,7 +327,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
       snprintf(lineData,sizeof(lineData),"Spot Rate T2   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
       
       snprintf(description,sizeof(description),"Forward T1 : T2");
       timeDecimal[0] = dateTime[0] = 0; 
@@ -305,7 +336,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
       snprintf(lineData,sizeof(lineData),"Forward T1 : T2   %.*f\n", properties->precision,properties->data.forward);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
       gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "", X2, "", X3, "", X4, "", -1);
@@ -321,7 +352,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"Bond Price   %.*f\n",properties->precision,properties->data.bond_price);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.pv_continous )
@@ -333,7 +364,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"Present Value %.*f\n",properties->precision,properties->data.pv_continous);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.pv_discrete )
@@ -345,7 +376,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"Present Value Discrete   %.*f\n",properties->precision,properties->data.pv_discrete);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.YTMContinous )
@@ -357,7 +388,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"YTM   %.*f\n",properties->precision,properties->data.YTMContinous);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.YTMDiscrete )
@@ -369,7 +400,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"YTM Discrete   %.*f\n",properties->precision,properties->data.YTMDiscrete);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.durationContinous )
@@ -381,7 +412,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"Duration   %.*f\n",properties->precision,properties->data.durationContinous);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.durationDiscrete )
@@ -393,7 +424,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"Duration Discrete   %.*f\n",properties->precision,properties->data.durationDiscrete);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.durationModifiedDiscrete )
@@ -405,7 +436,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"Duration Modified Discrete   %.*f\n",properties->precision,properties->data.durationModifiedDiscrete);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.durationMacaulayDiscrete )
@@ -417,7 +448,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"Duration Macaulay Discrete   %.*f\n",properties->precision,properties->data.durationMacaulayDiscrete);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.convexityContinous )
@@ -429,7 +460,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"Convexity %.*f\n",properties->precision,properties->data.convexityContinous);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.convexityDiscrete )
@@ -441,7 +472,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"Convexity Discrete %.*f\n",properties->precision,properties->data.convexityDiscrete);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.call )
@@ -453,7 +484,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"Call   %.*f\n",properties->precision,properties->data.call);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.irr )
@@ -465,7 +496,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"IRR   %.*f\n",properties->precision,properties->data.irr);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.irr_discrete )
@@ -477,7 +508,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"IRR Discrete   %.*f\n",properties->precision,properties->data.irr_discrete);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->data.uirr )
@@ -489,11 +520,17 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, dateTime, -1);
 
       snprintf(lineData,sizeof(lineData),"UIRR   True\n");
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     if( properties->textExport == true )
       text_export(properties, dataExport);
+
+    gettimeofday(&end, NULL);
+    c1 = clock();
+
+    g_print("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000) - (start.tv_sec + (double) start.tv_usec / 1000000)));
+    g_print("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);    
 
     return TRUE;
 
@@ -530,7 +567,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
     snprintf(lineData,sizeof(lineData),"Discount Factor T1   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
     snprintf(description,sizeof(description),"Discount Factor T2");
     snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime);
@@ -539,7 +576,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_append(properties->GtkInfo.liststore1, &iter);
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
     snprintf(lineData,sizeof(lineData),"Discount Factor T2   %.*f   %s   %.*f\n",properties->precision,properties->data.discount_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
     snprintf(description,sizeof(description),"Spot Rate T1");
     snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime2);
@@ -549,7 +586,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
     snprintf(lineData,sizeof(lineData),"Spot Rate T1   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t2,decimal_date_to_real_date(decimalTime2),properties->precision,decimalTime2);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
     snprintf(description,sizeof(description),"Spot Rate T2");
     snprintf(timeDecimal,sizeof(timeDecimal),"%.*f", properties->precision,decimalTime);
@@ -559,7 +596,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
     snprintf(lineData,sizeof(lineData),"Spot Rate T2   %.*f   %s   %.*f\n",properties->precision,properties->data.spot_t1,decimal_date_to_real_date(decimalTime),properties->precision,decimalTime);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
     snprintf(description,sizeof(description),"Forward T1 : T2");
     timeDecimal[0] = dateTime[0] = 0; 
@@ -568,7 +605,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, description, X2, value, X3, dateTime, X4, timeDecimal, -1);
 
     snprintf(lineData,sizeof(lineData),"Forward T1 : T2   %.*f\n", properties->precision,properties->data.forward);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
     if( properties->data.term )
       delete properties->data.term;
@@ -576,6 +613,12 @@ gboolean calculate_options(struct _properties *properties)
     if( properties->textExport == true )
       text_export(properties, dataExport);
 
+    gettimeofday(&end, NULL);
+    c1 = clock();
+
+    g_print("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000) - (start.tv_sec + (double) start.tv_usec / 1000000)));
+    g_print("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);        
+    
     return TRUE;
 
   } // if( option_algorithms[properties->modeltype].assetClass == TERMSTRUCTURE_CLASS )
@@ -585,7 +628,7 @@ gboolean calculate_options(struct _properties *properties)
   if( properties->format == DECIMAL_FUTURE )
   {
     g_print("DECIMAL_FUTURE\n");
-    g_print("properties->decimalorcalendar = %d\n", properties->decimalorcalendar);
+    //g_print("properties->decimalorcalendar = %d\n", properties->decimalorcalendar);
 
     struct _data futuredata;
     futuredata = future(&properties->data);
@@ -596,7 +639,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Spot Price", X2, textSpot, -1);
 
     snprintf(lineData,sizeof(lineData)," %s, %s\n", "Spot Price",textSpot);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
     char textFuturesPrice[200] = { 0 };
     snprintf(textFuturesPrice,sizeof(textFuturesPrice),"%.*f (%s)",properties->precision,properties->data.future,(properties->data.future > properties->data.price ? "Cotango" : "Backwardation") );
@@ -604,7 +647,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Futures Price", X2, textFuturesPrice, -1);
 
     snprintf(lineData,sizeof(lineData)," %s, %s\n", "Futures Price",textFuturesPrice);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
     char textRate[200] = { 0 };
     snprintf(textRate,sizeof(textRate),"%.*f%%",properties->precision,properties->data.rate*100);
@@ -612,7 +655,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Interest Rate", X2, textRate, -1);
 
     snprintf(lineData,sizeof(lineData)," %s, %s\n", "Interest Rate", textRate);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
     char textBasis[200] = { 0 };
     snprintf(textBasis,sizeof(textBasis),"%.*f", properties->precision,properties->data.price-properties->data.future);
@@ -620,7 +663,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Basis", X2, textBasis, -1);
 
     snprintf(lineData,sizeof(lineData)," %s, %s\n", "Basis", textBasis);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
     if( option_algorithms[properties->modeltype].supportDividend )
     {
@@ -630,7 +673,7 @@ gboolean calculate_options(struct _properties *properties)
       gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Div yield underlying", X2, textDiv, -1);
 
       snprintf(lineData,sizeof(lineData)," %s, %s\n", "Div yield underlying", textDiv);
-      strncat(dataExport,lineData,sizeof(dataExport)-1);
+      strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
     char textExpr[200] = { 0 };
@@ -639,7 +682,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Expiration Date", X2, textExpr, -1);
 
     snprintf(lineData,sizeof(lineData)," %s, %s\n", "Expiration Date",textExpr);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     
     char textTicker[200] = { 0 };
     snprintf(textTicker,sizeof(textTicker),"%s%02d",future_codes[decimal_date_to_int_month(adjust_to_current_time(properties->data.t[0]-properties->data.te,0))],decimal_date_to_int_year(adjust_to_current_time(properties->data.t[0]-properties->data.te,0)));
@@ -648,7 +691,7 @@ gboolean calculate_options(struct _properties *properties)
     gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, "Ticker", X2, textTicker, -1);
 
     snprintf(lineData,sizeof(lineData)," %s, %s\n", "Ticker", textTicker);
-    strncat(dataExport,lineData,sizeof(dataExport)-1);
+    strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
 
   } // if( properties->format == DECIMAL_FUTURE )
 
@@ -700,9 +743,9 @@ gboolean calculate_options(struct _properties *properties)
 
         if( properties->textExport == true )
         {
-          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s\n", 
-                textMonthDayYear, textPrice, textDaysToExpr, textDecimalDate, textTicker);
-          strncat(dataExport,lineData,sizeof(dataExport)-1);
+          fill_line(lineData,sizeof(lineData),
+               std::vector<string>{textMonthDayYear, textPrice, textDaysToExpr, textDecimalDate, textTicker});
+          strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
         }
 
       } else if( properties->spreads == 1 )
@@ -727,9 +770,9 @@ gboolean calculate_options(struct _properties *properties)
 
         if( properties->textExport == true )
         {
-          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", 
-              textMonthDayYear, textPrice, textDaysToExpr, textDecimalDate, textTicker, textMonthDayYear2, textPrice2, textDaysToExpr2, textDecimalDate2, textTicker2, textSpread, textSpreadTicker);
-          strncat(dataExport,lineData,sizeof(dataExport)-1);
+          fill_line(lineData,sizeof(lineData),
+               std::vector<string>{textMonthDayYear, textPrice, textDaysToExpr, textDecimalDate, textTicker, textMonthDayYear2, textPrice2, textDaysToExpr2, textDecimalDate2, textTicker2, textSpread, textSpreadTicker});
+          strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
         }
 
       }
@@ -737,8 +780,12 @@ gboolean calculate_options(struct _properties *properties)
       properties->time_to_expiration++;  properties->days_to_expiration++;  properties->expiration_month++;  properties->expiration_year++;
       properties->time_to_expiration2++;  properties->days_to_expiration2++;  properties->expiration_month2++;  properties->expiration_year2++;
 
-      if(index++ >= 17)
+      if( index++ >= 17 + (int) ((double) 17 * (double) rowMultiplier ))
+      {
+        g_print("%d rows of options and analytics created\n", index);
         break;
+      }
+      
     }
 
     /* reset pointers */
@@ -840,12 +887,16 @@ gboolean calculate_options(struct _properties *properties)
 
          if( properties->textExport == true )
          {
-           snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s %s %s\n", textPrice, textStrike, textCall[0], textPut[0], textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textCallElasticity, textPutElasticity);
-           strncat(dataExport,lineData,sizeof(dataExport)-1);
+           fill_line(lineData, sizeof(lineData),
+                std::vector<string>{textPrice, textStrike, textCall[0], textPut[0], textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textCallElasticity, textPutElasticity});
+           strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
          }
 
-         if( index++ >= 17 )
-          break;
+         if( index++ >= 17 + (int) ((double) 17 * (double) rowMultiplier ))
+         {
+           g_print("%d rows of options and analytics created\n", index);
+           break;
+         }
 
          if( !option_algorithms[properties->modeltype].supportStrikes )
           break;
@@ -906,10 +957,12 @@ gboolean calculate_options(struct _properties *properties)
 
         totalCounter++;
 
-        if( index++ >= 18 )
+        if( index++ >= 18 + (int) ((double) 18 * (double) rowMultiplier ))
         {
+          g_print("%d rows of options and analytics created\n", index);
           break;
         }
+ 
       }
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -984,9 +1037,9 @@ gboolean calculate_options(struct _properties *properties)
 
         if( properties->textExport == true )
         {
-          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
-textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textDecimalDate, textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textLegacyCall, textLegacyPut);
-          strncat(dataExport,lineData,sizeof(dataExport)-1);
+          fill_line(lineData,sizeof(lineData),
+               std::vector<string>{textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textDecimalDate, textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textLegacyCall, textLegacyPut});
+          strncat(dataExport,lineData,strlen(dataExport) - sizeof(lineData)-1);
         }
 
       } else if( properties->spreads == 1 )
@@ -1020,9 +1073,9 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
         if( properties->textExport == true )
         {
-          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
-                textPrice, textMonth, textStrike, textCall[0], textPut[0], textMonthLeg2[totalCounter], textStrikeLeg2[totalCounter], textCallLeg2, textPutLeg2, textCallCallSpread, textPutPutSpread, textCallPutSpread, textPutCallSpread);
-          strncat(dataExport,lineData,sizeof(dataExport)-1);
+          fill_line(lineData,sizeof(lineData),
+               std::vector<string>{textPrice, textMonth, textStrike, textCall[0], textPut[0], textMonthLeg2[totalCounter], textStrikeLeg2[totalCounter], textCallLeg2, textPutLeg2, textCallCallSpread, textPutPutSpread, textCallPutSpread, textPutCallSpread});
+          strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
         }
 
       }
@@ -1031,10 +1084,12 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
       totalCounter++;
 
-      if( index++ >= 18 )
+     if( index++ >= 18 + (int) ((double) 18 * (double) rowMultiplier ))
       {
+        g_print("%d rows of options and analytics created\n", index);
         break;
       }
+
     }
 
     /* reset pointers */
@@ -1043,9 +1098,9 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
     properties->expiration_year=properties->start_expiration_year;
     properties->time_to_expiration=properties->start_time_to_expiration;
 
-    g_print("cumStrikeLeg1 = %f, cumStrikeLeg2 = %f\n",cumStrikeLeg1,cumStrikeLeg2);
+    //g_print("cumStrikeLeg1 = %f, cumStrikeLeg2 = %f\n",cumStrikeLeg1,cumStrikeLeg2);
     properties->verticalSpread = ( cumStrikeLeg1 != cumStrikeLeg2 );
-    g_print("properties->verticalSpread = %d\n",properties->verticalSpread);
+    //g_print("properties->verticalSpread = %d\n",properties->verticalSpread);
 
   } // if( properties->format == CALENDAR_CUSTOM )
 
@@ -1155,13 +1210,16 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
         if( properties->textExport == true )
         {
-          snprintf(lineData,sizeof(lineData)," %s, %s, %s, %s, %s, %s, %s, %s\n",
-                textPrice, textStrike, textCall[0], textCall[1], textCall[2], textPut[0], textPut[1], textPut[2]);
-          strncat(dataExport,lineData,sizeof(dataExport)-1);
+          fill_line(lineData,sizeof(lineData),
+               std::vector<string>{textPrice, textStrike, textCall[0], textCall[1], textCall[2], textPut[0], textPut[1], textPut[2]});
+          strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
         }
 
-        if( index++ >= 17 )
+        if( index++ >= 18 + (int) ((double) 18 * (double) rowMultiplier ))
+        {
+          g_print("%d rows of options and analytics created\n", index);
           break;
+        }   
 
         if( !option_algorithms[properties->modeltype].supportStrikes )
           break;
@@ -1266,13 +1324,16 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
         if( properties->textExport == true )
         {
-          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", 
-                textPrice, textStrike, textCall[0], textCall[1], textCall[2], textCall[3], textCall[4], textCall[5], textCall[6], textCall[7]);
-          strncat(dataExport,lineData,sizeof(dataExport)-1);
+          fill_line(lineData,sizeof(lineData),
+               std::vector<string>{textPrice, textStrike, textCall[0], textCall[1], textCall[2], textCall[3], textCall[4], textCall[5], textCall[6], textCall[7]});
+          strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
         }
 
-        if( index++ >= 8 )
+        if( index++ >= 8 + (int) ((double) 8 * (double) rowMultiplier ))
+        {
+          g_print("%d rows of call options and analytics created\n", index);
           break;
+        }   
 
         if( !option_algorithms[properties->modeltype].supportStrikes )
           break;
@@ -1369,13 +1430,16 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
         if( properties->textExport == true )
         {
-          snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
-                textPrice, textStrike, textPut[0], textPut[1], textPut[2], textPut[3], textPut[4], textPut[5], textPut[6], textPut[7]);
-          strncat(dataExport,lineData,sizeof(dataExport)-1);
+          fill_line(lineData,sizeof(lineData),
+               std::vector<string>{textPrice, textStrike, textPut[0], textPut[1], textPut[2], textPut[3], textPut[4], textPut[5], textPut[6], textPut[7]});
+          strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
         }
 
-        if( index++ >= 8 )
+        if( index++ >= 8 + (int) ((double) 8 * (double) rowMultiplier ))
+        {
+          g_print("%d rows of put options and analytics created\n", index);
           break;
+        }
 
         if( !option_algorithms[properties->modeltype].supportStrikes )
           break;
@@ -1463,7 +1527,7 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
                 snprintf(textStrikeLeg2[totalCounter],sizeof(textStrikeLeg2[totalCounter]),"%.*f",strike_control[properties->strikestoogle].precision,properties->data.strike);
               }
 
-              g_print("textStrikeLeg2[totalCounter] = %s\n",textStrikeLeg2[totalCounter]);
+              //g_print("textStrikeLeg2[totalCounter] = %s\n",textStrikeLeg2[totalCounter]);
             }
 
             properties->data.t[0] = adjust_to_current_time_and_expr(properties->time_to_expiration2,properties->expiration_time,0);
@@ -1500,8 +1564,11 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
           properties->expiration_year2=properties->start_expiration_year2;
           properties->time_to_expiration2=properties->start_time_to_expiration2;
 
-          if(index++ >= 4)
+          if( index++ >= 4 + (int) ((double) 4 * (double) rowMultiplier ))
+          {
+            g_print("%d rows of options and analytics created\n", index * counter);
             break;
+          }
 
           if( !option_algorithms[properties->modeltype].supportStrikes )
             break;
@@ -1625,9 +1692,9 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
             if( properties->textExport == true )
             {
-              snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
-                    textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textDecimalDate, textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textLegacyCall, textLegacyPut);
-              strncat(dataExport,lineData,sizeof(dataExport)-1);
+              fill_line(lineData,sizeof(lineData),
+                   std::vector<string>{textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textDecimalDate, textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textLegacyCall, textLegacyPut});
+              strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
             }
 
           } else if( properties->spreads == 1 )
@@ -1662,10 +1729,9 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
             if( properties->textExport == true )
             {
-              snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
-                    textPrice, textMonth, textStrike, textCall[0], textPut[0], textMonthLeg2[totalCounter], textStrikeLeg2[totalCounter], textCallLeg2, textPutLeg2, textCallCallSpread, textPutPutSpread, textCallPutSpread, textPutCallSpread);
-
-              strncat(dataExport,lineData,sizeof(dataExport)-1);
+              fill_line(lineData,sizeof(lineData),
+                   std::vector<string>{textPrice, textMonth, textStrike, textCall[0], textPut[0], textMonthLeg2[totalCounter], textStrikeLeg2[totalCounter], textCallLeg2, textPutLeg2, textCallCallSpread, textPutPutSpread, textCallPutSpread, textPutCallSpread});
+              strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
             }
 
             totalCounter++;
@@ -1684,17 +1750,20 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
         properties->expiration_year=properties->start_expiration_year;
         properties->time_to_expiration=properties->start_time_to_expiration;
 
-        if( index++ >= 4 )
+        if( index++ >= 4 + (int) ((double) 4 * (double) rowMultiplier ))       
+        {
+          g_print("%d rows of options and analytics created\n", index * counter);
           break;
+        }
 
         if( !option_algorithms[properties->modeltype].supportStrikes )
           break;
       }
     }
 
-    g_print("cumStrikeLeg1 = %f, cumStrikeLeg2 = %f\n",cumStrikeLeg1,cumStrikeLeg2);
+    //g_print("cumStrikeLeg1 = %f, cumStrikeLeg2 = %f\n",cumStrikeLeg1,cumStrikeLeg2);
     properties->verticalSpread = ( cumStrikeLeg1 != cumStrikeLeg2 );
-    g_print("properties->verticalSpread = %d\n",properties->verticalSpread);
+    //g_print("properties->verticalSpread = %d\n",properties->verticalSpread);
 
   } // if( properties->format == CALENDAR_OPTIONS4 )
 
@@ -1798,8 +1867,9 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
             totalCounter++;
 
-            if( index++ >= 4 )
+            if( index++ >= 4 + (int) ((double) 4 * (double) rowMultiplier ))
             {
+              g_print("%d rows of options and analytics created\n", index);
               break;
             }
 
@@ -1942,10 +2012,10 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
             gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, textPrice, X2, textMonth, X3, textStrike, X4, textCall[0], X5, textPut[0], X6, textDaysToExpr, X7, textDecimalDate, X8, textCallDelta, X9, textPutDelta, X10, textGamma, X11, textVega, X12, textCallTheta, X13, textPutTheta, X14, textCallRho, X15, textPutRho, X16, textLegacyCall, X17, textLegacyPut, -1);
 
             if( properties->textExport == true )
-            {            
-              snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
-                      textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textDecimalDate, textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textLegacyCall, textLegacyPut);
-              strncat(dataExport,lineData,sizeof(dataExport)-1);
+            {
+              fill_line(lineData,sizeof(lineData),
+                   std::vector<string>{textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textDecimalDate, textCallDelta, textPutDelta, textGamma, textVega, textCallTheta, textPutTheta, textCallRho, textPutRho, textLegacyCall, textLegacyPut});
+              strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
             }
 
           } else if( properties->spreads == 1 )
@@ -1978,17 +2048,18 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
             gtk_list_store_set(properties->GtkInfo.liststore1, &iter, X1, textPrice, X2, textMonth, X3, textStrike, X4, textCall[0], X5, textPut[0], X6, textMonthLeg2[totalCounter], X7, textStrikeLeg2[totalCounter], X8, textCallLeg2, X9, textPutLeg2, X10, textCallCallSpread, X11, textPutPutSpread, X12, textCallPutSpread, X13, textPutCallSpread, -1);
 
             if( properties->textExport == true )
-            {            
-              snprintf(lineData,sizeof(lineData),"%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
-                      textPrice, textMonth, textStrike, textCall[0], textPut[0], textMonthLeg2[totalCounter], textStrikeLeg2[totalCounter], textCallLeg2, textPutLeg2, textCallCallSpread, textPutPutSpread, textCallPutSpread, textPutCallSpread);
-              strncat(dataExport,lineData,sizeof(dataExport)-1);
+            {
+              fill_line(lineData,sizeof(lineData),
+                   std::vector<string>{textPrice, textMonth, textStrike, textCall[0], textPut[0], textMonthLeg2[totalCounter], textStrikeLeg2[totalCounter], textCallLeg2, textPutLeg2, textCallCallSpread, textPutPutSpread, textCallPutSpread, textPutCallSpread});
+              strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
             }
 
             totalCounter++;
           }
 
-          if( index++ >= 4 )
+          if( index++ >= 4 + (int) ((double) 4 * (double) rowMultiplier ))       
           {
+            g_print("%d rows of options and analytics created\n", index);
             break;
           }
 
@@ -2009,11 +2080,11 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
     properties->expiration_year=properties->start_expiration_year;
     properties->time_to_expiration=properties->start_time_to_expiration;
 
-    g_print("cumStrikeLeg1 = %f, cumStrikeLeg2 = %f\n",cumStrikeLeg1,cumStrikeLeg2);
+    //g_print("cumStrikeLeg1 = %f, cumStrikeLeg2 = %f\n",cumStrikeLeg1,cumStrikeLeg2);
 
     properties->verticalSpread = ( cumStrikeLeg1 != cumStrikeLeg2 );
 
-    g_print("properties->verticalSpread = %d\n",properties->verticalSpread);
+    //g_print("properties->verticalSpread = %d\n",properties->verticalSpread);
 
   } // if( properties->format == CALENDAR_OPTIONS3 )
 
@@ -2022,6 +2093,12 @@ textPrice, textMonth, textStrike, textCall[0], textPut[0], textDaysToExpr, textD
 
   if ( properties->spreads == 1 )
     spreadName(properties);
+
+  gettimeofday(&end, NULL);
+  c1 = clock();
+
+  g_print("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000) - (start.tv_sec + (double) start.tv_usec / 1000000)));
+  g_print("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);      
 
   return TRUE;
 
