@@ -148,6 +148,8 @@ void on_buttonDividends_clicked(GtkWidget *widget, struct _properties *propertie
 void on_buttonCoupons_clicked( GtkWidget *widget, struct _properties *properties );
 void on_buttonPrincipal_clicked( GtkWidget *widget, struct _properties *properties );
 
+void window_configure_event( GtkWidget *widget, struct _properties *properties );
+
 extern void setup_tree_view3(GtkWidget*);
 extern void setup_tree_view4(GtkWidget*);
 void generic_process_button(struct _properties *properties );
