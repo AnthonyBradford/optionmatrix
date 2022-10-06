@@ -120,7 +120,7 @@ void on_dialogProperties_ok( GtkWidget *widget, struct _properties *properties )
 
 void on_dialogProperties_cancel( GtkWidget *widget, const struct _properties *properties )
 {
-  //g_print("on_dialogProperties_cancel():\n");
+  g_print("on_dialogProperties_cancel():\n");
   gtk_widget_hide(properties->GtkInfo.dialogProperties);
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelTimeError),"");
 

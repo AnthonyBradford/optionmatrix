@@ -170,7 +170,7 @@ void on_spinbuttonDaysToDividend2_focus_in_event(GtkSpinButton *spinbutton, GdkE
 
 void on_spinbuttonTime_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonTime_value_changed()\n");
+  g_print("on_spinbuttonTime_value_changed()\n");
   //g_print("TimeFlag = %s\n",spinbuttonTimeFlag ? "TRUE": "FALSE");
 
   if(properties->GtkInfo.spinbuttonTimeFlag == TRUE)
@@ -184,6 +184,7 @@ void on_spinbuttonTime_value_changed(GtkSpinButton *spinbutton, struct _properti
 void on_spinbuttonTime2_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonTime2_value_changed()\n");
+
   if(properties->GtkInfo.spinbuttonTime2Flag == true)
   {
     properties->data.t[1] = gtk_spin_button_get_value(spinbutton);
@@ -195,6 +196,7 @@ void on_spinbuttonTime2_value_changed(GtkSpinButton *spinbutton, struct _propert
 void on_spinbuttonTime3_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonTime3_value_changed()\n");
+
   if(properties->GtkInfo.spinbuttonTime3Flag == true)
   {
     properties->data.t[2] = gtk_spin_button_get_value(spinbutton);
@@ -205,7 +207,7 @@ void on_spinbuttonTime3_value_changed(GtkSpinButton *spinbutton, struct _propert
 
 void on_spinbuttonDaysToExpr_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonDaysToExpr_value_changed_value_changed()\n");
+  g_print("on_spinbuttonDaysToExpr_value_changed_value_changed()\n");
   
   if(properties->GtkInfo.spinbuttonTimeFlag == true)
   {
@@ -241,7 +243,7 @@ void on_spinbuttonDaysToDividend2_value_changed(GtkSpinButton *spinbutton, struc
 
 void on_spinbuttonRate_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonRate_value_changed()\n");
+  g_print("on_spinbuttonRate_value_changed()\n");
   properties->data.rate = gtk_spin_button_get_value(spinbutton);
 }
 
@@ -253,7 +255,7 @@ void on_spinbuttonStandardDeviation_value_changed(GtkSpinButton *spinbutton, str
 
 void on_spinbuttonDividend_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
-  //g_print("on_spinbuttonDividend_value_changed()\n");
+  g_print("on_spinbuttonDividend_value_changed()\n");
   properties->data.dividend = gtk_spin_button_get_value(spinbutton);
 }
 

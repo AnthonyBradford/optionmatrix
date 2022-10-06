@@ -48,7 +48,7 @@ void on_checkbuttonFilterNegativePrice_toggled(GtkButton *button, struct _proper
 
 void on_checkbuttonDateEngine_toggled(GtkButton *button, struct _properties *properties)
 {
-  //g_print("on_checkbuttonDateEngine_toggled()\n");
+  g_print("on_checkbuttonDateEngine_toggled()\n");
 
   if( properties->GtkInfo.checkbuttonDateEngineIgnore == true )
   {
@@ -224,7 +224,10 @@ void on_checkbuttonDateEngine_toggled(GtkButton *button, struct _properties *pro
 
 void on_checkbuttonRealTime_toggled(GtkButton *button, struct _properties *properties)
 {
+  g_print("on_checkbuttonRealTime_toggled()\n");
+  
   //gtk_toggle_button_get_active()
+  
   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (button)) )
   {
     //g_print("Realtime set\n");
@@ -272,6 +275,8 @@ void on_checkbuttonRealTime_toggled(GtkButton *button, struct _properties *prope
 
 void on_checkbuttonSpreads_toggled(GtkButton *button, struct _properties *properties)
 {
+  g_print("on_checkbuttonSpreads_toggled()\n");
+  
   if( gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (button)) )
   {
     g_print("Use Spreads\n");

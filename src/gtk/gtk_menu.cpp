@@ -32,7 +32,7 @@
 
 void on_menu_quit_activate(GtkWidget *widget, const struct _properties *properties)
 {
-  //g_print ("on_menu_quit_activate():\n");
+  g_print ("on_menu_quit_activate():\n");
   gtk_main_quit();
 }
 
@@ -241,7 +241,7 @@ static gboolean pngTimer(struct _properties *properties)
 
 void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 {
-  //g_print("on_menu_about_activate():\n");
+  g_print("on_menu_about_activate():\n");
 
   const gchar *authors[] = {
     "Anthony Bradford",

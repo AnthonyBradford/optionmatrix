@@ -351,6 +351,8 @@ void set_up_combobox_with_array2(GtkWidget *combo, const struct elementList *arr
 
 void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *properties)
 {
+  g_print("on_comboboxWeekday_changed()\n");
+  
   int value = gtk_combo_box_get_active(combo);
   if( properties->occurence_day != value )
   {
@@ -371,6 +373,8 @@ void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *pr
 
 void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *properties)
 {
+  g_print("on_comboboxOccurance_changed()\n");
+  
   int value = gtk_combo_box_get_active(combo);
   //g_print("occurence change to %d\n",value);
 
@@ -393,7 +397,7 @@ void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *
 
 void on_comboboxStrikes_changed(GtkComboBox *combo, struct _properties *properties)
 {
-  //g_print("on_comboboxStrikes_changed()\n");
+  g_print("on_comboboxStrikes_changed()\n");
   properties->strikestoogle = gtk_combo_box_get_active(combo);
 
   properties->strike_offset = (int) properties->strike_offset;

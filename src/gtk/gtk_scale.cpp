@@ -77,7 +77,7 @@ void calc_strike_scale(struct _properties *properties)
 
 void on_scaleStrikes_value_changed(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties)
 {
-  //g_print("on_scaleStrikes_value_changed()\n");
+  g_print("on_scaleStrikes_value_changed()\n");
 
   double price = properties->data.price;
   double mult;
@@ -127,7 +127,7 @@ void on_scaleStrikes_value_changed2(GtkScaleButton *scaleButton, gdouble value, 
 
 void on_scaleMonths_value_changed(GtkScaleButton *scaleButton,  gdouble value, struct _properties *properties)
 {
-  //g_print("on_scaleStrikes_value_changed()\n");
+  g_print("on_scaleStrikes_value_changed()\n");
   properties->skipmonth = value;
 
   //g_print("value = %f\n",value);

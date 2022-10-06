@@ -32,7 +32,7 @@
 
 void on_radiobutton1_pressed( GtkWidget *widget, struct _properties *properties )
 {
-  g_print ("radiobutton1 was pressed\n");
+  g_print ("on_radiobutton1_pressed()\n");
   properties->format = CALENDAR_OPTIONS3;
 
   if( option_algorithms[properties->modeltype].supportStrikes )
@@ -109,7 +109,7 @@ void on_radiobutton1_pressed( GtkWidget *widget, struct _properties *properties 
 
 void on_radiobutton2_pressed( GtkWidget *widget, struct _properties *properties )
 {
-  g_print ("radiobutton2 was pressed\n");
+  g_print ("on_radiobutton2_pressed()\n");
   properties->format = CALENDAR_OPTIONS4;
 
   if( option_algorithms[properties->modeltype].supportStrikes )
@@ -186,7 +186,7 @@ void on_radiobutton2_pressed( GtkWidget *widget, struct _properties *properties 
 
 void on_radiobutton3_pressed( GtkWidget *widget, struct _properties *properties )
 {
-  g_print ("radiobutton3 was pressed\n");
+  g_print ("on_radiobutton3_pressed()\n");
   properties->format = CALENDAR_CUSTOM;
 
   if( strike_control[properties->strikestoogle].incrementor == 0 )
@@ -261,7 +261,7 @@ void on_radiobutton3_pressed( GtkWidget *widget, struct _properties *properties 
 
 void on_radiobutton4_pressed( GtkWidget *widget, struct _properties *properties )
 {
-  g_print ("radiobutton4 was pressed\n");
+  g_print ("on_radiobutton4_pressed()\n");
   properties->format = CALENDAR_OPTIONS5;
 
   if( option_algorithms[properties->modeltype].supportStrikes )
@@ -318,7 +318,7 @@ void on_radiobutton4_pressed( GtkWidget *widget, struct _properties *properties 
 
 void on_radiobutton5_pressed( GtkWidget *widget, struct _properties *properties )
 {
-  g_print ("radiobutton5 was pressed\n");
+  g_print ("on_radiobutton5_pressed()\n");
   properties->format = CALENDAR_OPTIONS6;
 
   if( option_algorithms[properties->modeltype].supportStrikes )
