@@ -33,6 +33,7 @@ extern void setup_tree_view(struct _properties *properties);
 extern gboolean calculate_options(struct _properties *properties);
 extern void process_greeks(struct _properties *properties, struct _data *dat, char *textCallDelta, char *textPutDelta, char *textGamma, char *textVega, char *textCallTheta, char *textPutTheta, char *textCallRho, char *textPutRho, char *textCallElasticity, char *textPutElasticity);
 void text_export(struct _properties *properties, char *);
+void file_export(struct _properties *properties, char *);
 
 void spreadName(struct _properties *properties);
 
@@ -48,6 +49,7 @@ extern void on_menu_website_activate(GtkWidget *widget, const struct _properties
 extern void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *properties);
 extern void on_menu_debug_log_activate(GtkWidget *widget, struct _properties *properties);
 extern void on_menu_text_export_activate(GtkWidget *widget, struct _properties *properties);
+extern void on_menu_file_export_activate(GtkWidget *widget, struct _properties *properties);
 extern void on_menu_source_export_activate(GtkWidget *widget, struct _properties *properties);
 extern void on_menu_ListCategory_activate(GtkWidget *widget, struct _properties *properties);
 extern void on_menu_ListAuthor_activate(GtkWidget *widget, struct _properties *properties);

@@ -344,6 +344,8 @@ struct _properties {
     int integration_type;
 
     bool textExport;
+    bool fileExport;
+
     struct lconv * lc;
 
     char source_directory_prefix[PATH_MAX*2];

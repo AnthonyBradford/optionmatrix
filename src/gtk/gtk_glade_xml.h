@@ -691,6 +691,15 @@ const char *const gtkBuilderString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
                           </object>\
                         </child>\
                         <child>\
+                          <object class=\"GtkMenuItem\" id=\"menu_file_export\">\
+                            <property name=\"visible\">True</property>\
+                            <property name=\"can_focus\">False</property>\
+                            <property name=\"label\" translatable=\"yes\">File Export</property>\
+                            <property name=\"use_underline\">True</property>\
+                            <signal name=\"activate\" handler=\"on_menu_file_export_activate\" swapped=\"no\"/>\
+                          </object>\
+                        </child>			\
+                        <child>\
                           <object class=\"GtkMenuItem\" id=\"menu_source_export\">\
                             <property name=\"visible\">True</property>\
                             <property name=\"can_focus\">False</property>\

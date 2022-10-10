@@ -93,6 +93,7 @@ void props_defaults_options(struct _properties *properties, const int clearcalen
      */
     properties->data.debug = false;
     properties->textExport = false;
+    properties->fileExport = false;    
 
     properties->modeltype = 0;
     properties->decimalorcalendar = CALENDAR;

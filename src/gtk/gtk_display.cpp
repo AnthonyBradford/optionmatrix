@@ -31,8 +31,63 @@
 #include "gtk_main.h"
 #include "../common/prototypes.h"
 
+void file_export(struct _properties *properties, char *dataExport)
+{
+  g_print("file_export()\n");
+
+  properties->fileExport = false;
+  properties->textExport = false;
+
+  GtkWidget *dialog;
+  GtkFileChooser *chooser;
+  GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_SAVE;
+  gint res;
+
+  dialog = gtk_file_chooser_dialog_new ("Save File",
+					GTK_WINDOW(properties->GtkInfo.window),
+					action,
+					("_Cancel"),
+					GTK_RESPONSE_CANCEL,
+					("_Save"),
+					GTK_RESPONSE_ACCEPT,
+					NULL);
+  chooser = GTK_FILE_CHOOSER (dialog);
+
+  gtk_file_chooser_set_do_overwrite_confirmation (chooser, TRUE);
+
+  res = gtk_dialog_run (GTK_DIALOG (dialog));
+
+  if (res == GTK_RESPONSE_ACCEPT)
+  {
+    char *filename;
+
+    filename = gtk_file_chooser_get_filename (chooser);
+    g_print("filename = %s\n", filename);
+
+    ofstream optionmatrixFileExport;
+    
+    optionmatrixFileExport.open (filename);
+
+    if (optionmatrixFileExport.is_open())
+    {
+      optionmatrixFileExport << dataExport;
+      optionmatrixFileExport.close();
+ 
+    } else {
+      g_print("Error could not open file: %s\n", filename);
+    }
+
+    g_free (filename);
+  }
+
+  gtk_widget_destroy (dialog);
+ 
+}
+
 void text_export(struct _properties *properties, char *dataExport)
 {
+  g_print("text_export()\n");
+
   properties->textExport = false;
 
   GtkWidget *window, *scrolled_win, *textview;

@@ -616,6 +616,7 @@ int main(int argc, char *argv[])
   properties.GtkInfo.menu_feedback = GTK_WIDGET(gtk_builder_get_object(properties.GtkInfo.builder, "menu_feedback"));
   properties.GtkInfo.menu_debug_log = GTK_WIDGET(gtk_builder_get_object(properties.GtkInfo.builder, "menu_debug_log"));
   properties.GtkInfo.menu_text_export = GTK_WIDGET(gtk_builder_get_object(properties.GtkInfo.builder, "menu_text_export"));
+  properties.GtkInfo.menu_file_export = GTK_WIDGET(gtk_builder_get_object(properties.GtkInfo.builder, "menu_file_export"));
   properties.GtkInfo.menu_source_export = GTK_WIDGET(gtk_builder_get_object(properties.GtkInfo.builder, "menu_source_export"));
   properties.GtkInfo.menu_ListCategory  = GTK_WIDGET(gtk_builder_get_object(properties.GtkInfo.builder, "menu_ListCategory"));
   properties.GtkInfo.menu_ListAuthor  = GTK_WIDGET(gtk_builder_get_object(properties.GtkInfo.builder, "menu_ListAuthor"));
@@ -729,6 +730,7 @@ int main(int argc, char *argv[])
   //
   g_signal_connect(G_OBJECT (properties.GtkInfo.menu_debug_log), "activate", G_CALLBACK(on_menu_debug_log_activate), &properties);
   g_signal_connect(G_OBJECT (properties.GtkInfo.menu_text_export), "activate", G_CALLBACK(on_menu_text_export_activate), &properties);
+  g_signal_connect(G_OBJECT (properties.GtkInfo.menu_file_export), "activate", G_CALLBACK(on_menu_file_export_activate), &properties);  
   g_signal_connect(G_OBJECT (properties.GtkInfo.menu_source_export), "activate", G_CALLBACK(on_menu_source_export_activate), &properties);
 
   g_signal_connect(G_OBJECT (properties.GtkInfo.menu_ListCategory), "activate", G_CALLBACK(on_menu_ListCategory_activate), &properties);

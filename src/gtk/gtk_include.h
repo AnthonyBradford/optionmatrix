@@ -117,6 +117,7 @@ struct gtkinfo {
   GtkWidget *menu_feedback;
   GtkWidget *menu_debug_log;
   GtkWidget *menu_text_export;
+  GtkWidget *menu_file_export;
   GtkWidget *menu_source_export;
   GtkWidget *menu_ListCategory;
   GtkWidget *menu_ListAuthor;

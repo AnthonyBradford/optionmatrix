@@ -47,7 +47,7 @@ static void fill_line(char *lineData, int line_len, const std::vector<string> &f
 
 gboolean calculate_options(struct _properties *properties)
 {
-  //g_print("calculate_options()\n");
+  g_print("calculate_options()\n");
   //g_print("properties->format = %d\n", properties->format );
   //g_print("properties->decimalorcalendar = %d\n",properties->decimalorcalendar);
 
@@ -523,8 +523,13 @@ gboolean calculate_options(struct _properties *properties)
       strncat(dataExport,lineData,sizeof(dataExport)-strlen(dataExport)-1);
     }
 
-    if( properties->textExport == true )
+    if( properties->textExport == true && properties->fileExport == false)
+    {
       text_export(properties, dataExport);
+    } else if( properties->textExport == true && properties->fileExport == true)
+    {
+      file_export(properties, dataExport);
+    }
 
     gettimeofday(&end, NULL);
     c1 = clock();
@@ -610,8 +615,13 @@ gboolean calculate_options(struct _properties *properties)
     if( properties->data.term )
       delete properties->data.term;
 
-    if( properties->textExport == true )
+    if( properties->textExport == true && properties->fileExport == false)
+    {
       text_export(properties, dataExport);
+    } else if( properties->textExport == true && properties->fileExport == true)
+    {
+      file_export(properties, dataExport);
+    }
 
     gettimeofday(&end, NULL);
     c1 = clock();
@@ -2088,8 +2098,13 @@ gboolean calculate_options(struct _properties *properties)
 
   } // if( properties->format == CALENDAR_OPTIONS3 )
 
-  if( properties->textExport == true )
+  if( properties->textExport == true && properties->fileExport == false)
+  {
     text_export(properties, dataExport);
+  } else if( properties->textExport == true && properties->fileExport == true)
+  {
+    file_export(properties, dataExport);
+  }
 
   if ( properties->spreads == 1 )
     spreadName(properties);

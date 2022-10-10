@@ -377,6 +377,14 @@ void on_menu_text_export_activate(GtkWidget *widget, struct _properties *propert
   properties->textExport = true;
 }
 
+void on_menu_file_export_activate(GtkWidget *widget, struct _properties *properties)
+{
+  g_print("on_menu_file_export_activate()\n");
+
+  properties->textExport = true;
+  properties->fileExport = true;
+}
+
 void on_menu_source_export_activate(GtkWidget *widget, struct _properties *properties)
 {
   g_print("on_menu_source_export_activate()\n");
