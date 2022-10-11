@@ -698,7 +698,7 @@ const char *const gtkBuilderString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
                             <property name=\"use_underline\">True</property>\
                             <signal name=\"activate\" handler=\"on_menu_file_export_activate\" swapped=\"no\"/>\
                           </object>\
-                        </child>			\
+                        </child>\
                         <child>\
                           <object class=\"GtkMenuItem\" id=\"menu_source_export\">\
                             <property name=\"visible\">True</property>\

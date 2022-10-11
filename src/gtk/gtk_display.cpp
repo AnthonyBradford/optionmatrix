@@ -44,13 +44,13 @@ void file_export(struct _properties *properties, char *dataExport)
   gint res;
 
   dialog = gtk_file_chooser_dialog_new ("Save File",
-					GTK_WINDOW(properties->GtkInfo.window),
-					action,
-					("_Cancel"),
-					GTK_RESPONSE_CANCEL,
-					("_Save"),
-					GTK_RESPONSE_ACCEPT,
-					NULL);
+                                        GTK_WINDOW(properties->GtkInfo.window),
+                                        action,
+                                        ("_Cancel"),
+                                        GTK_RESPONSE_CANCEL,
+                                        ("_Save"),
+                                        GTK_RESPONSE_ACCEPT,
+                                        NULL);
   chooser = GTK_FILE_CHOOSER (dialog);
 
   gtk_file_chooser_set_do_overwrite_confirmation (chooser, TRUE);
@@ -110,7 +110,7 @@ void text_export(struct _properties *properties, char *dataExport)
   gtk_widget_set_size_request (window, 1050, 300);
 
   gtk_window_set_icon(GTK_WINDOW(window), create_pixbuf("images/2.png"));
-  
+
   textview = gtk_text_view_new ();
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (textview));
   
