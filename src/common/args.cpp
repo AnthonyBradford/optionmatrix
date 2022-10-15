@@ -340,7 +340,7 @@ void program_usage(const char *isConsoleVersion)
     
   printf("\n\n");
   printf("  -h, --help              display this help and exit\n");
-  printf("  -v, --version           output version information\n\n");
+  printf("  -v, --version           output version information\n");
   printf("  -l, --list              list models\n");
   printf("  -s, --source            print model source code which cannot be accessed\n");
   printf("  -d, --debug             create %s.log debug file in home directory\n", PACKAGE);
