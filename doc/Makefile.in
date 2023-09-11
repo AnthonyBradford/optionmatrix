@@ -1087,11 +1087,20 @@ xml: check_makeinfo_texi2any $(optionmatrix__TEXINFOS) $(EQN_IMAGES)
 	@echo "See file optionmatrix.xml"
 	@echo
 
-# Create EPUB document
+# Create EPUB3 document
+.PHONY: epub
+epub: check_makeinfo_texi2any $(optionmatrix__TEXINFOS) $(EQN_IMAGES)
+	$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) \
+		--epub3 $(DESTDIR)optionmatrix.texi -o $(DESTDIR)optionmatrix.epub
+	@echo
+	@echo "See file optionmatrix.epub"
+	@echo
+
+# Create EPUB document via dbtoepub
 # Install dbtoepub with
 # sudo apt-get install dbtoepub
-.PHONY: epub
-epub: docbook
+.PHONY: dbtoepub
+dbtoepub: docbook
 	if test -z '$(DBTOEPUB)'; then \
 		echo ; \
 		echo ; \
