@@ -33,7 +33,7 @@
 
 void programInits(struct _properties *properties)
 {
-    g_print("programInits()\n");
+    //g_print("programInits()\n");
 
 #ifdef HAVE_LIBGSL
 
