@@ -33,6 +33,7 @@
 
 void programInits(struct _properties *properties)
 {
+    g_print("programInits()\n");
 
 #ifdef HAVE_LIBGSL
 
@@ -57,6 +58,11 @@ void programInits(struct _properties *properties)
       fprintf(stderr,"programInits(): pthread_mutex_init() mutexCashflow failed.\n");
     }
 
+    if( pthread_mutex_init(&properties->propertiesMutex, NULL) != 0 )    
+    {
+      fprintf(stderr,"programInits(): pthread_mutex_init() propertiesMutex failed.\n");
+    }
+ 
     time(&properties->starttime);
     time(&properties->starttime2);
     time(&properties->starttime3);
@@ -145,6 +151,8 @@ void props_defaults_options(struct _properties *properties, const int clearcalen
     properties->start_expiration_year2 = properties->expiration_year2 = NULL;
 
     properties->realTimeBleeding = 1;
+    properties->optionRecalculationNeeded = 0;
+
     properties->updatedelayseconds = 1;
     properties->highlightInTheMoney = 1;
 

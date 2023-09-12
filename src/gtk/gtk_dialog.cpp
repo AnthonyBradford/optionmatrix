@@ -116,6 +116,10 @@ void on_dialogProperties_ok( GtkWidget *widget, struct _properties *properties )
 
   } // if( timeIsGood == true )
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_dialogProperties_ok( GtkWidget *widget, struct _properties *properties )
 
 void on_dialogProperties_cancel( GtkWidget *widget, const struct _properties *properties )
@@ -124,6 +128,10 @@ void on_dialogProperties_cancel( GtkWidget *widget, const struct _properties *pr
   gtk_widget_hide(properties->GtkInfo.dialogProperties);
   gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelTimeError),"");
 
+  //pthread_mutex_lock(&properties->propertiesMutex);
+  //properties->optionRecalculationNeeded = true;
+  //pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_dialogProperties_cancel( GtkWidget *widget, const struct _properties *properties )
 
 int on_dialogProperties_delete_event( GtkWidget *widget, const struct _properties *data )
@@ -131,11 +139,16 @@ int on_dialogProperties_delete_event( GtkWidget *widget, const struct _propertie
   g_print("on_dialogProperties_delete_event()\n");
   gtk_widget_hide(properties.GtkInfo.dialogProperties);
 
+  //pthread_mutex_lock(&properties->propertiesMutex);
+  //properties->optionRecalculationNeeded = true;
+  //pthread_mutex_unlock(&properties->propertiesMutex);
+
   return TRUE;
 
 } // int on_dialogProperties_delete_event( GtkWidget *widget, const struct _properties *data )
 
-void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *properties )
+//void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *properties )
+void on_buttonProperties_clicked( GtkWidget *widget, struct _properties *properties )
 {
   g_print("on_buttonProperties_clicked():\n");
 
@@ -192,6 +205,10 @@ void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *p
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogProperties));
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_buttonProperties_clicked( GtkWidget *widget, const struct _properties *properties )
 
 void on_dialogSettings_ok(GtkWidget *widget, gpointer *data)
@@ -212,6 +229,10 @@ void on_dialogSettings_ok(GtkWidget *widget, gpointer *data)
 
   ::properties.GtkInfo.gcalculate_options = g_timeout_add(1000 * ::properties.updatedelayseconds, (GSourceFunc) calculate_options, &properties);
 
+  pthread_mutex_lock(&::properties.propertiesMutex);
+  ::properties.optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&::properties.propertiesMutex);
+
 } // void on_dialogSettings_ok(GtkWidget *widget, gpointer *data)
 
 void on_dialogSettings_cancel(GtkWidget *widget, const struct _properties *properties)
@@ -219,12 +240,20 @@ void on_dialogSettings_cancel(GtkWidget *widget, const struct _properties *prope
   g_print("on_dialogSettings_cancel()\n");
   gtk_widget_hide(properties->GtkInfo.dialogSettings);
 
+  //pthread_mutex_lock(&properties->propertiesMutex);
+  //properties->optionRecalculationNeeded = true;
+  //pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_dialogSettings_cancel(GtkWidget *widget, const struct _properties *properties)
 
 int on_dialogSettings_delete_event(GtkWidget *widget, const struct _properties *properties)
 {
   g_print("on_dialogSettings_delete_event()\n");
   gtk_widget_hide(::properties.GtkInfo.dialogSettings);
+
+  //pthread_mutex_lock(&properties->propertiesMutex);
+  //properties->optionRecalculationNeeded = true;
+  //pthread_mutex_unlock(&properties->propertiesMutex);
 
   return TRUE;
 

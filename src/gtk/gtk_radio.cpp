@@ -105,6 +105,10 @@ void on_radiobutton1_pressed( GtkWidget *widget, struct _properties *properties 
 
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(properties->GtkInfo.radiobutton1),true);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_radiobutton1_pressed( GtkWidget *widget, struct _properties *properties )
 
 void on_radiobutton2_pressed( GtkWidget *widget, struct _properties *properties )
@@ -182,6 +186,10 @@ void on_radiobutton2_pressed( GtkWidget *widget, struct _properties *properties 
 
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(properties->GtkInfo.radiobutton2),true);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);  
+
 } // void on_radiobutton2_pressed( GtkWidget *widget, struct _properties *properties )
 
 void on_radiobutton3_pressed( GtkWidget *widget, struct _properties *properties )
@@ -257,6 +265,10 @@ void on_radiobutton3_pressed( GtkWidget *widget, struct _properties *properties 
 
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(properties->GtkInfo.radiobutton3),true);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_radiobutton3_pressed( GtkWidget *widget, struct _properties *properties )
 
 void on_radiobutton4_pressed( GtkWidget *widget, struct _properties *properties )
@@ -313,6 +325,10 @@ void on_radiobutton4_pressed( GtkWidget *widget, struct _properties *properties 
   show_title(properties);
 
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(properties->GtkInfo.radiobutton4),true);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_radiobutton4_pressed( GtkWidget *widget, struct _properties *properties )
 
@@ -371,6 +387,10 @@ void on_radiobutton5_pressed( GtkWidget *widget, struct _properties *properties 
 
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(properties->GtkInfo.radiobutton5),true);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_radiobutton5_pressed( GtkWidget *widget, struct _properties *properties )
 
 void set_scale_button(struct _properties *properties )
@@ -426,5 +446,9 @@ void set_scale_button(struct _properties *properties )
     gtk_widget_hide(properties->GtkInfo.scaleMonths2);
     gtk_widget_hide(properties->GtkInfo.scaleStrikes2);
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void set_scale_button(struct _properties *properties )

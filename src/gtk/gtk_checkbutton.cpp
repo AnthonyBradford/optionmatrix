@@ -44,6 +44,10 @@ void on_checkbuttonFilterNegativePrice_toggled(GtkButton *button, struct _proper
     option_algorithms[properties->modeltype].filterNegativePrices = false;    
   }
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_checkbuttonFilterNegativePrice_toggled(GtkButton *button, struct _properties *properties)
 
 void on_checkbuttonDateEngine_toggled(GtkButton *button, struct _properties *properties)
@@ -219,6 +223,10 @@ void on_checkbuttonDateEngine_toggled(GtkButton *button, struct _properties *pro
 
   setup_tree_view(properties);
   show_title(properties);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
   
 } // void on_checkbuttonDateEngine_toggled(GtkButton *button, struct _properties *properties)
 
@@ -270,6 +278,10 @@ void on_checkbuttonRealTime_toggled(GtkButton *button, struct _properties *prope
     properties->data.te2 = 0;
     properties->data.te3 = 0;
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_checkbuttonRealTime_toggled(GtkButton *button, struct _properties *properties)
 
@@ -360,6 +372,10 @@ void on_checkbuttonSpreads_toggled(GtkButton *button, struct _properties *proper
   }
 
   setup_tree_view(properties);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_checkbuttonSpreads_toggled(GtkButton *button, struct _properties *properties)
 

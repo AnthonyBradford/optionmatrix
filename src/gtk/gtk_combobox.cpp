@@ -349,7 +349,8 @@ void set_up_combobox_with_array2(GtkWidget *combo, const struct elementList *arr
 
 } // void set_up_combobox_with_array2(GtkWidget *combo, const struct elementList *array, const size_t number)
 
-void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *properties)
+//void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *properties)
+void on_comboboxWeekday_changed(GtkComboBox *combo, struct _properties *properties)
 {
   g_print("on_comboboxWeekday_changed()\n");
   
@@ -369,9 +370,14 @@ void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *pr
     set_up_combobox_with_array2(properties->GtkInfo.comboboxOccurance, listOccurance, sizeof(listOccurance) / sizeof(listOccurance[0]));
   }
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  //properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *properties)
 
-void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *properties)
+//void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *properties)
+void on_comboboxOccurance_changed(GtkComboBox *combo, struct _properties *properties)
 {
   g_print("on_comboboxOccurance_changed()\n");
   
@@ -392,6 +398,10 @@ void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *
   //g_print("comboboxOCC PropButton properties->occurence_plus_offset = %d\n",properties->occurence_plus_offset);
   //g_print("comboboxOcc PropButton properties->occurence_day = %d\n",properties->occurence_day);
   //g_print("comboboxOcc PropButton properties->occurence_in_month-1 = %d\n",properties->occurence_in_month-1);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *properties)
 
@@ -435,6 +445,10 @@ void on_comboboxStrikes_changed(GtkComboBox *combo, struct _properties *properti
     gtk_widget_hide(properties->GtkInfo.labelStrikes2);
     gtk_widget_show(properties->GtkInfo.scaleStrikes);
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_comboboxStrikes_changed(GtkComboBox *combo, struct _properties *properties)
 
@@ -1196,6 +1210,10 @@ void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties
   setup_tree_view(properties);
   show_title(properties);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties)
 
 void on_comboboxState_changed(GtkComboBox *combo, struct _properties *properties)
@@ -1203,6 +1221,10 @@ void on_comboboxState_changed(GtkComboBox *combo, struct _properties *properties
   //g_print("on_comboboxState_changed()\n");
   properties->data.UsePound = gtk_combo_box_get_active(combo) + 1;
   //g_print("State = %d\n",properties->data.UsePound);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_comboboxState_changed(GtkComboBox *combo, struct _properties *properties)
 
@@ -1215,6 +1237,10 @@ void on_comboboxCycle_changed(GtkComboBox *combo, struct _properties *properties
   expires(LEG2,30,properties->skipmonth2,properties);
 
   setup_tree_view(properties);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_comboboxCycle_changed(GtkComboBox *combo, struct _properties *properties)
 
@@ -1239,5 +1265,9 @@ void on_comboboxCND_changed(GtkComboBox *combo, struct _properties *properties)
   gtk_spin_button_set_value(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonDistVariance),1.0);
 
   updateStepping(properties);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_comboboxCND_changed(GtkComboBox *combo, struct _properties *properties)

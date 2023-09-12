@@ -32,13 +32,13 @@
 
 void on_menu_quit_activate(GtkWidget *widget, const struct _properties *properties)
 {
-  g_print ("on_menu_quit_activate():\n");
+  g_print ("on_menu_quit_activate()\n");
   gtk_main_quit();
 }
 
 void on_menu_website_activate(GtkWidget *widget, const struct _properties *properties)
 {
-  g_print("on_menu_website_activate():\n");
+  g_print("on_menu_website_activate()\n");
 
 #ifdef WIN32
   
@@ -91,7 +91,7 @@ void on_menu_website_activate(GtkWidget *widget, const struct _properties *prope
 
 void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *properties)
 {
-  g_print("on_menu_feedback_activate():\n");
+  g_print("on_menu_feedback_activate()\n");
   char packageBugreport[1024];
 
 #ifdef WIN32
@@ -144,7 +144,7 @@ void on_menu_feedback_activate(GtkWidget *widget, const struct _properties *prop
 
 static gboolean pngTimer(struct _properties *properties)
 {
-  g_print("pngTimer():\n");
+  g_print("pngTimer()\n");
 
   // Take random images from ./images or DATADIR/PACKAGE/images
   // If no images can be found gtk_icon.h is used to set
@@ -241,7 +241,7 @@ static gboolean pngTimer(struct _properties *properties)
 
 void on_menu_about_activate( GtkWidget *widget, struct _properties *properties )
 {
-  g_print("on_menu_about_activate():\n");
+  g_print("on_menu_about_activate()\n");
 
   const gchar *authors[] = {
     "Anthony Bradford",

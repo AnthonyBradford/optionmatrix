@@ -247,6 +247,10 @@ void on_buttonDividends_clicked( GtkWidget *widget, struct _properties *properti
 
   generic_process_button(properties);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_buttonDividends_clicked( GtkWidget *widget, struct _properties *properties )
 
 void on_buttonCoupons_clicked( GtkWidget *widget, struct _properties *properties )
@@ -259,6 +263,10 @@ void on_buttonCoupons_clicked( GtkWidget *widget, struct _properties *properties
 
   generic_process_button(properties);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_buttonCoupons_clicked( GtkWidget *widget, struct _properties *properties )
 
 void on_buttonPrincipal_clicked( GtkWidget *widget, struct _properties *properties )
@@ -270,6 +278,10 @@ void on_buttonPrincipal_clicked( GtkWidget *widget, struct _properties *properti
   properties->data.generic_times_adjusted = &properties->data.principal_times_adjusted;
 
   generic_process_button(properties);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_buttonPrincipal_clicked( GtkWidget *widget, struct _properties *properties )
 
@@ -379,6 +391,10 @@ void generic_process_button(struct _properties *properties )
   if( properties->realTimeBleeding )
     g_source_remove(properties->GtkInfo.gListTimer);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+  
 } // void generic_process_button(struct _properties *properties )
 
 void add_cashflow3(GtkButton *add, struct _properties *properties)
@@ -575,6 +591,10 @@ void add_cashflow3(GtkButton *add, struct _properties *properties)
   if( properties->realTimeBleeding )
     AddToVector(properties);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void add_cashflow3(GtkButton *add, struct _properties *properties)
 
 void add_cashflow4(GtkButton *add, struct _properties *properties)
@@ -742,6 +762,10 @@ void add_cashflow4(GtkButton *add, struct _properties *properties)
   if( properties->realTimeBleeding )
     AddToVector(properties);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void add_cashflow4(GtkButton *add, struct _properties *properties)
 
 void remove_row(GtkTreeRowReference *ref, struct _properties *properties)
@@ -754,7 +778,11 @@ void remove_row(GtkTreeRowReference *ref, struct _properties *properties)
   path = gtk_tree_row_reference_get_path(ref);
   gtk_tree_model_get_iter(properties->GtkInfo.model, &iter, path);
 
-  gtk_tree_store_remove(GTK_TREE_STORE (properties->GtkInfo.model), &iter);    
+  gtk_tree_store_remove(GTK_TREE_STORE (properties->GtkInfo.model), &iter);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void remove_row(GtkTreeRowReference *ref, struct _properties *properties)
 
@@ -794,6 +822,10 @@ void remove_cashflows(GtkButton *remove, struct _properties *properties)
     AddToVector(properties);
     properties->GtkInfo.gListTimer = g_timeout_add(1000, (GSourceFunc) ListTimer, (gpointer) properties);
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void remove_cashflows(GtkButton *remove, struct _properties *properties)
 

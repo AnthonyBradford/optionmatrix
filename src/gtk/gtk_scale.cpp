@@ -98,6 +98,10 @@ void on_scaleStrikes_value_changed(GtkScaleButton *scaleButton, gdouble value, s
   //g_print("price = %f, value = %f, strike_offset = %f\n", price, value, properties->strike_offset);
   g_print("strike_offset = %f\n",properties->strike_offset);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_scaleStrikes_value_changed(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties)
 
 void on_scaleStrikes_value_changed2(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties)
@@ -123,6 +127,10 @@ void on_scaleStrikes_value_changed2(GtkScaleButton *scaleButton, gdouble value, 
   //g_print("price = %f, value = %f, strike_offset2 = %f\n", price, value, properties->strike_offset2);
   g_print("strike_offset2 = %f\n",properties->strike_offset2);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_scaleStrikes_value_changed2(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties)
 
 void on_scaleMonths_value_changed(GtkScaleButton *scaleButton,  gdouble value, struct _properties *properties)
@@ -137,6 +145,10 @@ void on_scaleMonths_value_changed(GtkScaleButton *scaleButton,  gdouble value, s
   if( properties->format != CALENDAR_OPTIONS3 && properties->format != CALENDAR_OPTIONS4 && properties->format != CALENDAR_CUSTOM )
     setup_tree_view(properties);
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_scaleMonths_value_changed(GtkScaleButton *scaleButton,  gdouble value, struct _properties *properties)
 
 void on_scaleMonths_value_changed2(GtkScaleButton *scaleButton,  gdouble value, struct _properties *properties)
@@ -150,5 +162,9 @@ void on_scaleMonths_value_changed2(GtkScaleButton *scaleButton,  gdouble value, 
 
   if( properties->format != CALENDAR_OPTIONS3 && properties->format != CALENDAR_OPTIONS4 && properties->format != CALENDAR_CUSTOM )
     setup_tree_view(properties);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_scaleMonths_value_changed2(GtkScaleButton *scaleButton,  gdouble value, struct _properties *properties)

@@ -62,8 +62,10 @@ extern void display_source(const char *, const struct _properties *properties);
 extern void set_up_combobox_with_array(GtkWidget *combo, const struct elementList *array, const size_t number);
 extern void set_up_combobox_with_array2(GtkWidget *combo, const struct elementList *array, const size_t number);
 void set_up_combobox_with_array_use_groups(GtkWidget *combo, struct elementListWithGroup *array, const size_t number,std::map<std::string, int>& treeToIndex, const int sort);
-extern void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *properties);
-extern void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *properties);
+//extern void on_comboboxWeekday_changed(GtkComboBox *combo, const struct _properties *properties);
+extern void on_comboboxWeekday_changed(GtkComboBox *combo, struct _properties *properties);
+//extern void on_comboboxOccurance_changed(GtkComboBox *combo, const struct _properties *properties);
+extern void on_comboboxOccurance_changed(GtkComboBox *combo, struct _properties *properties);
 extern void on_comboboxStrikes_changed(GtkComboBox *combo, struct _properties *properties);
 extern void on_comboboxModel_changed(GtkComboBox *combo, struct _properties *properties);
 extern void on_comboboxModel_changed_hide(int modeltype, struct _properties *properties);
@@ -85,7 +87,8 @@ void on_scaleMonths_value_changed(GtkScaleButton *scaleButton,  gdouble value, s
 void on_scaleStrikes_value_changed2(GtkScaleButton *scaleButton, gdouble value, struct _properties *properties);
 void on_scaleMonths_value_changed2(GtkScaleButton *scaleButton,  gdouble value, struct _properties *properties);
 
-void on_spinbuttonDayOffset_value_changed(GtkSpinButton *spinButton, const struct _properties *properties);
+//void on_spinbuttonDayOffset_value_changed(GtkSpinButton *spinButton, const struct _properties *properties);
+void on_spinbuttonDayOffset_value_changed(GtkSpinButton *spinButton, struct _properties *properties);
 void on_spinbuttonSleepDelay_value_changed(GtkSpinButton *spinButton, struct _properties *properties);
 void on_spinbuttonUseZ_value_changed(GtkSpinButton *spinbutton, struct _properties *properties);
 void on_spinbuttonUseB_value_changed(GtkSpinButton *spinbutton, struct _properties *properties);
@@ -138,7 +141,8 @@ void show_label_expirations(const struct _properties *properties);
 
 void on_dialogProperties_ok(GtkWidget *widget, struct _properties *properties);
 void on_dialogProperties_cancel(GtkWidget *widget, const struct _properties *properties);
-void on_buttonProperties_clicked(GtkWidget *widget, const struct _properties *properties);
+//void on_buttonProperties_clicked(GtkWidget *widget, const struct _properties *properties);
+void on_buttonProperties_clicked(GtkWidget *widget, struct _properties *properties);
 int on_dialogProperties_delete_event(GtkWidget *widget, const struct _properties *properties);
 
 void on_dialogSettings_ok(GtkWidget *widget, gpointer *data);

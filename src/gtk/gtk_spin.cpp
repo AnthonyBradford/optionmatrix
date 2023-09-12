@@ -30,57 +30,94 @@
 
 #include "gtk_main.h"
 
-void on_spinbuttonDayOffset_value_changed(GtkSpinButton *spinButton, const struct _properties *properties)
+//void on_spinbuttonDayOffset_value_changed(GtkSpinButton *spinButton, const struct _properties *properties)
+void on_spinbuttonDayOffset_value_changed(GtkSpinButton *spinButton, struct _properties *properties)
 {
   g_print("on_spinbuttonDayOffset_value_changed()\n");
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonUseZ_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonUseZ_value_changed\n");
   g_print("properties->data.UseZ = %f\n",properties->data.UseZ);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonUseB_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonUseB_value_changed\n");
   g_print("properties->data.UseB = %f\n",properties->data.UseB);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonUseJ_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonUseJ_value_changed\n");
   g_print("properties->data.UseJ = %f\n",properties->data.UseJ);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonUseP_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonUseP_value_changed\n");
   g_print("properties->data.UseP = %f\n",properties->data.UseP);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonUseQ_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonUseQ_value_changed\n");
   g_print("properties->data.UseQ = %f\n",properties->data.UseQ);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonUseR_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonUseR_value_changed\n");
   g_print("properties->data.UseR = %f\n",properties->data.UseR);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonUseS_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonUseS_value_changed\n");
   g_print("properties->data.UseS = %f\n",properties->data.UseS);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonUseT_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonUseT_value_changed\n");
   g_print("properties->data.UseT = %f\n",properties->data.UseT);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonPrice_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
@@ -88,12 +125,21 @@ void on_spinbuttonPrice_value_changed(GtkSpinButton *spinbutton, struct _propert
   g_print("on_spinbuttonPrice_value_changed()\n");
   properties->data.price = gtk_spin_button_get_value(spinbutton);
   calc_strike_scale(properties);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 int on_spinbuttonTime_focus_out_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
   g_print("on_spinbuttonTime_focus_out_event()\n");
   properties->GtkInfo.spinbuttonTimeInFocusflag = FALSE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
   return false;
 }
 
@@ -101,6 +147,11 @@ int on_spinbuttonTime_focus_in_event(GtkSpinButton *spinbutton, GdkEventFocus *e
 {
   g_print("on_spinbuttonTime_focus_in_event()\n");
   properties->GtkInfo.spinbuttonTimeInFocusflag = TRUE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
   return false;
 }
 
@@ -108,6 +159,11 @@ int on_spinbuttonTime2_focus_out_event(GtkSpinButton *spinbutton, GdkEventFocus 
 {
   g_print("on_spinbuttonTime2_focus_out_event()\n");
   properties->GtkInfo.spinbuttonTime2InFocusflag = FALSE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
   return false;
 }
 
@@ -115,6 +171,11 @@ int on_spinbuttonTime3_focus_out_event(GtkSpinButton *spinbutton, GdkEventFocus 
 {
   g_print("on_spinbuttonTime3_focus_out_event()\n");
   properties->GtkInfo.spinbuttonTime3InFocusflag = FALSE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
   return false;
 }
 
@@ -122,6 +183,11 @@ int on_spinbuttonTime2_focus_in_event(GtkSpinButton *spinbutton, GdkEventFocus *
 {
   g_print("on_spinbuttonTime2_focus_in_event()\n");
   properties->GtkInfo.spinbuttonTime2InFocusflag = TRUE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
   return false;
 }
 
@@ -129,6 +195,11 @@ int on_spinbuttonTime3_focus_in_event(GtkSpinButton *spinbutton, GdkEventFocus *
 {
   g_print("on_spinbuttonTime3_focus_in_event()\n");
   properties->GtkInfo.spinbuttonTime3InFocusflag = TRUE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
   return false;
 }
 
@@ -136,36 +207,60 @@ void on_spinbuttonDaysToExpr_focus_out_event(GtkSpinButton *spinbutton, GdkEvent
 {
   g_print("on_spinbuttonDaysToExpr_focus_out_event()\n");
   properties->GtkInfo.spinbuttonTimeInFocusflag = FALSE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDaysToExpr_focus_in_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
   g_print("on_spinbuttonDaysToExpr_focus_in_event()\n");
   properties->GtkInfo.spinbuttonTimeInFocusflag = TRUE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDaysToDividend_focus_out_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
   g_print("on_spinbuttonDaysToDividend_focus_out_event()\n");
   properties->GtkInfo.spinbuttonTime2InFocusflag = FALSE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDaysToDividend2_focus_out_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
   g_print("on_spinbuttonDaysToDividend2_focus_out_event()\n");
   properties->GtkInfo.spinbuttonTime3InFocusflag = FALSE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDaysToDividend_focus_in_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
   //g_print("on_spinbuttonDaysToDividend_focus_in_event()\n");
   properties->GtkInfo.spinbuttonTime2InFocusflag = TRUE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDaysToDividend2_focus_in_event(GtkSpinButton *spinbutton, GdkEventFocus *event, struct _properties *properties)
 {
   g_print("on_spinbuttonDaysToDividend2_focus_in_event()\n");
   properties->GtkInfo.spinbuttonTime3InFocusflag = TRUE;
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonTime_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
@@ -179,6 +274,10 @@ void on_spinbuttonTime_value_changed(GtkSpinButton *spinbutton, struct _properti
     properties->data.t[0] += properties->data.te;
     properties->GtkInfo.spinbuttonTimeInFocusflag = FALSE;
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonTime2_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
@@ -191,6 +290,10 @@ void on_spinbuttonTime2_value_changed(GtkSpinButton *spinbutton, struct _propert
     properties->data.t[1] += properties->data.te2;
     properties->GtkInfo.spinbuttonTime2InFocusflag = FALSE;
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonTime3_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
@@ -203,6 +306,10 @@ void on_spinbuttonTime3_value_changed(GtkSpinButton *spinbutton, struct _propert
     properties->data.t[2] += properties->data.te3;
     properties->GtkInfo.spinbuttonTime3InFocusflag = FALSE;
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDaysToExpr_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
@@ -215,6 +322,10 @@ void on_spinbuttonDaysToExpr_value_changed(GtkSpinButton *spinbutton, struct _pr
     properties->data.t[0] += properties->data.te;
     properties->GtkInfo.spinbuttonTimeInFocusflag = FALSE;
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDaysToDividend_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
@@ -227,6 +338,10 @@ void on_spinbuttonDaysToDividend_value_changed(GtkSpinButton *spinbutton, struct
     properties->data.t[1] += properties->data.te2;
     properties->GtkInfo.spinbuttonTime2InFocusflag = FALSE;
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDaysToDividend2_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
@@ -239,24 +354,40 @@ void on_spinbuttonDaysToDividend2_value_changed(GtkSpinButton *spinbutton, struc
     properties->data.t[2] += properties->data.te3;
     properties->GtkInfo.spinbuttonTime3InFocusflag = FALSE;
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonRate_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonRate_value_changed()\n");
   properties->data.rate = gtk_spin_button_get_value(spinbutton);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonStandardDeviation_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonStandardDeviation_value_changed()\n");
   properties->data.volatility = gtk_spin_button_get_value(spinbutton);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDividend_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonDividend_value_changed()\n");
   properties->data.dividend = gtk_spin_button_get_value(spinbutton);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonSteps_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
@@ -267,10 +398,15 @@ void on_spinbuttonSteps_value_changed(GtkSpinButton *spinbutton, struct _propert
   {
     option_algorithms[properties->modeltype].steps = gtk_spin_button_get_value(spinbutton);
   }
+
   if(integration_method[properties->integration_type].method)
   {
     integration_method[properties->integration_type].resolution = gtk_spin_button_get_value(spinbutton);
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonPrecision_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
@@ -278,24 +414,44 @@ void on_spinbuttonPrecision_value_changed(GtkSpinButton *spinbutton, struct _pro
   g_print("on_spinbuttonPrecision_value_changed()\n");
   properties->precision = gtk_spin_button_get_value(spinbutton);
   updatePrecision(properties->modeltype,properties);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDistMean_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonDistMean_value_changed()\n");
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonDistVariance_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonDistVariance_value_changed()\n");
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonCustomStrike_value_changed(GtkSpinButton *spinbutton, struct _properties *properties)
 {
   g_print("on_spinbuttonDistVariance_value_changed()\n");
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }
 
 void on_spinbuttonSleepDelay_value_changed(GtkSpinButton *spinButton, struct _properties *properties)
 {
   g_print("on_spinbuttonSleepDelay_value_changed(): %d\n", (int) gtk_spin_button_get_value(spinButton));
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 }

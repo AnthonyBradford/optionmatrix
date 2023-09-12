@@ -226,6 +226,10 @@ void setup_tree_view(struct _properties *properties)
         gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
       }
 
+      pthread_mutex_lock(&properties->propertiesMutex);
+      properties->optionRecalculationNeeded = true;
+      pthread_mutex_unlock(&properties->propertiesMutex);
+
       return;
     }
 
@@ -247,6 +251,11 @@ void setup_tree_view(struct _properties *properties)
       column = gtk_tree_view_column_new_with_attributes
                            ("Value", renderer, "text", X2, NULL);
       gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
+
+      pthread_mutex_lock(&properties->propertiesMutex);
+      properties->optionRecalculationNeeded = true;
+      pthread_mutex_unlock(&properties->propertiesMutex);
+
       return;
     }
   }
@@ -306,6 +315,10 @@ void setup_tree_view(struct _properties *properties)
     column = gtk_tree_view_column_new_with_attributes("Time", renderer, "text", X4 , NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
+    pthread_mutex_lock(&properties->propertiesMutex);
+    properties->optionRecalculationNeeded = true;
+    pthread_mutex_unlock(&properties->propertiesMutex);
+
     return;
   }
 
@@ -332,6 +345,10 @@ void setup_tree_view(struct _properties *properties)
     renderer = gtk_cell_renderer_text_new();
     column = gtk_tree_view_column_new_with_attributes("Time", renderer, "text", X4 , NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
+
+    pthread_mutex_lock(&properties->propertiesMutex);
+    properties->optionRecalculationNeeded = true;
+    pthread_mutex_unlock(&properties->propertiesMutex);
 
     return;
 
@@ -766,5 +783,9 @@ void setup_tree_view(struct _properties *properties)
     gtk_tree_view_append_column(GTK_TREE_VIEW (properties->GtkInfo.treeview), column);
 
   }
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void setup_tree_view(struct _properties *properties)

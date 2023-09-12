@@ -34,6 +34,8 @@
 #include "../common/main.h"
 #include "../common/license.h"
 
+bool windowConfigureEvent;
+
 GdkPixbuf *create_pixbuf(const gchar * filename)
 {
    GdkPixbuf *pixbuf;
@@ -118,6 +120,10 @@ void updateVolatility(int modeltype, const struct _properties *properties)
     gtk_widget_hide(properties->GtkInfo.spinbuttonStandardDeviation);
   }
 
+  //pthread_mutex_lock(&properties->propertiesMutex);
+  //properties->optionRecalculationNeeded = true;
+  //pthread_mutex_unlock(&properties->propertiesMutex);
+  
 } // void updateVolatility(int modeltype, const struct _properties *properties)
 
 void updateTime(int modeltype, struct _properties *properties)
@@ -307,6 +313,10 @@ void updateTime(int modeltype, struct _properties *properties)
     gtk_widget_hide(properties->GtkInfo.labelDisplayFormats2);
   }
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void updateTime(int modeltype, struct _properties *properties)
 
 void updatePrecision(int modeltype, struct _properties *properties)
@@ -354,6 +364,10 @@ void updatePrecision(int modeltype, struct _properties *properties)
   gtk_spin_button_set_digits(GTK_SPIN_BUTTON(properties->GtkInfo.spinbuttonCustomStrike2),properties->precision);
 
   setup_tree_view(properties);
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void updatePrecision(int modeltype, struct _properties *properties)
 
@@ -424,6 +438,10 @@ void updateStepping(struct _properties *properties)
     }
   }
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void updateStepping(struct _properties *properties)
 
 void on_window_destroy( gpointer user_data )
@@ -434,7 +452,13 @@ void on_window_destroy( gpointer user_data )
     properties.GtkInfo.gcalculate_options = 0;
   }
 
-  pthread_mutex_destroy(&properties.data.mutexCashflow);
+  if(pthread_mutex_destroy(&properties.data.mutexCashflow) != 0) {                       
+    g_print("pthread_mutex_destroy() failed on properties.data.mutexCashflow\n");
+  }
+
+  if(pthread_mutex_destroy(&properties.propertiesMutex) != 0) {
+    g_print("pthread_mutex_destroy() failed on properties.propertiesMutex\n");
+  }
 
   const char *const closeLogger="";
   logger(closeLogger, 0, 0);
@@ -1019,6 +1043,8 @@ int main(int argc, char *argv[])
     properties.listModelsForGroups = 0;
   }
 
+  g_print("OptionMatrix exiting\n");
+
   exit(EXIT_SUCCESS);
 
 } // int main(int argc, char *argv[])
@@ -1026,4 +1052,5 @@ int main(int argc, char *argv[])
 void window_configure_event( GtkWidget *widget, struct _properties *properties )
 {
   g_print("window_configure_event()\n");
+  ::windowConfigureEvent = TRUE;
 }

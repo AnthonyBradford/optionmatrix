@@ -83,6 +83,10 @@ void on_calendar1_day_selected( GtkWidget *widget, struct _properties *propertie
     gtk_label_set_text(GTK_LABEL(properties->GtkInfo.labelCalendar),"");
   }
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_calendar1_day_selected( GtkWidget *widget, struct _properties *properties )
 
 int on_dialogCalendar_delete_event( GtkWidget *widget, GdkEvent *event, const struct _properties *properties )
@@ -90,12 +94,16 @@ int on_dialogCalendar_delete_event( GtkWidget *widget, GdkEvent *event, const st
   g_print("on_dialogCalendar_delete_event()\n");
   gtk_widget_hide(properties->GtkInfo.dialogCalendar);
 
+  //pthread_mutex_lock(&properties->propertiesMutex);
+  //properties->optionRecalculationNeeded = true;
+  //pthread_mutex_unlock(&properties->propertiesMutex);
+
   return TRUE;
 }
 
 void on_buttonCalendar_clicked( GtkWidget *widget, struct _properties *properties )
 {
-  g_print ("on_buttonCalendar_clicked():\n");
+  g_print ("on_buttonCalendar_clicked()\n");
 
   gtk_window_set_title(GTK_WINDOW(properties->GtkInfo.dialogCalendar), "Select Date for Expr");
   gtk_window_set_icon(GTK_WINDOW(properties->GtkInfo.dialogCalendar), create_pixbuf("images/2.png"));
@@ -116,11 +124,15 @@ void on_buttonCalendar_clicked( GtkWidget *widget, struct _properties *propertie
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogCalendar));
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_buttonCalendar_clicked( GtkWidget *widget, struct _properties *properties )
 
 void on_buttonCalendar2_clicked( GtkWidget *widget, struct _properties *properties )
 {
-  g_print ("on_buttonCalendar2_clicked():\n");
+  g_print ("on_buttonCalendar2_clicked()\n");
 
   gtk_window_set_title(GTK_WINDOW(properties->GtkInfo.dialogCalendar), "Select Date");
   gtk_window_set_icon(GTK_WINDOW(properties->GtkInfo.dialogCalendar), create_pixbuf("images/2.png"));
@@ -141,11 +153,15 @@ void on_buttonCalendar2_clicked( GtkWidget *widget, struct _properties *properti
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogCalendar));
 
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
+
 } // void on_buttonCalendar2_clicked( GtkWidget *widget, struct _properties *properties )
 
 void on_buttonCalendar3_clicked( GtkWidget *widget, struct _properties *properties )
 {
-  g_print ("on_buttonCalendar3_clicked():\n");
+  g_print ("on_buttonCalendar3_clicked()\n");
 
   gtk_window_set_title(GTK_WINDOW(properties->GtkInfo.dialogCalendar), "Select Date for Expr");
   gtk_window_set_icon(GTK_WINDOW(properties->GtkInfo.dialogCalendar), create_pixbuf("images/2.png"));
@@ -165,5 +181,9 @@ void on_buttonCalendar3_clicked( GtkWidget *widget, struct _properties *properti
   gtk_calendar_select_day(GTK_CALENDAR(properties->GtkInfo.calendar1), day);
 
   gtk_dialog_run(GTK_DIALOG(properties->GtkInfo.dialogCalendar));
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = true;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
 } // void on_buttonCalendar3_clicked( GtkWidget *widget, struct _properties *properties )

@@ -322,6 +322,10 @@ struct _properties {
     int calendarSelected;
 
     bool realTimeBleeding;
+    bool optionRecalculationNeeded;
+  
+    pthread_mutex_t propertiesMutex;
+ 
     int updatedelayseconds;
     bool highlightInTheMoney;
     bool spreads;

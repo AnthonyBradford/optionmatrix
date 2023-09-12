@@ -34,6 +34,8 @@
 # error Sorry, this code requires <gtk/gtk.h>
 #endif
 
+extern bool windowConfigureEvent;
+
 struct gtkinfo {
 
   bool checkbuttonDateEngineIgnore;

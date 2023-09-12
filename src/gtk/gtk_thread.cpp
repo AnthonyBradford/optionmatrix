@@ -51,6 +51,27 @@ gboolean calculate_options(struct _properties *properties)
   //g_print("properties->format = %d\n", properties->format );
   //g_print("properties->decimalorcalendar = %d\n",properties->decimalorcalendar);
 
+  if(::windowConfigureEvent == true)
+  {
+    g_print("windowConfigureEvent = true\n");
+    pthread_mutex_lock(&properties->propertiesMutex);
+    properties->optionRecalculationNeeded = true;
+    pthread_mutex_unlock(&properties->propertiesMutex);
+  }
+
+  g_print("properties->realTimeBleeding = %d\n", properties->realTimeBleeding);
+  g_print("properties->optionRecalculationNeeded = %d\n", properties->optionRecalculationNeeded);
+  
+  if(properties->realTimeBleeding == false && properties->optionRecalculationNeeded == false)
+  {
+    g_print("RealTime checkbox not selected. No options being calculated\n");
+    return TRUE;
+  } else {
+    g_print("Options being calculated\n");
+  }
+
+  ::windowConfigureEvent = FALSE;
+
   clock_t c0, c1;
   struct timeval start, end;
 
@@ -174,7 +195,7 @@ gboolean calculate_options(struct _properties *properties)
     
   pthread_mutex_unlock(&properties->data.mutexCashflow);
 
-  //
+  // The pthread_mutex_lock() above the the pthread_mutex_lock() below can both be removed.
 
   pthread_mutex_lock(&properties->data.mutexCashflow);
 
@@ -537,6 +558,10 @@ gboolean calculate_options(struct _properties *properties)
     g_print("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000) - (start.tv_sec + (double) start.tv_usec / 1000000)));
     g_print("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);    
 
+    pthread_mutex_lock(&properties->propertiesMutex);
+    properties->optionRecalculationNeeded = false;
+    pthread_mutex_unlock(&properties->propertiesMutex);
+    
     return TRUE;
 
   } // if( option_algorithms[properties->modeltype].assetClass == BOND_CLASS )
@@ -628,7 +653,11 @@ gboolean calculate_options(struct _properties *properties)
 
     g_print("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000) - (start.tv_sec + (double) start.tv_usec / 1000000)));
     g_print("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);        
-    
+
+    pthread_mutex_lock(&properties->propertiesMutex);
+    properties->optionRecalculationNeeded = false;
+    pthread_mutex_unlock(&properties->propertiesMutex);
+ 
     return TRUE;
 
   } // if( option_algorithms[properties->modeltype].assetClass == TERMSTRUCTURE_CLASS )
@@ -2114,6 +2143,10 @@ gboolean calculate_options(struct _properties *properties)
 
   g_print("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000) - (start.tv_sec + (double) start.tv_usec / 1000000)));
   g_print("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);      
+
+  pthread_mutex_lock(&properties->propertiesMutex);
+  properties->optionRecalculationNeeded = false;
+  pthread_mutex_unlock(&properties->propertiesMutex);
 
   return TRUE;
 
