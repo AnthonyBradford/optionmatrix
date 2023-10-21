@@ -5,7 +5,7 @@
 /*                                                                          */
 /* File: gtk_display.cpp of optionmatrix                                    */
 /*                                                                          */
-/* Copyright (c) Anthony Bradford. 2012.                                    */
+/* Copyright (c) Anthony Bradford.#include <fstream> 2012.                                    */
 /* anthony_bradford@yahoo.com                                               */
 /*                                                                          */
 /* optionmatrix may be freely redistributed.                                */
@@ -27,6 +27,7 @@
 */
 
 #include <gtk/gtk.h>
+#include <fstream>
 
 #include "gtk_main.h"
 #include "../common/prototypes.h"
