@@ -1,37 +1,37 @@
-****Update version number in configure.ac, see AC_INIT
+* Update version number in configure.ac, see AC_INIT
 AC_INIT([OptionMatrix],[1.4.4],[anthony_bradford@yahoo.com],[optionmatrix],[https://sourceforge.net/projects/optionmatrix/])
 
-****Test all changes
+* Test all changes
 
-****Update ChangeLog
+* Update ChangeLog
 
-****Update NEWS
+* Update NEWS
 
-****pdf should succesfully build doc/optionmatrix.pdf with
+* pdf should succesfully build doc/optionmatrix.pdf with
 make pdf
 
-****doc/texinfo.tex might have to be updated to most recent version that comes with Texinfo.
+* doc/texinfo.tex might have to be updated to most recent version that comes with Texinfo.
 
-****Ensure all files checked into git with
+* Ensure all files checked into git with
 git status
 
-****Check for compiler warnings/errors with clang
+* Check for compiler warnings/errors with clang
 make clean; ./configure CXX=clang++ ; make
 
-****Check for compiler warnings/errors with g++
+* Check for compiler warnings/errors with g++
 make clean ./configure CXX=g++ ; make
 
-****Remove GTK+ 3 and compile with GTK+ 2 (apt-get for Ubuntu)
+* Remove GTK+ 3 and compile with GTK+ 2 (apt-get for Ubuntu)
 sudo apt-get remove libgtk-3-dev
 sudo apt-get install libgtk2.0-dev
 make clean; ./configure ; make
 
-****Reinstall GTK+ 3 (apt-get for Ubuntu)
+* Reinstall GTK+ 3 (apt-get for Ubuntu)
 sudo apt-get install libgtk-3-dev
 
-****distcheck should be successful before distribution of the tar.gz package
+* distcheck should be successful before distribution of the tar.gz package
 make dist ; make distcheck
 
-****Set git tab to version number
+* Set git tag to version number
 git tag 1.4.4
 
