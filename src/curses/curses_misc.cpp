@@ -94,7 +94,7 @@ void welcome_screen()
     // height balance adjuster, adjust all text up or down...
     int x = 1;
 
-    const char *author = "Anthony Bradford's";
+    const char *const author = "Anthony Bradford's";
 
     char program[256] = { 0 };
     snprintf(program,sizeof(program),"| Options & Futures Matrix Modeler V%s", PACKAGE_VERSION);
