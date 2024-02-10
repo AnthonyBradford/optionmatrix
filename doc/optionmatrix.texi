@@ -1059,8 +1059,8 @@ The OptionMatrix programs support the following models:
 @item Log Normal Random
 @end itemize
 
-@cindex pre-BSM
-@section pre-BSM
+@cindex Pre-BSM
+@section Pre-BSM
 @itemize
 @item @url{http://www.google.com/search?q=Bachelier-1900,Bachelier-1900}
 @item Bachelier Modified
