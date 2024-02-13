@@ -71,6 +71,10 @@ void process_arguments(const int argc, const char **argv, bool *debug)
     // default number of options to iterate for testing and timing...
     int iopt = 200000;
 
+    int modelNumber = 0;
+
+    bool check_pricing_time = 0;
+
     int option_index = 0;
     while ((c = getopt_long(argc, (char **) argv, "vhlsqdpD:x:m:i:", long_options, &option_index)) != -1)
     {
@@ -165,9 +169,9 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
          case 'm':
 
-            //printf("option t with value '%d'\n", atoi(optarg));
-            program_check_pricing_time( atoi(optarg), iopt );
-            exit(EXIT_SUCCESS);
+            //printf("option m with value '%d'\n", atoi(optarg));
+            check_pricing_time = 1;
+            modelNumber = atoi(optarg);
 
             break;
 
@@ -190,6 +194,12 @@ void process_arguments(const int argc, const char **argv, bool *debug)
         } // switch (c) {
 
     } // while ((c = getopt_long(argc, (char **) argv, "vhlsqdpD:x:m:i:", long_options, &option_index)) != -1)
+
+    if( check_pricing_time == 1 )
+    {
+        program_check_pricing_time( modelNumber, iopt );
+        exit(EXIT_SUCCESS);
+    }
  
     if( optind < argc )
     {
@@ -643,7 +653,7 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
 
   if ( !quietMode )
   {
-    printf("\n****Tests skipped the following models due to open issues:\n");
+    printf("\n**** Tests skipped the following models due to open issues:\n");
 
     for( indexModelsWithPricingIssues = 0; indexModelsWithPricingIssues < numberOfPricingIssues; indexModelsWithPricingIssues++ )
     {
@@ -651,14 +661,14 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
     }
 
     std::list<std::string>::iterator it;
-    printf("****Models with negative pricing:\n");
+    printf("**** Models with negative pricing:\n");
     
     for ( it=modelsWithNegativePricing.begin(); it!=modelsWithNegativePricing.end(); ++it )
       printf("%s\n", std::string(*it).c_str() );
 
   } // if ( !quietMode )
 
-  printf("****Total number of tests run: %.0f\n", totalNumberOfTests);
+  printf("**** Total number of tests run: %.0f\n", totalNumberOfTests);
   printf("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000)
           - (start.tv_sec + (double) start.tv_usec / 1000000)));
   printf("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);
