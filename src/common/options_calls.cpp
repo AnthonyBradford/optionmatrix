@@ -6334,7 +6334,7 @@ struct _data option_call(struct _data *dat)
           {
             //std::cout << "incrementedDate = " << incrementedDate << std::endl;
 
-            g_print("%d %d %d\n", incrementedDate.dayOfMonth(),incrementedDate.month(),incrementedDate.year() );
+            //g_print("%d %d %d\n", incrementedDate.dayOfMonth(),incrementedDate.month(),incrementedDate.year() );
             int daysaway = date_to_days_away( incrementedDate.dayOfMonth(),incrementedDate.month(),incrementedDate.year() - 2000 );
             //std::cout << "daysaway = " << daysaway << std::endl;
             //std::cout << "dat->generic_times->push_back( " << adjust_to_current_time_and_expr(&daysaway,0,0) << " )" << std::endl;
