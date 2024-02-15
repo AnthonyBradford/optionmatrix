@@ -605,7 +605,7 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
          if( difftime(model_time_elasped,model_start_time) > 4 )
          {
            if( !quietMode )
-             printf("%s - not spending >4 seconds on any option model testing.\n", option_algorithms[index].des);
+             printf("%s - not spending >4 seconds on any option model testing\n", option_algorithms[index].des);
            model_timed_out = true;
            break;
          }
@@ -715,35 +715,35 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
 #endif  
 
 #ifndef ABRADFORD
-  printf("ABRADFORD models not defined in source code.\n");
+  printf("ABRADFORD models not defined in source code\n");
 #endif
 
 #ifndef SPINSKY
-  printf("SPINSKY models not defined in source code.\n");
+  printf("SPINSKY models not defined in source code\n");
 #endif
 
 #ifndef METAOPTIONS
-  printf("METAOPTIONS models not defined in source code.\n");
+  printf("METAOPTIONS models not defined in source code\n");
 #endif
 
 #ifndef FINRECIPES
-  printf("FINRECIPES models not defined in source code.\n");
+  printf("FINRECIPES models not defined in source code\n");
 #endif
 
 #ifndef HAVE_LIBGSL
-  printf("HAVE_LIBGSL models not defined in source code.\n");
+  printf("HAVE_LIBGSL models not defined in source code\n");
 #endif
 
 #ifndef HAVE_ITPP_ITBASE_H
-  printf("HAVE_ITPP_ITBASE_H models not defined in source code.\n");
+  printf("HAVE_ITPP_ITBASE_H models not defined in source code\n");
 #endif
 
 #ifndef HAVE_NEWMAT_NEWMAT_H
-  printf("HAVE_NEWMAT_NEWMAT_H models not defined in source code.\n");
+  printf("HAVE_NEWMAT_NEWMAT_H models not defined in source code\n");
 #endif
 
 #if !defined(HAVE_QL_QUANTLIB_HPP) || !defined(QUANTLIB)
-  printf("HAVE_QL_QUANTLIB_HPP models not defined in source code.\n");
+  printf("HAVE_QL_QUANTLIB_HPP models not defined in source code\n");
 #endif
 
 } // void program_check_pricing_models(const bool quietMode, const bool debug)
@@ -752,7 +752,7 @@ void program_check_pricing_time(const int modelnumber, const int iterations)
 {
   if( iterations < 0 )
   {
-    fprintf(stderr,"Error: Iterations must be a postive number.\n");
+    fprintf(stderr,"Error: Iterations must be a postive number\n");
     return;
   }
 
