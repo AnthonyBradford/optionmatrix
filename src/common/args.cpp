@@ -73,7 +73,8 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
     int modelNumber = 0;
 
-    bool check_pricing_time = 0;
+    bool model = false;
+    bool iterate = false;
 
     int option_index = 0;
     while ((c = getopt_long(argc, (char **) argv, "vhlsqdpD:x:m:i:", long_options, &option_index)) != -1)
@@ -97,14 +98,18 @@ void process_arguments(const int argc, const char **argv, bool *debug)
          case 'v':
 
             program_version();
-            exit(EXIT_SUCCESS);
+
+            exit_program = true;
+            exit_status = EXIT_SUCCESS;
 
             break;
 
          case 'h':
 
             program_usage(strstr(argv[0],"console"));
-            exit(EXIT_SUCCESS);
+
+            exit_program = true;
+            exit_status = EXIT_SUCCESS;
 
             break;
 
@@ -164,14 +169,15 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
             //printf("option i with value '%d'\n", atoi(optarg));
             iopt = atoi(optarg);
+            iterate = true;
 
             break;
 
          case 'm':
 
             //printf("option m with value '%d'\n", atoi(optarg));
-            check_pricing_time = 1;
             modelNumber = atoi(optarg);
+            model = true;
 
             break;
 
@@ -195,43 +201,70 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
     } // while ((c = getopt_long(argc, (char **) argv, "vhlsqdpD:x:m:i:", long_options, &option_index)) != -1)
 
-    if( check_pricing_time == 1 )
-    {
-        program_check_pricing_time( modelNumber, iopt );
-        exit(EXIT_SUCCESS);
-    }
- 
     if( optind < argc )
     {
-        printf("\n%s: non-option argv-elements not understood: ", PACKAGE);
+      // This can be tested with
+      // $ ./optionmatrix -123
+      printf("%s: non-option argv-elements not understood: ", PACKAGE);
 
-        while (optind < argc)
-            printf ("%s ", argv[optind++]);
-        printf ("\n");
+      while (optind < argc)
+      {
+          printf ("%s ", argv[optind++]);
+      }
+      printf ("\n");
 
-        exit_program = true;
-        exit_status = EXIT_FAILURE;
+      exit(EXIT_FAILURE);
 
     } // if( optind < argc )
 
+    if( model == false && iterate == true)
+    {
+      // This can be tested with
+      // $ ./optionmatrix --iterate 10000
+      printf("%s: Must specify model with --model NUMBER\n", PACKAGE);
+      exit(EXIT_FAILURE);
+    }
+
+    if( model == true && iterate == false )
+    {
+      // This can be tested with
+      // $ ./optionmatrix --model 0      
+      printf("Number of iterations not set. Defaulting number of iterations\n\n");
+    }
+
+    if( model == true )
+    {
+      // This can be tested with
+      // $ ./optionmatrix --model 0 --iterate 1000000
+      program_check_pricing_time( modelNumber, iopt );
+      exit(EXIT_SUCCESS);
+    }
+ 
     if( *debug == true )
     {
+      // This can be tested with
+      // ./optionmatrix --debug
+
       char logText[PATH_MAX*3];
 
+#if defined(PACKAGE_NAME) && defined(PACKAGE_VERSION)
       snprintf(logText,sizeof(logText),"%s %s", PACKAGE_NAME, PACKAGE_VERSION);
       logger(logText, 0);
+#endif
 
+#if defined(__VERSION__)
       snprintf(logText,sizeof(logText),"Compiler version: %s" , __VERSION__);
       logger(logText, 0);
+#endif
 
 #if defined(ENVIRONMENT32)
-      snprintf(logText,sizeof(logText),"32-bit");
+      snprintf(logText,sizeof(logText),"32-bit build");
       logger(logText, 0);
 #elif defined(ENVIRONMENT64)
-      snprintf(logText,sizeof(logText),"64-bit");
+      snprintf(logText,sizeof(logText),"64-bit build");
       logger(logText, 0);
 #else
-      snprintf(logText,sizeof(logText),"Bit size unknown");
+      snprintf(logText,sizeof(logText),"Bit size not determined");
       logger(logText, 0);
 #endif
 
@@ -668,16 +701,18 @@ void program_check_pricing_models(const bool quietMode, const bool debug)
 
   } // if ( !quietMode )
 
-  printf("**** Total number of tests run: %.0f\n", totalNumberOfTests);
+  printf("Total number of tests run: %.0f\n", totalNumberOfTests);
   printf("Time %fs\n", ( (double) (end.tv_sec + (double) end.tv_usec / 1000000)
           - (start.tv_sec + (double) start.tv_usec / 1000000)));
   printf("CPU time: %fs\n", (float) (c1 - c0) / CLOCKS_PER_SEC);
 
 #if defined(ENVIRONMENT32)
-    printf("32-bit build\n");
+  printf("32-bit build\n");
 #elif defined(ENVIRONMENT64)
-    printf("64-bit build\n");
-#endif
+  printf("64-bit build\n");
+#else
+  printf("Bit size not determined\n");
+#endif  
 
 #ifndef ABRADFORD
   printf("ABRADFORD models not defined in source code.\n");
@@ -766,8 +801,7 @@ void program_check_pricing_time(const int modelnumber, const int iterations)
   dat.te4 = 0;
   dat.debug = false;
 
-  printf("Model #: %d ", option_algorithms[modelnumber].modeltype);
-  printf("%s\n\n", option_algorithms[modelnumber].des);
+  printf("Model: %d %s %s\n\n", option_algorithms[modelnumber].modeltype,option_algorithms[modelnumber].des,option_algorithms[modelnumber].source);
 
   int index = 0;
 
