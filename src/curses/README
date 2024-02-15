@@ -1,0 +1,11 @@
+optionmatrix_console program usage
+
+./optionmatrix_console            # Run Curses version of the program
+./optionmatrix_console --help    
+./optionmatrix_console --version
+./optionmatrix_console --list     # List all models
+./optionmatrix_console --price    # Test all pricing models
+./optionmatrix_console --quiet    # Test all pricing models quiet
+./optionmatrix_console --model 0  # Test model 0
+./optionmatrix_console --iterate 1000000 --model 0
+./optionmatrix_console --model 0 --iterate 1000000 
