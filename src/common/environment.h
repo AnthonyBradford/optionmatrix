@@ -26,18 +26,16 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// Check windows
-#if _WIN32 || _WIN64
-#if _WIN64
+// Check Windows
+#if defined(_WIN64)
 #define ENVIRONMENT64
-#else
+#elif defined(_WIN32)
 #define ENVIRONMENT32
-#endif
 #endif
 
 // Check GCC
-#if __GNUC__
-#if __x86_64__ || __ppc64__
+#if defined(__GNUC__)
+#if defined(__x86_64__) || defined(__ppc64__)
 #define ENVIRONMENT64
 #else
 #define ENVIRONMENT32
