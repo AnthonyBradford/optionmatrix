@@ -1,0 +1,10 @@
+See OptionMatrix GUI program ../gtk/optionmatrix
+See OptionMatrix Curses program ../curses/optionmatrix_console
+
+checks usage
+
+./checks              # Run checks on all models
+./checks --help
+./checks --version
+./checks --quiet      # Do not display output during option computations
+./checks --debug      # create optionmatrix.log debug file in home directory
