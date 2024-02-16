@@ -86,7 +86,7 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
             if (optarg)
             {
                 printf (" with arg %s not understood", optarg);
-		exit(EXIT_FAILURE);
+                exit(EXIT_FAILURE);
             }
 
             break;
@@ -94,8 +94,8 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
          case 'q':
 
             quiet_return_true = true;
-	    
-	    break;
+
+            break;
 
          case 'd':
 
@@ -117,13 +117,13 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
             program_usage_checks();
 
             exit_program = true;
-            exit_status = EXIT_SUCCESS;	    
+            exit_status = EXIT_SUCCESS;
 
             break;
 
          case '?':
 
-	    exit(EXIT_FAILURE);	   
+            exit(EXIT_FAILURE);
 
             break;
 

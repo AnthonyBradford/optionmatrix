@@ -87,8 +87,8 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
             if (optarg)
             {
-                printf (" with arg %s not understood", optarg);
-		exit(EXIT_FAILURE);
+                printf(" with arg %s not understood", optarg);
+                exit(EXIT_FAILURE);
             }
 
             break;
@@ -181,7 +181,7 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
         case '?':
 
-	    exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE);
 
             break;
 
@@ -189,7 +189,7 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
             printf("%s: ?? getopt returned character code 0%o ??\n", PACKAGE, c);
 
-	    exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE);
 
             break;
 
