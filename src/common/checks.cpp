@@ -62,7 +62,8 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
     int c;
     int exit_program = false;
     int exit_status = EXIT_FAILURE;
-
+    bool quiet_return_true = false;
+    
     *debug = false;
 
     const static struct option long_options[] = {
@@ -76,8 +77,6 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
     int option_index = 0;
     while ((c = getopt_long(argc, (char **) argv, "qdvh", long_options, &option_index)) != -1)
     {
-        int this_option_optind = optind ? optind : 1;
-
         switch (c) {
 
          case 0:
@@ -87,16 +86,16 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
             if (optarg)
             {
                 printf (" with arg %s not understood", optarg);
-
-                exit_program = true;
-                exit_status = EXIT_FAILURE;
+		exit(EXIT_FAILURE);
             }
 
             break;
 
          case 'q':
 
-            return true;
+            quiet_return_true = true;
+	    
+	    break;
 
          case 'd':
 
@@ -107,21 +106,24 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
          case 'v':
 
             program_version_checks();
-            exit(EXIT_SUCCESS);
+
+            exit_program = true;
+            exit_status = EXIT_SUCCESS;
 
             break;
 
          case 'h':
 
             program_usage_checks();
-            exit(EXIT_SUCCESS);
+
+            exit_program = true;
+            exit_status = EXIT_SUCCESS;	    
 
             break;
 
          case '?':
 
-            exit_program = true;
-            exit_status = EXIT_FAILURE;
+	    exit(EXIT_FAILURE);	   
 
             break;
 
@@ -129,8 +131,7 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
 
             printf("%s: ?? getopt returned character code 0%o ??\n", PACKAGE, c);
 
-            exit_program = true;
-            exit_status = EXIT_FAILURE;
+            exit(EXIT_FAILURE);
 
             break;
 
@@ -140,16 +141,24 @@ bool process_arguments_checks(const int argc, const char **argv, bool *debug)
  
     if( optind < argc )
     {
-        printf("\n%s: non-option argv-elements not understood: ", PACKAGE);
+        // This can be tested with
+        // $ ./checks xyz
+        printf("%s: non-option argv-elements not understood: ", PACKAGE);
 
         while (optind < argc)
+        {
             printf ("%s ", argv[optind++]);
+        }
         printf ("\n");
 
-        exit_program = true;
-        exit_status = EXIT_FAILURE;
+        exit(EXIT_FAILURE);
 
     } // if( optind < argc )
+
+    if( quiet_return_true == true)
+    {
+      return true;
+    }
 
     if( exit_program )
       exit(exit_status);

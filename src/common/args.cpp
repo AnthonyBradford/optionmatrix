@@ -88,9 +88,7 @@ void process_arguments(const int argc, const char **argv, bool *debug)
             if (optarg)
             {
                 printf (" with arg %s not understood", optarg);
-
-                exit_program = true;
-                exit_status = EXIT_FAILURE;
+		exit(EXIT_FAILURE);
             }
 
             break;
@@ -183,8 +181,7 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
         case '?':
 
-            exit_program = true;
-            exit_status = EXIT_FAILURE;
+	    exit(EXIT_FAILURE);
 
             break;
 
@@ -192,8 +189,7 @@ void process_arguments(const int argc, const char **argv, bool *debug)
 
             printf("%s: ?? getopt returned character code 0%o ??\n", PACKAGE, c);
 
-            exit_program = true;
-            exit_status = EXIT_FAILURE;
+	    exit(EXIT_FAILURE);
 
             break;
 
@@ -204,7 +200,7 @@ void process_arguments(const int argc, const char **argv, bool *debug)
     if( optind < argc )
     {
       // This can be tested with
-      // $ ./optionmatrix -123
+      // $ ./optionmatrix 123
       printf("%s: non-option argv-elements not understood: ", PACKAGE);
 
       while (optind < argc)
@@ -243,7 +239,7 @@ void process_arguments(const int argc, const char **argv, bool *debug)
     if( *debug == true )
     {
       // This can be tested with
-      // ./optionmatrix --debug
+      // $ ./optionmatrix --debug
 
       char logText[PATH_MAX*3];
 
