@@ -1,11 +1,21 @@
 optionmatrix program usage
 
 ./optionmatrix            # Run GUI program
-./optionmatrix --help    
+./optionmatrix --help
 ./optionmatrix --version
-./optionmatrix --list     # List all models
 ./optionmatrix --price    # Test all pricing models
 ./optionmatrix --quiet    # Test all pricing models quiet
-./optionmatrix --model 0  # Test model 0
-./optionmatrix --iterate 1000000 --model 0
-./optionmatrix --model 0 --iterate 1000000 
+./optionmatrix --list     # List all models
+./optionmatrix --model 0  # Test model 0. Iterations will be defaulted
+./optionmatrix --model 0 --iterate 1000000
+./optionmatrix --model 1 --iterate 1000000
+./optionmatrix --model 3 --iterate 1000000
+./optionmatrix --model 4 --iterate 1000000
+
+Memcheck
+valgrind -v --leak-check=yes --track-origins=yes ./optionmatrix --price
+valgrind -v --leak-check=full --show-leak-kinds=all --track-origins=yes ./optionmatrix --price
+
+Collect performance data
+gprofng collect app ./optionmatrix --price
+gprofng display text -functions test.1.er
