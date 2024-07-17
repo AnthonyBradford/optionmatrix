@@ -1,11 +1,21 @@
 optionmatrix_console program usage
 
 ./optionmatrix_console            # Run Curses version of the program
-./optionmatrix_console --help    
+./optionmatrix_console --help
 ./optionmatrix_console --version
-./optionmatrix_console --list     # List all models
 ./optionmatrix_console --price    # Test all pricing models
 ./optionmatrix_console --quiet    # Test all pricing models quiet
-./optionmatrix_console --model 0  # Test model 0
-./optionmatrix_console --iterate 1000000 --model 0
-./optionmatrix_console --model 0 --iterate 1000000 
+./optionmatrix_console --list     # List all models
+./optionmatrix_console --model 0  # Test model 0. Iterations will be defaulted
+./optionmatrix_console --model 0 --iterate 1000000
+./optionmatrix_console --model 1 --iterate 1000000
+./optionmatrix_console --model 3 --iterate 1000000
+./optionmatrix_console --model 4 --iterate 1000000
+
+Memcheck
+valgrind -v --leak-check=yes --track-origins=yes ./optionmatrix_console --price
+valgrind -v --leak-check=full --show-leak-kinds=all --track-origins=yes ./optionmatrix_console --price
+
+Collect performance data
+gprofng collect app ./optionmatrix_console --price
+gprofng display text -functions test.1.er
