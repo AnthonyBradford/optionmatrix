@@ -8,3 +8,11 @@ checks usage
 ./checks --version
 ./checks --quiet      # Do not display output during option computations
 ./checks --debug      # create optionmatrix.log debug file in home directory
+
+Memcheck
+valgrind -v --leak-check=yes --track-origins=yes ./checks --price
+valgrind -v --leak-check=full --show-leak-kinds=all --track-origins=yes ./checks --price
+
+Collect performance data
+gprofng collect app ./checks
+gprofng display text -functions test.1.er
