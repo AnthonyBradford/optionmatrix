@@ -17,9 +17,11 @@ git status
 
 * Check for compiler warnings/errors with clang
 make clean; ./configure CXX=clang++ ; make
+make check
 
 * Check for compiler warnings/errors with g++
 make clean ./configure CXX=g++ ; make
+make check
 
 * Remove GTK+ 3 and compile with GTK+ 2 (apt-get for Ubuntu)
 sudo apt-get remove libgtk-3-dev
