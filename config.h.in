@@ -1,6 +1,6 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* Define to 1 if you have the `atexit' function. */
+/* Define to 1 if you have the 'atexit' function. */
 #undef HAVE_ATEXIT
 
 /* Define to 1 if you have the <boost/timer.hpp> header file. */
@@ -15,7 +15,7 @@
 /* Define to 1 if you have the <getopt.h> header file. */
 #undef HAVE_GETOPT_H
 
-/* Define to 1 if you have the `gettimeofday' function. */
+/* Define to 1 if you have the 'gettimeofday' function. */
 #undef HAVE_GETTIMEOFDAY
 
 /* Define to 1 if you have the <gsl/gsl_errno.h> header file. */
@@ -27,41 +27,41 @@
 /* Define to 1 if you have the <itpp/itbase.h> header file. */
 #undef HAVE_ITPP_ITBASE_H
 
-/* Define to 1 if you have the `gsl' library (-lgsl). */
+/* Define to 1 if you have the 'gsl' library (-lgsl). */
 #undef HAVE_LIBGSL
 
-/* Define to 1 if you have the `gslcblas' library (-lgslcblas). */
+/* Define to 1 if you have the 'gslcblas' library (-lgslcblas). */
 #undef HAVE_LIBGSLCBLAS
 
-/* Define to 1 if you have the `gtk-3' library (-lgtk-3). */
+/* Define to 1 if you have the 'gtk-3' library (-lgtk-3). */
 #undef HAVE_LIBGTK_3
 
-/* Define to 1 if you have the `gtk-x11-2.0' library (-lgtk-x11-2.0). */
+/* Define to 1 if you have the 'gtk-x11-2.0' library (-lgtk-x11-2.0). */
 #undef HAVE_LIBGTK_X11_2_0
 
-/* Define to 1 if you have the `m' library (-lm). */
+/* Define to 1 if you have the 'm' library (-lm). */
 #undef HAVE_LIBM
 
-/* Define to 1 if you have the `pthread' library (-lpthread). */
+/* Define to 1 if you have the 'pthread' library (-lpthread). */
 #undef HAVE_LIBPTHREAD
 
-/* Define to 1 if you have the `localeconv' function. */
+/* Define to 1 if you have the 'localeconv' function. */
 #undef HAVE_LOCALECONV
 
 /* Define to 1 if you have the <locale.h> header file. */
 #undef HAVE_LOCALE_H
 
-/* Define to 1 if your system has a GNU libc compatible `malloc' function, and
+/* Define to 1 if your system has a GNU libc compatible 'malloc' function, and
    to 0 otherwise. */
 #undef HAVE_MALLOC
 
 /* Define to 1 if you have the <math.h> header file. */
 #undef HAVE_MATH_H
 
-/* Define to 1 if you have the `memset' function. */
+/* Define to 1 if you have the 'memset' function. */
 #undef HAVE_MEMSET
 
-/* Define to 1 if you have the `modf' function. */
+/* Define to 1 if you have the 'modf' function. */
 #undef HAVE_MODF
 
 /* Define to 1 if you have the <ncurses/curses.h> header file. */
@@ -85,7 +85,7 @@
 /* Define to 1 if you have the <pdcurses/pdcurses.h> header file. */
 #undef HAVE_PDCURSES_PDCURSES_H
 
-/* Define to 1 if you have the `pow' function. */
+/* Define to 1 if you have the 'pow' function. */
 #undef HAVE_POW
 
 /* Define to 1 if you have the <pthread.h> header file. */
@@ -94,10 +94,10 @@
 /* Define to 1 if you have the <ql/quantlib.hpp> header file. */
 #undef HAVE_QL_QUANTLIB_HPP
 
-/* Define to 1 if you have the `setlocale' function. */
+/* Define to 1 if you have the 'setlocale' function. */
 #undef HAVE_SETLOCALE
 
-/* Define to 1 if you have the `sqrt' function. */
+/* Define to 1 if you have the 'sqrt' function. */
 #undef HAVE_SQRT
 
 /* Define to 1 if stdbool.h conforms to C99. */
@@ -121,7 +121,7 @@
 /* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
 
-/* Define to 1 if you have the `strstr' function. */
+/* Define to 1 if you have the 'strstr' function. */
 #undef HAVE_STRSTR
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
@@ -136,7 +136,7 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
-/* Define to 1 if the system has the type `_Bool'. */
+/* Define to 1 if the system has the type '_Bool'. */
 #undef HAVE__BOOL
 
 /* Name of package */
@@ -160,7 +160,7 @@
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
-/* Define to 1 if all of the C90 standard headers exist (not just the ones
+/* Define to 1 if all of the C89 standard headers exist (not just the ones
    required in a freestanding environment). This macro is provided for
    backward compatibility; new code need not use it. */
 #undef STDC_HEADERS
@@ -168,7 +168,7 @@
 /* Version number of package */
 #undef VERSION
 
-/* Define to `__inline__' or `__inline' if that's what the C compiler
+/* Define to '__inline__' or '__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */
 #ifndef __cplusplus
 #undef inline
@@ -177,5 +177,5 @@
 /* Define to rpl_malloc if the replacement function should be used. */
 #undef malloc
 
-/* Define to `unsigned int' if <sys/types.h> does not define. */
+/* Define as 'unsigned int' if <stddef.h> doesn't define. */
 #undef size_t
