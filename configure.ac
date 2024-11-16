@@ -93,7 +93,7 @@ AC_CHECK_PROG(QUANTLIB,quantlib-config,yes)
 if test x"${QUANTLIB}" == x"yes" ; then
     # use quantlib-config for QL settings
     pkg_cxxflags=`quantlib-config --cflags`
-    CFLAGS="$CFLAGS $pkg_cxxflags"
+    CXXFLAGS="$CXXFLAGS $pkg_cxxflags"
     pkg_libs=`quantlib-config --libs`
     LIBS="$LIBS $pkg_libs"
     pkg_version=`quantlib-config --version`
