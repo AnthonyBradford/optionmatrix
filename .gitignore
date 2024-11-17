@@ -6,7 +6,6 @@ man/optionmatrix_console.1
 *.[oa]
 .*~
 *~
-*.pdf
 *.tar.gz
 *.Po
 *.xz
