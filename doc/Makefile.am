@@ -142,7 +142,7 @@ EQN_IMAGES = images/ConsoleChain.png\
 ICO_IMAGES = \
 	images/favicon.ico
 
-EXTRA_DIST = $(EQN_IMAGES) $(TEXTFILES) $(ICO_IMAGES) README html/images/README optionmatrix.pdf
+EXTRA_DIST = $(EQN_IMAGES) $(TEXTFILES) $(ICO_IMAGES) README html/images/README optionmatrix.pdf optionmatrix.info
 
 # Try "sudo apt-get install imagemagick" if missing ImageMagick mogrify
 # under a GNU/Linux system using apt-get
