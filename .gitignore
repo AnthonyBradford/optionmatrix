@@ -35,7 +35,6 @@ src/models/financialrecipes/examples/Makefile
 src/models/financialrecipes/src/Makefile
 src/models/metaoptions/src/Makefile
 src/models/metaoptions/tests/Makefile
-doc/optionmatrix.info
 src/common/checks
 src/curses/optionmatrix_console
 src/gtk/optionmatrix
