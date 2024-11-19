@@ -1091,7 +1091,7 @@ The OptionMatrix programs support the following models:
 @cindex OS X
 Windows and Mac OS X installers can be found at
 @*
-@url{http://sourceforge.net/projects/optionmatrix}
+@url{http://sourceforge.net/projects/optionmatrix/}
 
 @section Unix / Linux Autotools Package
 @ifdocbook
@@ -1104,7 +1104,7 @@ Windows and Mac OS X installers can be found at
 @cindex Source code
 OptionMatrix source code can be downloaded from
 @*
-@url{http://sourceforge.net/projects/optionmatrix}
+@url{http://sourceforge.net/projects/optionmatrix/}
 @*
 @*
 Type the following on the console in the directory of the download to install.
@@ -1135,7 +1135,7 @@ sudo make install
 @cindex EPUB
 PDF and EPUB documentation can be found at
 @*
-@url{http://sourceforge.net/projects/optionmatrix}
+@url{http://sourceforge.net/projects/optionmatrix/}
 @*
 @*
 HTML documentation can be found at
