@@ -449,7 +449,7 @@ EQN_IMAGES = images/ConsoleChain.png\
 ICO_IMAGES = \
 	images/favicon.ico
 
-EXTRA_DIST = $(EQN_IMAGES) $(TEXTFILES) $(ICO_IMAGES) README html/images/README optionmatrix.pdf
+EXTRA_DIST = $(EQN_IMAGES) $(TEXTFILES) $(ICO_IMAGES) README html/images/README optionmatrix.pdf optionmatrix.info
 all: all-am
 
 .SUFFIXES:
@@ -923,7 +923,7 @@ clean:
 	-rm -f html/images/*.ico
 	-rm -f html/*.gz
 	-rm -f html/*.html
-	-rm -f html/optionmatrix.zip optionmatrix.pdf optionmatrix.info
+	-rm -f html/optionmatrix.zip
 	-rm -f optionmatrix.xml
 	-rm -f optionmatrix.aux optionmatrix.ky optionmatrix.cp
 	-rm -f optionmatrix.log optionmatrix.cps optionmatrix.op

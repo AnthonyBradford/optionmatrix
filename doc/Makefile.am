@@ -168,7 +168,7 @@ clean:
 	-rm -f html/images/*.ico
 	-rm -f html/*.gz
 	-rm -f html/*.html
-	-rm -f html/optionmatrix.zip optionmatrix.pdf optionmatrix.info
+	-rm -f html/optionmatrix.zip
 	-rm -f optionmatrix.xml
 	-rm -f optionmatrix.aux optionmatrix.ky optionmatrix.cp
 	-rm -f optionmatrix.log optionmatrix.cps optionmatrix.op
