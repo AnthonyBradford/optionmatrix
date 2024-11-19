@@ -2,7 +2,7 @@
 @c %**start of header
 @setfilename optionmatrix.info
 @include version.texi
-@set WEBSITE sourceforge.net/projects/optionmatrix
+@set WEBSITE sourceforge.net/projects/optionmatrix/
 @settitle OptionMatrix @value{VERSION}
 @c @paragraphindent none
 @documentdescription
