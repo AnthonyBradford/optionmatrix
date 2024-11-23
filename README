@@ -109,7 +109,7 @@ make dist-zip
 * Install and uninstall check. The find command should yield zero files. If files are found likely problem with "uninstall-local:" in Makefile.am
 sudo make install
 sudo make uninstall
-find /usr -name "optionmatrix*" -print 2>/dev/null
+find /usr -name "*optionmatrix*" -print 2>/dev/null
 
 * To ensure no tabs in source code
 cd utils ; ./tab.sh
