@@ -15,32 +15,14 @@ make pdf
 * Ensure all files checked into git with
 git status
 
-* Check for compiler warnings/errors with clang
-make clean; ./configure CXX=clang++ ; make
-make check
+* The following script should run with no errors. Read the script for more information
+./make_tests.sh
 
-* Check for compiler warnings/errors with g++
-make clean ./configure CXX=g++ ; make
-make check
-
-* Remove GTK+ 3 and compile with GTK+ 2 (apt-get for Ubuntu)
-sudo apt-get remove libgtk-3-dev
-sudo apt-get install libgtk2.0-dev
-make clean; ./configure ; make
-
-* Reinstall GTK+ 3 (apt-get for Ubuntu)
-sudo apt-get install libgtk-3-dev
+* The following script should run with no errors. Read the script for more information
+./make_tests_quantlib.sh
 
 * distcheck should be successful before distribution of the tar.gz package
 make dist ; make distcheck
 
-* Build without QuantLib installed
-
-* Build with latest version of QuantLib installed
-
-* See if script make_tests.sh creates any errors or warnings
-./make_tests.sh
-
 * Set git tag to version number
 git tag 1.4.4
-
