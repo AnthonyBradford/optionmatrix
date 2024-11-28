@@ -32,12 +32,12 @@ or run: utils/zypper.sh
 sudo auto-apt run ./configure
 
 * The configure script checks for the installation of the
-QuantLib, GNU Scientific Library (GSL), Newmat and IT++ libraries. These libraries are not needed but inclusion will add more financial option models. OptionMatrix was tested with QuantLib-1.27.
+QuantLib, GNU Scientific Library (GSL), Newmat and IT++ libraries. These libraries are not needed but inclusion will add more financial option models. OptionMatrix was tested with QuantLib-1.36.
 
 * To install under GNU/Linux
 ./configure ; make ; sudo make install
 You should be able to see the installation with
-find /usr -name "optionmatrix*" -print 2>/dev/null
+find /usr -name "*optionmatrix*" -print 2>/dev/null
 
 * To uninstall under GNU/Linux
 ./configure ; make ; sudo make uninstall
