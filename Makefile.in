@@ -389,6 +389,8 @@ icon32_DATA = icons/32x32/optionmatrix.png\
 EXTRA_DIST = \
 	README.md\
 	README.how_to_make_a_release\
+	make_tests_quantlib.sh\
+	make_tests.sh\
 	icons/mac/README\
 	icons/mac/optionmatrix.icns\
 	icons/32x32/optionmatrix.xpm\
