@@ -7,6 +7,8 @@ man/optionmatrix_console.1
 .*~
 *~
 *.tar.gz
+*.shar.gz
+*.tar.bz2
 *.Po
 *.xz
 *.lz
@@ -107,5 +109,8 @@ src/models/metaoptions/tests/merton73_check
 src/models/metaoptions/tests/quanto_check
 .dirstamp
 optionmatrix-*.zip
+optionmatrix.zip
 typescript
 test.*er
+*t2d
+*.Z
