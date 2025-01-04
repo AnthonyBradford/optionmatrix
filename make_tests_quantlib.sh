@@ -7,7 +7,7 @@
 # run command "$ script" prior to running this bash script
 # when the bash script is done type Control-d
 # Analyse with
-# egrep -i 'warning| Status:' typescript
+# grep -E -i 'warning| Status:' typescript
 
 # QuantLib does not exist as an apt-get installable package
 # Do the following on actual QuantLib autotools package
