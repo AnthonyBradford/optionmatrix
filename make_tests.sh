@@ -105,3 +105,11 @@ sudo make uninstall
 # The following should yield *no* files since we uninstalled optionmatrix
 find /usr -name "*optionmatrix*" -print 2>/dev/null
 echo "[9] Status: optionmatrix uninstalled. No optionmatrix files should be found in /usr"
+
+# Test all make build targets
+make dist
+make dist-bzip2
+make dist-lzip
+make dist-shar
+make dist-xz
+make dist-zip
