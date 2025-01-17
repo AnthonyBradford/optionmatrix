@@ -31,7 +31,7 @@ sudo apt-get remove libitpp-dev
 sudo apt-get remove libboost-all-dev
 
 # Add curses to generate src/curses/optionmatrix
-sudo apt-get libncurses-dev
+sudo apt-get install libncurses-dev
 
 # optionmatrix.info and optionmatrix.pdf require texinfo to be built, but
 # they do not have to be build since they are included in the distribution
