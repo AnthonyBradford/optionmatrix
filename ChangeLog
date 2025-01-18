@@ -1,3 +1,18 @@
+2025-01-18  Anthony Bradford  <anthony_bradford@yahoo.com>
+	* OptionMatrix 1.4.4 released.
+	* gtk_main.cpp, gtk_thread.cpp changes so no recalculations
+	  when checkbox RealTime is not selected.
+	* src/commmon/args.cpp minor getopt changes to ensure
+	  processing of arguments of any order.
+	* src/curses/curses_inputs.cpp and src/curses/curses_demo.cpp
+	  replaced mon_decimal_point with "." 
+	* doc/Makefile.am add optionmatrix.pdf to EXTRA_DIST
+	  this removes texinfo as build dependency
+	* Added scripts make_tests.sh and make_tests_quantlib.sh
+	  for testing builds.
+	* Added src/curses/README src/common/README
+	  src/gtk/README which have usage examples.
+
 2022-10-10  Anthony Bradford  <anthony_bradford@yahoo.com>
 	* Updated to GNU automake 1.16.5, GNU autoconf 2.71
 	* Added export to file functionality
