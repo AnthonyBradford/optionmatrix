@@ -797,7 +797,8 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
           for(;;)
           {
             move(row,0);
-            printw("Enter interest rate          (%s05 = 5%%)  : ", properties->lc->mon_decimal_point );
+            //printw("Enter interest rate          (%s05 = 5%%)  : ", properties->lc->mon_decimal_point );
+            printw("Enter interest rate          (%s05 = 5%%)  : ", "." );
             clrtoeol();
 
             memset(inputstring,(int) ' ',sizeof(inputstring));
