@@ -38,3 +38,6 @@ See EPS images in directory ./images
 For 'make png2eps' to work ImageMagick mogrify must be installed
 Try 'sudo apt-get install imagemagick' to install packages
 under GNU/Linux using the apt-get package manager.
+
+To update stamp-vti and version.texi do
+make stamp-vti
