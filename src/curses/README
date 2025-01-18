@@ -12,6 +12,10 @@ optionmatrix_console program usage
 ./optionmatrix_console --model 3 --iterate 1000000
 ./optionmatrix_console --model 4 --iterate 1000000
 
+Can be tested with different LANG variable settings
+export LANG=fr_FR.UTF-8 ; ./optionmatrix_console
+export LANG=en_US.UTF-8 ; ./optionmatrix_console
+
 Memcheck
 valgrind -v --leak-check=yes --track-origins=yes ./optionmatrix_console --price
 valgrind -v --leak-check=full --show-leak-kinds=all --track-origins=yes ./optionmatrix_console --price
