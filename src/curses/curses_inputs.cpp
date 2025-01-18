@@ -847,7 +847,7 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
 
               if( option_algorithms[properties->modeltype].supportTime2 && rollgeskewhaley_counter == 1 )
               {
-                printw("Time to %-17s(%s25=1/4 year)\n",option_algorithms[properties->modeltype].supportTime2des,properties->lc->mon_decimal_point);
+                printw("Time to %-17s(%s25=1/4 year)\n",option_algorithms[properties->modeltype].supportTime2des,".");
                 snprintf(buf,sizeof(buf),"%s %s",option_algorithms[properties->modeltype].supportTime2des,mmddyy);
                 printw("or %-*s: ",34 + (int) sizeof(mmddyy),buf);
 
@@ -855,13 +855,13 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
               {
                 if( option_algorithms[properties->modeltype].assetClass == TERMSTRUCTURE_CLASS )
                 {
-                  printw("Time to %-17s(%s25=1/4 year)\n",option_algorithms[properties->modeltype].supportTime1des,properties->lc->mon_decimal_point);
+                  printw("Time to %-17s(%s25=1/4 year)\n",option_algorithms[properties->modeltype].supportTime1des,".");
                   snprintf(buf,sizeof(buf),"%s %s",option_algorithms[properties->modeltype].supportTime1des,mmddyy);
                   printw("or %-*s: ",34 + (int) sizeof(mmddyy),buf);
 
                 } else
                 {
-                  printw("Time to expiration       (%s25=1/4 year)\n",properties->lc->mon_decimal_point);
+                  printw("Time to expiration       (%s25=1/4 year)\n",".");
                   printw("or expiration date MM/DD/YY              : ");
                 }
               }
@@ -884,11 +884,11 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
 
                 if( option_algorithms[properties->modeltype].supportTime2 && rollgeskewhaley_counter == 1 )
                 {
-                  printw("Time to %-17s(%s25=1/4 year)  : %.*f %.*f days %s",option_algorithms[properties->modeltype].supportTime2des,properties->lc->mon_decimal_point,properties->precision+2,properties->data.t[rollgeskewhaley_counter],((properties->precision<=2)?2:properties->precision-4),(365*properties->data.t[rollgeskewhaley_counter]),decimal_date_to_real_date(properties->data.t[rollgeskewhaley_counter]));
+                  printw("Time to %-17s(%s25=1/4 year)  : %.*f %.*f days %s",option_algorithms[properties->modeltype].supportTime2des,".",properties->precision+2,properties->data.t[rollgeskewhaley_counter],((properties->precision<=2)?2:properties->precision-4),(365*properties->data.t[rollgeskewhaley_counter]),decimal_date_to_real_date(properties->data.t[rollgeskewhaley_counter]));
 
                 } else
                 {
-                  printw("Time to %-17s(%s25=1/4 year)  : %.*f %.*f days %s",option_algorithms[properties->modeltype].supportTime1des,properties->lc->mon_decimal_point,properties->precision+2,properties->data.t[rollgeskewhaley_counter],((properties->precision<=2)?2:properties->precision-4),(365*properties->data.t[rollgeskewhaley_counter]),decimal_date_to_real_date(properties->data.t[rollgeskewhaley_counter]));
+                  printw("Time to %-17s(%s25=1/4 year)  : %.*f %.*f days %s",option_algorithms[properties->modeltype].supportTime1des,".",properties->precision+2,properties->data.t[rollgeskewhaley_counter],((properties->precision<=2)?2:properties->precision-4),(365*properties->data.t[rollgeskewhaley_counter]),decimal_date_to_real_date(properties->data.t[rollgeskewhaley_counter]));
                 }
 
                 move(row+1,0); clrtoeol();
@@ -1023,7 +1023,7 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
                 properties->data.t[rollgeskewhaley_counter] = adjust_to_current_time_and_expr(&daysaway,expirationtimeseconds,0);
                 move(timecursesrow,0);
 
-                printw("Time to %-17s(%s25=1/4 year)  : %.*f %.*f days %s", option_algorithms[properties->modeltype].supportTime2des,properties->lc->mon_decimal_point,properties->precision+2,properties->data.t[rollgeskewhaley_counter],((properties->precision<=2)?2:properties->precision-4),(365*properties->data.t[rollgeskewhaley_counter]),decimal_date_to_real_date(properties->data.t[rollgeskewhaley_counter]));
+                printw("Time to %-17s(%s25=1/4 year)  : %.*f %.*f days %s", option_algorithms[properties->modeltype].supportTime2des,".",properties->precision+2,properties->data.t[rollgeskewhaley_counter],((properties->precision<=2)?2:properties->precision-4),(365*properties->data.t[rollgeskewhaley_counter]),decimal_date_to_real_date(properties->data.t[rollgeskewhaley_counter]));
 
               } else
               {
@@ -1031,7 +1031,7 @@ int get_user_inputs(struct _properties *properties,struct _properties *future_pr
 
                 move(timecursesrow,0);
 
-                printw("Time to expiration    (%s25=1/4 year)     : %.*f %.*f days %s %02d %02d %02d:%02d", properties->lc->mon_decimal_point,properties->precision+2,properties->data.t[0],((properties->precision<=2)?2:properties->precision-4),(365*properties->data.t[0]),mon[expiration_month-1],expiration_day,expiration_year+2000,expiration_hour,expiration_minute);
+                printw("Time to expiration    (%s25=1/4 year)     : %.*f %.*f days %s %02d %02d %02d:%02d", ".",properties->precision+2,properties->data.t[0],((properties->precision<=2)?2:properties->precision-4),(365*properties->data.t[0]),mon[expiration_month-1],expiration_day,expiration_year+2000,expiration_hour,expiration_minute);
               }
 
               row -= 2;

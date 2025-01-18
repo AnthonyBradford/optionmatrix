@@ -120,25 +120,25 @@ int init_demo(struct _properties *properties)
   properties->customstrike = 90;
 
   move(2,0);
-  printw("Enter interest rate     (%s06 = 6%%)   : ", properties->lc->mon_decimal_point);
+  printw("Enter interest rate     (%s06 = 6%%)   : ", ".");
 
   /* make it look like someone is typing */
-  printw("%s", properties->lc->mon_decimal_point); 
+  printw("%s", "."); 
   myusleep(200000); refresh();
   printw("0"); myusleep(300000); refresh();
   printw("6"); myusleep(200000); refresh();
   properties->data.rate = .06;
 
   move(3,0);
-  printw("Time to expiration    (%s25=1/4 year) : ", properties->lc->mon_decimal_point);
+  printw("Time to expiration    (%s25=1/4 year) : ", ".");
 
   /* make it look like someone is typing */
-  printw("%s", properties->lc->mon_decimal_point); 
+  printw("%s", "."); 
   myusleep(200000); refresh();
   printw("2"); myusleep(300000); refresh();
   printw("5"); myusleep(200000); refresh();
   move(3,0);
-  printw("Time to expiration    (%s25=1/4 year) : %.6f, %.3f days, %s", properties->lc->mon_decimal_point,0.25,(365*(properties->data.t[0])),decimal_date_to_real_date(0.25));
+  printw("Time to expiration    (%s25=1/4 year) : %.6f, %.3f days, %s", ".",0.25,(365*(properties->data.t[0])),decimal_date_to_real_date(0.25));
   properties->data.t[0] = .25;
 
   time(&properties->starttime);
@@ -147,7 +147,7 @@ int init_demo(struct _properties *properties)
   move(4,0);
   printw("Enter standard deviation             : ");
   /* make it look like someone is typing */
-  printw("%s", properties->lc->mon_decimal_point); 
+  printw("%s", "."); 
   myusleep(200000); refresh();
   printw("3"); myusleep(300000); refresh();
   printw("5"); myusleep(200000); refresh();
@@ -300,20 +300,20 @@ int init_futures_demo(struct _properties *properties, struct _properties *future
   myusleep(200000);
             
   move(1,0);
-  printw("Enter interest rate     (%s05 = 6%%)   : ", properties->lc->mon_decimal_point);
+  printw("Enter interest rate     (%s05 = 6%%)   : ", ".");
 
   /* make it look like someone is typing */
-  printw("%s", properties->lc->mon_decimal_point);
+  printw("%s", ".");
   myusleep(200000); refresh();
   printw("0"); myusleep(300000); refresh();
   printw("6"); myusleep(200000); refresh();
   properties->data.rate = .06;
 
   move(2,0);
-  printw("Time to expiration    (%s25=1/4 year) : ", properties->lc->mon_decimal_point);
+  printw("Time to expiration    (%s25=1/4 year) : ", ".");
 
   /* make it look like someone is typing */
-  printw("%s", properties->lc->mon_decimal_point);
+  printw("%s", ".");
   myusleep(200000); refresh();
   printw("2"); myusleep(300000); refresh();
   printw("5"); myusleep(200000); refresh();
@@ -321,7 +321,7 @@ int init_futures_demo(struct _properties *properties, struct _properties *future
   myusleep(500000);
 
   move(2,0);
-  printw("Time to expiration    (%s25=1/4 year) : %.6f, %.3f days, %s\n", properties->lc->mon_decimal_point,0.25,(365*(properties->data.t[0])),decimal_date_to_real_date(0.25));
+  printw("Time to expiration    (%s25=1/4 year) : %.6f, %.3f days, %s\n", ".",0.25,(365*(properties->data.t[0])),decimal_date_to_real_date(0.25));
   properties->data.t[0] = .25;
 
   expires(LEG1,30,properties->skipmonth,future_properties);
