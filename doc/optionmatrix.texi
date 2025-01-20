@@ -682,7 +682,7 @@ The setting ``Sleep Delay'' controls the time in between option chain re-calcula
 
 @section Cumulative Normal Distribution
 @cindex Cumulative normal distribution
-The method of calculating the cumulative normal distribution is controlled with drop down named ``CND''.
+The method of calculating the Cumulative Normal Distribution is controlled with drop down named ``CND''.
 @*
 @html
 <br>
@@ -696,7 +696,7 @@ The method of calculating the cumulative normal distribution is controlled with 
 @cindex Romberg's method
 @cindex Simpson's rule
 @cindex Trapezoidal rule
-Methods include: PolyApprox6, PolyApprox4, Rational1.0*E-7, Rational2.5*E-4, Hart Equation, Romberg's Method, @url{http://www.google.com/search?q=Simpson's+Rule,Simpson's Rule} and @url{http://www.google.com/search?q=Trapezoidal+Rule,Trapezoidal Rule}.
+Methods include: PolyApprox6, PolyApprox4, Rational1.0*E-7, Rational2.5*E-4, Hart Equation, Romberg's Method, @url{http://www.google.com/search?q=Simpson's+Rule,Simpson's Rule}, @url{http://www.google.com/search?q=Trapezoidal+Rule,Trapezoidal Rule} and erf().
 @*
 @html
 <br>
