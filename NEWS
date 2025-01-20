@@ -1,12 +1,20 @@
-* OptionMatrix 1.4.4 test with:
-   gcc 14.2.0
-   clang 19.1.1 (some warnings)
-   GTK+ 2 and GTK+ 3 (one required to build GTK version of OptionMatrix)
-   ncurses 6.0 (required to build curses version of OptionMatrix)
-   QuantLib-1.36 (not required)
-   texi2any (GNU texinfo) 7.1 (not required)
-   automake 1.16.5, autoconf 2.72
+* OptionMatrix 1.4.4 changes:
+  No option recalculations when checkbox RealTime is not selected.
+  Minor getopt changes to ensure processing of arguments of any order.
+  Added optionmatrix.pdf to EXTRA_DIST this removes texinfo as build dependency.
+	  
+* OptionMatrix 1.4.4 tested with:
+  gcc 14.2.0
+  clang 19.1.1 (some warnings)
+  GTK+ 2 and GTK+ 3 (one required to build GTK version of OptionMatrix)
+  ncurses 6.0 (required to build curses version of OptionMatrix)
+  QuantLib-1.36 (not required)
+  texi2any (GNU texinfo) 7.1 (not required)
+  automake 1.16.5, autoconf 2.72
 
-* OptionMatrix 1.4.3 autotools package will automatically detect QuantLib installation. All QuantLib models from QuantLib-1.6.2/Examples/EquityOption have been implemented.
+* OptionMatrix 1.4.3 changes:
+  autotools package will automatically detect QuantLib installation.
+  All QuantLib models from QuantLib-1.6.2/Examples/EquityOption
+  have been implemented.
 
 * Please report any problems to: anthony_bradford@yahoo.com
