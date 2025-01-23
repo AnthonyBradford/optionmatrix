@@ -10,7 +10,7 @@ AC_INIT([OptionMatrix],[1.4.4],[anthony_bradford@yahoo.com],[optionmatrix],[http
 * pdf should succesfully build doc/optionmatrix.pdf with
 make pdf
 
-* doc/texinfo.tex might have to be updated to most recent version that comes with Texinfo.
+* doc/texinfo.tex might have to be updated to most recent version that comes with Texinfo
 
 * Ensure all files checked into git with
 git status
@@ -24,5 +24,8 @@ git status
 * distcheck should be successful before distribution of the tar.gz package
 make dist ; make distcheck
 
-* Set git tag to version number
-git tag 1.4.4
+* List git tags. Unfortunately OptionMatrix 1.4.3 was never tagged
+git tag -n
+
+* Set git tag version number and message
+git tag -a v1.4.4 -m "OptionMatrix 1.4.4"
