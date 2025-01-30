@@ -1,9 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<!-- This manual is for OptionMatrix (version 1.4.3, 7 February 2020),
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for OptionMatrix (version 1.4.4, 18 January 2025),
 which is a Financial Derivatives Calculator supporting GTK+, Curses and the Command Line.
 
-Copyright (C) 2013 Anthony Bradford.
+Copyright © 2013 Anthony Bradford.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -11,36 +14,37 @@ any later version published by the Free Software Foundation; with no
 Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
 Texts.  A copy of the license is included in the section entitled
 "GNU Free Documentation License". -->
-<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>OptionMatrix 1.4.3</title>
+<title>OptionMatrix 1.4.4</title>
 
 <meta name="description" content="Financial Derivatives Calculator. Black-Scholes Calculator.">
-<meta name="keywords" content="OptionMatrix 1.4.3">
+<meta name="keywords" content="OptionMatrix 1.4.4">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <link href="#Top" rel="start" title="Top">
 <link href="#Concept-index" rel="index" title="Concept index">
 <link href="#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="https://github.com" rel="up" title="(dir)">
+<link href="#Overview" rel="next" title="Overview">
 <style type="text/css">
 <!--
-a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter-printindex {text-decoration: none}
+div.center {text-align:center}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.lisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
-ul.no-bullet {list-style: none}
+kbd.kbd {font-style: oblique}
+kbd.key {font-style: normal}
+pre.display-preformatted {font-family: inherit}
+span:hover a.copiable-link {visibility: visible}
+td.printindex-index-entry {vertical-align: top}
+td.printindex-index-section {vertical-align: top; padding-left: 1em}
+th.entries-header-printindex {text-align:left}
+th.sections-header-printindex {text-align:left; padding-left: 1em}
+ul.mark-bullet {list-style-type: disc}
+ul.toc-numbered-mark {list-style: none}
 -->
 </style>
 
@@ -48,8 +52,7 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a><h1 class="settitle" align="center">OptionMatrix 1.4.3</h1>
-
+<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>
 
 
 
@@ -57,9 +60,10 @@ ul.no-bullet {list-style: none}
 
 <br>
 
-<span id="Top"></span><span id="OptionMatrix"></span><h1 class="top">OptionMatrix</h1>
+<div class="top-level-extent" id="Top">
+<h1 class="top" id="OptionMatrix"><span>OptionMatrix<a class="copiable-link" href="#OptionMatrix"> &para;</a></span></h1>
 
-<p>This manual is for OptionMatrix (version 1.4.3, 7 February 2020),
+<p>This manual is for OptionMatrix (version 1.4.4, 18 January 2025),
 which is a financial derivatives calculator.
 </p>
 <a href="images/OptionMatrixWin1.png">
@@ -74,35 +78,40 @@ which is a financial derivatives calculator.
 <br>
 
 
-<span id="SEC_Contents"></span>
+<center><a href="Downloading-and-Installation.html"><img src="images/6.png" alt="Download OptionMatrix" align="top"/></a><br clear=left>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
+&copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
+</center>
+
+<div class="element-contents" id="SEC_Contents">
 <h2 class="contents-heading">Table of Contents</h2>
 
 <div class="contents">
 
-<ul class="no-bullet">
+<ul class="toc-numbered-mark">
   <li><a id="toc-Overview-1" href="#Overview">1 Overview</a></li>
   <li><a id="toc-Invoking-the-OptionMatrix-Programs-1" href="#Invoking-the-OptionMatrix-Programs">2 Invoking the OptionMatrix Programs</a>
-  <ul class="no-bullet">
+  <ul class="toc-numbered-mark">
     <li><a id="toc-Usage-Options" href="#Usage-Options">2.1 Usage Options</a></li>
     <li><a id="toc-Examples" href="#Examples">2.2 Examples</a></li>
   </ul></li>
   <li><a id="toc-Graphical-Application-optionmatrix-1" href="#Graphical-Application-optionmatrix">3 Graphical Application optionmatrix</a>
-  <ul class="no-bullet">
+  <ul class="toc-numbered-mark">
     <li><a id="toc-Main-Screen" href="#Main-Screen">3.1 Main Screen</a></li>
     <li><a id="toc-Input-Controls" href="#Input-Controls">3.2 Input Controls</a>
-    <ul class="no-bullet">
+    <ul class="toc-numbered-mark">
       <li><a id="toc-Price_002c-Interest-Rate-and-Standard-Deviation" href="#Price_002c-Interest-Rate-and-Standard-Deviation">3.2.1 Price, Interest Rate and Standard Deviation</a></li>
       <li><a id="toc-Time" href="#Time">3.2.2 Time</a></li>
       <li><a id="toc-Calendar-Picker" href="#Calendar-Picker">3.2.3 Calendar Picker</a></li>
       <li><a id="toc-Strike-Controls" href="#Strike-Controls">3.2.4 Strike Controls</a></li>
     </ul></li>
     <li><a id="toc-Date-Engine" href="#Date-Engine">3.3 Date Engine</a>
-    <ul class="no-bullet">
+    <ul class="toc-numbered-mark">
       <li><a id="toc-Date-Engine-Properties" href="#Date-Engine-Properties">3.3.1 Date Engine Properties</a></li>
       <li><a id="toc-Month-Adjuster" href="#Month-Adjuster">3.3.2 Month Adjuster</a></li>
       <li><a id="toc-Option-Cycles" href="#Option-Cycles">3.3.3 Option Cycles</a></li>
       <li><a id="toc-Display-Formats" href="#Display-Formats">3.3.4 Display Formats</a>
-      <ul class="no-bullet">
+      <ul class="toc-numbered-mark">
         <li><a id="toc-Month-to-Strikes" href="#Month-to-Strikes">Month to Strikes</a></li>
         <li><a id="toc-Months-to-Strike" href="#Months-to-Strike">Months to Strike</a></li>
         <li><a id="toc-Months-Across" href="#Months-Across">Months Across</a></li>
@@ -112,7 +121,7 @@ which is a financial derivatives calculator.
     <li><a id="toc-Greeks" href="#Greeks">3.4 Greeks</a></li>
     <li><a id="toc-Spreads" href="#Spreads">3.5 Spreads</a></li>
     <li><a id="toc-Models" href="#Models">3.6 Models</a>
-    <ul class="no-bullet">
+    <ul class="toc-numbered-mark">
       <li><a id="toc-Changing-Models" href="#Changing-Models">3.6.1 Changing Models</a></li>
       <li><a id="toc-Model-Categorization" href="#Model-Categorization">3.6.2 Model Categorization</a></li>
     </ul></li>
@@ -122,8 +131,8 @@ which is a financial derivatives calculator.
     <li><a id="toc-Precision" href="#Precision">3.10 Precision</a></li>
     <li><a id="toc-Exporting" href="#Exporting">3.11 Exporting</a></li>
   </ul></li>
-  <li><a id="toc-Curses-optionmatrix_005fconsole" href="#Curses-optionmatrix">4 Curses <code>optionmatrix_console</code></a>
-  <ul class="no-bullet">
+  <li><a id="toc-Curses-optionmatrix_005fconsole" href="#Curses-optionmatrix">4 Curses <code class="command">optionmatrix_console</code></a>
+  <ul class="toc-numbered-mark">
     <li><a id="toc-Running" href="#Running">4.1 Running</a></li>
     <li><a id="toc-Welcome-Screen" href="#Welcome-Screen">4.2 Welcome Screen</a></li>
     <li><a id="toc-Model-Selection" href="#Model-Selection">4.3 Model Selection</a></li>
@@ -132,7 +141,7 @@ which is a financial derivatives calculator.
     <li><a id="toc-Pricing-Screen" href="#Pricing-Screen">4.6 Pricing Screen</a></li>
   </ul></li>
   <li><a id="toc-Models-supported-1" href="#Models-supported">5 Models supported</a>
-  <ul class="no-bullet">
+  <ul class="toc-numbered-mark">
     <li><a id="toc-BSM" href="#BSM">5.1 BSM</a></li>
     <li><a id="toc-American-Options" href="#American-Options">5.2 American Options</a></li>
     <li><a id="toc-Single-Asset-Options" href="#Single-Asset-Options">5.3 Single Asset Options</a></li>
@@ -149,10 +158,10 @@ which is a financial derivatives calculator.
     <li><a id="toc-Bonds" href="#Bonds">5.14 Bonds</a></li>
     <li><a id="toc-Term-structures" href="#Term-structures">5.15 Term structures</a></li>
     <li><a id="toc-Misc" href="#Misc">5.16 Misc</a></li>
-    <li><a id="toc-pre_002dBSM" href="#pre_002dBSM">5.17 pre-BSM</a></li>
+    <li><a id="toc-Pre_002dBSM" href="#Pre_002dBSM">5.17 Pre-BSM</a></li>
   </ul></li>
   <li><a id="toc-Downloading-and-Installation-1" href="#Downloading-and-Installation">6 Downloading and Installation</a>
-  <ul class="no-bullet">
+  <ul class="toc-numbered-mark">
     <li><a id="toc-Installers" href="#Installers">6.1 Installers</a></li>
     <li><a id="toc-Unix-_002f-Linux-Autotools-Package" href="#Unix-_002f-Linux-Autotools-Package">6.2 Unix / Linux Autotools Package</a></li>
   </ul></li>
@@ -162,159 +171,148 @@ which is a financial derivatives calculator.
   <li><a id="toc-Concept-index-1" href="#Concept-index" rel="index">Concept index</a></li>
 </ul>
 </div>
-
-<center><a href="Downloading-and-Installation.html"><img src="images/6.png" alt="Download OptionMatrix" align="top"/></a><br clear=left>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
-&copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
-</center>
-
+</div>
 <hr>
-<span id="Overview"></span><span id="Overview-1"></span><h2 class="chapter">1 Overview</h2>
-<span id="index-overview"></span>
+<div class="chapter-level-extent" id="Overview">
+<h2 class="chapter" id="Overview-1"><span>1 Overview<a class="copiable-link" href="#Overview-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-overview"></a>
+
 <p>The OptionMatrix programs are financial derivative calculators
-distributed by <a href="http://sourceforge.net/projects/optionmatrix">http://sourceforge.net/projects/optionmatrix</a>.
+distributed by <a class="url" href="http://sourceforge.net/projects/optionmatrix/">http://sourceforge.net/projects/optionmatrix/</a>.
 These calculators are real-time multi-model option chain pricers with
-analytics and interactive controls. <code>optionmatrix</code> is the GTK+ graphical user interface version and <code>optionmatrix_console</code> is the Curses version (Unix/Linux console, DOS).
+analytics and interactive controls. <code class="command">optionmatrix</code> is the GTK+ graphical user interface version and <code class="command">optionmatrix_console</code> is the Curses version (Unix/Linux console, DOS).
 </p>
-<p>Both programs feature: greeks, decimal date to real-date translations, real-date to decimal date translations, real-time time bleeding, configurable option expiration date engines, calendars, strike control systems, tickers and over 170 option models. <code>optionmatrix</code> also supports: spreads, bonds, term structures, cash flow editing, source code viewing and text exporting.
+<p>Both programs feature: greeks, decimal date to real-date translations, real-date to decimal date translations, real-time time bleeding, configurable option expiration date engines, calendars, strike control systems, tickers and over 171 option models. <code class="command">optionmatrix</code> also supports: spreads, bonds, term structures, cash flow editing, source code viewing and text exporting.
 </p>
-<span id="index-authors"></span>
-<span id="index-Anthony-Bradford"></span>
-<span id="index-Bjorn-Augestad"></span>
-<span id="index-Metaoptions"></span>
-<span id="index-Bernt-Arne-Oedegaard"></span>
-<span id="index-Financial-Numerical-Recipes-in-C_002b_002b"></span>
-<span id="index-Seth-Pinsky"></span>
-<span id="index-QuantLib"></span>
-<p>The OptionMatrix programs use financial model libraries. Models are included from QuantLib, Bj&oslash;rn Augestad (Metaoptions), Anthony Bradford, <a href="http://www.google.com/search?q=Bernt+Arne+Oedegaard">Bernt Arne &Oslash;edegaard</a> (Financial Numerical Recipes in C++) and Seth Pinsky. The code base can be easily extended to include new models.
+<a class="index-entry-id" id="index-authors"></a>
+<a class="index-entry-id" id="index-Anthony-Bradford"></a>
+<a class="index-entry-id" id="index-Bjorn-Augestad"></a>
+<a class="index-entry-id" id="index-Metaoptions"></a>
+<a class="index-entry-id" id="index-Bernt-Arne-Oedegaard"></a>
+<a class="index-entry-id" id="index-Financial-Numerical-Recipes-in-C_002b_002b"></a>
+<a class="index-entry-id" id="index-Seth-Pinsky"></a>
+<a class="index-entry-id" id="index-QuantLib"></a>
+<p>The OptionMatrix programs use financial model libraries. Models are included from QuantLib, Bj&oslash;rn Augestad (Metaoptions), Anthony Bradford, <a class="url" href="http://www.google.com/search?q=Bernt+Arne+Oedegaard">Bernt Arne &Oslash;edegaard</a> (Financial Numerical Recipes in C++) and Seth Pinsky. The code base can be easily extended to include new models.
 </p>
-<span id="index-C_002b_002b"></span>
-<span id="index-Autotools"></span>
-<span id="index-GNU-General-Public-License"></span>
-<p>The OptionMatrix programs are implemented in C++&nbsp;and use Autotools for packaging. See <a href="#Downloading-and-Installation">Downloading and Installation</a>, for source code and installers. These programs are protected by the GNU General Public License,
+<a class="index-entry-id" id="index-C_002b_002b"></a>
+<a class="index-entry-id" id="index-Autotools"></a>
+<a class="index-entry-id" id="index-GNU-General-Public-License"></a>
+<p>The OptionMatrix programs are implemented in C++&nbsp;and use Autotools for packaging. OptionMatrix can be compiled with GTK+ 3 or GTK+ 2. See <a class="xref" href="#Downloading-and-Installation">Downloading and Installation</a>, for source code and installers. These programs are protected by the GNU General Public License,
 users are free (in perpetuity) to share and change them.
 </p>
-<p>OptionMatrix was written by <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>.
+<p>OptionMatrix was written by <a class="email" href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>.
 </p>
-<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/></a><br clear=left>
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/6.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
 
 <hr>
-<span id="Invoking-the-OptionMatrix-Programs"></span><span id="Invoking-the-OptionMatrix-Programs-1"></span><h2 class="chapter">2 Invoking the OptionMatrix Programs</h2>
-<span id="index-invoking"></span>
+</div>
+<div class="chapter-level-extent" id="Invoking-the-OptionMatrix-Programs">
+<h2 class="chapter" id="Invoking-the-OptionMatrix-Programs-1"><span>2 Invoking the OptionMatrix Programs<a class="copiable-link" href="#Invoking-the-OptionMatrix-Programs-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-invoking"></a>
 
-<span id="Usage-Options"></span><h3 class="section">2.1 Usage Options</h3>
-<span id="index-usage"></span>
+<div class="section-level-extent" id="Usage-Options">
+<h3 class="section"><span>2.1 Usage Options<a class="copiable-link" href="#Usage-Options"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-usage"></a>
 
 <p>The options for running the OptionMatrix programs are:
 </p>
 <div class="example">
-<pre class="example">optionmatrix <var>option</var> &hellip;
+<pre class="example-preformatted">optionmatrix <var class="var">option</var> ...
 </pre></div>
 
 <div class="example">
-<pre class="example">optionmatrix_console <var>option</var> &hellip;
+<pre class="example-preformatted">optionmatrix_console <var class="var">option</var> ...
 </pre></div>
 
-<span id="index-curses"></span>
-<p>With no options, <code>optionmatrix</code> launches the GTK+ (GUI) version of OptionMatrix and <code>optionmatrix_console</code> launches the Curses (console, DOS) version.
+<a class="index-entry-id" id="index-curses"></a>
+<p>With no options, <code class="command">optionmatrix</code> launches the GTK+ (GUI) version of OptionMatrix and <code class="command">optionmatrix_console</code> launches the Curses (console, DOS) version.
 </p>
-<p><code>optionmatrix</code> and <code>optionmatrix_console</code> support the following options:
+<p><code class="command">optionmatrix</code> and <code class="command">optionmatrix_console</code> support the following options:
 </p>
-<dl compact="compact">
-<dd>
-<span id="index-help"></span>
-</dd>
-<dt><samp>--help</samp></dt>
-<dt><samp>-h</samp></dt>
-<dd><span id="index-_002d_002dhelp"></span>
-<span id="index-_002dh"></span>
-<p>Print an informative help message on standard output and exit.
+<dl class="table">
+<dt><a class="index-entry-id" id="index-_002dh"></a>
+<a class="index-entry-id" id="index-help"></a>
+<a id="index-_002d_002dhelp"></a><span><samp class="option">--help</samp><a class="copiable-link" href="#index-_002d_002dhelp"> &para;</a></span></dt>
+<dt><samp class="option">-h</samp></dt>
+<dd><p>Print an informative help message on standard output and exit.
 </p>
 </dd>
-<dt><samp>--version</samp></dt>
-<dt><samp>-v</samp></dt>
-<dd><span id="index-_002d_002dversion"></span>
-<span id="index-_002dv"></span>
-<p>Print the version number and licensing information of OptionMatrix on
+<dt><a class="index-entry-id" id="index-_002dv"></a>
+<a id="index-_002d_002dversion"></a><span><samp class="option">--version</samp><a class="copiable-link" href="#index-_002d_002dversion"> &para;</a></span></dt>
+<dt><samp class="option">-v</samp></dt>
+<dd><p>Print the version number and licensing information of OptionMatrix on
 standard output and exit.
 </p>
 </dd>
-<dt><samp>--list</samp></dt>
-<dt><samp>-l</samp></dt>
-<dd><span id="index-_002d_002dlist"></span>
-<span id="index-_002dl"></span>
-<span id="index-Listing-models"></span>
-<span id="index-Models-listing"></span>
-<p>List the names of all financial models to standard output and exit.
+<dt><a class="index-entry-id" id="index-_002dl"></a>
+<a class="index-entry-id" id="index-Listing-models"></a>
+<a class="index-entry-id" id="index-Models-listing"></a>
+<a id="index-_002d_002dlist"></a><span><samp class="option">--list</samp><a class="copiable-link" href="#index-_002d_002dlist"> &para;</a></span></dt>
+<dt><samp class="option">-l</samp></dt>
+<dd><p>List the names of all financial models to standard output and exit.
 </p>
 </dd>
-<dt><samp>--source</samp></dt>
-<dt><samp>-s</samp></dt>
-<dd><span id="index-_002d_002dsource"></span>
-<span id="index-_002ds"></span>
-<span id="index-Source-code"></span>
-<p>List source code file names of models not accessible by the application to standard output and exit. If a model&rsquo;s source code is accessible the <code>optionmatrix</code> program can display source code from the running application.
+<dt><a class="index-entry-id" id="index-_002ds"></a>
+<a class="index-entry-id" id="index-Source-code"></a>
+<a id="index-_002d_002dsource"></a><span><samp class="option">--source</samp><a class="copiable-link" href="#index-_002d_002dsource"> &para;</a></span></dt>
+<dt><samp class="option">-s</samp></dt>
+<dd><p>List source code file names of models not accessible by the application to standard output and exit. If a model&rsquo;s source code is accessible the <code class="command">optionmatrix</code> program can display source code from the running application.
 </p>
 </dd>
-<dt><samp>--debug</samp></dt>
-<dt><samp>-d</samp></dt>
-<dd><span id="index-_002d_002ddebug"></span>
-<span id="index-_002dd"></span>
-<p>Force creation of debug log file <samp>optionmatrix.log</samp>
+<dt><a class="index-entry-id" id="index-_002dd"></a>
+<a id="index-_002d_002ddebug"></a><span><samp class="option">--debug</samp><a class="copiable-link" href="#index-_002d_002ddebug"> &para;</a></span></dt>
+<dt><samp class="option">-d</samp></dt>
+<dd><p>Force creation of debug log file <samp class="file">optionmatrix.log</samp>
 </p>
 </dd>
-<dt><samp>--price</samp></dt>
-<dt><samp>-p</samp></dt>
-<dd><span id="index-_002d_002dprice"></span>
-<span id="index-_002dp"></span>
-<p>Iterate through and test all models to standard output and exit.
+<dt><a class="index-entry-id" id="index-_002dp"></a>
+<a id="index-_002d_002dprice"></a><span><samp class="option">--price</samp><a class="copiable-link" href="#index-_002d_002dprice"> &para;</a></span></dt>
+<dt><samp class="option">-p</samp></dt>
+<dd><p>Iterate through and test all models to standard output and exit.
 </p>
 </dd>
-<dt><samp>--quiet</samp></dt>
-<dt><samp>-q</samp></dt>
-<dd><span id="index-_002d_002dquiet"></span>
-<span id="index-_002dq"></span>
-<p>Iterate through and test all models in quiet mode and exit.
+<dt><a class="index-entry-id" id="index-_002dq"></a>
+<a id="index-_002d_002dquiet"></a><span><samp class="option">--quiet</samp><a class="copiable-link" href="#index-_002d_002dquiet"> &para;</a></span></dt>
+<dt><samp class="option">-q</samp></dt>
+<dd><p>Iterate through and test all models in quiet mode and exit.
 </p>
 </dd>
-<dt><samp>--model</samp></dt>
-<dt><samp>-m</samp></dt>
-<dd><span id="index-_002d_002dmodel-number"></span>
-<span id="index-_002dm-number"></span>
-<p>Time test a specific model number to standard output and exit. 200000 executions of model are made and timed by default.
+<dt><a class="index-entry-id" id="index-_002dm-number"></a>
+<a id="index-_002d_002dmodel-number"></a><span><samp class="option">--model</samp><a class="copiable-link" href="#index-_002d_002dmodel-number"> &para;</a></span></dt>
+<dt><samp class="option">-m</samp></dt>
+<dd><p>Time test a specific model number to standard output and exit. 200000 executions of model are made and timed by default.
 </p>
 </dd>
-<dt><samp>--iterate number</samp></dt>
-<dt><samp>-i number</samp></dt>
-<dd><span id="index-_002d_002diterate-number"></span>
-<span id="index-_002di-number"></span>
-<p>Set number of executions a model will be time tested for (default 200000)
+<dt><a class="index-entry-id" id="index-_002di-number"></a>
+<a id="index-_002d_002diterate-number"></a><span><samp class="option">--iterate number</samp><a class="copiable-link" href="#index-_002d_002diterate-number"> &para;</a></span></dt>
+<dt><samp class="option">-i number</samp></dt>
+<dd><p>Set number of executions a model will be time tested for (default 200000)
 </p>
 </dd>
-<dt><samp>--Directory</samp></dt>
-<dt><samp>-D</samp></dt>
-<dd><span id="index-_002d_002dDirectory"></span>
-<span id="index-_002dD"></span>
-<p>Set model source code directory. The GTK+ version of the application can display source code.
+<dt><a class="index-entry-id" id="index-_002dD"></a>
+<a id="index-_002d_002dDirectory"></a><span><samp class="option">--Directory</samp><a class="copiable-link" href="#index-_002d_002dDirectory"> &para;</a></span></dt>
+<dt><samp class="option">-D</samp></dt>
+<dd><p>Set model source code directory. The GTK+ version of the application can display source code.
 </p>
 </dd>
-<dt><samp>--datadir</samp></dt>
-<dt><samp>-x</samp></dt>
-<dd><span id="index-_002d_002ddatadir"></span>
-<span id="index-_002dD-1"></span>
-<p>Override the datadir variable used for the path to icons / images.
+<dt><a class="index-entry-id" id="index-_002dD-1"></a>
+<a id="index-_002d_002ddatadir"></a><span><samp class="option">--datadir</samp><a class="copiable-link" href="#index-_002d_002ddatadir"> &para;</a></span></dt>
+<dt><samp class="option">-x</samp></dt>
+<dd><p>Override the datadir variable used for the path to icons / images.
 </p>
 </dd>
 </dl>
-<p>The option <samp>--debug</samp> ( <samp>-d</samp> ) is the only option used by both <code>optionmatrix</code> and <code>optionmatrix_console</code> applications. The options <samp>--Directory</samp> ( <samp>-D</samp> ) and <samp>--datadir</samp> ( <samp>-x</samp> ) are exclusive to <code>optionmatrix</code>. The remaining command line options do not launch an interactive application and only create standard output and exit.
-</p><span id="Examples"></span><h3 class="section">2.2 Examples</h3>
-<p>Try typing &lsquo;<samp>optionmatrix --version</samp>&rsquo;
+<p>The option <samp class="option">--debug</samp> ( <samp class="option">-d</samp> ) is the only option used by both <code class="command">optionmatrix</code> and <code class="command">optionmatrix_console</code> applications. The options <samp class="option">--Directory</samp> ( <samp class="option">-D</samp> ) and <samp class="option">--datadir</samp> ( <samp class="option">-x</samp> ) are exclusive to <code class="command">optionmatrix</code>. The remaining command line options do not launch an interactive application and only create standard output and exit.
+</p></div>
+<div class="section-level-extent" id="Examples">
+<h3 class="section"><span>2.2 Examples<a class="copiable-link" href="#Examples"> &para;</a></span></h3>
+<p>Try typing &lsquo;<samp class="samp">optionmatrix --version</samp>&rsquo;
 </p><div class="example">
-<pre class="example">optionmatrix 1.4.3
+<pre class="example-preformatted">optionmatrix 1.4.4
 
 Copyright (C) 2013 Anthony Bradford.
 License GPLv3+: GNU GPL version 3 or later 
@@ -323,18 +321,18 @@ This is free software; see the source for copying conditions.
 There is NO warranty; not even for MERCHANTABILITY or 
 FITNESS FOR A PARTICULAR PURPOSE.
 
-<span id="index-Anthony-Bradford-1"></span>Written by Anthony Bradford.
+<a class="index-entry-id" id="index-Anthony-Bradford-1"></a>Written by Anthony Bradford.
 </pre></div>
 <br>
-<span id="index-Black_002dScholes"></span>
+<a class="index-entry-id" id="index-Black_002dScholes"></a>
 <p>Run and time model zero, Black-Scholes, at the default number of iterations (200000)
 </p>
-<span id="index-Put-time-to-calculate"></span>
-<span id="index-Call-time-to-calculate"></span>
-<span id="index-Time-to-calculate-put-_002f-call"></span>
-<p>&lsquo;<samp>optionmatrix --model 0 </samp>&rsquo;
+<a class="index-entry-id" id="index-Put-time-to-calculate"></a>
+<a class="index-entry-id" id="index-Call-time-to-calculate"></a>
+<a class="index-entry-id" id="index-Time-to-calculate-put-_002f-call"></a>
+<p>&lsquo;<samp class="samp">optionmatrix --model 0 </samp>&rsquo;
 </p><div class="example">
-<pre class="example">Model #: 0 Black-Scholes
+<pre class="example-preformatted">Model #: 0 Black-Scholes
 
 200000 Calls calculated &nbsp;Time 1.517541s
 CPU time: 0.600000s
@@ -345,9 +343,9 @@ CPU time: 0.560000s
 <br>
 <p>Run and time model zero, Black-Scholes, at 1 million iterations
 </p>
-<p>&lsquo;<samp>optionmatrix --iterate 1000000 --model 0</samp>&rsquo;
+<p>&lsquo;<samp class="samp">optionmatrix --iterate 1000000 --model 0</samp>&rsquo;
 </p><div class="example">
-<pre class="example">Model #: 0 Black-Scholes
+<pre class="example-preformatted">Model #: 0 Black-Scholes
 
 1000000 Calls calculated &nbsp;Time 7.890567s
 CPU time: 2.870000s
@@ -358,711 +356,802 @@ CPU time: 2.780000s
 <br>
 <p>Run the Curses version of OptionMatrix
 </p>
-<p>&lsquo;<samp>optionmatrix_console</samp>&rsquo;
+<p>&lsquo;<samp class="samp">optionmatrix_console</samp>&rsquo;
 <br>
 <br>
 Run the GTK+ (GUI) version of OptionMatrix
 </p>
-<p>&lsquo;<samp>optionmatrix</samp>&rsquo;
+<p>&lsquo;<samp class="samp">optionmatrix</samp>&rsquo;
 <br>
 <br>
 Run the GTK+ (GUI) version of OptionMatrix and define the model source code location.
 </p>
-<p>&lsquo;<samp>optionmatrix --Directory src/c++/optionmatrix/optionmatrix-1.4.3</samp>&rsquo;
+<p>&lsquo;<samp class="samp">optionmatrix --Directory src/c++/optionmatrix/optionmatrix-1.4.4</samp>&rsquo;
 <br>
+</p>
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/5.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
-</p>
-<hr>
-<span id="Graphical-Application-optionmatrix"></span><span id="Graphical-Application-optionmatrix-1"></span><h2 class="chapter">3 Graphical Application optionmatrix</h2>
-<span id="Main-Screen"></span><h3 class="section">3.1 Main Screen</h3>
 
-<span id="index-GTK_002b"></span>
-<span id="index-optionmatrix_002elog"></span>
-<span id="index-Option-chain"></span>
-<span id="index-Black_002dScholes-1"></span>
-<span id="index-Time-bleeding"></span>
-<p>Running <code>optionmatrix</code> with no arguments or just the <samp>--debug</samp>, <samp>-d</samp> options will invoke the OptionMatrix GTK+ Graphical Application. The <samp>--debug</samp> or <samp>-d</samp> options will cause <code>optionmatrix</code> to create the debug log, <samp>optionmatrix.log</samp>, in the users home directory or the current working directory of execution. This log file will be populated with diagnostic information while the program is executing.
+<hr>
+</div>
+</div>
+<div class="chapter-level-extent" id="Graphical-Application-optionmatrix">
+<h2 class="chapter" id="Graphical-Application-optionmatrix-1"><span>3 Graphical Application optionmatrix<a class="copiable-link" href="#Graphical-Application-optionmatrix-1"> &para;</a></span></h2>
+<div class="section-level-extent" id="Main-Screen">
+<h3 class="section"><span>3.1 Main Screen<a class="copiable-link" href="#Main-Screen"> &para;</a></span></h3>
+
+<a class="index-entry-id" id="index-GTK_002b"></a>
+<a class="index-entry-id" id="index-optionmatrix_002elog"></a>
+<a class="index-entry-id" id="index-Option-chain"></a>
+<a class="index-entry-id" id="index-Black_002dScholes-1"></a>
+<a class="index-entry-id" id="index-Time-bleeding"></a>
+<p>Running <code class="command">optionmatrix</code> with no arguments or just the <samp class="option">--debug</samp>, <samp class="option">-d</samp> options will invoke the OptionMatrix GTK+ Graphical Application. The <samp class="option">--debug</samp> or <samp class="option">-d</samp> options will cause <code class="command">optionmatrix</code> to create the debug log, <samp class="file">optionmatrix.log</samp>, in the users home directory or the current working directory of execution. This log file will be populated with diagnostic information while the program is executing.
 </p>
 <p>The initial screen will appear. The default model is Black-Scholes. The option chain on display is being re-calculated every second. Price changes are the result of time bleeding between the current time and the expiration time. 
 </p>
-<br>
-<div align="center"><img src="images/OptionMatrix.png" alt="Financial Derivatives Calculator">
+<div class="center"><img class="image" src="images/OptionMatrix.png" alt="Financial Derivatives Calculator">
 </div>
-<span id="Input-Controls"></span><h3 class="section">3.2 Input Controls</h3>
+</div>
+<div class="section-level-extent" id="Input-Controls">
+<h3 class="section"><span>3.2 Input Controls<a class="copiable-link" href="#Input-Controls"> &para;</a></span></h3>
 
-<span id="Price_002c-Interest-Rate-and-Standard-Deviation"></span><h4 class="subsection">3.2.1 Price, Interest Rate and Standard Deviation</h4>
-<span id="index-price"></span>
-<span id="index-Interest-rate"></span>
-<span id="index-Standard-deviation"></span>
-<span id="index-volatility"></span>
+<div class="subsection-level-extent" id="Price_002c-Interest-Rate-and-Standard-Deviation">
+<h4 class="subsection"><span>3.2.1 Price, Interest Rate and Standard Deviation<a class="copiable-link" href="#Price_002c-Interest-Rate-and-Standard-Deviation"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-price"></a>
+<a class="index-entry-id" id="index-Interest-rate"></a>
+<a class="index-entry-id" id="index-Standard-deviation"></a>
+<a class="index-entry-id" id="index-volatility"></a>
 <p>Price, interest rate, and standard deviation can be configured via spin buttons. 
 <br>
+</p>
 <br>
-</p><div align="center"><img src="images/PriceInterestStandard.png" alt="Financial Engineering Modelling">
-</div><span id="Time"></span><h4 class="subsection">3.2.2 Time</h4>
-<span id="index-Time-to-expiration"></span>
-<span id="index-Days-to-expiration"></span>
-<span id="index-Expiration-date"></span>
+<div class="center"><img class="image" src="images/PriceInterestStandard.png" alt="Financial Engineering Modelling">
+</div></div>
+<div class="subsection-level-extent" id="Time">
+<h4 class="subsection"><span>3.2.2 Time<a class="copiable-link" href="#Time"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Time-to-expiration"></a>
+<a class="index-entry-id" id="index-Days-to-expiration"></a>
+<a class="index-entry-id" id="index-Expiration-date"></a>
 <p>Time can be entered by the &ldquo;Time to Expiration&rdquo; or the &ldquo;Days to Expiration&rdquo; spin buttons.
 <br>
 <br>
-</p><div align="center"><img src="images/Time.png" alt="Financial Option Expiration Time">
-</div><br>
+</p><div class="center"><img class="image" src="images/Time.png" alt="Financial Option Expiration Time">
+</div>
 <p>&ldquo;Time to Expiration&rdquo; displays time to expiration in years. &ldquo;Days to Expiration&rdquo; displays expiration time in days.
 </p>
-<span id="index-Leap-year"></span>
+<a class="index-entry-id" id="index-Leap-year"></a>
 <p>Input to either spin button updates both. An exact expiration date and time is calculated from the input, the option chain in the calculator&rsquo;s grid display will be update to the new expiration date. Date calculations are adjusted for leap day of leap years.
 </p>
 <p>Both spin button&rsquo;s time value decreases every second as the expiration date approaches.
-<span id="index-real_002dtime"></span>
+<a class="index-entry-id" id="index-real_002dtime"></a>
 This real-time updating can be toggled with the checkbox &ldquo;RealTime&rdquo;.
 <br>
+</p>
 <br>
-</p><div align="center"><img src="images/RealTime.png" alt="Real Time Financial Options Pricer">
-</div><span id="index-Calendar-picker"></span>
-<span id="Calendar-Picker"></span><h4 class="subsection">3.2.3 Calendar Picker</h4>
-<span id="index-calendar"></span>
+<div class="center"><img class="image" src="images/RealTime.png" alt="Real Time Financial Options Pricer">
+</div><a class="index-entry-id" id="index-Calendar-picker"></a>
+</div>
+<div class="subsection-level-extent" id="Calendar-Picker">
+<h4 class="subsection"><span>3.2.3 Calendar Picker<a class="copiable-link" href="#Calendar-Picker"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-calendar"></a>
 <p>A specific calendar date can be selected with the Calendar Picker.
 </p>
 <p>Calendar date selections will update both the &ldquo;Time to Expiration&rdquo; and the &ldquo;Days to Expirations&rdquo; spin buttons. Pressing the &ldquo;Calendar&rdquo; push button will invoke the Calendar Picker popup.
 <br>
+</p>
 <br>
-</p><div align="center"><img src="images/CalendarButton.png" alt="Financial Derivative Expiration Calendar">
+<div class="center"><img class="image" src="images/CalendarButton.png" alt="Financial Derivative Expiration Calendar">
 </div>
 <p>The popup features year, month and day calendar selections. 
 <br>
+</p>
 <br>
-</p><div align="center"><img src="images/Calendar.png" alt="Equity Option Puts Calls Expiration Calendar">
+<div class="center"><img class="image" src="images/Calendar.png" alt="Equity Option Puts Calls Expiration Calendar">
 </div>
 <p>Select an expiration date and dismiss the popup. The popup does not feature a &ldquo;OK&rdquo; or &ldquo;Cancel&rdquo; button. The option chain in the calculator&rsquo;s grid display will be set to the new expiration date.
 </p>
-<span id="Strike-Controls"></span><h4 class="subsection">3.2.4 Strike Controls</h4>
-<span id="index-Strike-increments"></span>
-<span id="index-Custom-strike"></span>
-<p>A drop down box &ldquo;Strikes&rdquo; changes the strike increments or allows custom strike mode.
-</p>
-<br>
-<div align="center"><img src="images/StrikesDrop.png" alt="Financial Derivatives Strikes">
 </div>
-<p>Selections include: 5, 1, .5, .1, .01, .001 and CUST
-</p>
+<div class="subsection-level-extent" id="Strike-Controls">
+<h4 class="subsection"><span>3.2.4 Strike Controls<a class="copiable-link" href="#Strike-Controls"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Strike-increments"></a>
+<a class="index-entry-id" id="index-Custom-strike"></a>
+<p>A drop down box &ldquo;Strikes&rdquo; changes the strike increments or allows custom strike mode.
 <br>
-<div align="center"><img src="images/Strikes.png" alt="Equity Puts Call Strikes">
-</div><span id="index-Strike-adjuster"></span>
+</p><div class="center"><img class="image" src="images/StrikesDrop.png" alt="Financial Derivatives Strikes">
+</div><br>
+<p>Selections include: 5, 1, .5, .1, .01, .001 and CUST
+<br>
+</p><div class="center"><img class="image" src="images/Strikes.png" alt="Equity Puts Call Strikes">
+</div><a class="index-entry-id" id="index-Strike-adjuster"></a>
 <p>A scale button &ldquo;Strike Adjuster&rdquo; allows scrolling of strikes being displayed in the selected strike increments.
 <br>
 <br>
-</p><div align="center"><img src="images/StrikeDropDownAndAdjuster.png" alt="Equity Options Strikes">
-</div>
-<span id="index-Strike-custom"></span>
+</p><div class="center"><img class="image" src="images/StrikeDropDownAndAdjuster.png" alt="Equity Options Strikes">
+</div><a class="index-entry-id" id="index-Strike-custom"></a>
 <p>Selection of drop down item &ldquo;CUST&rdquo; allows entering of any strike in the Strike input box.
 <br>
 <br>
-</p><div align="center"><img src="images/CUSTInput.png" alt="Financial Derivative Strike">
+</p><div class="center"><img class="image" src="images/CUSTInput.png" alt="Financial Derivative Strike">
 </div>
-<span id="Date-Engine"></span><h3 class="section">3.3 Date Engine</h3>
-<span id="index-Date-engine"></span>
+</div>
+</div>
+<div class="section-level-extent" id="Date-Engine">
+<h3 class="section"><span>3.3 Date Engine<a class="copiable-link" href="#Date-Engine"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Date-engine"></a>
 <p>Selecting the checkbox &ldquo;Use Date Engine&rdquo; will invoke the Date Engine. 
-</p>
 <br>
-<div align="center"><img src="images/DateEngineSelected.png" alt="Equity Puts Calls Expiration">
+</p><div class="center"><img class="image" src="images/DateEngineSelected.png" alt="Equity Puts Calls Expiration">
 </div>
-<span id="index-expiration"></span>
-<span id="index-Exchange-traded-options"></span>
+<a class="index-entry-id" id="index-expiration"></a>
+<a class="index-entry-id" id="index-Exchange-traded-options"></a>
 <p>The Date Engine will map option expirations to a default of 3rd Friday+1 @11:59AM going into the future. This is the standard expiration for U.S. Exchange Traded Options. The Date Engine is configurable and can make any re-occuring date used by the options industry.
 </p>
 <p>The option chain&rsquo;s pricing will be updated as time decreases between the current time and the expirations.
-</p>
 <br>
-<div align="center"><img src="images/OptionMatrixCalendarDated.png" alt="Equity Stock Option Calculator">
+</p><div class="center"><img class="image" src="images/OptionMatrixCalendarDated.png" alt="Equity Stock Option Calculator">
 </div>
-<span id="Date-Engine-Properties"></span><h4 class="subsection">3.3.1 Date Engine Properties</h4>
-<span id="index-Date-engine-properties"></span>
-<span id="index-expiration-1"></span>
+<div class="subsection-level-extent" id="Date-Engine-Properties">
+<h4 class="subsection"><span>3.3.1 Date Engine Properties<a class="copiable-link" href="#Date-Engine-Properties"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Date-engine-properties"></a>
+<a class="index-entry-id" id="index-expiration-1"></a>
 <p>The Date Engine Properties popup is used to configure the Date Engine. It can be invoked by pressing the Date Engine Properties push button. 
-</p>
 <br>
-<div align="center"><img src="images/DateEngineProperties.png" alt="Stock Option Expirations">
-</div>
+</p><div class="center"><img class="image" src="images/DateEngineProperties.png" alt="Stock Option Expirations">
+</div><br>
 <p>The default expiration setting of 3rd Friday+1 @11:59AM can be changed.
-</p>
 <br>
-<div align="center"><img src="images/DateEngine.png" alt="Equity Option Expirations">
+</p><div class="center"><img class="image" src="images/DateEngine.png" alt="Equity Option Expirations">
 </div>
-<span id="Month-Adjuster"></span><h4 class="subsection">3.3.2 Month Adjuster</h4>
-<span id="index-Month-adjuster"></span>
+</div>
+<div class="subsection-level-extent" id="Month-Adjuster">
+<h4 class="subsection"><span>3.3.2 Month Adjuster<a class="copiable-link" href="#Month-Adjuster"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Month-adjuster"></a>
 <p>A scale button named &ldquo;Month Adjuster&rdquo; can adjust the Date Engine&rsquo;s months forward.
-</p>
 <br>
-<div align="center"><img src="images/MonthAdjuster.png" alt="Financial Modelling Month Adjustment">
+</p><div class="center"><img class="image" src="images/MonthAdjuster.png" alt="Financial Modelling Month Adjustment">
 </div>
-<span id="Option-Cycles"></span><h4 class="subsection">3.3.3 Option Cycles</h4>
-<span id="index-Option-cycles"></span>
-<span id="index-Months-in-option-cycles"></span>
+</div>
+<div class="subsection-level-extent" id="Option-Cycles">
+<h4 class="subsection"><span>3.3.3 Option Cycles<a class="copiable-link" href="#Option-Cycles"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Option-cycles"></a>
+<a class="index-entry-id" id="index-Months-in-option-cycles"></a>
 <p>The Date Engine supports option cycles. See drop down with label &ldquo;Cycle&rdquo;.
-</p>
 <br>
-<div align="center"><img src="images/CycleClosed.png" alt="Equity Option Cycles">
-</div>
-<span id="index-LEAPS"></span>
+</p><div class="center"><img class="image" src="images/CycleClosed.png" alt="Equity Option Cycles">
+</div><br>
+<a class="index-entry-id" id="index-LEAPS"></a>
 <p>The Cycle drop down includes: All, Jan, Feb, Mar and LEAPS.
-</p>
 <br>
-<div align="center"><img src="images/CycleDropOpen.png" alt="Equity Option Cycles Jan Feb Mar">
+</p><div class="center"><img class="image" src="images/CycleDropOpen.png" alt="Equity Option Cycles Jan Feb Mar">
 </div><br>
 <p>The default setting is &ldquo;All&rdquo; which displays all months.
 </p>
-<span id="Display-Formats"></span><h4 class="subsection">3.3.4 Display Formats</h4>
-<span id="index-Display-formats"></span>
-<span id="index-Option-chain-1"></span>
+</div>
+<div class="subsection-level-extent" id="Display-Formats">
+<h4 class="subsection"><span>3.3.4 Display Formats<a class="copiable-link" href="#Display-Formats"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Display-formats"></a>
+<a class="index-entry-id" id="index-Option-chain-1"></a>
 <p>The Date Engine supports many display formats for the option chain.
-</p>
-<p>In the grouping of radio buttons labeled &ldquo;Display Formats&rdquo; each radio button changes the option chains display format.
+<br>
+In the grouping of radio buttons labeled &ldquo;Display Formats&rdquo; each radio button changes the option chains display format.
 <br>
 <br>
-</p><div align="center"><img src="images/DisplayFormats.png" alt="Option Chain Display Formats">
+</p><div class="center"><img class="image" src="images/DisplayFormats.png" alt="Option Chain Display Formats">
 </div>
 <p>The display formats are: Month to Strikes, Months to Strike, Months Across and &ldquo;3 Call / 3 Put Columns&rdquo;.
-</p><span id="Month-to-Strikes"></span><h4 class="unnumberedsubsubsec">Month to Strikes</h4>
-<span id="index-Month-to-strikes"></span>
+</p><div class="unnumberedsubsubsec-level-extent" id="Month-to-Strikes">
+<h4 class="unnumberedsubsubsec"><span>Month to Strikes<a class="copiable-link" href="#Month-to-Strikes"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Month-to-strikes"></a>
 <p>&ldquo;Month to Strikes&rdquo; features sets of the same expiration month mapped to incrementing strikes.
 <br>
 <br>
-</p><div align="center"><img src="images/MonthToStrikes.png" alt="Option Chain Month Strikes">
-</div><span id="Months-to-Strike"></span><h4 class="unnumberedsubsubsec">Months to Strike</h4>
-<span id="index-Months-to-strike"></span>
+</p><div class="center"><img class="image" src="images/MonthToStrikes.png" alt="Option Chain Month Strikes">
+</div></div>
+<div class="unnumberedsubsubsec-level-extent" id="Months-to-Strike">
+<h4 class="unnumberedsubsubsec"><span>Months to Strike<a class="copiable-link" href="#Months-to-Strike"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Months-to-strike"></a>
 <p>&ldquo;Months to Strike&rdquo; features sets of incrementing expiration months mapped to the same strike.
 <br>
 <br>
-</p><div align="center"><img src="images/MonthsToStrike.png" alt="Option Chain Months Strike">
-</div><span id="Months-Across"></span><h4 class="unnumberedsubsubsec">Months Across</h4>
-<span id="index-Months-across"></span>
+</p><div class="center"><img class="image" src="images/MonthsToStrike.png" alt="Option Chain Months Strike">
+</div></div>
+<div class="unnumberedsubsubsec-level-extent" id="Months-Across">
+<h4 class="unnumberedsubsubsec"><span>Months Across<a class="copiable-link" href="#Months-Across"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Months-across"></a>
 <p>&ldquo;Months Across&rdquo; features sets of calls, puts, incrementing strikes and incrementing expiration month columns. The calls have the letter &rsquo;c&rsquo; before the price while puts have the letter &rsquo;p&rsquo; before the price.
 <br>
 <br>
-</p><div align="center"><img src="images/MonthsAcross.png" alt="Option Chain Columns">
-</div><span id="g_t3-Call-_002f-3-Put-Columns"></span><h4 class="unnumberedsubsubsec">3 Call / 3 Put Columns</h4>
-<span id="index-3-Call-_002f-3-Put-Columns"></span>
+</p><div class="center"><img class="image" src="images/MonthsAcross.png" alt="Option Chain Columns">
+</div></div>
+<div class="unnumberedsubsubsec-level-extent" id="g_t3-Call-_002f-3-Put-Columns">
+<h4 class="unnumberedsubsubsec"><span>3 Call / 3 Put Columns<a class="copiable-link" href="#g_t3-Call-_002f-3-Put-Columns"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-3-Call-_002f-3-Put-Columns"></a>
 <p>&ldquo;3 Call / 3 Put Columns&rdquo; features incrementing strikes with 3 Call Columns and 3 Put Columns.
 <br>
 <br>
-</p><div align="center"><img src="images/3Calls3Puts.png" alt="Equity Option Columns">
+</p><div class="center"><img class="image" src="images/3Calls3Puts.png" alt="Equity Option Columns">
 </div>
-<span id="Greeks"></span><h3 class="section">3.4 Greeks</h3>
-<span id="index-greeks"></span>
-<span id="index-Analytics-for-options"></span>
-<span id="index-Option-analytics"></span>
-<span id="index-delta"></span>
-<span id="index-gamma"></span>
-<span id="index-vega"></span>
-<span id="index-theta"></span>
-<span id="index-rho"></span>
+</div>
+</div>
+</div>
+<div class="section-level-extent" id="Greeks">
+<h3 class="section"><span>3.4 Greeks<a class="copiable-link" href="#Greeks"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-greeks"></a>
+<a class="index-entry-id" id="index-Analytics-for-options"></a>
+<a class="index-entry-id" id="index-Option-analytics"></a>
+<a class="index-entry-id" id="index-delta"></a>
+<a class="index-entry-id" id="index-gamma"></a>
+<a class="index-entry-id" id="index-vega"></a>
+<a class="index-entry-id" id="index-theta"></a>
+<a class="index-entry-id" id="index-rho"></a>
 <p>Option analytics of Call Delta, Put Delta, Gamma, Vega, Call Theta, Put Theta, Call Rho, Put Rho are calculated. They can be seen on the row at the top of the option chain.
 <br>
 <br>
-</p><div align="center"><img src="images/Greeks.png" alt="Derivative Greeks Delta Gamma Vega Theta Rho">
+</p><div class="center"><img class="image" src="images/Greeks.png" alt="Derivative Greeks Delta Gamma Vega Theta Rho">
 </div>
-<span id="Spreads"></span><h3 class="section">3.5 Spreads</h3>
-<span id="index-Spread-mode"></span>
+</div>
+<div class="section-level-extent" id="Spreads">
+<h3 class="section"><span>3.5 Spreads<a class="copiable-link" href="#Spreads"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Spread-mode"></a>
 <p>Selection of the checkbox &ldquo;Spreads&rdquo; will invoke the Spread Mode.
-</p>
 <br>
-<div align="center"><img src="images/SpreadCheckbox.png" alt="Financial Derivative Spread Trading">
-</div>
+</p><div class="center"><img class="image" src="images/SpreadCheckbox.png" alt="Financial Derivative Spread Trading">
+</div><br>
 <p>Spread Mode allows the individual leg information for a spread to be controlled.
-</p>
 <br>
-<div align="center"><img src="images/OptionMatrixSpreads.png" alt="Derivative Spread Leg Controls">
+</p><div class="center"><img class="image" src="images/OptionMatrixSpreads.png" alt="Derivative Spread Leg Controls">
 </div>
-<span id="index-Month-adjuster-legs"></span>
-<span id="index-leg-1"></span>
-<span id="index-leg-2"></span>
+<a class="index-entry-id" id="index-Month-adjuster-legs"></a>
+<a class="index-entry-id" id="index-leg-1"></a>
+<a class="index-entry-id" id="index-leg-2"></a>
 <p>Scale buttons &ldquo;Strike Adj Leg1&rdquo; and &ldquo;Month Adj Leg1&rdquo; can be used to adjust strikes and months for Leg 1. Scale buttons &ldquo;Strike Adj Leg2&rdquo; and &ldquo;Month Adj Leg2&rdquo; can be used to adjust strikes and months for Leg 2.
-</p>
 <br>
-<div align="center"><img src="images/LegControls.png" alt="Put Call Derivative Leg Controls">
-</div>
+</p><div class="center"><img class="image" src="images/LegControls.png" alt="Put Call Derivative Leg Controls">
+</div><br>
 <p>Spreads are displayed on a per row basis.
 <br>
 <br>
-</p><div align="center"><img src="images/SpreadLegs.png" alt="Derivative Legs">
+</p><div class="center"><img class="image" src="images/SpreadLegs.png" alt="Derivative Legs">
 </div>
 <p>The first set of column references to &ldquo;Expr Date, Strike, Call, Put&rdquo; is 
 considered Leg 1. Use scale controls &ldquo;Strike Adj Leg1&rdquo; and &ldquo;Month Adj Leg1&rdquo; to adjust. 
 <br>
 <br>
-</p><div align="center"><img src="images/Leg1.png" alt="Spread Option Leg">
+</p><div class="center"><img class="image" src="images/Leg1.png" alt="Spread Option Leg">
 </div>
 <p>The second set of column references to &ldquo;Expr Date, Strike, Call, Put&rdquo; is considered Leg 2. Use scale controls &ldquo;Strike Adj Leg2&rdquo; and &ldquo;Month Adj Leg2&rdquo; to adjust.
 <br>
 <br>
-</p><div align="center"><img src="images/Leg1Leg2.png" alt="Spread Option Legs">
-</div>
-<span id="index-spreads"></span>
+</p><div class="center"><img class="image" src="images/Leg1Leg2.png" alt="Spread Option Legs">
+</div><br>
+<a class="index-entry-id" id="index-spreads"></a>
 <p>Four spreads are computed &ldquo;Spread C-C&rdquo; (Leg 1 Call minus Leg 2 Call), &ldquo;Spread P-P&rdquo; (Leg 1 Put minus Leg 2 Put), &ldquo;Spread C-P&rdquo; (Leg 1 Call minus Leg 2 Put) and &ldquo;Spread P-C&rdquo; (Leg 1 Put minus Leg 2 Call).
-</p>
 <br>
-<div align="center"><img src="images/SpreadsCCPPCPPC.png" alt="Equity Financial Derivatives Spread Legs">
-</div>
-<span id="index-Vertical-spread"></span>
-<span id="index-Calendar-spread"></span>
+</p><div class="center"><img class="image" src="images/SpreadsCCPPCPPC.png" alt="Equity Financial Derivatives Spread Legs">
+</div><br>
+<a class="index-entry-id" id="index-Vertical-spread"></a>
+<a class="index-entry-id" id="index-Calendar-spread"></a>
 <p>Spread views are automatically labeled Vertical Spread, Calendar Spread or Vertical Calendar Spread. 
 <br>
 <br>
-</p><div align="center"><img src="images/CalendarSpread.png" alt="Financial Calendar Horizontal Spread">
-</div>
+</p><div class="center"><img class="image" src="images/CalendarSpread.png" alt="Financial Calendar Horizontal Spread">
+</div><br>
 <p>Vertical Spread indicates strike differences between Leg 1 and Leg 2 (expiration dates are the same). Calendar Spread indicates expiration date differences between Leg 1 and Leg 2 (Strikes are the same). Vertical Calendar Spread indicates strike and calendar date expiration differences between the legs.
 </p>
-<span id="Models"></span><h3 class="section">3.6 Models</h3>
-<p>Over 170+ option models are featured in the OptionMatrix Calculator. Model numbers may vary between systems due to library and linker options.
-</p><span id="Changing-Models"></span><h4 class="subsection">3.6.1 Changing Models</h4>
-<span id="index-Model-drop-down"></span>
+</div>
+<div class="section-level-extent" id="Models">
+<h3 class="section"><span>3.6 Models<a class="copiable-link" href="#Models"> &para;</a></span></h3>
+<p>Over 171 option models are featured in the OptionMatrix Calculator. Model numbers may vary between systems due to library and linker options.
+</p><div class="subsection-level-extent" id="Changing-Models">
+<h4 class="subsection"><span>3.6.1 Changing Models<a class="copiable-link" href="#Changing-Models"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Model-drop-down"></a>
 <p>The current pricing model can be changed with the &ldquo;Model&rdquo; drop down. The models are listed as categorized folders in the drop down.
 <br>
 <br>
-</p><div align="center"><img src="images/ModelDropDownOpen.png" alt="Financial Derivatives Options Modelling">
+</p><div class="center"><img class="image" src="images/ModelDropDownOpen.png" alt="Financial Derivatives Options Modelling">
 </div>
-<span id="Model-Categorization"></span><h4 class="subsection">3.6.2 Model Categorization</h4>
-<span id="index-Model-categories"></span>
+</div>
+<div class="subsection-level-extent" id="Model-Categorization">
+<h4 class="subsection"><span>3.6.2 Model Categorization<a class="copiable-link" href="#Model-Categorization"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Model-categories"></a>
 <p>The model drop down box categorization can be controlled via the menu item &ldquo;Models&rdquo;. Options include: 
 Models &rarr; List by Category, Models &rarr; List by Author and Models &rarr; List.
-</p>
 <br>
-<div align="center"><img src="images/ModelsList.png" alt="Financial Derivatives Model List">
-</div>
+</p><div class="center"><img class="image" src="images/ModelsList.png" alt="Financial Derivatives Model List">
+</div><br>
 <p>Models &rarr; List by Author, changes the categorization in the &ldquo;Models&rdquo; drop down to be based on author of the model.
 <br>
 <br>
-</p><div align="center"><img src="images/ModelByAuthor.png" alt="Financial Derivatives Model Authors">
+</p><div class="center"><img class="image" src="images/ModelByAuthor.png" alt="Financial Derivatives Model Authors">
 </div><br>
-<br>
 <p>Models &rarr; List, creates no categorized folders. The &ldquo;Models&rdquo; drop down box becomes a list of all models.
 <br>
 <br>
 Models &rarr; List by Category, is the default.
 </p>
-<span id="Cash-Flow-Editor"></span><h3 class="section">3.7 Cash Flow Editor</h3>
-<span id="index-Dividend-editor"></span>
-<span id="index-Coupon-editor"></span>
-<span id="index-Cash-flow-editor"></span>
-<p>Some models have multiple dividends or coupons. <code>optionmatrix</code> provides a cash flow editor to add / remove these cash streams. The cash stream is ordered by time. If the &ldquo;RealTime&rdquo; checkbox is enabled the dividend or coupons time will bleed.
-</p>
-<br>
-<div align="center"><img src="images/CouponEditor.png" alt="Financial Cash Flow Editor">
 </div>
-<span id="Re_002dcalculations"></span><h3 class="section">3.8 Re-calculations</h3>
-<span id="index-Sleep-delay"></span>
+</div>
+<div class="section-level-extent" id="Cash-Flow-Editor">
+<h3 class="section"><span>3.7 Cash Flow Editor<a class="copiable-link" href="#Cash-Flow-Editor"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Dividend-editor"></a>
+<a class="index-entry-id" id="index-Coupon-editor"></a>
+<a class="index-entry-id" id="index-Cash-flow-editor"></a>
+<p>Some models have multiple dividends or coupons. <code class="command">optionmatrix</code> provides a cash flow editor to add / remove these cash streams. The cash stream is ordered by time. If the &ldquo;RealTime&rdquo; checkbox is enabled the dividend or coupons time will bleed.
+<br>
+</p><div class="center"><img class="image" src="images/CouponEditor.png" alt="Financial Cash Flow Editor">
+</div>
+</div>
+<div class="section-level-extent" id="Re_002dcalculations">
+<h3 class="section"><span>3.8 Re-calculations<a class="copiable-link" href="#Re_002dcalculations"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Sleep-delay"></a>
 <p>Selection of Menu item Prefs &rarr; Settings will invoke the &ldquo;Settings Popup&rdquo;.
-</p>
 <br>
-<div align="center"><img src="images/PrefsSettings.png" alt="Financial Modelling Preferences">
-</div>
+</p><div class="center"><img class="image" src="images/PrefsSettings.png" alt="Financial Modelling Preferences">
+</div><br>
 <p>The setting &ldquo;Sleep Delay&rdquo; controls the time in between option chain re-calculations in seconds. The default setting is 1.
-</p>
 <br>
-<div align="center"><img src="images/SleepDelay.png" alt="Financial Modelling Pricer Real Time">
+</p><div class="center"><img class="image" src="images/SleepDelay.png" alt="Financial Modelling Pricer Real Time">
 </div>
-<span id="Cumulative-Normal-Distribution"></span><h3 class="section">3.9 Cumulative Normal Distribution</h3>
-<span id="index-Cumulative-normal-distribution"></span>
-<p>The method of calculating the cumulative normal distribution is controlled with drop down named &ldquo;CND&rdquo;.
-<br>
-<br>
-</p><div align="center"><img src="images/CNDDrop.png" alt="Cumulative Normal Distribution">
 </div>
-<span id="index-polyapprox"></span>
-<span id="index-rational1_002e0_002aE_002d7"></span>
-<span id="index-rational2_002e5_002aE_002d4"></span>
-<span id="index-Hart-equation"></span>
-<span id="index-Romberg_0027s-method"></span>
-<span id="index-Simpson_0027s-rule"></span>
-<span id="index-Trapezoidal-rule"></span>
-<p>Methods include: PolyApprox6, PolyApprox4, Rational1.0*E-7, Rational2.5*E-4, Hart Equation, Romberg&rsquo;s Method, <a href="http://www.google.com/search?q=Simpson's+Rule">Simpson&rsquo;s Rule</a> and <a href="http://www.google.com/search?q=Trapezoidal+Rule">Trapezoidal Rule</a>.
+<div class="section-level-extent" id="Cumulative-Normal-Distribution">
+<h3 class="section"><span>3.9 Cumulative Normal Distribution<a class="copiable-link" href="#Cumulative-Normal-Distribution"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Cumulative-normal-distribution"></a>
+<p>The method of calculating the Cumulative Normal Distribution is controlled with drop down named &ldquo;CND&rdquo;.
 <br>
 <br>
-</p><div align="center"><img src="images/CNDDropDown.png" alt="Cumulative Normal Distribution List">
-</div>
+</p><div class="center"><img class="image" src="images/CNDDrop.png" alt="Cumulative Normal Distribution">
+</div><br>
+<a class="index-entry-id" id="index-polyapprox"></a>
+<a class="index-entry-id" id="index-rational1_002e0_002aE_002d7"></a>
+<a class="index-entry-id" id="index-rational2_002e5_002aE_002d4"></a>
+<a class="index-entry-id" id="index-Hart-equation"></a>
+<a class="index-entry-id" id="index-Romberg_0027s-method"></a>
+<a class="index-entry-id" id="index-Simpson_0027s-rule"></a>
+<a class="index-entry-id" id="index-Trapezoidal-rule"></a>
+<p>Methods include: PolyApprox6, PolyApprox4, Rational1.0*E-7, Rational2.5*E-4, Hart Equation, Romberg&rsquo;s Method, <a class="url" href="http://www.google.com/search?q=Simpson's+Rule">Simpson&rsquo;s Rule</a>, <a class="url" href="http://www.google.com/search?q=Trapezoidal+Rule">Trapezoidal Rule</a> and erf().
+<br>
+<br>
+</p><div class="center"><img class="image" src="images/CNDDropDown.png" alt="Cumulative Normal Distribution List">
+</div><br>
 <p>PolyApprox6 is the default.
 </p>
-<span id="Precision"></span><h3 class="section">3.10 Precision</h3>
-<span id="index-Decimal-precision"></span>
-<span id="index-Precision-decimal"></span>
+</div>
+<div class="section-level-extent" id="Precision">
+<h3 class="section"><span>3.10 Precision<a class="copiable-link" href="#Precision"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Decimal-precision"></a>
+<a class="index-entry-id" id="index-Precision-decimal"></a>
 <p>Decimal place precision can be adjusted with the spin button &ldquo;Precision&rdquo;.
 <br>
 <br>
-</p><div align="center"><img src="images/Precision.png" alt="Financial Modelling Decimal Precision">
-</div>
+</p><div class="center"><img class="image" src="images/Precision.png" alt="Financial Modelling Decimal Precision">
+</div><br>
 <p>Precision is defaulted to eight decimal places to show real-time time bleeding.
 </p>
-<span id="Exporting"></span><h3 class="section">3.11 Exporting</h3>
-<span id="index-export"></span>
-<span id="index-Text-export"></span>
-<span id="index-C_002b_002b-1"></span>
-<span id="index-Source-code-1"></span>
+</div>
+<div class="section-level-extent" id="Exporting">
+<h3 class="section"><span>3.11 Exporting<a class="copiable-link" href="#Exporting"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-export"></a>
+<a class="index-entry-id" id="index-Text-export"></a>
+<a class="index-entry-id" id="index-C_002b_002b-1"></a>
+<a class="index-entry-id" id="index-Source-code-1"></a>
 <p>Two menu export options are available.
 <br>
 <br>
-</p><div align="center"><img src="images/Export.png" alt="Financial Modelling Decimal Precision">
+</p><div class="center"><img class="image" src="images/Export.png" alt="Financial Modelling Decimal Precision">
 </div><br>
-<br>
 <p>File &rarr; Text Export, exports the current option chain to a text window.
 <br>
 <br>
 File &rarr; Source View, exports the current option models C/C++ source code to a text window.
-</p>
+<br>
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/11.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
-
+</p>
 <hr>
-<span id="Curses-optionmatrix"></span><span id="Curses-optionmatrix_005fconsole"></span><h2 class="chapter">4 Curses <code>optionmatrix_console</code></h2>
+</div>
+</div>
+<div class="chapter-level-extent" id="Curses-optionmatrix">
+<h2 class="chapter" id="Curses-optionmatrix_005fconsole"><span>4 Curses <code class="command">optionmatrix_console</code><a class="copiable-link" href="#Curses-optionmatrix_005fconsole"> &para;</a></span></h2>
 
-<span id="Running"></span><h3 class="section">4.1 Running</h3>
-<span id="index-curses-1"></span>
-<span id="index-optionmatrix_002elog-1"></span>
-<p>Running <code>optionmatrix_console</code> with no arguments or just the <samp>--debug</samp>, <samp>-d</samp> options will invoke the OptionMatrix Curses Application.  The Curses Application is a text application with no graphical user interface. The <samp>--debug</samp> or <samp>-d</samp> options will cause <code>optionmatrix_console</code> to create the debug log, <samp>optionmatrix.log</samp>, in the users home directory or the current working directory of execution. This log file will be populated with diagnostic information while the program is executing.
+<div class="section-level-extent" id="Running">
+<h3 class="section"><span>4.1 Running<a class="copiable-link" href="#Running"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-curses-1"></a>
+<a class="index-entry-id" id="index-optionmatrix_002elog-1"></a>
+<p>Running <code class="command">optionmatrix_console</code> with no arguments or just the <samp class="option">--debug</samp>, <samp class="option">-d</samp> options will invoke the OptionMatrix Curses Application.  The Curses Application is a text application with no graphical user interface. The <samp class="option">--debug</samp> or <samp class="option">-d</samp> options will cause <code class="command">optionmatrix_console</code> to create the debug log, <samp class="file">optionmatrix.log</samp>, in the users home directory or the current working directory of execution. This log file will be populated with diagnostic information while the program is executing.
 </p>
-<span id="index-UNIX"></span>
-<p>The Curses Application typically runs from a UNIX like console or DOS prompt, it can be associated with a start menu or desktop icon. The Curses Application responds to keyboard events. See <a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a>, for optionmatrix with a graphical user interface.
+<a class="index-entry-id" id="index-UNIX"></a>
+<p>The Curses Application typically runs from a UNIX like console or DOS prompt, it can be associated with a start menu or desktop icon. The Curses Application responds to keyboard events. See <a class="xref" href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a>, for optionmatrix with a graphical user interface.
 </p>
-<span id="Welcome-Screen"></span><h3 class="section">4.2 Welcome Screen</h3>
-<span id="index-Welcome-screen-curses"></span>
+</div>
+<div class="section-level-extent" id="Welcome-Screen">
+<h3 class="section"><span>4.2 Welcome Screen<a class="copiable-link" href="#Welcome-Screen"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Welcome-screen-curses"></a>
 <p>A welcome screen will appear with author, version, license, e-mail and website information. Press any key to continue to model selection screen.
-</p>
 <br>
-
-<div align="center"><img src="images/ConsoleWelcome.png" alt="Financial Engineering Linux">
+</p><div class="center"><img class="image" src="images/ConsoleWelcome.png" alt="Financial Engineering Linux">
 </div>
-<span id="Model-Selection"></span><h3 class="section">4.3 Model Selection</h3>
-<span id="index-Model-selection-curses"></span>
-<p>Choose a model on the Model Selection screen by typing in its number and pressing <tt class="key">RET</tt>.
-</p>
-<p>The arrow down and arrow up keys can be used to scroll and view more models. The listing of models exceeds the screen size. 
-<br>
-<br>
-</p><div align="center"><img src="images/ConsoleSelect.png" alt="Financial Engineering Linux Models">
 </div>
+<div class="section-level-extent" id="Model-Selection">
+<h3 class="section"><span>4.3 Model Selection<a class="copiable-link" href="#Model-Selection"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Model-selection-curses"></a>
+<p>Choose a model on the Model Selection screen by typing in its number and pressing <kbd class="key">RET</kbd>.
+<br>
+The arrow down and arrow up keys can be used to scroll and view more models. The listing of models exceeds the screen size. 
+<br>
+<br>
+</p><div class="center"><img class="image" src="images/ConsoleSelect.png" alt="Financial Engineering Linux Models">
+</div><br>
 <p>Once a model is selected the Format Selection screen will appear.
 </p>
-<span id="Format-Selection"></span><h3 class="section">4.4 Format Selection</h3>
-<span id="index-Format-selection-curses"></span>
-<span id="index-Display-formats-curses"></span>
-<span id="index-Option-chain-format-curses"></span>
-<p>The Format Selection screen displays the model&rsquo;s name, models source, display formats and miscellaneous selections. Key selection of  <kbd>1</kbd> - <kbd>9</kbd> will select a display format for the option&rsquo;s chain.
-</p>
+</div>
+<div class="section-level-extent" id="Format-Selection">
+<h3 class="section"><span>4.4 Format Selection<a class="copiable-link" href="#Format-Selection"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Format-selection-curses"></a>
+<a class="index-entry-id" id="index-Display-formats-curses"></a>
+<a class="index-entry-id" id="index-Option-chain-format-curses"></a>
+<p>The Format Selection screen displays the model&rsquo;s name, models source, display formats and miscellaneous selections. Key selection of  <kbd class="kbd">1</kbd> - <kbd class="kbd">9</kbd> will select a display format for the option&rsquo;s chain.
 <br>
-<div align="center"><img src="images/ConsoleFormat.png" alt="Financial Engineering Model Format">
+</p><div class="center"><img class="image" src="images/ConsoleFormat.png" alt="Financial Engineering Model Format">
 </div><br>
-<span id="index-Decimal-date-curses"></span>
-<span id="index-Calendar-date-curses"></span>
+
+<a class="index-entry-id" id="index-Decimal-date-curses"></a>
+<a class="index-entry-id" id="index-Calendar-date-curses"></a>
 <p>Formats are categorized as &ldquo;(decimal date/date entry dated)&rdquo; or &ldquo;(calendar dated)&rdquo;. See column on the right of the screen. 
-</p>
 <br>
-<div align="center"><img src="images/ConsoleCategories.png" alt="Financial Engineering Model Format Category">
+</p><div class="center"><img class="image" src="images/ConsoleCategories.png" alt="Financial Engineering Model Format Category">
 </div><br>
-<span id="index-Expiration-curses"></span>
-<span id="index-Date-engine-curses"></span>
+
+<a class="index-entry-id" id="index-Expiration-curses"></a>
+<a class="index-entry-id" id="index-Date-engine-curses"></a>
 <p>The &ldquo;(decimal date/date entry dated)&rdquo; formats allow the user to enter the time to expiration as a decimal date (Example: .5 years away) or enter an explicit date (Example: 1/20/14 - read: Jan 20 2014). The &ldquo;(calendar dated)&rdquo; formats set option expirations using a date engine which has a default setting of 3rd Friday+1 @11:59AM going into the future. The Date Engine can be configured to match most industry used option expirations.
+<br>
+Selection of any key <kbd class="kbd">1</kbd> - <kbd class="kbd">9</kbd> to proceed to the Inputs Screen.
 </p>
-<p>Selection of any key <kbd>1</kbd> - <kbd>9</kbd> to proceed to the Inputs Screen.
-</p>
-<span id="Inputs"></span><h3 class="section">4.5 Inputs</h3>
+</div>
+<div class="section-level-extent" id="Inputs">
+<h3 class="section"><span>4.5 Inputs<a class="copiable-link" href="#Inputs"> &para;</a></span></h3>
 <p>The Input Screen is customized on a per model basis. The user will be prompted for specific inputs for the selected model.
 <br>
+</p>
 <br>
-</p><div align="center"><img src="images/ConsoleInputs.png" alt="Black-Scholes Inputs">
+<div class="center"><img class="image" src="images/ConsoleInputs.png" alt="Black-Scholes Inputs">
 </div><br>
 <p>The Pricing Screen will follow.
 </p>
-<span id="Pricing-Screen"></span><h3 class="section">4.6 Pricing Screen</h3>
-<span id="index-In-the-money-curses"></span>
-<span id="index-At-the-money-curses"></span>
-<span id="index-Time-bleeding-curses"></span>
-<p>The option model will begin pricing. The updating pricing changes are the result of time bleeding between the current time and the expiration times. Inputs can be adjusted while the model is pricing. Try typing: <kbd>S, s, X, x, R, r, V, v</kbd> or the arrow keys.
+</div>
+<div class="section-level-extent" id="Pricing-Screen">
+<h3 class="section"><span>4.6 Pricing Screen<a class="copiable-link" href="#Pricing-Screen"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-In-the-money-curses"></a>
+<a class="index-entry-id" id="index-At-the-money-curses"></a>
+<a class="index-entry-id" id="index-Time-bleeding-curses"></a>
+<p>The option model will begin pricing. The updating pricing changes are the result of time bleeding between the current time and the expiration times. Inputs can be adjusted while the model is pricing. Try typing: <kbd class="kbd">S, s, X, x, R, r, V, v</kbd> or the arrow keys.
 <br>
 <br>
-</p><div align="center"><img src="images/ConsoleChain.png" alt="Black-Scholes Options">
+</p><div class="center"><img class="image" src="images/ConsoleChain.png" alt="Black-Scholes Options">
 </div><br>
 <p>At the money, in the money options are highlighted by default.
 <br>
 <br>
-Pressing the <tt class="key">TAB</tt> key will switch to another display format screen.
-Type <tt class="key">ESC</tt> to go back to the Model Selection Screen.
-Type <kbd>h</kbd> or <kbd>?</kbd> for help.
-Type <kbd>q</kbd> or <kbd>Q</kbd> to quit.
+Pressing the <kbd class="key">TAB</kbd> key will switch to another display format screen.
+Type <kbd class="key">ESC</kbd> to go back to the Model Selection Screen.
+Type <kbd class="kbd">h</kbd> or <kbd class="kbd">?</kbd> for help.
+Type <kbd class="kbd">q</kbd> or <kbd class="kbd">Q</kbd> to quit.
 </p>
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/7.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
 <hr>
-<span id="Models-supported"></span><span id="Models-supported-1"></span><h2 class="chapter">5 Models supported</h2>
+</div>
+</div>
+<div class="chapter-level-extent" id="Models-supported">
+<h2 class="chapter" id="Models-supported-1"><span>5 Models supported<a class="copiable-link" href="#Models-supported-1"> &para;</a></span></h2>
 
-<span id="index-Models-supported"></span>
+<a class="index-entry-id" id="index-Models-supported"></a>
 <p>The OptionMatrix programs support the following models:
-</p><span id="BSM"></span><h3 class="section">5.1 BSM</h3>
-<span id="index-BSM"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Black-Scholes">Black-Scholes</a>
-</li><li> <a href="http://www.google.com/search?q=Merton+73+Formula">Merton-73</a>
-</li><li> Generalized Black-Scholes
-</li><li> <a href="http://www.google.com/search?q=French+Black-Scholes">French</a>
-</li><li> Carry
-</li><li> Warrants Black-Scholes
-</li><li> Warrants Black-Scholes Dividend
+</p><div class="section-level-extent" id="BSM">
+<h3 class="section"><span>5.1 BSM<a class="copiable-link" href="#BSM"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-BSM"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Black-Scholes">Black-Scholes</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Merton+73+Formula">Merton-73</a>
+</li><li>Generalized Black-Scholes
+</li><li><a class="url" href="http://www.google.com/search?q=French+Black-Scholes">French</a>
+</li><li>Carry
+</li><li>Warrants Black-Scholes
+</li><li>Warrants Black-Scholes Dividend
 </li></ul>
 
-<span id="American-Options"></span><h3 class="section">5.2 American Options</h3>
-<span id="index-American-options"></span>
-<ul>
-<li> American Barone-Adesi Whaley
-</li><li> Black-Scholes American
-</li><li> <a href="http://www.google.com/search?q=American+Perpetual+Option">American Perpetual</a>
-</li><li> American Put Approx Johnson
-</li><li> American Put Approx Geske-Johnson
-</li><li> Barone-Adesi Whaley
-</li><li> Bjerksund Stensland
+</div>
+<div class="section-level-extent" id="American-Options">
+<h3 class="section"><span>5.2 American Options<a class="copiable-link" href="#American-Options"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-American-options"></a>
+<ul class="itemize mark-bullet">
+<li>American Barone-Adesi Whaley
+</li><li>Black-Scholes American
+</li><li><a class="url" href="http://www.google.com/search?q=American+Perpetual+Option">American Perpetual</a>
+</li><li>American Put Approx Johnson
+</li><li>American Put Approx Geske-Johnson
+</li><li>Barone-Adesi Whaley
+</li><li>Bjerksund Stensland
 </li></ul>
 
-<span id="Single-Asset-Options"></span><h3 class="section">5.3 Single Asset Options</h3>
-<span id="index-Single-asset-options"></span>
-<ul>
-<li> Executive
-</li><li> <a href="http://www.google.com/search?q=Time+Switch+Option">Time Switch Option</a>
-</li><li> <a href="http://www.google.com/search?q=Extendible+Writer+Option">Extendible Writer</a>
-</li><li> <a href="http://www.google.com/search?q=Forward+Start+Option">Forward Start Option</a>
-</li><li> <a href="http://www.google.com/search?q=Standard+Barrier+Option">Standard Barrier</a>
-</li><li> <a href="http://www.google.com/search?q=Double+Barrier+Option">Double Barrier</a>
-</li><li> <a href="http://www.google.com/search?q=Soft+Barrier+Option">Soft Barrier</a>
-</li><li> <a href="http://www.google.com/search?q=Binary+Barrier+Option">Binary Barrier</a>
-</li><li> Discrete Adjusted Barrier
-</li><li> <a href="http://www.google.com/search?q=Look+Barrier+Option">Look Barrier</a>
-</li><li> <a href="http://www.google.com/search?q=Partial+Time+Barrier+Option">Partial Time Barrier</a>
-</li><li> <a href="http://www.google.com/search?q=Asset+or+Nothing+Option">Asset-or-Nothing</a>
-</li><li> <a href="http://www.google.com/search?q=Cash+or+Nothing+Option">Cash-or-Nothing</a>
-</li><li> <a href="http://www.google.com/search?q=Gap+Option+Derivative">Gap Option</a>
-</li><li> <a href="http://www.google.com/search?q=Super+Share+Option">Super Share</a>
-</li><li> <a href="http://www.google.com/search?q=Simple+Chooser+Option">Simple Chooser</a>
-</li><li> <a href="http://www.google.com/search?q=Complex+Chooser+Option">Complex Chooser</a>
-</li><li> <a href="http://www.google.com/search?q=Floating+Strike+Lookback">Floating Strike Lookback</a>
-</li><li> <a href="http://www.google.com/search?q=Fixed+Strike+Lookback">Fixed Strike Lookback</a>
-</li><li> <a href="http://www.google.com/search?q=Partial+Fixed+Lookback+Option">Partial Fixed Lookback</a>
-</li><li> <a href="http://www.google.com/search?q=Partial+Float+Lookback+Option">Partial Float Lookback</a>
-</li><li> <a href="http://www.google.com/search?q=European+Lookback+Option">European Lookback</a>
-</li><li> <a href="http://www.google.com/search?q=Extreme+Spread+Option">Extreme Spread</a>
-</li><li> Calls on Options
-</li><li> Puts on Options
+</div>
+<div class="section-level-extent" id="Single-Asset-Options">
+<h3 class="section"><span>5.3 Single Asset Options<a class="copiable-link" href="#Single-Asset-Options"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Single-asset-options"></a>
+<ul class="itemize mark-bullet">
+<li>Executive
+</li><li><a class="url" href="http://www.google.com/search?q=Time+Switch+Option">Time Switch Option</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Extendible+Writer+Option">Extendible Writer</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Forward+Start+Option">Forward Start Option</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Standard+Barrier+Option">Standard Barrier</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Double+Barrier+Option">Double Barrier</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Soft+Barrier+Option">Soft Barrier</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Binary+Barrier+Option">Binary Barrier</a>
+</li><li>Discrete Adjusted Barrier
+</li><li><a class="url" href="http://www.google.com/search?q=Look+Barrier+Option">Look Barrier</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Partial+Time+Barrier+Option">Partial Time Barrier</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Asset+or+Nothing+Option">Asset-or-Nothing</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Cash+or+Nothing+Option">Cash-or-Nothing</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Gap+Option+Derivative">Gap Option</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Super+Share+Option">Super Share</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Simple+Chooser+Option">Simple Chooser</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Complex+Chooser+Option">Complex Chooser</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Floating+Strike+Lookback">Floating Strike Lookback</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Fixed+Strike+Lookback">Fixed Strike Lookback</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Partial+Fixed+Lookback+Option">Partial Fixed Lookback</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Partial+Float+Lookback+Option">Partial Float Lookback</a>
+</li><li><a class="url" href="http://www.google.com/search?q=European+Lookback+Option">European Lookback</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Extreme+Spread+Option">Extreme Spread</a>
+</li><li>Calls on Options
+</li><li>Puts on Options
 </li></ul>
 
-<span id="Two-Asset-Options"></span><h3 class="section">5.4 Two Asset Options</h3>
-<span id="index-Two-asset-options"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Spread+Approximation+Option">Spread Approximation</a>
-</li><li> <a href="http://www.google.com/search?q=Two Asset+Cash+or+Nothing+Option">Two Asset Cash or Nothing</a>
-</li><li> Two Asset Correlation
-</li><li> Options on The Max Min
-</li><li> Partial Time Two Asset
-</li><li> <a href="http://www.google.com/search?q=Two+Asset+Barrier+Option">Two Asset Barrier</a>
-</li><li> American Exchange Option
-</li><li> <a href="http://www.google.com/search?q=European+Exchange+Option">European Exchange Option</a>
-</li><li> Exchange Exchange Option
+</div>
+<div class="section-level-extent" id="Two-Asset-Options">
+<h3 class="section"><span>5.4 Two Asset Options<a class="copiable-link" href="#Two-Asset-Options"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Two-asset-options"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Spread+Approximation+Option">Spread Approximation</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Two%20Asset+Cash+or+Nothing+Option">Two Asset Cash or Nothing</a>
+</li><li>Two Asset Correlation
+</li><li>Options on The Max Min
+</li><li>Partial Time Two Asset
+</li><li><a class="url" href="http://www.google.com/search?q=Two+Asset+Barrier+Option">Two Asset Barrier</a>
+</li><li>American Exchange Option
+</li><li><a class="url" href="http://www.google.com/search?q=European+Exchange+Option">European Exchange Option</a>
+</li><li>Exchange Exchange Option
 </li></ul>
 
-<span id="Jump-Diffusion"></span><h3 class="section">5.5 Jump Diffusion</h3>
-<span id="index-Jump-diffusion"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Merton+Jump+Diffusion+Option">Merton Jump Diffusion</a>
+</div>
+<div class="section-level-extent" id="Jump-Diffusion">
+<h3 class="section"><span>5.5 Jump Diffusion<a class="copiable-link" href="#Jump-Diffusion"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Jump-diffusion"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Merton+Jump+Diffusion+Option">Merton Jump Diffusion</a>
 </li></ul>
 
-<span id="Trees-_0026-Finite-Differences"></span><h3 class="section">5.6 Trees &amp; Finite Differences</h3>
-<span id="index-Trees-_0026-finite-differences"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Heston+Model">Heston</a>
-</li><li> <a href="http://www.google.com/search?q=Binomial+Option">American Cox Ross Rubinstein</a>
-</li><li> American Equi
-</li><li> <a href="http://www.google.com/search?q=European+CRR+Option">European Cox Ross Rubinstein</a>
-</li><li> European Equi
-</li><li> <a href="http://www.google.com/search?q=Binomial+Option">Cox Ross Rubinstein Binomial</a>
-</li><li> 3D-Binominal
-</li><li> <a href="http://www.google.com/search?q=Binomial+Option">American Binomial</a>
-</li><li> American Binomial Dividend
-</li><li> European Binomial
-</li><li> European Binomial 1 Period
-</li><li> European Binomial M Period
-</li><li> <a href="http://www.google.com/search?q=Binomial+Option">Generic Binomial</a>
-</li><li> <a href="http://www.google.com/search?q=Bermudian+Binomial+Option">Bermudian Binomial</a>
-</li><li> American Finite Difference Explicit
-</li><li> European Finite Difference Explicit
-</li><li> American Finite Difference Implicit
-</li><li> European Finite Difference Implicit
-</li><li> <a href="http://www.google.com/search?q=Trinomial+Tree+Option">Trinomial Tree</a>
-</li><li> <a href="http://www.google.com/search?q=American Trinomial+Option">American Trinomial</a>
-</li><li> Heston Semi-Analytic
-</li><li> Binomial Jarrow-Rudd
-</li><li> Additive Equiprobabilities
-</li><li> Trigeorgis
-</li><li> Tian
-</li><li> Leisen-Reimer
-</li><li> Joshi
-</li><li> Bates Semi-Analytic
-</li><li> Integral
-</li><li> Finite Differences Bermudan
+</div>
+<div class="section-level-extent" id="Trees-_0026-Finite-Differences">
+<h3 class="section"><span>5.6 Trees &amp; Finite Differences<a class="copiable-link" href="#Trees-_0026-Finite-Differences"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Trees-_0026-finite-differences"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Heston+Model">Heston</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Binomial+Option">American Cox Ross Rubinstein</a>
+</li><li>American Equi
+</li><li><a class="url" href="http://www.google.com/search?q=European+CRR+Option">European Cox Ross Rubinstein</a>
+</li><li>European Equi
+</li><li><a class="url" href="http://www.google.com/search?q=Binomial+Option">Cox Ross Rubinstein Binomial</a>
+</li><li>3D-Binominal
+</li><li><a class="url" href="http://www.google.com/search?q=Binomial+Option">American Binomial</a>
+</li><li>American Binomial Dividend
+</li><li>European Binomial
+</li><li>European Binomial 1 Period
+</li><li>European Binomial M Period
+</li><li><a class="url" href="http://www.google.com/search?q=Binomial+Option">Generic Binomial</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Bermudian+Binomial+Option">Bermudian Binomial</a>
+</li><li>American Finite Difference Explicit
+</li><li>European Finite Difference Explicit
+</li><li>American Finite Difference Implicit
+</li><li>European Finite Difference Implicit
+</li><li><a class="url" href="http://www.google.com/search?q=Trinomial+Tree+Option">Trinomial Tree</a>
+</li><li><a class="url" href="http://www.google.com/search?q=American%20Trinomial+Option">American Trinomial</a>
+</li><li>Heston Semi-Analytic
+</li><li>Binomial Jarrow-Rudd
+</li><li>Additive Equiprobabilities
+</li><li>Trigeorgis
+</li><li>Tian
+</li><li>Leisen-Reimer
+</li><li>Joshi
+</li><li>Bates Semi-Analytic
+</li><li>Integral
+</li><li>Finite Differences Bermudan
 </li></ul>
 
-<span id="Monte-Carlo"></span><h3 class="section">5.7 Monte Carlo</h3>
-<span id="index-Monte-Carlo"></span>
-<ul>
-<li> Simulate European Option
-</li><li> Simulate European Generic Option
-</li><li> Simulate European Option Generic with Control Variate
-</li><li> Simulate European Option Generic with Antihetic Variate
-</li><li> Simulate Price Path
-</li><li> Simulate Price Path Control Variate
-</li><li> MC (Crude)
-</li><li> QMC (Sobol)
-</li><li> MC (Longstaff Schwartz)
+</div>
+<div class="section-level-extent" id="Monte-Carlo">
+<h3 class="section"><span>5.7 Monte Carlo<a class="copiable-link" href="#Monte-Carlo"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Monte-Carlo"></a>
+<ul class="itemize mark-bullet">
+<li>Simulate European Option
+</li><li>Simulate European Generic Option
+</li><li>Simulate European Option Generic with Control Variate
+</li><li>Simulate European Option Generic with Antihetic Variate
+</li><li>Simulate Price Path
+</li><li>Simulate Price Path Control Variate
+</li><li>MC (Crude)
+</li><li>QMC (Sobol)
+</li><li>MC (Longstaff Schwartz)
 </li></ul>
 
-<span id="Discrete-Dividend"></span><h3 class="section">5.8 Discrete Dividend</h3>
-<span id="index-Discrete-dividend"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Roll-Geske-Whaley">Roll-Geske-Whaley</a>
-</li><li> Black-Scholes Dividends
-</li><li> American Proport Dividends Binomial
-</li><li> Black-Scholes Coupon Bond
+</div>
+<div class="section-level-extent" id="Discrete-Dividend">
+<h3 class="section"><span>5.8 Discrete Dividend<a class="copiable-link" href="#Discrete-Dividend"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Discrete-dividend"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Roll-Geske-Whaley">Roll-Geske-Whaley</a>
+</li><li>Black-Scholes Dividends
+</li><li>American Proport Dividends Binomial
+</li><li>Black-Scholes Coupon Bond
 </li></ul>
 
-<span id="Currency"></span><h3 class="section">5.9 Currency</h3>
-<span id="index-currency"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Quanto+Derivative">Quanto</a>
-</li><li> <a href="http://www.google.com/search?q=Garman-KohlHagen">Garman-KohlHagen</a>
-</li><li> Foreign Equity Option Struck in Domestic Currency
-</li><li> Equity Linked Foreign Exchange Option
-</li><li> Takeover Foreign Exchange Option
-</li><li> Currency American Binomial
-</li><li> Currency European
+</div>
+<div class="section-level-extent" id="Currency">
+<h3 class="section"><span>5.9 Currency<a class="copiable-link" href="#Currency"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-currency"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Quanto+Derivative">Quanto</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Garman-KohlHagen">Garman-KohlHagen</a>
+</li><li>Foreign Equity Option Struck in Domestic Currency
+</li><li>Equity Linked Foreign Exchange Option
+</li><li>Takeover Foreign Exchange Option
+</li><li>Currency American Binomial
+</li><li>Currency European
 </li></ul>
 
-<span id="Futures"></span><h3 class="section">5.10 Futures</h3>
-<span id="index-futures"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Black-76">Black-76</a>
-</li><li> <a href="http://www.google.com/search?q=Miltersen+Schwartz">Miltersen Schwartz</a>
-</li><li> Futures Option American Binomial
-</li><li> Futures
-</li><li> Futures Dividend
+</div>
+<div class="section-level-extent" id="Futures">
+<h3 class="section"><span>5.10 Futures<a class="copiable-link" href="#Futures"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-futures"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Black-76">Black-76</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Miltersen+Schwartz">Miltersen Schwartz</a>
+</li><li>Futures Option American Binomial
+</li><li>Futures
+</li><li>Futures Dividend
 </li></ul>
 
-<span id="Interest-Rate-Derivatives"></span><h3 class="section">5.11 Interest Rate Derivatives</h3>
-<span id="index-Interest-rate-derivatives"></span>
-<ul>
-<li> Swap Option
+</div>
+<div class="section-level-extent" id="Interest-Rate-Derivatives">
+<h3 class="section"><span>5.11 Interest Rate Derivatives<a class="copiable-link" href="#Interest-Rate-Derivatives"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Interest-rate-derivatives"></a>
+<ul class="itemize mark-bullet">
+<li>Swap Option
 </li></ul>
 
-<span id="Asian"></span><h3 class="section">5.12 Asian</h3>
-<span id="index-Asian"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Turnbull+Wakeman+Asian">Turnbull Wakeman Asian</a>
-</li><li> Levy Asian
-</li><li> Geometric Average Rate
-</li><li> <a href="http://www.google.com/search?q=Asian+Geometric+Average+Option">Asian Geometric Average</a>
+</div>
+<div class="section-level-extent" id="Asian">
+<h3 class="section"><span>5.12 Asian<a class="copiable-link" href="#Asian"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Asian"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Turnbull+Wakeman+Asian">Turnbull Wakeman Asian</a>
+</li><li>Levy Asian
+</li><li>Geometric Average Rate
+</li><li><a class="url" href="http://www.google.com/search?q=Asian+Geometric+Average+Option">Asian Geometric Average</a>
 </li></ul>
 
-<span id="Implied-Volatility"></span><h3 class="section">5.13 Implied Volatility</h3>
-<span id="index-Implied-volatility"></span>
-<ul>
-<li> Bisection
-</li><li> Newton Raphson
-</li><li> Barone-Adesi Whaley Bisection
-</li><li> Black-Scholes Bisection
-</li><li> Implied Volatility Black-Scholes Newton
-</li><li> Implied Bisections
+</div>
+<div class="section-level-extent" id="Implied-Volatility">
+<h3 class="section"><span>5.13 Implied Volatility<a class="copiable-link" href="#Implied-Volatility"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Implied-volatility"></a>
+<ul class="itemize mark-bullet">
+<li>Bisection
+</li><li>Newton Raphson
+</li><li>Barone-Adesi Whaley Bisection
+</li><li>Black-Scholes Bisection
+</li><li>Implied Volatility Black-Scholes Newton
+</li><li>Implied Bisections
 </li></ul>
 
-<span id="Bonds"></span><h3 class="section">5.14 Bonds</h3>
-<span id="index-bond"></span>
-<ul>
-<li> Vasicek Bond Price
-</li><li> Vasicek Bond Option
-</li><li> Convertible Bond
-</li><li> Bond Zero Black
-</li><li> Bond Zero Vasicek
-</li><li> Bond American Binomial
-</li><li> Bond Call Rendleman Bartter
-</li><li> Bond Flat
-</li><li> Bond with Term Structure
-</li><li> Bond with Principal
+</div>
+<div class="section-level-extent" id="Bonds">
+<h3 class="section"><span>5.14 Bonds<a class="copiable-link" href="#Bonds"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-bond"></a>
+<ul class="itemize mark-bullet">
+<li>Vasicek Bond Price
+</li><li>Vasicek Bond Option
+</li><li>Convertible Bond
+</li><li>Bond Zero Black
+</li><li>Bond Zero Vasicek
+</li><li>Bond American Binomial
+</li><li>Bond Call Rendleman Bartter
+</li><li>Bond Flat
+</li><li>Bond with Term Structure
+</li><li>Bond with Principal
 </li></ul>
 
-<span id="Term-structures"></span><h3 class="section">5.15 Term structures</h3>
-<span id="index-Term-structure"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Term+Structure+Flat">Term Structure Flat</a>
-</li><li> Term Structure Cir
-</li><li> Term Structure Vasicek
-</li><li> Term Structure Nelson Siegel
-</li><li> Term Structure Svensson
-</li><li> Term Structure Cubic Spline
-</li><li> Term Structure Interpolated
+</div>
+<div class="section-level-extent" id="Term-structures">
+<h3 class="section"><span>5.15 Term structures<a class="copiable-link" href="#Term-structures"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Term-structure"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Term+Structure+Flat">Term Structure Flat</a>
+</li><li>Term Structure Cir
+</li><li>Term Structure Vasicek
+</li><li>Term Structure Nelson Siegel
+</li><li>Term Structure Svensson
+</li><li>Term Structure Cubic Spline
+</li><li>Term Structure Interpolated
 </li></ul>
 
-<span id="Misc"></span><h3 class="section">5.16 Misc</h3>
-<ul>
-<li> PV / IRR
-</li><li> Log Normal Random
+</div>
+<div class="section-level-extent" id="Misc">
+<h3 class="section"><span>5.16 Misc<a class="copiable-link" href="#Misc"> &para;</a></span></h3>
+<ul class="itemize mark-bullet">
+<li>PV / IRR
+</li><li>Log Normal Random
 </li></ul>
 
-<span id="index-pre_002dBSM"></span>
-<span id="pre_002dBSM"></span><h3 class="section">5.17 pre-BSM</h3>
-<ul>
-<li> <a href="http://www.google.com/search?q=Bachelier-1900">Bachelier-1900</a>
-</li><li> Bachelier Modified
-</li><li> Sprenkle-64
-</li><li> Boness-64
-</li><li> Samuelson-65
+<a class="index-entry-id" id="index-Pre_002dBSM"></a>
+</div>
+<div class="section-level-extent" id="Pre_002dBSM">
+<h3 class="section"><span>5.17 Pre-BSM<a class="copiable-link" href="#Pre_002dBSM"> &para;</a></span></h3>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Bachelier-1900">Bachelier-1900</a>
+</li><li>Bachelier Modified
+</li><li>Sprenkle-64
+</li><li>Boness-64
+</li><li>Samuelson-65
 </li></ul>
 
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/10.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
 
 <hr>
-<span id="Downloading-and-Installation"></span><span id="Downloading-and-Installation-1"></span><h2 class="chapter">6 Downloading and Installation</h2>
+</div>
+</div>
+<div class="chapter-level-extent" id="Downloading-and-Installation">
+<h2 class="chapter" id="Downloading-and-Installation-1"><span>6 Downloading and Installation<a class="copiable-link" href="#Downloading-and-Installation-1"> &para;</a></span></h2>
 
-<span id="Installers"></span><h3 class="section">6.1 Installers</h3>
-<span id="index-Windows-installers"></span>
-<span id="index-Macintosh"></span>
-<span id="index-OS-X"></span>
+<div class="section-level-extent" id="Installers">
+<h3 class="section"><span>6.1 Installers<a class="copiable-link" href="#Installers"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Windows-installers"></a>
+<a class="index-entry-id" id="index-Macintosh"></a>
+<a class="index-entry-id" id="index-OS-X"></a>
 <p>Windows and Mac OS X installers can be found at
 <br>
-<a href="http://sourceforge.net/projects/optionmatrix">http://sourceforge.net/projects/optionmatrix</a>
+<a class="url" href="http://sourceforge.net/projects/optionmatrix/">http://sourceforge.net/projects/optionmatrix/</a>
 </p>
-<span id="Unix-_002f-Linux-Autotools-Package"></span><h3 class="section">6.2 Unix / Linux Autotools Package</h3>
-<span id="index-UNIX-1"></span>
-<span id="index-Linux"></span>
-<span id="index-Autotools-package"></span>
-<span id="index-_002etar_002egz"></span>
-<span id="index-Source-code-2"></span>
+</div>
+<div class="section-level-extent" id="Unix-_002f-Linux-Autotools-Package">
+<h3 class="section"><span>6.2 Unix / Linux Autotools Package<a class="copiable-link" href="#Unix-_002f-Linux-Autotools-Package"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-UNIX-1"></a>
+<a class="index-entry-id" id="index-Linux"></a>
+<a class="index-entry-id" id="index-Autotools-package"></a>
+<a class="index-entry-id" id="index-_002etar_002egz"></a>
+<a class="index-entry-id" id="index-Source-code-2"></a>
 <p>OptionMatrix source code can be downloaded from
 <br>
-<a href="http://sourceforge.net/projects/optionmatrix">http://sourceforge.net/projects/optionmatrix</a>
+<a class="url" href="http://sourceforge.net/projects/optionmatrix/">http://sourceforge.net/projects/optionmatrix/</a>
 <br>
 <br>
 Type the following on the console in the directory of the download to install.
-<span id="index-tar"></span>
-<span id="index-make"></span>
+<a class="index-entry-id" id="index-tar"></a>
+<a class="index-entry-id" id="index-make"></a>
 </p><div class="example">
-<pre class="example">tar xfz optionmatrix-1.4.3.tar.gz
-cd optionmatrix-1.4.3
+<pre class="example-preformatted">tar xfz optionmatrix-1.4.4.tar.gz
+cd optionmatrix-1.4.4
 ./configure
 make
 sudo make install
@@ -1070,87 +1159,94 @@ sudo make install
 
 <br>
 <center><img src="images/6.png" align="top"><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
 
 <hr>
-<span id="Documentation"></span><span id="Documentation-1"></span><h2 class="chapter">7 Documentation</h2>
-<span id="index-PDF"></span>
-<span id="index-EPUB"></span>
+</div>
+</div>
+<div class="chapter-level-extent" id="Documentation">
+<h2 class="chapter" id="Documentation-1"><span>7 Documentation<a class="copiable-link" href="#Documentation-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-PDF"></a>
+<a class="index-entry-id" id="index-EPUB"></a>
 <p>PDF and EPUB documentation can be found at
 <br>
-<a href="http://sourceforge.net/projects/optionmatrix">http://sourceforge.net/projects/optionmatrix</a>
+<a class="url" href="http://sourceforge.net/projects/optionmatrix/">http://sourceforge.net/projects/optionmatrix/</a>
 <br>
 <br>
 HTML documentation can be found at
 <br>
-<a href="https://anthonybradford.github.io/optionmatrix/">https://anthonybradford.github.io/optionmatrix/</a>
+<a class="url" href="https://anthonybradford.github.io/optionmatrix/index.html">https://anthonybradford.github.io/optionmatrix/index.html</a>
 </p>
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/10.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
 
 <hr>
-<span id="Reporting-bugs"></span><span id="Reporting-bugs-1"></span><h2 class="chapter">8 Reporting bugs</h2>
+</div>
+<div class="chapter-level-extent" id="Reporting-bugs">
+<h2 class="chapter" id="Reporting-bugs-1"><span>8 Reporting bugs<a class="copiable-link" href="#Reporting-bugs-1"> &para;</a></span></h2>
 
-<span id="index-Bug-reporting"></span>
-<span id="index-problems"></span>
-<span id="index-Reporting-bugs"></span>
+<a class="index-entry-id" id="index-Bug-reporting"></a>
+<a class="index-entry-id" id="index-problems"></a>
+<a class="index-entry-id" id="index-Reporting-bugs"></a>
 
 <p>To report bugs, suggest enhancements or otherwise discuss optionmatrix,
-please send electronic mail to <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>.
+please send electronic mail to <a class="email" href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>.
 </p>
-<span id="index-Checklist-for-bug-reports"></span>
+<a class="index-entry-id" id="index-Checklist-for-bug-reports"></a>
 <p>For bug reports, please include enough information for the maintainers
 to reproduce the problem.  Generally speaking, that means:
 </p>
-<ul>
-<li> The version numbers of optionmatrix (which you can find by running
-      &lsquo;<samp>optionmatrix&nbsp;<span class="nolinebreak">--version</span></samp>&rsquo;<!-- /@w -->) and any other program(s) or
+<ul class="itemize mark-bullet">
+<li>The version numbers of optionmatrix (which you can find by running
+      &lsquo;<samp class="samp">optionmatrix&nbsp;--version</samp>&rsquo;<!-- /@w -->) and any other program(s) or
       manual(s) involved.
-</li><li> Hardware and operating system names and versions.
-</li><li> The contents of any input files necessary to reproduce the bug.
-</li><li> The expected behavior and/or output.
-</li><li> A description of the problem and samples of any erroneous output.
-</li><li> Options you gave to <code>configure</code> other than specifying
+</li><li>Hardware and operating system names and versions.
+</li><li>The contents of any input files necessary to reproduce the bug.
+</li><li>The expected behavior and/or output.
+</li><li>A description of the problem and samples of any erroneous output.
+</li><li>Options you gave to <code class="command">configure</code> other than specifying
       installation directories.
-</li><li> Anything else that you think would be helpful.
+</li><li>Anything else that you think would be helpful.
 </li></ul>
 
 <p>When in doubt whether something is needed or not, include it.  It&rsquo;s
 better to include too much than to leave out something important.
 </p>
-<span id="index-Patches_002c-contributing"></span>
-<p>Patches are welcome; if possible, please make them with &lsquo;<samp>diff&nbsp;<span class="nolinebreak">-c</span><!-- /@w --></samp>&rsquo;. Please follow the existing coding style.
+<a class="index-entry-id" id="index-Patches_002c-contributing"></a>
+<p>Patches are welcome; if possible, please make them with &lsquo;<samp class="samp">diff&nbsp;-c<!-- /@w --></samp>&rsquo;. Please follow the existing coding style.
 </p>
-<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br><br clear=left>
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/9.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
 
 <hr>
-<span id="GNU-Free-Documentation-License"></span><span id="GNU-Free-Documentation-License-1"></span><h2 class="appendix">Appendix A GNU Free Documentation License</h2>
+</div>
+<div class="appendix-level-extent" id="GNU-Free-Documentation-License">
+<h2 class="appendix" id="GNU-Free-Documentation-License-1"><span>Appendix A GNU Free Documentation License<a class="copiable-link" href="#GNU-Free-Documentation-License-1"> &para;</a></span></h2>
 
-<div align="center">Version 1.3, 3 November 2008
+<div class="center">Version 1.3, 3 November 2008
 </div>
 
 <div class="display">
-<pre class="display">Copyright &copy; 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc.
-<a href="http://fsf.org/">http://fsf.org/</a>
+<pre class="display-preformatted">Copyright &copy; 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc.
+<a class="uref" href="http://fsf.org/">http://fsf.org/</a>
 
 Everyone is permitted to copy and distribute verbatim copies
 of this license document, but changing it is not allowed.
 </pre></div>
 
-<ol start="0">
+<ol class="enumerate" start="0">
 <li> PREAMBLE
 
 <p>The purpose of this License is to make a manual, textbook, or other
-functional and useful document <em>free</em> in the sense of freedom: to
+functional and useful document <em class="dfn">free</em> in the sense of freedom: to
 assure everyone the effective freedom to copy and redistribute it,
 with or without modifying it, either commercially or noncommercially.
 Secondarily, this License preserves for the author and publisher a way
@@ -1322,7 +1418,7 @@ Version filling the role of the Document, thus licensing distribution
 and modification of the Modified Version to whoever possesses a copy
 of it.  In addition, you must do these things in the Modified Version:
 </p>
-<ol type="A" start="1">
+<ol class="enumerate" type="A" start="1">
 <li> Use in the Title Page (and on the covers, if any) a title distinct
 from that of the Document, and from those of previous versions
 (which should, if there were any, be listed in the History section
@@ -1522,7 +1618,7 @@ not give you any rights to use it.
 of the GNU Free Documentation License from time to time.  Such new
 versions will be similar in spirit to the present version, but may
 differ in detail to address new problems or concerns.  See
-<a href="http://www.gnu.org/copyleft/">http://www.gnu.org/copyleft/</a>.
+<a class="uref" href="http://www.gnu.org/copyleft/">http://www.gnu.org/copyleft/</a>.
 </p>
 <p>Each version of the License is given a distinguishing version number.
 If the Document specifies that a particular numbered version of this
@@ -1568,30 +1664,30 @@ provided the MMC is eligible for relicensing.
 </p>
 </li></ol>
 
-<span id="ADDENDUM_003a-How-to-use-this-License-for-your-documents"></span><h3 class="heading">ADDENDUM: How to use this License for your documents</h3>
+<h3 class="heading" id="ADDENDUM_003a-How-to-use-this-License-for-your-documents"><span>ADDENDUM: How to use this License for your documents<a class="copiable-link" href="#ADDENDUM_003a-How-to-use-this-License-for-your-documents"> &para;</a></span></h3>
 
 <p>To use this License in a document you have written, include a copy of
 the License in the document and put the following copyright and
 license notices just after the title page:
 </p>
-<div class="example">
-<pre class="example">  Copyright (C)  <var>year</var>  <var>your name</var>.
+<div class="example smallexample">
+<div class="group"><pre class="example-preformatted">  Copyright (C)  <var class="var">year</var>  <var class="var">your name</var>.
   Permission is granted to copy, distribute and/or modify this document
   under the terms of the GNU Free Documentation License, Version 1.3
   or any later version published by the Free Software Foundation;
   with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
   Texts.  A copy of the license is included in the section entitled ``GNU
   Free Documentation License''.
-</pre></div>
+</pre></div></div>
 
 <p>If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
 replace the &ldquo;with&hellip;Texts.&rdquo; line with this:
 </p>
-<div class="example">
-<pre class="example">    with the Invariant Sections being <var>list their titles</var>, with
-    the Front-Cover Texts being <var>list</var>, and with the Back-Cover Texts
-    being <var>list</var>.
-</pre></div>
+<div class="example smallexample">
+<div class="group"><pre class="example-preformatted">    with the Invariant Sections being <var class="var">list their titles</var>, with
+    the Front-Cover Texts being <var class="var">list</var>, and with the Back-Cover Texts
+    being <var class="var">list</var>.
+</pre></div></div>
 
 <p>If you have Invariant Sections without Cover Texts, or some other
 combination of the three, merge those two alternatives to suit the
@@ -1604,338 +1700,343 @@ to permit their use in free software.
 </p>
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/5.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
 
 <hr>
-<span id="Concept-index"></span><span id="Concept-index-1"></span><h2 class="unnumbered">Concept index</h2>
-<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Concept-index_cp_symbol-1"><b>-</b></a>
+</div>
+<div class="unnumbered-level-extent" id="Concept-index">
+<h2 class="unnumbered" id="Concept-index-1"><span>Concept index<a class="copiable-link" href="#Concept-index-1"> &para;</a></span></h2>
+<div class="printindex cp-printindex">
+<table class="cp-letters-header-printindex"><tr><th>Jump to: &nbsp; </th><td><a class="summary-letter-printindex" href="#Concept-index_cp_symbol-1"><b>-</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_symbol-2"><b>.</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_symbol-2"><b>.</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_symbol-3"><b>3</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_symbol-3"><b>3</b></a>
  &nbsp; 
 <br>
-<a class="summary-letter" href="#Concept-index_cp_letter-A"><b>A</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-A"><b>A</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-B"><b>B</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-B"><b>B</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-C"><b>C</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-C"><b>C</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-D"><b>D</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-D"><b>D</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-E"><b>E</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-E"><b>E</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-F"><b>F</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-F"><b>F</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-G"><b>G</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-G"><b>G</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-H"><b>H</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-H"><b>H</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-I"><b>I</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-I"><b>I</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-J"><b>J</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-J"><b>J</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-L"><b>L</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-L"><b>L</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-M"><b>M</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-M"><b>M</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-O"><b>O</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-O"><b>O</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-P"><b>P</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-P"><b>P</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-Q"><b>Q</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-Q"><b>Q</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-R"><b>R</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-R"><b>R</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-S"><b>S</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-S"><b>S</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-T"><b>T</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-T"><b>T</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-U"><b>U</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-U"><b>U</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-V"><b>V</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-V"><b>V</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-W"><b>W</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-W"><b>W</b></a>
  &nbsp; 
 </td></tr></table>
-<table class="index-cp" border="0">
-<tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_symbol-1">-</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002ddatadir"><code>--datadir</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002ddebug"><code>--debug</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002dDirectory"><code>--Directory</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002dhelp"><code>--help</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002diterate-number"><code>--iterate number</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002dlist"><code>--list</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002dmodel-number"><code>--model number</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002dprice"><code>--price</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002dquiet"><code>--quiet</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002dsource"><code>--source</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002d_002dversion"><code>--version</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002dd"><code>-d</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002dD"><code>-D</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002dD-1"><code>-D</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002dh"><code>-h</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002di-number"><code>-i number</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002dl"><code>-l</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002dm-number"><code>-m number</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002dp"><code>-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002dq"><code>-q</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002ds"><code>-s</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002dv"><code>-v</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_symbol-2">.</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_002etar_002egz">.tar.gz</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_symbol-3">3</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-3-Call-_002f-3-Put-Columns">3 Call / 3 Put Columns</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-A">A</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-American-options">American options</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Analytics-for-options">Analytics for options</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Anthony-Bradford">Anthony Bradford</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Anthony-Bradford-1">Anthony Bradford</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Asian">Asian</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-At-the-money-curses">At the money curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-authors">authors</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Autotools">Autotools</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Autotools-package">Autotools package</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-B">B</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Bernt-Arne-Oedegaard">Bernt Arne &Oslash;edegaard</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Bjorn-Augestad">Bj&oslash;rn Augestad</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Black_002dScholes">Black-Scholes</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Black_002dScholes-1">Black-Scholes</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-bond">bond</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-BSM">BSM</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Bug-reporting">Bug reporting</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Reporting-bugs">Reporting bugs</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-C">C</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-C_002b_002b">C++</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-C_002b_002b-1">C++</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-calendar">calendar</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Calendar-date-curses">Calendar date curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Calendar-picker">Calendar picker</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Calendar-spread">Calendar spread</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Call-time-to-calculate">Call time to calculate</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Cash-flow-editor">Cash flow editor</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Checklist-for-bug-reports">Checklist for bug reports</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Reporting-bugs">Reporting bugs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Coupon-editor">Coupon editor</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Cumulative-normal-distribution">Cumulative normal distribution</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-currency">currency</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-curses">curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-curses-1">curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Custom-strike">Custom strike</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-D">D</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Date-engine">Date engine</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Date-engine-curses">Date engine curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Date-engine-properties">Date engine properties</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Days-to-expiration">Days to expiration</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Decimal-date-curses">Decimal date curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Decimal-precision">Decimal precision</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-delta">delta</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Discrete-dividend">Discrete dividend</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Display-formats">Display formats</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Display-formats-curses">Display formats curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Dividend-editor">Dividend editor</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-E">E</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-EPUB">EPUB</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Documentation">Documentation</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Exchange-traded-options">Exchange traded options</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-expiration">expiration</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-expiration-1">expiration</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Expiration-curses">Expiration curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Expiration-date">Expiration date</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-export">export</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-F">F</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Financial-Numerical-Recipes-in-C_002b_002b">Financial Numerical Recipes in C++</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Format-selection-curses">Format selection curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-futures">futures</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-G">G</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-gamma">gamma</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-GNU-General-Public-License">GNU General Public License</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-greeks">greeks</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-GTK_002b">GTK+</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-H">H</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Hart-equation">Hart equation</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-help">help</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-I">I</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Implied-volatility">Implied volatility</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-In-the-money-curses">In the money curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Interest-rate">Interest rate</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Interest-rate-derivatives">Interest rate derivatives</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-invoking">invoking</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-J">J</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Jump-diffusion">Jump diffusion</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-L">L</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Leap-year">Leap year</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-LEAPS">LEAPS</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-leg-1">leg 1</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-leg-2">leg 2</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Linux">Linux</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Listing-models">Listing models</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-M">M</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Macintosh">Macintosh</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-make">make</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Metaoptions">Metaoptions</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Model-categories">Model categories</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Model-drop-down">Model drop down</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Model-selection-curses">Model selection curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Models-listing">Models listing</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Models-supported">Models supported</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Monte-Carlo">Monte Carlo</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Month-adjuster">Month adjuster</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Month-adjuster-legs">Month adjuster legs</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Month-to-strikes">Month to strikes</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Months-across">Months across</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Months-in-option-cycles">Months in option cycles</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Months-to-strike">Months to strike</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-O">O</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Option-analytics">Option analytics</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Option-chain">Option chain</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Option-chain-1">Option chain</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Option-chain-format-curses">Option chain format curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Option-cycles">Option cycles</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-optionmatrix_002elog">optionmatrix.log</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-optionmatrix_002elog-1">optionmatrix.log</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-OS-X">OS X</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-overview">overview</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-P">P</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Patches_002c-contributing">Patches, contributing</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Reporting-bugs">Reporting bugs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-PDF">PDF</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Documentation">Documentation</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-polyapprox">polyapprox</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-pre_002dBSM">pre-BSM</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Precision-decimal">Precision decimal</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-price">price</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-problems">problems</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Reporting-bugs">Reporting bugs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Put-time-to-calculate">Put time to calculate</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-Q">Q</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-QuantLib">QuantLib</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-R">R</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-rational1_002e0_002aE_002d7">rational1.0*E-7</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-rational2_002e5_002aE_002d4">rational2.5*E-4</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-real_002dtime">real-time</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Reporting-bugs">Reporting bugs</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Reporting-bugs">Reporting bugs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-rho">rho</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Romberg_0027s-method">Romberg&rsquo;s method</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-S">S</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Seth-Pinsky">Seth Pinsky</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Simpson_0027s-rule">Simpson&rsquo;s rule</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Single-asset-options">Single asset options</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Sleep-delay">Sleep delay</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Source-code">Source code</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Source-code-1">Source code</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Source-code-2">Source code</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Spread-mode">Spread mode</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-spreads">spreads</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Standard-deviation">Standard deviation</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Strike-adjuster">Strike adjuster</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Strike-custom">Strike custom</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Strike-increments">Strike increments</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-T">T</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-tar">tar</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Term-structure">Term structure</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Text-export">Text export</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-theta">theta</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Time-bleeding">Time bleeding</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Time-bleeding-curses">Time bleeding curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Time-to-calculate-put-_002f-call">Time to calculate put / call</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Time-to-expiration">Time to expiration</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Trapezoidal-rule">Trapezoidal rule</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Trees-_0026-finite-differences">Trees &amp; finite differences</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Two-asset-options">Two asset options</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Models-supported">Models supported</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-U">U</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-UNIX">UNIX</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-UNIX-1">UNIX</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-usage">usage</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-V">V</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-vega">vega</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Vertical-spread">Vertical spread</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-volatility">volatility</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th id="Concept-index_cp_letter-W">W</th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Welcome-screen-curses">Welcome screen curses</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Windows-installers">Windows installers</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
+<table class="cp-entries-printindex" border="0">
+<tr><td></td><th class="entries-header-printindex">Index Entry</th><th class="sections-header-printindex">Section</th></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_symbol-1">-</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002ddatadir"><code>--datadir</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002ddebug"><code>--debug</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002dDirectory"><code>--Directory</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002dhelp"><code>--help</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002diterate-number"><code>--iterate number</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002dlist"><code>--list</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002dmodel-number"><code>--model number</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002dprice"><code>--price</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002dquiet"><code>--quiet</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002dsource"><code>--source</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002d_002dversion"><code>--version</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002dd"><code>-d</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002dD"><code>-D</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002dD-1"><code>-D</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002dh"><code>-h</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002di-number"><code>-i number</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002dl"><code>-l</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002dm-number"><code>-m number</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002dp"><code>-p</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002dq"><code>-q</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002ds"><code>-s</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002dv"><code>-v</code></a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_symbol-2">.</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-_002etar_002egz">.tar.gz</a></td><td class="printindex-index-section"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_symbol-3">3</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-3-Call-_002f-3-Put-Columns">3 Call / 3 Put Columns</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-A">A</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-American-options">American options</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Analytics-for-options">Analytics for options</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Anthony-Bradford">Anthony Bradford</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Anthony-Bradford-1">Anthony Bradford</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Asian">Asian</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-At-the-money-curses">At the money curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-authors">authors</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Autotools">Autotools</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Autotools-package">Autotools package</a></td><td class="printindex-index-section"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-B">B</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Bernt-Arne-Oedegaard">Bernt Arne &Oslash;edegaard</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Bjorn-Augestad">Bj&oslash;rn Augestad</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Black_002dScholes">Black-Scholes</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Black_002dScholes-1">Black-Scholes</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-bond">bond</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-BSM">BSM</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Bug-reporting">Bug reporting</a></td><td class="printindex-index-section"><a href="#Reporting-bugs">Reporting bugs</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-C">C</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-C_002b_002b">C++</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-C_002b_002b-1">C++</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-calendar">calendar</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Calendar-date-curses">Calendar date curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Calendar-picker">Calendar picker</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Calendar-spread">Calendar spread</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Call-time-to-calculate">Call time to calculate</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Cash-flow-editor">Cash flow editor</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Checklist-for-bug-reports">Checklist for bug reports</a></td><td class="printindex-index-section"><a href="#Reporting-bugs">Reporting bugs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Coupon-editor">Coupon editor</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Cumulative-normal-distribution">Cumulative normal distribution</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-currency">currency</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-curses">curses</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-curses-1">curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Custom-strike">Custom strike</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-D">D</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Date-engine">Date engine</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Date-engine-curses">Date engine curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Date-engine-properties">Date engine properties</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Days-to-expiration">Days to expiration</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Decimal-date-curses">Decimal date curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Decimal-precision">Decimal precision</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-delta">delta</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Discrete-dividend">Discrete dividend</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Display-formats">Display formats</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Display-formats-curses">Display formats curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Dividend-editor">Dividend editor</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-E">E</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-EPUB">EPUB</a></td><td class="printindex-index-section"><a href="#Documentation">Documentation</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Exchange-traded-options">Exchange traded options</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-expiration">expiration</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-expiration-1">expiration</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Expiration-curses">Expiration curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Expiration-date">Expiration date</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-export">export</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-F">F</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Financial-Numerical-Recipes-in-C_002b_002b">Financial Numerical Recipes in C++</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Format-selection-curses">Format selection curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-futures">futures</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-G">G</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-gamma">gamma</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-GNU-General-Public-License">GNU General Public License</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-greeks">greeks</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-GTK_002b">GTK+</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-H">H</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Hart-equation">Hart equation</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-help">help</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-I">I</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Implied-volatility">Implied volatility</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-In-the-money-curses">In the money curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Interest-rate">Interest rate</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Interest-rate-derivatives">Interest rate derivatives</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-invoking">invoking</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-J">J</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Jump-diffusion">Jump diffusion</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-L">L</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Leap-year">Leap year</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-LEAPS">LEAPS</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-leg-1">leg 1</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-leg-2">leg 2</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Linux">Linux</a></td><td class="printindex-index-section"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Listing-models">Listing models</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-M">M</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Macintosh">Macintosh</a></td><td class="printindex-index-section"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-make">make</a></td><td class="printindex-index-section"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Metaoptions">Metaoptions</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Model-categories">Model categories</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Model-drop-down">Model drop down</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Model-selection-curses">Model selection curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Models-listing">Models listing</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Models-supported">Models supported</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Monte-Carlo">Monte Carlo</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Month-adjuster">Month adjuster</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Month-adjuster-legs">Month adjuster legs</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Month-to-strikes">Month to strikes</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Months-across">Months across</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Months-in-option-cycles">Months in option cycles</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Months-to-strike">Months to strike</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-O">O</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Option-analytics">Option analytics</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Option-chain">Option chain</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Option-chain-1">Option chain</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Option-chain-format-curses">Option chain format curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Option-cycles">Option cycles</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-optionmatrix_002elog">optionmatrix.log</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-optionmatrix_002elog-1">optionmatrix.log</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-OS-X">OS X</a></td><td class="printindex-index-section"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-overview">overview</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-P">P</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Patches_002c-contributing">Patches, contributing</a></td><td class="printindex-index-section"><a href="#Reporting-bugs">Reporting bugs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-PDF">PDF</a></td><td class="printindex-index-section"><a href="#Documentation">Documentation</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-polyapprox">polyapprox</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Pre_002dBSM">Pre-BSM</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Precision-decimal">Precision decimal</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-price">price</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-problems">problems</a></td><td class="printindex-index-section"><a href="#Reporting-bugs">Reporting bugs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Put-time-to-calculate">Put time to calculate</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-Q">Q</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-QuantLib">QuantLib</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-R">R</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-rational1_002e0_002aE_002d7">rational1.0*E-7</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-rational2_002e5_002aE_002d4">rational2.5*E-4</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-real_002dtime">real-time</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Reporting-bugs">Reporting bugs</a></td><td class="printindex-index-section"><a href="#Reporting-bugs">Reporting bugs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-rho">rho</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Romberg_0027s-method">Romberg&rsquo;s method</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-S">S</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Seth-Pinsky">Seth Pinsky</a></td><td class="printindex-index-section"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Simpson_0027s-rule">Simpson&rsquo;s rule</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Single-asset-options">Single asset options</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Sleep-delay">Sleep delay</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Source-code">Source code</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Source-code-1">Source code</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Source-code-2">Source code</a></td><td class="printindex-index-section"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Spread-mode">Spread mode</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-spreads">spreads</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Standard-deviation">Standard deviation</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Strike-adjuster">Strike adjuster</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Strike-custom">Strike custom</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Strike-increments">Strike increments</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-T">T</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-tar">tar</a></td><td class="printindex-index-section"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Term-structure">Term structure</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Text-export">Text export</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-theta">theta</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Time-bleeding">Time bleeding</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Time-bleeding-curses">Time bleeding curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Time-to-calculate-put-_002f-call">Time to calculate put / call</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Time-to-expiration">Time to expiration</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Trapezoidal-rule">Trapezoidal rule</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Trees-_0026-finite-differences">Trees &amp; finite differences</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Two-asset-options">Two asset options</a></td><td class="printindex-index-section"><a href="#Models-supported">Models supported</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-U">U</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-UNIX">UNIX</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-UNIX-1">UNIX</a></td><td class="printindex-index-section"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-usage">usage</a></td><td class="printindex-index-section"><a href="#Invoking-the-OptionMatrix-Programs">Invoking the OptionMatrix Programs</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-V">V</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-vega">vega</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Vertical-spread">Vertical spread</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-volatility">volatility</a></td><td class="printindex-index-section"><a href="#Graphical-Application-optionmatrix">Graphical Application optionmatrix</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><th id="Concept-index_cp_letter-W">W</th></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Welcome-screen-curses">Welcome screen curses</a></td><td class="printindex-index-section"><a href="#Curses-optionmatrix">Curses optionmatrix</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Windows-installers">Windows installers</a></td><td class="printindex-index-section"><a href="#Downloading-and-Installation">Downloading and Installation</a></td></tr>
+<tr><td colspan="3"><hr></td></tr>
 </table>
-<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Concept-index_cp_symbol-1"><b>-</b></a>
+<table class="cp-letters-footer-printindex"><tr><th>Jump to: &nbsp; </th><td><a class="summary-letter-printindex" href="#Concept-index_cp_symbol-1"><b>-</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_symbol-2"><b>.</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_symbol-2"><b>.</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_symbol-3"><b>3</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_symbol-3"><b>3</b></a>
  &nbsp; 
 <br>
-<a class="summary-letter" href="#Concept-index_cp_letter-A"><b>A</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-A"><b>A</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-B"><b>B</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-B"><b>B</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-C"><b>C</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-C"><b>C</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-D"><b>D</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-D"><b>D</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-E"><b>E</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-E"><b>E</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-F"><b>F</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-F"><b>F</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-G"><b>G</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-G"><b>G</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-H"><b>H</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-H"><b>H</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-I"><b>I</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-I"><b>I</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-J"><b>J</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-J"><b>J</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-L"><b>L</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-L"><b>L</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-M"><b>M</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-M"><b>M</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-O"><b>O</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-O"><b>O</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-P"><b>P</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-P"><b>P</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-Q"><b>Q</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-Q"><b>Q</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-R"><b>R</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-R"><b>R</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-S"><b>S</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-S"><b>S</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-T"><b>T</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-T"><b>T</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-U"><b>U</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-U"><b>U</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-V"><b>V</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-V"><b>V</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-index_cp_letter-W"><b>W</b></a>
+<a class="summary-letter-printindex" href="#Concept-index_cp_letter-W"><b>W</b></a>
  &nbsp; 
 </td></tr></table>
+</div>
 
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/11.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
 
 
-<hr>
+</div>
+</div>
 
 
 <a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>

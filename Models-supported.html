@@ -1,9 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<!-- This manual is for OptionMatrix (version 1.4.3, 7 February 2020),
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for OptionMatrix (version 1.4.4, 18 January 2025),
 which is a Financial Derivatives Calculator supporting GTK+, Curses and the Command Line.
 
-Copyright (C) 2013 Anthony Bradford.
+Copyright © 2013 Anthony Bradford.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -11,16 +14,15 @@ any later version published by the Free Software Foundation; with no
 Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
 Texts.  A copy of the license is included in the section entitled
 "GNU Free Documentation License". -->
-<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Models supported (OptionMatrix 1.4.3)</title>
+<title>Models supported (OptionMatrix 1.4.4)</title>
 
 <meta name="description" content="Financial Derivatives Calculator. Black-Scholes Calculator.">
-<meta name="keywords" content="Models supported (OptionMatrix 1.4.3)">
+<meta name="keywords" content="Models supported (OptionMatrix 1.4.4)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <link href="index.html" rel="start" title="Top">
 <link href="Concept-index.html" rel="index" title="Concept index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
@@ -29,20 +31,9 @@ Texts.  A copy of the license is included in the section entitled
 <link href="Curses-optionmatrix.html" rel="prev" title="Curses optionmatrix">
 <style type="text/css">
 <!--
-a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-div.display {margin-left: 3.2em}
-div.example {margin-left: 3.2em}
-div.lisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
-ul.no-bullet {list-style: none}
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
 -->
 </style>
 
@@ -50,248 +41,303 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a><span id="Models-supported"></span><div class="header">
+<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a><div class="chapter-level-extent" id="Models-supported">
+<div class="nav-panel">
 <p>
-Next: <a href="Downloading-and-Installation.html" accesskey="n" rel="next">Downloading and Installation</a>, Previous: <a href="Curses-optionmatrix.html" accesskey="p" rel="prev">Curses optionmatrix</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Downloading-and-Installation.html" accesskey="n" rel="next">Downloading and Installation</a>, Previous: <a href="Curses-optionmatrix.html" accesskey="p" rel="prev">Curses <code class="command">optionmatrix_console</code></a>, Up: <a href="index.html" accesskey="u" rel="up">OptionMatrix</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<span id="Models-supported-1"></span><h2 class="chapter">5 Models supported</h2>
+<h2 class="chapter" id="Models-supported-1"><span>5 Models supported<a class="copiable-link" href="#Models-supported-1"> &para;</a></span></h2>
 
-<span id="index-Models-supported"></span>
+<a class="index-entry-id" id="index-Models-supported"></a>
 <p>The OptionMatrix programs support the following models:
-</p><span id="BSM"></span><h3 class="section">5.1 BSM</h3>
-<span id="index-BSM"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Black-Scholes">Black-Scholes</a>
-</li><li> <a href="http://www.google.com/search?q=Merton+73+Formula">Merton-73</a>
-</li><li> Generalized Black-Scholes
-</li><li> <a href="http://www.google.com/search?q=French+Black-Scholes">French</a>
-</li><li> Carry
-</li><li> Warrants Black-Scholes
-</li><li> Warrants Black-Scholes Dividend
+</p><ul class="mini-toc">
+<li><a href="#BSM" accesskey="1">BSM</a></li>
+<li><a href="#American-Options" accesskey="2">American Options</a></li>
+<li><a href="#Single-Asset-Options" accesskey="3">Single Asset Options</a></li>
+<li><a href="#Two-Asset-Options" accesskey="4">Two Asset Options</a></li>
+<li><a href="#Jump-Diffusion" accesskey="5">Jump Diffusion</a></li>
+<li><a href="#Trees-_0026-Finite-Differences" accesskey="6">Trees &amp; Finite Differences</a></li>
+<li><a href="#Monte-Carlo" accesskey="7">Monte Carlo</a></li>
+<li><a href="#Discrete-Dividend" accesskey="8">Discrete Dividend</a></li>
+<li><a href="#Currency" accesskey="9">Currency</a></li>
+<li><a href="#Futures">Futures</a></li>
+<li><a href="#Interest-Rate-Derivatives">Interest Rate Derivatives</a></li>
+<li><a href="#Asian">Asian</a></li>
+<li><a href="#Implied-Volatility">Implied Volatility</a></li>
+<li><a href="#Bonds">Bonds</a></li>
+<li><a href="#Term-structures">Term structures</a></li>
+<li><a href="#Misc">Misc</a></li>
+<li><a href="#Pre_002dBSM">Pre-BSM</a></li>
+</ul>
+<div class="section-level-extent" id="BSM">
+<h3 class="section"><span>5.1 BSM<a class="copiable-link" href="#BSM"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-BSM"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Black-Scholes">Black-Scholes</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Merton+73+Formula">Merton-73</a>
+</li><li>Generalized Black-Scholes
+</li><li><a class="url" href="http://www.google.com/search?q=French+Black-Scholes">French</a>
+</li><li>Carry
+</li><li>Warrants Black-Scholes
+</li><li>Warrants Black-Scholes Dividend
 </li></ul>
 
-<span id="American-Options"></span><h3 class="section">5.2 American Options</h3>
-<span id="index-American-options"></span>
-<ul>
-<li> American Barone-Adesi Whaley
-</li><li> Black-Scholes American
-</li><li> <a href="http://www.google.com/search?q=American+Perpetual+Option">American Perpetual</a>
-</li><li> American Put Approx Johnson
-</li><li> American Put Approx Geske-Johnson
-</li><li> Barone-Adesi Whaley
-</li><li> Bjerksund Stensland
+</div>
+<div class="section-level-extent" id="American-Options">
+<h3 class="section"><span>5.2 American Options<a class="copiable-link" href="#American-Options"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-American-options"></a>
+<ul class="itemize mark-bullet">
+<li>American Barone-Adesi Whaley
+</li><li>Black-Scholes American
+</li><li><a class="url" href="http://www.google.com/search?q=American+Perpetual+Option">American Perpetual</a>
+</li><li>American Put Approx Johnson
+</li><li>American Put Approx Geske-Johnson
+</li><li>Barone-Adesi Whaley
+</li><li>Bjerksund Stensland
 </li></ul>
 
-<span id="Single-Asset-Options"></span><h3 class="section">5.3 Single Asset Options</h3>
-<span id="index-Single-asset-options"></span>
-<ul>
-<li> Executive
-</li><li> <a href="http://www.google.com/search?q=Time+Switch+Option">Time Switch Option</a>
-</li><li> <a href="http://www.google.com/search?q=Extendible+Writer+Option">Extendible Writer</a>
-</li><li> <a href="http://www.google.com/search?q=Forward+Start+Option">Forward Start Option</a>
-</li><li> <a href="http://www.google.com/search?q=Standard+Barrier+Option">Standard Barrier</a>
-</li><li> <a href="http://www.google.com/search?q=Double+Barrier+Option">Double Barrier</a>
-</li><li> <a href="http://www.google.com/search?q=Soft+Barrier+Option">Soft Barrier</a>
-</li><li> <a href="http://www.google.com/search?q=Binary+Barrier+Option">Binary Barrier</a>
-</li><li> Discrete Adjusted Barrier
-</li><li> <a href="http://www.google.com/search?q=Look+Barrier+Option">Look Barrier</a>
-</li><li> <a href="http://www.google.com/search?q=Partial+Time+Barrier+Option">Partial Time Barrier</a>
-</li><li> <a href="http://www.google.com/search?q=Asset+or+Nothing+Option">Asset-or-Nothing</a>
-</li><li> <a href="http://www.google.com/search?q=Cash+or+Nothing+Option">Cash-or-Nothing</a>
-</li><li> <a href="http://www.google.com/search?q=Gap+Option+Derivative">Gap Option</a>
-</li><li> <a href="http://www.google.com/search?q=Super+Share+Option">Super Share</a>
-</li><li> <a href="http://www.google.com/search?q=Simple+Chooser+Option">Simple Chooser</a>
-</li><li> <a href="http://www.google.com/search?q=Complex+Chooser+Option">Complex Chooser</a>
-</li><li> <a href="http://www.google.com/search?q=Floating+Strike+Lookback">Floating Strike Lookback</a>
-</li><li> <a href="http://www.google.com/search?q=Fixed+Strike+Lookback">Fixed Strike Lookback</a>
-</li><li> <a href="http://www.google.com/search?q=Partial+Fixed+Lookback+Option">Partial Fixed Lookback</a>
-</li><li> <a href="http://www.google.com/search?q=Partial+Float+Lookback+Option">Partial Float Lookback</a>
-</li><li> <a href="http://www.google.com/search?q=European+Lookback+Option">European Lookback</a>
-</li><li> <a href="http://www.google.com/search?q=Extreme+Spread+Option">Extreme Spread</a>
-</li><li> Calls on Options
-</li><li> Puts on Options
+</div>
+<div class="section-level-extent" id="Single-Asset-Options">
+<h3 class="section"><span>5.3 Single Asset Options<a class="copiable-link" href="#Single-Asset-Options"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Single-asset-options"></a>
+<ul class="itemize mark-bullet">
+<li>Executive
+</li><li><a class="url" href="http://www.google.com/search?q=Time+Switch+Option">Time Switch Option</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Extendible+Writer+Option">Extendible Writer</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Forward+Start+Option">Forward Start Option</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Standard+Barrier+Option">Standard Barrier</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Double+Barrier+Option">Double Barrier</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Soft+Barrier+Option">Soft Barrier</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Binary+Barrier+Option">Binary Barrier</a>
+</li><li>Discrete Adjusted Barrier
+</li><li><a class="url" href="http://www.google.com/search?q=Look+Barrier+Option">Look Barrier</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Partial+Time+Barrier+Option">Partial Time Barrier</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Asset+or+Nothing+Option">Asset-or-Nothing</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Cash+or+Nothing+Option">Cash-or-Nothing</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Gap+Option+Derivative">Gap Option</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Super+Share+Option">Super Share</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Simple+Chooser+Option">Simple Chooser</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Complex+Chooser+Option">Complex Chooser</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Floating+Strike+Lookback">Floating Strike Lookback</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Fixed+Strike+Lookback">Fixed Strike Lookback</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Partial+Fixed+Lookback+Option">Partial Fixed Lookback</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Partial+Float+Lookback+Option">Partial Float Lookback</a>
+</li><li><a class="url" href="http://www.google.com/search?q=European+Lookback+Option">European Lookback</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Extreme+Spread+Option">Extreme Spread</a>
+</li><li>Calls on Options
+</li><li>Puts on Options
 </li></ul>
 
-<span id="Two-Asset-Options"></span><h3 class="section">5.4 Two Asset Options</h3>
-<span id="index-Two-asset-options"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Spread+Approximation+Option">Spread Approximation</a>
-</li><li> <a href="http://www.google.com/search?q=Two Asset+Cash+or+Nothing+Option">Two Asset Cash or Nothing</a>
-</li><li> Two Asset Correlation
-</li><li> Options on The Max Min
-</li><li> Partial Time Two Asset
-</li><li> <a href="http://www.google.com/search?q=Two+Asset+Barrier+Option">Two Asset Barrier</a>
-</li><li> American Exchange Option
-</li><li> <a href="http://www.google.com/search?q=European+Exchange+Option">European Exchange Option</a>
-</li><li> Exchange Exchange Option
+</div>
+<div class="section-level-extent" id="Two-Asset-Options">
+<h3 class="section"><span>5.4 Two Asset Options<a class="copiable-link" href="#Two-Asset-Options"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Two-asset-options"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Spread+Approximation+Option">Spread Approximation</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Two%20Asset+Cash+or+Nothing+Option">Two Asset Cash or Nothing</a>
+</li><li>Two Asset Correlation
+</li><li>Options on The Max Min
+</li><li>Partial Time Two Asset
+</li><li><a class="url" href="http://www.google.com/search?q=Two+Asset+Barrier+Option">Two Asset Barrier</a>
+</li><li>American Exchange Option
+</li><li><a class="url" href="http://www.google.com/search?q=European+Exchange+Option">European Exchange Option</a>
+</li><li>Exchange Exchange Option
 </li></ul>
 
-<span id="Jump-Diffusion"></span><h3 class="section">5.5 Jump Diffusion</h3>
-<span id="index-Jump-diffusion"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Merton+Jump+Diffusion+Option">Merton Jump Diffusion</a>
+</div>
+<div class="section-level-extent" id="Jump-Diffusion">
+<h3 class="section"><span>5.5 Jump Diffusion<a class="copiable-link" href="#Jump-Diffusion"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Jump-diffusion"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Merton+Jump+Diffusion+Option">Merton Jump Diffusion</a>
 </li></ul>
 
-<span id="Trees-_0026-Finite-Differences"></span><h3 class="section">5.6 Trees &amp; Finite Differences</h3>
-<span id="index-Trees-_0026-finite-differences"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Heston+Model">Heston</a>
-</li><li> <a href="http://www.google.com/search?q=Binomial+Option">American Cox Ross Rubinstein</a>
-</li><li> American Equi
-</li><li> <a href="http://www.google.com/search?q=European+CRR+Option">European Cox Ross Rubinstein</a>
-</li><li> European Equi
-</li><li> <a href="http://www.google.com/search?q=Binomial+Option">Cox Ross Rubinstein Binomial</a>
-</li><li> 3D-Binominal
-</li><li> <a href="http://www.google.com/search?q=Binomial+Option">American Binomial</a>
-</li><li> American Binomial Dividend
-</li><li> European Binomial
-</li><li> European Binomial 1 Period
-</li><li> European Binomial M Period
-</li><li> <a href="http://www.google.com/search?q=Binomial+Option">Generic Binomial</a>
-</li><li> <a href="http://www.google.com/search?q=Bermudian+Binomial+Option">Bermudian Binomial</a>
-</li><li> American Finite Difference Explicit
-</li><li> European Finite Difference Explicit
-</li><li> American Finite Difference Implicit
-</li><li> European Finite Difference Implicit
-</li><li> <a href="http://www.google.com/search?q=Trinomial+Tree+Option">Trinomial Tree</a>
-</li><li> <a href="http://www.google.com/search?q=American Trinomial+Option">American Trinomial</a>
-</li><li> Heston Semi-Analytic
-</li><li> Binomial Jarrow-Rudd
-</li><li> Additive Equiprobabilities
-</li><li> Trigeorgis
-</li><li> Tian
-</li><li> Leisen-Reimer
-</li><li> Joshi
-</li><li> Bates Semi-Analytic
-</li><li> Integral
-</li><li> Finite Differences Bermudan
+</div>
+<div class="section-level-extent" id="Trees-_0026-Finite-Differences">
+<h3 class="section"><span>5.6 Trees &amp; Finite Differences<a class="copiable-link" href="#Trees-_0026-Finite-Differences"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Trees-_0026-finite-differences"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Heston+Model">Heston</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Binomial+Option">American Cox Ross Rubinstein</a>
+</li><li>American Equi
+</li><li><a class="url" href="http://www.google.com/search?q=European+CRR+Option">European Cox Ross Rubinstein</a>
+</li><li>European Equi
+</li><li><a class="url" href="http://www.google.com/search?q=Binomial+Option">Cox Ross Rubinstein Binomial</a>
+</li><li>3D-Binominal
+</li><li><a class="url" href="http://www.google.com/search?q=Binomial+Option">American Binomial</a>
+</li><li>American Binomial Dividend
+</li><li>European Binomial
+</li><li>European Binomial 1 Period
+</li><li>European Binomial M Period
+</li><li><a class="url" href="http://www.google.com/search?q=Binomial+Option">Generic Binomial</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Bermudian+Binomial+Option">Bermudian Binomial</a>
+</li><li>American Finite Difference Explicit
+</li><li>European Finite Difference Explicit
+</li><li>American Finite Difference Implicit
+</li><li>European Finite Difference Implicit
+</li><li><a class="url" href="http://www.google.com/search?q=Trinomial+Tree+Option">Trinomial Tree</a>
+</li><li><a class="url" href="http://www.google.com/search?q=American%20Trinomial+Option">American Trinomial</a>
+</li><li>Heston Semi-Analytic
+</li><li>Binomial Jarrow-Rudd
+</li><li>Additive Equiprobabilities
+</li><li>Trigeorgis
+</li><li>Tian
+</li><li>Leisen-Reimer
+</li><li>Joshi
+</li><li>Bates Semi-Analytic
+</li><li>Integral
+</li><li>Finite Differences Bermudan
 </li></ul>
 
-<span id="Monte-Carlo"></span><h3 class="section">5.7 Monte Carlo</h3>
-<span id="index-Monte-Carlo"></span>
-<ul>
-<li> Simulate European Option
-</li><li> Simulate European Generic Option
-</li><li> Simulate European Option Generic with Control Variate
-</li><li> Simulate European Option Generic with Antihetic Variate
-</li><li> Simulate Price Path
-</li><li> Simulate Price Path Control Variate
-</li><li> MC (Crude)
-</li><li> QMC (Sobol)
-</li><li> MC (Longstaff Schwartz)
+</div>
+<div class="section-level-extent" id="Monte-Carlo">
+<h3 class="section"><span>5.7 Monte Carlo<a class="copiable-link" href="#Monte-Carlo"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Monte-Carlo"></a>
+<ul class="itemize mark-bullet">
+<li>Simulate European Option
+</li><li>Simulate European Generic Option
+</li><li>Simulate European Option Generic with Control Variate
+</li><li>Simulate European Option Generic with Antihetic Variate
+</li><li>Simulate Price Path
+</li><li>Simulate Price Path Control Variate
+</li><li>MC (Crude)
+</li><li>QMC (Sobol)
+</li><li>MC (Longstaff Schwartz)
 </li></ul>
 
-<span id="Discrete-Dividend"></span><h3 class="section">5.8 Discrete Dividend</h3>
-<span id="index-Discrete-dividend"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Roll-Geske-Whaley">Roll-Geske-Whaley</a>
-</li><li> Black-Scholes Dividends
-</li><li> American Proport Dividends Binomial
-</li><li> Black-Scholes Coupon Bond
+</div>
+<div class="section-level-extent" id="Discrete-Dividend">
+<h3 class="section"><span>5.8 Discrete Dividend<a class="copiable-link" href="#Discrete-Dividend"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Discrete-dividend"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Roll-Geske-Whaley">Roll-Geske-Whaley</a>
+</li><li>Black-Scholes Dividends
+</li><li>American Proport Dividends Binomial
+</li><li>Black-Scholes Coupon Bond
 </li></ul>
 
-<span id="Currency"></span><h3 class="section">5.9 Currency</h3>
-<span id="index-currency"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Quanto+Derivative">Quanto</a>
-</li><li> <a href="http://www.google.com/search?q=Garman-KohlHagen">Garman-KohlHagen</a>
-</li><li> Foreign Equity Option Struck in Domestic Currency
-</li><li> Equity Linked Foreign Exchange Option
-</li><li> Takeover Foreign Exchange Option
-</li><li> Currency American Binomial
-</li><li> Currency European
+</div>
+<div class="section-level-extent" id="Currency">
+<h3 class="section"><span>5.9 Currency<a class="copiable-link" href="#Currency"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-currency"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Quanto+Derivative">Quanto</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Garman-KohlHagen">Garman-KohlHagen</a>
+</li><li>Foreign Equity Option Struck in Domestic Currency
+</li><li>Equity Linked Foreign Exchange Option
+</li><li>Takeover Foreign Exchange Option
+</li><li>Currency American Binomial
+</li><li>Currency European
 </li></ul>
 
-<span id="Futures"></span><h3 class="section">5.10 Futures</h3>
-<span id="index-futures"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Black-76">Black-76</a>
-</li><li> <a href="http://www.google.com/search?q=Miltersen+Schwartz">Miltersen Schwartz</a>
-</li><li> Futures Option American Binomial
-</li><li> Futures
-</li><li> Futures Dividend
+</div>
+<div class="section-level-extent" id="Futures">
+<h3 class="section"><span>5.10 Futures<a class="copiable-link" href="#Futures"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-futures"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Black-76">Black-76</a>
+</li><li><a class="url" href="http://www.google.com/search?q=Miltersen+Schwartz">Miltersen Schwartz</a>
+</li><li>Futures Option American Binomial
+</li><li>Futures
+</li><li>Futures Dividend
 </li></ul>
 
-<span id="Interest-Rate-Derivatives"></span><h3 class="section">5.11 Interest Rate Derivatives</h3>
-<span id="index-Interest-rate-derivatives"></span>
-<ul>
-<li> Swap Option
+</div>
+<div class="section-level-extent" id="Interest-Rate-Derivatives">
+<h3 class="section"><span>5.11 Interest Rate Derivatives<a class="copiable-link" href="#Interest-Rate-Derivatives"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Interest-rate-derivatives"></a>
+<ul class="itemize mark-bullet">
+<li>Swap Option
 </li></ul>
 
-<span id="Asian"></span><h3 class="section">5.12 Asian</h3>
-<span id="index-Asian"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Turnbull+Wakeman+Asian">Turnbull Wakeman Asian</a>
-</li><li> Levy Asian
-</li><li> Geometric Average Rate
-</li><li> <a href="http://www.google.com/search?q=Asian+Geometric+Average+Option">Asian Geometric Average</a>
+</div>
+<div class="section-level-extent" id="Asian">
+<h3 class="section"><span>5.12 Asian<a class="copiable-link" href="#Asian"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Asian"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Turnbull+Wakeman+Asian">Turnbull Wakeman Asian</a>
+</li><li>Levy Asian
+</li><li>Geometric Average Rate
+</li><li><a class="url" href="http://www.google.com/search?q=Asian+Geometric+Average+Option">Asian Geometric Average</a>
 </li></ul>
 
-<span id="Implied-Volatility"></span><h3 class="section">5.13 Implied Volatility</h3>
-<span id="index-Implied-volatility"></span>
-<ul>
-<li> Bisection
-</li><li> Newton Raphson
-</li><li> Barone-Adesi Whaley Bisection
-</li><li> Black-Scholes Bisection
-</li><li> Implied Volatility Black-Scholes Newton
-</li><li> Implied Bisections
+</div>
+<div class="section-level-extent" id="Implied-Volatility">
+<h3 class="section"><span>5.13 Implied Volatility<a class="copiable-link" href="#Implied-Volatility"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Implied-volatility"></a>
+<ul class="itemize mark-bullet">
+<li>Bisection
+</li><li>Newton Raphson
+</li><li>Barone-Adesi Whaley Bisection
+</li><li>Black-Scholes Bisection
+</li><li>Implied Volatility Black-Scholes Newton
+</li><li>Implied Bisections
 </li></ul>
 
-<span id="Bonds"></span><h3 class="section">5.14 Bonds</h3>
-<span id="index-bond"></span>
-<ul>
-<li> Vasicek Bond Price
-</li><li> Vasicek Bond Option
-</li><li> Convertible Bond
-</li><li> Bond Zero Black
-</li><li> Bond Zero Vasicek
-</li><li> Bond American Binomial
-</li><li> Bond Call Rendleman Bartter
-</li><li> Bond Flat
-</li><li> Bond with Term Structure
-</li><li> Bond with Principal
+</div>
+<div class="section-level-extent" id="Bonds">
+<h3 class="section"><span>5.14 Bonds<a class="copiable-link" href="#Bonds"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-bond"></a>
+<ul class="itemize mark-bullet">
+<li>Vasicek Bond Price
+</li><li>Vasicek Bond Option
+</li><li>Convertible Bond
+</li><li>Bond Zero Black
+</li><li>Bond Zero Vasicek
+</li><li>Bond American Binomial
+</li><li>Bond Call Rendleman Bartter
+</li><li>Bond Flat
+</li><li>Bond with Term Structure
+</li><li>Bond with Principal
 </li></ul>
 
-<span id="Term-structures"></span><h3 class="section">5.15 Term structures</h3>
-<span id="index-Term-structure"></span>
-<ul>
-<li> <a href="http://www.google.com/search?q=Term+Structure+Flat">Term Structure Flat</a>
-</li><li> Term Structure Cir
-</li><li> Term Structure Vasicek
-</li><li> Term Structure Nelson Siegel
-</li><li> Term Structure Svensson
-</li><li> Term Structure Cubic Spline
-</li><li> Term Structure Interpolated
+</div>
+<div class="section-level-extent" id="Term-structures">
+<h3 class="section"><span>5.15 Term structures<a class="copiable-link" href="#Term-structures"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Term-structure"></a>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Term+Structure+Flat">Term Structure Flat</a>
+</li><li>Term Structure Cir
+</li><li>Term Structure Vasicek
+</li><li>Term Structure Nelson Siegel
+</li><li>Term Structure Svensson
+</li><li>Term Structure Cubic Spline
+</li><li>Term Structure Interpolated
 </li></ul>
 
-<span id="Misc"></span><h3 class="section">5.16 Misc</h3>
-<ul>
-<li> PV / IRR
-</li><li> Log Normal Random
+</div>
+<div class="section-level-extent" id="Misc">
+<h3 class="section"><span>5.16 Misc<a class="copiable-link" href="#Misc"> &para;</a></span></h3>
+<ul class="itemize mark-bullet">
+<li>PV / IRR
+</li><li>Log Normal Random
 </li></ul>
 
-<span id="index-pre_002dBSM"></span>
-<span id="pre_002dBSM"></span><h3 class="section">5.17 pre-BSM</h3>
-<ul>
-<li> <a href="http://www.google.com/search?q=Bachelier-1900">Bachelier-1900</a>
-</li><li> Bachelier Modified
-</li><li> Sprenkle-64
-</li><li> Boness-64
-</li><li> Samuelson-65
+<a class="index-entry-id" id="index-Pre_002dBSM"></a>
+</div>
+<div class="section-level-extent" id="Pre_002dBSM">
+<h3 class="section"><span>5.17 Pre-BSM<a class="copiable-link" href="#Pre_002dBSM"> &para;</a></span></h3>
+<ul class="itemize mark-bullet">
+<li><a class="url" href="http://www.google.com/search?q=Bachelier-1900">Bachelier-1900</a>
+</li><li>Bachelier Modified
+</li><li>Sprenkle-64
+</li><li>Boness-64
+</li><li>Samuelson-65
 </li></ul>
 
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/10.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
 
+</div>
+</div>
 <hr>
-<div class="header">
+<div class="nav-panel">
 <p>
-Next: <a href="Downloading-and-Installation.html" accesskey="n" rel="next">Downloading and Installation</a>, Previous: <a href="Curses-optionmatrix.html" accesskey="p" rel="prev">Curses optionmatrix</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Downloading-and-Installation.html">Downloading and Installation</a>, Previous: <a href="Curses-optionmatrix.html">Curses <code class="command">optionmatrix_console</code></a>, Up: <a href="index.html">OptionMatrix</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

@@ -1,9 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<!-- This manual is for OptionMatrix (version 1.4.3, 7 February 2020),
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for OptionMatrix (version 1.4.4, 18 January 2025),
 which is a Financial Derivatives Calculator supporting GTK+, Curses and the Command Line.
 
-Copyright (C) 2013 Anthony Bradford.
+Copyright © 2013 Anthony Bradford.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -11,16 +14,15 @@ any later version published by the Free Software Foundation; with no
 Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
 Texts.  A copy of the license is included in the section entitled
 "GNU Free Documentation License". -->
-<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Reporting bugs (OptionMatrix 1.4.3)</title>
+<title>Reporting bugs (OptionMatrix 1.4.4)</title>
 
 <meta name="description" content="Financial Derivatives Calculator. Black-Scholes Calculator.">
-<meta name="keywords" content="Reporting bugs (OptionMatrix 1.4.3)">
+<meta name="keywords" content="Reporting bugs (OptionMatrix 1.4.4)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <link href="index.html" rel="start" title="Top">
 <link href="Concept-index.html" rel="index" title="Concept index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
@@ -29,20 +31,9 @@ Texts.  A copy of the license is included in the section entitled
 <link href="Documentation.html" rel="prev" title="Documentation">
 <style type="text/css">
 <!--
-a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-div.display {margin-left: 3.2em}
-div.example {margin-left: 3.2em}
-div.lisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
-ul.no-bullet {list-style: none}
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
 -->
 </style>
 
@@ -50,49 +41,51 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a><span id="Reporting-bugs"></span><div class="header">
+<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a><div class="chapter-level-extent" id="Reporting-bugs">
+<div class="nav-panel">
 <p>
-Next: <a href="GNU-Free-Documentation-License.html" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="Documentation.html" accesskey="p" rel="prev">Documentation</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
+Next: <a href="GNU-Free-Documentation-License.html" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="Documentation.html" accesskey="p" rel="prev">Documentation</a>, Up: <a href="index.html" accesskey="u" rel="up">OptionMatrix</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<span id="Reporting-bugs-1"></span><h2 class="chapter">8 Reporting bugs</h2>
+<h2 class="chapter" id="Reporting-bugs-1"><span>8 Reporting bugs<a class="copiable-link" href="#Reporting-bugs-1"> &para;</a></span></h2>
 
-<span id="index-Bug-reporting"></span>
-<span id="index-problems"></span>
-<span id="index-Reporting-bugs"></span>
+<a class="index-entry-id" id="index-Bug-reporting"></a>
+<a class="index-entry-id" id="index-problems"></a>
+<a class="index-entry-id" id="index-Reporting-bugs"></a>
 
 <p>To report bugs, suggest enhancements or otherwise discuss optionmatrix,
-please send electronic mail to <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>.
+please send electronic mail to <a class="email" href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>.
 </p>
-<span id="index-Checklist-for-bug-reports"></span>
+<a class="index-entry-id" id="index-Checklist-for-bug-reports"></a>
 <p>For bug reports, please include enough information for the maintainers
 to reproduce the problem.  Generally speaking, that means:
 </p>
-<ul>
-<li> The version numbers of optionmatrix (which you can find by running
-      &lsquo;<samp>optionmatrix&nbsp;<span class="nolinebreak">--version</span></samp>&rsquo;<!-- /@w -->) and any other program(s) or
+<ul class="itemize mark-bullet">
+<li>The version numbers of optionmatrix (which you can find by running
+      &lsquo;<samp class="samp">optionmatrix&nbsp;--version</samp>&rsquo;<!-- /@w -->) and any other program(s) or
       manual(s) involved.
-</li><li> Hardware and operating system names and versions.
-</li><li> The contents of any input files necessary to reproduce the bug.
-</li><li> The expected behavior and/or output.
-</li><li> A description of the problem and samples of any erroneous output.
-</li><li> Options you gave to <code>configure</code> other than specifying
+</li><li>Hardware and operating system names and versions.
+</li><li>The contents of any input files necessary to reproduce the bug.
+</li><li>The expected behavior and/or output.
+</li><li>A description of the problem and samples of any erroneous output.
+</li><li>Options you gave to <code class="command">configure</code> other than specifying
       installation directories.
-</li><li> Anything else that you think would be helpful.
+</li><li>Anything else that you think would be helpful.
 </li></ul>
 
 <p>When in doubt whether something is needed or not, include it.  It&rsquo;s
 better to include too much than to leave out something important.
 </p>
-<span id="index-Patches_002c-contributing"></span>
-<p>Patches are welcome; if possible, please make them with &lsquo;<samp>diff&nbsp;<span class="nolinebreak">-c</span><!-- /@w --></samp>&rsquo;. Please follow the existing coding style.
+<a class="index-entry-id" id="index-Patches_002c-contributing"></a>
+<p>Patches are welcome; if possible, please make them with &lsquo;<samp class="samp">diff&nbsp;-c<!-- /@w --></samp>&rsquo;. Please follow the existing coding style.
 </p>
-<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br><br clear=left>
+<a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/9.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
 
+</div>
 
 
 <a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a>

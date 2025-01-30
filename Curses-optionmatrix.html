@@ -1,9 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<!-- This manual is for OptionMatrix (version 1.4.3, 7 February 2020),
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for OptionMatrix (version 1.4.4, 18 January 2025),
 which is a Financial Derivatives Calculator supporting GTK+, Curses and the Command Line.
 
-Copyright (C) 2013 Anthony Bradford.
+Copyright © 2013 Anthony Bradford.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -11,16 +14,15 @@ any later version published by the Free Software Foundation; with no
 Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
 Texts.  A copy of the license is included in the section entitled
 "GNU Free Documentation License". -->
-<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Curses optionmatrix (OptionMatrix 1.4.3)</title>
+<title>Curses optionmatrix (OptionMatrix 1.4.4)</title>
 
 <meta name="description" content="Financial Derivatives Calculator. Black-Scholes Calculator.">
-<meta name="keywords" content="Curses optionmatrix (OptionMatrix 1.4.3)">
+<meta name="keywords" content="Curses optionmatrix (OptionMatrix 1.4.4)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <link href="index.html" rel="start" title="Top">
 <link href="Concept-index.html" rel="index" title="Concept index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
@@ -29,20 +31,11 @@ Texts.  A copy of the license is included in the section entitled
 <link href="Graphical-Application-optionmatrix.html" rel="prev" title="Graphical Application optionmatrix">
 <style type="text/css">
 <!--
-a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-div.display {margin-left: 3.2em}
-div.example {margin-left: 3.2em}
-div.lisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
-ul.no-bullet {list-style: none}
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.center {text-align:center}
+kbd.kbd {font-style: oblique}
+kbd.key {font-style: normal}
+span:hover a.copiable-link {visibility: visible}
 -->
 </style>
 
@@ -50,96 +43,117 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a><span id="Curses-optionmatrix"></span><div class="header">
+<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a><div class="chapter-level-extent" id="Curses-optionmatrix">
+<div class="nav-panel">
 <p>
-Next: <a href="Models-supported.html" accesskey="n" rel="next">Models supported</a>, Previous: <a href="Graphical-Application-optionmatrix.html" accesskey="p" rel="prev">Graphical Application optionmatrix</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Models-supported.html" accesskey="n" rel="next">Models supported</a>, Previous: <a href="Graphical-Application-optionmatrix.html" accesskey="p" rel="prev">Graphical Application optionmatrix</a>, Up: <a href="index.html" accesskey="u" rel="up">OptionMatrix</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<span id="Curses-optionmatrix_005fconsole"></span><h2 class="chapter">4 Curses <code>optionmatrix_console</code></h2>
+<h2 class="chapter" id="Curses-optionmatrix_005fconsole"><span>4 Curses <code class="command">optionmatrix_console</code><a class="copiable-link" href="#Curses-optionmatrix_005fconsole"> &para;</a></span></h2>
 
-<span id="Running"></span><h3 class="section">4.1 Running</h3>
-<span id="index-curses-1"></span>
-<span id="index-optionmatrix_002elog-1"></span>
-<p>Running <code>optionmatrix_console</code> with no arguments or just the <samp>--debug</samp>, <samp>-d</samp> options will invoke the OptionMatrix Curses Application.  The Curses Application is a text application with no graphical user interface. The <samp>--debug</samp> or <samp>-d</samp> options will cause <code>optionmatrix_console</code> to create the debug log, <samp>optionmatrix.log</samp>, in the users home directory or the current working directory of execution. This log file will be populated with diagnostic information while the program is executing.
+<ul class="mini-toc">
+<li><a href="#Running" accesskey="1">Running</a></li>
+<li><a href="#Welcome-Screen" accesskey="2">Welcome Screen</a></li>
+<li><a href="#Model-Selection" accesskey="3">Model Selection</a></li>
+<li><a href="#Format-Selection" accesskey="4">Format Selection</a></li>
+<li><a href="#Inputs" accesskey="5">Inputs</a></li>
+<li><a href="#Pricing-Screen" accesskey="6">Pricing Screen</a></li>
+</ul>
+<div class="section-level-extent" id="Running">
+<h3 class="section"><span>4.1 Running<a class="copiable-link" href="#Running"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-curses-1"></a>
+<a class="index-entry-id" id="index-optionmatrix_002elog-1"></a>
+<p>Running <code class="command">optionmatrix_console</code> with no arguments or just the <samp class="option">--debug</samp>, <samp class="option">-d</samp> options will invoke the OptionMatrix Curses Application.  The Curses Application is a text application with no graphical user interface. The <samp class="option">--debug</samp> or <samp class="option">-d</samp> options will cause <code class="command">optionmatrix_console</code> to create the debug log, <samp class="file">optionmatrix.log</samp>, in the users home directory or the current working directory of execution. This log file will be populated with diagnostic information while the program is executing.
 </p>
-<span id="index-UNIX"></span>
-<p>The Curses Application typically runs from a UNIX like console or DOS prompt, it can be associated with a start menu or desktop icon. The Curses Application responds to keyboard events. See <a href="Graphical-Application-optionmatrix.html">Graphical Application optionmatrix</a>, for optionmatrix with a graphical user interface.
+<a class="index-entry-id" id="index-UNIX"></a>
+<p>The Curses Application typically runs from a UNIX like console or DOS prompt, it can be associated with a start menu or desktop icon. The Curses Application responds to keyboard events. See <a class="xref" href="Graphical-Application-optionmatrix.html">Graphical Application optionmatrix</a>, for optionmatrix with a graphical user interface.
 </p>
-<span id="Welcome-Screen"></span><h3 class="section">4.2 Welcome Screen</h3>
-<span id="index-Welcome-screen-curses"></span>
+</div>
+<div class="section-level-extent" id="Welcome-Screen">
+<h3 class="section"><span>4.2 Welcome Screen<a class="copiable-link" href="#Welcome-Screen"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Welcome-screen-curses"></a>
 <p>A welcome screen will appear with author, version, license, e-mail and website information. Press any key to continue to model selection screen.
-</p>
 <br>
-
-<div align="center"><img src="images/ConsoleWelcome.png" alt="Financial Engineering Linux">
+</p><div class="center"><img class="image" src="images/ConsoleWelcome.png" alt="Financial Engineering Linux">
 </div>
-<span id="Model-Selection"></span><h3 class="section">4.3 Model Selection</h3>
-<span id="index-Model-selection-curses"></span>
-<p>Choose a model on the Model Selection screen by typing in its number and pressing <tt class="key">RET</tt>.
-</p>
-<p>The arrow down and arrow up keys can be used to scroll and view more models. The listing of models exceeds the screen size. 
-<br>
-<br>
-</p><div align="center"><img src="images/ConsoleSelect.png" alt="Financial Engineering Linux Models">
 </div>
+<div class="section-level-extent" id="Model-Selection">
+<h3 class="section"><span>4.3 Model Selection<a class="copiable-link" href="#Model-Selection"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Model-selection-curses"></a>
+<p>Choose a model on the Model Selection screen by typing in its number and pressing <kbd class="key">RET</kbd>.
+<br>
+The arrow down and arrow up keys can be used to scroll and view more models. The listing of models exceeds the screen size. 
+<br>
+<br>
+</p><div class="center"><img class="image" src="images/ConsoleSelect.png" alt="Financial Engineering Linux Models">
+</div><br>
 <p>Once a model is selected the Format Selection screen will appear.
 </p>
-<span id="Format-Selection"></span><h3 class="section">4.4 Format Selection</h3>
-<span id="index-Format-selection-curses"></span>
-<span id="index-Display-formats-curses"></span>
-<span id="index-Option-chain-format-curses"></span>
-<p>The Format Selection screen displays the model&rsquo;s name, models source, display formats and miscellaneous selections. Key selection of  <kbd>1</kbd> - <kbd>9</kbd> will select a display format for the option&rsquo;s chain.
-</p>
+</div>
+<div class="section-level-extent" id="Format-Selection">
+<h3 class="section"><span>4.4 Format Selection<a class="copiable-link" href="#Format-Selection"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Format-selection-curses"></a>
+<a class="index-entry-id" id="index-Display-formats-curses"></a>
+<a class="index-entry-id" id="index-Option-chain-format-curses"></a>
+<p>The Format Selection screen displays the model&rsquo;s name, models source, display formats and miscellaneous selections. Key selection of  <kbd class="kbd">1</kbd> - <kbd class="kbd">9</kbd> will select a display format for the option&rsquo;s chain.
 <br>
-<div align="center"><img src="images/ConsoleFormat.png" alt="Financial Engineering Model Format">
+</p><div class="center"><img class="image" src="images/ConsoleFormat.png" alt="Financial Engineering Model Format">
 </div><br>
-<span id="index-Decimal-date-curses"></span>
-<span id="index-Calendar-date-curses"></span>
+
+<a class="index-entry-id" id="index-Decimal-date-curses"></a>
+<a class="index-entry-id" id="index-Calendar-date-curses"></a>
 <p>Formats are categorized as &ldquo;(decimal date/date entry dated)&rdquo; or &ldquo;(calendar dated)&rdquo;. See column on the right of the screen. 
-</p>
 <br>
-<div align="center"><img src="images/ConsoleCategories.png" alt="Financial Engineering Model Format Category">
+</p><div class="center"><img class="image" src="images/ConsoleCategories.png" alt="Financial Engineering Model Format Category">
 </div><br>
-<span id="index-Expiration-curses"></span>
-<span id="index-Date-engine-curses"></span>
+
+<a class="index-entry-id" id="index-Expiration-curses"></a>
+<a class="index-entry-id" id="index-Date-engine-curses"></a>
 <p>The &ldquo;(decimal date/date entry dated)&rdquo; formats allow the user to enter the time to expiration as a decimal date (Example: .5 years away) or enter an explicit date (Example: 1/20/14 - read: Jan 20 2014). The &ldquo;(calendar dated)&rdquo; formats set option expirations using a date engine which has a default setting of 3rd Friday+1 @11:59AM going into the future. The Date Engine can be configured to match most industry used option expirations.
+<br>
+Selection of any key <kbd class="kbd">1</kbd> - <kbd class="kbd">9</kbd> to proceed to the Inputs Screen.
 </p>
-<p>Selection of any key <kbd>1</kbd> - <kbd>9</kbd> to proceed to the Inputs Screen.
-</p>
-<span id="Inputs"></span><h3 class="section">4.5 Inputs</h3>
+</div>
+<div class="section-level-extent" id="Inputs">
+<h3 class="section"><span>4.5 Inputs<a class="copiable-link" href="#Inputs"> &para;</a></span></h3>
 <p>The Input Screen is customized on a per model basis. The user will be prompted for specific inputs for the selected model.
 <br>
+</p>
 <br>
-</p><div align="center"><img src="images/ConsoleInputs.png" alt="Black-Scholes Inputs">
+<div class="center"><img class="image" src="images/ConsoleInputs.png" alt="Black-Scholes Inputs">
 </div><br>
 <p>The Pricing Screen will follow.
 </p>
-<span id="Pricing-Screen"></span><h3 class="section">4.6 Pricing Screen</h3>
-<span id="index-In-the-money-curses"></span>
-<span id="index-At-the-money-curses"></span>
-<span id="index-Time-bleeding-curses"></span>
-<p>The option model will begin pricing. The updating pricing changes are the result of time bleeding between the current time and the expiration times. Inputs can be adjusted while the model is pricing. Try typing: <kbd>S, s, X, x, R, r, V, v</kbd> or the arrow keys.
+</div>
+<div class="section-level-extent" id="Pricing-Screen">
+<h3 class="section"><span>4.6 Pricing Screen<a class="copiable-link" href="#Pricing-Screen"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-In-the-money-curses"></a>
+<a class="index-entry-id" id="index-At-the-money-curses"></a>
+<a class="index-entry-id" id="index-Time-bleeding-curses"></a>
+<p>The option model will begin pricing. The updating pricing changes are the result of time bleeding between the current time and the expiration times. Inputs can be adjusted while the model is pricing. Try typing: <kbd class="kbd">S, s, X, x, R, r, V, v</kbd> or the arrow keys.
 <br>
 <br>
-</p><div align="center"><img src="images/ConsoleChain.png" alt="Black-Scholes Options">
+</p><div class="center"><img class="image" src="images/ConsoleChain.png" alt="Black-Scholes Options">
 </div><br>
 <p>At the money, in the money options are highlighted by default.
 <br>
 <br>
-Pressing the <tt class="key">TAB</tt> key will switch to another display format screen.
-Type <tt class="key">ESC</tt> to go back to the Model Selection Screen.
-Type <kbd>h</kbd> or <kbd>?</kbd> for help.
-Type <kbd>q</kbd> or <kbd>Q</kbd> to quit.
+Pressing the <kbd class="key">TAB</kbd> key will switch to another display format screen.
+Type <kbd class="key">ESC</kbd> to go back to the Model Selection Screen.
+Type <kbd class="kbd">h</kbd> or <kbd class="kbd">?</kbd> for help.
+Type <kbd class="kbd">q</kbd> or <kbd class="kbd">Q</kbd> to quit.
 </p>
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/7.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
+</div>
+</div>
 <hr>
-<div class="header">
+<div class="nav-panel">
 <p>
-Next: <a href="Models-supported.html" accesskey="n" rel="next">Models supported</a>, Previous: <a href="Graphical-Application-optionmatrix.html" accesskey="p" rel="prev">Graphical Application optionmatrix</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Models-supported.html">Models supported</a>, Previous: <a href="Graphical-Application-optionmatrix.html">Graphical Application optionmatrix</a>, Up: <a href="index.html">OptionMatrix</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

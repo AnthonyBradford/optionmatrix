@@ -1,9 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<!-- This manual is for OptionMatrix (version 1.4.3, 7 February 2020),
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for OptionMatrix (version 1.4.4, 18 January 2025),
 which is a Financial Derivatives Calculator supporting GTK+, Curses and the Command Line.
 
-Copyright (C) 2013 Anthony Bradford.
+Copyright © 2013 Anthony Bradford.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -11,16 +14,15 @@ any later version published by the Free Software Foundation; with no
 Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
 Texts.  A copy of the license is included in the section entitled
 "GNU Free Documentation License". -->
-<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Invoking the OptionMatrix Programs (OptionMatrix 1.4.3)</title>
+<title>Invoking the OptionMatrix Programs (OptionMatrix 1.4.4)</title>
 
 <meta name="description" content="Financial Derivatives Calculator. Black-Scholes Calculator.">
-<meta name="keywords" content="Invoking the OptionMatrix Programs (OptionMatrix 1.4.3)">
+<meta name="keywords" content="Invoking the OptionMatrix Programs (OptionMatrix 1.4.4)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <link href="index.html" rel="start" title="Top">
 <link href="Concept-index.html" rel="index" title="Concept index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
@@ -29,20 +31,9 @@ Texts.  A copy of the license is included in the section entitled
 <link href="Overview.html" rel="prev" title="Overview">
 <style type="text/css">
 <!--
-a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-div.display {margin-left: 3.2em}
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 div.example {margin-left: 3.2em}
-div.lisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
-ul.no-bullet {list-style: none}
+span:hover a.copiable-link {visibility: visible}
 -->
 </style>
 
@@ -50,123 +41,118 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a><span id="Invoking-the-OptionMatrix-Programs"></span><div class="header">
+<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a><div class="chapter-level-extent" id="Invoking-the-OptionMatrix-Programs">
+<div class="nav-panel">
 <p>
-Next: <a href="Graphical-Application-optionmatrix.html" accesskey="n" rel="next">Graphical Application optionmatrix</a>, Previous: <a href="Overview.html" accesskey="p" rel="prev">Overview</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Graphical-Application-optionmatrix.html" accesskey="n" rel="next">Graphical Application optionmatrix</a>, Previous: <a href="Overview.html" accesskey="p" rel="prev">Overview</a>, Up: <a href="index.html" accesskey="u" rel="up">OptionMatrix</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<span id="Invoking-the-OptionMatrix-Programs-1"></span><h2 class="chapter">2 Invoking the OptionMatrix Programs</h2>
-<span id="index-invoking"></span>
+<h2 class="chapter" id="Invoking-the-OptionMatrix-Programs-1"><span>2 Invoking the OptionMatrix Programs<a class="copiable-link" href="#Invoking-the-OptionMatrix-Programs-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-invoking"></a>
 
-<span id="Usage-Options"></span><h3 class="section">2.1 Usage Options</h3>
-<span id="index-usage"></span>
+<ul class="mini-toc">
+<li><a href="#Usage-Options" accesskey="1">Usage Options</a></li>
+<li><a href="#Examples" accesskey="2">Examples</a></li>
+</ul>
+<div class="section-level-extent" id="Usage-Options">
+<h3 class="section"><span>2.1 Usage Options<a class="copiable-link" href="#Usage-Options"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-usage"></a>
 
 <p>The options for running the OptionMatrix programs are:
 </p>
 <div class="example">
-<pre class="example">optionmatrix <var>option</var> &hellip;
+<pre class="example-preformatted">optionmatrix <var class="var">option</var> ...
 </pre></div>
 
 <div class="example">
-<pre class="example">optionmatrix_console <var>option</var> &hellip;
+<pre class="example-preformatted">optionmatrix_console <var class="var">option</var> ...
 </pre></div>
 
-<span id="index-curses"></span>
-<p>With no options, <code>optionmatrix</code> launches the GTK+ (GUI) version of OptionMatrix and <code>optionmatrix_console</code> launches the Curses (console, DOS) version.
+<a class="index-entry-id" id="index-curses"></a>
+<p>With no options, <code class="command">optionmatrix</code> launches the GTK+ (GUI) version of OptionMatrix and <code class="command">optionmatrix_console</code> launches the Curses (console, DOS) version.
 </p>
-<p><code>optionmatrix</code> and <code>optionmatrix_console</code> support the following options:
+<p><code class="command">optionmatrix</code> and <code class="command">optionmatrix_console</code> support the following options:
 </p>
-<dl compact="compact">
-<dd>
-<span id="index-help"></span>
-</dd>
-<dt><samp>--help</samp></dt>
-<dt><samp>-h</samp></dt>
-<dd><span id="index-_002d_002dhelp"></span>
-<span id="index-_002dh"></span>
-<p>Print an informative help message on standard output and exit.
+<dl class="table">
+<dt><a class="index-entry-id" id="index-_002dh"></a>
+<a class="index-entry-id" id="index-help"></a>
+<a id="index-_002d_002dhelp"></a><span><samp class="option">--help</samp><a class="copiable-link" href="#index-_002d_002dhelp"> &para;</a></span></dt>
+<dt><samp class="option">-h</samp></dt>
+<dd><p>Print an informative help message on standard output and exit.
 </p>
 </dd>
-<dt><samp>--version</samp></dt>
-<dt><samp>-v</samp></dt>
-<dd><span id="index-_002d_002dversion"></span>
-<span id="index-_002dv"></span>
-<p>Print the version number and licensing information of OptionMatrix on
+<dt><a class="index-entry-id" id="index-_002dv"></a>
+<a id="index-_002d_002dversion"></a><span><samp class="option">--version</samp><a class="copiable-link" href="#index-_002d_002dversion"> &para;</a></span></dt>
+<dt><samp class="option">-v</samp></dt>
+<dd><p>Print the version number and licensing information of OptionMatrix on
 standard output and exit.
 </p>
 </dd>
-<dt><samp>--list</samp></dt>
-<dt><samp>-l</samp></dt>
-<dd><span id="index-_002d_002dlist"></span>
-<span id="index-_002dl"></span>
-<span id="index-Listing-models"></span>
-<span id="index-Models-listing"></span>
-<p>List the names of all financial models to standard output and exit.
+<dt><a class="index-entry-id" id="index-_002dl"></a>
+<a class="index-entry-id" id="index-Listing-models"></a>
+<a class="index-entry-id" id="index-Models-listing"></a>
+<a id="index-_002d_002dlist"></a><span><samp class="option">--list</samp><a class="copiable-link" href="#index-_002d_002dlist"> &para;</a></span></dt>
+<dt><samp class="option">-l</samp></dt>
+<dd><p>List the names of all financial models to standard output and exit.
 </p>
 </dd>
-<dt><samp>--source</samp></dt>
-<dt><samp>-s</samp></dt>
-<dd><span id="index-_002d_002dsource"></span>
-<span id="index-_002ds"></span>
-<span id="index-Source-code"></span>
-<p>List source code file names of models not accessible by the application to standard output and exit. If a model&rsquo;s source code is accessible the <code>optionmatrix</code> program can display source code from the running application.
+<dt><a class="index-entry-id" id="index-_002ds"></a>
+<a class="index-entry-id" id="index-Source-code"></a>
+<a id="index-_002d_002dsource"></a><span><samp class="option">--source</samp><a class="copiable-link" href="#index-_002d_002dsource"> &para;</a></span></dt>
+<dt><samp class="option">-s</samp></dt>
+<dd><p>List source code file names of models not accessible by the application to standard output and exit. If a model&rsquo;s source code is accessible the <code class="command">optionmatrix</code> program can display source code from the running application.
 </p>
 </dd>
-<dt><samp>--debug</samp></dt>
-<dt><samp>-d</samp></dt>
-<dd><span id="index-_002d_002ddebug"></span>
-<span id="index-_002dd"></span>
-<p>Force creation of debug log file <samp>optionmatrix.log</samp>
+<dt><a class="index-entry-id" id="index-_002dd"></a>
+<a id="index-_002d_002ddebug"></a><span><samp class="option">--debug</samp><a class="copiable-link" href="#index-_002d_002ddebug"> &para;</a></span></dt>
+<dt><samp class="option">-d</samp></dt>
+<dd><p>Force creation of debug log file <samp class="file">optionmatrix.log</samp>
 </p>
 </dd>
-<dt><samp>--price</samp></dt>
-<dt><samp>-p</samp></dt>
-<dd><span id="index-_002d_002dprice"></span>
-<span id="index-_002dp"></span>
-<p>Iterate through and test all models to standard output and exit.
+<dt><a class="index-entry-id" id="index-_002dp"></a>
+<a id="index-_002d_002dprice"></a><span><samp class="option">--price</samp><a class="copiable-link" href="#index-_002d_002dprice"> &para;</a></span></dt>
+<dt><samp class="option">-p</samp></dt>
+<dd><p>Iterate through and test all models to standard output and exit.
 </p>
 </dd>
-<dt><samp>--quiet</samp></dt>
-<dt><samp>-q</samp></dt>
-<dd><span id="index-_002d_002dquiet"></span>
-<span id="index-_002dq"></span>
-<p>Iterate through and test all models in quiet mode and exit.
+<dt><a class="index-entry-id" id="index-_002dq"></a>
+<a id="index-_002d_002dquiet"></a><span><samp class="option">--quiet</samp><a class="copiable-link" href="#index-_002d_002dquiet"> &para;</a></span></dt>
+<dt><samp class="option">-q</samp></dt>
+<dd><p>Iterate through and test all models in quiet mode and exit.
 </p>
 </dd>
-<dt><samp>--model</samp></dt>
-<dt><samp>-m</samp></dt>
-<dd><span id="index-_002d_002dmodel-number"></span>
-<span id="index-_002dm-number"></span>
-<p>Time test a specific model number to standard output and exit. 200000 executions of model are made and timed by default.
+<dt><a class="index-entry-id" id="index-_002dm-number"></a>
+<a id="index-_002d_002dmodel-number"></a><span><samp class="option">--model</samp><a class="copiable-link" href="#index-_002d_002dmodel-number"> &para;</a></span></dt>
+<dt><samp class="option">-m</samp></dt>
+<dd><p>Time test a specific model number to standard output and exit. 200000 executions of model are made and timed by default.
 </p>
 </dd>
-<dt><samp>--iterate number</samp></dt>
-<dt><samp>-i number</samp></dt>
-<dd><span id="index-_002d_002diterate-number"></span>
-<span id="index-_002di-number"></span>
-<p>Set number of executions a model will be time tested for (default 200000)
+<dt><a class="index-entry-id" id="index-_002di-number"></a>
+<a id="index-_002d_002diterate-number"></a><span><samp class="option">--iterate number</samp><a class="copiable-link" href="#index-_002d_002diterate-number"> &para;</a></span></dt>
+<dt><samp class="option">-i number</samp></dt>
+<dd><p>Set number of executions a model will be time tested for (default 200000)
 </p>
 </dd>
-<dt><samp>--Directory</samp></dt>
-<dt><samp>-D</samp></dt>
-<dd><span id="index-_002d_002dDirectory"></span>
-<span id="index-_002dD"></span>
-<p>Set model source code directory. The GTK+ version of the application can display source code.
+<dt><a class="index-entry-id" id="index-_002dD"></a>
+<a id="index-_002d_002dDirectory"></a><span><samp class="option">--Directory</samp><a class="copiable-link" href="#index-_002d_002dDirectory"> &para;</a></span></dt>
+<dt><samp class="option">-D</samp></dt>
+<dd><p>Set model source code directory. The GTK+ version of the application can display source code.
 </p>
 </dd>
-<dt><samp>--datadir</samp></dt>
-<dt><samp>-x</samp></dt>
-<dd><span id="index-_002d_002ddatadir"></span>
-<span id="index-_002dD-1"></span>
-<p>Override the datadir variable used for the path to icons / images.
+<dt><a class="index-entry-id" id="index-_002dD-1"></a>
+<a id="index-_002d_002ddatadir"></a><span><samp class="option">--datadir</samp><a class="copiable-link" href="#index-_002d_002ddatadir"> &para;</a></span></dt>
+<dt><samp class="option">-x</samp></dt>
+<dd><p>Override the datadir variable used for the path to icons / images.
 </p>
 </dd>
 </dl>
-<p>The option <samp>--debug</samp> ( <samp>-d</samp> ) is the only option used by both <code>optionmatrix</code> and <code>optionmatrix_console</code> applications. The options <samp>--Directory</samp> ( <samp>-D</samp> ) and <samp>--datadir</samp> ( <samp>-x</samp> ) are exclusive to <code>optionmatrix</code>. The remaining command line options do not launch an interactive application and only create standard output and exit.
-</p><span id="Examples"></span><h3 class="section">2.2 Examples</h3>
-<p>Try typing &lsquo;<samp>optionmatrix --version</samp>&rsquo;
+<p>The option <samp class="option">--debug</samp> ( <samp class="option">-d</samp> ) is the only option used by both <code class="command">optionmatrix</code> and <code class="command">optionmatrix_console</code> applications. The options <samp class="option">--Directory</samp> ( <samp class="option">-D</samp> ) and <samp class="option">--datadir</samp> ( <samp class="option">-x</samp> ) are exclusive to <code class="command">optionmatrix</code>. The remaining command line options do not launch an interactive application and only create standard output and exit.
+</p></div>
+<div class="section-level-extent" id="Examples">
+<h3 class="section"><span>2.2 Examples<a class="copiable-link" href="#Examples"> &para;</a></span></h3>
+<p>Try typing &lsquo;<samp class="samp">optionmatrix --version</samp>&rsquo;
 </p><div class="example">
-<pre class="example">optionmatrix 1.4.3
+<pre class="example-preformatted">optionmatrix 1.4.4
 
 Copyright (C) 2013 Anthony Bradford.
 License GPLv3+: GNU GPL version 3 or later 
@@ -175,18 +161,18 @@ This is free software; see the source for copying conditions.
 There is NO warranty; not even for MERCHANTABILITY or 
 FITNESS FOR A PARTICULAR PURPOSE.
 
-<span id="index-Anthony-Bradford-1"></span>Written by Anthony Bradford.
+<a class="index-entry-id" id="index-Anthony-Bradford-1"></a>Written by Anthony Bradford.
 </pre></div>
 <br>
-<span id="index-Black_002dScholes"></span>
+<a class="index-entry-id" id="index-Black_002dScholes"></a>
 <p>Run and time model zero, Black-Scholes, at the default number of iterations (200000)
 </p>
-<span id="index-Put-time-to-calculate"></span>
-<span id="index-Call-time-to-calculate"></span>
-<span id="index-Time-to-calculate-put-_002f-call"></span>
-<p>&lsquo;<samp>optionmatrix --model 0 </samp>&rsquo;
+<a class="index-entry-id" id="index-Put-time-to-calculate"></a>
+<a class="index-entry-id" id="index-Call-time-to-calculate"></a>
+<a class="index-entry-id" id="index-Time-to-calculate-put-_002f-call"></a>
+<p>&lsquo;<samp class="samp">optionmatrix --model 0 </samp>&rsquo;
 </p><div class="example">
-<pre class="example">Model #: 0 Black-Scholes
+<pre class="example-preformatted">Model #: 0 Black-Scholes
 
 200000 Calls calculated &nbsp;Time 1.517541s
 CPU time: 0.600000s
@@ -197,9 +183,9 @@ CPU time: 0.560000s
 <br>
 <p>Run and time model zero, Black-Scholes, at 1 million iterations
 </p>
-<p>&lsquo;<samp>optionmatrix --iterate 1000000 --model 0</samp>&rsquo;
+<p>&lsquo;<samp class="samp">optionmatrix --iterate 1000000 --model 0</samp>&rsquo;
 </p><div class="example">
-<pre class="example">Model #: 0 Black-Scholes
+<pre class="example-preformatted">Model #: 0 Black-Scholes
 
 1000000 Calls calculated &nbsp;Time 7.890567s
 CPU time: 2.870000s
@@ -210,28 +196,31 @@ CPU time: 2.780000s
 <br>
 <p>Run the Curses version of OptionMatrix
 </p>
-<p>&lsquo;<samp>optionmatrix_console</samp>&rsquo;
+<p>&lsquo;<samp class="samp">optionmatrix_console</samp>&rsquo;
 <br>
 <br>
 Run the GTK+ (GUI) version of OptionMatrix
 </p>
-<p>&lsquo;<samp>optionmatrix</samp>&rsquo;
+<p>&lsquo;<samp class="samp">optionmatrix</samp>&rsquo;
 <br>
 <br>
 Run the GTK+ (GUI) version of OptionMatrix and define the model source code location.
 </p>
-<p>&lsquo;<samp>optionmatrix --Directory src/c++/optionmatrix/optionmatrix-1.4.3</samp>&rsquo;
+<p>&lsquo;<samp class="samp">optionmatrix --Directory src/c++/optionmatrix/optionmatrix-1.4.4</samp>&rsquo;
 <br>
+</p>
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/5.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
-</p>
+
+</div>
+</div>
 <hr>
-<div class="header">
+<div class="nav-panel">
 <p>
-Next: <a href="Graphical-Application-optionmatrix.html" accesskey="n" rel="next">Graphical Application optionmatrix</a>, Previous: <a href="Overview.html" accesskey="p" rel="prev">Overview</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Graphical-Application-optionmatrix.html">Graphical Application optionmatrix</a>, Previous: <a href="Overview.html">Overview</a>, Up: <a href="index.html">OptionMatrix</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

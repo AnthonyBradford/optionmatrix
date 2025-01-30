@@ -1,9 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<!-- This manual is for OptionMatrix (version 1.4.3, 7 February 2020),
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for OptionMatrix (version 1.4.4, 18 January 2025),
 which is a Financial Derivatives Calculator supporting GTK+, Curses and the Command Line.
 
-Copyright (C) 2013 Anthony Bradford.
+Copyright © 2013 Anthony Bradford.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -11,16 +14,15 @@ any later version published by the Free Software Foundation; with no
 Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
 Texts.  A copy of the license is included in the section entitled
 "GNU Free Documentation License". -->
-<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Graphical Application optionmatrix (OptionMatrix 1.4.3)</title>
+<title>Graphical Application optionmatrix (OptionMatrix 1.4.4)</title>
 
 <meta name="description" content="Financial Derivatives Calculator. Black-Scholes Calculator.">
-<meta name="keywords" content="Graphical Application optionmatrix (OptionMatrix 1.4.3)">
+<meta name="keywords" content="Graphical Application optionmatrix (OptionMatrix 1.4.4)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <link href="index.html" rel="start" title="Top">
 <link href="Concept-index.html" rel="index" title="Concept index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
@@ -29,20 +31,9 @@ Texts.  A copy of the license is included in the section entitled
 <link href="Invoking-the-OptionMatrix-Programs.html" rel="prev" title="Invoking the OptionMatrix Programs">
 <style type="text/css">
 <!--
-a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-div.display {margin-left: 3.2em}
-div.example {margin-left: 3.2em}
-div.lisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
-ul.no-bullet {list-style: none}
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.center {text-align:center}
+span:hover a.copiable-link {visibility: visible}
 -->
 </style>
 
@@ -50,357 +41,427 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a><span id="Graphical-Application-optionmatrix"></span><div class="header">
+<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a><div class="chapter-level-extent" id="Graphical-Application-optionmatrix">
+<div class="nav-panel">
 <p>
-Next: <a href="Curses-optionmatrix.html" accesskey="n" rel="next">Curses optionmatrix</a>, Previous: <a href="Invoking-the-OptionMatrix-Programs.html" accesskey="p" rel="prev">Invoking the OptionMatrix Programs</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Curses-optionmatrix.html" accesskey="n" rel="next">Curses <code class="command">optionmatrix_console</code></a>, Previous: <a href="Invoking-the-OptionMatrix-Programs.html" accesskey="p" rel="prev">Invoking the OptionMatrix Programs</a>, Up: <a href="index.html" accesskey="u" rel="up">OptionMatrix</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<span id="Graphical-Application-optionmatrix-1"></span><h2 class="chapter">3 Graphical Application optionmatrix</h2>
-<span id="Main-Screen"></span><h3 class="section">3.1 Main Screen</h3>
+<h2 class="chapter" id="Graphical-Application-optionmatrix-1"><span>3 Graphical Application optionmatrix<a class="copiable-link" href="#Graphical-Application-optionmatrix-1"> &para;</a></span></h2>
+<ul class="mini-toc">
+<li><a href="#Main-Screen" accesskey="1">Main Screen</a></li>
+<li><a href="#Input-Controls" accesskey="2">Input Controls</a></li>
+<li><a href="#Date-Engine" accesskey="3">Date Engine</a></li>
+<li><a href="#Greeks" accesskey="4">Greeks</a></li>
+<li><a href="#Spreads" accesskey="5">Spreads</a></li>
+<li><a href="#Models" accesskey="6">Models</a></li>
+<li><a href="#Cash-Flow-Editor" accesskey="7">Cash Flow Editor</a></li>
+<li><a href="#Re_002dcalculations" accesskey="8">Re-calculations</a></li>
+<li><a href="#Cumulative-Normal-Distribution" accesskey="9">Cumulative Normal Distribution</a></li>
+<li><a href="#Precision">Precision</a></li>
+<li><a href="#Exporting">Exporting</a></li>
+</ul>
+<div class="section-level-extent" id="Main-Screen">
+<h3 class="section"><span>3.1 Main Screen<a class="copiable-link" href="#Main-Screen"> &para;</a></span></h3>
 
-<span id="index-GTK_002b"></span>
-<span id="index-optionmatrix_002elog"></span>
-<span id="index-Option-chain"></span>
-<span id="index-Black_002dScholes-1"></span>
-<span id="index-Time-bleeding"></span>
-<p>Running <code>optionmatrix</code> with no arguments or just the <samp>--debug</samp>, <samp>-d</samp> options will invoke the OptionMatrix GTK+ Graphical Application. The <samp>--debug</samp> or <samp>-d</samp> options will cause <code>optionmatrix</code> to create the debug log, <samp>optionmatrix.log</samp>, in the users home directory or the current working directory of execution. This log file will be populated with diagnostic information while the program is executing.
+<a class="index-entry-id" id="index-GTK_002b"></a>
+<a class="index-entry-id" id="index-optionmatrix_002elog"></a>
+<a class="index-entry-id" id="index-Option-chain"></a>
+<a class="index-entry-id" id="index-Black_002dScholes-1"></a>
+<a class="index-entry-id" id="index-Time-bleeding"></a>
+<p>Running <code class="command">optionmatrix</code> with no arguments or just the <samp class="option">--debug</samp>, <samp class="option">-d</samp> options will invoke the OptionMatrix GTK+ Graphical Application. The <samp class="option">--debug</samp> or <samp class="option">-d</samp> options will cause <code class="command">optionmatrix</code> to create the debug log, <samp class="file">optionmatrix.log</samp>, in the users home directory or the current working directory of execution. This log file will be populated with diagnostic information while the program is executing.
 </p>
 <p>The initial screen will appear. The default model is Black-Scholes. The option chain on display is being re-calculated every second. Price changes are the result of time bleeding between the current time and the expiration time. 
 </p>
-<br>
-<div align="center"><img src="images/OptionMatrix.png" alt="Financial Derivatives Calculator">
+<div class="center"><img class="image" src="images/OptionMatrix.png" alt="Financial Derivatives Calculator">
 </div>
-<span id="Input-Controls"></span><h3 class="section">3.2 Input Controls</h3>
+</div>
+<div class="section-level-extent" id="Input-Controls">
+<h3 class="section"><span>3.2 Input Controls<a class="copiable-link" href="#Input-Controls"> &para;</a></span></h3>
 
-<span id="Price_002c-Interest-Rate-and-Standard-Deviation"></span><h4 class="subsection">3.2.1 Price, Interest Rate and Standard Deviation</h4>
-<span id="index-price"></span>
-<span id="index-Interest-rate"></span>
-<span id="index-Standard-deviation"></span>
-<span id="index-volatility"></span>
+<ul class="mini-toc">
+<li><a href="#Price_002c-Interest-Rate-and-Standard-Deviation" accesskey="1">Price, Interest Rate and Standard Deviation</a></li>
+<li><a href="#Time" accesskey="2">Time</a></li>
+<li><a href="#Calendar-Picker" accesskey="3">Calendar Picker</a></li>
+<li><a href="#Strike-Controls" accesskey="4">Strike Controls</a></li>
+</ul>
+<div class="subsection-level-extent" id="Price_002c-Interest-Rate-and-Standard-Deviation">
+<h4 class="subsection"><span>3.2.1 Price, Interest Rate and Standard Deviation<a class="copiable-link" href="#Price_002c-Interest-Rate-and-Standard-Deviation"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-price"></a>
+<a class="index-entry-id" id="index-Interest-rate"></a>
+<a class="index-entry-id" id="index-Standard-deviation"></a>
+<a class="index-entry-id" id="index-volatility"></a>
 <p>Price, interest rate, and standard deviation can be configured via spin buttons. 
 <br>
+</p>
 <br>
-</p><div align="center"><img src="images/PriceInterestStandard.png" alt="Financial Engineering Modelling">
-</div><span id="Time"></span><h4 class="subsection">3.2.2 Time</h4>
-<span id="index-Time-to-expiration"></span>
-<span id="index-Days-to-expiration"></span>
-<span id="index-Expiration-date"></span>
+<div class="center"><img class="image" src="images/PriceInterestStandard.png" alt="Financial Engineering Modelling">
+</div></div>
+<div class="subsection-level-extent" id="Time">
+<h4 class="subsection"><span>3.2.2 Time<a class="copiable-link" href="#Time"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Time-to-expiration"></a>
+<a class="index-entry-id" id="index-Days-to-expiration"></a>
+<a class="index-entry-id" id="index-Expiration-date"></a>
 <p>Time can be entered by the &ldquo;Time to Expiration&rdquo; or the &ldquo;Days to Expiration&rdquo; spin buttons.
 <br>
 <br>
-</p><div align="center"><img src="images/Time.png" alt="Financial Option Expiration Time">
-</div><br>
+</p><div class="center"><img class="image" src="images/Time.png" alt="Financial Option Expiration Time">
+</div>
 <p>&ldquo;Time to Expiration&rdquo; displays time to expiration in years. &ldquo;Days to Expiration&rdquo; displays expiration time in days.
 </p>
-<span id="index-Leap-year"></span>
+<a class="index-entry-id" id="index-Leap-year"></a>
 <p>Input to either spin button updates both. An exact expiration date and time is calculated from the input, the option chain in the calculator&rsquo;s grid display will be update to the new expiration date. Date calculations are adjusted for leap day of leap years.
 </p>
 <p>Both spin button&rsquo;s time value decreases every second as the expiration date approaches.
-<span id="index-real_002dtime"></span>
+<a class="index-entry-id" id="index-real_002dtime"></a>
 This real-time updating can be toggled with the checkbox &ldquo;RealTime&rdquo;.
 <br>
+</p>
 <br>
-</p><div align="center"><img src="images/RealTime.png" alt="Real Time Financial Options Pricer">
-</div><span id="index-Calendar-picker"></span>
-<span id="Calendar-Picker"></span><h4 class="subsection">3.2.3 Calendar Picker</h4>
-<span id="index-calendar"></span>
+<div class="center"><img class="image" src="images/RealTime.png" alt="Real Time Financial Options Pricer">
+</div><a class="index-entry-id" id="index-Calendar-picker"></a>
+</div>
+<div class="subsection-level-extent" id="Calendar-Picker">
+<h4 class="subsection"><span>3.2.3 Calendar Picker<a class="copiable-link" href="#Calendar-Picker"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-calendar"></a>
 <p>A specific calendar date can be selected with the Calendar Picker.
 </p>
 <p>Calendar date selections will update both the &ldquo;Time to Expiration&rdquo; and the &ldquo;Days to Expirations&rdquo; spin buttons. Pressing the &ldquo;Calendar&rdquo; push button will invoke the Calendar Picker popup.
 <br>
+</p>
 <br>
-</p><div align="center"><img src="images/CalendarButton.png" alt="Financial Derivative Expiration Calendar">
+<div class="center"><img class="image" src="images/CalendarButton.png" alt="Financial Derivative Expiration Calendar">
 </div>
 <p>The popup features year, month and day calendar selections. 
 <br>
+</p>
 <br>
-</p><div align="center"><img src="images/Calendar.png" alt="Equity Option Puts Calls Expiration Calendar">
+<div class="center"><img class="image" src="images/Calendar.png" alt="Equity Option Puts Calls Expiration Calendar">
 </div>
 <p>Select an expiration date and dismiss the popup. The popup does not feature a &ldquo;OK&rdquo; or &ldquo;Cancel&rdquo; button. The option chain in the calculator&rsquo;s grid display will be set to the new expiration date.
 </p>
-<span id="Strike-Controls"></span><h4 class="subsection">3.2.4 Strike Controls</h4>
-<span id="index-Strike-increments"></span>
-<span id="index-Custom-strike"></span>
-<p>A drop down box &ldquo;Strikes&rdquo; changes the strike increments or allows custom strike mode.
-</p>
-<br>
-<div align="center"><img src="images/StrikesDrop.png" alt="Financial Derivatives Strikes">
 </div>
-<p>Selections include: 5, 1, .5, .1, .01, .001 and CUST
-</p>
+<div class="subsection-level-extent" id="Strike-Controls">
+<h4 class="subsection"><span>3.2.4 Strike Controls<a class="copiable-link" href="#Strike-Controls"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Strike-increments"></a>
+<a class="index-entry-id" id="index-Custom-strike"></a>
+<p>A drop down box &ldquo;Strikes&rdquo; changes the strike increments or allows custom strike mode.
 <br>
-<div align="center"><img src="images/Strikes.png" alt="Equity Puts Call Strikes">
-</div><span id="index-Strike-adjuster"></span>
+</p><div class="center"><img class="image" src="images/StrikesDrop.png" alt="Financial Derivatives Strikes">
+</div><br>
+<p>Selections include: 5, 1, .5, .1, .01, .001 and CUST
+<br>
+</p><div class="center"><img class="image" src="images/Strikes.png" alt="Equity Puts Call Strikes">
+</div><a class="index-entry-id" id="index-Strike-adjuster"></a>
 <p>A scale button &ldquo;Strike Adjuster&rdquo; allows scrolling of strikes being displayed in the selected strike increments.
 <br>
 <br>
-</p><div align="center"><img src="images/StrikeDropDownAndAdjuster.png" alt="Equity Options Strikes">
-</div>
-<span id="index-Strike-custom"></span>
+</p><div class="center"><img class="image" src="images/StrikeDropDownAndAdjuster.png" alt="Equity Options Strikes">
+</div><a class="index-entry-id" id="index-Strike-custom"></a>
 <p>Selection of drop down item &ldquo;CUST&rdquo; allows entering of any strike in the Strike input box.
 <br>
 <br>
-</p><div align="center"><img src="images/CUSTInput.png" alt="Financial Derivative Strike">
+</p><div class="center"><img class="image" src="images/CUSTInput.png" alt="Financial Derivative Strike">
 </div>
-<span id="Date-Engine"></span><h3 class="section">3.3 Date Engine</h3>
-<span id="index-Date-engine"></span>
+</div>
+</div>
+<div class="section-level-extent" id="Date-Engine">
+<h3 class="section"><span>3.3 Date Engine<a class="copiable-link" href="#Date-Engine"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Date-engine"></a>
 <p>Selecting the checkbox &ldquo;Use Date Engine&rdquo; will invoke the Date Engine. 
-</p>
 <br>
-<div align="center"><img src="images/DateEngineSelected.png" alt="Equity Puts Calls Expiration">
+</p><div class="center"><img class="image" src="images/DateEngineSelected.png" alt="Equity Puts Calls Expiration">
 </div>
-<span id="index-expiration"></span>
-<span id="index-Exchange-traded-options"></span>
+<a class="index-entry-id" id="index-expiration"></a>
+<a class="index-entry-id" id="index-Exchange-traded-options"></a>
 <p>The Date Engine will map option expirations to a default of 3rd Friday+1 @11:59AM going into the future. This is the standard expiration for U.S. Exchange Traded Options. The Date Engine is configurable and can make any re-occuring date used by the options industry.
 </p>
 <p>The option chain&rsquo;s pricing will be updated as time decreases between the current time and the expirations.
-</p>
 <br>
-<div align="center"><img src="images/OptionMatrixCalendarDated.png" alt="Equity Stock Option Calculator">
+</p><div class="center"><img class="image" src="images/OptionMatrixCalendarDated.png" alt="Equity Stock Option Calculator">
 </div>
-<span id="Date-Engine-Properties"></span><h4 class="subsection">3.3.1 Date Engine Properties</h4>
-<span id="index-Date-engine-properties"></span>
-<span id="index-expiration-1"></span>
+<ul class="mini-toc">
+<li><a href="#Date-Engine-Properties" accesskey="1">Date Engine Properties</a></li>
+<li><a href="#Month-Adjuster" accesskey="2">Month Adjuster</a></li>
+<li><a href="#Option-Cycles" accesskey="3">Option Cycles</a></li>
+<li><a href="#Display-Formats" accesskey="4">Display Formats</a></li>
+</ul>
+<div class="subsection-level-extent" id="Date-Engine-Properties">
+<h4 class="subsection"><span>3.3.1 Date Engine Properties<a class="copiable-link" href="#Date-Engine-Properties"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Date-engine-properties"></a>
+<a class="index-entry-id" id="index-expiration-1"></a>
 <p>The Date Engine Properties popup is used to configure the Date Engine. It can be invoked by pressing the Date Engine Properties push button. 
-</p>
 <br>
-<div align="center"><img src="images/DateEngineProperties.png" alt="Stock Option Expirations">
-</div>
+</p><div class="center"><img class="image" src="images/DateEngineProperties.png" alt="Stock Option Expirations">
+</div><br>
 <p>The default expiration setting of 3rd Friday+1 @11:59AM can be changed.
-</p>
 <br>
-<div align="center"><img src="images/DateEngine.png" alt="Equity Option Expirations">
+</p><div class="center"><img class="image" src="images/DateEngine.png" alt="Equity Option Expirations">
 </div>
-<span id="Month-Adjuster"></span><h4 class="subsection">3.3.2 Month Adjuster</h4>
-<span id="index-Month-adjuster"></span>
+</div>
+<div class="subsection-level-extent" id="Month-Adjuster">
+<h4 class="subsection"><span>3.3.2 Month Adjuster<a class="copiable-link" href="#Month-Adjuster"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Month-adjuster"></a>
 <p>A scale button named &ldquo;Month Adjuster&rdquo; can adjust the Date Engine&rsquo;s months forward.
-</p>
 <br>
-<div align="center"><img src="images/MonthAdjuster.png" alt="Financial Modelling Month Adjustment">
+</p><div class="center"><img class="image" src="images/MonthAdjuster.png" alt="Financial Modelling Month Adjustment">
 </div>
-<span id="Option-Cycles"></span><h4 class="subsection">3.3.3 Option Cycles</h4>
-<span id="index-Option-cycles"></span>
-<span id="index-Months-in-option-cycles"></span>
+</div>
+<div class="subsection-level-extent" id="Option-Cycles">
+<h4 class="subsection"><span>3.3.3 Option Cycles<a class="copiable-link" href="#Option-Cycles"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Option-cycles"></a>
+<a class="index-entry-id" id="index-Months-in-option-cycles"></a>
 <p>The Date Engine supports option cycles. See drop down with label &ldquo;Cycle&rdquo;.
-</p>
 <br>
-<div align="center"><img src="images/CycleClosed.png" alt="Equity Option Cycles">
-</div>
-<span id="index-LEAPS"></span>
+</p><div class="center"><img class="image" src="images/CycleClosed.png" alt="Equity Option Cycles">
+</div><br>
+<a class="index-entry-id" id="index-LEAPS"></a>
 <p>The Cycle drop down includes: All, Jan, Feb, Mar and LEAPS.
-</p>
 <br>
-<div align="center"><img src="images/CycleDropOpen.png" alt="Equity Option Cycles Jan Feb Mar">
+</p><div class="center"><img class="image" src="images/CycleDropOpen.png" alt="Equity Option Cycles Jan Feb Mar">
 </div><br>
 <p>The default setting is &ldquo;All&rdquo; which displays all months.
 </p>
-<span id="Display-Formats"></span><h4 class="subsection">3.3.4 Display Formats</h4>
-<span id="index-Display-formats"></span>
-<span id="index-Option-chain-1"></span>
+</div>
+<div class="subsection-level-extent" id="Display-Formats">
+<h4 class="subsection"><span>3.3.4 Display Formats<a class="copiable-link" href="#Display-Formats"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Display-formats"></a>
+<a class="index-entry-id" id="index-Option-chain-1"></a>
 <p>The Date Engine supports many display formats for the option chain.
-</p>
-<p>In the grouping of radio buttons labeled &ldquo;Display Formats&rdquo; each radio button changes the option chains display format.
+<br>
+In the grouping of radio buttons labeled &ldquo;Display Formats&rdquo; each radio button changes the option chains display format.
 <br>
 <br>
-</p><div align="center"><img src="images/DisplayFormats.png" alt="Option Chain Display Formats">
+</p><div class="center"><img class="image" src="images/DisplayFormats.png" alt="Option Chain Display Formats">
 </div>
 <p>The display formats are: Month to Strikes, Months to Strike, Months Across and &ldquo;3 Call / 3 Put Columns&rdquo;.
-</p><span id="Month-to-Strikes"></span><h4 class="unnumberedsubsubsec">Month to Strikes</h4>
-<span id="index-Month-to-strikes"></span>
+</p><ul class="mini-toc">
+<li><a href="#Month-to-Strikes" accesskey="1">Month to Strikes</a></li>
+<li><a href="#Months-to-Strike" accesskey="2">Months to Strike</a></li>
+<li><a href="#Months-Across" accesskey="3">Months Across</a></li>
+<li><a href="#g_t3-Call-_002f-3-Put-Columns" accesskey="4">3 Call / 3 Put Columns</a></li>
+</ul>
+<div class="unnumberedsubsubsec-level-extent" id="Month-to-Strikes">
+<h4 class="unnumberedsubsubsec"><span>Month to Strikes<a class="copiable-link" href="#Month-to-Strikes"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Month-to-strikes"></a>
 <p>&ldquo;Month to Strikes&rdquo; features sets of the same expiration month mapped to incrementing strikes.
 <br>
 <br>
-</p><div align="center"><img src="images/MonthToStrikes.png" alt="Option Chain Month Strikes">
-</div><span id="Months-to-Strike"></span><h4 class="unnumberedsubsubsec">Months to Strike</h4>
-<span id="index-Months-to-strike"></span>
+</p><div class="center"><img class="image" src="images/MonthToStrikes.png" alt="Option Chain Month Strikes">
+</div></div>
+<div class="unnumberedsubsubsec-level-extent" id="Months-to-Strike">
+<h4 class="unnumberedsubsubsec"><span>Months to Strike<a class="copiable-link" href="#Months-to-Strike"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Months-to-strike"></a>
 <p>&ldquo;Months to Strike&rdquo; features sets of incrementing expiration months mapped to the same strike.
 <br>
 <br>
-</p><div align="center"><img src="images/MonthsToStrike.png" alt="Option Chain Months Strike">
-</div><span id="Months-Across"></span><h4 class="unnumberedsubsubsec">Months Across</h4>
-<span id="index-Months-across"></span>
+</p><div class="center"><img class="image" src="images/MonthsToStrike.png" alt="Option Chain Months Strike">
+</div></div>
+<div class="unnumberedsubsubsec-level-extent" id="Months-Across">
+<h4 class="unnumberedsubsubsec"><span>Months Across<a class="copiable-link" href="#Months-Across"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Months-across"></a>
 <p>&ldquo;Months Across&rdquo; features sets of calls, puts, incrementing strikes and incrementing expiration month columns. The calls have the letter &rsquo;c&rsquo; before the price while puts have the letter &rsquo;p&rsquo; before the price.
 <br>
 <br>
-</p><div align="center"><img src="images/MonthsAcross.png" alt="Option Chain Columns">
-</div><span id="g_t3-Call-_002f-3-Put-Columns"></span><h4 class="unnumberedsubsubsec">3 Call / 3 Put Columns</h4>
-<span id="index-3-Call-_002f-3-Put-Columns"></span>
+</p><div class="center"><img class="image" src="images/MonthsAcross.png" alt="Option Chain Columns">
+</div></div>
+<div class="unnumberedsubsubsec-level-extent" id="g_t3-Call-_002f-3-Put-Columns">
+<h4 class="unnumberedsubsubsec"><span>3 Call / 3 Put Columns<a class="copiable-link" href="#g_t3-Call-_002f-3-Put-Columns"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-3-Call-_002f-3-Put-Columns"></a>
 <p>&ldquo;3 Call / 3 Put Columns&rdquo; features incrementing strikes with 3 Call Columns and 3 Put Columns.
 <br>
 <br>
-</p><div align="center"><img src="images/3Calls3Puts.png" alt="Equity Option Columns">
+</p><div class="center"><img class="image" src="images/3Calls3Puts.png" alt="Equity Option Columns">
 </div>
-<span id="Greeks"></span><h3 class="section">3.4 Greeks</h3>
-<span id="index-greeks"></span>
-<span id="index-Analytics-for-options"></span>
-<span id="index-Option-analytics"></span>
-<span id="index-delta"></span>
-<span id="index-gamma"></span>
-<span id="index-vega"></span>
-<span id="index-theta"></span>
-<span id="index-rho"></span>
+</div>
+</div>
+</div>
+<div class="section-level-extent" id="Greeks">
+<h3 class="section"><span>3.4 Greeks<a class="copiable-link" href="#Greeks"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-greeks"></a>
+<a class="index-entry-id" id="index-Analytics-for-options"></a>
+<a class="index-entry-id" id="index-Option-analytics"></a>
+<a class="index-entry-id" id="index-delta"></a>
+<a class="index-entry-id" id="index-gamma"></a>
+<a class="index-entry-id" id="index-vega"></a>
+<a class="index-entry-id" id="index-theta"></a>
+<a class="index-entry-id" id="index-rho"></a>
 <p>Option analytics of Call Delta, Put Delta, Gamma, Vega, Call Theta, Put Theta, Call Rho, Put Rho are calculated. They can be seen on the row at the top of the option chain.
 <br>
 <br>
-</p><div align="center"><img src="images/Greeks.png" alt="Derivative Greeks Delta Gamma Vega Theta Rho">
+</p><div class="center"><img class="image" src="images/Greeks.png" alt="Derivative Greeks Delta Gamma Vega Theta Rho">
 </div>
-<span id="Spreads"></span><h3 class="section">3.5 Spreads</h3>
-<span id="index-Spread-mode"></span>
+</div>
+<div class="section-level-extent" id="Spreads">
+<h3 class="section"><span>3.5 Spreads<a class="copiable-link" href="#Spreads"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Spread-mode"></a>
 <p>Selection of the checkbox &ldquo;Spreads&rdquo; will invoke the Spread Mode.
-</p>
 <br>
-<div align="center"><img src="images/SpreadCheckbox.png" alt="Financial Derivative Spread Trading">
-</div>
+</p><div class="center"><img class="image" src="images/SpreadCheckbox.png" alt="Financial Derivative Spread Trading">
+</div><br>
 <p>Spread Mode allows the individual leg information for a spread to be controlled.
-</p>
 <br>
-<div align="center"><img src="images/OptionMatrixSpreads.png" alt="Derivative Spread Leg Controls">
+</p><div class="center"><img class="image" src="images/OptionMatrixSpreads.png" alt="Derivative Spread Leg Controls">
 </div>
-<span id="index-Month-adjuster-legs"></span>
-<span id="index-leg-1"></span>
-<span id="index-leg-2"></span>
+<a class="index-entry-id" id="index-Month-adjuster-legs"></a>
+<a class="index-entry-id" id="index-leg-1"></a>
+<a class="index-entry-id" id="index-leg-2"></a>
 <p>Scale buttons &ldquo;Strike Adj Leg1&rdquo; and &ldquo;Month Adj Leg1&rdquo; can be used to adjust strikes and months for Leg 1. Scale buttons &ldquo;Strike Adj Leg2&rdquo; and &ldquo;Month Adj Leg2&rdquo; can be used to adjust strikes and months for Leg 2.
-</p>
 <br>
-<div align="center"><img src="images/LegControls.png" alt="Put Call Derivative Leg Controls">
-</div>
+</p><div class="center"><img class="image" src="images/LegControls.png" alt="Put Call Derivative Leg Controls">
+</div><br>
 <p>Spreads are displayed on a per row basis.
 <br>
 <br>
-</p><div align="center"><img src="images/SpreadLegs.png" alt="Derivative Legs">
+</p><div class="center"><img class="image" src="images/SpreadLegs.png" alt="Derivative Legs">
 </div>
 <p>The first set of column references to &ldquo;Expr Date, Strike, Call, Put&rdquo; is 
 considered Leg 1. Use scale controls &ldquo;Strike Adj Leg1&rdquo; and &ldquo;Month Adj Leg1&rdquo; to adjust. 
 <br>
 <br>
-</p><div align="center"><img src="images/Leg1.png" alt="Spread Option Leg">
+</p><div class="center"><img class="image" src="images/Leg1.png" alt="Spread Option Leg">
 </div>
 <p>The second set of column references to &ldquo;Expr Date, Strike, Call, Put&rdquo; is considered Leg 2. Use scale controls &ldquo;Strike Adj Leg2&rdquo; and &ldquo;Month Adj Leg2&rdquo; to adjust.
 <br>
 <br>
-</p><div align="center"><img src="images/Leg1Leg2.png" alt="Spread Option Legs">
-</div>
-<span id="index-spreads"></span>
+</p><div class="center"><img class="image" src="images/Leg1Leg2.png" alt="Spread Option Legs">
+</div><br>
+<a class="index-entry-id" id="index-spreads"></a>
 <p>Four spreads are computed &ldquo;Spread C-C&rdquo; (Leg 1 Call minus Leg 2 Call), &ldquo;Spread P-P&rdquo; (Leg 1 Put minus Leg 2 Put), &ldquo;Spread C-P&rdquo; (Leg 1 Call minus Leg 2 Put) and &ldquo;Spread P-C&rdquo; (Leg 1 Put minus Leg 2 Call).
-</p>
 <br>
-<div align="center"><img src="images/SpreadsCCPPCPPC.png" alt="Equity Financial Derivatives Spread Legs">
-</div>
-<span id="index-Vertical-spread"></span>
-<span id="index-Calendar-spread"></span>
+</p><div class="center"><img class="image" src="images/SpreadsCCPPCPPC.png" alt="Equity Financial Derivatives Spread Legs">
+</div><br>
+<a class="index-entry-id" id="index-Vertical-spread"></a>
+<a class="index-entry-id" id="index-Calendar-spread"></a>
 <p>Spread views are automatically labeled Vertical Spread, Calendar Spread or Vertical Calendar Spread. 
 <br>
 <br>
-</p><div align="center"><img src="images/CalendarSpread.png" alt="Financial Calendar Horizontal Spread">
-</div>
+</p><div class="center"><img class="image" src="images/CalendarSpread.png" alt="Financial Calendar Horizontal Spread">
+</div><br>
 <p>Vertical Spread indicates strike differences between Leg 1 and Leg 2 (expiration dates are the same). Calendar Spread indicates expiration date differences between Leg 1 and Leg 2 (Strikes are the same). Vertical Calendar Spread indicates strike and calendar date expiration differences between the legs.
 </p>
-<span id="Models"></span><h3 class="section">3.6 Models</h3>
-<p>Over 170+ option models are featured in the OptionMatrix Calculator. Model numbers may vary between systems due to library and linker options.
-</p><span id="Changing-Models"></span><h4 class="subsection">3.6.1 Changing Models</h4>
-<span id="index-Model-drop-down"></span>
+</div>
+<div class="section-level-extent" id="Models">
+<h3 class="section"><span>3.6 Models<a class="copiable-link" href="#Models"> &para;</a></span></h3>
+<p>Over 171 option models are featured in the OptionMatrix Calculator. Model numbers may vary between systems due to library and linker options.
+</p><ul class="mini-toc">
+<li><a href="#Changing-Models" accesskey="1">Changing Models</a></li>
+<li><a href="#Model-Categorization" accesskey="2">Model Categorization</a></li>
+</ul>
+<div class="subsection-level-extent" id="Changing-Models">
+<h4 class="subsection"><span>3.6.1 Changing Models<a class="copiable-link" href="#Changing-Models"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Model-drop-down"></a>
 <p>The current pricing model can be changed with the &ldquo;Model&rdquo; drop down. The models are listed as categorized folders in the drop down.
 <br>
 <br>
-</p><div align="center"><img src="images/ModelDropDownOpen.png" alt="Financial Derivatives Options Modelling">
+</p><div class="center"><img class="image" src="images/ModelDropDownOpen.png" alt="Financial Derivatives Options Modelling">
 </div>
-<span id="Model-Categorization"></span><h4 class="subsection">3.6.2 Model Categorization</h4>
-<span id="index-Model-categories"></span>
+</div>
+<div class="subsection-level-extent" id="Model-Categorization">
+<h4 class="subsection"><span>3.6.2 Model Categorization<a class="copiable-link" href="#Model-Categorization"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Model-categories"></a>
 <p>The model drop down box categorization can be controlled via the menu item &ldquo;Models&rdquo;. Options include: 
 Models &rarr; List by Category, Models &rarr; List by Author and Models &rarr; List.
-</p>
 <br>
-<div align="center"><img src="images/ModelsList.png" alt="Financial Derivatives Model List">
-</div>
+</p><div class="center"><img class="image" src="images/ModelsList.png" alt="Financial Derivatives Model List">
+</div><br>
 <p>Models &rarr; List by Author, changes the categorization in the &ldquo;Models&rdquo; drop down to be based on author of the model.
 <br>
 <br>
-</p><div align="center"><img src="images/ModelByAuthor.png" alt="Financial Derivatives Model Authors">
+</p><div class="center"><img class="image" src="images/ModelByAuthor.png" alt="Financial Derivatives Model Authors">
 </div><br>
-<br>
 <p>Models &rarr; List, creates no categorized folders. The &ldquo;Models&rdquo; drop down box becomes a list of all models.
 <br>
 <br>
 Models &rarr; List by Category, is the default.
 </p>
-<span id="Cash-Flow-Editor"></span><h3 class="section">3.7 Cash Flow Editor</h3>
-<span id="index-Dividend-editor"></span>
-<span id="index-Coupon-editor"></span>
-<span id="index-Cash-flow-editor"></span>
-<p>Some models have multiple dividends or coupons. <code>optionmatrix</code> provides a cash flow editor to add / remove these cash streams. The cash stream is ordered by time. If the &ldquo;RealTime&rdquo; checkbox is enabled the dividend or coupons time will bleed.
-</p>
-<br>
-<div align="center"><img src="images/CouponEditor.png" alt="Financial Cash Flow Editor">
 </div>
-<span id="Re_002dcalculations"></span><h3 class="section">3.8 Re-calculations</h3>
-<span id="index-Sleep-delay"></span>
+</div>
+<div class="section-level-extent" id="Cash-Flow-Editor">
+<h3 class="section"><span>3.7 Cash Flow Editor<a class="copiable-link" href="#Cash-Flow-Editor"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Dividend-editor"></a>
+<a class="index-entry-id" id="index-Coupon-editor"></a>
+<a class="index-entry-id" id="index-Cash-flow-editor"></a>
+<p>Some models have multiple dividends or coupons. <code class="command">optionmatrix</code> provides a cash flow editor to add / remove these cash streams. The cash stream is ordered by time. If the &ldquo;RealTime&rdquo; checkbox is enabled the dividend or coupons time will bleed.
+<br>
+</p><div class="center"><img class="image" src="images/CouponEditor.png" alt="Financial Cash Flow Editor">
+</div>
+</div>
+<div class="section-level-extent" id="Re_002dcalculations">
+<h3 class="section"><span>3.8 Re-calculations<a class="copiable-link" href="#Re_002dcalculations"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Sleep-delay"></a>
 <p>Selection of Menu item Prefs &rarr; Settings will invoke the &ldquo;Settings Popup&rdquo;.
-</p>
 <br>
-<div align="center"><img src="images/PrefsSettings.png" alt="Financial Modelling Preferences">
-</div>
+</p><div class="center"><img class="image" src="images/PrefsSettings.png" alt="Financial Modelling Preferences">
+</div><br>
 <p>The setting &ldquo;Sleep Delay&rdquo; controls the time in between option chain re-calculations in seconds. The default setting is 1.
-</p>
 <br>
-<div align="center"><img src="images/SleepDelay.png" alt="Financial Modelling Pricer Real Time">
+</p><div class="center"><img class="image" src="images/SleepDelay.png" alt="Financial Modelling Pricer Real Time">
 </div>
-<span id="Cumulative-Normal-Distribution"></span><h3 class="section">3.9 Cumulative Normal Distribution</h3>
-<span id="index-Cumulative-normal-distribution"></span>
-<p>The method of calculating the cumulative normal distribution is controlled with drop down named &ldquo;CND&rdquo;.
-<br>
-<br>
-</p><div align="center"><img src="images/CNDDrop.png" alt="Cumulative Normal Distribution">
 </div>
-<span id="index-polyapprox"></span>
-<span id="index-rational1_002e0_002aE_002d7"></span>
-<span id="index-rational2_002e5_002aE_002d4"></span>
-<span id="index-Hart-equation"></span>
-<span id="index-Romberg_0027s-method"></span>
-<span id="index-Simpson_0027s-rule"></span>
-<span id="index-Trapezoidal-rule"></span>
-<p>Methods include: PolyApprox6, PolyApprox4, Rational1.0*E-7, Rational2.5*E-4, Hart Equation, Romberg&rsquo;s Method, <a href="http://www.google.com/search?q=Simpson's+Rule">Simpson&rsquo;s Rule</a> and <a href="http://www.google.com/search?q=Trapezoidal+Rule">Trapezoidal Rule</a>.
+<div class="section-level-extent" id="Cumulative-Normal-Distribution">
+<h3 class="section"><span>3.9 Cumulative Normal Distribution<a class="copiable-link" href="#Cumulative-Normal-Distribution"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Cumulative-normal-distribution"></a>
+<p>The method of calculating the Cumulative Normal Distribution is controlled with drop down named &ldquo;CND&rdquo;.
 <br>
 <br>
-</p><div align="center"><img src="images/CNDDropDown.png" alt="Cumulative Normal Distribution List">
-</div>
+</p><div class="center"><img class="image" src="images/CNDDrop.png" alt="Cumulative Normal Distribution">
+</div><br>
+<a class="index-entry-id" id="index-polyapprox"></a>
+<a class="index-entry-id" id="index-rational1_002e0_002aE_002d7"></a>
+<a class="index-entry-id" id="index-rational2_002e5_002aE_002d4"></a>
+<a class="index-entry-id" id="index-Hart-equation"></a>
+<a class="index-entry-id" id="index-Romberg_0027s-method"></a>
+<a class="index-entry-id" id="index-Simpson_0027s-rule"></a>
+<a class="index-entry-id" id="index-Trapezoidal-rule"></a>
+<p>Methods include: PolyApprox6, PolyApprox4, Rational1.0*E-7, Rational2.5*E-4, Hart Equation, Romberg&rsquo;s Method, <a class="url" href="http://www.google.com/search?q=Simpson's+Rule">Simpson&rsquo;s Rule</a>, <a class="url" href="http://www.google.com/search?q=Trapezoidal+Rule">Trapezoidal Rule</a> and erf().
+<br>
+<br>
+</p><div class="center"><img class="image" src="images/CNDDropDown.png" alt="Cumulative Normal Distribution List">
+</div><br>
 <p>PolyApprox6 is the default.
 </p>
-<span id="Precision"></span><h3 class="section">3.10 Precision</h3>
-<span id="index-Decimal-precision"></span>
-<span id="index-Precision-decimal"></span>
+</div>
+<div class="section-level-extent" id="Precision">
+<h3 class="section"><span>3.10 Precision<a class="copiable-link" href="#Precision"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Decimal-precision"></a>
+<a class="index-entry-id" id="index-Precision-decimal"></a>
 <p>Decimal place precision can be adjusted with the spin button &ldquo;Precision&rdquo;.
 <br>
 <br>
-</p><div align="center"><img src="images/Precision.png" alt="Financial Modelling Decimal Precision">
-</div>
+</p><div class="center"><img class="image" src="images/Precision.png" alt="Financial Modelling Decimal Precision">
+</div><br>
 <p>Precision is defaulted to eight decimal places to show real-time time bleeding.
 </p>
-<span id="Exporting"></span><h3 class="section">3.11 Exporting</h3>
-<span id="index-export"></span>
-<span id="index-Text-export"></span>
-<span id="index-C_002b_002b-1"></span>
-<span id="index-Source-code-1"></span>
+</div>
+<div class="section-level-extent" id="Exporting">
+<h3 class="section"><span>3.11 Exporting<a class="copiable-link" href="#Exporting"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-export"></a>
+<a class="index-entry-id" id="index-Text-export"></a>
+<a class="index-entry-id" id="index-C_002b_002b-1"></a>
+<a class="index-entry-id" id="index-Source-code-1"></a>
 <p>Two menu export options are available.
 <br>
 <br>
-</p><div align="center"><img src="images/Export.png" alt="Financial Modelling Decimal Precision">
+</p><div class="center"><img class="image" src="images/Export.png" alt="Financial Modelling Decimal Precision">
 </div><br>
-<br>
 <p>File &rarr; Text Export, exports the current option chain to a text window.
 <br>
 <br>
 File &rarr; Source View, exports the current option models C/C++ source code to a text window.
-</p>
+<br>
 <a href="Downloading-and-Installation.html"><img src="images/download.png" alt="Download OptionMatrix" align="left" width="144" height="105" border="0"/><br></a><br clear=left>
 <center><a href="Downloading-and-Installation.html"><img src="images/11.png" alt="Download OptionMatrix" align="top"/></a><br>
-<a href="http://sourceforge.net/projects/optionmatrix">OptionMatrix</a><br>
+<a href="http://sourceforge.net/projects/optionmatrix/">OptionMatrix</a><br>
 &copy; 2013 <a href="mailto:anthony_bradford@yahoo.com">Anthony Bradford</a>
 </center>
-
+</p>
+</div>
+</div>
 <hr>
-<div class="header">
+<div class="nav-panel">
 <p>
-Next: <a href="Curses-optionmatrix.html" accesskey="n" rel="next">Curses optionmatrix</a>, Previous: <a href="Invoking-the-OptionMatrix-Programs.html" accesskey="p" rel="prev">Invoking the OptionMatrix Programs</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Curses-optionmatrix.html">Curses <code class="command">optionmatrix_console</code></a>, Previous: <a href="Invoking-the-OptionMatrix-Programs.html">Invoking the OptionMatrix Programs</a>, Up: <a href="index.html">OptionMatrix</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 
