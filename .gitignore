@@ -121,3 +121,4 @@ test.*er
 checks.log
 run_all_examples.log
 check_options.log
+*.exe

@@ -259,7 +259,7 @@ html: $(optionmatrix__TEXINFOS) $(EQN_IMAGES) check_makeinfo_texi2any
 	else \
 		echo "texi2any installed"; \
 		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable 'FRAMES=TRUE' --set-customization-variable TOP_NODE_UP_URL=https://github.com --set-customization-variable 'AFTER_BODY_OPEN=<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a>' --set-customization-variable 'PRE_BODY_CLOSE=<a href="http://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a>' --html --number-sections -o html $(DESTDIR)optionmatrix.texi; \
-		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable TOP_NODE_UP_URL=https://github.com --set-customization-variable 'AFTER_BODY_OPEN=<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>' --set-customization-variable 'PRE_BODY_CLOSE=<a href="http://anthonybradford.com/om/doc/optionmatrix.pdf">OptionMatrix PDF manual</a>' --html --no-split --no-headers -o html/indexNoSplit.html $(DESTDIR)optionmatrix.texi; \
+		$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) --set-customization-variable TOP_NODE_UP_URL=https://github.com --set-customization-variable 'AFTER_BODY_OPEN=<a href="https://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a>' --set-customization-variable 'PRE_BODY_CLOSE=<a href="https://anthonybradford.github.io/optionmatrix/optionmatrix.pdf">OptionMatrix PDF manual</a>' --html --no-split --no-headers -o html/indexNoSplit.html $(DESTDIR)optionmatrix.texi; \
 	fi;
 	for i in $(EQN_IMAGES); do cp -f ${srcdir}/$$i $(DESTDIR)html/images ; done
 	@echo
