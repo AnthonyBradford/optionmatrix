@@ -2,6 +2,8 @@
 
 ![Model dropdown shot](https://github.com/AnthonyBradford/optionmatrix/blob/master/doc/images/ModelDropDownOpen.png)
 
+![OptionMatrix Program Screen 1](https://github.com/AnthonyBradford/optionmatrix/blob/master/doc/images/OptionMatrix.png)
+
 ![OptionMatrix Program Screen 1](https://github.com/AnthonyBradford/optionmatrix/blob/master/doc/images/OptionMatrixCalendarDated.png)
 
 ![OptionMatrix Program Screen 2](https://github.com/AnthonyBradford/optionmatrix/blob/master/doc/images/OptionMatrixWin1.png)
